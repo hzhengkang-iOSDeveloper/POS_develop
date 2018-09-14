@@ -1,0 +1,229 @@
+//
+//  POS_PCH.pch
+//  POS_develop
+//
+//  Created by sunyn on 2018/9/12.
+//  Copyright © 2018年 sunyn. All rights reserved.
+//
+
+#ifndef POS_PCH_pch
+#define POS_PCH_pch
+
+#import "AppDelegate.h"
+#import "UIView+Extension.h"
+#import "UIImage+Extension.h"
+#import "UIColor+HEXString.h"
+#import "BaseButton.h"
+
+#import "NSUserDefaults+Helper.h"
+#import "DateManager.h"
+#import "BaseModel.h"
+#import "NSString+Helper.h"//正则表达式
+#import "CustomImage.h"
+#import "UIAlertView+Blocks.h"
+#import "NetWorkDetectionManager.h"
+#import "HPDUtils.h"
+#import "HPDConnect.h"
+#import "HPDProgress.h"
+#import "GlobalMethod.h"
+#import "UITextField+Format.h"
+#import "HPDStatusCode.h"
+#import "LoginManager.h"
+#import "UITableView+BackgroundImageView.h"
+#import "MJChiBaoZiHeader.h"
+#import "UIButton+ImageTitleSpacing.h"
+#import "CustomDeleagte.h"
+#import "UIViewController+ZZNavigationItem.h"
+#import "DateManager.h"
+#import "UserInformation.h"
+#import "UILabel+ChangeLineSpaceAndWordSpace.h"
+//#import "GetHPCFCustState.h"
+//#import "CWMoneyKeboard.h"
+#import "BaseButton.h"
+//#import "CustomInputView.h"
+//#import "ImageAndLabelView.h"
+#import "TPPasswordTextView.h"
+//#import "OYCountDownManager.h"
+#import "CommunityWebViewController.h"
+#import "CF_LeftNavigationBar_BackBtn.h"
+//#import "GetReChargeCustState.h"
+#import "CustomDeleagte.h"
+
+//三方库头文件
+#import <Masonry.h>
+//#import <JPUSHService.h>
+#import "TBCityIconFont.h"
+#import "MyKeyChainHelper.h"
+#import <UIImageView+WebCache.h>
+#import <MJRefresh.h>
+#import "GTMNSString+HTML.h"
+#import <MJExtension.h>
+#import <IQKeyboardManager.h>
+#import "GTMNSString+HTML.h"
+
+
+#define RGBA(r,g,b,a) [UIColor colorWithRed:(float)r/255.0f green:(float)g/255.0f blue:(float)b/255.0f alpha:a]
+#define RGB(R,G,B)     [UIColor colorWithRed:(R)/255.0 green:(G)/255.0 blue:(B)/255.0 alpha:1.0]
+#define UIColor3b(r, g, b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]
+// RGB颜色转换（16进制->10进制）
+#define UIHexColor(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
+
+/**
+ *  统一配置MBProgressHUD显示时间
+ */
+#define SHOW_DELAY       0.5
+#define ERROR_DELAY      1.0
+#define SUCCESSFUL_DELAY 0.7
+
+
+/**是否开启测试接口 */
+#define showSimulationPort    NO
+
+//版本code
+#define IOSVessionNumCode @"106"
+#define PLATFORM_COUNT @"120"
+
+#define defaultObject(value, defaultValue) ((value)?(value):(defaultValue))
+
+#define CF6F6F6 [UIColor colorWithHexString:@"#F6F6F6"]//背景色
+#define WhiteColor [UIColor whiteColor]
+#define ClearColor [UIColor clearColor]
+#define ShallowTextColor [UIColor colorWithHexString:@"#96A0AA"]//浅文本
+#define TextColor_Gray [UIColor colorWithHexString:@"#C5CFD8"]//不可点击按钮颜色
+#define C00A0E9 [UIColor colorWithHexString:@"#00A0E9"]//主蓝色
+#define AuxiliaryColor [UIColor colorWithHexString:@"#FF5741"]//辅红色
+#define C090909 [UIColor colorWithHexString:@"#090909"]//深文本
+#define TextColor_light [UIColor colorWithHexString:@"#898989"]
+#define CE6E2E2 [UIColor colorWithHexString:@"#E6E2E2"]//线条描边
+#define C989898 [UIColor colorWithHexString:@"#989898"]
+#define C1E95F9 [UIColor colorWithHexString:@"#1E95F9"]
+
+#define CEEEEEE [UIColor colorWithHexString:@"#eeeeee"]
+#define LineColor_deep [UIColor colorWithHexString:@"#c8c9ca"]
+
+///正常字体
+#define F30 [UIFont systemFontOfSize:FITiPhone6(30)]
+#define F29 [UIFont systemFontOfSize:FITiPhone6(29)]
+#define F28 [UIFont systemFontOfSize:FITiPhone6(28)]
+#define F27 [UIFont systemFontOfSize:FITiPhone6(27)]
+#define F26 [UIFont systemFontOfSize:FITiPhone6(26)]
+#define F25 [UIFont systemFontOfSize:FITiPhone6(25)]
+#define F24 [UIFont systemFontOfSize:FITiPhone6(24)]
+#define F23 [UIFont systemFontOfSize:FITiPhone6(23)]
+#define F22 [UIFont systemFontOfSize:FITiPhone6(22)]
+#define F20 [UIFont systemFontOfSize:FITiPhone6(20)]
+#define F19 [UIFont systemFontOfSize:FITiPhone6(19)]
+#define F18 [UIFont systemFontOfSize:FITiPhone6(18)]
+#define F17 [UIFont systemFontOfSize:FITiPhone6(17)]
+#define F16 [UIFont systemFontOfSize:FITiPhone6(16)]
+#define F15 [UIFont systemFontOfSize:FITiPhone6(15)]
+#define F14 [UIFont systemFontOfSize:FITiPhone6(14)]
+#define F13 [UIFont systemFontOfSize:FITiPhone6(13)]
+#define F12 [UIFont systemFontOfSize:FITiPhone6(12)]
+#define F11 [UIFont systemFontOfSize:FITiPhone6(11)]
+#define F10 [UIFont systemFontOfSize:FITiPhone6(10)]
+#define F8 [UIFont systemFontOfSize:FITiPhone6(8)]
+
+///粗体
+#define FB32 [UIFont boldSystemFontOfSize:FITiPhone6(32)]
+#define FB30 [UIFont boldSystemFontOfSize:FITiPhone6(30)]
+#define FB24 [UIFont boldSystemFontOfSize:FITiPhone6(24)]
+#define FB20 [UIFont boldSystemFontOfSize:FITiPhone6(20)]
+#define FB19 [UIFont boldSystemFontOfSize:FITiPhone6(19)]
+#define FB18 [UIFont boldSystemFontOfSize:FITiPhone6(18)]
+#define FB16 [UIFont boldSystemFontOfSize:FITiPhone6(16)]
+#define FB15 [UIFont boldSystemFontOfSize:FITiPhone6(15)]
+#define FB14 [UIFont boldSystemFontOfSize:FITiPhone6(14)]
+#define FB13 [UIFont boldSystemFontOfSize:FITiPhone6(13)]
+#define FB12 [UIFont boldSystemFontOfSize:FITiPhone6(12)]
+#define FB11 [UIFont boldSystemFontOfSize:FITiPhone6(11)]
+#define FB10 [UIFont boldSystemFontOfSize:FITiPhone6(10)]
+#define FB8 [UIFont boldSystemFontOfSize:FITiPhone6(8)]
+
+
+//适配
+#define ScreenWidth ([UIScreen mainScreen].bounds.size.width)
+#define ScreenHeight ([UIScreen mainScreen].bounds.size.height)
+#define Fit(f) (float)f/1242.0 * ([UIScreen mainScreen].bounds.size.width)
+#define FITiPhone6(f) (float)f/375.0 * ([UIScreen mainScreen].bounds.size.width)
+#define Fit_iPhone6(f,width) (float)(f)/375.0 * (width)
+#define k_new_scale  ScreenWidth/540
+#define K_view_scale ScreenWidth/375
+
+#pragma mark - 简单方法封装
+#define OffKeyBoard  [[UIApplication sharedApplication].keyWindow endEditing:YES]///回收键盘
+/**
+ *  Current Version
+ */
+#define IOS6 [[[UIDevice currentDevice] systemVersion]floatValue] < 7.0f
+#define iOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
+#define iOS8 ([[UIDevice currentDevice].systemVersion doubleValue] >= 8.0)
+#define iOS9 ([[UIDevice currentDevice].systemVersion doubleValue] >= 9.0)
+#define iOS10 ([[UIDevice currentDevice].systemVersion doubleValue] >= 10.0)
+#define iOS11 ([[UIDevice currentDevice].systemVersion doubleValue] >= 11.0)
+
+/**
+ *  Current Device
+ */
+#define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+#define iPhone4 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
+#define iPhone6 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO)
+#define iPhone6P ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size) : NO)
+#define isPad ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad ? YES:NO)
+#define iPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
+
+
+#define NOTIFICATION_CENTER [NSNotificationCenter defaultCenter]        ///< notification center
+
+#define MainFont(f) [UIFont systemFontOfSize:(f)]
+
+#define FMLog(fmt, ...) NSLog((@"[%s:%d] " fmt), __func__, __LINE__, ##__VA_ARGS__);
+
+
+// show alert view
+#define kRequestFailedAlert             @"网络开小差了~"
+#define showToastWithKXC                showToast(@"∑( ° △ °|||)︴您的网络好像开小差了")
+#define showAlertWithDict(dict)         [UIAlertView showMessage:[[HPDStatusCode getInstance] messageWithDict:dict]]
+#define showRequestFailedAlert          [UIAlertView showMessage:kRequestFailedAlert]
+#define showAlertWithMessgae(msg)       [UIAlertView showMessage:msg]
+#define UIAlertShowMessage(msg, cancle) [UIAlertView showMessage:msg withCancle:cancle]
+
+#define HPDProgressHudShowWithMessage(msg)                [[HPDProgress defaultProgressHUD] showCoustomOnView:[[UIApplication sharedApplication]keyWindow] message:msg]
+
+// itoast
+#define showToast(msg)                  [[HPDProgress defaultProgressHUD] holdMessage:msg hideAfterDelay:1.0];
+#define showToastLong(msg)                  [[HPDProgress defaultProgressHUD] holdMessage:msg hideAfterDelay:5.0];
+#define HPDProgressHide                                     [[HPDProgress defaultProgressHUD] hide]
+
+#define USER_DEFAULT [NSUserDefaults standardUserDefaults]
+
+
+#define TabbarHeight     ([[UIApplication sharedApplication] statusBarFrame].size.height>20?83:49) // 适配iPhone x 底栏高度
+
+#define TabbarHeight_Before  TabbarHeight-49
+
+
+//判断服务器返回数据类型
+#define IS_ARRAY(array) (array && [array isKindOfClass:[NSArray class]] && [array count] > 0)
+#define IS_DICTIONARY(dic) (dic && [dic isKindOfClass:[NSDictionary class]] && dic.allKeys.count > 0)
+#define IS_SUCCESS [[result objectForKey:@"status"] boolValue]
+#define IS_STRING(string) (string && [string isKindOfClass:[NSString class]] && ![string isEqualToString:@""])
+
+
+#define UN_LoginOutTime @"cf_loginOutTime"//用户登录超时
+
+//是否第一次进入app
+#define CF_FirstOpenApp @"cf_fistOpenApp"
+
+//最后一次登录存储的用户信息
+#define CF_LastUserDic @"cf_LastUserDic"
+
+//用户账号名
+#define ACCOUNT @"account"
+//用户密码
+#define PASSWORD @"pwd"
+//删除以前的用户名和密码
+#define CF_DeleteOldAccountAndPwd  @"cf_DeleteOldAccountAndPwd"
+
+#endif /* POS_PCH_pch */
