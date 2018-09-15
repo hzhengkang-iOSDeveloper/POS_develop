@@ -45,41 +45,32 @@
 //
 //    self.navigationController.navigationBar.barTintColor = [UIColor clearColor];
     
-//    [self.navigationController.navigationBar setBackgroundImage: [UIImage imageNamed:@"背景底色"] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setBackgroundImage: [UIImage imageNamed:@"navBgImage"] forBarMetrics:UIBarMetricsDefault];
 //    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"背景底色"] forBarMetrics:UIBarMetricsDefault];
     /* 系统自带的侧滑返回 */
     self.navigationController.interactivePopGestureRecognizer.delegate = (id)self;
     [NOTIFICATION_CENTER addObserver:self selector:@selector(userLoginOuttime) name:UN_LoginOutTime object:nil];
 
-//    CF_LeftNavigationBar_BackBtn *firstButton = [CF_LeftNavigationBar_BackBtn buttonWithType:UIButtonTypeCustom];
-//    firstButton.frame = CGRectMake1(-30, 0, FITiPhone6(100), FITiPhone6(100));
-//    [firstButton setImage:[[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e916",25,DeepTextColor)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:normal];
-//    [firstButton addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
-//
-//    if (!iOS11) {
-//        firstButton.contentHorizontalAlignment =UIControlContentHorizontalAlignmentLeft;
-//
-//        if ([UIScreen mainScreen].bounds.size.height <= 568.0) {
-//            [firstButton setImageEdgeInsets:UIEdgeInsetsMake(0, FITiPhone6(50) *ScreenWidth /375.0,0,0)];
-//        }else{
-//            [firstButton setImageEdgeInsets:UIEdgeInsetsMake(0, FITiPhone6(35) *ScreenWidth /375.0,0,0)];
-//        }
-//    }
-//
-//    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:firstButton];
-//    self.navigationItem.leftBarButtonItem = leftBarButtonItem;
-//
-//    UIOffset offset;
-//
-//    offset.horizontal = -100;
-//
-//    offset.vertical =  - 100;
-//
-//    [leftBarButtonItem setBackButtonTitlePositionAdjustment:offset forBarMetrics:UIBarMetricsDefault];
+    //设置返回按钮
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn addTarget:self action:@selector(returnAction:) forControlEvents:UIControlEventTouchUpInside];
+    [btn setImage:[UIImage imageNamed:@"navBack"] forState:UIControlStateNormal];
+    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    btn.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
 
     
     [self barLineSetting];
 }
+
+/**
+ 返回按钮响应
+ */
+- (void)returnAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
 - (void)userLoginOuttime
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
