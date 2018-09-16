@@ -138,6 +138,8 @@
 		78CB4BDD214BCCE3000F6A9D /* MyAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CB4BDC214BCCE3000F6A9D /* MyAddressViewController.m */; };
 		78CB4BE0214BCE67000F6A9D /* MyAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CB4BDF214BCE67000F6A9D /* MyAddressTableViewCell.m */; };
 		78CB4BE3214BD9DD000F6A9D /* AddAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CB4BE2214BD9DD000F6A9D /* AddAddressViewController.m */; };
+		DA8D1773214E8CBC006574E4 /* PD_BillListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8D1772214E8CBC006574E4 /* PD_BillListViewController.m */; };
+		DA8D1776214E8EE7006574E4 /* SLConst.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8D1774214E8EE6006574E4 /* SLConst.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -386,6 +388,10 @@
 		78CB4BE1214BD9DD000F6A9D /* AddAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddAddressViewController.h; sourceTree = "<group>"; };
 		78CB4BE2214BD9DD000F6A9D /* AddAddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddAddressViewController.m; sourceTree = "<group>"; };
 		86630A622457BA042EF8C924 /* Pods-POS_develop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-POS_develop.release.xcconfig"; path = "Pods/Target Support Files/Pods-POS_develop/Pods-POS_develop.release.xcconfig"; sourceTree = "<group>"; };
+		DA8D1771214E8CBC006574E4 /* PD_BillListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillListViewController.h; sourceTree = "<group>"; };
+		DA8D1772214E8CBC006574E4 /* PD_BillListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillListViewController.m; sourceTree = "<group>"; };
+		DA8D1774214E8EE6006574E4 /* SLConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLConst.m; sourceTree = "<group>"; };
+		DA8D1775214E8EE6006574E4 /* SLConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLConst.h; sourceTree = "<group>"; };
 		E02FA8D445A9227508FFFE68 /* libPods-POS_develop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-POS_develop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -860,6 +866,8 @@
 		7888F3822147C33800AAC8B0 /* ToolClass */ = {
 			isa = PBXGroup;
 			children = (
+				DA8D1775214E8EE6006574E4 /* SLConst.h */,
+				DA8D1774214E8EE6006574E4 /* SLConst.m */,
 				2591E55A214D72C000469452 /* areaArray.plist */,
 				25E2A368214D7831006EB5B5 /* PD_SelectAreaPickerView.h */,
 				25E2A369214D7831006EB5B5 /* PD_SelectAreaPickerView.m */,
@@ -956,6 +964,7 @@
 		78CB4B71214B8BBA000F6A9D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				DA8D1770214E8C84006574E4 /* MyBill */,
 				78CB4B78214BAA0B000F6A9D /* Cell */,
 				78CB4B72214B8BD7000F6A9D /* VipSystemViewController.h */,
 				78CB4B73214B8BD7000F6A9D /* VipSystemViewController.m */,
@@ -1005,6 +1014,15 @@
 				E02FA8D445A9227508FFFE68 /* libPods-POS_develop.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DA8D1770214E8C84006574E4 /* MyBill */ = {
+			isa = PBXGroup;
+			children = (
+				DA8D1771214E8CBC006574E4 /* PD_BillListViewController.h */,
+				DA8D1772214E8CBC006574E4 /* PD_BillListViewController.m */,
+			);
+			path = MyBill;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1223,6 +1241,7 @@
 				2546E2D7214D4D0F0066DBFB /* UpdatePasswordViewController.m in Sources */,
 				7888F2DC2147C31600AAC8B0 /* RootViewController.m in Sources */,
 				787166BF2149183200452C51 /* GeneralizeViewController.m in Sources */,
+				DA8D1773214E8CBC006574E4 /* PD_BillListViewController.m in Sources */,
 				7888F2F12147C32600AAC8B0 /* GlobalMethod.m in Sources */,
 				7888F35E2147C32C00AAC8B0 /* JSONKit.m in Sources */,
 				7888F3B22147C33900AAC8B0 /* UIImage+Extension.m in Sources */,
@@ -1236,6 +1255,7 @@
 				7888F3AF2147C33900AAC8B0 /* NSString+Helper.m in Sources */,
 				2520A68E214CE38900D48B26 /* SettingViewController.m in Sources */,
 				7888F3682147C32C00AAC8B0 /* StaticLibrary.m in Sources */,
+				DA8D1776214E8EE7006574E4 /* SLConst.m in Sources */,
 				7888F3B12147C33900AAC8B0 /* UIColor+HEXString.m in Sources */,
 				78765A8C214A6AB200261ED3 /* LoginTypeViewController.m in Sources */,
 				7888F3C52147C33900AAC8B0 /* UIButton+ImageTitleSpacing.m in Sources */,
