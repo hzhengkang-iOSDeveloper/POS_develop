@@ -13,6 +13,7 @@
 #import "VipSystemViewController.h"
 #import "MyBillViewController.h"
 #import "MyAddressViewController.h"
+#import "SettingViewController.h"
 
 @interface PersonalViewController () <UITableViewDelegate,UITableViewDataSource> {
     PersonalHeaderView *headerView;
@@ -43,7 +44,7 @@
 - (void)creatTabelView
 {
 
-    _personalTableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
+    _personalTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, -20, ScreenWidth, ScreenHeight) style:UITableViewStyleGrouped];
     _personalTableView.backgroundColor = CF6F6F6;
     _personalTableView.delegate = self;
     _personalTableView.dataSource = self;
@@ -109,6 +110,18 @@
                 break;
             case 4:{
                 MyAddressViewController *vc = [[MyAddressViewController alloc] init];
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }else {
+        switch (indexPath.row) {
+            case 1:{
+                SettingViewController *vc = [[SettingViewController alloc] init];
                 vc.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:vc animated:YES];
             }

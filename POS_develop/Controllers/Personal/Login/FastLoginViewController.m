@@ -154,7 +154,7 @@
 -(void)timerChange:(NSTimer*)timer
 {
     self.timeSum-=1;
-    [self.codeTimeBtn setTitle:[NSString stringWithFormat:@"重发(%dS)",self.timeSum] forState:0];
+    [self.codeTimeBtn setTitle:[NSString stringWithFormat:@"(%dS)",self.timeSum] forState:0];
     if (self.timeSum<=0) {
         [timer invalidate];
         [self.codeTimeBtn setTitle:@"重发" forState:UIControlStateNormal];

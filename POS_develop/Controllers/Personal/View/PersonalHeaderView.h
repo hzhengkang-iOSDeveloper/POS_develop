@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface PersonalHeaderView : UIView
-@property (nonatomic, strong) void (^loginBlock)(void);
+@property (nonatomic, copy) void (^loginBlock)(void);
 @end
