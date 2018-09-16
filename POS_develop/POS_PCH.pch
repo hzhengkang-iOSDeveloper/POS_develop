@@ -15,6 +15,8 @@
 #import "UIColor+HEXString.h"
 #import "BaseButton.h"
 
+
+#import "SLConst.h"               // 静态常量
 #import "NSUserDefaults+Helper.h"
 #import "DateManager.h"
 #import "BaseModel.h"
@@ -150,7 +152,12 @@
 #define Fit_iPhone6(f,width) (float)(f)/375.0 * (width)
 #define k_new_scale  ScreenWidth/540
 #define K_view_scale ScreenWidth/375
-
+// navBar 的高度
+#define navH              (STATUSBAR_H + navBarH)
+// 状态栏高度
+#define STATUSBAR_H       ([UIApplication sharedApplication].statusBarFrame.size.height)
+//无敌适配宏_高
+#define AD_HEIGHT(S)      ([UIScreen mainScreen].bounds.size.height / ((iPhoneX ? 812.0 : 667.0) / (S)))
 #pragma mark - 简单方法封装
 #define OffKeyBoard  [[UIApplication sharedApplication].keyWindow endEditing:YES]///回收键盘
 /**

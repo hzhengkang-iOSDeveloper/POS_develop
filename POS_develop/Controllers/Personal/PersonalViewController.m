@@ -14,7 +14,11 @@
 #import "MyBillViewController.h"
 #import "MyAddressViewController.h"
 #import "SettingViewController.h"
+
 #import "WithdrawCashViewController.h"
+
+
+#import "PD_BillListViewController.h"//我的订单
 
 @interface PersonalViewController () <UITableViewDelegate,UITableViewDataSource> {
     PersonalHeaderView *headerView;
@@ -101,6 +105,12 @@
         switch (indexPath.row) {
             case 0:{
                 VipSystemViewController *vc = [[VipSystemViewController alloc] init];
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+            case 1:{
+                PD_BillListViewController *vc = [[PD_BillListViewController alloc] init];
                 vc.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:vc animated:YES];
             }

@@ -7,8 +7,8 @@
 //
 
 #import "AddAddressViewController.h"
-
-@interface AddAddressViewController ()
+#import "BLAreaPickerView.h"//地址选择
+@interface AddAddressViewController ()<BLPickerViewDelegate>
 @property (nonatomic, strong) UITextField *nameTF;
 @property (nonatomic, strong) UITextField *telephoneTF;
 @property (nonatomic, strong) UIButton *cityBtn;
@@ -90,6 +90,7 @@
     [self.cityBtn setTitle:@"请选择" forState:UIControlStateNormal];
     self.cityBtn.titleLabel.font = F13;
     [self.cityBtn setTitleColor:C989898 forState:UIControlStateNormal];
+    [self.cityBtn addTarget:self action:@selector(selectAddress) forControlEvents:UIControlEventTouchUpInside];
     [whiteBgView addSubview:self.cityBtn];
     [self.cityBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(FITiPhone6(15));
@@ -159,6 +160,23 @@
 #pragma mark ---- 保存 ----
 - (void)saveClick {
     
+}
+#pragma mark ---- 选择地址 ----
+- (void)selectAddress
+{
+    //地址
+    BLAreaPickerView *pickerV = [[BLAreaPickerView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 200)];
+    pickerV.pickViewDelegate = self;
+    [pickerV bl_show];
+}
+
+
+#pragma mark ---- BLPickerViewDelegate ----
+- (void)bl_selectedAreaResultWithProvince:(NSString *)provinceTitle city:(NSString *)cityTitle area:(NSString *)areaTitle region_id:(NSString *)region_id{
+    
+//    self.regin_id = region_id;
+    [self.cityBtn setTitle:[NSString stringWithFormat:@"%@%@%@",provinceTitle,cityTitle,areaTitle] forState:normal];
+    [self.cityBtn setTitleColor:C090909 forState:normal];
 }
 @end
 
