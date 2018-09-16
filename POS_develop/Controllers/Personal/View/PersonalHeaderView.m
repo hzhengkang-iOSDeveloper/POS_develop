@@ -112,7 +112,9 @@
 }
 #pragma mark ---- 立即提现 ----
 - (void)withdrawBtnClick {
-    
+    if (self.withdrawBlock) {
+        self.withdrawBlock();
+    }
 }
 #pragma mark ---- 注册/登录 ----
 - (void)LoginClick {

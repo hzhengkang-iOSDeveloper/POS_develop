@@ -14,6 +14,7 @@
 #import "MyBillViewController.h"
 #import "MyAddressViewController.h"
 #import "SettingViewController.h"
+#import "WithdrawCashViewController.h"
 
 @interface PersonalViewController () <UITableViewDelegate,UITableViewDataSource> {
     PersonalHeaderView *headerView;
@@ -41,9 +42,7 @@
 }
 
 #pragma mark CreatTabelView
-- (void)creatTabelView
-{
-
+- (void)creatTabelView{
     _personalTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, -20, ScreenWidth, ScreenHeight) style:UITableViewStyleGrouped];
     _personalTableView.backgroundColor = CF6F6F6;
     _personalTableView.delegate = self;
@@ -61,6 +60,10 @@
     MJWeakSelf;
     headerView.loginBlock = ^{
         LoginTypeViewController *vc = [[LoginTypeViewController alloc] init];
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+    };
+    headerView.withdrawBlock = ^{
+        WithdrawCashViewController *vc = [[WithdrawCashViewController alloc] init];
         [weakSelf.navigationController pushViewController:vc animated:YES];
     };
     return headerView;

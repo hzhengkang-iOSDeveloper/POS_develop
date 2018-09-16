@@ -10,4 +10,5 @@
 
 @interface PersonalHeaderView : UIView
 @property (nonatomic, copy) void (^loginBlock)(void);
+@property (nonatomic, copy) void (^withdrawBlock)(void);
 @end

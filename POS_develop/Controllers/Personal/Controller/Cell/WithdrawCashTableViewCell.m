@@ -44,9 +44,9 @@
     self.contentTF.textColor = C090909;
     self.contentTF.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, FITiPhone6(5), 0)];
     self.contentTF.leftViewMode = UITextFieldViewModeAlways;
-    [self.contentTF setValue:C989898
-                  forKeyPath:@"_placeholderLabel.textColor"];
-    [self.contentTF setValue:F13 forKeyPath:@"_placeholderLabel.font"];
+//    [self.contentTF setValue:C090909
+////                  forKeyPath:@"_placeholderLabel.textColor"];
+
     self.contentTF.keyboardType = UIKeyboardTypeNumberPad;
     self.contentTF.borderStyle = UITextBorderStyleNone;
     self.contentTF.font = F13;
