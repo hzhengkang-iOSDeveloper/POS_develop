@@ -35,7 +35,7 @@
         [self addSubview:textField];
         self.textField = textField;
         self.autoHideKeyboard = NO;
-        self.elementBorderColor = TextColor_Gray;
+        self.elementBorderColor = CC9C9C9;
         self.backgroundColor = [UIColor whiteColor];
         self.elementBorderWidth = FITiPhone6(0.5);
     }
@@ -154,7 +154,7 @@
         CAShapeLayer *borderLayer = [[CAShapeLayer alloc] init];
         borderLayer.frame = pwdTextField.bounds;
         borderLayer.path = maskPath.CGPath;
-        borderLayer.strokeColor = TextColor_Gray.CGColor;
+        borderLayer.strokeColor = CC9C9C9.CGColor;
         borderLayer.fillColor = ClearColor.CGColor;
         //遮罩
         CAShapeLayer  *maskLayer = [[CAShapeLayer alloc] init];

@@ -8,6 +8,7 @@
 
 #import "BaseSonViewController.h"
 #import "CF_LeftNavigationBar_BackBtn.h"
+#import "UIColor+HEXString.h"
 @interface BaseSonViewController ()<UIGestureRecognizerDelegate>
 
 @end
@@ -18,7 +19,6 @@
 {
     [super viewWillAppear:animated];
     
-    //    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     
     
@@ -42,11 +42,15 @@
     [super viewDidLoad];
     self.view.backgroundColor = CF6F6F6;
 //    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
-//
-//    self.navigationController.navigationBar.barTintColor = [UIColor clearColor];
+    // 字体颜色
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
-    [self.navigationController.navigationBar setBackgroundImage: [UIImage imageNamed:@"navBgImage"] forBarMetrics:UIBarMetricsDefault];
-//    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"背景底色"] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setBackgroundImage: iPhoneX?[UIImage imageNamed:@"navBgImgX"]:[UIImage imageNamed:@"navBgImg"] forBarMetrics:UIBarMetricsDefault];
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navBgImage"] forBarPosition:UIBarPositionTop barMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    // 状态栏背景色
+    [self setStatusBarBackgroundColor:[UIColor clearColor]];
+
     /* 系统自带的侧滑返回 */
     self.navigationController.interactivePopGestureRecognizer.delegate = (id)self;
     [NOTIFICATION_CENTER addObserver:self selector:@selector(userLoginOuttime) name:UN_LoginOutTime object:nil];
@@ -62,7 +66,32 @@
     
     [self barLineSetting];
 }
+/**
+ 将UIColor转换成图片
+ */
+- (UIImage*)createImageWithColor:(UIColor*)color {
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
+/**
+ 设置状态栏背景颜色
+ */
+- (void)setStatusBarBackgroundColor:(UIColor *)color {
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+        statusBar.backgroundColor = color;
+    }
 
+    
+}
+    
 /**
  返回按钮响应
  */

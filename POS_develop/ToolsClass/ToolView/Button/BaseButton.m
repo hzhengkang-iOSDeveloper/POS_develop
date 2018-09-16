@@ -21,7 +21,7 @@
     BaseButton *btn  =[BaseButton buttonWithType:UIButtonTypeCustom];
     btn.frame = frame;
     [btn setTitle:title forState:UIControlStateNormal];
-    [btn setBackgroundColor:TextColor_Gray];
+    [btn setBackgroundColor:CC9C9C9];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btn.titleLabel setFont:[UIFont systemFontOfSize:FITiPhone6(32)]];
     [btn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
