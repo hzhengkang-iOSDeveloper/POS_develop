@@ -2,7 +2,7 @@
 //  WithdrawCashViewController.h
 //  POS_develop
 //
-//  Created by syn on 2018/9/16.
+//  Created by syn on 2018/9/17.
 //  Copyright © 2018年 sunyn. All rights reserved.
 //
 
