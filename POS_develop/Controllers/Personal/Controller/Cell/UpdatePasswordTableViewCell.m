@@ -31,7 +31,7 @@
 
 -(void)initUI{
     self.titleLabel = [[UILabel alloc] init];
-    self.titleLabel.textColor = C090909;
+    self.titleLabel.textColor = C000000;
     self.titleLabel.font = F13;
     self.titleLabel.adjustsFontSizeToFitWidth = YES;
     [self addSubview:self.titleLabel];
@@ -41,7 +41,7 @@
         make.height.mas_equalTo(FITiPhone6(13));
     }];
     self.contentTF = [[UITextField alloc] init];
-    self.contentTF.textColor = C090909;
+    self.contentTF.textColor = C000000;
     self.contentTF.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, FITiPhone6(5), 0)];
     self.contentTF.leftViewMode = UITextFieldViewModeAlways;
     [self.contentTF setValue:C989898

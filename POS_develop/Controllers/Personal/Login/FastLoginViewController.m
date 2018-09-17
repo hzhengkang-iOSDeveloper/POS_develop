@@ -40,7 +40,7 @@
     UIButton *otherTypeLoginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     otherTypeLoginBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [otherTypeLoginBtn setTitle:@"<其他方式登录" forState:UIControlStateNormal];
-    [otherTypeLoginBtn setTitleColor:C090909 forState:UIControlStateNormal];
+    [otherTypeLoginBtn setTitleColor:C000000 forState:UIControlStateNormal];
     [otherTypeLoginBtn addTarget:self action:@selector(otherTypeLoginClick) forControlEvents:UIControlEventTouchUpInside];
     otherTypeLoginBtn.titleLabel.font = F12;
     [self.view addSubview:otherTypeLoginBtn];
@@ -112,7 +112,7 @@
         make.size.mas_offset(CGSizeMake(FITiPhone6(69), FITiPhone6(25)));
     }];
     UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    loginBtn.backgroundColor = C00A0E9;
+    loginBtn.backgroundColor = C1E95F9;
     [loginBtn setTitle:@"登录" forState:UIControlStateNormal];
     [loginBtn setTitleColor:WhiteColor forState:UIControlStateNormal];
     loginBtn.layer.cornerRadius = FITiPhone6(20);

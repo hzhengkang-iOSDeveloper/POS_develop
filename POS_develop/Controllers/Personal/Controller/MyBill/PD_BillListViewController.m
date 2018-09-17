@@ -24,7 +24,7 @@
 #pragma mark ---- 创建选择状态栏 ----
 - (void)creatSelectBillStatus
 {
-    NSArray *segmentedArray = [[NSArray alloc] initWithObjects:@"全部订单", @"待付款", @"待收货", @"交易完成", @"交易取消", nil];
+    NSArray *segmentedArray = [[NSArray alloc] initWithObjects:@"全部", @"待付款", @"待收货", @"待确认", @"已完成", nil];
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:segmentedArray];
     segmentedControl.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(40));
     segmentedControl.selectedSegmentIndex = 0;
@@ -36,13 +36,13 @@
                                              NSForegroundColorAttributeName: C1E95F9};
     [segmentedControl setTitleTextAttributes:selectedTextAttributes forState:UIControlStateSelected];
     NSDictionary* unselectedTextAttributes = @{NSFontAttributeName:[UIFont boldSystemFontOfSize:12.0f],
-                                               NSForegroundColorAttributeName: C090909};
+                                               NSForegroundColorAttributeName: C000000};
     [segmentedControl setTitleTextAttributes:unselectedTextAttributes forState:UIControlStateNormal];
     
     [segmentedControl addTarget:self action:@selector(didClicksegmentedControlAction:) forControlEvents:UIControlEventValueChanged];
     self.segmentedControl = segmentedControl;
     [self.view addSubview:segmentedControl];
-//    [_segmentedControl setBackgroundImage:[UIImage imageNamed:@"segSelectedBackgroundImg"] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+    [_segmentedControl setBackgroundImage:[UIImage imageNamed:@"背景line"] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
     [_segmentedControl setBackgroundImage:[UIImage imageNamed:@"segbg"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     [_segmentedControl setBackgroundImage:[UIImage imageNamed:@"segbg"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
 }

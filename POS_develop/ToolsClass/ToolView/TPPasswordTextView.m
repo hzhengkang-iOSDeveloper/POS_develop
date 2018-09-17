@@ -163,7 +163,7 @@
         
         //            pwdTextField.layer.mask = maskLayer;
         [pwdTextField.layer addSublayer:borderLayer];
-        pwdTextField.textColor = C090909;
+        pwdTextField.textColor = C000000;
         pwdTextField.backgroundColor  = WhiteColor;
         [self.dataSource addObject:pwdTextField];
     }

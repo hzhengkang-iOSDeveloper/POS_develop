@@ -982,8 +982,10 @@
 				253647D3214E030D0094576C /* UpdatePhoneViewController.m */,
 				253647D8214E05BC0094576C /* SettingNameViewController.h */,
 				253647D9214E05BC0094576C /* SettingNameViewController.m */,
+
 				251A4101214FF45E00AC2C81 /* WithdrawCashViewController.h */,
 				251A4102214FF45E00AC2C81 /* WithdrawCashViewController.m */,
+
 			);
 			path = Controller;
 			sourceTree = "<group>";

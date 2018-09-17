@@ -36,7 +36,7 @@
     UIButton *registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     registerBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [registerBtn setTitle:@"<手机号一键注册" forState:UIControlStateNormal];
-    [registerBtn setTitleColor:C090909 forState:UIControlStateNormal];
+    [registerBtn setTitleColor:C000000 forState:UIControlStateNormal];
     [registerBtn addTarget:self action:@selector(registerClick) forControlEvents:UIControlEventTouchUpInside];
     registerBtn.titleLabel.font = F12;
     [self.view addSubview:registerBtn];
@@ -58,7 +58,7 @@
     [fastLoginBtn setTitle:@"手机号快捷登录" forState:UIControlStateNormal];
     [fastLoginBtn layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleLeft imageTitleSpace:FITiPhone6(10)];
     [fastLoginBtn setImage:[UIImage imageNamed:@"手机号"] forState:normal];
-    [fastLoginBtn setTitleColor:C090909 forState:UIControlStateNormal];
+    [fastLoginBtn setTitleColor:C000000 forState:UIControlStateNormal];
     [fastLoginBtn addTarget:self action:@selector(fastLoginClick) forControlEvents:UIControlEventTouchUpInside];
     fastLoginBtn.titleLabel.font = F12;
     [self.view addSubview:fastLoginBtn];
@@ -72,7 +72,7 @@
     [passwordLoginBtn setTitle:@"手机号密码登录" forState:UIControlStateNormal];
     [passwordLoginBtn layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleLeft imageTitleSpace:FITiPhone6(10)];
     [passwordLoginBtn setImage:[UIImage imageNamed:@"密码"] forState:normal];
-    [passwordLoginBtn setTitleColor:C090909 forState:UIControlStateNormal];
+    [passwordLoginBtn setTitleColor:C000000 forState:UIControlStateNormal];
     [passwordLoginBtn addTarget:self action:@selector(passwordLoginClick) forControlEvents:UIControlEventTouchUpInside];
     passwordLoginBtn.titleLabel.font = F12;
     [self.view addSubview:passwordLoginBtn];

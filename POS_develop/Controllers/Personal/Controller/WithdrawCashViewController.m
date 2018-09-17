@@ -26,7 +26,7 @@
 - (void)initPromptLabel {
     UILabel *promptLabel = [[UILabel alloc] init];
     promptLabel.text = @"提示：您当前账户余额金为：100";
-    promptLabel.textColor = C090909;
+    promptLabel.textColor = C000000;
     promptLabel.font = F13;
     [self.view addSubview:promptLabel];
     [promptLabel mas_makeConstraints:^(MASConstraintMaker *make) {

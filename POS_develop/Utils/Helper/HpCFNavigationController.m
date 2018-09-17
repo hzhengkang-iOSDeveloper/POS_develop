@@ -29,7 +29,7 @@
 
 #pragma mark 创建返回按钮
 -(UIBarButtonItem *)createBackButton {
-    return [[UIBarButtonItem alloc] initWithImage:[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e916",25,ShallowTextColor)] style:UIBarButtonItemStylePlain target:self action:@selector(popself)];
+    return [[UIBarButtonItem alloc] initWithImage:[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e916",25,C989898)] style:UIBarButtonItemStylePlain target:self action:@selector(popself)];
 }
 
 #pragma mark 重写方法

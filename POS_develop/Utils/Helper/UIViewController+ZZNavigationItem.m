@@ -14,7 +14,7 @@
 @implementation UIViewController (ZZNavigationItem)
 
 - (UIBarButtonItem *)addStandardBackButtonWithClickHandler:(ZZActionButtonClickBlockType)handler {
-    return [self addBackButtonWithImage:[[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e916",25,ShallowTextColor)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] clickHandler:handler];
+    return [self addBackButtonWithImage:[[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e916",25,C989898)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] clickHandler:handler];
 }
 
 - (UIBarButtonItem *)addBackButtonWithImage:(UIImage *)image clickHandler:(ZZActionButtonClickBlockType)handler {

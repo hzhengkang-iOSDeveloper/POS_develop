@@ -37,7 +37,7 @@
         make.size.mas_offset(CGSizeMake(FITiPhone6(18), FITiPhone6(17)));
     }];
     self.titleLabel = [[UILabel alloc] init];
-    self.titleLabel.textColor = C090909;
+    self.titleLabel.textColor = C000000;
     self.titleLabel.font = F13;
     [self addSubview:self.titleLabel];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {

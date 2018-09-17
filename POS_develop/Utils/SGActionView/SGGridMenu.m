@@ -88,7 +88,7 @@
         [self addSubview:_contentScrollView];
         
         _cancelButton = [SGButton buttonWithType:UIButtonTypeCustom];
-        [_cancelButton setImage:[[ UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e91b",25,ShallowTextColor)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:normal];
+        [_cancelButton setImage:[[ UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e91b",25,C989898)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:normal];
         [_cancelButton addTarget:self
                           action:@selector(tapAction:)
                 forControlEvents:UIControlEventTouchUpInside];

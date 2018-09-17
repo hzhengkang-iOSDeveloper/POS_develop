@@ -74,12 +74,12 @@
     
     // 设置tabBarItem的普通文字颜色
     NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
-    [textAttrs setObject:ShallowTextColor forKey:NSForegroundColorAttributeName];
+    [textAttrs setObject:UIHexColor(0x464646) forKey:NSForegroundColorAttributeName];
     [childVc.tabBarItem setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
     
     // 设置tabBarItem的选中文字颜色
     NSMutableDictionary *selectedTextAttrs = [NSMutableDictionary dictionary];
-    [selectedTextAttrs setValue:C00A0E9 forKey:NSForegroundColorAttributeName];
+    [selectedTextAttrs setValue:C1E95F9 forKey:NSForegroundColorAttributeName];
     [childVc.tabBarItem setTitleTextAttributes:selectedTextAttrs forState:UIControlStateSelected];
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                        [UIColor redColor], NSForegroundColorAttributeName,

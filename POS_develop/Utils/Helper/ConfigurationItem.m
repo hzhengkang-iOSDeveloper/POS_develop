@@ -17,13 +17,13 @@
     /*
      ** 统一配置导航栏字体颜色和背景颜色
      */
-    UIFont *font = [UIFont systemFontOfSize:FITiPhone6(32)];
+    UIFont *font = [UIFont systemFontOfSize:FITiPhone6(30)];
     
     NSDictionary *textAttributes = @{
                                      
                                      NSFontAttributeName : font,
                                      
-                                     NSForegroundColorAttributeName : C090909
+                                     NSForegroundColorAttributeName : C000000
                                      
                                      };
    

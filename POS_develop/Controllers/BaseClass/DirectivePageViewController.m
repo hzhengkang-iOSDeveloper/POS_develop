@@ -35,7 +35,7 @@
     UIPageControl *pageControl     = [[UIPageControl alloc] initWithFrame:CGRectMake(0, _bannerView.frame.size.height-39 / 2 * K_view_scale - 19 /2 * K_view_scale, ScreenWidth, 19 / 2)];
     pageControl.userInteractionEnabled = NO;
     pageControl.pageIndicatorTintColor = RGBA(225, 225, 225, 0.6);
-    pageControl.currentPageIndicatorTintColor = C00A0E9;
+    pageControl.currentPageIndicatorTintColor = C1E95F9;
     _bannerView.pageControl         = pageControl;
     _bannerView.autoLooping         = NO;
     [_bannerView addSubview:pageControl];
@@ -52,10 +52,10 @@
             button.titleLabel.font = [UIFont systemFontOfSize:17 * K_view_scale];
             [button setTitleColor:WhiteColor forState:UIControlStateNormal];
             [button setTitle:@"立即体验" forState:UIControlStateNormal];
-            button.backgroundColor = C00A0E9;
+            button.backgroundColor = C1E95F9;
             button.layer.masksToBounds = YES;
             button.layer.cornerRadius = button.bounds.size.height / 2;
-            button.layer.borderColor = C00A0E9.CGColor;
+            button.layer.borderColor = C1E95F9.CGColor;
             button.layer.borderWidth = 1 * K_view_scale;
             [button addTarget:weakself action:@selector(bunm) forControlEvents:UIControlEventTouchUpInside];
             [imageView addSubview:button];

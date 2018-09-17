@@ -439,7 +439,7 @@
     label.text = text;
     label.font = [UIFont systemFontOfSize:size];
     label.textAlignment = alignment;
-    label.textColor = defaultObject(textColor, C090909);
+    label.textColor = defaultObject(textColor, C000000);
     label.backgroundColor = defaultObject(backgroundColor, ClearColor);
     return label;
 }
