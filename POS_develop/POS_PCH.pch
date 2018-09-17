@@ -88,21 +88,18 @@
 
 #define defaultObject(value, defaultValue) ((value)?(value):(defaultValue))
 
-#define CF6F6F6 [UIColor colorWithHexString:@"#F6F6F6"]//背景色
+
 #define WhiteColor [UIColor whiteColor]
 #define ClearColor [UIColor clearColor]
-#define ShallowTextColor [UIColor colorWithHexString:@"#96A0AA"]//浅文本
-#define C00A0E9 [UIColor colorWithHexString:@"#00A0E9"]//主蓝色
-#define CC9C9C9 [UIColor colorWithHexString:@"#C9C9C9"]//不可点击按钮颜色
+#define CF6F6F6 [UIColor colorWithHexString:@"#F2F2F6"]//背景色
+#define C1E95F9 [UIColor colorWithHexString:@"#1E95F9"]//主色系
+#define C000000 [UIColor colorWithHexString:@"#000000"]//深文本
+#define C989898 [UIColor colorWithHexString:@"#989898"]//浅文本
 #define CF70F0F [UIColor colorWithHexString:@"#F70F0F"]//辅红色
-#define C090909 [UIColor colorWithHexString:@"#090909"]//深文本
-#define TextColor_light [UIColor colorWithHexString:@"#898989"]
+#define CC9C9C9 [UIColor colorWithHexString:@"#C9C9C9"]//不可点击按钮颜色
 #define CE6E2E2 [UIColor colorWithHexString:@"#E6E2E2"]//线条描边
-#define C989898 [UIColor colorWithHexString:@"#989898"]
-#define C1E95F9 [UIColor colorWithHexString:@"#1E95F9"]
-
 #define CEEEEEE [UIColor colorWithHexString:@"#eeeeee"]
-#define LineColor_deep [UIColor colorWithHexString:@"#c8c9ca"]
+
 
 ///正常字体
 #define F30 [UIFont systemFontOfSize:FITiPhone6(30)]

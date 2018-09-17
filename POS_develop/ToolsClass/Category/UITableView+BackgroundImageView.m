@@ -27,7 +27,7 @@
         label.text = [title isEqualToString:@""] ? @"没有数据" : title;
         label.font = MainFont(FITiPhone6(24));
         label.textAlignment = NSTextAlignmentCenter;
-        label.textColor = ShallowTextColor;
+        label.textColor = C989898;
         label.backgroundColor = [UIColor clearColor];
         [view addSubview:label];
     } else {

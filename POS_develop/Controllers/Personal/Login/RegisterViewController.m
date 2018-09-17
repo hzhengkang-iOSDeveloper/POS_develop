@@ -44,7 +44,7 @@
     UIButton *otherTypeLoginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     otherTypeLoginBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [otherTypeLoginBtn setTitle:@"<其他方式登录" forState:UIControlStateNormal];
-    [otherTypeLoginBtn setTitleColor:C090909 forState:UIControlStateNormal];
+    [otherTypeLoginBtn setTitleColor:C000000 forState:UIControlStateNormal];
     [otherTypeLoginBtn addTarget:self action:@selector(otherTypeLoginClick) forControlEvents:UIControlEventTouchUpInside];
     otherTypeLoginBtn.titleLabel.font = F12;
     [self.view addSubview:otherTypeLoginBtn];
@@ -157,7 +157,7 @@
     }];
     self.recommendL = [[UILabel alloc] init];
     self.recommendL.text = @"推荐人xxx";
-    self.recommendL.textColor = C090909;
+    self.recommendL.textColor = C000000;
     self.recommendL.font = F13;
     [self.view addSubview:self.recommendL];
     [self.recommendL mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -166,7 +166,7 @@
         make.size.mas_offset(CGSizeMake(FITiPhone6(100), FITiPhone6(13)));
     }];
     self.registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.registerBtn.backgroundColor = C00A0E9;
+    self.registerBtn.backgroundColor = C1E95F9;
     [self.registerBtn setTitle:@"立即注册" forState:UIControlStateNormal];
     [self.registerBtn setTitleColor:WhiteColor forState:UIControlStateNormal];
     self.registerBtn.layer.cornerRadius = FITiPhone6(20);
@@ -190,7 +190,7 @@
     }];
     UILabel *agreeL = [[UILabel alloc] init];
     agreeL.text = @"我同意“服务条款”和“隐私权相关政策”";
-    agreeL.textColor = C090909;
+    agreeL.textColor = C000000;
     agreeL.font = F12;
     [self.view addSubview:agreeL];
     [agreeL mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -31,7 +31,7 @@
 
 -(void)initUI{
     self.nameLabel = [[UILabel alloc] init];
-    self.nameLabel.textColor = C090909;
+    self.nameLabel.textColor = C000000;
     self.nameLabel.font = F13;
     self.nameLabel.adjustsFontSizeToFitWidth = YES;
     [self addSubview:self.nameLabel];
@@ -51,7 +51,7 @@
         make.height.mas_equalTo(FITiPhone6(12));
     }];
     self.telephoneLabel = [[UILabel alloc] init];
-    self.telephoneLabel.textColor = C090909;
+    self.telephoneLabel.textColor = C000000;
     self.telephoneLabel.font = F13;
     self.telephoneLabel.adjustsFontSizeToFitWidth = YES;
     [self addSubview:self.telephoneLabel];
@@ -70,7 +70,7 @@
     }];
     self.defaultAddressBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.defaultAddressBtn setTitle:@"默认地址" forState:UIControlStateNormal];
-    [self.defaultAddressBtn setTitleColor:C090909 forState:UIControlStateNormal];
+    [self.defaultAddressBtn setTitleColor:C000000 forState:UIControlStateNormal];
     [self.defaultAddressBtn layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleLeft imageTitleSpace:FITiPhone6(13)];
     [self.defaultAddressBtn setImage:[UIImage imageNamed:@"默认"] forState:normal];
     [self.defaultAddressBtn setImage:[UIImage imageNamed:@"默认地址"] forState:UIControlStateSelected];
@@ -84,7 +84,7 @@
     }];
     self.deleteAddressBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.deleteAddressBtn setTitle:@"删除" forState:UIControlStateNormal];
-    [self.deleteAddressBtn setTitleColor:C090909 forState:UIControlStateNormal];
+    [self.deleteAddressBtn setTitleColor:C000000 forState:UIControlStateNormal];
     [self.deleteAddressBtn layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleLeft imageTitleSpace:FITiPhone6(5)];
     [self.deleteAddressBtn setImage:[UIImage imageNamed:@"删除"] forState:normal];
     [self.deleteAddressBtn addTarget:self action:@selector(deleteAddressClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -98,7 +98,7 @@
     }];
     self.editAddressBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.editAddressBtn setTitle:@"编辑" forState:UIControlStateNormal];
-    [self.editAddressBtn setTitleColor:C090909 forState:UIControlStateNormal];
+    [self.editAddressBtn setTitleColor:C000000 forState:UIControlStateNormal];
     [self.editAddressBtn layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleLeft imageTitleSpace:FITiPhone6(5)];
     [self.editAddressBtn setImage:[UIImage imageNamed:@"编辑"] forState:normal];
     [self.editAddressBtn addTarget:self action:@selector(editAddresClick:) forControlEvents:UIControlEventTouchUpInside];

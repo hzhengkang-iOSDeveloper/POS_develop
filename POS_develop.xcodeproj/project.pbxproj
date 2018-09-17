@@ -12,7 +12,6 @@
 		253647D4214E030D0094576C /* UpdatePhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 253647D3214E030D0094576C /* UpdatePhoneViewController.m */; };
 		253647D7214E053C0094576C /* UpdatePhoneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 253647D6214E053C0094576C /* UpdatePhoneTableViewCell.m */; };
 		253647DA214E05BC0094576C /* SettingNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 253647D9214E05BC0094576C /* SettingNameViewController.m */; };
-		253647DD214E11AE0094576C /* WithdrawCashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 253647DC214E11AE0094576C /* WithdrawCashViewController.m */; };
 		253647E0214E11C60094576C /* WithdrawCashTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 253647DF214E11C60094576C /* WithdrawCashTableViewCell.m */; };
 		2546E2D1214D2F250066DBFB /* SettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2546E2D0214D2F250066DBFB /* SettingTableViewCell.m */; };
 		2546E2D4214D47570066DBFB /* UpdatePasswordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2546E2D3214D47570066DBFB /* UpdatePasswordTableViewCell.m */; };
@@ -152,8 +151,6 @@
 		253647D6214E053C0094576C /* UpdatePhoneTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpdatePhoneTableViewCell.m; sourceTree = "<group>"; };
 		253647D8214E05BC0094576C /* SettingNameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingNameViewController.h; sourceTree = "<group>"; };
 		253647D9214E05BC0094576C /* SettingNameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingNameViewController.m; sourceTree = "<group>"; };
-		253647DB214E11AE0094576C /* WithdrawCashViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WithdrawCashViewController.h; sourceTree = "<group>"; };
-		253647DC214E11AE0094576C /* WithdrawCashViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WithdrawCashViewController.m; sourceTree = "<group>"; };
 		253647DE214E11C60094576C /* WithdrawCashTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WithdrawCashTableViewCell.h; sourceTree = "<group>"; };
 		253647DF214E11C60094576C /* WithdrawCashTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WithdrawCashTableViewCell.m; sourceTree = "<group>"; };
 		2546E2CF214D2F250066DBFB /* SettingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingTableViewCell.h; sourceTree = "<group>"; };
@@ -982,8 +979,6 @@
 				253647D3214E030D0094576C /* UpdatePhoneViewController.m */,
 				253647D8214E05BC0094576C /* SettingNameViewController.h */,
 				253647D9214E05BC0094576C /* SettingNameViewController.m */,
-				253647DB214E11AE0094576C /* WithdrawCashViewController.h */,
-				253647DC214E11AE0094576C /* WithdrawCashViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1228,7 +1223,6 @@
 				78765A92214A89D600261ED3 /* FastLoginViewController.m in Sources */,
 				7888F3652147C32C00AAC8B0 /* NSData+AES.m in Sources */,
 				78CB4BDD214BCCE3000F6A9D /* MyAddressViewController.m in Sources */,
-				253647DD214E11AE0094576C /* WithdrawCashViewController.m in Sources */,
 				7888F35B2147C32C00AAC8B0 /* ZZActionButton.m in Sources */,
 				7888F2D82147C31600AAC8B0 /* BaseViewController.m in Sources */,
 				7888F3C62147C33900AAC8B0 /* CF_LeftNavigationBar_BackBtn.m in Sources */,

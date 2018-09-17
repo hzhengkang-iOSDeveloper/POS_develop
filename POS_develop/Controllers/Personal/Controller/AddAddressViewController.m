@@ -126,7 +126,7 @@
     self.defaultAddressBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.defaultAddressBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [self.defaultAddressBtn setTitle:@"设置为默认地址" forState:UIControlStateNormal];
-    [self.defaultAddressBtn setTitleColor:C090909 forState:UIControlStateNormal];
+    [self.defaultAddressBtn setTitleColor:C000000 forState:UIControlStateNormal];
     [self.defaultAddressBtn layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleLeft imageTitleSpace:FITiPhone6(23)];
     [self.defaultAddressBtn setImage:[UIImage imageNamed:@"默认"] forState:normal];
     [self.defaultAddressBtn setImage:[UIImage imageNamed:@"默认地址"] forState:UIControlStateSelected];
@@ -176,7 +176,7 @@
     
 //    self.regin_id = region_id;
     [self.cityBtn setTitle:[NSString stringWithFormat:@"%@%@%@",provinceTitle,cityTitle,areaTitle] forState:normal];
-    [self.cityBtn setTitleColor:C090909 forState:normal];
+    [self.cityBtn setTitleColor:C000000 forState:normal];
 }
 @end
 

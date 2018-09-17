@@ -41,7 +41,7 @@
     }];
     UILabel *gradeL = [[UILabel alloc] init];
     gradeL.text = @"我的等级:";
-    gradeL.textColor = C090909;
+    gradeL.textColor = C000000;
     gradeL.font = F12;
     gradeL.adjustsFontSizeToFitWidth = YES;
     [topView addSubview:gradeL];
@@ -52,7 +52,7 @@
     }];
     UILabel *vipGradeL = [[UILabel alloc] init];
     vipGradeL.text = @"VIP6";
-    vipGradeL.textColor = C090909;
+    vipGradeL.textColor = C000000;
     vipGradeL.font = FB18;
     [topView addSubview:vipGradeL];
     [vipGradeL mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -62,7 +62,7 @@
     }];
     UILabel *powerL = [[UILabel alloc] init];
     powerL.text = @"我的权限：";
-    powerL.textColor = C090909;
+    powerL.textColor = C000000;
     powerL.font = F13;
     [self.view addSubview:powerL];
     [powerL mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -74,7 +74,7 @@
     powerContentL.font = F12;
     powerContentL.numberOfLines = 0;
     powerContentL.text = @"忙我IEhi教案设计的就爱就开始打进口红酒案件被大家把几点回家噶不敢速度噶US高度牙膏已收到各环节氨甲环酸嘎哈就是地沟油盎司的后果暗红色的：爱仕达多阿道夫俺的沙发大大声道俺的沙发俺的沙发奥瑞特让他富饶的啊设计的就爱就开始打进口红酒案件被大家把几点回家噶不敢速度噶US高度牙膏已收到各环节氨甲环酸嘎哈就是地沟油盎司的后果暗红色的：爱仕达多阿设计的就爱就开始打进口红酒案件被大家把几点回家噶不敢速度噶US高度牙膏已收到各环节氨甲环酸嘎哈就是地沟油盎司的后果暗红色的：爱仕达多阿吃";
-    powerContentL.textColor = C090909;
+    powerContentL.textColor = C000000;
     [powerContentL changeLabelHeightWithWidth:(ScreenWidth-FITiPhone6(30))];//加上这句
     [UILabel heightWithText:powerContentL.text fontSize:FITiPhone6(13) labelWidth:ScreenWidth - FITiPhone6(30)];
     [self.view addSubview:powerContentL];
@@ -97,7 +97,7 @@
     }];
     UILabel *receivePosL = [[UILabel alloc] init];
     receivePosL.text = @"免费领取机器：";
-    receivePosL.textColor = C090909;
+    receivePosL.textColor = C000000;
     receivePosL.font = F13;
     receivePosL.adjustsFontSizeToFitWidth = YES;
     [borderView addSubview:receivePosL];
@@ -121,7 +121,7 @@
     
     UILabel *highLevelL = [[UILabel alloc] init];
     highLevelL.text = @"我的上级：纪总";
-    highLevelL.textColor = C090909;
+    highLevelL.textColor = C000000;
     highLevelL.font = F13;
     highLevelL.adjustsFontSizeToFitWidth = YES;
     [self.view addSubview:highLevelL];
@@ -132,7 +132,7 @@
     }];
     UILabel *highLevelPhoneL = [[UILabel alloc] init];
     highLevelPhoneL.text = @"上级电话：13020320302";
-    highLevelPhoneL.textColor = C090909;
+    highLevelPhoneL.textColor = C000000;
     highLevelPhoneL.font = F13;
     highLevelPhoneL.adjustsFontSizeToFitWidth = YES;
     [self.view addSubview:highLevelPhoneL];
@@ -142,7 +142,7 @@
         make.height.mas_equalTo(FITiPhone6(13));
     }];
     UIButton *callTelephoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [callTelephoneBtn setImage:[UIImage imageNamed:@"会员V1"] forState:normal];
+    [callTelephoneBtn setImage:[UIImage imageNamed:@"myTelphone"] forState:normal];
     [callTelephoneBtn addTarget:self action:@selector(callTelephoneClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:callTelephoneBtn];
     [callTelephoneBtn mas_makeConstraints:^(MASConstraintMaker *make) {

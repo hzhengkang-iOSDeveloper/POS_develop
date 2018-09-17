@@ -25,7 +25,7 @@
 
 - (void)initUI {
     self.nameTF = [[UITextField alloc] init];
-    self.nameTF.textColor = C090909;
+    self.nameTF.textColor = C000000;
     self.nameTF.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, FITiPhone6(5), 0)];
     self.nameTF.leftViewMode = UITextFieldViewModeAlways;
     self.nameTF.placeholder = @"请输入名称";

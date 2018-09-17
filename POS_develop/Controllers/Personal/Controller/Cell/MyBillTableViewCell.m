@@ -31,7 +31,7 @@
 
 -(void)initUI{
     self.contentLabel = [[UILabel alloc] init];
-    self.contentLabel.textColor = C090909;
+    self.contentLabel.textColor = C000000;
     self.contentLabel.font = F13;
     self.contentLabel.adjustsFontSizeToFitWidth = YES;
     [self addSubview:self.contentLabel];
@@ -51,7 +51,7 @@
         make.height.mas_equalTo(FITiPhone6(10));
     }];
     self.amountLabel = [[UILabel alloc] init];
-    self.amountLabel.textColor = C090909;
+    self.amountLabel.textColor = C000000;
     self.amountLabel.font = F13;
     self.amountLabel.adjustsFontSizeToFitWidth = YES;
     [self addSubview:self.amountLabel];
@@ -61,7 +61,7 @@
         make.height.mas_equalTo(FITiPhone6(10));
     }];
     self.totalAmountLabel = [[UILabel alloc] init];
-    self.totalAmountLabel.textColor = C090909;
+    self.totalAmountLabel.textColor = C000000;
     self.totalAmountLabel.font = F12;
     self.totalAmountLabel.adjustsFontSizeToFitWidth = YES;
     [self addSubview:self.totalAmountLabel];

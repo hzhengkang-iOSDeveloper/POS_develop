@@ -31,7 +31,7 @@
 
 -(void)initUI{
     self.titleLabel = [[UILabel alloc] init];
-    self.titleLabel.textColor = C090909;
+    self.titleLabel.textColor = C000000;
     self.titleLabel.font = F13;
     self.titleLabel.adjustsFontSizeToFitWidth = YES;
     [self addSubview:self.titleLabel];
@@ -50,7 +50,7 @@
     }];
     self.detailLabel = [[UILabel alloc] init];
     self.detailLabel.textAlignment = NSTextAlignmentRight;
-    self.detailLabel.textColor = C090909;
+    self.detailLabel.textColor = C000000;
     self.detailLabel.font = F13;
     self.detailLabel.adjustsFontSizeToFitWidth = YES;
     [self addSubview:self.detailLabel];

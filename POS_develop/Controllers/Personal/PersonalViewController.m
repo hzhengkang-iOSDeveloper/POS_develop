@@ -15,7 +15,7 @@
 #import "MyAddressViewController.h"
 #import "SettingViewController.h"
 
-#import "WithdrawCashViewController.h"
+//#import "WithdrawCashViewController.h"
 
 
 #import "PD_BillListViewController.h"//我的订单
@@ -67,8 +67,8 @@
         [weakSelf.navigationController pushViewController:vc animated:YES];
     };
     headerView.withdrawBlock = ^{
-        WithdrawCashViewController *vc = [[WithdrawCashViewController alloc] init];
-        [weakSelf.navigationController pushViewController:vc animated:YES];
+//        WithdrawCashViewController *vc = [[WithdrawCashViewController alloc] init];
+//        [weakSelf.navigationController pushViewController:vc animated:YES];
     };
     return headerView;
 }
