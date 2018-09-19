@@ -20,6 +20,7 @@
 		2591E55D214D72C100469452 /* areaArray.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2591E55A214D72C000469452 /* areaArray.plist */; };
 		2591E55E214D72C100469452 /* BLAreaPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2591E55B214D72C000469452 /* BLAreaPickerView.m */; };
 		25E2A36A214D7831006EB5B5 /* PD_SelectAreaPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E2A369214D7831006EB5B5 /* PD_SelectAreaPickerView.m */; };
+		50339EAE2152968F003011E9 /* PD_BillListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50339EAD2152968F003011E9 /* PD_BillListCell.m */; };
 		7871669121490FA100452C51 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7871669021490FA100452C51 /* libxml2.tbd */; };
 		7871669A214911BC00452C51 /* TBCityIconFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 78716695214911BC00452C51 /* TBCityIconFont.m */; };
 		7871669B214911BC00452C51 /* TBCityIconInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 78716697214911BC00452C51 /* TBCityIconInfo.m */; };
@@ -167,6 +168,8 @@
 		2591E55C214D72C000469452 /* BLAreaPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLAreaPickerView.h; sourceTree = "<group>"; };
 		25E2A368214D7831006EB5B5 /* PD_SelectAreaPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_SelectAreaPickerView.h; sourceTree = "<group>"; };
 		25E2A369214D7831006EB5B5 /* PD_SelectAreaPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_SelectAreaPickerView.m; sourceTree = "<group>"; };
+		50339EAC2152968F003011E9 /* PD_BillListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillListCell.h; sourceTree = "<group>"; };
+		50339EAD2152968F003011E9 /* PD_BillListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillListCell.m; sourceTree = "<group>"; };
 		7871669021490FA100452C51 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		787166922149102000452C51 /* POS_PCH.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POS_PCH.pch; sourceTree = "<group>"; };
 		78716694214911BC00452C51 /* TBCityIconFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBCityIconFont.h; sourceTree = "<group>"; };
@@ -416,6 +419,15 @@
 				86630A622457BA042EF8C924 /* Pods-POS_develop.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		50339EAB21529679003011E9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				50339EAC2152968F003011E9 /* PD_BillListCell.h */,
+				50339EAD2152968F003011E9 /* PD_BillListCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		78716693214911BC00452C51 /* IconFont */ = {
@@ -982,10 +994,8 @@
 				253647D3214E030D0094576C /* UpdatePhoneViewController.m */,
 				253647D8214E05BC0094576C /* SettingNameViewController.h */,
 				253647D9214E05BC0094576C /* SettingNameViewController.m */,
-
 				251A4101214FF45E00AC2C81 /* WithdrawCashViewController.h */,
 				251A4102214FF45E00AC2C81 /* WithdrawCashViewController.m */,
-
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1023,6 +1033,7 @@
 			children = (
 				DA8D1771214E8CBC006574E4 /* PD_BillListViewController.h */,
 				DA8D1772214E8CBC006574E4 /* PD_BillListViewController.m */,
+				50339EAB21529679003011E9 /* View */,
 			);
 			path = MyBill;
 			sourceTree = "<group>";
@@ -1172,6 +1183,7 @@
 				7888F3532147C32C00AAC8B0 /* InfiniteScrollView.m in Sources */,
 				78765A95214A89E500261ED3 /* RegisterViewController.m in Sources */,
 				7888F3552147C32C00AAC8B0 /* MyTools.m in Sources */,
+				50339EAE2152968F003011E9 /* PD_BillListCell.m in Sources */,
 				7888F3B42147C33900AAC8B0 /* UILabel+Style.m in Sources */,
 				78CB4B74214B8BD7000F6A9D /* VipSystemViewController.m in Sources */,
 				7888F3C42147C33900AAC8B0 /* SY_ImageAndLabelBtn.m in Sources */,
