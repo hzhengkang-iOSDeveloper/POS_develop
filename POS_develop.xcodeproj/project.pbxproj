@@ -21,6 +21,11 @@
 		2591E55E214D72C100469452 /* BLAreaPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2591E55B214D72C000469452 /* BLAreaPickerView.m */; };
 		25E2A36A214D7831006EB5B5 /* PD_SelectAreaPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E2A369214D7831006EB5B5 /* PD_SelectAreaPickerView.m */; };
 		50339EAE2152968F003011E9 /* PD_BillListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50339EAD2152968F003011E9 /* PD_BillListCell.m */; };
+		50B0607B2153372C00B7B411 /* SLRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B060772153372C00B7B411 /* SLRefreshFooter.m */; };
+		50B0607C2153372C00B7B411 /* SLRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B060792153372C00B7B411 /* SLRefreshHeader.m */; };
+		50B0607F2153520E00B7B411 /* PD_BillListSkuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B0607E2153520E00B7B411 /* PD_BillListSkuCell.m */; };
+		50B060822153A0DC00B7B411 /* PD_BillSkuHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B060812153A0DC00B7B411 /* PD_BillSkuHeaderView.m */; };
+		50B060852153A10500B7B411 /* PD_BillSkuFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B060842153A10500B7B411 /* PD_BillSkuFooterView.m */; };
 		7871669121490FA100452C51 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7871669021490FA100452C51 /* libxml2.tbd */; };
 		7871669A214911BC00452C51 /* TBCityIconFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 78716695214911BC00452C51 /* TBCityIconFont.m */; };
 		7871669B214911BC00452C51 /* TBCityIconInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 78716697214911BC00452C51 /* TBCityIconInfo.m */; };
@@ -170,6 +175,16 @@
 		25E2A369214D7831006EB5B5 /* PD_SelectAreaPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_SelectAreaPickerView.m; sourceTree = "<group>"; };
 		50339EAC2152968F003011E9 /* PD_BillListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillListCell.h; sourceTree = "<group>"; };
 		50339EAD2152968F003011E9 /* PD_BillListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillListCell.m; sourceTree = "<group>"; };
+		50B060772153372C00B7B411 /* SLRefreshFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLRefreshFooter.m; sourceTree = "<group>"; };
+		50B060782153372C00B7B411 /* SLRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLRefreshFooter.h; sourceTree = "<group>"; };
+		50B060792153372C00B7B411 /* SLRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLRefreshHeader.m; sourceTree = "<group>"; };
+		50B0607A2153372C00B7B411 /* SLRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLRefreshHeader.h; sourceTree = "<group>"; };
+		50B0607D2153520E00B7B411 /* PD_BillListSkuCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillListSkuCell.h; sourceTree = "<group>"; };
+		50B0607E2153520E00B7B411 /* PD_BillListSkuCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillListSkuCell.m; sourceTree = "<group>"; };
+		50B060802153A0DC00B7B411 /* PD_BillSkuHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillSkuHeaderView.h; sourceTree = "<group>"; };
+		50B060812153A0DC00B7B411 /* PD_BillSkuHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillSkuHeaderView.m; sourceTree = "<group>"; };
+		50B060832153A10500B7B411 /* PD_BillSkuFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillSkuFooterView.h; sourceTree = "<group>"; };
+		50B060842153A10500B7B411 /* PD_BillSkuFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillSkuFooterView.m; sourceTree = "<group>"; };
 		7871669021490FA100452C51 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		787166922149102000452C51 /* POS_PCH.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POS_PCH.pch; sourceTree = "<group>"; };
 		78716694214911BC00452C51 /* TBCityIconFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBCityIconFont.h; sourceTree = "<group>"; };
@@ -426,6 +441,12 @@
 			children = (
 				50339EAC2152968F003011E9 /* PD_BillListCell.h */,
 				50339EAD2152968F003011E9 /* PD_BillListCell.m */,
+				50B0607D2153520E00B7B411 /* PD_BillListSkuCell.h */,
+				50B0607E2153520E00B7B411 /* PD_BillListSkuCell.m */,
+				50B060802153A0DC00B7B411 /* PD_BillSkuHeaderView.h */,
+				50B060812153A0DC00B7B411 /* PD_BillSkuHeaderView.m */,
+				50B060832153A10500B7B411 /* PD_BillSkuFooterView.h */,
+				50B060842153A10500B7B411 /* PD_BillSkuFooterView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -878,6 +899,10 @@
 		7888F3822147C33800AAC8B0 /* ToolClass */ = {
 			isa = PBXGroup;
 			children = (
+				50B060782153372C00B7B411 /* SLRefreshFooter.h */,
+				50B060772153372C00B7B411 /* SLRefreshFooter.m */,
+				50B0607A2153372C00B7B411 /* SLRefreshHeader.h */,
+				50B060792153372C00B7B411 /* SLRefreshHeader.m */,
 				DA8D1775214E8EE6006574E4 /* SLConst.h */,
 				DA8D1774214E8EE6006574E4 /* SLConst.m */,
 				2591E55A214D72C000469452 /* areaArray.plist */,
@@ -1171,6 +1196,7 @@
 			files = (
 				78CB4B7B214BAA29000F6A9D /* MyBillTableViewCell.m in Sources */,
 				7888F3592147C32C00AAC8B0 /* UIViewController+BackButtonHandler.m in Sources */,
+				50B0607F2153520E00B7B411 /* PD_BillListSkuCell.m in Sources */,
 				78765A88214A4EEE00261ED3 /* PersonalTableViewCell.m in Sources */,
 				7888F3C22147C33900AAC8B0 /* SY_AccountImageAndLabelBtn.m in Sources */,
 				7888F3C02147C33900AAC8B0 /* UserInformation.m in Sources */,
@@ -1199,10 +1225,12 @@
 				7888F36C2147C32C00AAC8B0 /* NSTimer+addition.m in Sources */,
 				7888F3BB2147C33900AAC8B0 /* ZJPPTViewCustomCell.m in Sources */,
 				7888F3C92147C33900AAC8B0 /* PlaceholderTextView.m in Sources */,
+				50B0607B2153372C00B7B411 /* SLRefreshFooter.m in Sources */,
 				787166C32149186200452C51 /* PersonalViewController.m in Sources */,
 				7888F3542147C32C00AAC8B0 /* MyKeyChainHelper.m in Sources */,
 				7888F3632147C32C00AAC8B0 /* LFCGzipUtillity.m in Sources */,
 				7888F34B2147C32C00AAC8B0 /* CustomDeleagte.m in Sources */,
+				50B0607C2153372C00B7B411 /* SLRefreshHeader.m in Sources */,
 				253647DA214E05BC0094576C /* SettingNameViewController.m in Sources */,
 				7888F34E2147C32C00AAC8B0 /* GTMNSString+HTML.m in Sources */,
 				7888F2DA2147C31600AAC8B0 /* CFTabBarViewController.m in Sources */,
@@ -1232,6 +1260,7 @@
 				7888F3622147C32C00AAC8B0 /* NetWorkDetectionManager.m in Sources */,
 				78CB4BE0214BCE67000F6A9D /* MyAddressTableViewCell.m in Sources */,
 				7888F3612147C32C00AAC8B0 /* MJChiBaoZiHeader.m in Sources */,
+				50B060822153A0DC00B7B411 /* PD_BillSkuHeaderView.m in Sources */,
 				7871669B214911BC00452C51 /* TBCityIconInfo.m in Sources */,
 				7888F3562147C32C00AAC8B0 /* PowerfulBannerView.m in Sources */,
 				7888F3BF2147C33900AAC8B0 /* Reachability.m in Sources */,
@@ -1262,6 +1291,7 @@
 				253647D7214E053C0094576C /* UpdatePhoneTableViewCell.m in Sources */,
 				7888F3BA2147C33900AAC8B0 /* ZJPPTViewCustom.m in Sources */,
 				7888F3B32147C33900AAC8B0 /* UILabel+ChangeLineSpaceAndWordSpace.m in Sources */,
+				50B060852153A10500B7B411 /* PD_BillSkuFooterView.m in Sources */,
 				7888F2AC2147C0AA00AAC8B0 /* ViewController.m in Sources */,
 				7888F36D2147C32C00AAC8B0 /* UIView+Frame.m in Sources */,
 				78CB4B77214BA8D7000F6A9D /* MyBillViewController.m in Sources */,

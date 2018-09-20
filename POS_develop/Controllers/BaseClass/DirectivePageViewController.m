@@ -27,8 +27,7 @@
     self.bannerView = [[PowerfulBannerView alloc] initWithFrame:self.view.bounds];
     NSMutableArray *items = [NSMutableArray array];
     for (NSInteger i = 1; i <= 4; i++) {
-        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"bu_0%ld", i]];
-        [items addObject:image];
+        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"bu_0%ld", i]];        [items addObject:image];
     }
     self.bannerView.items = items;
     __weak __typeof(self) weakself = self;
