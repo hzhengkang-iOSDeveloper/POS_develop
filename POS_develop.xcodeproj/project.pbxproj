@@ -37,12 +37,18 @@
 		787166BB214917D400452C51 /* POSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787166BA214917D400452C51 /* POSViewController.m */; };
 		787166BF2149183200452C51 /* GeneralizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787166BE2149183200452C51 /* GeneralizeViewController.m */; };
 		787166C32149186200452C51 /* PersonalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787166C22149186200452C51 /* PersonalViewController.m */; };
+		787223BC2154E348004C21FE /* AchievementsTopCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 787223BB2154E348004C21FE /* AchievementsTopCollectionViewCell.m */; };
 		78765A84214A447400261ED3 /* PersonalHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78765A83214A447400261ED3 /* PersonalHeaderView.m */; };
 		78765A88214A4EEE00261ED3 /* PersonalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78765A87214A4EEE00261ED3 /* PersonalTableViewCell.m */; };
 		78765A8C214A6AB200261ED3 /* LoginTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78765A8B214A6AB200261ED3 /* LoginTypeViewController.m */; };
 		78765A8F214A89C300261ED3 /* PasswordLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78765A8E214A89C300261ED3 /* PasswordLoginViewController.m */; };
 		78765A92214A89D600261ED3 /* FastLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78765A91214A89D600261ED3 /* FastLoginViewController.m */; };
 		78765A95214A89E500261ED3 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78765A94214A89E500261ED3 /* RegisterViewController.m */; };
+		787EA23C2154F5C700D08F58 /* AchievementsBottomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 787EA23B2154F5C700D08F58 /* AchievementsBottomCollectionViewCell.m */; };
+		787FFC9821522DC400318BBC /* TransactionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787FFC9721522DC400318BBC /* TransactionListViewController.m */; };
+		787FFC9B21522DE800318BBC /* TransactionListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 787FFC9A21522DE800318BBC /* TransactionListCell.m */; };
+		787FFC9E215232C200318BBC /* TransactionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787FFC9D215232C200318BBC /* TransactionDetailViewController.m */; };
+		787FFCA1215232E900318BBC /* TransactionDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 787FFCA0215232E900318BBC /* TransactionDetailCell.m */; };
 		7888F2A92147C0AA00AAC8B0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F2A82147C0AA00AAC8B0 /* AppDelegate.m */; };
 		7888F2AC2147C0AA00AAC8B0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F2AB2147C0AA00AAC8B0 /* ViewController.m */; };
 		7888F2AF2147C0AA00AAC8B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7888F2AD2147C0AA00AAC8B0 /* Main.storyboard */; };
@@ -190,6 +196,8 @@
 		787166BE2149183200452C51 /* GeneralizeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GeneralizeViewController.m; sourceTree = "<group>"; };
 		787166C12149186200452C51 /* PersonalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalViewController.h; sourceTree = "<group>"; };
 		787166C22149186200452C51 /* PersonalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalViewController.m; sourceTree = "<group>"; };
+		787223BA2154E348004C21FE /* AchievementsTopCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AchievementsTopCollectionViewCell.h; sourceTree = "<group>"; };
+		787223BB2154E348004C21FE /* AchievementsTopCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AchievementsTopCollectionViewCell.m; sourceTree = "<group>"; };
 		78765A82214A447400261ED3 /* PersonalHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalHeaderView.h; sourceTree = "<group>"; };
 		78765A83214A447400261ED3 /* PersonalHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalHeaderView.m; sourceTree = "<group>"; };
 		78765A86214A4EEE00261ED3 /* PersonalTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalTableViewCell.h; sourceTree = "<group>"; };
@@ -202,6 +210,16 @@
 		78765A91214A89D600261ED3 /* FastLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FastLoginViewController.m; sourceTree = "<group>"; };
 		78765A93214A89E500261ED3 /* RegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		78765A94214A89E500261ED3 /* RegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		787EA23A2154F5C700D08F58 /* AchievementsBottomCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AchievementsBottomCollectionViewCell.h; sourceTree = "<group>"; };
+		787EA23B2154F5C700D08F58 /* AchievementsBottomCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AchievementsBottomCollectionViewCell.m; sourceTree = "<group>"; };
+		787FFC9621522DC400318BBC /* TransactionListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionListViewController.h; sourceTree = "<group>"; };
+		787FFC9721522DC400318BBC /* TransactionListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionListViewController.m; sourceTree = "<group>"; };
+		787FFC9921522DE800318BBC /* TransactionListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionListCell.h; sourceTree = "<group>"; };
+		787FFC9A21522DE800318BBC /* TransactionListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionListCell.m; sourceTree = "<group>"; };
+		787FFC9C215232C200318BBC /* TransactionDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionDetailViewController.h; sourceTree = "<group>"; };
+		787FFC9D215232C200318BBC /* TransactionDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionDetailViewController.m; sourceTree = "<group>"; };
+		787FFC9F215232E900318BBC /* TransactionDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionDetailCell.h; sourceTree = "<group>"; };
+		787FFCA0215232E900318BBC /* TransactionDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionDetailCell.m; sourceTree = "<group>"; };
 		7888F2A42147C0AA00AAC8B0 /* POS_develop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = POS_develop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7888F2A72147C0AA00AAC8B0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7888F2A82147C0AA00AAC8B0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -464,6 +482,8 @@
 		787166B4214912B800452C51 /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
+				787FFC9521522D6600318BBC /* View */,
+				787FFC9321522D4400318BBC /* Controller */,
 				787166B5214912E200452C51 /* PosHomePageViewController.h */,
 				787166B6214912E200452C51 /* PosHomePageViewController.m */,
 			);
@@ -532,6 +552,40 @@
 				78765A94214A89E500261ED3 /* RegisterViewController.m */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		787FFC9321522D4400318BBC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				787FFC9421522D5D00318BBC /* Cell */,
+				787FFC9621522DC400318BBC /* TransactionListViewController.h */,
+				787FFC9721522DC400318BBC /* TransactionListViewController.m */,
+				787FFC9C215232C200318BBC /* TransactionDetailViewController.h */,
+				787FFC9D215232C200318BBC /* TransactionDetailViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		787FFC9421522D5D00318BBC /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				787FFC9921522DE800318BBC /* TransactionListCell.h */,
+				787FFC9A21522DE800318BBC /* TransactionListCell.m */,
+				787FFC9F215232E900318BBC /* TransactionDetailCell.h */,
+				787FFCA0215232E900318BBC /* TransactionDetailCell.m */,
+				787223BA2154E348004C21FE /* AchievementsTopCollectionViewCell.h */,
+				787223BB2154E348004C21FE /* AchievementsTopCollectionViewCell.m */,
+				787EA23A2154F5C700D08F58 /* AchievementsBottomCollectionViewCell.h */,
+				787EA23B2154F5C700D08F58 /* AchievementsBottomCollectionViewCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		787FFC9521522D6600318BBC /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		7888F29B2147C0AA00AAC8B0 = {
@@ -1152,6 +1206,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				78CB4B7B214BAA29000F6A9D /* MyBillTableViewCell.m in Sources */,
+				787EA23C2154F5C700D08F58 /* AchievementsBottomCollectionViewCell.m in Sources */,
+				787FFCA1215232E900318BBC /* TransactionDetailCell.m in Sources */,
 				7888F3592147C32C00AAC8B0 /* UIViewController+BackButtonHandler.m in Sources */,
 				78765A88214A4EEE00261ED3 /* PersonalTableViewCell.m in Sources */,
 				7888F3C22147C33900AAC8B0 /* SY_AccountImageAndLabelBtn.m in Sources */,
@@ -1160,12 +1216,14 @@
 				7888F3C72147C33900AAC8B0 /* NotPrjView.m in Sources */,
 				7888F3BE2147C33900AAC8B0 /* BaseModel.m in Sources */,
 				7888F2F62147C32600AAC8B0 /* UITextField+Format.m in Sources */,
+				787FFC9821522DC400318BBC /* TransactionListViewController.m in Sources */,
 				7888F2D92147C31600AAC8B0 /* CFTabBar.m in Sources */,
 				7888F36A2147C32C00AAC8B0 /* SGBaseMenu.m in Sources */,
 				7888F3532147C32C00AAC8B0 /* InfiniteScrollView.m in Sources */,
 				78765A95214A89E500261ED3 /* RegisterViewController.m in Sources */,
 				7888F3552147C32C00AAC8B0 /* MyTools.m in Sources */,
 				7888F3B42147C33900AAC8B0 /* UILabel+Style.m in Sources */,
+				787FFC9E215232C200318BBC /* TransactionDetailViewController.m in Sources */,
 				78CB4B74214B8BD7000F6A9D /* VipSystemViewController.m in Sources */,
 				7888F3C42147C33900AAC8B0 /* SY_ImageAndLabelBtn.m in Sources */,
 				7888F3502147C32C00AAC8B0 /* SFHFKeychainUtils.m in Sources */,
@@ -1203,6 +1261,7 @@
 				7888F3C12147C33900AAC8B0 /* BaseButton.m in Sources */,
 				25E2A36A214D7831006EB5B5 /* PD_SelectAreaPickerView.m in Sources */,
 				7888F36E2147C32C00AAC8B0 /* WYWebProgressLayer.m in Sources */,
+				787223BC2154E348004C21FE /* AchievementsTopCollectionViewCell.m in Sources */,
 				7888F2F42147C32600AAC8B0 /* LoginManager.m in Sources */,
 				7888F3B52147C33900AAC8B0 /* UITableView+BackgroundImageView.m in Sources */,
 				2546E2D1214D2F250066DBFB /* SettingTableViewCell.m in Sources */,
@@ -1248,6 +1307,7 @@
 				7888F2DD2147C31600AAC8B0 /* CommunityWebViewController.m in Sources */,
 				7888F3AF2147C33900AAC8B0 /* NSString+Helper.m in Sources */,
 				2520A68E214CE38900D48B26 /* SettingViewController.m in Sources */,
+				787FFC9B21522DE800318BBC /* TransactionListCell.m in Sources */,
 				7888F3682147C32C00AAC8B0 /* StaticLibrary.m in Sources */,
 				DA8D1776214E8EE7006574E4 /* SLConst.m in Sources */,
 				7888F3B12147C33900AAC8B0 /* UIColor+HEXString.m in Sources */,
@@ -1402,7 +1462,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9H5MT4JXH3;
+				DEVELOPMENT_TEAM = SYJBXXL9YT;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/POS_develop/POS_PCH.pch";
 				HEADER_SEARCH_PATHS = (
@@ -1442,7 +1502,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9H5MT4JXH3;
+				DEVELOPMENT_TEAM = SYJBXXL9YT;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/POS_develop/POS_PCH.pch";
 				HEADER_SEARCH_PATHS = (

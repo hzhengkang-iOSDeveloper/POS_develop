@@ -41,7 +41,7 @@
         UILabel *placeholderLabel = [[UILabel alloc]init];//添加一个占位label
         
         
-        placeholderLabel.textColor = C090909;
+        placeholderLabel.textColor = C000000;
         placeholderLabel.numberOfLines=0; //设置可以输入多行文字时可以自动换行
         
         [self addSubview:placeholderLabel];
