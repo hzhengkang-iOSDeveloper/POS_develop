@@ -7,9 +7,17 @@
 //
 
 #import "PD_BillListViewController.h"
-
-@interface PD_BillListViewController ()
+#import "PD_BillListSkuCell.h"
+#import "PD_BillSkuHeaderView.h"
+#import "PD_BillSkuFooterView.h"
+@interface PD_BillListViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, weak) UISegmentedControl *segmentedControl;
+/**
+ * 订单模型数组
+ */
+@property (nonatomic, strong) NSMutableArray *orderModelArr;
+
+@property (nonatomic, weak) UITableView *orderTableView;
 @end
 
 @implementation PD_BillListViewController
@@ -18,9 +26,52 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"我的订单";
+    [self creatTableView];
     [self creatSelectBillStatus];
 }
-
+#pragma mark ---- Table ----
+- (void)creatTableView
+{
+    UITableView *orderTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, AD_HEIGHT(40), ScreenWidth, ScreenHeight-AD_HEIGHT(40)-AD_HEIGHT(30)) style:UITableViewStyleGrouped];
+    orderTableView.delegate = self;
+    orderTableView.dataSource = self;
+    [self.view addSubview:orderTableView];
+    self.orderTableView = orderTableView;
+    orderTableView.separatorStyle = NO;
+    
+//    MJWeakSelf;
+    orderTableView.mj_header = [SLRefreshHeader headerWithRefreshingBlock:^{
+//        weakSelf.orderArr = nil;
+//        weakSelf.orderArr = [NSMutableArray array];
+//        weakSelf.orderModelArr = nil;
+//        weakSelf.orderModelArr = [NSMutableArray array];
+//        weakSelf.loadDataIndex = 1;
+//
+//        [weakSelf loadDataWithStatus:self.status];
+    }];
+    
+    orderTableView.mj_footer = [SLRefreshFooter footerWithRefreshingBlock:^{
+//        weakSelf.loadDataIndex += 1;
+//        
+//        if (weakSelf.count%10 >0) {
+//            if (weakSelf.loadDataIndex <= weakSelf.count/10 + 1) {
+//                
+//                [weakSelf loadDataWithStatus:weakSelf.status];
+//            }else{
+//                
+//                [orderTableView.mj_footer endRefreshingWithNoMoreData];
+//            }
+//        }else{
+//            
+//            if (weakSelf.loadDataIndex <= weakSelf.count/10) {
+//                
+//                [weakSelf loadDataWithStatus:weakSelf.status];
+//            }else{
+//                [orderTableView.mj_footer endRefreshingWithNoMoreData];
+//            }
+//        }
+    }];
+}
 #pragma mark ---- 创建选择状态栏 ----
 - (void)creatSelectBillStatus
 {
@@ -48,7 +99,7 @@
 }
 
 -(void)didClicksegmentedControlAction:(UISegmentedControl *)Seg{
-    NSInteger Index = Seg.selectedSegmentIndex;
+//    NSInteger Index = Seg.selectedSegmentIndex;
     //    NSLog(@"Index %ld", (long)Index);
 //
 //    self.orderArr = nil;
@@ -82,5 +133,50 @@
 //        default:
 //            break;
 //    }
+}
+
+#pragma mark -- tableView代理数据源方法
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 5;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    //    SLLog(@"%lu",(unsigned long)[[self.orderModelArr[section] items] count]);
+    return 2;
+    //    return 0;
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    PD_BillListSkuCell *cell = [PD_BillListSkuCell cellWithTableView:tableView];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    
+    
+    return cell;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return AD_HEIGHT(94);
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    PD_BillSkuHeaderView *headerView = [[PD_BillSkuHeaderView alloc] init];
+    return headerView;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return AD_HEIGHT(41);
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return AD_HEIGHT(68);
+}
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    
+    PD_BillSkuFooterView *footerView = [[PD_BillSkuFooterView alloc] init];
+    
+    return footerView;
 }
 @end

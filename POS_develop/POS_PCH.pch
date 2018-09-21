@@ -14,7 +14,8 @@
 #import "UIImage+Extension.h"
 #import "UIColor+HEXString.h"
 #import "BaseButton.h"
-
+#import "SLRefreshHeader.h"
+#import "SLRefreshFooter.h"
 
 #import "SLConst.h"               // 静态常量
 #import "NSUserDefaults+Helper.h"
@@ -94,12 +95,14 @@
 #define CF6F6F6 [UIColor colorWithHexString:@"#F2F2F6"]//背景色
 #define C1E95F9 [UIColor colorWithHexString:@"#1E95F9"]//主色系
 #define C000000 [UIColor colorWithHexString:@"#000000"]//深文本
+#define CF52542 [UIColor colorWithHexString:@"#F52542"]//红色文字
 #define C989898 [UIColor colorWithHexString:@"#989898"]//浅文本
 #define CF70F0F [UIColor colorWithHexString:@"#F70F0F"]//辅红色
 #define CC9C9C9 [UIColor colorWithHexString:@"#C9C9C9"]//不可点击按钮颜色
 #define CE6E2E2 [UIColor colorWithHexString:@"#E6E2E2"]//线条描边
 #define CEEEEEE [UIColor colorWithHexString:@"#eeeeee"]
-
+#define CF60303 [UIColor colorWithHexString:@"#F60303"]
+#define CFF0000 [UIColor colorWithHexString:@"#FF0000"]
 
 ///正常字体
 #define F30 [UIFont systemFontOfSize:FITiPhone6(30)]
@@ -155,6 +158,9 @@
 #define STATUSBAR_H       ([UIApplication sharedApplication].statusBarFrame.size.height)
 //无敌适配宏_高
 #define AD_HEIGHT(S)      ([UIScreen mainScreen].bounds.size.height / ((iPhoneX ? 812.0 : 667.0) / (S)))
+//无敌适配宏_宽
+#define AD_WIDTH(S)       ([UIScreen mainScreen].bounds.size.width / (375.0 / (S)))
+
 #pragma mark - 简单方法封装
 #define OffKeyBoard  [[UIApplication sharedApplication].keyWindow endEditing:YES]///回收键盘
 /**
@@ -229,5 +235,10 @@
 #define PASSWORD @"pwd"
 //删除以前的用户名和密码
 #define CF_DeleteOldAccountAndPwd  @"cf_DeleteOldAccountAndPwd"
+
+#define ImageNamed(name) [UIImage imageNamed:name]
+// UserDefaults 存取
+#define UserDefaultsGet(KEY)          [[NSUserDefaults standardUserDefaults] objectForKey:KEY]
+#define UserDefaultsSet(VALUE,KEY)    [[NSUserDefaults standardUserDefaults] setObject:VALUE forKey:KEY]
 
 #endif /* POS_PCH_pch */
