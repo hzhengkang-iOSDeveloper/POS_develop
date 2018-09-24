@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Masonry.h>
 
 @interface UIView (Extension)
 @property(nonatomic, assign)CGFloat x;
@@ -18,4 +19,10 @@
 @property(nonatomic, assign)CGFloat centerX;
 @property(nonatomic, assign)CGFloat centerY;
 
+/**
+ 布局
+ */
++(UIView *)getViewWithColor:(UIColor *)color
+                  superView:(UIView *)superView
+                 masonrySet:(void (^)(UIView *view,MASConstraintMaker *make))block;
 @end

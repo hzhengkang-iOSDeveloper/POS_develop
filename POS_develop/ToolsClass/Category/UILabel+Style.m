@@ -122,4 +122,23 @@
     self.preferredMaxLayoutWidth = witdh;
     [self setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
 }
+
++(UILabel *)getLabelWithFont:(UIFont *)font
+                   textColor:(UIColor *)textColor
+                   superView:(UIView *)superView
+                  masonrySet:(void (^)(UILabel *view,MASConstraintMaker *make))block
+{
+    UILabel *label = [[UILabel alloc] init];
+    label.font = font;
+    label.textColor = textColor;
+    label.translatesAutoresizingMaskIntoConstraints = NO;
+    [superView addSubview:label];
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        if (block) {
+            block(label,make);
+        }
+    }];
+    return label;
+}
+
 @end

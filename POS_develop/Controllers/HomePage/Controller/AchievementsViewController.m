@@ -9,6 +9,8 @@
 #import "AchievementsViewController.h"
 #import "AchievementsTopCollectionViewCell.h"
 #import "AchievementsBottomCollectionViewCell.h"
+#import "TransactionQueryViewController.h"
+
 @interface AchievementsViewController () <UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) UICollectionView *myTopCollection;
 @property (nonatomic, strong) UICollectionView *myBottomCollection;
@@ -117,7 +119,45 @@
     //    AccountCollectionCell *cell = (AccountCollectionCell *)[collectionView cellForItemAtIndexPath:indexPath];
     //    NSString *msg = cell.titleLabel.text;
     //    FMLog(@"%@",msg);
-    
+    if (indexPath.section == 0) {
+        
+    }else {
+        switch (indexPath.row) {
+            case 0:{
+                TransactionQueryViewController *vc = [[TransactionQueryViewController alloc] init];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+            case 1:{
+                
+            }
+                break;
+            case 2:{
+                
+            }
+                break;
+            case 3:{
+                
+            }
+                break;
+            case 4:{
+                
+            }
+                break;
+            case 5:{
+                
+            }
+                break;
+            case 6:{
+                
+            }
+                break;
+            case 7:{
+                
+            }
+                break;
+        }
+    }
 }
 
 

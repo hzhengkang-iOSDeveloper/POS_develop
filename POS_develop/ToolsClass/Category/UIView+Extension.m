@@ -102,4 +102,19 @@
 }
 
 
+//MARK:view快速布局
++(UIView *)getViewWithColor:(UIColor *)color
+                  superView:(UIView *)superView
+                 masonrySet:(void (^)(UIView *view,MASConstraintMaker *make))block {
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = color;
+    view.translatesAutoresizingMaskIntoConstraints = NO;
+    [superView addSubview:view];
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        if (block) {
+            block(view,make);
+        }
+    }];
+    return view;
+}
 @end

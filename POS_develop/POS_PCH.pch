@@ -40,6 +40,7 @@
 #import "DateManager.h"
 #import "UserInformation.h"
 #import "UILabel+ChangeLineSpaceAndWordSpace.h"
+#import "UILabel+Style.h"
 //#import "GetHPCFCustState.h"
 //#import "CWMoneyKeboard.h"
 #import "BaseButton.h"

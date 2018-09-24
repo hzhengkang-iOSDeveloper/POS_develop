@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <Masonry.h>
 @interface UILabel (Style)
 
 //根据文字来定义label的高度
@@ -47,4 +47,12 @@
  * masonry自适应高度
  */
 - (void)changeLabelHeightWithWidth:(CGFloat)witdh;
+
+/**
+ label布局masonry
+ */
++(UILabel *)getLabelWithFont:(UIFont *)font
+                   textColor:(UIColor *)textColor
+                   superView:(UIView *)superView
+                  masonrySet:(void (^)(UILabel *view,MASConstraintMaker *make))block;
 @end
