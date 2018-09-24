@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"设置名字";
+    self.navigationItemTitle = @"设置名字";
     UIButton * rightBtn = [self addStandardRightButtonWithTitle:@"完成" selector:@selector(completeClick)];
     rightBtn.titleLabel.font = F13;
     [self initUI];

@@ -21,11 +21,16 @@
 		2591E55E214D72C100469452 /* BLAreaPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2591E55B214D72C000469452 /* BLAreaPickerView.m */; };
 		25E2A36A214D7831006EB5B5 /* PD_SelectAreaPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E2A369214D7831006EB5B5 /* PD_SelectAreaPickerView.m */; };
 		50339EAE2152968F003011E9 /* PD_BillListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50339EAD2152968F003011E9 /* PD_BillListCell.m */; };
+		5089375F21561B32007C6239 /* AchievementsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5089375E21561B32007C6239 /* AchievementsViewController.m */; };
+		5089376621561DB8007C6239 /* HomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5089376521561DB8007C6239 /* HomeTableViewCell.m */; };
+		50893769215648CB007C6239 /* PosHomePageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50893768215648CB007C6239 /* PosHomePageHeaderView.m */; };
+		5089376C2156793E007C6239 /* SLHomeFivePartBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 5089376A2156793E007C6239 /* SLHomeFivePartBtn.m */; };
 		50B0607B2153372C00B7B411 /* SLRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B060772153372C00B7B411 /* SLRefreshFooter.m */; };
 		50B0607C2153372C00B7B411 /* SLRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B060792153372C00B7B411 /* SLRefreshHeader.m */; };
 		50B0607F2153520E00B7B411 /* PD_BillListSkuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B0607E2153520E00B7B411 /* PD_BillListSkuCell.m */; };
 		50B060822153A0DC00B7B411 /* PD_BillSkuHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B060812153A0DC00B7B411 /* PD_BillSkuHeaderView.m */; };
 		50B060852153A10500B7B411 /* PD_BillSkuFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B060842153A10500B7B411 /* PD_BillSkuFooterView.m */; };
+		50F68C3521578C5B00DCFE85 /* XRCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F68C3421578C5B00DCFE85 /* XRCarouselView.m */; };
 		7871669121490FA100452C51 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7871669021490FA100452C51 /* libxml2.tbd */; };
 		7871669A214911BC00452C51 /* TBCityIconFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 78716695214911BC00452C51 /* TBCityIconFont.m */; };
 		7871669B214911BC00452C51 /* TBCityIconInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 78716697214911BC00452C51 /* TBCityIconInfo.m */; };
@@ -181,6 +186,14 @@
 		25E2A369214D7831006EB5B5 /* PD_SelectAreaPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_SelectAreaPickerView.m; sourceTree = "<group>"; };
 		50339EAC2152968F003011E9 /* PD_BillListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillListCell.h; sourceTree = "<group>"; };
 		50339EAD2152968F003011E9 /* PD_BillListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillListCell.m; sourceTree = "<group>"; };
+		5089375D21561B32007C6239 /* AchievementsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AchievementsViewController.h; sourceTree = "<group>"; };
+		5089375E21561B32007C6239 /* AchievementsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AchievementsViewController.m; sourceTree = "<group>"; };
+		5089376421561DB8007C6239 /* HomeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeTableViewCell.h; sourceTree = "<group>"; };
+		5089376521561DB8007C6239 /* HomeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewCell.m; sourceTree = "<group>"; };
+		50893767215648CB007C6239 /* PosHomePageHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PosHomePageHeaderView.h; sourceTree = "<group>"; };
+		50893768215648CB007C6239 /* PosHomePageHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PosHomePageHeaderView.m; sourceTree = "<group>"; };
+		5089376A2156793E007C6239 /* SLHomeFivePartBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHomeFivePartBtn.m; sourceTree = "<group>"; };
+		5089376B2156793E007C6239 /* SLHomeFivePartBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHomeFivePartBtn.h; sourceTree = "<group>"; };
 		50B060772153372C00B7B411 /* SLRefreshFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLRefreshFooter.m; sourceTree = "<group>"; };
 		50B060782153372C00B7B411 /* SLRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLRefreshFooter.h; sourceTree = "<group>"; };
 		50B060792153372C00B7B411 /* SLRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLRefreshHeader.m; sourceTree = "<group>"; };
@@ -191,6 +204,8 @@
 		50B060812153A0DC00B7B411 /* PD_BillSkuHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillSkuHeaderView.m; sourceTree = "<group>"; };
 		50B060832153A10500B7B411 /* PD_BillSkuFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillSkuFooterView.h; sourceTree = "<group>"; };
 		50B060842153A10500B7B411 /* PD_BillSkuFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillSkuFooterView.m; sourceTree = "<group>"; };
+		50F68C3321578C5B00DCFE85 /* XRCarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XRCarouselView.h; sourceTree = "<group>"; };
+		50F68C3421578C5B00DCFE85 /* XRCarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XRCarouselView.m; sourceTree = "<group>"; };
 		7871669021490FA100452C51 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		787166922149102000452C51 /* POS_PCH.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POS_PCH.pch; sourceTree = "<group>"; };
 		78716694214911BC00452C51 /* TBCityIconFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBCityIconFont.h; sourceTree = "<group>"; };
@@ -469,6 +484,19 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		5089376021561C55007C6239 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5089376B2156793E007C6239 /* SLHomeFivePartBtn.h */,
+				5089376A2156793E007C6239 /* SLHomeFivePartBtn.m */,
+				5089376421561DB8007C6239 /* HomeTableViewCell.h */,
+				5089376521561DB8007C6239 /* HomeTableViewCell.m */,
+				50893767215648CB007C6239 /* PosHomePageHeaderView.h */,
+				50893768215648CB007C6239 /* PosHomePageHeaderView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		78716693214911BC00452C51 /* IconFont */ = {
 			isa = PBXGroup;
 			children = (
@@ -518,7 +546,7 @@
 		787166B4214912B800452C51 /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
-				787FFC9521522D6600318BBC /* View */,
+				5089376021561C55007C6239 /* View */,
 				787FFC9321522D4400318BBC /* Controller */,
 				787166B5214912E200452C51 /* PosHomePageViewController.h */,
 				787166B6214912E200452C51 /* PosHomePageViewController.m */,
@@ -598,6 +626,8 @@
 				787FFC9721522DC400318BBC /* TransactionListViewController.m */,
 				787FFC9C215232C200318BBC /* TransactionDetailViewController.h */,
 				787FFC9D215232C200318BBC /* TransactionDetailViewController.m */,
+				5089375D21561B32007C6239 /* AchievementsViewController.h */,
+				5089375E21561B32007C6239 /* AchievementsViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -615,13 +645,6 @@
 				787EA23B2154F5C700D08F58 /* AchievementsBottomCollectionViewCell.m */,
 			);
 			path = Cell;
-			sourceTree = "<group>";
-		};
-		787FFC9521522D6600318BBC /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		7888F29B2147C0AA00AAC8B0 = {
@@ -953,6 +976,8 @@
 		7888F3822147C33800AAC8B0 /* ToolClass */ = {
 			isa = PBXGroup;
 			children = (
+				50F68C3321578C5B00DCFE85 /* XRCarouselView.h */,
+				50F68C3421578C5B00DCFE85 /* XRCarouselView.m */,
 				50B060782153372C00B7B411 /* SLRefreshFooter.h */,
 				50B060772153372C00B7B411 /* SLRefreshFooter.m */,
 				50B0607A2153372C00B7B411 /* SLRefreshHeader.h */,
@@ -1252,6 +1277,7 @@
 				787EA23C2154F5C700D08F58 /* AchievementsBottomCollectionViewCell.m in Sources */,
 				787FFCA1215232E900318BBC /* TransactionDetailCell.m in Sources */,
 				7888F3592147C32C00AAC8B0 /* UIViewController+BackButtonHandler.m in Sources */,
+				50893769215648CB007C6239 /* PosHomePageHeaderView.m in Sources */,
 				50B0607F2153520E00B7B411 /* PD_BillListSkuCell.m in Sources */,
 				78765A88214A4EEE00261ED3 /* PersonalTableViewCell.m in Sources */,
 				7888F3C22147C33900AAC8B0 /* SY_AccountImageAndLabelBtn.m in Sources */,
@@ -1269,6 +1295,7 @@
 				50339EAE2152968F003011E9 /* PD_BillListCell.m in Sources */,
 				7888F3B42147C33900AAC8B0 /* UILabel+Style.m in Sources */,
 				787FFC9E215232C200318BBC /* TransactionDetailViewController.m in Sources */,
+				5089376C2156793E007C6239 /* SLHomeFivePartBtn.m in Sources */,
 				78CB4B74214B8BD7000F6A9D /* VipSystemViewController.m in Sources */,
 				7888F3C42147C33900AAC8B0 /* SY_ImageAndLabelBtn.m in Sources */,
 				7888F3502147C32C00AAC8B0 /* SFHFKeychainUtils.m in Sources */,
@@ -1279,6 +1306,7 @@
 				7888F34F2147C32C00AAC8B0 /* HDeviceIdentifier.m in Sources */,
 				7888F3B62147C33900AAC8B0 /* UIView+Extension.m in Sources */,
 				7888F2DE2147C31600AAC8B0 /* WebViewAction.m in Sources */,
+				5089376621561DB8007C6239 /* HomeTableViewCell.m in Sources */,
 				7888F3C32147C33900AAC8B0 /* SY_ImageAndLabelAndLaeblBtn.m in Sources */,
 				7888F36C2147C32C00AAC8B0 /* NSTimer+addition.m in Sources */,
 				7888F3BB2147C33900AAC8B0 /* ZJPPTViewCustomCell.m in Sources */,
@@ -1291,6 +1319,7 @@
 				50B0607C2153372C00B7B411 /* SLRefreshHeader.m in Sources */,
 				253647DA214E05BC0094576C /* SettingNameViewController.m in Sources */,
 				7888F34E2147C32C00AAC8B0 /* GTMNSString+HTML.m in Sources */,
+				50F68C3521578C5B00DCFE85 /* XRCarouselView.m in Sources */,
 				7888F2DA2147C31600AAC8B0 /* CFTabBarViewController.m in Sources */,
 				7888F2DB2147C31600AAC8B0 /* DirectivePageViewController.m in Sources */,
 				7888F34D2147C32C00AAC8B0 /* GDataXMLNode.m in Sources */,
@@ -1354,6 +1383,7 @@
 				7888F2AC2147C0AA00AAC8B0 /* ViewController.m in Sources */,
 				7888F36D2147C32C00AAC8B0 /* UIView+Frame.m in Sources */,
 				78CB4B77214BA8D7000F6A9D /* MyBillViewController.m in Sources */,
+				5089375F21561B32007C6239 /* AchievementsViewController.m in Sources */,
 				7888F2DD2147C31600AAC8B0 /* CommunityWebViewController.m in Sources */,
 				7888F3AF2147C33900AAC8B0 /* NSString+Helper.m in Sources */,
 				2520A68E214CE38900D48B26 /* SettingViewController.m in Sources */,
@@ -1512,7 +1542,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SYJBXXL9YT;
+				DEVELOPMENT_TEAM = 9H5MT4JXH3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/POS_develop/POS_PCH.pch";
 				HEADER_SEARCH_PATHS = (
@@ -1552,7 +1582,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SYJBXXL9YT;
+				DEVELOPMENT_TEAM = 9H5MT4JXH3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/POS_develop/POS_PCH.pch";
 				HEADER_SEARCH_PATHS = (

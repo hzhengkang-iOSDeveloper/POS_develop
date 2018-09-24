@@ -23,7 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"手机号快捷登录";
+    self.navigationItemTitle = @"手机号快捷登录";
     self.view.backgroundColor = WhiteColor;
     [self initUI];
 }

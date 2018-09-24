@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"设置";
+    self.navigationItemTitle = @"设置";
     [self createTableView];
     [self createSignOutBtn];
     

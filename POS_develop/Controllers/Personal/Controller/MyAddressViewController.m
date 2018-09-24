@@ -18,7 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"收货地址";
+    self.navigationItemTitle = @"收货地址";
     self.view.backgroundColor = CF6F6F6;
     MJWeakSelf;
     UIButton *rightBtn = [self addRightBarButtonWithImage:[UIImage imageNamed:@"语音"] clickHandler:^{

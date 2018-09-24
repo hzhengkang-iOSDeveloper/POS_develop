@@ -17,7 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"手机号密码登录";
+    self.navigationItemTitle = @"手机号密码登录";
     self.view.backgroundColor = WhiteColor;
     [self initUI];
 }

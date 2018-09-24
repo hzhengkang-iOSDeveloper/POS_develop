@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"交易流水";
+    self.navigationItemTitle = @"交易流水";
     
     [self createTableView];
 }

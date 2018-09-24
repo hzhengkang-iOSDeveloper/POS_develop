@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"新增地址";
+    self.navigationItemTitle = @"新增地址";
     [self initUI];
 }
 

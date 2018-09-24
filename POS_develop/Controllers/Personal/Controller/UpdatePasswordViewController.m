@@ -19,7 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"修改密码";
+    self.navigationItemTitle = @"修改密码";
     [self createTableView];
     [self createUpdateBtn];
 }

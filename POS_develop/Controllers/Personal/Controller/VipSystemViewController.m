@@ -17,7 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"会员中心";
+    self.navigationItemTitle = @"会员中心";
     self.view.backgroundColor = WhiteColor;
     [self initUI];
 }

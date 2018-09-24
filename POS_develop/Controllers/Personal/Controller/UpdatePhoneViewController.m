@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"修改手机号";
+    self.navigationItemTitle = @"修改手机号";
     [self createTableView];
     [self createUpdateBtn];
 }

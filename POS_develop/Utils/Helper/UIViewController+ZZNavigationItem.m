@@ -22,8 +22,8 @@
     [button setImage:image forState:UIControlStateNormal];
     
     if (!(IOS6)) {
-        button.frame = CGRectMake(0, 0, 55, 45);
-        button.imageEdgeInsets = UIEdgeInsetsMake(0, -55, 0, 0);
+        button.frame = CGRectMake(0, 0, FITiPhone6(20), FITiPhone6(17));
+        button.imageEdgeInsets = UIEdgeInsetsMake(0, -FITiPhone6(16), 0, 0);
     } else {
         button.frame = CGRectMake(0, 0, 65, 45);
     }

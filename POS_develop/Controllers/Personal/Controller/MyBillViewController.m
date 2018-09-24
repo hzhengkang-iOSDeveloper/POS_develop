@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = WhiteColor;
-    self.title = @"明细";
+    self.navigationItemTitle = @"明细";
 //    UIButton *rightBtn = [self addRightBarButtonWithImage:[UIImage imageNamed:@"图层1"] clickHandler:^{
 //
 //    }];

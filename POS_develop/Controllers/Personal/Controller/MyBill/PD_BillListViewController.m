@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"我的订单";
+    self.navigationItemTitle = @"我的订单";
     [self creatTableView];
     [self creatSelectBillStatus];
 }

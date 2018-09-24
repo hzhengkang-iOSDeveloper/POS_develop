@@ -18,7 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"立即提现";
+    self.navigationItemTitle = @"立即提现";
     [self initPromptLabel];
     [self createTableView];
     [self createWithdrawBtn];

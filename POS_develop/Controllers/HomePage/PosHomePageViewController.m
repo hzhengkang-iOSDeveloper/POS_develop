@@ -7,117 +7,105 @@
 //
 
 #import "PosHomePageViewController.h"
-#import "AchievementsTopCollectionViewCell.h"
-#import "AchievementsBottomCollectionViewCell.h"
-@interface PosHomePageViewController () <UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+#import "HomeTableViewCell.h"
+#import "PosHomePageHeaderView.h"
+#import "AchievementsViewController.h"
 
-@property (nonatomic, strong) UICollectionView *myTopCollection;
-@property (nonatomic, strong) UICollectionView *myBottomCollection;
-@property (nonatomic, strong) NSArray *titleTopArr;
-@property (nonatomic, strong) NSArray *explainTopArr;
-@property (nonatomic, strong) NSArray *titleBottomArr;
-@property (nonatomic, strong) NSArray *imageBottomArr;
+@interface PosHomePageViewController () <UITableViewDelegate, UITableViewDataSource>
+@property (nonatomic, strong) UITableView *homeTableView;
 @end
 
 @implementation PosHomePageViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initUI];
-    [self createCollectionView];
-    _titleTopArr = @[@"日交易量", @"日分润", @"激活数量", @"激活奖励", @"商品数量", @"其他奖励"];
-    _explainTopArr = @[@"200.00", @"200.00", @"200.00", @"200.00", @"200.00", @"200.00"];
-    _titleBottomArr = @[@"交易查询", @"统计分析", @"分润查询", @"激活返现查询", @"终端绑定", @"终端查询", @"终端管理", @"代理商管理"];
-    _imageBottomArr = @[@"交易查询", @"统计分析", @"分润查询", @"激活", @"终端绑定", @"图层17", @"终端管理", @"代理商管理"];
-
-}
-- (void)initUI {
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(FITiPhone6(15), 0, ScreenWidth, FITiPhone6(43))];
-    label.text = @"昨日新增";
-    label.textColor = C000000;
-    label.font = F15;
-    [self.view addSubview:label];
-}
-#pragma maek --- 创建collectionView
--(void)createCollectionView{
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    _myTopCollection = [[UICollectionView alloc] initWithFrame:CGRectMake(0, FITiPhone6(43), ScreenWidth, ScreenHeight - FITiPhone6(43)) collectionViewLayout:layout];
-    _myTopCollection.backgroundColor = CF6F6F6;
-    [self.view addSubview:_myTopCollection];
-    
-    [_myTopCollection registerClass:[AchievementsTopCollectionViewCell class] forCellWithReuseIdentifier:@"AchievementsTopCollectionViewCell"];
-    [_myTopCollection registerClass:[AchievementsBottomCollectionViewCell class] forCellWithReuseIdentifier:@"AchievementsBottomCollectionViewCell"];
-
-    _myTopCollection.delegate = self;
-    _myTopCollection.dataSource = self;
-    
-
-}
-#pragma mark -- UICollectionView Delegate  DataSource
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 2;
-}
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    if (section == 0) {
-        return 6;
-    }else {
-        return 8;
-    }
-}
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if (indexPath.section == 0) {
-        AchievementsTopCollectionViewCell *cell = (AchievementsTopCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"AchievementsTopCollectionViewCell" forIndexPath:indexPath];
-        cell.backgroundColor = WhiteColor;
-        cell.titleLabel.text = _titleTopArr[indexPath.row];
-        cell.explainLabel.text = _explainTopArr[indexPath.row];
+    self.navigationItemTitle = @"支付管理";
+//    self.title = @"支付管理";
+    [self addRightBarButtonWithImage:[UIImage imageNamed:@"消息"] clickHandler:^{
         
-        return cell;
-    }else {
-        AchievementsBottomCollectionViewCell *cell = (AchievementsBottomCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"AchievementsBottomCollectionViewCell" forIndexPath:indexPath];
-        cell.backgroundColor = WhiteColor;
-        cell.titleLabel.text = _titleBottomArr[indexPath.row];
-        cell.iconImg.image = [UIImage imageNamed:_imageBottomArr[indexPath.row]];
-        
-        return cell;
-    }
-   
+    }];
+    [self addBackButtonWithImage:[UIImage imageNamed:@"图层3拷贝-1"]  clickHandler:^{
+
+    }];
+    [self createTableView];
 }
--(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
-        return CGSizeMake(FITiPhone6(187.25), FITiPhone6(65));
-    }else {
-        return CGSizeMake(FITiPhone6(93.75), FITiPhone6(106));
-    }
-    
+- (void)createTableView {
+    _homeTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - TabbarHeight - navH) style:UITableViewStylePlain];
+    _homeTableView.backgroundColor = CF6F6F6;
+    _homeTableView.delegate = self;
+    _homeTableView.dataSource = self;
+    _homeTableView.showsVerticalScrollIndicator = NO;
+    _homeTableView.tableHeaderView = [self createHeaderView];
+    _homeTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:_homeTableView];
+}
+- (UIView *)createHeaderView {
+    PosHomePageHeaderView *headerView = [[PosHomePageHeaderView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, FITiPhone6(196) - 64+AD_HEIGHT(82)+AD_HEIGHT(32)+AD_HEIGHT(190) + AD_HEIGHT(44))];
+    headerView.volumeOfTransactionL.text = @"200000.00";
+    headerView.shareProfitL.text = @"1000.00";
+    headerView.activationL.text = @"20";
+    headerView.teamPersonL.text = @"10";
+    headerView.currentMonthBlock = ^{
+        AchievementsViewController *vc = [[AchievementsViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    };
+    return headerView;
+}
+#pragma mark - UITableViewDataSource
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+
+    return 10;
 }
 
--(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(0, 0, FITiPhone6(5), 0);
-}
-//设置每个item垂直间距
--(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    if (section == 0) {
-        return FITiPhone6(0.5);
-    }else {
-        return 0;
-    }
-}
-//设置每个item水平间距
--(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    if (section == 0) {
-        return FITiPhone6(0.5);
-    }else {
-        return 0;
-    }
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+
+    return 1;
 }
 
-//点击item方法
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    HomeTableViewCell *cell = [HomeTableViewCell cellWithTableView:tableView];
+    cell.bgImg.image = [UIImage imageNamed:@"图层7"];
+    cell.label.text = @"移动post机固定刷卡机百富S58（S58G）移动机专用充电器电源电源指示灯";
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+
+
+    return cell;
+}
+
+#pragma mark - UITableViewDelegate
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return FITiPhone6(192);
+}
+
+//section头部间距
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-//    AccountCollectionCell *cell = (AccountCollectionCell *)[collectionView cellForItemAtIndexPath:indexPath];
-//    NSString *msg = cell.titleLabel.text;
-//    FMLog(@"%@",msg);
-    
+    return 0.01f;//section头部高度
+}
+//section头部视图
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view=[[UIView alloc] initWithFrame:CGRectZero];
+    view.backgroundColor = CF6F6F6;
+    return view;
+}
+//section底部间距
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return FITiPhone6(10);
+}
+//section底部视图
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, FITiPhone6(5))];
+    view.backgroundColor = CF6F6F6;
+    return view;
 }
 @end
