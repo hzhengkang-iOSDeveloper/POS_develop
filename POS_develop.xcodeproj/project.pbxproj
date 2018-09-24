@@ -19,6 +19,11 @@
 		2546E2D7214D4D0F0066DBFB /* UpdatePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2546E2D6214D4D0F0066DBFB /* UpdatePasswordViewController.m */; };
 		2591E55D214D72C100469452 /* areaArray.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2591E55A214D72C000469452 /* areaArray.plist */; };
 		2591E55E214D72C100469452 /* BLAreaPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2591E55B214D72C000469452 /* BLAreaPickerView.m */; };
+		259646DE2158CBC900E516BF /* TransactionQueryMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 259646DD2158CBC900E516BF /* TransactionQueryMainView.m */; };
+		259646E02158CBDC00E516BF /* TransactionQueryMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 259646DF2158CBDC00E516BF /* TransactionQueryMainView.xib */; };
+		259646E32158DFAE00E516BF /* SeparateQueryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 259646E22158DFAE00E516BF /* SeparateQueryViewController.m */; };
+		259646E62158E1ED00E516BF /* SeparateQueryMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 259646E52158E1ED00E516BF /* SeparateQueryMainView.m */; };
+		259646E82158E1FA00E516BF /* SeparateQueryMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 259646E72158E1FA00E516BF /* SeparateQueryMainView.xib */; };
 		25E2A36A214D7831006EB5B5 /* PD_SelectAreaPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E2A369214D7831006EB5B5 /* PD_SelectAreaPickerView.m */; };
 		50184CD921589E2C00D11AC6 /* UIButton+Style.m in Sources */ = {isa = PBXBuildFile; fileRef = 50184CD821589E2C00D11AC6 /* UIButton+Style.m */; };
 		50184CDC2158BDC400D11AC6 /* TransactionQueryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50184CDB2158BDC400D11AC6 /* TransactionQueryViewController.m */; };
@@ -187,6 +192,14 @@
 		2591E55A214D72C000469452 /* areaArray.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = areaArray.plist; sourceTree = "<group>"; };
 		2591E55B214D72C000469452 /* BLAreaPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLAreaPickerView.m; sourceTree = "<group>"; };
 		2591E55C214D72C000469452 /* BLAreaPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLAreaPickerView.h; sourceTree = "<group>"; };
+		259646DC2158CBC900E516BF /* TransactionQueryMainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionQueryMainView.h; sourceTree = "<group>"; };
+		259646DD2158CBC900E516BF /* TransactionQueryMainView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionQueryMainView.m; sourceTree = "<group>"; };
+		259646DF2158CBDC00E516BF /* TransactionQueryMainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionQueryMainView.xib; sourceTree = "<group>"; };
+		259646E12158DFAE00E516BF /* SeparateQueryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeparateQueryViewController.h; sourceTree = "<group>"; };
+		259646E22158DFAE00E516BF /* SeparateQueryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeparateQueryViewController.m; sourceTree = "<group>"; };
+		259646E42158E1ED00E516BF /* SeparateQueryMainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeparateQueryMainView.h; sourceTree = "<group>"; };
+		259646E52158E1ED00E516BF /* SeparateQueryMainView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeparateQueryMainView.m; sourceTree = "<group>"; };
+		259646E72158E1FA00E516BF /* SeparateQueryMainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SeparateQueryMainView.xib; sourceTree = "<group>"; };
 		25E2A368214D7831006EB5B5 /* PD_SelectAreaPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_SelectAreaPickerView.h; sourceTree = "<group>"; };
 		25E2A369214D7831006EB5B5 /* PD_SelectAreaPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_SelectAreaPickerView.m; sourceTree = "<group>"; };
 		50184CD721589E2C00D11AC6 /* UIButton+Style.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+Style.h"; sourceTree = "<group>"; };
@@ -489,6 +502,12 @@
 			children = (
 				50184CDE2158C56C00D11AC6 /* DatePickerView.h */,
 				50184CDF2158C56C00D11AC6 /* DatePickerView.m */,
+				259646DC2158CBC900E516BF /* TransactionQueryMainView.h */,
+				259646DD2158CBC900E516BF /* TransactionQueryMainView.m */,
+				259646DF2158CBDC00E516BF /* TransactionQueryMainView.xib */,
+				259646E42158E1ED00E516BF /* SeparateQueryMainView.h */,
+				259646E52158E1ED00E516BF /* SeparateQueryMainView.m */,
+				259646E72158E1FA00E516BF /* SeparateQueryMainView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -657,6 +676,8 @@
 				5089375E21561B32007C6239 /* AchievementsViewController.m */,
 				50184CDA2158BDC400D11AC6 /* TransactionQueryViewController.h */,
 				50184CDB2158BDC400D11AC6 /* TransactionQueryViewController.m */,
+				259646E12158DFAE00E516BF /* SeparateQueryViewController.h */,
+				259646E22158DFAE00E516BF /* SeparateQueryViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1236,6 +1257,7 @@
 			files = (
 				7888F35F2147C32C00AAC8B0 /* README.md in Resources */,
 				787166B3214911C300452C51 /* style.css in Resources */,
+				259646E82158E1FA00E516BF /* SeparateQueryMainView.xib in Resources */,
 				787166AF214911C300452C51 /* icomoon.ttf in Resources */,
 				787166AC214911C300452C51 /* demo.html in Resources */,
 				7888F2B42147C0AC00AAC8B0 /* LaunchScreen.storyboard in Resources */,
@@ -1247,6 +1269,7 @@
 				2591E55D214D72C100469452 /* areaArray.plist in Resources */,
 				787166AE214911C300452C51 /* icomoon.svg in Resources */,
 				787166AB214911C300452C51 /* demo.js in Resources */,
+				259646E02158CBDC00E516BF /* TransactionQueryMainView.xib in Resources */,
 				7888F2B12147C0AC00AAC8B0 /* Assets.xcassets in Resources */,
 				7888F3BC2147C33900AAC8B0 /* ZJPPTViewCustomCell.xib in Resources */,
 				787166AD214911C300452C51 /* icomoon.eot in Resources */,
@@ -1311,6 +1334,7 @@
 				787FFCA1215232E900318BBC /* TransactionDetailCell.m in Sources */,
 				7888F3592147C32C00AAC8B0 /* UIViewController+BackButtonHandler.m in Sources */,
 				50893769215648CB007C6239 /* PosHomePageHeaderView.m in Sources */,
+				259646E62158E1ED00E516BF /* SeparateQueryMainView.m in Sources */,
 				50B0607F2153520E00B7B411 /* PD_BillListSkuCell.m in Sources */,
 				78765A88214A4EEE00261ED3 /* PersonalTableViewCell.m in Sources */,
 				7888F3C22147C33900AAC8B0 /* SY_AccountImageAndLabelBtn.m in Sources */,
@@ -1349,6 +1373,7 @@
 				787166C32149186200452C51 /* PersonalViewController.m in Sources */,
 				7888F3542147C32C00AAC8B0 /* MyKeyChainHelper.m in Sources */,
 				7888F3632147C32C00AAC8B0 /* LFCGzipUtillity.m in Sources */,
+				259646DE2158CBC900E516BF /* TransactionQueryMainView.m in Sources */,
 				7888F34B2147C32C00AAC8B0 /* CustomDeleagte.m in Sources */,
 				50B0607C2153372C00B7B411 /* SLRefreshHeader.m in Sources */,
 				253647DA214E05BC0094576C /* SettingNameViewController.m in Sources */,
@@ -1383,6 +1408,7 @@
 				7888F3622147C32C00AAC8B0 /* NetWorkDetectionManager.m in Sources */,
 				78CB4BE0214BCE67000F6A9D /* MyAddressTableViewCell.m in Sources */,
 				7888F3612147C32C00AAC8B0 /* MJChiBaoZiHeader.m in Sources */,
+				259646E32158DFAE00E516BF /* SeparateQueryViewController.m in Sources */,
 				50B060822153A0DC00B7B411 /* PD_BillSkuHeaderView.m in Sources */,
 				7871669B214911BC00452C51 /* TBCityIconInfo.m in Sources */,
 				7888F3562147C32C00AAC8B0 /* PowerfulBannerView.m in Sources */,

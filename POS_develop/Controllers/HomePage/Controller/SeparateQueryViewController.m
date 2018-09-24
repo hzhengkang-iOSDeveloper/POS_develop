@@ -1,50 +1,60 @@
+
 //
-//  TransactionQueryViewController.m
+//  SeparateQueryViewController.m
 //  POS_develop
 //
-//  Created by 胡正康 on 2018/9/24.
+//  Created by syn on 2018/9/24.
 //  Copyright © 2018年 sunyn. All rights reserved.
 //
 
-#import "TransactionQueryViewController.h"
+#import "SeparateQueryViewController.h"
 #import "DatePickerView.h"
-#import "TransactionQueryMainView.h"
-#import "TransactionListViewController.h"
+#import "SeparateQueryMainView.h"
 
-@interface TransactionQueryViewController () <UITextFieldDelegate>
+@interface SeparateQueryViewController ()
 @property (nonatomic, strong) UIButton *agentBtn;
 @property (nonatomic, strong) UIButton *personBtn;
 @property (nonatomic, strong) UIButton *selectBtn;
 @end
 
-@implementation TransactionQueryViewController
+@implementation SeparateQueryViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"交易查询";
-    self.view.backgroundColor = CF6F6F6;
-    
+    self.navigationItem.title = @"分润查询";
     [self initUI];
-    
 }
+
 - (void)initUI {
+    UIButton *dateSelectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [dateSelectBtn setTitle:@"日期选择" forState:UIControlStateNormal];
+    [dateSelectBtn setTitleColor:C000000 forState:UIControlStateNormal];
+    [dateSelectBtn layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleLeft imageTitleSpace:FITiPhone6(7)];
+    [dateSelectBtn setImage:[UIImage imageNamed:@"日期选择"] forState:normal];
+    dateSelectBtn.titleLabel.font = F13;
+    dateSelectBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
+    [self.view addSubview:dateSelectBtn];
+    [dateSelectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(AD_HEIGHT(15));
+        make.top.offset(0);
+        make.height.mas_offset(AD_HEIGHT(31));
+    }];
     DatePickerView *datePickView = [[DatePickerView alloc] init];
     [self.view addSubview:datePickView];
     [datePickView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.offset(0);
+        make.left.offset(0);
+        make.top.equalTo(dateSelectBtn.mas_bottom).offset(-5);
         make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(50)));
     }];
-    TransactionQueryMainView *mainVie = [[[NSBundle mainBundle] loadNibNamed:@"TransactionQueryMainView" owner:self options:nil] lastObject];
-    mainVie.brandSelectBlock = ^{//品牌选择
-        
-    };
-    [self.view addSubview:mainVie];
-    [mainVie mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(datePickView.mas_bottom);
+    SeparateQueryMainView *mainView = [[[NSBundle mainBundle] loadNibNamed:@"SeparateQueryMainView" owner:self options:nil] lastObject];
+   
+    [self.view addSubview:mainView];
+    [mainView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(datePickView.mas_bottom).offset(AD_HEIGHT(8));
         make.left.equalTo(self.view);
-        make.size.mas_offset(CGSizeMake(ScreenWidth, 258.5));
+        make.size.mas_offset(CGSizeMake(ScreenWidth, 154));
     }];
-
+    
     self.agentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.agentBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [self.agentBtn setTitle:@"代理商" forState:UIControlStateNormal];
@@ -54,12 +64,12 @@
     [self.agentBtn setImage:[UIImage imageNamed:@"选中"] forState:UIControlStateSelected];
     [self.agentBtn addTarget:self action:@selector(agentClick:) forControlEvents:UIControlEventTouchUpInside];
     self.agentBtn.titleLabel.font = F12;
-//    self.agentBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
+    //    self.agentBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
     [self.view addSubview:self.agentBtn];
     [self.agentBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(AD_HEIGHT(100));
         make.left.equalTo(self.view).offset(AD_HEIGHT(15));
-        make.top.equalTo(mainVie.mas_bottom).offset(AD_HEIGHT(22));
+        make.top.equalTo(mainView.mas_bottom).offset(AD_HEIGHT(22));
         make.height.mas_offset(AD_HEIGHT(25));
     }];
     
@@ -71,12 +81,12 @@
     [self.personBtn setImage:[UIImage imageNamed:@"选中"] forState:UIControlStateSelected];
     [self.personBtn addTarget:self action:@selector(personClick:) forControlEvents:UIControlEventTouchUpInside];
     self.personBtn.titleLabel.font = F12;
-//    self.personBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
+    //    self.personBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
     [self.view addSubview:self.personBtn];
     [self.personBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(AD_HEIGHT(100));
         make.right.equalTo(self.view).offset(AD_HEIGHT(-100));
-        make.top.equalTo(mainVie.mas_bottom).offset(AD_HEIGHT(22));
+        make.top.equalTo(mainView.mas_bottom).offset(AD_HEIGHT(22));
         make.height.mas_offset(AD_HEIGHT(25));
     }];
     self.selectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -103,8 +113,8 @@
 }
 #pragma mark ---- 查询 ----
 - (void)selectClick {
-    TransactionListViewController *vc = [[TransactionListViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+//    TransactionListViewController *vc = [[TransactionListViewController alloc] init];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];

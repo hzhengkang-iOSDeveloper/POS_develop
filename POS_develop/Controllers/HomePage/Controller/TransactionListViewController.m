@@ -8,6 +8,8 @@
 
 #import "TransactionListViewController.h"
 #import "TransactionListCell.h"
+#import "TransactionDetailViewController.h"
+
 @interface TransactionListViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *transactionListTableView;
 @end
@@ -49,6 +51,10 @@
     cell.timeLabel.text = @"2018/1/7-2018/1/18";
     cell.amountLabel.text = @"+3000元";
     cell.snLabel.text = @"SN:7300000000";
+    cell.seeDetailBlock = ^{
+        TransactionDetailViewController *vc = [[TransactionDetailViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    };
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     

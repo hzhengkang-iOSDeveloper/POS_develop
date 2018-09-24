@@ -15,6 +15,7 @@
 @property (nonatomic, strong) UILabel *amountLabel;
 
 @property (nonatomic, strong) UIButton *seeDetail;
+@property (nonatomic, copy) void(^seeDetailBlock)(void);
 
 +(instancetype)cellWithTableView:(UITableView *)tableView;
 @end

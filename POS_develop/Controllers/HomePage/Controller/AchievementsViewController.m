@@ -10,6 +10,7 @@
 #import "AchievementsTopCollectionViewCell.h"
 #import "AchievementsBottomCollectionViewCell.h"
 #import "TransactionQueryViewController.h"
+#import "SeparateQueryViewController.h"
 
 @interface AchievementsViewController () <UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) UICollectionView *myTopCollection;
@@ -133,7 +134,8 @@
             }
                 break;
             case 2:{
-                
+                SeparateQueryViewController *vc = [[SeparateQueryViewController alloc] init];
+                [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
             case 3:{
