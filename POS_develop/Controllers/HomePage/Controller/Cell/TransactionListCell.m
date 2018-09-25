@@ -85,6 +85,8 @@
 }
 
 - (void)seeDetailClick {
-    
+    if (self.seeDetailBlock) {
+        self.seeDetailBlock();
+    }
 }
 @end
