@@ -18,15 +18,20 @@
 }
 
 - (void)initUI {
-    UIImageView *bgImageV = [[UIImageView alloc] init];
-    bgImageV.userInteractionEnabled = YES;
-    bgImageV.image = [UIImage imageNamed:@"背景3"];
+    
+    self.backgroundColor = WhiteColor;
+    
+    UIView *bgImageV = [[UIView alloc]init];
     [self addSubview:bgImageV];
     [bgImageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self);
         make.top.equalTo(self);
-        make.size.mas_offset(CGSizeMake(ScreenWidth, FITiPhone6(178)-navH));
+        make.size.mas_offset(CGSizeMake(ScreenWidth, FITiPhone6(123)));
     }];
+    [self layoutIfNeeded];
+    [bgImageV setBtnGradientStartColor:[UIColor colorWithHexString:@"#46baf4"] EndColor:[UIColor colorWithHexString:@"#9bd4f0"] GradientType:GradientTypeHorizontal];
+    
+    
     UIImageView *searchImageV = [[UIImageView alloc] init];
     searchImageV.userInteractionEnabled = YES;
     searchImageV.image = [UIImage imageNamed:@"搜索框"];
@@ -38,6 +43,8 @@
         make.top.equalTo(self).offset(FITiPhone6(5));
         make.size.mas_offset(CGSizeMake(ScreenWidth - FITiPhone6(30), FITiPhone6(33)));
     }];
+    
+    
     UIImageView *searchImgV = [[UIImageView alloc] init];
     searchImgV.userInteractionEnabled = YES;
     searchImgV.image = [UIImage imageNamed:@"搜索"];
@@ -55,9 +62,8 @@
     total.textAlignment = NSTextAlignmentCenter;
     [self addSubview:total];
     [total mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self);
+        make.centerX.offset(0);
         make.top.equalTo(searchImageV.mas_bottom).offset(FITiPhone6(13));
-        make.size.mas_offset(CGSizeMake(ScreenWidth, FITiPhone6(14)));
     }];
     self.totalLael = [[UILabel alloc] init];
     self.totalLael.textColor = WhiteColor;
@@ -65,9 +71,8 @@
     self.totalLael.textAlignment = NSTextAlignmentCenter;
     [self addSubview:self.totalLael];
     [self.totalLael mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self);
+        make.centerX.equalTo(total.mas_centerX);
         make.top.equalTo(total.mas_bottom).offset(FITiPhone6(10));
-        make.size.mas_offset(CGSizeMake(ScreenWidth, FITiPhone6(12)));
     }];
     
     UIImageView *numberBGImg = [[UIImageView alloc] init];

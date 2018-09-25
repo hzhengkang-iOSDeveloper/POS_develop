@@ -16,17 +16,6 @@
 @end
 
 @implementation PosHomePageViewController
-//- (void)viewWillAppear:(BOOL)animated {
-//    [super viewWillAppear:animated];
-//    [self.navigationController setNavigationBarHidden:YES animated:animated];
-//
-//}
-//
-//- (void)viewWillDisappear:(BOOL)animated {
-//    [super viewWillDisappear:animated];
-//    [self.navigationController setNavigationBarHidden:NO animated:animated];
-//
-//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -50,7 +39,7 @@
     [self.view addSubview:_homeTableView];
 }
 - (UIView *)createHeaderView {
-    PosHomePageHeaderView *headerView = [[PosHomePageHeaderView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, FITiPhone6(196) - 64+AD_HEIGHT(82)+AD_HEIGHT(32)+AD_HEIGHT(190) + AD_HEIGHT(44))];
+    PosHomePageHeaderView *headerView = [[PosHomePageHeaderView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(140)+AD_HEIGHT(32)+AD_HEIGHT(82)+AD_HEIGHT(25)+AD_HEIGHT(165)+AD_HEIGHT(44))];
     headerView.volumeOfTransactionL.text = @"200000.00";
     headerView.shareProfitL.text = @"1000.00";
     headerView.activationL.text = @"20";
