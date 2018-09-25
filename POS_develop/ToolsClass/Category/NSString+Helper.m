@@ -511,5 +511,12 @@
     }
 }
 
-
+/**
+ * 字符串去空格
+ * @param input   目标字符串
+ * @return 去除空格后的字符串
+ */
++ (NSString *)removeEmpty:(NSString *) input {
+    return [input stringByReplacingOccurrencesOfString:@" " withString:@""];
+}
 @end

@@ -203,6 +203,7 @@
         [btn setTitleColor:C000000 forState:normal];
         btn.titleLabel.font = F10;
         btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+        [btn addTarget:self action:@selector(copyOrderNo) forControlEvents:UIControlEventTouchUpInside];
     }];
     
     //创建时间
@@ -292,6 +293,8 @@
 //复制订单标号
 - (void)copyOrderNo
 {
+    
+    SHOW(@"复制成功复制成功复制成功复制成功复制成功复制成功复制成功复制成功复制成功！")
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = @"203498230482039482";
 }

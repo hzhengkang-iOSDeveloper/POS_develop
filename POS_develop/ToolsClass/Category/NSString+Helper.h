@@ -148,4 +148,11 @@
 
 //精确的身份证号码有效性检测
 + (BOOL)accurateVerifyIDCardNumber:(NSString *)value;
+
+/**
+ * 字符串去空格
+ * @param input   目标字符串
+ * @return 去除空格后的字符串
+ */
++ (NSString *)removeEmpty:(NSString *) input;
 @end

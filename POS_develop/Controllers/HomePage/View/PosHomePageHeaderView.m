@@ -42,15 +42,25 @@
 - (void)initUI {
     self.backgroundColor = WhiteColor;
     MJWeakSelf;
-    UIImageView *bgImageV = [[UIImageView alloc] init];
-    bgImageV.userInteractionEnabled = YES;
-    bgImageV.image = [UIImage imageNamed:@"背景1"];
+    
+    UIView *bgImageV = [[UIView alloc]init];
     [self addSubview:bgImageV];
     [bgImageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self);
         make.top.equalTo(self).offset(-navH);
         make.size.mas_offset(CGSizeMake(ScreenWidth, FITiPhone6(196)));
     }];
+    [self layoutIfNeeded];
+    [bgImageV setBtnGradientStartColor:[UIColor colorWithHexString:@"#46baf4"] EndColor:[UIColor colorWithHexString:@"#9bd4f0"] GradientType:GradientTypeHorizontal];
+//    UIImageView *bgImageV = [[UIImageView alloc] init];
+//    bgImageV.userInteractionEnabled = YES;
+//    bgImageV.image = [UIImage imageNamed:@"背景1"];
+//    [self addSubview:bgImageV];
+//    [bgImageV mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self);
+//        make.top.equalTo(self);
+//        make.size.mas_offset(CGSizeMake(ScreenWidth, FITiPhone6(196)-64));
+//    }];
     UILabel *volumeOfTransaction = [[UILabel alloc] init];
     volumeOfTransaction.text = @"当月交易量(万)";
     volumeOfTransaction.textColor = WhiteColor;
