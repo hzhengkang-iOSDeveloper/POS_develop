@@ -48,7 +48,7 @@
 
 - (void)createWithdrawBtn {
     UIButton *withdrawBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    withdrawBtn.backgroundColor = RGB(210, 210, 210);
+    withdrawBtn.backgroundColor = C1E95F9;
     withdrawBtn.frame = CGRectMake(FITiPhone6(15), CGRectGetMaxY(self.withdrawCashTableView.frame) + FITiPhone6(82), ScreenWidth - FITiPhone6(30), FITiPhone6(46));
     [withdrawBtn setTitle:@"确认提现" forState:UIControlStateNormal];
     withdrawBtn.titleLabel.font = F13;

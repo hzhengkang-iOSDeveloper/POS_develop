@@ -10,7 +10,7 @@
 #import "SeparateQueryViewController.h"
 #import "DatePickerView.h"
 #import "SeparateQueryMainView.h"
-
+#import "SeparateQueryDetailViewController.h"
 @interface SeparateQueryViewController ()
 @property (nonatomic, strong) UIButton *agentBtn;
 @property (nonatomic, strong) UIButton *personBtn;
@@ -90,7 +90,7 @@
         make.height.mas_offset(AD_HEIGHT(25));
     }];
     self.selectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.selectBtn.backgroundColor = RGB(210, 210, 210);
+    self.selectBtn.backgroundColor = C1E95F9;
     [self.selectBtn setTitle:@"查询" forState:UIControlStateNormal];
     [self.selectBtn setTitleColor:WhiteColor forState:UIControlStateNormal];
     self.selectBtn.layer.cornerRadius = FITiPhone6(3);
@@ -106,15 +106,32 @@
 }
 
 - (void)agentClick:(UIButton *)sender {
-    sender.selected = !sender.selected;
+    if (_agentBtn.selected) {
+        
+    }
+    else if (!_agentBtn.selected)
+    {
+        _agentBtn.selected = YES;
+        _personBtn.selected = NO;
+    }
+    NSLog(@"代理");
 }
 - (void)personClick:(UIButton *)sender {
-    sender.selected = !sender.selected;
+    if (_personBtn.selected) {
+        
+    }
+    else if (!_personBtn.selected)
+    {
+        _personBtn.selected = YES;
+        _agentBtn.selected = NO;
+    }
+    NSLog(@"个人");
 }
+
 #pragma mark ---- 查询 ----
 - (void)selectClick {
-//    TransactionListViewController *vc = [[TransactionListViewController alloc] init];
-//    [self.navigationController pushViewController:vc animated:YES];
+    SeparateQueryDetailViewController *vc = [[SeparateQueryDetailViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];

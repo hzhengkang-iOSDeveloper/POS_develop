@@ -16,11 +16,21 @@
 @end
 
 @implementation PosHomePageViewController
+//- (void)viewWillAppear:(BOOL)animated {
+//    [super viewWillAppear:animated];
+//    [self.navigationController setNavigationBarHidden:YES animated:animated];
+//
+//}
+//
+//- (void)viewWillDisappear:(BOOL)animated {
+//    [super viewWillDisappear:animated];
+//    [self.navigationController setNavigationBarHidden:NO animated:animated];
+//
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItemTitle = @"支付管理";
-//    self.title = @"支付管理";
     [self addRightBarButtonWithImage:[UIImage imageNamed:@"消息"] clickHandler:^{
         
     }];

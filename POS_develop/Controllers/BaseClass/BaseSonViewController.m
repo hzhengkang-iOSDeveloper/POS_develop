@@ -45,7 +45,7 @@
     // 字体颜色
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
-    [self.navigationController.navigationBar setBackgroundImage: iPhoneX?[UIImage imageNamed:@"navBgImgX"]:[UIImage imageNamed:@"navBgImg"] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setBackgroundImage: iPhoneX?[UIImage imageNamed:@"navBgImgX"]:[UIImage imageNamed:@"WechatIMG48-1"] forBarMetrics:UIBarMetricsDefault];
 //    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navBgImage"] forBarPosition:UIBarPositionTop barMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     // 状态栏背景色

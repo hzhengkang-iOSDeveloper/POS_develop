@@ -34,7 +34,7 @@
 }
 - (void)createUpdateBtn {
     UIButton *updateBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    updateBtn.backgroundColor = RGB(210, 210, 210);
+    updateBtn.backgroundColor = C1E95F9;
     updateBtn.frame = CGRectMake(FITiPhone6(15), FITiPhone6(261), ScreenWidth - FITiPhone6(30), FITiPhone6(46));
     [updateBtn setTitle:@"确认修改" forState:UIControlStateNormal];
     updateBtn.titleLabel.font = F13;

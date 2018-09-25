@@ -48,8 +48,8 @@
     [self addSubview:bgImageV];
     [bgImageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self);
-        make.top.equalTo(self);
-        make.size.mas_offset(CGSizeMake(ScreenWidth, FITiPhone6(196)-64));
+        make.top.equalTo(self).offset(-navH);
+        make.size.mas_offset(CGSizeMake(ScreenWidth, FITiPhone6(196)));
     }];
     UILabel *volumeOfTransaction = [[UILabel alloc] init];
     volumeOfTransaction.text = @"当月交易量(万)";
@@ -117,6 +117,8 @@
         make.size.mas_offset(CGSizeMake(FITiPhone6(1), FITiPhone6(33)));
     }];
     UIImageView *numberBGImg = [[UIImageView alloc] init];
+    numberBGImg.userInteractionEnabled = YES;
+    numberBGImg.layer.cornerRadius = FITiPhone6(5);
     numberBGImg.userInteractionEnabled = YES;
     numberBGImg.image = [UIImage imageNamed:@"背景home"];
     [self addSubview:numberBGImg];

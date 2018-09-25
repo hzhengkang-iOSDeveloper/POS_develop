@@ -11,6 +11,7 @@
 #import "AchievementsBottomCollectionViewCell.h"
 #import "TransactionQueryViewController.h"
 #import "SeparateQueryViewController.h"
+#import "ActivationMoneyViewController.h"
 
 @interface AchievementsViewController () <UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) UICollectionView *myTopCollection;
@@ -139,7 +140,8 @@
             }
                 break;
             case 3:{
-                
+                ActivationMoneyViewController *vc = [[ActivationMoneyViewController alloc] init];
+                [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
             case 4:{
