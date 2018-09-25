@@ -32,7 +32,7 @@
     [bgImageV addSubview:iconImageV];
     [iconImageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(bgImageV).offset(FITiPhone6(15));
-        make.top.equalTo(bgImageV).offset(FITiPhone6(20));
+        make.top.equalTo(bgImageV).offset(FITiPhone6(39));
         make.size.mas_offset(CGSizeMake(FITiPhone6(40), FITiPhone6(40)));
     }];
     UIButton *userName = [UIButton buttonWithType:UIButtonTypeCustom];

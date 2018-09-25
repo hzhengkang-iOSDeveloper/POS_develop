@@ -53,6 +53,7 @@
 #import "CF_LeftNavigationBar_BackBtn.h"
 //#import "GetReChargeCustState.h"
 #import "CustomDeleagte.h"
+#import "UIView+MBProgressHUD.h"
 
 //三方库头文件
 #import <Masonry.h>
@@ -202,6 +203,8 @@
 #define UIAlertShowMessage(msg, cancle) [UIAlertView showMessage:msg withCancle:cancle]
 
 #define HPDProgressHudShowWithMessage(msg)                [[HPDProgress defaultProgressHUD] showCoustomOnView:[[UIApplication sharedApplication]keyWindow] message:msg]
+//提示窗
+#define SHOW(message)     [[UIApplication sharedApplication].keyWindow showToast:message];
 
 // itoast
 #define showToast(msg)                  [[HPDProgress defaultProgressHUD] holdMessage:msg hideAfterDelay:1.0];

@@ -47,7 +47,7 @@
 
 #pragma mark CreatTabelView
 - (void)creatTabelView{
-    _personalTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, -20, ScreenWidth, ScreenHeight) style:UITableViewStyleGrouped];
+    _personalTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, -STATUSBAR_H, ScreenWidth, ScreenHeight+STATUSBAR_H) style:UITableViewStyleGrouped];
     _personalTableView.backgroundColor = CF6F6F6;
     _personalTableView.delegate = self;
     _personalTableView.dataSource = self;

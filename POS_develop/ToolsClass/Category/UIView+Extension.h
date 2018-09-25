@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <Masonry.h>
-
+typedef NS_ENUM(int, GradientType){
+    GradientTypeHorizontal  =  1,   // 水平
+    GradientTypeVertical            // 垂直
+};
 @interface UIView (Extension)
 @property(nonatomic, assign)CGFloat x;
 @property(nonatomic, assign)CGFloat y;
@@ -25,4 +28,8 @@
 +(UIView *)getViewWithColor:(UIColor *)color
                   superView:(UIView *)superView
                  masonrySet:(void (^)(UIView *view,MASConstraintMaker *make))block;
+
+//颜色渐变
+- (void)setBtnGradientStartColor:(UIColor *)startColor EndColor:(UIColor *)endColor GradientType:(GradientType)gradientType;
+
 @end
