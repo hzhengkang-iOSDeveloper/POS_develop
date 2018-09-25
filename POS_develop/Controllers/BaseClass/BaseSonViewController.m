@@ -47,12 +47,8 @@
     UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, navH)];
     [backView setBtnGradientStartColor:[UIColor colorWithHexString:@"#46baf4"] EndColor:[UIColor colorWithHexString:@"#9bd4f0"] GradientType:GradientTypeHorizontal];
     
-<<<<<<< HEAD
-    [self.navigationController.navigationBar setBackgroundImage: iPhoneX?[UIImage imageNamed:@"navBgImgX"]:[UIImage imageNamed:@"WechatIMG48-1"] forBarMetrics:UIBarMetricsDefault];
-=======
     [self.navigationController.navigationBar setBackgroundImage: [self convertViewToImage:backView] forBarMetrics:UIBarMetricsDefault];
 //    [self.navigationController.navigationBar setBackgroundImage: iPhoneX?[UIImage imageNamed:@"navBgImgX"]:[UIImage imageNamed:@"navBgImg"] forBarMetrics:UIBarMetricsDefault];
->>>>>>> 61cf66bf56bd8a70100092f9e29d11858163906b
 //    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navBgImage"] forBarPosition:UIBarPositionTop barMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     // 状态栏背景色
