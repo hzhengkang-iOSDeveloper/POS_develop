@@ -23,6 +23,7 @@
 		50184CD921589E2C00D11AC6 /* UIButton+Style.m in Sources */ = {isa = PBXBuildFile; fileRef = 50184CD821589E2C00D11AC6 /* UIButton+Style.m */; };
 		50184CDC2158BDC400D11AC6 /* TransactionQueryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50184CDB2158BDC400D11AC6 /* TransactionQueryViewController.m */; };
 		50184CE02158C56C00D11AC6 /* DatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50184CDF2158C56C00D11AC6 /* DatePickerView.m */; };
+		50184CE32158C87E00D11AC6 /* PD_BillDetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50184CE22158C87E00D11AC6 /* PD_BillDetailFooterView.m */; };
 		50339EAE2152968F003011E9 /* PD_BillListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50339EAD2152968F003011E9 /* PD_BillListCell.m */; };
 		5089375F21561B32007C6239 /* AchievementsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5089375E21561B32007C6239 /* AchievementsViewController.m */; };
 		5089376621561DB8007C6239 /* HomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5089376521561DB8007C6239 /* HomeTableViewCell.m */; };
@@ -33,6 +34,11 @@
 		50B0607F2153520E00B7B411 /* PD_BillListSkuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B0607E2153520E00B7B411 /* PD_BillListSkuCell.m */; };
 		50B060822153A0DC00B7B411 /* PD_BillSkuHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B060812153A0DC00B7B411 /* PD_BillSkuHeaderView.m */; };
 		50B060852153A10500B7B411 /* PD_BillSkuFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B060842153A10500B7B411 /* PD_BillSkuFooterView.m */; };
+		50C5449C2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C5449A2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.m */; };
+		50C544A02159DEEF00C8CEB4 /* MBProgressHUD+Count.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C5449F2159DEEF00C8CEB4 /* MBProgressHUD+Count.m */; };
+		50C544A32159E03F00C8CEB4 /* NSString+Drawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C544A22159E03F00C8CEB4 /* NSString+Drawing.m */; };
+		50C544A62159E0A600C8CEB4 /* ToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C544A52159E0A600C8CEB4 /* ToastView.m */; };
+		50C544A92159E33A00C8CEB4 /* UIView+MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C544A82159E33A00C8CEB4 /* UIView+MBProgressHUD.m */; };
 		50F68C3521578C5B00DCFE85 /* XRCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F68C3421578C5B00DCFE85 /* XRCarouselView.m */; };
 		50F68C382158987800DCFE85 /* PD_BillDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F68C372158987800DCFE85 /* PD_BillDetailViewController.m */; };
 		50F68C3E21589BE100DCFE85 /* PD_BillDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F68C3D21589BE100DCFE85 /* PD_BillDetailHeaderView.m */; };
@@ -195,6 +201,8 @@
 		50184CDB2158BDC400D11AC6 /* TransactionQueryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionQueryViewController.m; sourceTree = "<group>"; };
 		50184CDE2158C56C00D11AC6 /* DatePickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatePickerView.h; sourceTree = "<group>"; };
 		50184CDF2158C56C00D11AC6 /* DatePickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DatePickerView.m; sourceTree = "<group>"; };
+		50184CE12158C87E00D11AC6 /* PD_BillDetailFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillDetailFooterView.h; sourceTree = "<group>"; };
+		50184CE22158C87E00D11AC6 /* PD_BillDetailFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillDetailFooterView.m; sourceTree = "<group>"; };
 		50339EAC2152968F003011E9 /* PD_BillListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillListCell.h; sourceTree = "<group>"; };
 		50339EAD2152968F003011E9 /* PD_BillListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillListCell.m; sourceTree = "<group>"; };
 		5089375D21561B32007C6239 /* AchievementsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AchievementsViewController.h; sourceTree = "<group>"; };
@@ -215,6 +223,16 @@
 		50B060812153A0DC00B7B411 /* PD_BillSkuHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillSkuHeaderView.m; sourceTree = "<group>"; };
 		50B060832153A10500B7B411 /* PD_BillSkuFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillSkuFooterView.h; sourceTree = "<group>"; };
 		50B060842153A10500B7B411 /* PD_BillSkuFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillSkuFooterView.m; sourceTree = "<group>"; };
+		50C5449A2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLOrdersDeteiledLabel.m; sourceTree = "<group>"; };
+		50C5449B2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLOrdersDeteiledLabel.h; sourceTree = "<group>"; };
+		50C5449E2159DEEF00C8CEB4 /* MBProgressHUD+Count.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Count.h"; sourceTree = "<group>"; };
+		50C5449F2159DEEF00C8CEB4 /* MBProgressHUD+Count.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Count.m"; sourceTree = "<group>"; };
+		50C544A12159E03F00C8CEB4 /* NSString+Drawing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Drawing.h"; sourceTree = "<group>"; };
+		50C544A22159E03F00C8CEB4 /* NSString+Drawing.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Drawing.m"; sourceTree = "<group>"; };
+		50C544A42159E0A600C8CEB4 /* ToastView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToastView.h; sourceTree = "<group>"; };
+		50C544A52159E0A600C8CEB4 /* ToastView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToastView.m; sourceTree = "<group>"; };
+		50C544A72159E33A00C8CEB4 /* UIView+MBProgressHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+MBProgressHUD.h"; sourceTree = "<group>"; };
+		50C544A82159E33A00C8CEB4 /* UIView+MBProgressHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+MBProgressHUD.m"; sourceTree = "<group>"; };
 		50F68C3321578C5B00DCFE85 /* XRCarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XRCarouselView.h; sourceTree = "<group>"; };
 		50F68C3421578C5B00DCFE85 /* XRCarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XRCarouselView.m; sourceTree = "<group>"; };
 		50F68C362158987800DCFE85 /* PD_BillDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillDetailViewController.h; sourceTree = "<group>"; };
@@ -506,6 +524,10 @@
 				50B060842153A10500B7B411 /* PD_BillSkuFooterView.m */,
 				50F68C3C21589BE100DCFE85 /* PD_BillDetailHeaderView.h */,
 				50F68C3D21589BE100DCFE85 /* PD_BillDetailHeaderView.m */,
+				50184CE12158C87E00D11AC6 /* PD_BillDetailFooterView.h */,
+				50184CE22158C87E00D11AC6 /* PD_BillDetailFooterView.m */,
+				50C5449B2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.h */,
+				50C5449A2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -521,6 +543,21 @@
 				50893768215648CB007C6239 /* PosHomePageHeaderView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		50C5449D2159DEB200C8CEB4 /* JKHUD */ = {
+			isa = PBXGroup;
+			children = (
+				50C5449E2159DEEF00C8CEB4 /* MBProgressHUD+Count.h */,
+				50C5449F2159DEEF00C8CEB4 /* MBProgressHUD+Count.m */,
+				50C544A12159E03F00C8CEB4 /* NSString+Drawing.h */,
+				50C544A22159E03F00C8CEB4 /* NSString+Drawing.m */,
+				50C544A42159E0A600C8CEB4 /* ToastView.h */,
+				50C544A52159E0A600C8CEB4 /* ToastView.m */,
+				50C544A72159E33A00C8CEB4 /* UIView+MBProgressHUD.h */,
+				50C544A82159E33A00C8CEB4 /* UIView+MBProgressHUD.m */,
+			);
+			path = JKHUD;
 			sourceTree = "<group>";
 		};
 		78716693214911BC00452C51 /* IconFont */ = {
@@ -1007,6 +1044,7 @@
 		7888F3822147C33800AAC8B0 /* ToolClass */ = {
 			isa = PBXGroup;
 			children = (
+				50C5449D2159DEB200C8CEB4 /* JKHUD */,
 				50F68C3321578C5B00DCFE85 /* XRCarouselView.h */,
 				50F68C3421578C5B00DCFE85 /* XRCarouselView.m */,
 				50B060782153372C00B7B411 /* SLRefreshFooter.h */,
@@ -1326,6 +1364,7 @@
 				78765A95214A89E500261ED3 /* RegisterViewController.m in Sources */,
 				7888F3552147C32C00AAC8B0 /* MyTools.m in Sources */,
 				50339EAE2152968F003011E9 /* PD_BillListCell.m in Sources */,
+				50C544A92159E33A00C8CEB4 /* UIView+MBProgressHUD.m in Sources */,
 				7888F3B42147C33900AAC8B0 /* UILabel+Style.m in Sources */,
 				787FFC9E215232C200318BBC /* TransactionDetailViewController.m in Sources */,
 				5089376C2156793E007C6239 /* SLHomeFivePartBtn.m in Sources */,
@@ -1358,6 +1397,7 @@
 				7888F2DB2147C31600AAC8B0 /* DirectivePageViewController.m in Sources */,
 				7888F34D2147C32C00AAC8B0 /* GDataXMLNode.m in Sources */,
 				7888F2F32147C32600AAC8B0 /* HPDStatusCode.m in Sources */,
+				50C544A62159E0A600C8CEB4 /* ToastView.m in Sources */,
 				7888F35A2147C32C00AAC8B0 /* UIViewController+ZZNavigationItem.m in Sources */,
 				7888F36B2147C32C00AAC8B0 /* SGGridMenu.m in Sources */,
 				7888F3B92147C33900AAC8B0 /* verifyTool.m in Sources */,
@@ -1388,6 +1428,7 @@
 				7888F3562147C32C00AAC8B0 /* PowerfulBannerView.m in Sources */,
 				7888F3BF2147C33900AAC8B0 /* Reachability.m in Sources */,
 				50F68C382158987800DCFE85 /* PD_BillDetailViewController.m in Sources */,
+				50C5449C2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.m in Sources */,
 				7888F3692147C32C00AAC8B0 /* SGActionView.m in Sources */,
 				7888F3602147C32C00AAC8B0 /* HPDProgress.m in Sources */,
 				253647E0214E11C60094576C /* WithdrawCashTableViewCell.m in Sources */,
@@ -1410,6 +1451,7 @@
 				7888F2DC2147C31600AAC8B0 /* RootViewController.m in Sources */,
 				787166BF2149183200452C51 /* GeneralizeViewController.m in Sources */,
 				DA8D1773214E8CBC006574E4 /* PD_BillListViewController.m in Sources */,
+				50C544A02159DEEF00C8CEB4 /* MBProgressHUD+Count.m in Sources */,
 				7888F2F12147C32600AAC8B0 /* GlobalMethod.m in Sources */,
 				7888F35E2147C32C00AAC8B0 /* JSONKit.m in Sources */,
 				7888F3B22147C33900AAC8B0 /* UIImage+Extension.m in Sources */,
@@ -1433,10 +1475,12 @@
 				7888F3C52147C33900AAC8B0 /* UIButton+ImageTitleSpacing.m in Sources */,
 				7888F2B72147C0AC00AAC8B0 /* main.m in Sources */,
 				7871669C214911BC00452C51 /* UIImage+TBCityIconFont.m in Sources */,
+				50C544A32159E03F00C8CEB4 /* NSString+Drawing.m in Sources */,
 				7888F3672147C32C00AAC8B0 /* RSA.m in Sources */,
 				7888F3B72147C33900AAC8B0 /* CustomImage.m in Sources */,
 				78765A84214A447400261ED3 /* PersonalHeaderView.m in Sources */,
 				7888F3522147C32C00AAC8B0 /* HpCFNavigationController.m in Sources */,
+				50184CE32158C87E00D11AC6 /* PD_BillDetailFooterView.m in Sources */,
 				7888F3582147C32C00AAC8B0 /* UIView+SystemBackBar.m in Sources */,
 				7888F2A92147C0AA00AAC8B0 /* AppDelegate.m in Sources */,
 			);

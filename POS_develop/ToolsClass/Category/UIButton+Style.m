@@ -10,11 +10,15 @@
 
 @implementation UIButton (Style)
 +(UIButton *)getButtonWithImageName:(NSString *)imageName
+                          titleText:(NSString *)titleStr
                           superView:(UIView *)superView
-                         masonrySet:(void (^)(UIButton *btn,MASConstraintMaker *make))block {
+                         masonrySet:(void (^)(UIButton *btn,MASConstraintMaker *make))block{
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.backgroundColor = [UIColor whiteColor];
-    [btn setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+    [btn setTitle:titleStr forState:normal];
+    if (![imageName isEqualToString:@""]) {
+        [btn setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+    }
     btn.translatesAutoresizingMaskIntoConstraints = NO;
     [superView addSubview:btn];
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {

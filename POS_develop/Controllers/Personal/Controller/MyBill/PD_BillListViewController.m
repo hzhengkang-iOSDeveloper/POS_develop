@@ -10,6 +10,8 @@
 #import "PD_BillListSkuCell.h"
 #import "PD_BillSkuHeaderView.h"
 #import "PD_BillSkuFooterView.h"
+#import "PD_BillDetailViewController.h"
+
 @interface PD_BillListViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, weak) UISegmentedControl *segmentedControl;
 /**
@@ -158,7 +160,9 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    PD_BillDetailViewController *detailVc = [[PD_BillDetailViewController alloc]init];
+    detailVc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:detailVc animated:YES];
     
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{

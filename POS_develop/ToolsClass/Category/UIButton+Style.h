@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
  按钮布局
  */
 +(UIButton *)getButtonWithImageName:(NSString *)imageName
+                          titleText:(NSString *)titleStr
                           superView:(UIView *)superView
                          masonrySet:(void (^)(UIButton *btn,MASConstraintMaker *make))block;
 @end
