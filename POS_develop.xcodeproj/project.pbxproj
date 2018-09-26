@@ -30,6 +30,8 @@
 		50184CE02158C56C00D11AC6 /* DatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50184CDF2158C56C00D11AC6 /* DatePickerView.m */; };
 		50184CE32158C87E00D11AC6 /* PD_BillDetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50184CE22158C87E00D11AC6 /* PD_BillDetailFooterView.m */; };
 		50339EAE2152968F003011E9 /* PD_BillListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50339EAD2152968F003011E9 /* PD_BillListCell.m */; };
+		506EDEF7215B27E4000CCF50 /* SeparateQueryRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506EDEF6215B27E4000CCF50 /* SeparateQueryRootViewController.m */; };
+		506EDEFA215B3561000CCF50 /* PD_BillListRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506EDEF9215B3561000CCF50 /* PD_BillListRootViewController.m */; };
 		5089375F21561B32007C6239 /* AchievementsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5089375E21561B32007C6239 /* AchievementsViewController.m */; };
 		5089376621561DB8007C6239 /* HomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5089376521561DB8007C6239 /* HomeTableViewCell.m */; };
 		50893769215648CB007C6239 /* PosHomePageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50893768215648CB007C6239 /* PosHomePageHeaderView.m */; };
@@ -50,11 +52,6 @@
 		78068BEB215A025F00DCC855 /* SeparateQueryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78068BEA215A025F00DCC855 /* SeparateQueryDetailViewController.m */; };
 		786AD0DD215A02F1005D7363 /* SeparateQueryDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 786AD0DC215A02F1005D7363 /* SeparateQueryDetailHeaderView.m */; };
 		786AD0E1215A2C46005D7363 /* XLBasePageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 786AD0E0215A2C46005D7363 /* XLBasePageController.m */; };
-		786AD0E5215A2CAE005D7363 /* SeparateQueryRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 786AD0E4215A2CAE005D7363 /* SeparateQueryRootViewController.m */; };
-		786AD0E8215A2E4C005D7363 /* SQ_ComprehensiveRanking.m in Sources */ = {isa = PBXBuildFile; fileRef = 786AD0E7215A2E4C005D7363 /* SQ_ComprehensiveRanking.m */; };
-		786AD0EB215A2E71005D7363 /* SQ_TotalAmount.m in Sources */ = {isa = PBXBuildFile; fileRef = 786AD0EA215A2E71005D7363 /* SQ_TotalAmount.m */; };
-		786AD0EE215A2EA2005D7363 /* SQ_TotalShareProfit.m in Sources */ = {isa = PBXBuildFile; fileRef = 786AD0ED215A2EA2005D7363 /* SQ_TotalShareProfit.m */; };
-		786AD0F1215A2EB7005D7363 /* SQ_TotalPenNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 786AD0F0215A2EB7005D7363 /* SQ_TotalPenNumber.m */; };
 		786AD0F5215A311D005D7363 /* SeparateQuerySearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 786AD0F4215A311D005D7363 /* SeparateQuerySearchViewController.m */; };
 		786AD0F9215A3893005D7363 /* SeparateQueryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 786AD0F8215A3893005D7363 /* SeparateQueryCell.m */; };
 		786AD100215A3BA8005D7363 /* ActivationMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 786AD0FF215A3BA8005D7363 /* ActivationMoneyViewController.m */; };
@@ -231,6 +228,10 @@
 		50184CE22158C87E00D11AC6 /* PD_BillDetailFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillDetailFooterView.m; sourceTree = "<group>"; };
 		50339EAC2152968F003011E9 /* PD_BillListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillListCell.h; sourceTree = "<group>"; };
 		50339EAD2152968F003011E9 /* PD_BillListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillListCell.m; sourceTree = "<group>"; };
+		506EDEF5215B27E4000CCF50 /* SeparateQueryRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeparateQueryRootViewController.h; sourceTree = "<group>"; };
+		506EDEF6215B27E4000CCF50 /* SeparateQueryRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeparateQueryRootViewController.m; sourceTree = "<group>"; };
+		506EDEF8215B3561000CCF50 /* PD_BillListRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillListRootViewController.h; sourceTree = "<group>"; };
+		506EDEF9215B3561000CCF50 /* PD_BillListRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillListRootViewController.m; sourceTree = "<group>"; };
 		5089375D21561B32007C6239 /* AchievementsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AchievementsViewController.h; sourceTree = "<group>"; };
 		5089375E21561B32007C6239 /* AchievementsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AchievementsViewController.m; sourceTree = "<group>"; };
 		5089376421561DB8007C6239 /* HomeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeTableViewCell.h; sourceTree = "<group>"; };
@@ -271,16 +272,6 @@
 		786AD0DC215A02F1005D7363 /* SeparateQueryDetailHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeparateQueryDetailHeaderView.m; sourceTree = "<group>"; };
 		786AD0DF215A2C46005D7363 /* XLBasePageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLBasePageController.h; sourceTree = "<group>"; };
 		786AD0E0215A2C46005D7363 /* XLBasePageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLBasePageController.m; sourceTree = "<group>"; };
-		786AD0E3215A2CAE005D7363 /* SeparateQueryRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeparateQueryRootViewController.h; sourceTree = "<group>"; };
-		786AD0E4215A2CAE005D7363 /* SeparateQueryRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeparateQueryRootViewController.m; sourceTree = "<group>"; };
-		786AD0E6215A2E4C005D7363 /* SQ_ComprehensiveRanking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQ_ComprehensiveRanking.h; sourceTree = "<group>"; };
-		786AD0E7215A2E4C005D7363 /* SQ_ComprehensiveRanking.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQ_ComprehensiveRanking.m; sourceTree = "<group>"; };
-		786AD0E9215A2E71005D7363 /* SQ_TotalAmount.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQ_TotalAmount.h; sourceTree = "<group>"; };
-		786AD0EA215A2E71005D7363 /* SQ_TotalAmount.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQ_TotalAmount.m; sourceTree = "<group>"; };
-		786AD0EC215A2EA2005D7363 /* SQ_TotalShareProfit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQ_TotalShareProfit.h; sourceTree = "<group>"; };
-		786AD0ED215A2EA2005D7363 /* SQ_TotalShareProfit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQ_TotalShareProfit.m; sourceTree = "<group>"; };
-		786AD0EF215A2EB7005D7363 /* SQ_TotalPenNumber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQ_TotalPenNumber.h; sourceTree = "<group>"; };
-		786AD0F0215A2EB7005D7363 /* SQ_TotalPenNumber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQ_TotalPenNumber.m; sourceTree = "<group>"; };
 		786AD0F3215A311D005D7363 /* SeparateQuerySearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeparateQuerySearchViewController.h; sourceTree = "<group>"; };
 		786AD0F4215A311D005D7363 /* SeparateQuerySearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeparateQuerySearchViewController.m; sourceTree = "<group>"; };
 		786AD0F7215A3893005D7363 /* SeparateQueryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeparateQueryCell.h; sourceTree = "<group>"; };
@@ -630,18 +621,10 @@
 				259646E22158DFAE00E516BF /* SeparateQueryViewController.m */,
 				78068BE9215A025F00DCC855 /* SeparateQueryDetailViewController.h */,
 				78068BEA215A025F00DCC855 /* SeparateQueryDetailViewController.m */,
-				786AD0E3215A2CAE005D7363 /* SeparateQueryRootViewController.h */,
-				786AD0E4215A2CAE005D7363 /* SeparateQueryRootViewController.m */,
-				786AD0E6215A2E4C005D7363 /* SQ_ComprehensiveRanking.h */,
-				786AD0E7215A2E4C005D7363 /* SQ_ComprehensiveRanking.m */,
-				786AD0E9215A2E71005D7363 /* SQ_TotalAmount.h */,
-				786AD0EA215A2E71005D7363 /* SQ_TotalAmount.m */,
-				786AD0EC215A2EA2005D7363 /* SQ_TotalShareProfit.h */,
-				786AD0ED215A2EA2005D7363 /* SQ_TotalShareProfit.m */,
-				786AD0EF215A2EB7005D7363 /* SQ_TotalPenNumber.h */,
-				786AD0F0215A2EB7005D7363 /* SQ_TotalPenNumber.m */,
 				786AD0F3215A311D005D7363 /* SeparateQuerySearchViewController.h */,
 				786AD0F4215A311D005D7363 /* SeparateQuerySearchViewController.m */,
+				506EDEF5215B27E4000CCF50 /* SeparateQueryRootViewController.h */,
+				506EDEF6215B27E4000CCF50 /* SeparateQueryRootViewController.m */,
 			);
 			path = "SeparateQuery(分润查询)";
 			sourceTree = "<group>";
@@ -1364,6 +1347,8 @@
 			children = (
 				DA8D1771214E8CBC006574E4 /* PD_BillListViewController.h */,
 				DA8D1772214E8CBC006574E4 /* PD_BillListViewController.m */,
+				506EDEF8215B3561000CCF50 /* PD_BillListRootViewController.h */,
+				506EDEF9215B3561000CCF50 /* PD_BillListRootViewController.m */,
 				50F68C362158987800DCFE85 /* PD_BillDetailViewController.h */,
 				50F68C372158987800DCFE85 /* PD_BillDetailViewController.m */,
 				50339EAB21529679003011E9 /* View */,
@@ -1575,13 +1560,12 @@
 				2546E2D4214D47570066DBFB /* UpdatePasswordTableViewCell.m in Sources */,
 				78CB4BE3214BD9DD000F6A9D /* AddAddressViewController.m in Sources */,
 				7888F3C12147C33900AAC8B0 /* BaseButton.m in Sources */,
-				786AD0E8215A2E4C005D7363 /* SQ_ComprehensiveRanking.m in Sources */,
 				25E2A36A214D7831006EB5B5 /* PD_SelectAreaPickerView.m in Sources */,
 				7888F36E2147C32C00AAC8B0 /* WYWebProgressLayer.m in Sources */,
 				787223BC2154E348004C21FE /* AchievementsTopCollectionViewCell.m in Sources */,
+				506EDEF7215B27E4000CCF50 /* SeparateQueryRootViewController.m in Sources */,
 				7888F2F42147C32600AAC8B0 /* LoginManager.m in Sources */,
 				7888F3B52147C33900AAC8B0 /* UITableView+BackgroundImageView.m in Sources */,
-				786AD0E5215A2CAE005D7363 /* SeparateQueryRootViewController.m in Sources */,
 				2546E2D1214D2F250066DBFB /* SettingTableViewCell.m in Sources */,
 				787166B7214912E200452C51 /* PosHomePageViewController.m in Sources */,
 				251A4103214FF45E00AC2C81 /* WithdrawCashViewController.m in Sources */,
@@ -1591,7 +1575,6 @@
 				78CB4BE0214BCE67000F6A9D /* MyAddressTableViewCell.m in Sources */,
 				7888F3612147C32C00AAC8B0 /* MJChiBaoZiHeader.m in Sources */,
 				259646E32158DFAE00E516BF /* SeparateQueryViewController.m in Sources */,
-				786AD0F1215A2EB7005D7363 /* SQ_TotalPenNumber.m in Sources */,
 				786AD100215A3BA8005D7363 /* ActivationMoneyViewController.m in Sources */,
 				50B060822153A0DC00B7B411 /* PD_BillSkuHeaderView.m in Sources */,
 				7871669B214911BC00452C51 /* TBCityIconInfo.m in Sources */,
@@ -1627,13 +1610,13 @@
 				7888F35E2147C32C00AAC8B0 /* JSONKit.m in Sources */,
 				7888F3B22147C33900AAC8B0 /* UIImage+Extension.m in Sources */,
 				253647D7214E053C0094576C /* UpdatePhoneTableViewCell.m in Sources */,
-				786AD0EB215A2E71005D7363 /* SQ_TotalAmount.m in Sources */,
 				7888F3BA2147C33900AAC8B0 /* ZJPPTViewCustom.m in Sources */,
 				7888F3B32147C33900AAC8B0 /* UILabel+ChangeLineSpaceAndWordSpace.m in Sources */,
 				50B060852153A10500B7B411 /* PD_BillSkuFooterView.m in Sources */,
 				7888F2AC2147C0AA00AAC8B0 /* ViewController.m in Sources */,
 				7888F36D2147C32C00AAC8B0 /* UIView+Frame.m in Sources */,
 				78CB4B77214BA8D7000F6A9D /* MyBillViewController.m in Sources */,
+				506EDEFA215B3561000CCF50 /* PD_BillListRootViewController.m in Sources */,
 				5089375F21561B32007C6239 /* AchievementsViewController.m in Sources */,
 				7888F2DD2147C31600AAC8B0 /* CommunityWebViewController.m in Sources */,
 				7888F3AF2147C33900AAC8B0 /* NSString+Helper.m in Sources */,
@@ -1653,7 +1636,6 @@
 				7888F3672147C32C00AAC8B0 /* RSA.m in Sources */,
 				7888F3B72147C33900AAC8B0 /* CustomImage.m in Sources */,
 				78765A84214A447400261ED3 /* PersonalHeaderView.m in Sources */,
-				786AD0EE215A2EA2005D7363 /* SQ_TotalShareProfit.m in Sources */,
 				7888F3522147C32C00AAC8B0 /* HpCFNavigationController.m in Sources */,
 				50184CE32158C87E00D11AC6 /* PD_BillDetailFooterView.m in Sources */,
 				7888F3582147C32C00AAC8B0 /* UIView+SystemBackBar.m in Sources */,

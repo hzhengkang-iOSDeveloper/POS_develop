@@ -25,6 +25,7 @@ PODS:
     - SDWebImage/Core (= 4.1.2)
   - SDWebImage/Core (4.1.2)
   - SSKeychain (1.4.1)
+  - WMPageController (2.5.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0.4)
@@ -37,6 +38,7 @@ DEPENDENCIES:
   - MJRefresh (~> 3.1.14.1)
   - SDWebImage (~> 4.1.2)
   - SSKeychain (~> 1.4.1)
+  - WMPageController (~> 2.5.2)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -50,6 +52,7 @@ SPEC REPOS:
     - MJRefresh
     - SDWebImage
     - SSKeychain
+    - WMPageController
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
@@ -62,7 +65,8 @@ SPEC CHECKSUMS:
   MJRefresh: 238e6a37e2dba12160ee3b79f6d2a2b26abcab42
   SDWebImage: cb6f9f266a9977741efcbc21e618e8be3734c774
   SSKeychain: 55cc80f66f5c73da827e3077f02e43528897db41
+  WMPageController: 0c7624d2b48e4f1ab92371688cf6744ed701575d
 
-PODFILE CHECKSUM: 507b3d8e454e2b4dfc29e661ed86895e52d5a78a
+PODFILE CHECKSUM: 62b412994902b9bef26c0b9f80eb7c77b49d62e6
 
 COCOAPODS: 1.5.3

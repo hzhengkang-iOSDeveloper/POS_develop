@@ -1,5 +1,5 @@
 //
-//  SeparateQueryRootViewController.h
+//  PD_BillListRootViewController.h
 //  POS_develop
 //
 //  Created by 胡正康 on 2018/9/26.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SeparateQueryRootViewController : BaseSonViewController
+@interface PD_BillListRootViewController : BaseSonViewController
 
 @end
 
