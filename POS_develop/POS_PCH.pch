@@ -53,7 +53,7 @@
 #import "CF_LeftNavigationBar_BackBtn.h"
 //#import "GetReChargeCustState.h"
 #import "CustomDeleagte.h"
-
+#import "SVProgressHUD+Extension.h"
 
 
 //三方库头文件
@@ -68,6 +68,7 @@
 #import <IQKeyboardManager.h>
 #import "GTMNSString+HTML.h"
 #import <WMPageController.h>
+#import <SVProgressHUD.h>
 
 #define RGBA(r,g,b,a) [UIColor colorWithRed:(float)r/255.0f green:(float)g/255.0f blue:(float)b/255.0f alpha:a]
 #define RGB(R,G,B)     [UIColor colorWithRed:(R)/255.0 green:(G)/255.0 blue:(B)/255.0 alpha:1.0]

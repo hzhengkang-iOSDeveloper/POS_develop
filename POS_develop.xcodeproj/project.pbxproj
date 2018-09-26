@@ -43,6 +43,7 @@
 		50B060852153A10500B7B411 /* PD_BillSkuFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B060842153A10500B7B411 /* PD_BillSkuFooterView.m */; };
 		50C5449C2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C5449A2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.m */; };
 		50F1C8CD215B944B00CCF6C0 /* HPDProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F1C8CC215B944B00CCF6C0 /* HPDProgress.m */; };
+		50F1C8D0215B963100CCF6C0 /* SVProgressHUD+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F1C8CF215B963100CCF6C0 /* SVProgressHUD+Extension.m */; };
 		50F68C3521578C5B00DCFE85 /* XRCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F68C3421578C5B00DCFE85 /* XRCarouselView.m */; };
 		50F68C382158987800DCFE85 /* PD_BillDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F68C372158987800DCFE85 /* PD_BillDetailViewController.m */; };
 		50F68C3E21589BE100DCFE85 /* PD_BillDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F68C3D21589BE100DCFE85 /* PD_BillDetailHeaderView.m */; };
@@ -250,6 +251,8 @@
 		50C5449B2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLOrdersDeteiledLabel.h; sourceTree = "<group>"; };
 		50F1C8CB215B944B00CCF6C0 /* HPDProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPDProgress.h; sourceTree = "<group>"; };
 		50F1C8CC215B944B00CCF6C0 /* HPDProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPDProgress.m; sourceTree = "<group>"; };
+		50F1C8CE215B963100CCF6C0 /* SVProgressHUD+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD+Extension.h"; sourceTree = "<group>"; };
+		50F1C8CF215B963100CCF6C0 /* SVProgressHUD+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SVProgressHUD+Extension.m"; sourceTree = "<group>"; };
 		50F68C3321578C5B00DCFE85 /* XRCarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XRCarouselView.h; sourceTree = "<group>"; };
 		50F68C3421578C5B00DCFE85 /* XRCarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XRCarouselView.m; sourceTree = "<group>"; };
 		50F68C362158987800DCFE85 /* PD_BillDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillDetailViewController.h; sourceTree = "<group>"; };
@@ -579,6 +582,8 @@
 		50C5449D2159DEB200C8CEB4 /* JKHUD */ = {
 			isa = PBXGroup;
 			children = (
+				50F1C8CE215B963100CCF6C0 /* SVProgressHUD+Extension.h */,
+				50F1C8CF215B963100CCF6C0 /* SVProgressHUD+Extension.m */,
 			);
 			path = JKHUD;
 			sourceTree = "<group>";
@@ -1432,12 +1437,14 @@
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/SSKeychain/Support/SSKeychain.bundle",
+				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SSKeychain.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1525,6 +1532,7 @@
 				786AD103215A440C005D7363 /* ActivationMoneyDetailViewController.m in Sources */,
 				7888F2DB2147C31600AAC8B0 /* DirectivePageViewController.m in Sources */,
 				7888F34D2147C32C00AAC8B0 /* GDataXMLNode.m in Sources */,
+				50F1C8D0215B963100CCF6C0 /* SVProgressHUD+Extension.m in Sources */,
 				7888F2F32147C32600AAC8B0 /* HPDStatusCode.m in Sources */,
 				7888F35A2147C32C00AAC8B0 /* UIViewController+ZZNavigationItem.m in Sources */,
 				7888F36B2147C32C00AAC8B0 /* SGGridMenu.m in Sources */,

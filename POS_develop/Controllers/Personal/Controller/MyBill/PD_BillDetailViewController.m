@@ -295,6 +295,7 @@
 {
     
 //    PD_ShowToast(@"复制成功", 1);
+    [SVProgressHUD showSuccessWithStatus:@"复制成功"];
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = @"203498230482039482";
 }
