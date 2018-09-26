@@ -82,7 +82,6 @@
         if (indexPath.row == 0) {
             if (![[weakCell.contentTF textContainsNoCharset] isPhoneNumberFormat]) {
                 [weakCell.contentTF becomeFirstResponder];
-                showToast(@"请输入正确的手机号");
                 return;
             }else {
                 [self getCode];

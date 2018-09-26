@@ -294,7 +294,7 @@
 - (void)copyOrderNo
 {
     
-    SHOW(@"复制成功复制成功复制成功复制成功复制成功复制成功复制成功复制成功复制成功！")
+//    PD_ShowToast(@"复制成功", 1);
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = @"203498230482039482";
 }
