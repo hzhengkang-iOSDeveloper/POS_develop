@@ -197,7 +197,6 @@
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if (connectionError){
 #if DEBUG
-            HPDProgressHide;
             NSLog(@"--->connenction error = %@", connectionError);
 #endif
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -385,10 +384,8 @@
         result(YES,responseObject);
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [[HPDProgress defaultProgressHUD] hide];
         if (![self wasNetworkValid]) {
-            
-            showToast(@"网络繁忙，请稍后~");
+            [SVProgressHUD showInfoWithStatus:@"网络繁忙，请稍后~"];
     #if DEBUG
             NSLog(@"--->net work can not used!");
     #endif
@@ -428,7 +425,7 @@
     
     if (error) {
         result(NO,nil);
-        showToast(@"网络繁忙，请稍后~");
+        [SVProgressHUD showInfoWithStatus:@"网络繁忙，请稍后~"];
         return NO;      // connect error
     }
     else {

@@ -210,7 +210,7 @@
     [self.view endEditing:YES];
     if (![[self.telephoneTF textContainsNoCharset] isPhoneNumberFormat]) {
         [self.telephoneTF becomeFirstResponder];
-        showToast(@"请输入正确的手机号");
+        [SVProgressHUD showErrorWithStatus:@"请输入正确的手机号"];
         return;
     }
     _aview = [GlobalMethod addUIActivityIndicator:self.codeTimeBtn];
@@ -270,7 +270,7 @@
     [self.view endEditing:YES];
     _aview = [GlobalMethod addUIActivityIndicator:self.registerBtn];
     if (self.passwordTF.text.length<8) {
-        showToast(@"密码不能小于8位");
+        [SVProgressHUD showErrorWithStatus:@"密码不能小于8位"];
         return;
     }
     //    [[LoginManager getInstance] loginWithAccount:[self.telephoneTF.text stringByReplacingOccurrencesOfString:@" " withString:@""] andPassword:self.codeTF.text result:^(BOOL success, NSDictionary *result) {

@@ -27,7 +27,6 @@
 #import "NetWorkDetectionManager.h"
 #import "HPDUtils.h"
 #import "HPDConnect.h"
-#import "HPDProgress.h"
 #import "GlobalMethod.h"
 #import "UITextField+Format.h"
 #import "HPDStatusCode.h"
@@ -207,9 +206,6 @@
 #define HPDProgressHudShowWithMessage(msg)                [[HPDProgress defaultProgressHUD] showCoustomOnView:[[UIApplication sharedApplication]keyWindow] message:msg]
 
 // itoast
-#define showToast(msg)                  [[HPDProgress defaultProgressHUD] holdMessage:msg hideAfterDelay:1.0];
-#define showToastLong(msg)                  [[HPDProgress defaultProgressHUD] holdMessage:msg hideAfterDelay:5.0];
-#define HPDProgressHide                                     [[HPDProgress defaultProgressHUD] hide]
 
 
 #define USER_DEFAULT [NSUserDefaults standardUserDefaults]

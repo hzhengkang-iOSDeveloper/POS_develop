@@ -42,7 +42,6 @@
 		50B060822153A0DC00B7B411 /* PD_BillSkuHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B060812153A0DC00B7B411 /* PD_BillSkuHeaderView.m */; };
 		50B060852153A10500B7B411 /* PD_BillSkuFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B060842153A10500B7B411 /* PD_BillSkuFooterView.m */; };
 		50C5449C2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C5449A2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.m */; };
-		50F1C8CD215B944B00CCF6C0 /* HPDProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F1C8CC215B944B00CCF6C0 /* HPDProgress.m */; };
 		50F1C8D0215B963100CCF6C0 /* SVProgressHUD+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F1C8CF215B963100CCF6C0 /* SVProgressHUD+Extension.m */; };
 		50F68C3521578C5B00DCFE85 /* XRCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F68C3421578C5B00DCFE85 /* XRCarouselView.m */; };
 		50F68C382158987800DCFE85 /* PD_BillDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F68C372158987800DCFE85 /* PD_BillDetailViewController.m */; };
@@ -249,8 +248,6 @@
 		50B060842153A10500B7B411 /* PD_BillSkuFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillSkuFooterView.m; sourceTree = "<group>"; };
 		50C5449A2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLOrdersDeteiledLabel.m; sourceTree = "<group>"; };
 		50C5449B2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLOrdersDeteiledLabel.h; sourceTree = "<group>"; };
-		50F1C8CB215B944B00CCF6C0 /* HPDProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPDProgress.h; sourceTree = "<group>"; };
-		50F1C8CC215B944B00CCF6C0 /* HPDProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPDProgress.m; sourceTree = "<group>"; };
 		50F1C8CE215B963100CCF6C0 /* SVProgressHUD+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD+Extension.h"; sourceTree = "<group>"; };
 		50F1C8CF215B963100CCF6C0 /* SVProgressHUD+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SVProgressHUD+Extension.m"; sourceTree = "<group>"; };
 		50F68C3321578C5B00DCFE85 /* XRCarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XRCarouselView.h; sourceTree = "<group>"; };
@@ -976,7 +973,6 @@
 				7888F3212147C32C00AAC8B0 /* HPDUtils.h */,
 				7888F3222147C32C00AAC8B0 /* HPDUtils.m */,
 				7888F3232147C32C00AAC8B0 /* JSONKIT */,
-				7888F3282147C32C00AAC8B0 /* MBProgress */,
 				7888F32B2147C32C00AAC8B0 /* MJChiBaoZiHeader.h */,
 				7888F32C2147C32C00AAC8B0 /* MJChiBaoZiHeader.m */,
 				7888F32D2147C32C00AAC8B0 /* NetManager */,
@@ -1066,15 +1062,6 @@
 				7888F3272147C32C00AAC8B0 /* README.md */,
 			);
 			path = JSONKIT;
-			sourceTree = "<group>";
-		};
-		7888F3282147C32C00AAC8B0 /* MBProgress */ = {
-			isa = PBXGroup;
-			children = (
-				50F1C8CB215B944B00CCF6C0 /* HPDProgress.h */,
-				50F1C8CC215B944B00CCF6C0 /* HPDProgress.m */,
-			);
-			path = MBProgress;
 			sourceTree = "<group>";
 		};
 		7888F32D2147C32C00AAC8B0 /* NetManager */ = {
@@ -1602,7 +1589,6 @@
 				78CB4B77214BA8D7000F6A9D /* MyBillViewController.m in Sources */,
 				506EDEFA215B3561000CCF50 /* PD_BillListRootViewController.m in Sources */,
 				5089375F21561B32007C6239 /* AchievementsViewController.m in Sources */,
-				50F1C8CD215B944B00CCF6C0 /* HPDProgress.m in Sources */,
 				7888F2DD2147C31600AAC8B0 /* CommunityWebViewController.m in Sources */,
 				7888F3AF2147C33900AAC8B0 /* NSString+Helper.m in Sources */,
 				2520A68E214CE38900D48B26 /* SettingViewController.m in Sources */,

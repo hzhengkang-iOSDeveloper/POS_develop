@@ -130,7 +130,7 @@
     [self.view endEditing:YES];
     if (![[self.telephoneTF textContainsNoCharset] isPhoneNumberFormat]) {
         [self.telephoneTF becomeFirstResponder];
-        showToast(@"请输入正确的手机号");
+        [SVProgressHUD showErrorWithStatus:@"请输入正确的手机号"];
         return;
     }
     _aview = [GlobalMethod addUIActivityIndicator:self.codeTimeBtn];

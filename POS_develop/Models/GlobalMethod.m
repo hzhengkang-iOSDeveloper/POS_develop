@@ -80,11 +80,11 @@
 + (BOOL)checkPhoneNumber:(NSString*)String
 {
     if (!String || String.length == 0) {
-        showToast(@"请输入您的手机号码!");
+        [SVProgressHUD showErrorWithStatus:@"请输入您的手机号码!"];
         return NO;
     }
     else if (![String isPhoneNumberFormat]) {
-        showToast(@"请输入正确的手机号码!");
+        [SVProgressHUD showErrorWithStatus:@"请输入正确的手机号码!"];
         return NO;
     }
     else
@@ -95,12 +95,12 @@
 + (BOOL)checkMoney:(NSString *)money
 {
     if (money.length<=0) {
-        showToast(@"请输入提现金额");
+        [SVProgressHUD showErrorWithStatus:@"请输入提现金额"];
         return NO;
     }
     
     if (![money isMoneyFormmat]) {
-        showToast(@"请输入正确的金额格式");
+        [SVProgressHUD showErrorWithStatus:@"请输入正确的金额格式"];
         return NO;
     }
     return YES;
@@ -349,18 +349,18 @@
                     }
 
                 }else if ([dict[@"Error_Type"] intValue] == 0){
-                    showToast([dict[@"Error_Content"] gtm_stringByUnescapingFromHTML]);
+                    [SVProgressHUD showInfoWithStatus:[dict[@"Error_Content"] gtm_stringByUnescapingFromHTML]];
                 }
 
             }else{
                 error(dict);
             }
         }else{
-            showToast([result[@"prompt"] gtm_stringByUnescapingFromHTML]);
+            [SVProgressHUD showInfoWithStatus:[result[@"prompt"] gtm_stringByUnescapingFromHTML]];
         }
     }else if ([result[@"doStatu"] intValue] == 2){
         if([result[@"errCode"] isEqualToString:@"9999"]){
-            showToast(@"用户未登录");
+            [SVProgressHUD showErrorWithStatus:@"用户未登录"];
         }else if ([result[@"errCode"] isEqualToString:@"100001"]){
             //登录超时
             [UIVC.view endEditing:YES];
@@ -377,10 +377,10 @@
             });
            
         }else if ([result[@"errCode"] isEqualToString:@"99990004"]){
-            showToast(@"接口异常");
+            [SVProgressHUD showErrorWithStatus:@"接口异常"];
         }
         else{
-            showToast([result[@"prompt"] gtm_stringByUnescapingFromHTML]);
+            [SVProgressHUD showInfoWithStatus:[result[@"prompt"] gtm_stringByUnescapingFromHTML]];
         }
     }
 }
@@ -471,7 +471,6 @@
 }
 
 + (void)connectError{
-    HPDProgressHide;
     showRequestFailedAlert;
 }
 

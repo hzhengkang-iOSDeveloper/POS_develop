@@ -95,7 +95,7 @@ static WebViewAction *instance = nil;
         
     }else if ([action isEqualToString:@"login"]){
         if (self.loginMagr.wasLogin) {
-            showToast(@"您已登录!");
+            [SVProgressHUD showInfoWithStatus:@"您已登录!"];
             return;
         }
 //        CF_LoginViewController *loginVC = [[CF_LoginViewController alloc] initWithShowType:LoginViewShowTypePresent];
@@ -105,7 +105,7 @@ static WebViewAction *instance = nil;
 //        }];
     }else if ([action isEqualToString:@"register"]){
         if (self.loginMagr.wasLogin) {
-            showToast(@"您已登录，请退出后再注册!");
+            [SVProgressHUD showInfoWithStatus:@"您已登录，请退出后再注册!"];
             [self comtoHome:respondVC];
         }else{
 //            CF_RegisterNewUserViewController* registerVC = [[CF_RegisterNewUserViewController alloc] init];
@@ -232,7 +232,7 @@ static WebViewAction *instance = nil;
 }
 
 - (void)cometoLogin:(UIViewController*)respondVC{
-    showToast(@"请先登录后再操作!");
+    [SVProgressHUD showInfoWithStatus:@"请先登录后再操作!"];
 //    CF_LoginViewController *login = [[CF_LoginViewController  alloc] init];
 //    [respondVC.navigationController pushViewController:login animated:YES];
 }

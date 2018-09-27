@@ -79,7 +79,7 @@
         if (indexPath.row == 1) {
             if (![[weakCell.contentTF textContainsNoCharset] isPhoneNumberFormat]) {
                 [weakCell.contentTF becomeFirstResponder];
-                showToast(@"请输入正确的手机号");
+                [SVProgressHUD showErrorWithStatus:@"请输入正确的手机号"];
                 return;
             }else {
                 [self getCode];
