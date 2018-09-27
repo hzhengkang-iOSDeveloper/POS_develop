@@ -29,6 +29,7 @@
 		50184CDC2158BDC400D11AC6 /* TransactionQueryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50184CDB2158BDC400D11AC6 /* TransactionQueryViewController.m */; };
 		50184CE02158C56C00D11AC6 /* DatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50184CDF2158C56C00D11AC6 /* DatePickerView.m */; };
 		50184CE32158C87E00D11AC6 /* PD_BillDetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50184CE22158C87E00D11AC6 /* PD_BillDetailFooterView.m */; };
+		502BAFC3215C884B005EDE6F /* PD_BillDetailOutLineInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 502BAFC2215C884B005EDE6F /* PD_BillDetailOutLineInfoView.m */; };
 		50339EAE2152968F003011E9 /* PD_BillListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50339EAD2152968F003011E9 /* PD_BillListCell.m */; };
 		506EDEF7215B27E4000CCF50 /* SeparateQueryRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506EDEF6215B27E4000CCF50 /* SeparateQueryRootViewController.m */; };
 		506EDEFA215B3561000CCF50 /* PD_BillListRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506EDEF9215B3561000CCF50 /* PD_BillListRootViewController.m */; };
@@ -222,6 +223,8 @@
 		50184CDF2158C56C00D11AC6 /* DatePickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DatePickerView.m; sourceTree = "<group>"; };
 		50184CE12158C87E00D11AC6 /* PD_BillDetailFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillDetailFooterView.h; sourceTree = "<group>"; };
 		50184CE22158C87E00D11AC6 /* PD_BillDetailFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillDetailFooterView.m; sourceTree = "<group>"; };
+		502BAFC1215C884B005EDE6F /* PD_BillDetailOutLineInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillDetailOutLineInfoView.h; sourceTree = "<group>"; };
+		502BAFC2215C884B005EDE6F /* PD_BillDetailOutLineInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillDetailOutLineInfoView.m; sourceTree = "<group>"; };
 		50339EAC2152968F003011E9 /* PD_BillListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillListCell.h; sourceTree = "<group>"; };
 		50339EAD2152968F003011E9 /* PD_BillListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillListCell.m; sourceTree = "<group>"; };
 		506EDEF5215B27E4000CCF50 /* SeparateQueryRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeparateQueryRootViewController.h; sourceTree = "<group>"; };
@@ -559,6 +562,8 @@
 				50184CE22158C87E00D11AC6 /* PD_BillDetailFooterView.m */,
 				50C5449B2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.h */,
 				50C5449A2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.m */,
+				502BAFC1215C884B005EDE6F /* PD_BillDetailOutLineInfoView.h */,
+				502BAFC2215C884B005EDE6F /* PD_BillDetailOutLineInfoView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1498,6 +1503,7 @@
 				7888F3572147C32C00AAC8B0 /* UIAlertView+Blocks.m in Sources */,
 				2591E55E214D72C100469452 /* BLAreaPickerView.m in Sources */,
 				7888F34F2147C32C00AAC8B0 /* HDeviceIdentifier.m in Sources */,
+				502BAFC3215C884B005EDE6F /* PD_BillDetailOutLineInfoView.m in Sources */,
 				7888F3B62147C33900AAC8B0 /* UIView+Extension.m in Sources */,
 				7888F2DE2147C31600AAC8B0 /* WebViewAction.m in Sources */,
 				5089376621561DB8007C6239 /* HomeTableViewCell.m in Sources */,

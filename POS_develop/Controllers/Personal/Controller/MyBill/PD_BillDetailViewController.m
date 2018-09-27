@@ -11,6 +11,7 @@
 #import "PD_BillDetailHeaderView.h"
 #import "PD_BillDetailFooterView.h"
 #import "PD_BillListSkuCell.h"
+#import "PD_BillDetailOutLineInfoView.h"
 
 @interface PD_BillDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, weak) UITableView *orderDetailTable;
@@ -37,7 +38,8 @@
 #pragma mark ---- Table ----
 - (void)creatTableView
 {
-    UITableView *orderDetailTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight) style:UITableViewStyleGrouped];
+    UITableView *orderDetailTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-navH) style:UITableViewStyleGrouped];
+    orderDetailTable.showsVerticalScrollIndicator = NO;
     orderDetailTable.delegate = self;
     orderDetailTable.dataSource = self;
     [self.view addSubview:orderDetailTable];
@@ -108,7 +110,7 @@
 {
     MJWeakSelf;
     
-    UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(500))];
+    UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(306)+AD_HEIGHT(282))];
     footerView.backgroundColor = CF6F6F6;
     
     //商品总价
@@ -236,6 +238,15 @@
     }];
     self.sendTimeLabel = sendTimeLabel;
     
+    //线下转账
+    PD_BillDetailOutLineInfoView *outLineInfoView = [[PD_BillDetailOutLineInfoView alloc]init];
+    [footerView addSubview:outLineInfoView];
+    [outLineInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(otherInfoView.mas_bottom).offset(AD_HEIGHT(2));
+        make.left.offset(0);
+        make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(282)));
+    }];
+    
     return footerView;
 }
 
@@ -275,7 +286,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return section==0?AD_HEIGHT(37):0.01f;
+    return section==0?AD_HEIGHT(37):AD_HEIGHT(5);
 }
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     
@@ -283,7 +294,9 @@
         PD_BillDetailFooterView * footerView = [[PD_BillDetailFooterView alloc]init];
         return footerView;
     } else {
-        return  [UIView new];
+        UIView *view = [UIView new];
+        view.backgroundColor = CF6F6F6;
+        return  view;
     }
 }
 
