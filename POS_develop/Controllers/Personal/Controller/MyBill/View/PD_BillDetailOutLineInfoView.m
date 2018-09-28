@@ -15,6 +15,8 @@
 //单号
 @property (nonatomic, weak) UILabel *orderNoLabel;
 @property (nonatomic, weak) UITextField *orderNoTF;
+
+@property (nonatomic, weak) UIButton *commfirBtn;//确认支付
 @end
 @implementation PD_BillDetailOutLineInfoView
 
@@ -170,7 +172,7 @@
         btn.layer.cornerRadius = 3.f;
         [btn addTarget:self action:@selector(comfirPay) forControlEvents:UIControlEventTouchUpInside];
     }];
-    
+    self.commfirBtn = commfirBtn;
     
 }
 

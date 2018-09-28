@@ -11,8 +11,9 @@
 #import "PD_BillDetailHeaderView.h"
 #import "PD_BillDetailFooterView.h"
 #import "PD_BillListSkuCell.h"
-#import "PD_BillDetailOutLineInfoView.h"
-
+#import "PD_BillDetailOutLineInfoView.h"//线下支付
+#import "PD_BillDetailUnCheckView.h"//待审核
+#import "PD_BillDetailOnLineView.h"//线上支付
 @interface PD_BillDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, weak) UITableView *orderDetailTable;
 //订单编号
@@ -110,7 +111,7 @@
 {
     MJWeakSelf;
     
-    UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(306)+AD_HEIGHT(282))];
+    UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(306)+AD_HEIGHT(214))];
     footerView.backgroundColor = CF6F6F6;
     
     //商品总价
@@ -239,13 +240,32 @@
     self.sendTimeLabel = sendTimeLabel;
     
     //线下转账
-    PD_BillDetailOutLineInfoView *outLineInfoView = [[PD_BillDetailOutLineInfoView alloc]init];
-    [footerView addSubview:outLineInfoView];
-    [outLineInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
+//    PD_BillDetailOutLineInfoView *outLineInfoView = [[PD_BillDetailOutLineInfoView alloc]init];
+//    [footerView addSubview:outLineInfoView];
+//    [outLineInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(otherInfoView.mas_bottom).offset(AD_HEIGHT(2));
+//        make.left.offset(0);
+//        make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(282)));
+//    }];
+    
+    //待审核
+//    PD_BillDetailUnCheckView *unCheckView = [[PD_BillDetailUnCheckView alloc]init];
+//    [footerView addSubview:unCheckView];
+//    [unCheckView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(otherInfoView.mas_bottom).offset(AD_HEIGHT(2));
+//        make.left.offset(0);
+//        make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(196)));
+//    }];
+    
+    //线上支付
+    PD_BillDetailOnLineView *onLineView = [[PD_BillDetailOnLineView alloc]init];
+    [footerView addSubview:onLineView];
+    [onLineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(otherInfoView.mas_bottom).offset(AD_HEIGHT(2));
         make.left.offset(0);
-        make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(282)));
+        make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(214)));
     }];
+    
     
     return footerView;
 }

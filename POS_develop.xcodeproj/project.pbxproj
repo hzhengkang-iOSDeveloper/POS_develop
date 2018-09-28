@@ -29,6 +29,8 @@
 		50184CDC2158BDC400D11AC6 /* TransactionQueryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50184CDB2158BDC400D11AC6 /* TransactionQueryViewController.m */; };
 		50184CE02158C56C00D11AC6 /* DatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50184CDF2158C56C00D11AC6 /* DatePickerView.m */; };
 		50184CE32158C87E00D11AC6 /* PD_BillDetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50184CE22158C87E00D11AC6 /* PD_BillDetailFooterView.m */; };
+		501B5728215DC64B0025086D /* PD_BillDetailUnCheckView.m in Sources */ = {isa = PBXBuildFile; fileRef = 501B5727215DC64B0025086D /* PD_BillDetailUnCheckView.m */; };
+		501B572B215DFBF10025086D /* PD_BillDetailOnLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 501B572A215DFBF10025086D /* PD_BillDetailOnLineView.m */; };
 		502BAFC3215C884B005EDE6F /* PD_BillDetailOutLineInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 502BAFC2215C884B005EDE6F /* PD_BillDetailOutLineInfoView.m */; };
 		50339EAE2152968F003011E9 /* PD_BillListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50339EAD2152968F003011E9 /* PD_BillListCell.m */; };
 		506EDEF7215B27E4000CCF50 /* SeparateQueryRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506EDEF6215B27E4000CCF50 /* SeparateQueryRootViewController.m */; };
@@ -223,6 +225,10 @@
 		50184CDF2158C56C00D11AC6 /* DatePickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DatePickerView.m; sourceTree = "<group>"; };
 		50184CE12158C87E00D11AC6 /* PD_BillDetailFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillDetailFooterView.h; sourceTree = "<group>"; };
 		50184CE22158C87E00D11AC6 /* PD_BillDetailFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillDetailFooterView.m; sourceTree = "<group>"; };
+		501B5726215DC64B0025086D /* PD_BillDetailUnCheckView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillDetailUnCheckView.h; sourceTree = "<group>"; };
+		501B5727215DC64B0025086D /* PD_BillDetailUnCheckView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillDetailUnCheckView.m; sourceTree = "<group>"; };
+		501B5729215DFBF10025086D /* PD_BillDetailOnLineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillDetailOnLineView.h; sourceTree = "<group>"; };
+		501B572A215DFBF10025086D /* PD_BillDetailOnLineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillDetailOnLineView.m; sourceTree = "<group>"; };
 		502BAFC1215C884B005EDE6F /* PD_BillDetailOutLineInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillDetailOutLineInfoView.h; sourceTree = "<group>"; };
 		502BAFC2215C884B005EDE6F /* PD_BillDetailOutLineInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillDetailOutLineInfoView.m; sourceTree = "<group>"; };
 		50339EAC2152968F003011E9 /* PD_BillListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillListCell.h; sourceTree = "<group>"; };
@@ -564,6 +570,10 @@
 				50C5449A2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.m */,
 				502BAFC1215C884B005EDE6F /* PD_BillDetailOutLineInfoView.h */,
 				502BAFC2215C884B005EDE6F /* PD_BillDetailOutLineInfoView.m */,
+				501B5726215DC64B0025086D /* PD_BillDetailUnCheckView.h */,
+				501B5727215DC64B0025086D /* PD_BillDetailUnCheckView.m */,
+				501B5729215DFBF10025086D /* PD_BillDetailOnLineView.h */,
+				501B572A215DFBF10025086D /* PD_BillDetailOnLineView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1580,6 +1590,7 @@
 				787166BB214917D400452C51 /* POSViewController.m in Sources */,
 				2546E2D7214D4D0F0066DBFB /* UpdatePasswordViewController.m in Sources */,
 				50184CDC2158BDC400D11AC6 /* TransactionQueryViewController.m in Sources */,
+				501B572B215DFBF10025086D /* PD_BillDetailOnLineView.m in Sources */,
 				7888F2DC2147C31600AAC8B0 /* RootViewController.m in Sources */,
 				787166BF2149183200452C51 /* GeneralizeViewController.m in Sources */,
 				DA8D1773214E8CBC006574E4 /* PD_BillListViewController.m in Sources */,
@@ -1594,6 +1605,7 @@
 				7888F36D2147C32C00AAC8B0 /* UIView+Frame.m in Sources */,
 				78CB4B77214BA8D7000F6A9D /* MyBillViewController.m in Sources */,
 				506EDEFA215B3561000CCF50 /* PD_BillListRootViewController.m in Sources */,
+				501B5728215DC64B0025086D /* PD_BillDetailUnCheckView.m in Sources */,
 				5089375F21561B32007C6239 /* AchievementsViewController.m in Sources */,
 				7888F2DD2147C31600AAC8B0 /* CommunityWebViewController.m in Sources */,
 				7888F3AF2147C33900AAC8B0 /* NSString+Helper.m in Sources */,
