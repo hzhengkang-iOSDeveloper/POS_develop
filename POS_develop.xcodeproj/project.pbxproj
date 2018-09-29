@@ -45,6 +45,7 @@
 		50B060822153A0DC00B7B411 /* PD_BillSkuHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B060812153A0DC00B7B411 /* PD_BillSkuHeaderView.m */; };
 		50B060852153A10500B7B411 /* PD_BillSkuFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B060842153A10500B7B411 /* PD_BillSkuFooterView.m */; };
 		50C5449C2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C5449A2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.m */; };
+		50D4449C215F0DF100AE6219 /* PD_BillDetailComfirInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D4449B215F0DF100AE6219 /* PD_BillDetailComfirInfoView.m */; };
 		50F1C8D0215B963100CCF6C0 /* SVProgressHUD+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F1C8CF215B963100CCF6C0 /* SVProgressHUD+Extension.m */; };
 		50F68C3521578C5B00DCFE85 /* XRCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F68C3421578C5B00DCFE85 /* XRCarouselView.m */; };
 		50F68C382158987800DCFE85 /* PD_BillDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F68C372158987800DCFE85 /* PD_BillDetailViewController.m */; };
@@ -257,6 +258,8 @@
 		50B060842153A10500B7B411 /* PD_BillSkuFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillSkuFooterView.m; sourceTree = "<group>"; };
 		50C5449A2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLOrdersDeteiledLabel.m; sourceTree = "<group>"; };
 		50C5449B2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLOrdersDeteiledLabel.h; sourceTree = "<group>"; };
+		50D4449A215F0DF100AE6219 /* PD_BillDetailComfirInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillDetailComfirInfoView.h; sourceTree = "<group>"; };
+		50D4449B215F0DF100AE6219 /* PD_BillDetailComfirInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillDetailComfirInfoView.m; sourceTree = "<group>"; };
 		50F1C8CE215B963100CCF6C0 /* SVProgressHUD+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD+Extension.h"; sourceTree = "<group>"; };
 		50F1C8CF215B963100CCF6C0 /* SVProgressHUD+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SVProgressHUD+Extension.m"; sourceTree = "<group>"; };
 		50F68C3321578C5B00DCFE85 /* XRCarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XRCarouselView.h; sourceTree = "<group>"; };
@@ -574,6 +577,8 @@
 				501B5727215DC64B0025086D /* PD_BillDetailUnCheckView.m */,
 				501B5729215DFBF10025086D /* PD_BillDetailOnLineView.h */,
 				501B572A215DFBF10025086D /* PD_BillDetailOnLineView.m */,
+				50D4449A215F0DF100AE6219 /* PD_BillDetailComfirInfoView.h */,
+				50D4449B215F0DF100AE6219 /* PD_BillDetailComfirInfoView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1502,6 +1507,7 @@
 				7888F3B42147C33900AAC8B0 /* UILabel+Style.m in Sources */,
 				786AD0F5215A311D005D7363 /* SeparateQuerySearchViewController.m in Sources */,
 				787FFC9E215232C200318BBC /* TransactionDetailViewController.m in Sources */,
+				50D4449C215F0DF100AE6219 /* PD_BillDetailComfirInfoView.m in Sources */,
 				5089376C2156793E007C6239 /* SLHomeFivePartBtn.m in Sources */,
 				78CB4B74214B8BD7000F6A9D /* VipSystemViewController.m in Sources */,
 				7888F3C42147C33900AAC8B0 /* SY_ImageAndLabelBtn.m in Sources */,

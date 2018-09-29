@@ -14,6 +14,7 @@
 #import "PD_BillDetailOutLineInfoView.h"//线下支付
 #import "PD_BillDetailUnCheckView.h"//待审核
 #import "PD_BillDetailOnLineView.h"//线上支付
+#import "PD_BillDetailComfirInfoView.h"//确认收货
 @interface PD_BillDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, weak) UITableView *orderDetailTable;
 //订单编号
@@ -111,7 +112,7 @@
 {
     MJWeakSelf;
     
-    UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(306)+AD_HEIGHT(214))];
+    UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(306)+AD_HEIGHT(53)+AD_HEIGHT(5))];
     footerView.backgroundColor = CF6F6F6;
     
     //商品总价
@@ -258,15 +259,22 @@
 //    }];
     
     //线上支付
-    PD_BillDetailOnLineView *onLineView = [[PD_BillDetailOnLineView alloc]init];
-    [footerView addSubview:onLineView];
-    [onLineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(otherInfoView.mas_bottom).offset(AD_HEIGHT(2));
+//    PD_BillDetailOnLineView *onLineView = [[PD_BillDetailOnLineView alloc]init];
+//    [footerView addSubview:onLineView];
+//    [onLineView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(otherInfoView.mas_bottom).offset(AD_HEIGHT(2));
+//        make.left.offset(0);
+//        make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(214)));
+//    }];
+    
+    //确认收货
+    PD_BillDetailComfirInfoView *comfirInfoView = [[PD_BillDetailComfirInfoView alloc]init];
+    [footerView addSubview:comfirInfoView];
+    [comfirInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(otherInfoView.mas_bottom).offset(AD_HEIGHT(5));
         make.left.offset(0);
-        make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(214)));
+        make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(53)));
     }];
-    
-    
     return footerView;
 }
 
