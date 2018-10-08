@@ -16,7 +16,7 @@
 #import "TerminalSelectViewController.h"//终端查询
 #import "TerminalAdminViewController.h"//终端管理
 #import "DelegateManagerViewController.h"//代理商管理
-
+#import "StatisticAnalysisViewController.h"//统计分析
 @interface AchievementsViewController () <UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) UICollectionView *myTopCollection;
 @property (nonatomic, strong) UICollectionView *myBottomCollection;
@@ -135,7 +135,8 @@
             }
                 break;
             case 1:{
-                
+                StatisticAnalysisViewController *vc = [[StatisticAnalysisViewController alloc] init];
+                [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
             case 2:{

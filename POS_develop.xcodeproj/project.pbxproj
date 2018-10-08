@@ -44,6 +44,47 @@
 		5089376621561DB8007C6239 /* HomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5089376521561DB8007C6239 /* HomeTableViewCell.m */; };
 		50893769215648CB007C6239 /* PosHomePageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50893768215648CB007C6239 /* PosHomePageHeaderView.m */; };
 		5089376C2156793E007C6239 /* SLHomeFivePartBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 5089376A2156793E007C6239 /* SLHomeFivePartBtn.m */; };
+		50A89A8D216B51B300E68BEB /* StatisticAnalysisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89A8C216B51B300E68BEB /* StatisticAnalysisViewController.m */; };
+		50A89AEB216B653200E68BEB /* CALayer+XLayerSelectHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89A91216B653100E68BEB /* CALayer+XLayerSelectHelper.m */; };
+		50A89AEC216B653200E68BEB /* CAShapeLayer+XLayerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89A94216B653100E68BEB /* CAShapeLayer+XLayerHelper.m */; };
+		50A89AED216B653200E68BEB /* UIGestureRecognizer+XGesHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89A95216B653100E68BEB /* UIGestureRecognizer+XGesHelper.m */; };
+		50A89AEE216B653200E68BEB /* XBaseChartConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89A97216B653100E68BEB /* XBaseChartConfiguration.m */; };
+		50A89AEF216B653200E68BEB /* XAreaLineChartConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89A99216B653100E68BEB /* XAreaLineChartConfiguration.m */; };
+		50A89AF0216B653200E68BEB /* XNormalLineChartConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89A9E216B653100E68BEB /* XNormalLineChartConfiguration.m */; };
+		50A89AF1216B653200E68BEB /* XStackAreaLineChartConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89A9F216B653100E68BEB /* XStackAreaLineChartConfiguration.m */; };
+		50A89AF2216B653200E68BEB /* XLineChartConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89AA0216B653100E68BEB /* XLineChartConfiguration.m */; };
+		50A89AF3216B653200E68BEB /* XBarChartConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89AA3216B653100E68BEB /* XBarChartConfiguration.m */; };
+		50A89AF4216B653200E68BEB /* CAKeyframeAnimation+AHEasing.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89AA7216B653100E68BEB /* CAKeyframeAnimation+AHEasing.m */; };
+		50A89AF5216B653200E68BEB /* XPointDetect.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89AAA216B653100E68BEB /* XPointDetect.m */; };
+		50A89AF6216B653200E68BEB /* XNotificationBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89AAD216B653100E68BEB /* XNotificationBridge.m */; };
+		50A89AF7216B653200E68BEB /* XBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89AB0216B653100E68BEB /* XBarItem.m */; };
+		50A89AF8216B653200E68BEB /* XPieItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89AB1216B653100E68BEB /* XPieItem.m */; };
+		50A89AF9216B653200E68BEB /* XLineChartItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89AB2216B653100E68BEB /* XLineChartItem.m */; };
+		50A89AFA216B653200E68BEB /* XColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89AB8216B653100E68BEB /* XColor.m */; };
+		50A89AFB216B653200E68BEB /* XAnimationPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89ABA216B653200E68BEB /* XAnimationPath.m */; };
+		50A89AFC216B653200E68BEB /* XAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89ABD216B653200E68BEB /* XAnimation.m */; };
+		50A89AFD216B653200E68BEB /* XAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89ABF216B653200E68BEB /* XAnimator.m */; };
+		50A89AFE216B653200E68BEB /* XAuxiliaryCalculationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89AC1216B653200E68BEB /* XAuxiliaryCalculationHelper.m */; };
+		50A89AFF216B653200E68BEB /* XRandomNumerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89AC2216B653200E68BEB /* XRandomNumerHelper.m */; };
+		50A89B00216B653200E68BEB /* XCycleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89AC8216B653200E68BEB /* XCycleView.m */; };
+		50A89B01216B653200E68BEB /* XAlignLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89ACA216B653200E68BEB /* XAlignLabel.m */; };
+		50A89B02216B653200E68BEB /* XPositiveNegativeBarChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89ACB216B653200E68BEB /* XPositiveNegativeBarChartView.m */; };
+		50A89B03216B653200E68BEB /* XAreaLineContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89ACC216B653200E68BEB /* XAreaLineContainerView.m */; };
+		50A89B04216B653200E68BEB /* XAnimationLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89ACD216B653200E68BEB /* XAnimationLabel.m */; };
+		50A89B05216B653200E68BEB /* XPositiveNegativeBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89ACE216B653200E68BEB /* XPositiveNegativeBarChart.m */; };
+		50A89B06216B653200E68BEB /* XAbscissaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89AD0216B653200E68BEB /* XAbscissaView.m */; };
+		50A89B07216B653200E68BEB /* XLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89AD4216B653200E68BEB /* XLineChartView.m */; };
+		50A89B08216B653200E68BEB /* XPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89AD6216B653200E68BEB /* XPieChart.m */; };
+		50A89B09216B653200E68BEB /* XStackAreaLineContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89ADC216B653200E68BEB /* XStackAreaLineContainerView.m */; };
+		50A89B0A216B653200E68BEB /* XPositiveNegativeBarContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89ADF216B653200E68BEB /* XPositiveNegativeBarContainerView.m */; };
+		50A89B0B216B653200E68BEB /* XBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89AE0216B653200E68BEB /* XBarChart.m */; };
+		50A89B0C216B653200E68BEB /* XBarContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89AE2216B653200E68BEB /* XBarContainerView.m */; };
+		50A89B0D216B653200E68BEB /* XLineContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89AE4216B653200E68BEB /* XLineContainerView.m */; };
+		50A89B0E216B653200E68BEB /* XBarChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89AE6216B653200E68BEB /* XBarChartView.m */; };
+		50A89B0F216B653200E68BEB /* OrdinateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89AE7216B653200E68BEB /* OrdinateView.m */; };
+		50A89B10216B653200E68BEB /* XLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89AE8216B653200E68BEB /* XLineChart.m */; };
+		50A89B11216B653200E68BEB /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50A89AEA216B653200E68BEB /* Info.plist */; };
+		50A89B16216B65A800E68BEB /* Colours.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89B14216B65A700E68BEB /* Colours.m */; };
 		50B0607B2153372C00B7B411 /* SLRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B060772153372C00B7B411 /* SLRefreshFooter.m */; };
 		50B0607C2153372C00B7B411 /* SLRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B060792153372C00B7B411 /* SLRefreshHeader.m */; };
 		50B0607F2153520E00B7B411 /* PD_BillListSkuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B0607E2153520E00B7B411 /* PD_BillListSkuCell.m */; };
@@ -287,6 +328,90 @@
 		50893768215648CB007C6239 /* PosHomePageHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PosHomePageHeaderView.m; sourceTree = "<group>"; };
 		5089376A2156793E007C6239 /* SLHomeFivePartBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHomeFivePartBtn.m; sourceTree = "<group>"; };
 		5089376B2156793E007C6239 /* SLHomeFivePartBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHomeFivePartBtn.h; sourceTree = "<group>"; };
+		50A89A8B216B51B300E68BEB /* StatisticAnalysisViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatisticAnalysisViewController.h; sourceTree = "<group>"; };
+		50A89A8C216B51B300E68BEB /* StatisticAnalysisViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StatisticAnalysisViewController.m; sourceTree = "<group>"; };
+		50A89A90216B653100E68BEB /* CAShapeLayer+XLayerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAShapeLayer+XLayerHelper.h"; sourceTree = "<group>"; };
+		50A89A91216B653100E68BEB /* CALayer+XLayerSelectHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+XLayerSelectHelper.m"; sourceTree = "<group>"; };
+		50A89A92216B653100E68BEB /* UIGestureRecognizer+XGesHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+XGesHelper.h"; sourceTree = "<group>"; };
+		50A89A93216B653100E68BEB /* CALayer+XLayerSelectHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+XLayerSelectHelper.h"; sourceTree = "<group>"; };
+		50A89A94216B653100E68BEB /* CAShapeLayer+XLayerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAShapeLayer+XLayerHelper.m"; sourceTree = "<group>"; };
+		50A89A95216B653100E68BEB /* UIGestureRecognizer+XGesHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+XGesHelper.m"; sourceTree = "<group>"; };
+		50A89A97216B653100E68BEB /* XBaseChartConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBaseChartConfiguration.m; sourceTree = "<group>"; };
+		50A89A99216B653100E68BEB /* XAreaLineChartConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XAreaLineChartConfiguration.m; sourceTree = "<group>"; };
+		50A89A9A216B653100E68BEB /* XStackAreaLineChartConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XStackAreaLineChartConfiguration.h; sourceTree = "<group>"; };
+		50A89A9B216B653100E68BEB /* XNormalLineChartConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNormalLineChartConfiguration.h; sourceTree = "<group>"; };
+		50A89A9C216B653100E68BEB /* XLineChartConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLineChartConfiguration.h; sourceTree = "<group>"; };
+		50A89A9D216B653100E68BEB /* XAreaLineChartConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XAreaLineChartConfiguration.h; sourceTree = "<group>"; };
+		50A89A9E216B653100E68BEB /* XNormalLineChartConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XNormalLineChartConfiguration.m; sourceTree = "<group>"; };
+		50A89A9F216B653100E68BEB /* XStackAreaLineChartConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XStackAreaLineChartConfiguration.m; sourceTree = "<group>"; };
+		50A89AA0216B653100E68BEB /* XLineChartConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLineChartConfiguration.m; sourceTree = "<group>"; };
+		50A89AA2216B653100E68BEB /* XBarChartConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBarChartConfiguration.h; sourceTree = "<group>"; };
+		50A89AA3216B653100E68BEB /* XBarChartConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBarChartConfiguration.m; sourceTree = "<group>"; };
+		50A89AA4216B653100E68BEB /* XBaseChartConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBaseChartConfiguration.h; sourceTree = "<group>"; };
+		50A89AA6216B653100E68BEB /* CAKeyframeAnimation+AHEasing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAKeyframeAnimation+AHEasing.h"; sourceTree = "<group>"; };
+		50A89AA7216B653100E68BEB /* CAKeyframeAnimation+AHEasing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAKeyframeAnimation+AHEasing.m"; sourceTree = "<group>"; };
+		50A89AA9216B653100E68BEB /* XPointDetect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPointDetect.h; sourceTree = "<group>"; };
+		50A89AAA216B653100E68BEB /* XPointDetect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPointDetect.m; sourceTree = "<group>"; };
+		50A89AAC216B653100E68BEB /* XEnumHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEnumHeader.h; sourceTree = "<group>"; };
+		50A89AAD216B653100E68BEB /* XNotificationBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XNotificationBridge.m; sourceTree = "<group>"; };
+		50A89AAE216B653100E68BEB /* XNotificationBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNotificationBridge.h; sourceTree = "<group>"; };
+		50A89AB0216B653100E68BEB /* XBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBarItem.m; sourceTree = "<group>"; };
+		50A89AB1216B653100E68BEB /* XPieItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPieItem.m; sourceTree = "<group>"; };
+		50A89AB2216B653100E68BEB /* XLineChartItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLineChartItem.m; sourceTree = "<group>"; };
+		50A89AB3216B653100E68BEB /* XPieItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPieItem.h; sourceTree = "<group>"; };
+		50A89AB4216B653100E68BEB /* XBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBarItem.h; sourceTree = "<group>"; };
+		50A89AB5216B653100E68BEB /* XLineChartItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLineChartItem.h; sourceTree = "<group>"; };
+		50A89AB7216B653100E68BEB /* XColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XColor.h; sourceTree = "<group>"; };
+		50A89AB8216B653100E68BEB /* XColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XColor.m; sourceTree = "<group>"; };
+		50A89ABA216B653200E68BEB /* XAnimationPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XAnimationPath.m; sourceTree = "<group>"; };
+		50A89ABB216B653200E68BEB /* XAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XAnimation.h; sourceTree = "<group>"; };
+		50A89ABC216B653200E68BEB /* XAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XAnimator.h; sourceTree = "<group>"; };
+		50A89ABD216B653200E68BEB /* XAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XAnimation.m; sourceTree = "<group>"; };
+		50A89ABE216B653200E68BEB /* XAnimationPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XAnimationPath.h; sourceTree = "<group>"; };
+		50A89ABF216B653200E68BEB /* XAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XAnimator.m; sourceTree = "<group>"; };
+		50A89AC1216B653200E68BEB /* XAuxiliaryCalculationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XAuxiliaryCalculationHelper.m; sourceTree = "<group>"; };
+		50A89AC2216B653200E68BEB /* XRandomNumerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XRandomNumerHelper.m; sourceTree = "<group>"; };
+		50A89AC3216B653200E68BEB /* XAuxiliaryCalculationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XAuxiliaryCalculationHelper.h; sourceTree = "<group>"; };
+		50A89AC4216B653200E68BEB /* XRandomNumerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XRandomNumerHelper.h; sourceTree = "<group>"; };
+		50A89AC5216B653200E68BEB /* XJYChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJYChart.h; sourceTree = "<group>"; };
+		50A89AC6216B653200E68BEB /* XJYChartDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJYChartDelegate.h; sourceTree = "<group>"; };
+		50A89AC8216B653200E68BEB /* XCycleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCycleView.m; sourceTree = "<group>"; };
+		50A89AC9216B653200E68BEB /* XStackAreaLineContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XStackAreaLineContainerView.h; sourceTree = "<group>"; };
+		50A89ACA216B653200E68BEB /* XAlignLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XAlignLabel.m; sourceTree = "<group>"; };
+		50A89ACB216B653200E68BEB /* XPositiveNegativeBarChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPositiveNegativeBarChartView.m; sourceTree = "<group>"; };
+		50A89ACC216B653200E68BEB /* XAreaLineContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XAreaLineContainerView.m; sourceTree = "<group>"; };
+		50A89ACD216B653200E68BEB /* XAnimationLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XAnimationLabel.m; sourceTree = "<group>"; };
+		50A89ACE216B653200E68BEB /* XPositiveNegativeBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPositiveNegativeBarChart.m; sourceTree = "<group>"; };
+		50A89ACF216B653200E68BEB /* XBarContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBarContainerView.h; sourceTree = "<group>"; };
+		50A89AD0216B653200E68BEB /* XAbscissaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XAbscissaView.m; sourceTree = "<group>"; };
+		50A89AD1216B653200E68BEB /* XBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBarChart.h; sourceTree = "<group>"; };
+		50A89AD2216B653200E68BEB /* XPositiveNegativeBarContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPositiveNegativeBarContainerView.h; sourceTree = "<group>"; };
+		50A89AD3216B653200E68BEB /* XBarChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBarChartView.h; sourceTree = "<group>"; };
+		50A89AD4216B653200E68BEB /* XLineChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLineChartView.m; sourceTree = "<group>"; };
+		50A89AD5216B653200E68BEB /* XLineContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLineContainerView.h; sourceTree = "<group>"; };
+		50A89AD6216B653200E68BEB /* XPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPieChart.m; sourceTree = "<group>"; };
+		50A89AD7216B653200E68BEB /* XLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLineChart.h; sourceTree = "<group>"; };
+		50A89AD8216B653200E68BEB /* OrdinateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrdinateView.h; sourceTree = "<group>"; };
+		50A89AD9216B653200E68BEB /* XAnimationLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XAnimationLabel.h; sourceTree = "<group>"; };
+		50A89ADA216B653200E68BEB /* XAreaLineContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XAreaLineContainerView.h; sourceTree = "<group>"; };
+		50A89ADB216B653200E68BEB /* XPositiveNegativeBarChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPositiveNegativeBarChartView.h; sourceTree = "<group>"; };
+		50A89ADC216B653200E68BEB /* XStackAreaLineContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XStackAreaLineContainerView.m; sourceTree = "<group>"; };
+		50A89ADD216B653200E68BEB /* XAlignLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XAlignLabel.h; sourceTree = "<group>"; };
+		50A89ADE216B653200E68BEB /* XCycleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCycleView.h; sourceTree = "<group>"; };
+		50A89ADF216B653200E68BEB /* XPositiveNegativeBarContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPositiveNegativeBarContainerView.m; sourceTree = "<group>"; };
+		50A89AE0216B653200E68BEB /* XBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBarChart.m; sourceTree = "<group>"; };
+		50A89AE1216B653200E68BEB /* XAbscissaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XAbscissaView.h; sourceTree = "<group>"; };
+		50A89AE2216B653200E68BEB /* XBarContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBarContainerView.m; sourceTree = "<group>"; };
+		50A89AE3216B653200E68BEB /* XPositiveNegativeBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPositiveNegativeBarChart.h; sourceTree = "<group>"; };
+		50A89AE4216B653200E68BEB /* XLineContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLineContainerView.m; sourceTree = "<group>"; };
+		50A89AE5216B653200E68BEB /* XLineChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLineChartView.h; sourceTree = "<group>"; };
+		50A89AE6216B653200E68BEB /* XBarChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBarChartView.m; sourceTree = "<group>"; };
+		50A89AE7216B653200E68BEB /* OrdinateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrdinateView.m; sourceTree = "<group>"; };
+		50A89AE8216B653200E68BEB /* XLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLineChart.m; sourceTree = "<group>"; };
+		50A89AE9216B653200E68BEB /* XPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPieChart.h; sourceTree = "<group>"; };
+		50A89AEA216B653200E68BEB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50A89B13216B65A700E68BEB /* Colours.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Colours.h; sourceTree = "<group>"; };
+		50A89B14216B65A700E68BEB /* Colours.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Colours.m; sourceTree = "<group>"; };
 		50B060772153372C00B7B411 /* SLRefreshFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLRefreshFooter.m; sourceTree = "<group>"; };
 		50B060782153372C00B7B411 /* SLRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLRefreshFooter.h; sourceTree = "<group>"; };
 		50B060792153372C00B7B411 /* SLRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLRefreshHeader.m; sourceTree = "<group>"; };
@@ -309,6 +434,7 @@
 		50B1361421660341009C435C /* DelegateManagerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DelegateManagerViewController.m; sourceTree = "<group>"; };
 		50B13616216603CC009C435C /* DelegateManagerMainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelegateManagerMainView.h; sourceTree = "<group>"; };
 		50B1361B21660902009C435C /* DelegateManagerMainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DelegateManagerMainView.xib; sourceTree = "<group>"; };
+		50B1362021697E91009C435C /* TerminalSelectResultViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TerminalSelectResultViewController.h; sourceTree = "<group>"; };
 		50B13629216984E5009C435C /* DelegateManagerResultViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelegateManagerResultViewController.h; sourceTree = "<group>"; };
 		50B1362A216984E5009C435C /* DelegateManagerResultViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DelegateManagerResultViewController.m; sourceTree = "<group>"; };
 		50B1362D216A1D91009C435C /* DelegateManagerEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelegateManagerEditViewController.h; sourceTree = "<group>"; };
@@ -600,7 +726,6 @@
 		78CB4BDF214BCE67000F6A9D /* MyAddressTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyAddressTableViewCell.m; sourceTree = "<group>"; };
 		78CB4BE1214BD9DD000F6A9D /* AddAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddAddressViewController.h; sourceTree = "<group>"; };
 		78CB4BE2214BD9DD000F6A9D /* AddAddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddAddressViewController.m; sourceTree = "<group>"; };
-		78D1F0B5216B31B600A98425 /* TerminalSelectResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerminalSelectResultViewController.h; sourceTree = "<group>"; };
 		78D1F0B6216B31B600A98425 /* TerminalSelectResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerminalSelectResultViewController.m; sourceTree = "<group>"; };
 		78D1F0B8216B321400A98425 /* DelegateManagerMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelegateManagerMainView.m; sourceTree = "<group>"; };
 		78D1F0BA216B343100A98425 /* POSInterfaceName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POSInterfaceName.h; sourceTree = "<group>"; };
@@ -724,6 +849,208 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		50A89A8A216B516200E68BEB /* StatisticAnalysis(统计分析) */ = {
+			isa = PBXGroup;
+			children = (
+				50A89A8B216B51B300E68BEB /* StatisticAnalysisViewController.h */,
+				50A89A8C216B51B300E68BEB /* StatisticAnalysisViewController.m */,
+			);
+			path = "StatisticAnalysis(统计分析)";
+			sourceTree = "<group>";
+		};
+		50A89A8E216B64F900E68BEB /* XJYChart */ = {
+			isa = PBXGroup;
+			children = (
+				50A89B12216B656C00E68BEB /* Colours */,
+				50A89AA5216B653100E68BEB /* AHEasing */,
+				50A89AB9216B653200E68BEB /* Animator */,
+				50A89AA8216B653100E68BEB /* CALayerTouch */,
+				50A89AC0216B653200E68BEB /* Calculate */,
+				50A89A8F216B653100E68BEB /* Category */,
+				50A89AC7216B653200E68BEB /* ChartView */,
+				50A89AB6216B653100E68BEB /* Color */,
+				50A89A96216B653100E68BEB /* Configuration */,
+				50A89AAF216B653100E68BEB /* DataModel */,
+				50A89AAB216B653100E68BEB /* Helper */,
+				50A89AEA216B653200E68BEB /* Info.plist */,
+				50A89AC5216B653200E68BEB /* XJYChart.h */,
+				50A89AC6216B653200E68BEB /* XJYChartDelegate.h */,
+			);
+			path = XJYChart;
+			sourceTree = "<group>";
+		};
+		50A89A8F216B653100E68BEB /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				50A89A90216B653100E68BEB /* CAShapeLayer+XLayerHelper.h */,
+				50A89A91216B653100E68BEB /* CALayer+XLayerSelectHelper.m */,
+				50A89A92216B653100E68BEB /* UIGestureRecognizer+XGesHelper.h */,
+				50A89A93216B653100E68BEB /* CALayer+XLayerSelectHelper.h */,
+				50A89A94216B653100E68BEB /* CAShapeLayer+XLayerHelper.m */,
+				50A89A95216B653100E68BEB /* UIGestureRecognizer+XGesHelper.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		50A89A96216B653100E68BEB /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				50A89A97216B653100E68BEB /* XBaseChartConfiguration.m */,
+				50A89A98216B653100E68BEB /* LineChartConfiguration */,
+				50A89AA1216B653100E68BEB /* BarChartConfiguration */,
+				50A89AA4216B653100E68BEB /* XBaseChartConfiguration.h */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		50A89A98216B653100E68BEB /* LineChartConfiguration */ = {
+			isa = PBXGroup;
+			children = (
+				50A89A99216B653100E68BEB /* XAreaLineChartConfiguration.m */,
+				50A89A9A216B653100E68BEB /* XStackAreaLineChartConfiguration.h */,
+				50A89A9B216B653100E68BEB /* XNormalLineChartConfiguration.h */,
+				50A89A9C216B653100E68BEB /* XLineChartConfiguration.h */,
+				50A89A9D216B653100E68BEB /* XAreaLineChartConfiguration.h */,
+				50A89A9E216B653100E68BEB /* XNormalLineChartConfiguration.m */,
+				50A89A9F216B653100E68BEB /* XStackAreaLineChartConfiguration.m */,
+				50A89AA0216B653100E68BEB /* XLineChartConfiguration.m */,
+			);
+			path = LineChartConfiguration;
+			sourceTree = "<group>";
+		};
+		50A89AA1216B653100E68BEB /* BarChartConfiguration */ = {
+			isa = PBXGroup;
+			children = (
+				50A89AA2216B653100E68BEB /* XBarChartConfiguration.h */,
+				50A89AA3216B653100E68BEB /* XBarChartConfiguration.m */,
+			);
+			path = BarChartConfiguration;
+			sourceTree = "<group>";
+		};
+		50A89AA5216B653100E68BEB /* AHEasing */ = {
+			isa = PBXGroup;
+			children = (
+				50A89AA6216B653100E68BEB /* CAKeyframeAnimation+AHEasing.h */,
+				50A89AA7216B653100E68BEB /* CAKeyframeAnimation+AHEasing.m */,
+			);
+			path = AHEasing;
+			sourceTree = "<group>";
+		};
+		50A89AA8216B653100E68BEB /* CALayerTouch */ = {
+			isa = PBXGroup;
+			children = (
+				50A89AA9216B653100E68BEB /* XPointDetect.h */,
+				50A89AAA216B653100E68BEB /* XPointDetect.m */,
+			);
+			path = CALayerTouch;
+			sourceTree = "<group>";
+		};
+		50A89AAB216B653100E68BEB /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				50A89AAC216B653100E68BEB /* XEnumHeader.h */,
+				50A89AAD216B653100E68BEB /* XNotificationBridge.m */,
+				50A89AAE216B653100E68BEB /* XNotificationBridge.h */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		50A89AAF216B653100E68BEB /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				50A89AB0216B653100E68BEB /* XBarItem.m */,
+				50A89AB1216B653100E68BEB /* XPieItem.m */,
+				50A89AB2216B653100E68BEB /* XLineChartItem.m */,
+				50A89AB3216B653100E68BEB /* XPieItem.h */,
+				50A89AB4216B653100E68BEB /* XBarItem.h */,
+				50A89AB5216B653100E68BEB /* XLineChartItem.h */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
+		50A89AB6216B653100E68BEB /* Color */ = {
+			isa = PBXGroup;
+			children = (
+				50A89AB7216B653100E68BEB /* XColor.h */,
+				50A89AB8216B653100E68BEB /* XColor.m */,
+			);
+			path = Color;
+			sourceTree = "<group>";
+		};
+		50A89AB9216B653200E68BEB /* Animator */ = {
+			isa = PBXGroup;
+			children = (
+				50A89ABA216B653200E68BEB /* XAnimationPath.m */,
+				50A89ABB216B653200E68BEB /* XAnimation.h */,
+				50A89ABC216B653200E68BEB /* XAnimator.h */,
+				50A89ABD216B653200E68BEB /* XAnimation.m */,
+				50A89ABE216B653200E68BEB /* XAnimationPath.h */,
+				50A89ABF216B653200E68BEB /* XAnimator.m */,
+			);
+			path = Animator;
+			sourceTree = "<group>";
+		};
+		50A89AC0216B653200E68BEB /* Calculate */ = {
+			isa = PBXGroup;
+			children = (
+				50A89AC1216B653200E68BEB /* XAuxiliaryCalculationHelper.m */,
+				50A89AC2216B653200E68BEB /* XRandomNumerHelper.m */,
+				50A89AC3216B653200E68BEB /* XAuxiliaryCalculationHelper.h */,
+				50A89AC4216B653200E68BEB /* XRandomNumerHelper.h */,
+			);
+			path = Calculate;
+			sourceTree = "<group>";
+		};
+		50A89AC7216B653200E68BEB /* ChartView */ = {
+			isa = PBXGroup;
+			children = (
+				50A89AC8216B653200E68BEB /* XCycleView.m */,
+				50A89AC9216B653200E68BEB /* XStackAreaLineContainerView.h */,
+				50A89ACA216B653200E68BEB /* XAlignLabel.m */,
+				50A89ACB216B653200E68BEB /* XPositiveNegativeBarChartView.m */,
+				50A89ACC216B653200E68BEB /* XAreaLineContainerView.m */,
+				50A89ACD216B653200E68BEB /* XAnimationLabel.m */,
+				50A89ACE216B653200E68BEB /* XPositiveNegativeBarChart.m */,
+				50A89ACF216B653200E68BEB /* XBarContainerView.h */,
+				50A89AD0216B653200E68BEB /* XAbscissaView.m */,
+				50A89AD1216B653200E68BEB /* XBarChart.h */,
+				50A89AD2216B653200E68BEB /* XPositiveNegativeBarContainerView.h */,
+				50A89AD3216B653200E68BEB /* XBarChartView.h */,
+				50A89AD4216B653200E68BEB /* XLineChartView.m */,
+				50A89AD5216B653200E68BEB /* XLineContainerView.h */,
+				50A89AD6216B653200E68BEB /* XPieChart.m */,
+				50A89AD7216B653200E68BEB /* XLineChart.h */,
+				50A89AD8216B653200E68BEB /* OrdinateView.h */,
+				50A89AD9216B653200E68BEB /* XAnimationLabel.h */,
+				50A89ADA216B653200E68BEB /* XAreaLineContainerView.h */,
+				50A89ADB216B653200E68BEB /* XPositiveNegativeBarChartView.h */,
+				50A89ADC216B653200E68BEB /* XStackAreaLineContainerView.m */,
+				50A89ADD216B653200E68BEB /* XAlignLabel.h */,
+				50A89ADE216B653200E68BEB /* XCycleView.h */,
+				50A89ADF216B653200E68BEB /* XPositiveNegativeBarContainerView.m */,
+				50A89AE0216B653200E68BEB /* XBarChart.m */,
+				50A89AE1216B653200E68BEB /* XAbscissaView.h */,
+				50A89AE2216B653200E68BEB /* XBarContainerView.m */,
+				50A89AE3216B653200E68BEB /* XPositiveNegativeBarChart.h */,
+				50A89AE4216B653200E68BEB /* XLineContainerView.m */,
+				50A89AE5216B653200E68BEB /* XLineChartView.h */,
+				50A89AE6216B653200E68BEB /* XBarChartView.m */,
+				50A89AE7216B653200E68BEB /* OrdinateView.m */,
+				50A89AE8216B653200E68BEB /* XLineChart.m */,
+				50A89AE9216B653200E68BEB /* XPieChart.h */,
+			);
+			path = ChartView;
+			sourceTree = "<group>";
+		};
+		50A89B12216B656C00E68BEB /* Colours */ = {
+			isa = PBXGroup;
+			children = (
+				50A89B13216B65A700E68BEB /* Colours.h */,
+				50A89B14216B65A700E68BEB /* Colours.m */,
+			);
+			path = Colours;
+			sourceTree = "<group>";
+		};
 		50B136122166031E009C435C /* DelegateManager(代理商管理) */ = {
 			isa = PBXGroup;
 			children = (
@@ -775,7 +1102,7 @@
 		50BD2ABB21626E98008D201B /* TerminalSelect(终端查询) */ = {
 			isa = PBXGroup;
 			children = (
-				78D1F0B5216B31B600A98425 /* TerminalSelectResultViewController.h */,
+				50B1362021697E91009C435C /* TerminalSelectResultViewController.h */,
 				78D1F0B6216B31B600A98425 /* TerminalSelectResultViewController.m */,
 				50BD2ABF21626F0F008D201B /* TerminalSelectViewController.h */,
 				50BD2AC021626F0F008D201B /* TerminalSelectViewController.m */,
@@ -1062,6 +1389,8 @@
 			isa = PBXGroup;
 			children = (
 				78AA2571216B70E5009EFDAF /* Message(消息) */,
+
+				50A89A8A216B516200E68BEB /* StatisticAnalysis(统计分析) */,
 				50DAAF4D216A328A0060EBBC /* BrandIntroduction(品牌介绍) */,
 				50B136122166031E009C435C /* DelegateManager(代理商管理) */,
 				502AF8092163872600260979 /* TerminalAdmin(终端管理) */,
@@ -1411,6 +1740,7 @@
 		7888F3822147C33800AAC8B0 /* ToolClass */ = {
 			isa = PBXGroup;
 			children = (
+				50A89A8E216B64F900E68BEB /* XJYChart */,
 				50C5449D2159DEB200C8CEB4 /* JKHUD */,
 				50F68C3321578C5B00DCFE85 /* XRCarouselView.h */,
 				50F68C3421578C5B00DCFE85 /* XRCarouselView.m */,
@@ -1672,6 +2002,7 @@
 				787166AC214911C300452C51 /* demo.html in Resources */,
 				7888F2B42147C0AC00AAC8B0 /* LaunchScreen.storyboard in Resources */,
 				787166AA214911C300452C51 /* demo.css in Resources */,
+				50A89B11216B653200E68BEB /* Info.plist in Resources */,
 				787166B2214911C300452C51 /* selection.json in Resources */,
 				7888F35D2147C32C00AAC8B0 /* CHANGELOG.md in Resources */,
 				7888F2E02147C31600AAC8B0 /* ActivityView.xib in Resources */,
@@ -1742,7 +2073,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50A89AED216B653200E68BEB /* UIGestureRecognizer+XGesHelper.m in Sources */,
 				5067AB9A215F887B005A1FD7 /* ActivationMoneyCell.m in Sources */,
+				50A89AF0216B653200E68BEB /* XNormalLineChartConfiguration.m in Sources */,
 				78CB4B7B214BAA29000F6A9D /* MyBillTableViewCell.m in Sources */,
 				787EA23C2154F5C700D08F58 /* AchievementsBottomCollectionViewCell.m in Sources */,
 				787FFCA1215232E900318BBC /* TransactionDetailCell.m in Sources */,
@@ -1752,33 +2085,44 @@
 				50BD2AC621627870008D201B /* TerminalSelectMainView.m in Sources */,
 				50B0607F2153520E00B7B411 /* PD_BillListSkuCell.m in Sources */,
 				78765A88214A4EEE00261ED3 /* PersonalTableViewCell.m in Sources */,
+				50A89AF9216B653200E68BEB /* XLineChartItem.m in Sources */,
 				7888F3C22147C33900AAC8B0 /* SY_AccountImageAndLabelBtn.m in Sources */,
 				7888F3C02147C33900AAC8B0 /* UserInformation.m in Sources */,
 				50DAAF4C216A20470060EBBC /* DelegateManagerEditCell.m in Sources */,
 				7888F3B02147C33900AAC8B0 /* ProjectExtension.m in Sources */,
 				7888F3C72147C33900AAC8B0 /* NotPrjView.m in Sources */,
 				7888F3BE2147C33900AAC8B0 /* BaseModel.m in Sources */,
+				50A89AFF216B653200E68BEB /* XRandomNumerHelper.m in Sources */,
 				7888F2F62147C32600AAC8B0 /* UITextField+Format.m in Sources */,
 				787FFC9821522DC400318BBC /* TransactionListViewController.m in Sources */,
 				7888F2D92147C31600AAC8B0 /* CFTabBar.m in Sources */,
 				7888F36A2147C32C00AAC8B0 /* SGBaseMenu.m in Sources */,
+				50A89AF8216B653200E68BEB /* XPieItem.m in Sources */,
 				7888F3532147C32C00AAC8B0 /* InfiniteScrollView.m in Sources */,
 				78765A95214A89E500261ED3 /* RegisterViewController.m in Sources */,
 				50BBD28D2161C11900C2AC5B /* ActivationMoneySearchViewController.m in Sources */,
 				50B136082165E7BE009C435C /* TerminalDistributionViewController.m in Sources */,
 				7888F3552147C32C00AAC8B0 /* MyTools.m in Sources */,
+				50A89B0E216B653200E68BEB /* XBarChartView.m in Sources */,
 				50339EAE2152968F003011E9 /* PD_BillListCell.m in Sources */,
 				7888F3B42147C33900AAC8B0 /* UILabel+Style.m in Sources */,
 				786AD0F5215A311D005D7363 /* SeparateQuerySearchViewController.m in Sources */,
+				50A89AF1216B653200E68BEB /* XStackAreaLineChartConfiguration.m in Sources */,
 				787FFC9E215232C200318BBC /* TransactionDetailViewController.m in Sources */,
+				50A89B0F216B653200E68BEB /* OrdinateView.m in Sources */,
+				50A89AEC216B653200E68BEB /* CAShapeLayer+XLayerHelper.m in Sources */,
 				50D4449C215F0DF100AE6219 /* PD_BillDetailComfirInfoView.m in Sources */,
 				5089376C2156793E007C6239 /* SLHomeFivePartBtn.m in Sources */,
 				78CB4B74214B8BD7000F6A9D /* VipSystemViewController.m in Sources */,
 				7888F3C42147C33900AAC8B0 /* SY_ImageAndLabelBtn.m in Sources */,
+				50A89B08216B653200E68BEB /* XPieChart.m in Sources */,
+				50A89B16216B65A800E68BEB /* Colours.m in Sources */,
 				7888F3502147C32C00AAC8B0 /* SFHFKeychainUtils.m in Sources */,
 				786AD0DD215A02F1005D7363 /* SeparateQueryDetailHeaderView.m in Sources */,
 				7888F3B82147C33900AAC8B0 /* DateManager.m in Sources */,
 				7888F2D72147C31600AAC8B0 /* BaseSonViewController.m in Sources */,
+				50A89AEE216B653200E68BEB /* XBaseChartConfiguration.m in Sources */,
+				50A89AFA216B653200E68BEB /* XColor.m in Sources */,
 				50184CD921589E2C00D11AC6 /* UIButton+Style.m in Sources */,
 				7888F3572147C32C00AAC8B0 /* UIAlertView+Blocks.m in Sources */,
 				2591E55E214D72C100469452 /* BLAreaPickerView.m in Sources */,
@@ -1791,26 +2135,34 @@
 				78AA257B216B7705009EFDAF /* MessageListViewController.m in Sources */,
 				5089376621561DB8007C6239 /* HomeTableViewCell.m in Sources */,
 				7888F3C32147C33900AAC8B0 /* SY_ImageAndLabelAndLaeblBtn.m in Sources */,
+				50A89B06216B653200E68BEB /* XAbscissaView.m in Sources */,
 				7888F36C2147C32C00AAC8B0 /* NSTimer+addition.m in Sources */,
 				7888F3BB2147C33900AAC8B0 /* ZJPPTViewCustomCell.m in Sources */,
+				50A89B01216B653200E68BEB /* XAlignLabel.m in Sources */,
 				7888F3C92147C33900AAC8B0 /* PlaceholderTextView.m in Sources */,
 				50B0607B2153372C00B7B411 /* SLRefreshFooter.m in Sources */,
 				50B1360B2165E890009C435C /* TerminalNoDistributionCell.m in Sources */,
 				787166C32149186200452C51 /* PersonalViewController.m in Sources */,
+				50A89AF7216B653200E68BEB /* XBarItem.m in Sources */,
 				7888F3542147C32C00AAC8B0 /* MyKeyChainHelper.m in Sources */,
 				7888F3632147C32C00AAC8B0 /* LFCGzipUtillity.m in Sources */,
 				259646DE2158CBC900E516BF /* TransactionQueryMainView.m in Sources */,
 				7888F34B2147C32C00AAC8B0 /* CustomDeleagte.m in Sources */,
+				50A89A8D216B51B300E68BEB /* StatisticAnalysisViewController.m in Sources */,
 				50B0607C2153372C00B7B411 /* SLRefreshHeader.m in Sources */,
 				253647DA214E05BC0094576C /* SettingNameViewController.m in Sources */,
 				7888F34E2147C32C00AAC8B0 /* GTMNSString+HTML.m in Sources */,
 				50BD2ABA2162698C008D201B /* SureBindViewController.m in Sources */,
 				50F68C3521578C5B00DCFE85 /* XRCarouselView.m in Sources */,
+				50A89B0D216B653200E68BEB /* XLineContainerView.m in Sources */,
 				7888F2DA2147C31600AAC8B0 /* CFTabBarViewController.m in Sources */,
 				78A79E2E216B785D005C0E54 /* MessageListTableViewCell.m in Sources */,
+				50A89B00216B653200E68BEB /* XCycleView.m in Sources */,
 				786AD103215A440C005D7363 /* ActivationMoneyDetailViewController.m in Sources */,
 				7888F2DB2147C31600AAC8B0 /* DirectivePageViewController.m in Sources */,
 				7888F34D2147C32C00AAC8B0 /* GDataXMLNode.m in Sources */,
+				50A89B0C216B653200E68BEB /* XBarContainerView.m in Sources */,
+				50A89B03216B653200E68BEB /* XAreaLineContainerView.m in Sources */,
 				50F1C8D0215B963100CCF6C0 /* SVProgressHUD+Extension.m in Sources */,
 				7888F2F32147C32600AAC8B0 /* HPDStatusCode.m in Sources */,
 				7888F35A2147C32C00AAC8B0 /* UIViewController+ZZNavigationItem.m in Sources */,
@@ -1822,14 +2174,19 @@
 				7888F35C2147C32C00AAC8B0 /* HPDUtils.m in Sources */,
 				50F68C3E21589BE100DCFE85 /* PD_BillDetailHeaderView.m in Sources */,
 				7888F3512147C32C00AAC8B0 /* ConfigurationItem.m in Sources */,
+				50A89B10216B653200E68BEB /* XLineChart.m in Sources */,
 				78765A8F214A89C300261ED3 /* PasswordLoginViewController.m in Sources */,
+				50A89B02216B653200E68BEB /* XPositiveNegativeBarChartView.m in Sources */,
 				2546E2D4214D47570066DBFB /* UpdatePasswordTableViewCell.m in Sources */,
 				50BD2AB321625FA3008D201B /* TerminalBindTableViewCell.m in Sources */,
 				78CB4BE3214BD9DD000F6A9D /* AddAddressViewController.m in Sources */,
 				7888F3C12147C33900AAC8B0 /* BaseButton.m in Sources */,
 				25E2A36A214D7831006EB5B5 /* PD_SelectAreaPickerView.m in Sources */,
+				50A89AFC216B653200E68BEB /* XAnimation.m in Sources */,
 				7888F36E2147C32C00AAC8B0 /* WYWebProgressLayer.m in Sources */,
 				787223BC2154E348004C21FE /* AchievementsTopCollectionViewCell.m in Sources */,
+				50A89B04216B653200E68BEB /* XAnimationLabel.m in Sources */,
+				50A89AFD216B653200E68BEB /* XAnimator.m in Sources */,
 				506EDEF7215B27E4000CCF50 /* SeparateQueryRootViewController.m in Sources */,
 				7888F2F42147C32600AAC8B0 /* LoginManager.m in Sources */,
 				502AF8102163880000260979 /* TerminalAdminTableViewCell.m in Sources */,
@@ -1846,6 +2203,7 @@
 				50B1361521660341009C435C /* DelegateManagerViewController.m in Sources */,
 				78CB4BE0214BCE67000F6A9D /* MyAddressTableViewCell.m in Sources */,
 				7888F3612147C32C00AAC8B0 /* MJChiBaoZiHeader.m in Sources */,
+				50A89AF5216B653200E68BEB /* XPointDetect.m in Sources */,
 				259646E32158DFAE00E516BF /* SeparateQueryViewController.m in Sources */,
 				786AD100215A3BA8005D7363 /* ActivationMoneyViewController.m in Sources */,
 				50B1362B216984E5009C435C /* DelegateManagerResultViewController.m in Sources */,
@@ -1859,17 +2217,21 @@
 				50F68C382158987800DCFE85 /* PD_BillDetailViewController.m in Sources */,
 				50C5449C2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.m in Sources */,
 				7888F3692147C32C00AAC8B0 /* SGActionView.m in Sources */,
+				50A89AFB216B653200E68BEB /* XAnimationPath.m in Sources */,
 				253647E0214E11C60094576C /* WithdrawCashTableViewCell.m in Sources */,
 				7888F2E12147C31600AAC8B0 /* PopView.m in Sources */,
+				50A89AEB216B653200E68BEB /* CALayer+XLayerSelectHelper.m in Sources */,
 				7888F3662147C32C00AAC8B0 /* RSA+AES+GZIP.m in Sources */,
 				78765A92214A89D600261ED3 /* FastLoginViewController.m in Sources */,
 				7888F3652147C32C00AAC8B0 /* NSData+AES.m in Sources */,
 				78AA2574216B7119009EFDAF /* MessageNoticeViewController.m in Sources */,
+				50A89AFE216B653200E68BEB /* XAuxiliaryCalculationHelper.m in Sources */,
 				78CB4BDD214BCCE3000F6A9D /* MyAddressViewController.m in Sources */,
 				7888F35B2147C32C00AAC8B0 /* ZZActionButton.m in Sources */,
 				7888F2D82147C31600AAC8B0 /* BaseViewController.m in Sources */,
 				7888F3C62147C33900AAC8B0 /* CF_LeftNavigationBar_BackBtn.m in Sources */,
 				253647D4214E030D0094576C /* UpdatePhoneViewController.m in Sources */,
+				50A89B09216B653200E68BEB /* XStackAreaLineContainerView.m in Sources */,
 				7888F3BD2147C33900AAC8B0 /* ZJPPTViewOC.m in Sources */,
 				7871669A214911BC00452C51 /* TBCityIconFont.m in Sources */,
 				502AF80C2163875E00260979 /* TerminalAdminViewController.m in Sources */,
@@ -1877,6 +2239,7 @@
 				7888F34C2147C32C00AAC8B0 /* UITableViewCell+Extension.m in Sources */,
 				787166BB214917D400452C51 /* POSViewController.m in Sources */,
 				2546E2D7214D4D0F0066DBFB /* UpdatePasswordViewController.m in Sources */,
+				50A89AEF216B653200E68BEB /* XAreaLineChartConfiguration.m in Sources */,
 				50184CDC2158BDC400D11AC6 /* TransactionQueryViewController.m in Sources */,
 				501B572B215DFBF10025086D /* PD_BillDetailOnLineView.m in Sources */,
 				7888F2DC2147C31600AAC8B0 /* RootViewController.m in Sources */,
@@ -1887,12 +2250,14 @@
 				7888F3B22147C33900AAC8B0 /* UIImage+Extension.m in Sources */,
 				253647D7214E053C0094576C /* UpdatePhoneTableViewCell.m in Sources */,
 				7888F3BA2147C33900AAC8B0 /* ZJPPTViewCustom.m in Sources */,
+				50A89B07216B653200E68BEB /* XLineChartView.m in Sources */,
 				7888F3B32147C33900AAC8B0 /* UILabel+ChangeLineSpaceAndWordSpace.m in Sources */,
 				50B060852153A10500B7B411 /* PD_BillSkuFooterView.m in Sources */,
 				7888F2AC2147C0AA00AAC8B0 /* ViewController.m in Sources */,
 				7888F36D2147C32C00AAC8B0 /* UIView+Frame.m in Sources */,
 				78CB4B77214BA8D7000F6A9D /* MyBillViewController.m in Sources */,
 				506EDEFA215B3561000CCF50 /* PD_BillListRootViewController.m in Sources */,
+				50A89B05216B653200E68BEB /* XPositiveNegativeBarChart.m in Sources */,
 				501B5728215DC64B0025086D /* PD_BillDetailUnCheckView.m in Sources */,
 				5089375F21561B32007C6239 /* AchievementsViewController.m in Sources */,
 				7888F2DD2147C31600AAC8B0 /* CommunityWebViewController.m in Sources */,
@@ -1912,14 +2277,20 @@
 				50BD2AC221626F0F008D201B /* TerminalSelectViewController.m in Sources */,
 				7871669C214911BC00452C51 /* UIImage+TBCityIconFont.m in Sources */,
 				78D1F0D4216B659B00A98425 /* SelectDetailBrandViewController.m in Sources */,
+				50A89B0A216B653200E68BEB /* XPositiveNegativeBarContainerView.m in Sources */,
 				786AD10A215A44A3005D7363 /* ActivationMoneyDetailHeaderView.m in Sources */,
 				7888F3672147C32C00AAC8B0 /* RSA.m in Sources */,
 				7888F3B72147C33900AAC8B0 /* CustomImage.m in Sources */,
 				78765A84214A447400261ED3 /* PersonalHeaderView.m in Sources */,
+				50A89AF2216B653200E68BEB /* XLineChartConfiguration.m in Sources */,
+				50A89AF4216B653200E68BEB /* CAKeyframeAnimation+AHEasing.m in Sources */,
 				7888F3522147C32C00AAC8B0 /* HpCFNavigationController.m in Sources */,
+				50A89B0B216B653200E68BEB /* XBarChart.m in Sources */,
 				50BD2AAF21625E48008D201B /* TerminalBindViewController.m in Sources */,
 				50184CE32158C87E00D11AC6 /* PD_BillDetailFooterView.m in Sources */,
 				7888F3582147C32C00AAC8B0 /* UIView+SystemBackBar.m in Sources */,
+				50A89AF6216B653200E68BEB /* XNotificationBridge.m in Sources */,
+				50A89AF3216B653200E68BEB /* XBarChartConfiguration.m in Sources */,
 				78068BEB215A025F00DCC855 /* SeparateQueryDetailViewController.m in Sources */,
 				50B1360E2165E8B8009C435C /* TerminalAlreadyDistributionCell.m in Sources */,
 				7888F2A92147C0AA00AAC8B0 /* AppDelegate.m in Sources */,

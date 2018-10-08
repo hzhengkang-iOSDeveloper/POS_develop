@@ -54,6 +54,8 @@
 #import "CustomDeleagte.h"
 #import "SVProgressHUD+Extension.h"
 #import "SheetPickerView.h"
+#import "XJYChart.h"
+#import "Colours.h"
 
 //三方库头文件
 #import <Masonry.h>
