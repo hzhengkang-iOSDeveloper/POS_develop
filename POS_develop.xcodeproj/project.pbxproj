@@ -54,9 +54,7 @@
 		50B1360E2165E8B8009C435C /* TerminalAlreadyDistributionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B1360D2165E8B8009C435C /* TerminalAlreadyDistributionCell.m */; };
 		50B136112165F3D9009C435C /* BrandTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B136102165F3D9009C435C /* BrandTableViewCell.m */; };
 		50B1361521660341009C435C /* DelegateManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B1361421660341009C435C /* DelegateManagerViewController.m */; };
-		50B13618216603CC009C435C /* DelegateManagerMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B13617216603CC009C435C /* DelegateManagerMainView.m */; };
 		50B1361C21660902009C435C /* DelegateManagerMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50B1361B21660902009C435C /* DelegateManagerMainView.xib */; };
-		50B1362221697E91009C435C /* TerminalSelectResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B1362121697E91009C435C /* TerminalSelectResultViewController.m */; };
 		50B1362B216984E5009C435C /* DelegateManagerResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B1362A216984E5009C435C /* DelegateManagerResultViewController.m */; };
 		50B1362F216A1D91009C435C /* DelegateManagerEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B1362E216A1D91009C435C /* DelegateManagerEditViewController.m */; };
 		50BBD28D2161C11900C2AC5B /* ActivationMoneySearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50BBD28C2161C11900C2AC5B /* ActivationMoneySearchViewController.m */; };
@@ -207,6 +205,8 @@
 		78CB4BDD214BCCE3000F6A9D /* MyAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CB4BDC214BCCE3000F6A9D /* MyAddressViewController.m */; };
 		78CB4BE0214BCE67000F6A9D /* MyAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CB4BDF214BCE67000F6A9D /* MyAddressTableViewCell.m */; };
 		78CB4BE3214BD9DD000F6A9D /* AddAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CB4BE2214BD9DD000F6A9D /* AddAddressViewController.m */; };
+		78D1F0B7216B31B700A98425 /* TerminalSelectResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D1F0B6216B31B600A98425 /* TerminalSelectResultViewController.m */; };
+		78D1F0B9216B321500A98425 /* DelegateManagerMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D1F0B8216B321400A98425 /* DelegateManagerMainView.m */; };
 		DA8D1773214E8CBC006574E4 /* PD_BillListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8D1772214E8CBC006574E4 /* PD_BillListViewController.m */; };
 		DA8D1776214E8EE7006574E4 /* SLConst.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8D1774214E8EE6006574E4 /* SLConst.m */; };
 /* End PBXBuildFile section */
@@ -303,10 +303,7 @@
 		50B1361321660341009C435C /* DelegateManagerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelegateManagerViewController.h; sourceTree = "<group>"; };
 		50B1361421660341009C435C /* DelegateManagerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DelegateManagerViewController.m; sourceTree = "<group>"; };
 		50B13616216603CC009C435C /* DelegateManagerMainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelegateManagerMainView.h; sourceTree = "<group>"; };
-		50B13617216603CC009C435C /* DelegateManagerMainView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DelegateManagerMainView.m; sourceTree = "<group>"; };
 		50B1361B21660902009C435C /* DelegateManagerMainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DelegateManagerMainView.xib; sourceTree = "<group>"; };
-		50B1362021697E91009C435C /* TerminalSelectResultViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TerminalSelectResultViewController.h; sourceTree = "<group>"; };
-		50B1362121697E91009C435C /* TerminalSelectResultViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TerminalSelectResultViewController.m; sourceTree = "<group>"; };
 		50B13629216984E5009C435C /* DelegateManagerResultViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelegateManagerResultViewController.h; sourceTree = "<group>"; };
 		50B1362A216984E5009C435C /* DelegateManagerResultViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DelegateManagerResultViewController.m; sourceTree = "<group>"; };
 		50B1362D216A1D91009C435C /* DelegateManagerEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelegateManagerEditViewController.h; sourceTree = "<group>"; };
@@ -590,6 +587,9 @@
 		78CB4BDF214BCE67000F6A9D /* MyAddressTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyAddressTableViewCell.m; sourceTree = "<group>"; };
 		78CB4BE1214BD9DD000F6A9D /* AddAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddAddressViewController.h; sourceTree = "<group>"; };
 		78CB4BE2214BD9DD000F6A9D /* AddAddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddAddressViewController.m; sourceTree = "<group>"; };
+		78D1F0B5216B31B600A98425 /* TerminalSelectResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerminalSelectResultViewController.h; sourceTree = "<group>"; };
+		78D1F0B6216B31B600A98425 /* TerminalSelectResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerminalSelectResultViewController.m; sourceTree = "<group>"; };
+		78D1F0B8216B321400A98425 /* DelegateManagerMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelegateManagerMainView.m; sourceTree = "<group>"; };
 		86630A622457BA042EF8C924 /* Pods-POS_develop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-POS_develop.release.xcconfig"; path = "Pods/Target Support Files/Pods-POS_develop/Pods-POS_develop.release.xcconfig"; sourceTree = "<group>"; };
 		DA8D1771214E8CBC006574E4 /* PD_BillListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillListViewController.h; sourceTree = "<group>"; };
 		DA8D1772214E8CBC006574E4 /* PD_BillListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillListViewController.m; sourceTree = "<group>"; };
@@ -727,7 +727,7 @@
 			isa = PBXGroup;
 			children = (
 				50B13616216603CC009C435C /* DelegateManagerMainView.h */,
-				50B13617216603CC009C435C /* DelegateManagerMainView.m */,
+				78D1F0B8216B321400A98425 /* DelegateManagerMainView.m */,
 				50B1361B21660902009C435C /* DelegateManagerMainView.xib */,
 			);
 			path = View;
@@ -759,8 +759,8 @@
 		50BD2ABB21626E98008D201B /* TerminalSelect(终端查询) */ = {
 			isa = PBXGroup;
 			children = (
-				50B1362021697E91009C435C /* TerminalSelectResultViewController.h */,
-				50B1362121697E91009C435C /* TerminalSelectResultViewController.m */,
+				78D1F0B5216B31B600A98425 /* TerminalSelectResultViewController.h */,
+				78D1F0B6216B31B600A98425 /* TerminalSelectResultViewController.m */,
 				50BD2ABF21626F0F008D201B /* TerminalSelectViewController.h */,
 				50BD2AC021626F0F008D201B /* TerminalSelectViewController.m */,
 				50BD2AC421627870008D201B /* TerminalSelectMainView.h */,
@@ -1738,7 +1738,6 @@
 				7888F2D72147C31600AAC8B0 /* BaseSonViewController.m in Sources */,
 				50184CD921589E2C00D11AC6 /* UIButton+Style.m in Sources */,
 				7888F3572147C32C00AAC8B0 /* UIAlertView+Blocks.m in Sources */,
-				50B13618216603CC009C435C /* DelegateManagerMainView.m in Sources */,
 				2591E55E214D72C100469452 /* BLAreaPickerView.m in Sources */,
 				502AF8132163A5E100260979 /* SheetPickerView.m in Sources */,
 				7888F34F2147C32C00AAC8B0 /* HDeviceIdentifier.m in Sources */,
@@ -1790,6 +1789,7 @@
 				7888F2F42147C32600AAC8B0 /* LoginManager.m in Sources */,
 				502AF8102163880000260979 /* TerminalAdminTableViewCell.m in Sources */,
 				7888F3B52147C33900AAC8B0 /* UITableView+BackgroundImageView.m in Sources */,
+				78D1F0B9216B321500A98425 /* DelegateManagerMainView.m in Sources */,
 				2546E2D1214D2F250066DBFB /* SettingTableViewCell.m in Sources */,
 				50DAAF50216A32A80060EBBC /* BrandIntroductionViewController.m in Sources */,
 				787166B7214912E200452C51 /* PosHomePageViewController.m in Sources */,
@@ -1804,6 +1804,7 @@
 				259646E32158DFAE00E516BF /* SeparateQueryViewController.m in Sources */,
 				786AD100215A3BA8005D7363 /* ActivationMoneyViewController.m in Sources */,
 				50B1362B216984E5009C435C /* DelegateManagerResultViewController.m in Sources */,
+				78D1F0B7216B31B700A98425 /* TerminalSelectResultViewController.m in Sources */,
 				50B060822153A0DC00B7B411 /* PD_BillSkuHeaderView.m in Sources */,
 				5067AB96215F8518005A1FD7 /* ActivationMoneyRootViewController.m in Sources */,
 				7871669B214911BC00452C51 /* TBCityIconInfo.m in Sources */,
@@ -1848,7 +1849,6 @@
 				506EDEFA215B3561000CCF50 /* PD_BillListRootViewController.m in Sources */,
 				501B5728215DC64B0025086D /* PD_BillDetailUnCheckView.m in Sources */,
 				5089375F21561B32007C6239 /* AchievementsViewController.m in Sources */,
-				50B1362221697E91009C435C /* TerminalSelectResultViewController.m in Sources */,
 				7888F2DD2147C31600AAC8B0 /* CommunityWebViewController.m in Sources */,
 				7888F3AF2147C33900AAC8B0 /* NSString+Helper.m in Sources */,
 				2520A68E214CE38900D48B26 /* SettingViewController.m in Sources */,

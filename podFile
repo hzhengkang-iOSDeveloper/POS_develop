@@ -10,7 +10,7 @@ pod 'GrowingIO', '~> 0.9.47'
 pod 'IQKeyboardManager', '~> 5.0.4'
 pod 'SDWebImage', '~> 4.1.2'
 pod 'SVProgressHUD', '~> 2.2.5'
-pod 'WMPageController', '~> 2.5.2'
 pod 'GTMNSStringHTMLAdditions', '~> 0.2.1'
+pod 'WMPageController', '~> 2.5.2'
 end
 
