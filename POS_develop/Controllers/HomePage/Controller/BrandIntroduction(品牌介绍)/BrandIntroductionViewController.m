@@ -8,6 +8,7 @@
 
 #import "BrandIntroductionViewController.h"
 #import "BrandIntroductionCell.h"
+#import "SelectDetailBrandViewController.h"
 
 @interface BrandIntroductionViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *myTableView;
@@ -25,10 +26,12 @@
 - (void)createTableView {
     _myTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     _myTableView.backgroundColor = WhiteColor;
+    _myTableView.estimatedRowHeight = 300;//估算高度
+    _myTableView.rowHeight = UITableViewAutomaticDimension;
     _myTableView.delegate = self;
     _myTableView.dataSource = self;
     _myTableView.showsVerticalScrollIndicator = NO;
-    _myTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    _myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_myTableView];
     [_myTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.bottom.offset(0);
@@ -49,13 +52,18 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BrandIntroductionCell *cell = [BrandIntroductionCell cellWithTableView:tableView];
     cell.titleLabel.text = @"创业包（刷999）";
-    cell.contentLabel.text = @"看我阿his单号if八九那打开那肯定是阿斯蒂芬卡打开啊看到你就发报价的比较安静爸妈把对面吧唧吧唧安静的骄傲没收到吗帮忙多少年， ，是的，啊你看电视那分开好的机会嘉宾都发麻打慢点吗打快点加咖啡就打款哈记得将被没收没法卡看到好看呐，发啊";
-    
-
-    
+   
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    
+    if (indexPath.row == 3) {
+         cell.contentLabel.text = @"看我阿his单号if八九那打开那肯定是阿斯蒂芬卡打开啊看到你就发报价的比较安静爸妈把对面吧唧吧唧安静的骄傲没收到吗帮忙多少年， ，是的，啊你看电视那分开好的机会嘉宾都发麻打慢点吗打快点加咖啡就打款哈记得将被没收没法卡看到好看呐，发啊看我阿his单号if八九那打开那肯定是阿斯蒂芬卡打开啊看到你就发报价的比较安静爸妈把对面吧唧吧唧安静的骄傲没收到吗帮忙多少年， ，是的，啊你看电视那分开好的机会嘉宾都发麻打慢点吗打快点加咖啡就打款哈记得将被没收没法卡看到好看呐，发啊看我阿his单号if八九那打开那肯定是阿斯蒂芬卡打开啊看到你就发报价的比较安静爸妈把对面吧唧吧唧安静的骄傲没收到吗帮忙多少年， ，是的，啊你看电视那分开好的机会嘉宾都发麻打慢点吗打快点加咖啡就打款哈记得将被没收没法卡看到好看呐，发啊看我阿his单号if八九那打开那肯定是阿斯蒂芬卡打开啊看到你就发报价的比较安静爸妈把对面吧唧吧唧安静的骄傲没收到吗帮忙多少年， ，是的，啊你看电视那分开好的机会嘉宾都发麻打慢点吗打快点加咖啡就打款哈记得将被没收没法卡看到好看呐，发啊";
+    }else if (indexPath.row == 2){
+         cell.contentLabel.text = @"看是阿斯蒂芬卡打开啊看到，发啊";
+    }else if (indexPath.row == 5){
+        cell.contentLabel.text = @"看我阿his单号if八九那打开那肯定是阿斯蒂芬卡打开啊看到你就发报价的比较安静爸妈把对面吧唧吧唧安静的骄傲没收到吗帮忙多少年， ，是的，啊你看电视那分开好的机会嘉宾都发麻打慢点吗打快点加咖看我阿his单号if八九那打开那肯定是阿斯蒂芬卡打开啊看到你就发报价的比较安静爸妈把对面吧唧吧唧安静的骄傲没收到吗帮忙多少年， ，是的，啊你看电视那分开好的机会嘉宾都发麻打慢点吗打快点加咖啡就打款哈记得将被没收没法卡看到好看呐，发啊看我阿his单号if八九那打开那肯定是阿斯蒂芬卡打开啊看到你就发报价的比较安静爸妈把对面吧唧吧唧安静的骄傲没收到吗帮忙多少年， ，是的，啊你看电视那分开好的机会嘉宾都发麻打慢点吗打快点加咖啡就打款哈记得将被没收没法卡看到好看呐，发啊看我阿his单号if八九那打开那肯定是阿斯蒂芬卡打开啊看到你就发报价的比较安静爸妈把对面吧唧吧唧安静的骄傲没收到吗帮忙多少年， ，是的，啊你看电视那分开好的机会嘉宾都发麻打慢点吗打快点加咖啡就打款哈记得将被没收没法卡看到好看呐，发啊看我阿his单号if八九那打开那肯定是阿斯蒂芬卡打开啊看到你就发报价的比较安静爸妈把对面吧唧吧唧安静的骄傲没收到吗帮忙多少年， ，是的，啊你看电视那分开好的机会嘉宾都发麻打慢点吗打快点加咖啡就打款哈记得将被没收没法卡看到好看呐，发啊看我阿his单号if八九那打开那肯定是阿斯蒂芬卡打开啊看到你就发报价的比较安静爸妈把对面吧唧吧唧安静的骄傲没收到吗帮忙多少年， ，是的，啊你看电视那分开好的机会嘉宾都发麻打慢点吗打快点加咖啡就打款哈记得将被没收没法卡看到好看呐，发啊看我阿his单号if八九那打开那肯定是阿斯蒂芬卡打开啊看到你就发报价的比较安静爸妈把对面吧唧吧唧安静的骄傲没收到吗帮忙多少年， ，是的，啊你看电视那分开好的机会嘉宾都发麻打慢点吗打快点加咖啡就打款哈记得将被没收没法卡看到好看呐，发啊啡就打款哈记得将被没收没法卡看到好看呐，发啊";
+    }else {
+        cell.contentLabel.text = @"看我阿his单号if八九那打开那肯定是阿斯蒂芬卡打开啊看到你就发报价的比较安静爸妈把对面吧唧吧唧安静的骄傲没收到吗帮忙多少年， ，是的，啊你看电视那分开好的机会嘉宾都发麻打慢点吗打快点加咖啡就打款哈记得将被没收没法卡看到好看呐，发啊";
+    }
     
     return cell;
 }
@@ -63,13 +71,21 @@
 #pragma mark - UITableViewDelegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    BrandIntroductionCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    SelectDetailBrandViewController *vc = [[SelectDetailBrandViewController alloc] init];
+    vc.titleStr = cell.titleLabel.text;
+    vc.contentStr = cell.contentLabel.text;
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    BrandIntroductionCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    return [cell getCellHeight];
-}
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//
+////    BrandIntroductionCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+////    return [cell getCellHeight];
+//    return 300;
+//}
 
 
 /*

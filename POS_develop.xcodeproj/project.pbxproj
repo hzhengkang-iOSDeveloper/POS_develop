@@ -199,6 +199,10 @@
 		7888F3C82147C33900AAC8B0 /* NotPrjView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7888F3AA2147C33900AAC8B0 /* NotPrjView.xib */; };
 		7888F3C92147C33900AAC8B0 /* PlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F3AC2147C33900AAC8B0 /* PlaceholderTextView.m */; };
 		7888F3CA2147C33900AAC8B0 /* TPPasswordTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F3AE2147C33900AAC8B0 /* TPPasswordTextView.m */; };
+		78A79E2E216B785D005C0E54 /* MessageListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A79E2D216B785D005C0E54 /* MessageListTableViewCell.m */; };
+		78AA2574216B7119009EFDAF /* MessageNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AA2573216B7119009EFDAF /* MessageNoticeViewController.m */; };
+		78AA2578216B72D4009EFDAF /* MessageNoticeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AA2577216B72D4009EFDAF /* MessageNoticeTableViewCell.m */; };
+		78AA257B216B7705009EFDAF /* MessageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AA257A216B7705009EFDAF /* MessageListViewController.m */; };
 		78CB4B74214B8BD7000F6A9D /* VipSystemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CB4B73214B8BD7000F6A9D /* VipSystemViewController.m */; };
 		78CB4B77214BA8D7000F6A9D /* MyBillViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CB4B76214BA8D7000F6A9D /* MyBillViewController.m */; };
 		78CB4B7B214BAA29000F6A9D /* MyBillTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CB4B7A214BAA29000F6A9D /* MyBillTableViewCell.m */; };
@@ -207,6 +211,7 @@
 		78CB4BE3214BD9DD000F6A9D /* AddAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CB4BE2214BD9DD000F6A9D /* AddAddressViewController.m */; };
 		78D1F0B7216B31B700A98425 /* TerminalSelectResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D1F0B6216B31B600A98425 /* TerminalSelectResultViewController.m */; };
 		78D1F0B9216B321500A98425 /* DelegateManagerMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D1F0B8216B321400A98425 /* DelegateManagerMainView.m */; };
+		78D1F0D4216B659B00A98425 /* SelectDetailBrandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D1F0D3216B659B00A98425 /* SelectDetailBrandViewController.m */; };
 		DA8D1773214E8CBC006574E4 /* PD_BillListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8D1772214E8CBC006574E4 /* PD_BillListViewController.m */; };
 		DA8D1776214E8EE7006574E4 /* SLConst.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8D1774214E8EE6006574E4 /* SLConst.m */; };
 /* End PBXBuildFile section */
@@ -575,6 +580,14 @@
 		7888F3AC2147C33900AAC8B0 /* PlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceholderTextView.m; sourceTree = "<group>"; };
 		7888F3AD2147C33900AAC8B0 /* TPPasswordTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPPasswordTextView.h; sourceTree = "<group>"; };
 		7888F3AE2147C33900AAC8B0 /* TPPasswordTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPasswordTextView.m; sourceTree = "<group>"; };
+		78A79E2C216B785D005C0E54 /* MessageListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageListTableViewCell.h; sourceTree = "<group>"; };
+		78A79E2D216B785D005C0E54 /* MessageListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageListTableViewCell.m; sourceTree = "<group>"; };
+		78AA2572216B7119009EFDAF /* MessageNoticeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageNoticeViewController.h; sourceTree = "<group>"; };
+		78AA2573216B7119009EFDAF /* MessageNoticeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageNoticeViewController.m; sourceTree = "<group>"; };
+		78AA2576216B72D4009EFDAF /* MessageNoticeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageNoticeTableViewCell.h; sourceTree = "<group>"; };
+		78AA2577216B72D4009EFDAF /* MessageNoticeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageNoticeTableViewCell.m; sourceTree = "<group>"; };
+		78AA2579216B7705009EFDAF /* MessageListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageListViewController.h; sourceTree = "<group>"; };
+		78AA257A216B7705009EFDAF /* MessageListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageListViewController.m; sourceTree = "<group>"; };
 		78CB4B72214B8BD7000F6A9D /* VipSystemViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VipSystemViewController.h; sourceTree = "<group>"; };
 		78CB4B73214B8BD7000F6A9D /* VipSystemViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VipSystemViewController.m; sourceTree = "<group>"; };
 		78CB4B75214BA8D7000F6A9D /* MyBillViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyBillViewController.h; sourceTree = "<group>"; };
@@ -590,6 +603,9 @@
 		78D1F0B5216B31B600A98425 /* TerminalSelectResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerminalSelectResultViewController.h; sourceTree = "<group>"; };
 		78D1F0B6216B31B600A98425 /* TerminalSelectResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerminalSelectResultViewController.m; sourceTree = "<group>"; };
 		78D1F0B8216B321400A98425 /* DelegateManagerMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelegateManagerMainView.m; sourceTree = "<group>"; };
+		78D1F0BA216B343100A98425 /* POSInterfaceName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POSInterfaceName.h; sourceTree = "<group>"; };
+		78D1F0D2216B659B00A98425 /* SelectDetailBrandViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectDetailBrandViewController.h; sourceTree = "<group>"; };
+		78D1F0D3216B659B00A98425 /* SelectDetailBrandViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectDetailBrandViewController.m; sourceTree = "<group>"; };
 		86630A622457BA042EF8C924 /* Pods-POS_develop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-POS_develop.release.xcconfig"; path = "Pods/Target Support Files/Pods-POS_develop/Pods-POS_develop.release.xcconfig"; sourceTree = "<group>"; };
 		DA8D1771214E8CBC006574E4 /* PD_BillListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillListViewController.h; sourceTree = "<group>"; };
 		DA8D1772214E8CBC006574E4 /* PD_BillListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillListViewController.m; sourceTree = "<group>"; };
@@ -796,6 +812,8 @@
 				50DAAF51216A334A0060EBBC /* Cell */,
 				50DAAF4E216A32A80060EBBC /* BrandIntroductionViewController.h */,
 				50DAAF4F216A32A80060EBBC /* BrandIntroductionViewController.m */,
+				78D1F0D2216B659B00A98425 /* SelectDetailBrandViewController.h */,
+				78D1F0D3216B659B00A98425 /* SelectDetailBrandViewController.m */,
 			);
 			path = "BrandIntroduction(品牌介绍)";
 			sourceTree = "<group>";
@@ -1043,6 +1061,7 @@
 		787FFC9321522D4400318BBC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				78AA2571216B70E5009EFDAF /* Message(消息) */,
 				50DAAF4D216A328A0060EBBC /* BrandIntroduction(品牌介绍) */,
 				50B136122166031E009C435C /* DelegateManager(代理商管理) */,
 				502AF8092163872600260979 /* TerminalAdmin(终端管理) */,
@@ -1107,6 +1126,7 @@
 				7888F2B02147C0AC00AAC8B0 /* Assets.xcassets */,
 				7888F2B22147C0AC00AAC8B0 /* LaunchScreen.storyboard */,
 				7888F2B62147C0AC00AAC8B0 /* main.m */,
+				78D1F0BA216B343100A98425 /* POSInterfaceName.h */,
 			);
 			path = POS_develop;
 			sourceTree = "<group>";
@@ -1493,6 +1513,29 @@
 			path = NotPrjView;
 			sourceTree = "<group>";
 		};
+		78AA2571216B70E5009EFDAF /* Message(消息) */ = {
+			isa = PBXGroup;
+			children = (
+				78AA2575216B72BF009EFDAF /* Cell */,
+				78AA2572216B7119009EFDAF /* MessageNoticeViewController.h */,
+				78AA2573216B7119009EFDAF /* MessageNoticeViewController.m */,
+				78AA2579216B7705009EFDAF /* MessageListViewController.h */,
+				78AA257A216B7705009EFDAF /* MessageListViewController.m */,
+			);
+			path = "Message(消息)";
+			sourceTree = "<group>";
+		};
+		78AA2575216B72BF009EFDAF /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				78AA2576216B72D4009EFDAF /* MessageNoticeTableViewCell.h */,
+				78AA2577216B72D4009EFDAF /* MessageNoticeTableViewCell.m */,
+				78A79E2C216B785D005C0E54 /* MessageListTableViewCell.h */,
+				78A79E2D216B785D005C0E54 /* MessageListTableViewCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		78CB4B71214B8BBA000F6A9D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -1745,6 +1788,7 @@
 				502BAFC3215C884B005EDE6F /* PD_BillDetailOutLineInfoView.m in Sources */,
 				7888F3B62147C33900AAC8B0 /* UIView+Extension.m in Sources */,
 				7888F2DE2147C31600AAC8B0 /* WebViewAction.m in Sources */,
+				78AA257B216B7705009EFDAF /* MessageListViewController.m in Sources */,
 				5089376621561DB8007C6239 /* HomeTableViewCell.m in Sources */,
 				7888F3C32147C33900AAC8B0 /* SY_ImageAndLabelAndLaeblBtn.m in Sources */,
 				7888F36C2147C32C00AAC8B0 /* NSTimer+addition.m in Sources */,
@@ -1763,6 +1807,7 @@
 				50BD2ABA2162698C008D201B /* SureBindViewController.m in Sources */,
 				50F68C3521578C5B00DCFE85 /* XRCarouselView.m in Sources */,
 				7888F2DA2147C31600AAC8B0 /* CFTabBarViewController.m in Sources */,
+				78A79E2E216B785D005C0E54 /* MessageListTableViewCell.m in Sources */,
 				786AD103215A440C005D7363 /* ActivationMoneyDetailViewController.m in Sources */,
 				7888F2DB2147C31600AAC8B0 /* DirectivePageViewController.m in Sources */,
 				7888F34D2147C32C00AAC8B0 /* GDataXMLNode.m in Sources */,
@@ -1819,6 +1864,7 @@
 				7888F3662147C32C00AAC8B0 /* RSA+AES+GZIP.m in Sources */,
 				78765A92214A89D600261ED3 /* FastLoginViewController.m in Sources */,
 				7888F3652147C32C00AAC8B0 /* NSData+AES.m in Sources */,
+				78AA2574216B7119009EFDAF /* MessageNoticeViewController.m in Sources */,
 				78CB4BDD214BCCE3000F6A9D /* MyAddressViewController.m in Sources */,
 				7888F35B2147C32C00AAC8B0 /* ZZActionButton.m in Sources */,
 				7888F2D82147C31600AAC8B0 /* BaseViewController.m in Sources */,
@@ -1862,8 +1908,10 @@
 				7888F3C52147C33900AAC8B0 /* UIButton+ImageTitleSpacing.m in Sources */,
 				7888F2B72147C0AC00AAC8B0 /* main.m in Sources */,
 				50BD2AB721626892008D201B /* TerminalSearchViewController.m in Sources */,
+				78AA2578216B72D4009EFDAF /* MessageNoticeTableViewCell.m in Sources */,
 				50BD2AC221626F0F008D201B /* TerminalSelectViewController.m in Sources */,
 				7871669C214911BC00452C51 /* UIImage+TBCityIconFont.m in Sources */,
+				78D1F0D4216B659B00A98425 /* SelectDetailBrandViewController.m in Sources */,
 				786AD10A215A44A3005D7363 /* ActivationMoneyDetailHeaderView.m in Sources */,
 				7888F3672147C32C00AAC8B0 /* RSA.m in Sources */,
 				7888F3B72147C33900AAC8B0 /* CustomImage.m in Sources */,

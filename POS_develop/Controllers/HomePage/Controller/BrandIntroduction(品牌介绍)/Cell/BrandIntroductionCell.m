@@ -29,17 +29,17 @@
 
 
 - (void)initUI{
-    self.imageView = [[UIImageView alloc] init];
-    self.imageView.image = [UIImage imageNamed:@""];
-    [self.contentView addSubview:self.imageView];
-    [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.myImageView = [[UIImageView alloc] init];
+    self.myImageView.image = [UIImage imageNamed:@"图层7"];
+    [self.contentView addSubview:self.myImageView];
+    [self.myImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(AD_HEIGHT(15));
         make.top.offset(AD_HEIGHT(9));
         make.size.mas_offset(CGSizeMake(ScreenWidth - AD_HEIGHT(30), AD_HEIGHT(192)));
     }];
     UIView *bgView = [UIView getViewWithColor:RGB(32, 32, 32) superView:self.contentView masonrySet:^(UIView *view, MASConstraintMaker *make) {
         make.left.offset(AD_HEIGHT(15));
-        make.bottom.equalTo(self.imageView.mas_bottom).offset(AD_HEIGHT(49));
+        make.bottom.equalTo(self.myImageView.mas_bottom);
         make.size.mas_offset(CGSizeMake(ScreenWidth - AD_HEIGHT(30), AD_HEIGHT(49)));
         
     }];
@@ -50,12 +50,15 @@
     }];
     self.contentLabel = [UILabel getLabelWithFont:F12 textColor:C000000 superView:self.contentView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
         make.left.offset(AD_HEIGHT(15));
-        make.centerY.offset(0);
+        make.top.mas_equalTo(self.myImageView.mas_bottom).offset(AD_HEIGHT(5));
+        make.width.mas_equalTo(ScreenWidth - AD_HEIGHT(30));
+        make.bottom.offset(0);
     }];
     self.contentLabel.numberOfLines = 0;
 }
 
 - (CGFloat)getCellHeight {
+    [self layoutIfNeeded];
     return CGRectGetMaxY(self.contentLabel.frame);
 }
 @end

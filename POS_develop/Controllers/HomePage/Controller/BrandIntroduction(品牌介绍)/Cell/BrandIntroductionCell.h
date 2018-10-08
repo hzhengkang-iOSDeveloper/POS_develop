@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BrandIntroductionCell : UITableViewCell
-@property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) UIImageView *myImageView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *contentLabel;
 

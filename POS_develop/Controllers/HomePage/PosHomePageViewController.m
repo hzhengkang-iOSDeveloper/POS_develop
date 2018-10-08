@@ -10,6 +10,7 @@
 #import "HomeTableViewCell.h"
 #import "PosHomePageHeaderView.h"
 #import "AchievementsViewController.h"
+#import "MessageNoticeViewController.h"
 
 @interface PosHomePageViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *homeTableView;
@@ -20,8 +21,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItemTitle = @"支付管理";
+    MJWeakSelf;
     [self addRightBarButtonWithImage:[UIImage imageNamed:@"消息"] clickHandler:^{
-        
+        MessageNoticeViewController *vc = [[MessageNoticeViewController alloc] init];
+        [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
     [self addBackButtonWithImage:[UIImage imageNamed:@"图层3拷贝-1"]  clickHandler:^{
 

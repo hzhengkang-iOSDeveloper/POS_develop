@@ -27,7 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItemTitle = @"手机号快捷登录";
+    self.navigationItemTitle = @"我要注册";
     self.view.backgroundColor = WhiteColor;
     [self initUI];
 }
@@ -263,7 +263,7 @@
 
 #pragma mark ---- 其他方式登录 ----
 - (void)otherTypeLoginClick {
-    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark ---- 注册 ----
 - (void)registerClick {
@@ -292,6 +292,8 @@
     //        }
     //
     //    }];
+    
+    
 }
 - (void)loginSuccess:(BOOL)success Result:(NSDictionary *)result
 {

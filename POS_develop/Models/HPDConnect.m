@@ -21,28 +21,19 @@
 //生产环境
 #define  kFormalURL      @"https://api.hepancaifu.com"
 
-#define  KTestURL0324    @"http://114.215.238.32"
-
 //测试环境
-#define  LocalHost2      @"http://mp.hepandai.com"
-#define  LocalHost3      @"http://121.40.34.114"
 
-#define  newLocalHost    @"http://116.62.158.147:800"
+#define  newLocalHost    @"http://106.14.7.85:8000/v2/api-docs"
 
 #define  BaseHeaderURL   kFormalURL
 
-//#define  kFormalURL      @"http://m.hepandai.com/WebService/WebService.asmx"
-//#define  KTestURL0324    @"http://42.120.22.200/WebService/WebService.asmx"
-#define  NewTEST         @"http://weixin.hepandai.com:86/WebService/WebService.asmx"
-#define  TEST2           @"http://mp.hepandai.com/webservice/API.asmx"
-#define  LocalHost       @"http://192.168.0.116:801/WebService/WebService.asmx"
-//#define  LocalHost2      @"http://mp.hepandai.com/WebService/WebService.asmx"
-#define  kFormalURL1     @"http://121.40.34.114/WebService/WebService.asmx"
+//#define  TEST2           @"http://mp.hepandai.com/webservice/API.asmx"
 
-#define  kBaseURL      [NSString stringWithFormat:@"%@/WebService/WebService.asmx",BaseHeaderURL]
-#define  kBaseUintURL      [NSString stringWithFormat:@"%@/webservice/API.asmx",BaseHeaderURL]
 
-#define  BaseHTTPURL     [NSString stringWithFormat:@"%@%@", kFormalURL,@"/Base/InvokeWS"]
+//#define  kBaseURL      [NSString stringWithFormat:@"%@/WebService/WebService.asmx",BaseHeaderURL]
+//#define  kBaseUintURL      [NSString stringWithFormat:@"%@/webservice/API.asmx",BaseHeaderURL]
+//
+//#define  BaseHTTPURL     [NSString stringWithFormat:@"%@%@", kFormalURL,@"/Base/InvokeWS"]
 
 + (HPDConnect *)connect
 {
@@ -123,15 +114,11 @@
     NSString *methodName;
     NSDictionary *paramsDic;
     
-    if ([GlobalMethod isSimulationPort:method]) {
-        baseUrl = [NSString stringWithFormat:@"%@", TEST2];
-        methodName = @"GetStr";
-        paramsDic = @{@"str":method};
-    }else{
-        baseUrl = [NSString stringWithFormat:@"%@", kBaseURL];
-        methodName = method;
-        paramsDic = params;
-    }
+   
+    baseUrl = [NSString stringWithFormat:@"%@", BaseHeaderURL];
+    methodName = method;
+    paramsDic = params;
+
     
     NSURL *url = [NSURL URLWithString:[baseUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
@@ -281,18 +268,9 @@
     NSString *methodName;
     NSDictionary *paramsDic;
     
-    if ([GlobalMethod isSimulationPort:method]) {
-        baseUrl = [NSString stringWithFormat:@"%@", TEST2];
-        methodName = @"GetStr";
-        paramsDic = @{@"str":method};
-    }else{
-        //http://m.hepandai.com/WebService/API.asmx
-        //http://42.120.22.200/WebService/API.asmx
-        
-        baseUrl = kBaseUintURL;
-        methodName = method;
-        paramsDic = params;
-    }
+    baseUrl = BaseHeaderURL;
+    methodName = method;
+    paramsDic = params;
     
     NSURL *url = [NSURL URLWithString:[baseUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
@@ -345,20 +323,11 @@
     NSString *methodName;
     NSDictionary *paramsDic;
     
-    if ([GlobalMethod isSimulationPort:method]) {
-        baseUrl = [NSString stringWithFormat:@"%@", TEST2];
-        methodName = @"GetStr";
-        paramsDic = @{@"str":method};
-    }else{
-        //baseUrl = [NSString stringWithFormat:@"%@", kBaseURL];
-        //http://m.hepandai.com/WebService/API.asmx
-        //http://42.120.22.200/WebService/API.asmx
-        
-        baseUrl = kBaseUintURL;
 
-        methodName = method;
-        paramsDic = params;
-    }
+    baseUrl = BaseHeaderURL;
+
+    methodName = method;
+    paramsDic = params;
     
     NSURL *url = [NSURL URLWithString:[baseUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:3.0];
@@ -379,7 +348,7 @@
 
     NSDictionary* dict = [self getRequestParaDic:method params:params];
     AFHTTPSessionManager *session = [self GetAFHTTPSessionManagerObject];
-    [session POST:BaseHTTPURL  parameters:@{@"str":[GlobalMethod GlobalStringWithDictionary:dict]} success:^(NSURLSessionDataTask *task, id responseObject) {
+    [session POST:BaseHeaderURL  parameters:@{@"str":[GlobalMethod GlobalStringWithDictionary:params]} success:^(NSURLSessionDataTask *task, id responseObject) {
    
         result(YES,responseObject);
         
@@ -407,7 +376,7 @@
 -(BOOL)webservicesyncSoapMethod:(NSString *)method params:(NSDictionary *)params cookie:(NSHTTPCookie *)cookie result:(AFNetRequestResultBlock)result
 {
     NSDictionary* dict = [self getRequestParaDic:method params:params];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:BaseHTTPURL]
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:BaseHeaderURL]
                                                                cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:8.0];
     
     [request setHTTPMethod:@"POST"];//设置请求方式为POST，默认为GET
@@ -441,7 +410,7 @@
     NSDictionary* dict = [self getRequestParaDic:method params:params];
     AFHTTPSessionManager *manager = [self GetAFHTTPSessionManagerObject];
     NSDictionary *dict1 = @{@"str":[GlobalMethod GlobalStringWithDictionary:dict]};
-    [manager POST:BaseHTTPURL parameters:dict1 constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [manager POST:BaseHeaderURL parameters:dict1 constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         NSData *data = UIImagePNGRepresentation(upData);
         [formData appendPartWithFileData:data name:fileName fileName:fileName mimeType:@"image/png"];
     } success:^(NSURLSessionDataTask *task, id responseObject) {

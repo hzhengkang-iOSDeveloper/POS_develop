@@ -7,6 +7,7 @@
 //
 
 #import "PasswordLoginViewController.h"
+#import "AFNetworking.h"
 
 @interface PasswordLoginViewController ()
 @property (nonatomic, strong) UITextField *telephoneTF;
@@ -105,10 +106,41 @@
 
 #pragma mark ---- 其他方式登录 ----
 - (void)otherTypeLoginClick {
-    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark ---- 登录 ----
 - (void)loginClick {
+//    [[HPDConnect connect] webservicesAFNetPOSTMethod:@"login" params:@{@"mobile":self.telephoneTF.text, @"password":self.passwordTF.text} cookie:[[LoginManager getInstance] userCookie] result:^(bool success, id result) {
+//
+//        NSLog(@"%@", result);
+//    }];
     
+    
+    AFHTTPSessionManager *session = [self GetAFHTTPSessionManagerObject];
+    NSDictionary *dit = @{@"mobile":self.telephoneTF.text, @"password":self.passwordTF.text};
+    [session POST:@"http://106.14.7.85:8000/login"  parameters:dit success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"%@", responseObject);
+//        result(YES,responseObject);
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        if (![self wasNetworkValid]) {
+//            [SVProgressHUD showInfoWithStatus:@"网络繁忙，请稍后~"];
+//#if DEBUG
+//            NSLog(@"--->net work can not used!");
+//#endif
+//            result(NO, nil);
+//            return;
+//        }
+//        result(NO,error);
+    }];
+    
+}
+
+-(AFHTTPSessionManager*)GetAFHTTPSessionManagerObject{
+    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+    session.requestSerializer = [AFJSONRequestSerializer serializer];
+    session.responseSerializer = [AFJSONResponseSerializer serializer];
+    [session.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    return session;
 }
 @end

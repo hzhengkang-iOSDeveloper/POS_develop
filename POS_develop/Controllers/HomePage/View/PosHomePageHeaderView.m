@@ -9,6 +9,7 @@
 #import "PosHomePageHeaderView.h"
 #import "SLHomeFivePartBtn.h"
 #import "XRCarouselView.h"
+#import "BrandIntroductionViewController.h"//品牌介绍
 @interface PosHomePageHeaderView ()<XRCarouselViewDelegate>
 //轮播图
 @property (nonatomic, strong) XRCarouselView *advView;
@@ -180,13 +181,13 @@
         make.top.equalTo(numberBGImg.mas_bottom);
         make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(82)));
     }];
+    
     //推荐办卡
     self.starFansBtn = [SLHomeFivePartBtn new];
     self.starFansBtn.holdImage = ImageNamed(@"推荐");
     self.starFansBtn.name = @"推荐办卡";
     [self.contentV addSubview:self.starFansBtn];
 //    [self.starFansBtn addTarget:self action:@selector(starFansBtnClick) forControlEvents:UIControlEventTouchUpInside];
-//    MJWeakSelf;
     self.starFansBtn.selfClickEcho = ^{
 //        [weakSelf starFansBtnClick];
     };
@@ -224,6 +225,9 @@
     [self.contentV addSubview:self.starAllianceBtn];
 //    [self.starAllianceBtn addTarget:self action:@selector(starAllianceBtnClick) forControlEvents:UIControlEventTouchUpInside];
     self.starAllianceBtn.selfClickEcho = ^{
+        BrandIntroductionViewController *vc = [[BrandIntroductionViewController alloc]init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [weakSelf.viewController.navigationController pushViewController:vc animated:YES];
 //        [weakSelf starAllianceBtnClick];
     };
     

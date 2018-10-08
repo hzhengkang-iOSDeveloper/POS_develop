@@ -164,7 +164,7 @@
 }
 #pragma mark ---- 其他方式登录 ----
 - (void)otherTypeLoginClick {
-    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark ---- 登录 ----
 - (void)loginClick {
