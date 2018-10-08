@@ -17,15 +17,18 @@
 }
 
 - (void)initUI {
-    UIImageView *bgImageV = [[UIImageView alloc] init];
-    bgImageV.userInteractionEnabled = YES;
-    bgImageV.image = [UIImage imageNamed:@"背景3"];
+    UIView *bgImageV = [[UIView alloc]init];
     [self addSubview:bgImageV];
     [bgImageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self);
         make.top.equalTo(self);
-        make.size.mas_offset(CGSizeMake(ScreenWidth, FITiPhone6(178)-navH));
+        make.size.mas_offset(CGSizeMake(ScreenWidth, FITiPhone6(120)));
     }];
+    [self layoutIfNeeded];
+    [bgImageV setBtnGradientStartColor:[UIColor colorWithHexString:@"#46baf4"] EndColor:[UIColor colorWithHexString:@"#9bd4f0"] GradientType:GradientTypeHorizontal];
+
+    
+    
     UIImageView *searchImageV = [[UIImageView alloc] init];
     searchImageV.userInteractionEnabled = YES;
     searchImageV.image = [UIImage imageNamed:@"搜索框"];
@@ -57,9 +60,11 @@
     [self addSubview:numberBGImg];
     [numberBGImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(FITiPhone6(16));
-        make.top.equalTo(bgImageV.mas_bottom).offset(-AD_HEIGHT(15));
+        make.top.equalTo(bgImageV.mas_bottom).offset(-AD_HEIGHT(35));
         make.size.mas_offset(CGSizeMake(ScreenWidth - FITiPhone6(32), FITiPhone6(71)));
     }];
+    
+    
     UILabel *totalPen = [[UILabel alloc] init];
     totalPen.text = @"返现金额(元)";
     totalPen.textColor = C000000;

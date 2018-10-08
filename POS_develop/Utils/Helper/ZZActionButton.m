@@ -38,6 +38,7 @@
     // actionButton.frame        = frame;
     actionButton.clickHandler    = clickHandler;
     [actionButton setTitle:title forState:UIControlStateNormal];
+    actionButton.titleLabel.font = F12;
     return actionButton;
 }
 

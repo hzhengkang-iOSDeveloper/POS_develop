@@ -21,7 +21,7 @@
     self.navigationItemTitle = @"收货地址";
     self.view.backgroundColor = CF6F6F6;
     MJWeakSelf;
-    UIButton *rightBtn = [self addRightBarButtonWithImage:[UIImage imageNamed:@"语音"] clickHandler:^{
+    [self addRightBarButtonWithImage:[UIImage imageNamed:@"语音"] clickHandler:^{
         NSLog(@"点击右边按钮");
         AddAddressViewController *vc = [[AddAddressViewController alloc] init];
         [weakSelf.navigationController pushViewController:vc animated:YES];

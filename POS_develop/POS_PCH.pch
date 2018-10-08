@@ -53,7 +53,7 @@
 //#import "GetReChargeCustState.h"
 #import "CustomDeleagte.h"
 #import "SVProgressHUD+Extension.h"
-
+#import "SheetPickerView.h"
 
 //三方库头文件
 #import <Masonry.h>
@@ -129,6 +129,7 @@
 #define F12 [UIFont systemFontOfSize:FITiPhone6(12)]
 #define F11 [UIFont systemFontOfSize:FITiPhone6(11)]
 #define F10 [UIFont systemFontOfSize:FITiPhone6(10)]
+#define F9 [UIFont systemFontOfSize:FITiPhone6(9)]
 #define F8 [UIFont systemFontOfSize:FITiPhone6(8)]
 
 ///粗体

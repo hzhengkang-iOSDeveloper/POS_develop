@@ -1,29 +1,31 @@
 //
-//  SeparateQuerySearchViewController.m
+//  ActivationMoneySearchViewController.m
 //  POS_develop
 //
-//  Created by sunyn on 2018/9/25.
-//  Copyright © 2018年 sunyn. All rights reserved.
+//  Created by 胡正康 on 2018/10/1.
+//  Copyright © 2018 sunyn. All rights reserved.
 //
 
-#import "SeparateQuerySearchViewController.h"
-#import "SeparateQueryCell.h"
-@interface SeparateQuerySearchViewController () <UITextFieldDelegate,UITableViewDelegate, UITableViewDataSource> {
+#import "ActivationMoneySearchViewController.h"
+#import "ActivationMoneyCell.h"
+@interface ActivationMoneySearchViewController ()<UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource> {
     UIImageView *searchImgV;
     UITextField *searchTF;
 }
 @property (nonatomic, strong) UITableView *searchTableView;
+
+
 @end
 
-@implementation SeparateQuerySearchViewController
+@implementation ActivationMoneySearchViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = WhiteColor;
     [self initUI];
     [self createTableView];
+    
 }
-
 - (void)createTableView {
     _searchTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, FITiPhone6(46), ScreenWidth, ScreenHeight - TabbarHeight - FITiPhone6(46)) style:UITableViewStylePlain];
     _searchTableView.backgroundColor = WhiteColor;
@@ -47,7 +49,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    SeparateQueryCell *cell = [SeparateQueryCell cellWithTableView:tableView];
+    ActivationMoneyCell *cell = [ActivationMoneyCell cellWithTableView:tableView];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     
@@ -64,7 +66,6 @@
     return FITiPhone6(87);
 }
 
-
 - (void)initUI {
     UIImageView *searchImageV = [[UIImageView alloc] init];
     searchImageV.backgroundColor = RGB(238, 238, 238);
@@ -72,8 +73,8 @@
     searchImageV.layer.masksToBounds = YES;
     searchImageV.userInteractionEnabled = YES;
     searchImageV.image = [UIImage imageNamed:@"搜索框"];
-//    UITapGestureRecognizer *searchTap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(searchTap)];
-//    [searchImageV addGestureRecognizer:searchTap];
+    //    UITapGestureRecognizer *searchTap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(searchTap)];
+    //    [searchImageV addGestureRecognizer:searchTap];
     [self.view addSubview:searchImageV];
     [searchImageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(FITiPhone6(15));
@@ -97,12 +98,12 @@
         make.left.equalTo(searchImageV).offset(FITiPhone6(9));
         make.top.equalTo(self.view).offset(FITiPhone6(13));
         make.size.mas_offset(CGSizeMake(ScreenWidth - FITiPhone6(30), FITiPhone6(33)));
-
+        
     }];
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-
+    
     return YES;
 }
 
@@ -111,4 +112,14 @@
     searchImgV.hidden = YES;
     return YES;
 }
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
 @end

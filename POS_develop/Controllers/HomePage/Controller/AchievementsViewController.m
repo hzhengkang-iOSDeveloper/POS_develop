@@ -12,6 +12,10 @@
 #import "TransactionQueryViewController.h"
 #import "SeparateQueryViewController.h"
 #import "ActivationMoneyViewController.h"
+#import "TerminalBindViewController.h"//终端绑定
+#import "TerminalSelectViewController.h"//终端查询
+#import "TerminalAdminViewController.h"//终端管理
+#import "DelegateManagerViewController.h"//代理商管理
 
 @interface AchievementsViewController () <UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) UICollectionView *myTopCollection;
@@ -145,19 +149,23 @@
             }
                 break;
             case 4:{
-                
+                TerminalBindViewController *vc = [[TerminalBindViewController alloc] init];
+                [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
             case 5:{
-                
+                TerminalSelectViewController *vc = [[TerminalSelectViewController alloc] init];
+                [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
             case 6:{
-                
+                TerminalAdminViewController *vc = [[TerminalAdminViewController alloc] init];
+                [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
             case 7:{
-                
+                DelegateManagerViewController *vc = [[DelegateManagerViewController alloc] init];
+                [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
         }

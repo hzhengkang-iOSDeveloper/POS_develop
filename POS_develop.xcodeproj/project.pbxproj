@@ -31,8 +31,13 @@
 		50184CE32158C87E00D11AC6 /* PD_BillDetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50184CE22158C87E00D11AC6 /* PD_BillDetailFooterView.m */; };
 		501B5728215DC64B0025086D /* PD_BillDetailUnCheckView.m in Sources */ = {isa = PBXBuildFile; fileRef = 501B5727215DC64B0025086D /* PD_BillDetailUnCheckView.m */; };
 		501B572B215DFBF10025086D /* PD_BillDetailOnLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 501B572A215DFBF10025086D /* PD_BillDetailOnLineView.m */; };
+		502AF80C2163875E00260979 /* TerminalAdminViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 502AF80B2163875E00260979 /* TerminalAdminViewController.m */; };
+		502AF8102163880000260979 /* TerminalAdminTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 502AF80F2163880000260979 /* TerminalAdminTableViewCell.m */; };
+		502AF8132163A5E100260979 /* SheetPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 502AF8122163A5E100260979 /* SheetPickerView.m */; };
 		502BAFC3215C884B005EDE6F /* PD_BillDetailOutLineInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 502BAFC2215C884B005EDE6F /* PD_BillDetailOutLineInfoView.m */; };
 		50339EAE2152968F003011E9 /* PD_BillListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50339EAD2152968F003011E9 /* PD_BillListCell.m */; };
+		5067AB96215F8518005A1FD7 /* ActivationMoneyRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5067AB95215F8518005A1FD7 /* ActivationMoneyRootViewController.m */; };
+		5067AB9A215F887B005A1FD7 /* ActivationMoneyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5067AB99215F887B005A1FD7 /* ActivationMoneyCell.m */; };
 		506EDEF7215B27E4000CCF50 /* SeparateQueryRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506EDEF6215B27E4000CCF50 /* SeparateQueryRootViewController.m */; };
 		506EDEFA215B3561000CCF50 /* PD_BillListRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506EDEF9215B3561000CCF50 /* PD_BillListRootViewController.m */; };
 		5089375F21561B32007C6239 /* AchievementsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5089375E21561B32007C6239 /* AchievementsViewController.m */; };
@@ -44,8 +49,29 @@
 		50B0607F2153520E00B7B411 /* PD_BillListSkuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B0607E2153520E00B7B411 /* PD_BillListSkuCell.m */; };
 		50B060822153A0DC00B7B411 /* PD_BillSkuHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B060812153A0DC00B7B411 /* PD_BillSkuHeaderView.m */; };
 		50B060852153A10500B7B411 /* PD_BillSkuFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B060842153A10500B7B411 /* PD_BillSkuFooterView.m */; };
+		50B136082165E7BE009C435C /* TerminalDistributionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B136072165E7BE009C435C /* TerminalDistributionViewController.m */; };
+		50B1360B2165E890009C435C /* TerminalNoDistributionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B1360A2165E890009C435C /* TerminalNoDistributionCell.m */; };
+		50B1360E2165E8B8009C435C /* TerminalAlreadyDistributionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B1360D2165E8B8009C435C /* TerminalAlreadyDistributionCell.m */; };
+		50B136112165F3D9009C435C /* BrandTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B136102165F3D9009C435C /* BrandTableViewCell.m */; };
+		50B1361521660341009C435C /* DelegateManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B1361421660341009C435C /* DelegateManagerViewController.m */; };
+		50B13618216603CC009C435C /* DelegateManagerMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B13617216603CC009C435C /* DelegateManagerMainView.m */; };
+		50B1361C21660902009C435C /* DelegateManagerMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50B1361B21660902009C435C /* DelegateManagerMainView.xib */; };
+		50B1362221697E91009C435C /* TerminalSelectResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B1362121697E91009C435C /* TerminalSelectResultViewController.m */; };
+		50B1362B216984E5009C435C /* DelegateManagerResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B1362A216984E5009C435C /* DelegateManagerResultViewController.m */; };
+		50B1362F216A1D91009C435C /* DelegateManagerEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B1362E216A1D91009C435C /* DelegateManagerEditViewController.m */; };
+		50BBD28D2161C11900C2AC5B /* ActivationMoneySearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50BBD28C2161C11900C2AC5B /* ActivationMoneySearchViewController.m */; };
+		50BD2AAF21625E48008D201B /* TerminalBindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50BD2AAE21625E48008D201B /* TerminalBindViewController.m */; };
+		50BD2AB321625FA3008D201B /* TerminalBindTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50BD2AB221625FA3008D201B /* TerminalBindTableViewCell.m */; };
+		50BD2AB721626892008D201B /* TerminalSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50BD2AB5216267F0008D201B /* TerminalSearchViewController.m */; };
+		50BD2ABA2162698C008D201B /* SureBindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50BD2AB92162698C008D201B /* SureBindViewController.m */; };
+		50BD2AC221626F0F008D201B /* TerminalSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50BD2AC021626F0F008D201B /* TerminalSelectViewController.m */; };
+		50BD2AC621627870008D201B /* TerminalSelectMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50BD2AC521627870008D201B /* TerminalSelectMainView.m */; };
+		50BD2AC82162787E008D201B /* TerminalSelectMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50BD2AC72162787E008D201B /* TerminalSelectMainView.xib */; };
 		50C5449C2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C5449A2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.m */; };
 		50D4449C215F0DF100AE6219 /* PD_BillDetailComfirInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D4449B215F0DF100AE6219 /* PD_BillDetailComfirInfoView.m */; };
+		50DAAF4C216A20470060EBBC /* DelegateManagerEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DAAF4B216A20470060EBBC /* DelegateManagerEditCell.m */; };
+		50DAAF50216A32A80060EBBC /* BrandIntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DAAF4F216A32A80060EBBC /* BrandIntroductionViewController.m */; };
+		50DAAF54216A33700060EBBC /* BrandIntroductionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DAAF53216A33700060EBBC /* BrandIntroductionCell.m */; };
 		50F1C8D0215B963100CCF6C0 /* SVProgressHUD+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F1C8CF215B963100CCF6C0 /* SVProgressHUD+Extension.m */; };
 		50F68C3521578C5B00DCFE85 /* XRCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F68C3421578C5B00DCFE85 /* XRCarouselView.m */; };
 		50F68C382158987800DCFE85 /* PD_BillDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F68C372158987800DCFE85 /* PD_BillDetailViewController.m */; };
@@ -230,10 +256,20 @@
 		501B5727215DC64B0025086D /* PD_BillDetailUnCheckView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillDetailUnCheckView.m; sourceTree = "<group>"; };
 		501B5729215DFBF10025086D /* PD_BillDetailOnLineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillDetailOnLineView.h; sourceTree = "<group>"; };
 		501B572A215DFBF10025086D /* PD_BillDetailOnLineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillDetailOnLineView.m; sourceTree = "<group>"; };
+		502AF80A2163875E00260979 /* TerminalAdminViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TerminalAdminViewController.h; sourceTree = "<group>"; };
+		502AF80B2163875E00260979 /* TerminalAdminViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TerminalAdminViewController.m; sourceTree = "<group>"; };
+		502AF80E2163880000260979 /* TerminalAdminTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TerminalAdminTableViewCell.h; sourceTree = "<group>"; };
+		502AF80F2163880000260979 /* TerminalAdminTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TerminalAdminTableViewCell.m; sourceTree = "<group>"; };
+		502AF8112163A5E100260979 /* SheetPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SheetPickerView.h; sourceTree = "<group>"; };
+		502AF8122163A5E100260979 /* SheetPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SheetPickerView.m; sourceTree = "<group>"; };
 		502BAFC1215C884B005EDE6F /* PD_BillDetailOutLineInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillDetailOutLineInfoView.h; sourceTree = "<group>"; };
 		502BAFC2215C884B005EDE6F /* PD_BillDetailOutLineInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillDetailOutLineInfoView.m; sourceTree = "<group>"; };
 		50339EAC2152968F003011E9 /* PD_BillListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillListCell.h; sourceTree = "<group>"; };
 		50339EAD2152968F003011E9 /* PD_BillListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillListCell.m; sourceTree = "<group>"; };
+		5067AB94215F8518005A1FD7 /* ActivationMoneyRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActivationMoneyRootViewController.h; sourceTree = "<group>"; };
+		5067AB95215F8518005A1FD7 /* ActivationMoneyRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActivationMoneyRootViewController.m; sourceTree = "<group>"; };
+		5067AB98215F887B005A1FD7 /* ActivationMoneyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActivationMoneyCell.h; sourceTree = "<group>"; };
+		5067AB99215F887B005A1FD7 /* ActivationMoneyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActivationMoneyCell.m; sourceTree = "<group>"; };
 		506EDEF5215B27E4000CCF50 /* SeparateQueryRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeparateQueryRootViewController.h; sourceTree = "<group>"; };
 		506EDEF6215B27E4000CCF50 /* SeparateQueryRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeparateQueryRootViewController.m; sourceTree = "<group>"; };
 		506EDEF8215B3561000CCF50 /* PD_BillListRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillListRootViewController.h; sourceTree = "<group>"; };
@@ -256,10 +292,50 @@
 		50B060812153A0DC00B7B411 /* PD_BillSkuHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillSkuHeaderView.m; sourceTree = "<group>"; };
 		50B060832153A10500B7B411 /* PD_BillSkuFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillSkuFooterView.h; sourceTree = "<group>"; };
 		50B060842153A10500B7B411 /* PD_BillSkuFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillSkuFooterView.m; sourceTree = "<group>"; };
+		50B136062165E7BE009C435C /* TerminalDistributionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TerminalDistributionViewController.h; sourceTree = "<group>"; };
+		50B136072165E7BE009C435C /* TerminalDistributionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TerminalDistributionViewController.m; sourceTree = "<group>"; };
+		50B136092165E890009C435C /* TerminalNoDistributionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TerminalNoDistributionCell.h; sourceTree = "<group>"; };
+		50B1360A2165E890009C435C /* TerminalNoDistributionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TerminalNoDistributionCell.m; sourceTree = "<group>"; };
+		50B1360C2165E8B8009C435C /* TerminalAlreadyDistributionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TerminalAlreadyDistributionCell.h; sourceTree = "<group>"; };
+		50B1360D2165E8B8009C435C /* TerminalAlreadyDistributionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TerminalAlreadyDistributionCell.m; sourceTree = "<group>"; };
+		50B1360F2165F3D9009C435C /* BrandTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrandTableViewCell.h; sourceTree = "<group>"; };
+		50B136102165F3D9009C435C /* BrandTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrandTableViewCell.m; sourceTree = "<group>"; };
+		50B1361321660341009C435C /* DelegateManagerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelegateManagerViewController.h; sourceTree = "<group>"; };
+		50B1361421660341009C435C /* DelegateManagerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DelegateManagerViewController.m; sourceTree = "<group>"; };
+		50B13616216603CC009C435C /* DelegateManagerMainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelegateManagerMainView.h; sourceTree = "<group>"; };
+		50B13617216603CC009C435C /* DelegateManagerMainView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DelegateManagerMainView.m; sourceTree = "<group>"; };
+		50B1361B21660902009C435C /* DelegateManagerMainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DelegateManagerMainView.xib; sourceTree = "<group>"; };
+		50B1362021697E91009C435C /* TerminalSelectResultViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TerminalSelectResultViewController.h; sourceTree = "<group>"; };
+		50B1362121697E91009C435C /* TerminalSelectResultViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TerminalSelectResultViewController.m; sourceTree = "<group>"; };
+		50B13629216984E5009C435C /* DelegateManagerResultViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelegateManagerResultViewController.h; sourceTree = "<group>"; };
+		50B1362A216984E5009C435C /* DelegateManagerResultViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DelegateManagerResultViewController.m; sourceTree = "<group>"; };
+		50B1362D216A1D91009C435C /* DelegateManagerEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelegateManagerEditViewController.h; sourceTree = "<group>"; };
+		50B1362E216A1D91009C435C /* DelegateManagerEditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DelegateManagerEditViewController.m; sourceTree = "<group>"; };
+		50BBD28B2161C11900C2AC5B /* ActivationMoneySearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActivationMoneySearchViewController.h; sourceTree = "<group>"; };
+		50BBD28C2161C11900C2AC5B /* ActivationMoneySearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActivationMoneySearchViewController.m; sourceTree = "<group>"; };
+		50BD2AAD21625E48008D201B /* TerminalBindViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TerminalBindViewController.h; sourceTree = "<group>"; };
+		50BD2AAE21625E48008D201B /* TerminalBindViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TerminalBindViewController.m; sourceTree = "<group>"; };
+		50BD2AB121625FA3008D201B /* TerminalBindTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TerminalBindTableViewCell.h; sourceTree = "<group>"; };
+		50BD2AB221625FA3008D201B /* TerminalBindTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TerminalBindTableViewCell.m; sourceTree = "<group>"; };
+		50BD2AB4216267F0008D201B /* TerminalSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TerminalSearchViewController.h; sourceTree = "<group>"; };
+		50BD2AB5216267F0008D201B /* TerminalSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TerminalSearchViewController.m; sourceTree = "<group>"; };
+		50BD2AB82162698C008D201B /* SureBindViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SureBindViewController.h; sourceTree = "<group>"; };
+		50BD2AB92162698C008D201B /* SureBindViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SureBindViewController.m; sourceTree = "<group>"; };
+		50BD2ABF21626F0F008D201B /* TerminalSelectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TerminalSelectViewController.h; sourceTree = "<group>"; };
+		50BD2AC021626F0F008D201B /* TerminalSelectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TerminalSelectViewController.m; sourceTree = "<group>"; };
+		50BD2AC421627870008D201B /* TerminalSelectMainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TerminalSelectMainView.h; sourceTree = "<group>"; };
+		50BD2AC521627870008D201B /* TerminalSelectMainView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TerminalSelectMainView.m; sourceTree = "<group>"; };
+		50BD2AC72162787E008D201B /* TerminalSelectMainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TerminalSelectMainView.xib; sourceTree = "<group>"; };
 		50C5449A2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLOrdersDeteiledLabel.m; sourceTree = "<group>"; };
 		50C5449B2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLOrdersDeteiledLabel.h; sourceTree = "<group>"; };
 		50D4449A215F0DF100AE6219 /* PD_BillDetailComfirInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillDetailComfirInfoView.h; sourceTree = "<group>"; };
 		50D4449B215F0DF100AE6219 /* PD_BillDetailComfirInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillDetailComfirInfoView.m; sourceTree = "<group>"; };
+		50DAAF4A216A20470060EBBC /* DelegateManagerEditCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelegateManagerEditCell.h; sourceTree = "<group>"; };
+		50DAAF4B216A20470060EBBC /* DelegateManagerEditCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DelegateManagerEditCell.m; sourceTree = "<group>"; };
+		50DAAF4E216A32A80060EBBC /* BrandIntroductionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrandIntroductionViewController.h; sourceTree = "<group>"; };
+		50DAAF4F216A32A80060EBBC /* BrandIntroductionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrandIntroductionViewController.m; sourceTree = "<group>"; };
+		50DAAF52216A33700060EBBC /* BrandIntroductionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrandIntroductionCell.h; sourceTree = "<group>"; };
+		50DAAF53216A33700060EBBC /* BrandIntroductionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrandIntroductionCell.m; sourceTree = "<group>"; };
 		50F1C8CE215B963100CCF6C0 /* SVProgressHUD+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD+Extension.h"; sourceTree = "<group>"; };
 		50F1C8CF215B963100CCF6C0 /* SVProgressHUD+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SVProgressHUD+Extension.m"; sourceTree = "<group>"; };
 		50F68C3321578C5B00DCFE85 /* XRCarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XRCarouselView.h; sourceTree = "<group>"; };
@@ -554,6 +630,33 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		502AF8092163872600260979 /* TerminalAdmin(终端管理) */ = {
+			isa = PBXGroup;
+			children = (
+				502AF80D216387E900260979 /* Cell */,
+				502AF80A2163875E00260979 /* TerminalAdminViewController.h */,
+				502AF80B2163875E00260979 /* TerminalAdminViewController.m */,
+				50B136062165E7BE009C435C /* TerminalDistributionViewController.h */,
+				50B136072165E7BE009C435C /* TerminalDistributionViewController.m */,
+			);
+			path = "TerminalAdmin(终端管理)";
+			sourceTree = "<group>";
+		};
+		502AF80D216387E900260979 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				502AF80E2163880000260979 /* TerminalAdminTableViewCell.h */,
+				502AF80F2163880000260979 /* TerminalAdminTableViewCell.m */,
+				50B136092165E890009C435C /* TerminalNoDistributionCell.h */,
+				50B1360A2165E890009C435C /* TerminalNoDistributionCell.m */,
+				50B1360C2165E8B8009C435C /* TerminalAlreadyDistributionCell.h */,
+				50B1360D2165E8B8009C435C /* TerminalAlreadyDistributionCell.m */,
+				50B1360F2165F3D9009C435C /* BrandTableViewCell.h */,
+				50B136102165F3D9009C435C /* BrandTableViewCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		50339EAB21529679003011E9 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -583,6 +686,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		5067AB97215F8852005A1FD7 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				5067AB98215F887B005A1FD7 /* ActivationMoneyCell.h */,
+				5067AB99215F887B005A1FD7 /* ActivationMoneyCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		5089376021561C55007C6239 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -596,13 +708,105 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		50B136122166031E009C435C /* DelegateManager(代理商管理) */ = {
+			isa = PBXGroup;
+			children = (
+				50DAAF49216A20280060EBBC /* Cell */,
+				50B1362C216A1D58009C435C /* View */,
+				50B13629216984E5009C435C /* DelegateManagerResultViewController.h */,
+				50B1362A216984E5009C435C /* DelegateManagerResultViewController.m */,
+				50B1361321660341009C435C /* DelegateManagerViewController.h */,
+				50B1361421660341009C435C /* DelegateManagerViewController.m */,
+				50B1362D216A1D91009C435C /* DelegateManagerEditViewController.h */,
+				50B1362E216A1D91009C435C /* DelegateManagerEditViewController.m */,
+			);
+			path = "DelegateManager(代理商管理)";
+			sourceTree = "<group>";
+		};
+		50B1362C216A1D58009C435C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				50B13616216603CC009C435C /* DelegateManagerMainView.h */,
+				50B13617216603CC009C435C /* DelegateManagerMainView.m */,
+				50B1361B21660902009C435C /* DelegateManagerMainView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		50BD2AAC21625E06008D201B /* TerminalBind(终端绑定) */ = {
+			isa = PBXGroup;
+			children = (
+				50BD2AB021625F87008D201B /* Cell */,
+				50BD2AAD21625E48008D201B /* TerminalBindViewController.h */,
+				50BD2AAE21625E48008D201B /* TerminalBindViewController.m */,
+				50BD2AB4216267F0008D201B /* TerminalSearchViewController.h */,
+				50BD2AB5216267F0008D201B /* TerminalSearchViewController.m */,
+				50BD2AB82162698C008D201B /* SureBindViewController.h */,
+				50BD2AB92162698C008D201B /* SureBindViewController.m */,
+			);
+			path = "TerminalBind(终端绑定)";
+			sourceTree = "<group>";
+		};
+		50BD2AB021625F87008D201B /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				50BD2AB121625FA3008D201B /* TerminalBindTableViewCell.h */,
+				50BD2AB221625FA3008D201B /* TerminalBindTableViewCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		50BD2ABB21626E98008D201B /* TerminalSelect(终端查询) */ = {
+			isa = PBXGroup;
+			children = (
+				50B1362021697E91009C435C /* TerminalSelectResultViewController.h */,
+				50B1362121697E91009C435C /* TerminalSelectResultViewController.m */,
+				50BD2ABF21626F0F008D201B /* TerminalSelectViewController.h */,
+				50BD2AC021626F0F008D201B /* TerminalSelectViewController.m */,
+				50BD2AC421627870008D201B /* TerminalSelectMainView.h */,
+				50BD2AC521627870008D201B /* TerminalSelectMainView.m */,
+				50BD2AC72162787E008D201B /* TerminalSelectMainView.xib */,
+			);
+			path = "TerminalSelect(终端查询)";
+			sourceTree = "<group>";
+		};
 		50C5449D2159DEB200C8CEB4 /* JKHUD */ = {
 			isa = PBXGroup;
 			children = (
+				502AF8112163A5E100260979 /* SheetPickerView.h */,
+				502AF8122163A5E100260979 /* SheetPickerView.m */,
 				50F1C8CE215B963100CCF6C0 /* SVProgressHUD+Extension.h */,
 				50F1C8CF215B963100CCF6C0 /* SVProgressHUD+Extension.m */,
 			);
 			path = JKHUD;
+			sourceTree = "<group>";
+		};
+		50DAAF49216A20280060EBBC /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				50DAAF4A216A20470060EBBC /* DelegateManagerEditCell.h */,
+				50DAAF4B216A20470060EBBC /* DelegateManagerEditCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		50DAAF4D216A328A0060EBBC /* BrandIntroduction(品牌介绍) */ = {
+			isa = PBXGroup;
+			children = (
+				50DAAF51216A334A0060EBBC /* Cell */,
+				50DAAF4E216A32A80060EBBC /* BrandIntroductionViewController.h */,
+				50DAAF4F216A32A80060EBBC /* BrandIntroductionViewController.m */,
+			);
+			path = "BrandIntroduction(品牌介绍)";
+			sourceTree = "<group>";
+		};
+		50DAAF51216A334A0060EBBC /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				50DAAF52216A33700060EBBC /* BrandIntroductionCell.h */,
+				50DAAF53216A33700060EBBC /* BrandIntroductionCell.m */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		786AD0DE215A2C3C005D7363 /* Unit */ = {
@@ -655,11 +859,16 @@
 		786AD0FA215A3AEF005D7363 /* ActivationMoney(激活返现) */ = {
 			isa = PBXGroup;
 			children = (
+				5067AB97215F8852005A1FD7 /* Cell */,
 				786AD104215A4467005D7363 /* View */,
 				786AD0FE215A3BA8005D7363 /* ActivationMoneyViewController.h */,
 				786AD0FF215A3BA8005D7363 /* ActivationMoneyViewController.m */,
 				786AD101215A440C005D7363 /* ActivationMoneyDetailViewController.h */,
 				786AD102215A440C005D7363 /* ActivationMoneyDetailViewController.m */,
+				5067AB94215F8518005A1FD7 /* ActivationMoneyRootViewController.h */,
+				5067AB95215F8518005A1FD7 /* ActivationMoneyRootViewController.m */,
+				50BBD28B2161C11900C2AC5B /* ActivationMoneySearchViewController.h */,
+				50BBD28C2161C11900C2AC5B /* ActivationMoneySearchViewController.m */,
 			);
 			path = "ActivationMoney(激活返现)";
 			sourceTree = "<group>";
@@ -834,6 +1043,11 @@
 		787FFC9321522D4400318BBC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				50DAAF4D216A328A0060EBBC /* BrandIntroduction(品牌介绍) */,
+				50B136122166031E009C435C /* DelegateManager(代理商管理) */,
+				502AF8092163872600260979 /* TerminalAdmin(终端管理) */,
+				50BD2ABB21626E98008D201B /* TerminalSelect(终端查询) */,
+				50BD2AAC21625E06008D201B /* TerminalBind(终端绑定) */,
 				786AD0FB215A3B2E005D7363 /* TransactionQuery(交易查询) */,
 				786AD0FA215A3AEF005D7363 /* ActivationMoney(激活返现) */,
 				786AD0E2215A2C6C005D7363 /* SeparateQuery(分润查询) */,
@@ -1409,6 +1623,7 @@
 			files = (
 				7888F35F2147C32C00AAC8B0 /* README.md in Resources */,
 				787166B3214911C300452C51 /* style.css in Resources */,
+				50B1361C21660902009C435C /* DelegateManagerMainView.xib in Resources */,
 				259646E82158E1FA00E516BF /* SeparateQueryMainView.xib in Resources */,
 				787166AF214911C300452C51 /* icomoon.ttf in Resources */,
 				787166AC214911C300452C51 /* demo.html in Resources */,
@@ -1419,6 +1634,7 @@
 				7888F2E02147C31600AAC8B0 /* ActivityView.xib in Resources */,
 				787166B1214911C300452C51 /* Read Me.txt in Resources */,
 				2591E55D214D72C100469452 /* areaArray.plist in Resources */,
+				50BD2AC82162787E008D201B /* TerminalSelectMainView.xib in Resources */,
 				787166AE214911C300452C51 /* icomoon.svg in Resources */,
 				787166AB214911C300452C51 /* demo.js in Resources */,
 				259646E02158CBDC00E516BF /* TransactionQueryMainView.xib in Resources */,
@@ -1483,16 +1699,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5067AB9A215F887B005A1FD7 /* ActivationMoneyCell.m in Sources */,
 				78CB4B7B214BAA29000F6A9D /* MyBillTableViewCell.m in Sources */,
 				787EA23C2154F5C700D08F58 /* AchievementsBottomCollectionViewCell.m in Sources */,
 				787FFCA1215232E900318BBC /* TransactionDetailCell.m in Sources */,
 				7888F3592147C32C00AAC8B0 /* UIViewController+BackButtonHandler.m in Sources */,
 				50893769215648CB007C6239 /* PosHomePageHeaderView.m in Sources */,
 				259646E62158E1ED00E516BF /* SeparateQueryMainView.m in Sources */,
+				50BD2AC621627870008D201B /* TerminalSelectMainView.m in Sources */,
 				50B0607F2153520E00B7B411 /* PD_BillListSkuCell.m in Sources */,
 				78765A88214A4EEE00261ED3 /* PersonalTableViewCell.m in Sources */,
 				7888F3C22147C33900AAC8B0 /* SY_AccountImageAndLabelBtn.m in Sources */,
 				7888F3C02147C33900AAC8B0 /* UserInformation.m in Sources */,
+				50DAAF4C216A20470060EBBC /* DelegateManagerEditCell.m in Sources */,
 				7888F3B02147C33900AAC8B0 /* ProjectExtension.m in Sources */,
 				7888F3C72147C33900AAC8B0 /* NotPrjView.m in Sources */,
 				7888F3BE2147C33900AAC8B0 /* BaseModel.m in Sources */,
@@ -1502,6 +1721,8 @@
 				7888F36A2147C32C00AAC8B0 /* SGBaseMenu.m in Sources */,
 				7888F3532147C32C00AAC8B0 /* InfiniteScrollView.m in Sources */,
 				78765A95214A89E500261ED3 /* RegisterViewController.m in Sources */,
+				50BBD28D2161C11900C2AC5B /* ActivationMoneySearchViewController.m in Sources */,
+				50B136082165E7BE009C435C /* TerminalDistributionViewController.m in Sources */,
 				7888F3552147C32C00AAC8B0 /* MyTools.m in Sources */,
 				50339EAE2152968F003011E9 /* PD_BillListCell.m in Sources */,
 				7888F3B42147C33900AAC8B0 /* UILabel+Style.m in Sources */,
@@ -1517,8 +1738,11 @@
 				7888F2D72147C31600AAC8B0 /* BaseSonViewController.m in Sources */,
 				50184CD921589E2C00D11AC6 /* UIButton+Style.m in Sources */,
 				7888F3572147C32C00AAC8B0 /* UIAlertView+Blocks.m in Sources */,
+				50B13618216603CC009C435C /* DelegateManagerMainView.m in Sources */,
 				2591E55E214D72C100469452 /* BLAreaPickerView.m in Sources */,
+				502AF8132163A5E100260979 /* SheetPickerView.m in Sources */,
 				7888F34F2147C32C00AAC8B0 /* HDeviceIdentifier.m in Sources */,
+				50DAAF54216A33700060EBBC /* BrandIntroductionCell.m in Sources */,
 				502BAFC3215C884B005EDE6F /* PD_BillDetailOutLineInfoView.m in Sources */,
 				7888F3B62147C33900AAC8B0 /* UIView+Extension.m in Sources */,
 				7888F2DE2147C31600AAC8B0 /* WebViewAction.m in Sources */,
@@ -1528,6 +1752,7 @@
 				7888F3BB2147C33900AAC8B0 /* ZJPPTViewCustomCell.m in Sources */,
 				7888F3C92147C33900AAC8B0 /* PlaceholderTextView.m in Sources */,
 				50B0607B2153372C00B7B411 /* SLRefreshFooter.m in Sources */,
+				50B1360B2165E890009C435C /* TerminalNoDistributionCell.m in Sources */,
 				787166C32149186200452C51 /* PersonalViewController.m in Sources */,
 				7888F3542147C32C00AAC8B0 /* MyKeyChainHelper.m in Sources */,
 				7888F3632147C32C00AAC8B0 /* LFCGzipUtillity.m in Sources */,
@@ -1536,6 +1761,7 @@
 				50B0607C2153372C00B7B411 /* SLRefreshHeader.m in Sources */,
 				253647DA214E05BC0094576C /* SettingNameViewController.m in Sources */,
 				7888F34E2147C32C00AAC8B0 /* GTMNSString+HTML.m in Sources */,
+				50BD2ABA2162698C008D201B /* SureBindViewController.m in Sources */,
 				50F68C3521578C5B00DCFE85 /* XRCarouselView.m in Sources */,
 				7888F2DA2147C31600AAC8B0 /* CFTabBarViewController.m in Sources */,
 				786AD103215A440C005D7363 /* ActivationMoneyDetailViewController.m in Sources */,
@@ -1548,11 +1774,13 @@
 				7888F3B92147C33900AAC8B0 /* verifyTool.m in Sources */,
 				7888F2F22147C32600AAC8B0 /* HPDConnect.m in Sources */,
 				7888F2F72147C32600AAC8B0 /* UserInfo.m in Sources */,
+				50B1362F216A1D91009C435C /* DelegateManagerEditViewController.m in Sources */,
 				7888F35C2147C32C00AAC8B0 /* HPDUtils.m in Sources */,
 				50F68C3E21589BE100DCFE85 /* PD_BillDetailHeaderView.m in Sources */,
 				7888F3512147C32C00AAC8B0 /* ConfigurationItem.m in Sources */,
 				78765A8F214A89C300261ED3 /* PasswordLoginViewController.m in Sources */,
 				2546E2D4214D47570066DBFB /* UpdatePasswordTableViewCell.m in Sources */,
+				50BD2AB321625FA3008D201B /* TerminalBindTableViewCell.m in Sources */,
 				78CB4BE3214BD9DD000F6A9D /* AddAddressViewController.m in Sources */,
 				7888F3C12147C33900AAC8B0 /* BaseButton.m in Sources */,
 				25E2A36A214D7831006EB5B5 /* PD_SelectAreaPickerView.m in Sources */,
@@ -1560,18 +1788,24 @@
 				787223BC2154E348004C21FE /* AchievementsTopCollectionViewCell.m in Sources */,
 				506EDEF7215B27E4000CCF50 /* SeparateQueryRootViewController.m in Sources */,
 				7888F2F42147C32600AAC8B0 /* LoginManager.m in Sources */,
+				502AF8102163880000260979 /* TerminalAdminTableViewCell.m in Sources */,
 				7888F3B52147C33900AAC8B0 /* UITableView+BackgroundImageView.m in Sources */,
 				2546E2D1214D2F250066DBFB /* SettingTableViewCell.m in Sources */,
+				50DAAF50216A32A80060EBBC /* BrandIntroductionViewController.m in Sources */,
 				787166B7214912E200452C51 /* PosHomePageViewController.m in Sources */,
+				50B136112165F3D9009C435C /* BrandTableViewCell.m in Sources */,
 				251A4103214FF45E00AC2C81 /* WithdrawCashViewController.m in Sources */,
 				7888F2DF2147C31600AAC8B0 /* ActivityView.m in Sources */,
 				7888F3CA2147C33900AAC8B0 /* TPPasswordTextView.m in Sources */,
 				7888F3622147C32C00AAC8B0 /* NetWorkDetectionManager.m in Sources */,
+				50B1361521660341009C435C /* DelegateManagerViewController.m in Sources */,
 				78CB4BE0214BCE67000F6A9D /* MyAddressTableViewCell.m in Sources */,
 				7888F3612147C32C00AAC8B0 /* MJChiBaoZiHeader.m in Sources */,
 				259646E32158DFAE00E516BF /* SeparateQueryViewController.m in Sources */,
 				786AD100215A3BA8005D7363 /* ActivationMoneyViewController.m in Sources */,
+				50B1362B216984E5009C435C /* DelegateManagerResultViewController.m in Sources */,
 				50B060822153A0DC00B7B411 /* PD_BillSkuHeaderView.m in Sources */,
+				5067AB96215F8518005A1FD7 /* ActivationMoneyRootViewController.m in Sources */,
 				7871669B214911BC00452C51 /* TBCityIconInfo.m in Sources */,
 				786AD0F9215A3893005D7363 /* SeparateQueryCell.m in Sources */,
 				7888F3562147C32C00AAC8B0 /* PowerfulBannerView.m in Sources */,
@@ -1591,6 +1825,7 @@
 				253647D4214E030D0094576C /* UpdatePhoneViewController.m in Sources */,
 				7888F3BD2147C33900AAC8B0 /* ZJPPTViewOC.m in Sources */,
 				7871669A214911BC00452C51 /* TBCityIconFont.m in Sources */,
+				502AF80C2163875E00260979 /* TerminalAdminViewController.m in Sources */,
 				7888F2F52147C32600AAC8B0 /* NSUserDefaults+Helper.m in Sources */,
 				7888F34C2147C32C00AAC8B0 /* UITableViewCell+Extension.m in Sources */,
 				787166BB214917D400452C51 /* POSViewController.m in Sources */,
@@ -1613,6 +1848,7 @@
 				506EDEFA215B3561000CCF50 /* PD_BillListRootViewController.m in Sources */,
 				501B5728215DC64B0025086D /* PD_BillDetailUnCheckView.m in Sources */,
 				5089375F21561B32007C6239 /* AchievementsViewController.m in Sources */,
+				50B1362221697E91009C435C /* TerminalSelectResultViewController.m in Sources */,
 				7888F2DD2147C31600AAC8B0 /* CommunityWebViewController.m in Sources */,
 				7888F3AF2147C33900AAC8B0 /* NSString+Helper.m in Sources */,
 				2520A68E214CE38900D48B26 /* SettingViewController.m in Sources */,
@@ -1625,15 +1861,19 @@
 				78765A8C214A6AB200261ED3 /* LoginTypeViewController.m in Sources */,
 				7888F3C52147C33900AAC8B0 /* UIButton+ImageTitleSpacing.m in Sources */,
 				7888F2B72147C0AC00AAC8B0 /* main.m in Sources */,
+				50BD2AB721626892008D201B /* TerminalSearchViewController.m in Sources */,
+				50BD2AC221626F0F008D201B /* TerminalSelectViewController.m in Sources */,
 				7871669C214911BC00452C51 /* UIImage+TBCityIconFont.m in Sources */,
 				786AD10A215A44A3005D7363 /* ActivationMoneyDetailHeaderView.m in Sources */,
 				7888F3672147C32C00AAC8B0 /* RSA.m in Sources */,
 				7888F3B72147C33900AAC8B0 /* CustomImage.m in Sources */,
 				78765A84214A447400261ED3 /* PersonalHeaderView.m in Sources */,
 				7888F3522147C32C00AAC8B0 /* HpCFNavigationController.m in Sources */,
+				50BD2AAF21625E48008D201B /* TerminalBindViewController.m in Sources */,
 				50184CE32158C87E00D11AC6 /* PD_BillDetailFooterView.m in Sources */,
 				7888F3582147C32C00AAC8B0 /* UIView+SystemBackBar.m in Sources */,
 				78068BEB215A025F00DCC855 /* SeparateQueryDetailViewController.m in Sources */,
+				50B1360E2165E8B8009C435C /* TerminalAlreadyDistributionCell.m in Sources */,
 				7888F2A92147C0AA00AAC8B0 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1806,7 +2046,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "syn.com.POS-develop";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1846,7 +2086,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "syn.com.POS-develop";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
