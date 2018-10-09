@@ -109,7 +109,7 @@
 #define CEEEEEE [UIColor colorWithHexString:@"#eeeeee"]
 #define CF60303 [UIColor colorWithHexString:@"#F60303"]
 #define CFF0000 [UIColor colorWithHexString:@"#FF0000"]
-
+#define C00A0E9 [UIColor colorWithHexString:@"#00A0E9"]//背景蓝
 ///正常字体
 #define F30 [UIFont systemFontOfSize:FITiPhone6(30)]
 #define F29 [UIFont systemFontOfSize:FITiPhone6(29)]

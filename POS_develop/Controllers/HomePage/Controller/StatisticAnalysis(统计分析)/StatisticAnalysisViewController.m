@@ -9,7 +9,7 @@
 #import "StatisticAnalysisViewController.h"
 
 @interface StatisticAnalysisViewController ()<XJYChartDelegate>
-
+@property (nonatomic, weak) UILabel *profitCount;
 @end
 
 @implementation StatisticAnalysisViewController
@@ -56,7 +56,38 @@
     profitCount.font = FB15;
     profitCount.textColor = C000000;
     [self.view addSubview:profitCount];
+    self.profitCount = profitCount;
     
+    
+    //创建统计图
+    [self creatChart];
+    
+    MJWeakSelf;
+    UIView *bottomView = [UIView getViewWithColor:WhiteColor superView:self.view masonrySet:^(UIView *view, MASConstraintMaker *make) {
+        make.left.offset(0);
+        make.right.offset(0);
+        make.height.mas_equalTo(40);
+        make.bottom.equalTo(weakSelf.mas_bottomLayoutGuideTop).offset(0);
+    }];
+    
+    for (int i = 0; i<4; i++) {
+        [UIButton getButtonWithImageName:@"" titleText:i==0?@"交易量":(i==1?@"分润":(i==2?@"商户数量":@"激活数量")) superView:bottomView masonrySet:^(UIButton * _Nonnull btn, MASConstraintMaker * _Nonnull make) {
+            make.left.offset((ScreenWidth-4*AD_HEIGHT(70))/5+(AD_HEIGHT(70)+(ScreenWidth-4*AD_HEIGHT(70))/5)*i);
+            make.centerY.offset(0);
+            make.size.mas_offset(CGSizeMake(AD_HEIGHT(70), AD_HEIGHT(30)));
+            
+            btn.tag = 1000+i;
+            btn.titleLabel.font  = F13;
+            [btn setTitleColor:C000000 forState:normal];
+            [btn setTitleColor:WhiteColor forState:UIControlStateSelected];
+            [btn setBackgroundColor:CF6F6F6];
+            [btn addTarget:self action:@selector(clickBottomBtn:) forControlEvents:UIControlEventTouchUpInside];
+        }];
+    }
+}
+#pragma mark ---- 创建统计图 ----
+- (void)creatChart
+{
     NSMutableArray* itemArray = [[NSMutableArray alloc] init];
     
     UIColor* waveColor = RGB(188, 231, 200);
@@ -91,7 +122,7 @@
     configuration.isScrollable = YES;
     configuration.x_width = 20;
     XBarChart* barChart =
-    [[XBarChart alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(profitCount.frame)+AD_HEIGHT(50), AD_HEIGHT(351), AD_HEIGHT(210))
+    [[XBarChart alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.profitCount.frame)+AD_HEIGHT(50), AD_HEIGHT(351), AD_HEIGHT(210))
                        dataItemArray:itemArray
                            topNumber:@21
                         bottomNumber:@(0)
@@ -126,5 +157,48 @@
         weekBtn.selected = !monthBtn.selected;
         dayBtn.selected = !monthBtn.selected;
     }
+}
+
+#pragma mark ---- 底部  交易量  分润  商户数量 激活数量----
+- (void)clickBottomBtn:(UIButton *)sender
+{
+    NSUInteger btnTag = sender.tag-1000;
+    
+    UIButton *profitBtn = (UIButton *)[self.view viewWithTag:1000];
+    UIButton *separateQueryBtn = (UIButton *)[self.view viewWithTag:1001];
+    UIButton *bussinessCountBtn = (UIButton *)[self.view viewWithTag:1002];
+    UIButton *activeCountBtn = (UIButton *)[self.view viewWithTag:1003];
+    
+    if (btnTag == 0) {
+        //交易量
+        [self changeBtn:profitBtn withSelectedStatus:YES withBgColor:C00A0E9];
+        [self changeBtn:separateQueryBtn withSelectedStatus:NO withBgColor:CF6F6F6];
+        [self changeBtn:bussinessCountBtn withSelectedStatus:NO withBgColor:CF6F6F6];
+        [self changeBtn:activeCountBtn withSelectedStatus:NO withBgColor:CF6F6F6];
+    } else if (btnTag == 1) {
+        //分润
+        [self changeBtn:separateQueryBtn withSelectedStatus:YES withBgColor:C00A0E9];
+        [self changeBtn:profitBtn withSelectedStatus:NO withBgColor:CF6F6F6];
+        [self changeBtn:bussinessCountBtn withSelectedStatus:NO withBgColor:CF6F6F6];
+        [self changeBtn:activeCountBtn withSelectedStatus:NO withBgColor:CF6F6F6];
+    } else if (btnTag == 2) {
+        //商户数量
+        [self changeBtn:bussinessCountBtn withSelectedStatus:YES withBgColor:C00A0E9];
+        [self changeBtn:separateQueryBtn withSelectedStatus:NO withBgColor:CF6F6F6];
+        [self changeBtn:profitBtn withSelectedStatus:NO withBgColor:CF6F6F6];
+        [self changeBtn:activeCountBtn withSelectedStatus:NO withBgColor:CF6F6F6];
+    }else {
+        //激活数量
+        [self changeBtn:activeCountBtn withSelectedStatus:YES withBgColor:C00A0E9];
+        [self changeBtn:separateQueryBtn withSelectedStatus:NO withBgColor:CF6F6F6];
+        [self changeBtn:bussinessCountBtn withSelectedStatus:NO withBgColor:CF6F6F6];
+        [self changeBtn:profitBtn withSelectedStatus:NO withBgColor:CF6F6F6];
+    }
+}
+
+- (void)changeBtn:(UIButton *)sender withSelectedStatus:(BOOL)selectS withBgColor:(UIColor *)bgColor
+{
+    sender.selected = selectS;
+    [sender setBackgroundColor:bgColor];
 }
 @end
