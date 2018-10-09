@@ -83,7 +83,6 @@
 		50A89B0E216B653200E68BEB /* XBarChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89AE6216B653200E68BEB /* XBarChartView.m */; };
 		50A89B0F216B653200E68BEB /* OrdinateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89AE7216B653200E68BEB /* OrdinateView.m */; };
 		50A89B10216B653200E68BEB /* XLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89AE8216B653200E68BEB /* XLineChart.m */; };
-		50A89B11216B653200E68BEB /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50A89AEA216B653200E68BEB /* Info.plist */; };
 		50A89B16216B65A800E68BEB /* Colours.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89B14216B65A700E68BEB /* Colours.m */; };
 		50B0607B2153372C00B7B411 /* SLRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B060772153372C00B7B411 /* SLRefreshFooter.m */; };
 		50B0607C2153372C00B7B411 /* SLRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B060792153372C00B7B411 /* SLRefreshHeader.m */; };
@@ -409,7 +408,6 @@
 		50A89AE7216B653200E68BEB /* OrdinateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrdinateView.m; sourceTree = "<group>"; };
 		50A89AE8216B653200E68BEB /* XLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLineChart.m; sourceTree = "<group>"; };
 		50A89AE9216B653200E68BEB /* XPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPieChart.h; sourceTree = "<group>"; };
-		50A89AEA216B653200E68BEB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50A89B13216B65A700E68BEB /* Colours.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Colours.h; sourceTree = "<group>"; };
 		50A89B14216B65A700E68BEB /* Colours.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Colours.m; sourceTree = "<group>"; };
 		50B060772153372C00B7B411 /* SLRefreshFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLRefreshFooter.m; sourceTree = "<group>"; };
@@ -872,7 +870,6 @@
 				50A89A96216B653100E68BEB /* Configuration */,
 				50A89AAF216B653100E68BEB /* DataModel */,
 				50A89AAB216B653100E68BEB /* Helper */,
-				50A89AEA216B653200E68BEB /* Info.plist */,
 				50A89AC5216B653200E68BEB /* XJYChart.h */,
 				50A89AC6216B653200E68BEB /* XJYChartDelegate.h */,
 			);
@@ -1389,7 +1386,6 @@
 			isa = PBXGroup;
 			children = (
 				78AA2571216B70E5009EFDAF /* Message(消息) */,
-
 				50A89A8A216B516200E68BEB /* StatisticAnalysis(统计分析) */,
 				50DAAF4D216A328A0060EBBC /* BrandIntroduction(品牌介绍) */,
 				50B136122166031E009C435C /* DelegateManager(代理商管理) */,
@@ -2002,7 +1998,6 @@
 				787166AC214911C300452C51 /* demo.html in Resources */,
 				7888F2B42147C0AC00AAC8B0 /* LaunchScreen.storyboard in Resources */,
 				787166AA214911C300452C51 /* demo.css in Resources */,
-				50A89B11216B653200E68BEB /* Info.plist in Resources */,
 				787166B2214911C300452C51 /* selection.json in Resources */,
 				7888F35D2147C32C00AAC8B0 /* CHANGELOG.md in Resources */,
 				7888F2E02147C31600AAC8B0 /* ActivityView.xib in Resources */,
