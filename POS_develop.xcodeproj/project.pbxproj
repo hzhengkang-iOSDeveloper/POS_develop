@@ -769,6 +769,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		5022DC76216C9E2400CE14C1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		502AF8092163872600260979 /* TerminalAdmin(终端管理) */ = {
 			isa = PBXGroup;
 			children = (
@@ -1321,6 +1328,7 @@
 		787166B8214917BD00452C51 /* POS */ = {
 			isa = PBXGroup;
 			children = (
+				5022DC76216C9E2400CE14C1 /* View */,
 				787166B9214917D400452C51 /* POSViewController.h */,
 				787166BA214917D400452C51 /* POSViewController.m */,
 			);

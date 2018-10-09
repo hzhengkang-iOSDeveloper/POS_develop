@@ -9,29 +9,52 @@
 #import "POSViewController.h"
 
 @interface POSViewController ()
-
+// 右边按钮array
+@property (nonatomic, strong) NSArray *rightItems;
 @end
 
 @implementation POSViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.    
+    // Do any additional setup after loading the view.
+    self.navigationItemTitle = @"pos机器购买";
+    // 右侧功能按钮
+    self.navigationItem.rightBarButtonItems = self.rightItems;
+    self.navigationItem.leftBarButtonItem = nil;
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - nav购物车&更多按钮
+- (NSArray *)rightItems {
+    if (!_rightItems) {
+        UIButton *kindBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        kindBtn.frame = CGRectMake(0, 0, 25, 25);
+        [kindBtn setImage:ImageNamed(@"套餐信息") forState:normal];
+        [kindBtn addTarget:self action:@selector(kindBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *kindItem = [[UIBarButtonItem alloc] initWithCustomView:kindBtn];
+        
+        
+        UIButton *shopCartBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        shopCartBtn.frame = CGRectMake(0, 0, 25, 25);
+        [shopCartBtn setImage:ImageNamed(@"购物车") forState:normal];
+        [shopCartBtn addTarget:self action:@selector(shopCartBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *shopCartItem = [[UIBarButtonItem alloc] initWithCustomView:shopCartBtn];
+        
+        //新加的代码
+        UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+        space.width = 30;
+        
+        _rightItems = @[shopCartItem,kindItem,space];
+    }
+    return _rightItems;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark ---- 导航栏分类按钮 ----
+- (void)kindBtnClick
+{
+    
 }
-*/
-
+#pragma mark ---- 购物车按钮 ----
+- (void)shopCartBtnClick
+{
+    
+}
 @end
