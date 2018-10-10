@@ -195,7 +195,7 @@
 - (void)selectClick {
 //    [SVProgressHUD showInfoWithStatus:@"分配成功"];
 //    [SVProgressHUD showWithStatus:@"分配成功"];
-    [SVProgressHUD showSuccessWithStatus:@"分配成功"];
+    HUD_SUCCESS(@"分配成功");
     [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark ---- 品牌选择 ----

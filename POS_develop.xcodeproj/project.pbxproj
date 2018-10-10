@@ -48,6 +48,9 @@
 		505B6F84216D99FC000D49B2 /* MessageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505B6F7F216D99FC000D49B2 /* MessageListViewController.m */; };
 		505B6F8B216D9B9B000D49B2 /* BrandIntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505B6F86216D9B9B000D49B2 /* BrandIntroductionViewController.m */; };
 		505B6F8C216D9B9B000D49B2 /* BrandIntroductionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 505B6F88216D9B9B000D49B2 /* BrandIntroductionCell.m */; };
+		505B6F8F216DD038000D49B2 /* POSRootCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 505B6F8E216DD038000D49B2 /* POSRootCell.m */; };
+		505B6F92216DF2A4000D49B2 /* SYShowHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 505B6F91216DF2A4000D49B2 /* SYShowHUD.m */; };
+		505B6F95216DFCD2000D49B2 /* SVProgressHUD+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 505B6F94216DFCD1000D49B2 /* SVProgressHUD+Extension.m */; };
 		5067AB96215F8518005A1FD7 /* ActivationMoneyRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5067AB95215F8518005A1FD7 /* ActivationMoneyRootViewController.m */; };
 		5067AB9A215F887B005A1FD7 /* ActivationMoneyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5067AB99215F887B005A1FD7 /* ActivationMoneyCell.m */; };
 		506EDEF7215B27E4000CCF50 /* SeparateQueryRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506EDEF6215B27E4000CCF50 /* SeparateQueryRootViewController.m */; };
@@ -120,7 +123,6 @@
 		50C5449C2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C5449A2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.m */; };
 		50D4449C215F0DF100AE6219 /* PD_BillDetailComfirInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D4449B215F0DF100AE6219 /* PD_BillDetailComfirInfoView.m */; };
 		50DAAF4C216A20470060EBBC /* DelegateManagerEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DAAF4B216A20470060EBBC /* DelegateManagerEditCell.m */; };
-		50F1C8D0215B963100CCF6C0 /* SVProgressHUD+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F1C8CF215B963100CCF6C0 /* SVProgressHUD+Extension.m */; };
 		50F68C3521578C5B00DCFE85 /* XRCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F68C3421578C5B00DCFE85 /* XRCarouselView.m */; };
 		50F68C382158987800DCFE85 /* PD_BillDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F68C372158987800DCFE85 /* PD_BillDetailViewController.m */; };
 		50F68C3E21589BE100DCFE85 /* PD_BillDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F68C3D21589BE100DCFE85 /* PD_BillDetailHeaderView.m */; };
@@ -340,6 +342,12 @@
 		505B6F88216D9B9B000D49B2 /* BrandIntroductionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrandIntroductionCell.m; sourceTree = "<group>"; };
 		505B6F89216D9B9B000D49B2 /* BrandIntroductionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrandIntroductionCell.h; sourceTree = "<group>"; };
 		505B6F8A216D9B9B000D49B2 /* BrandIntroductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrandIntroductionViewController.h; sourceTree = "<group>"; };
+		505B6F8D216DD038000D49B2 /* POSRootCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POSRootCell.h; sourceTree = "<group>"; };
+		505B6F8E216DD038000D49B2 /* POSRootCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = POSRootCell.m; sourceTree = "<group>"; };
+		505B6F90216DF2A4000D49B2 /* SYShowHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SYShowHUD.h; sourceTree = "<group>"; };
+		505B6F91216DF2A4000D49B2 /* SYShowHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SYShowHUD.m; sourceTree = "<group>"; };
+		505B6F93216DFCD1000D49B2 /* SVProgressHUD+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD+Extension.h"; sourceTree = "<group>"; };
+		505B6F94216DFCD1000D49B2 /* SVProgressHUD+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SVProgressHUD+Extension.m"; sourceTree = "<group>"; };
 		5067AB94215F8518005A1FD7 /* ActivationMoneyRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActivationMoneyRootViewController.h; sourceTree = "<group>"; };
 		5067AB95215F8518005A1FD7 /* ActivationMoneyRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActivationMoneyRootViewController.m; sourceTree = "<group>"; };
 		5067AB98215F887B005A1FD7 /* ActivationMoneyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActivationMoneyCell.h; sourceTree = "<group>"; };
@@ -487,8 +495,6 @@
 		50D4449B215F0DF100AE6219 /* PD_BillDetailComfirInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillDetailComfirInfoView.m; sourceTree = "<group>"; };
 		50DAAF4A216A20470060EBBC /* DelegateManagerEditCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelegateManagerEditCell.h; sourceTree = "<group>"; };
 		50DAAF4B216A20470060EBBC /* DelegateManagerEditCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DelegateManagerEditCell.m; sourceTree = "<group>"; };
-		50F1C8CE215B963100CCF6C0 /* SVProgressHUD+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD+Extension.h"; sourceTree = "<group>"; };
-		50F1C8CF215B963100CCF6C0 /* SVProgressHUD+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SVProgressHUD+Extension.m"; sourceTree = "<group>"; };
 		50F68C3321578C5B00DCFE85 /* XRCarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XRCarouselView.h; sourceTree = "<group>"; };
 		50F68C3421578C5B00DCFE85 /* XRCarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XRCarouselView.m; sourceTree = "<group>"; };
 		50F68C362158987800DCFE85 /* PD_BillDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillDetailViewController.h; sourceTree = "<group>"; };
@@ -787,6 +793,8 @@
 		5022DC76216C9E2400CE14C1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				505B6F8D216DD038000D49B2 /* POSRootCell.h */,
+				505B6F8E216DD038000D49B2 /* POSRootCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1226,8 +1234,10 @@
 			children = (
 				502AF8112163A5E100260979 /* SheetPickerView.h */,
 				502AF8122163A5E100260979 /* SheetPickerView.m */,
-				50F1C8CE215B963100CCF6C0 /* SVProgressHUD+Extension.h */,
-				50F1C8CF215B963100CCF6C0 /* SVProgressHUD+Extension.m */,
+				505B6F93216DFCD1000D49B2 /* SVProgressHUD+Extension.h */,
+				505B6F94216DFCD1000D49B2 /* SVProgressHUD+Extension.m */,
+				505B6F90216DF2A4000D49B2 /* SYShowHUD.h */,
+				505B6F91216DF2A4000D49B2 /* SYShowHUD.m */,
 			);
 			path = JKHUD;
 			sourceTree = "<group>";
@@ -2199,6 +2209,7 @@
 				7888F34F2147C32C00AAC8B0 /* HDeviceIdentifier.m in Sources */,
 				502BAFC3215C884B005EDE6F /* PD_BillDetailOutLineInfoView.m in Sources */,
 				7888F3B62147C33900AAC8B0 /* UIView+Extension.m in Sources */,
+				505B6F8F216DD038000D49B2 /* POSRootCell.m in Sources */,
 				7888F2DE2147C31600AAC8B0 /* WebViewAction.m in Sources */,
 				5089376621561DB8007C6239 /* HomeTableViewCell.m in Sources */,
 				7888F3C32147C33900AAC8B0 /* SY_ImageAndLabelAndLaeblBtn.m in Sources */,
@@ -2211,6 +2222,7 @@
 				50B1360B2165E890009C435C /* TerminalNoDistributionCell.m in Sources */,
 				787166C32149186200452C51 /* PersonalViewController.m in Sources */,
 				50A89AF7216B653200E68BEB /* XBarItem.m in Sources */,
+				505B6F95216DFCD2000D49B2 /* SVProgressHUD+Extension.m in Sources */,
 				7888F3542147C32C00AAC8B0 /* MyKeyChainHelper.m in Sources */,
 				7888F3632147C32C00AAC8B0 /* LFCGzipUtillity.m in Sources */,
 				259646DE2158CBC900E516BF /* TransactionQueryMainView.m in Sources */,
@@ -2231,7 +2243,6 @@
 				7888F34D2147C32C00AAC8B0 /* GDataXMLNode.m in Sources */,
 				50A89B0C216B653200E68BEB /* XBarContainerView.m in Sources */,
 				50A89B03216B653200E68BEB /* XAreaLineContainerView.m in Sources */,
-				50F1C8D0215B963100CCF6C0 /* SVProgressHUD+Extension.m in Sources */,
 				7888F2F32147C32600AAC8B0 /* HPDStatusCode.m in Sources */,
 				7888F35A2147C32C00AAC8B0 /* UIViewController+ZZNavigationItem.m in Sources */,
 				7888F36B2147C32C00AAC8B0 /* SGGridMenu.m in Sources */,
@@ -2240,6 +2251,7 @@
 				7888F2F72147C32600AAC8B0 /* UserInfo.m in Sources */,
 				50B1362F216A1D91009C435C /* DelegateManagerEditViewController.m in Sources */,
 				7888F35C2147C32C00AAC8B0 /* HPDUtils.m in Sources */,
+				505B6F92216DF2A4000D49B2 /* SYShowHUD.m in Sources */,
 				50F68C3E21589BE100DCFE85 /* PD_BillDetailHeaderView.m in Sources */,
 				7888F3512147C32C00AAC8B0 /* ConfigurationItem.m in Sources */,
 				50A89B10216B653200E68BEB /* XLineChart.m in Sources */,

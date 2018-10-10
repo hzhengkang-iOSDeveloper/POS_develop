@@ -56,6 +56,9 @@
 #import "SheetPickerView.h"
 #import "XJYChart.h"
 #import "Colours.h"
+#import "SYShowHUD.h"
+
+
 
 //三方库头文件
 #import <Masonry.h>
@@ -209,7 +212,12 @@
 #define HPDProgressHudShowWithMessage(msg)                [[HPDProgress defaultProgressHUD] showCoustomOnView:[[UIApplication sharedApplication]keyWindow] message:msg]
 
 // itoast
-
+// 成功提示
+#define HUD_SUCCESS(str)    [SYShowHUD showSuccess:str];
+// 失败提示
+#define HUD_ERROR(str)      [SYShowHUD showError:str];
+// 文字提示
+#define HUD_TIP(str)        [SYShowHUD showTip:str];
 
 #define USER_DEFAULT [NSUserDefaults standardUserDefaults]
 

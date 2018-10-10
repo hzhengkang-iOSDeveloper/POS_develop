@@ -11,6 +11,10 @@
 @interface POSViewController ()<WMPageControllerDelegate,WMPageControllerDataSource>
 // 右边按钮array
 @property (nonatomic, strong) NSArray *rightItems;
+// 购物车数量
+@property (nonatomic, strong) UILabel *cartNumLabel;
+//购物车数量
+@property (nonatomic,assign)NSUInteger cartNum;
 @property (nonatomic, strong, readwrite) WMPageController* pageController;//pageControl
 
 @end
@@ -43,6 +47,17 @@
         [shopCartBtn setImage:ImageNamed(@"购物车") forState:normal];
         [shopCartBtn addTarget:self action:@selector(shopCartBtnClick) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem *shopCartItem = [[UIBarButtonItem alloc] initWithCustomView:shopCartBtn];
+        
+        
+        _cartNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(shopCartBtn.width-10, -5, 12, 12)];
+        _cartNumLabel.hidden = YES;
+        _cartNumLabel.textColor = WhiteColor;
+        _cartNumLabel.textAlignment = NSTextAlignmentCenter;
+        _cartNumLabel.font = F8;
+        _cartNumLabel.backgroundColor = CF52542;
+        _cartNumLabel.layer.cornerRadius = CGRectGetHeight(_cartNumLabel.bounds)/2;
+        _cartNumLabel.layer.masksToBounds = YES;
+        [shopCartBtn addSubview:_cartNumLabel];
         
         //新加的代码
         UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
@@ -89,6 +104,12 @@
 
 - (__kindof UIViewController *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index {
     POSRootViewController* controller = [[POSRootViewController alloc]init];
+    MJWeakSelf;
+    controller.changeShopCarCount = ^{
+        weakSelf.cartNumLabel.hidden = NO;
+        weakSelf.cartNum ++;
+        weakSelf.cartNumLabel.text = [NSString stringWithFormat:@"%ld",(long)weakSelf.cartNum];
+    };
     //    switch (index) {
     //        case 0:{
     //            controller.fileType = ARMFileTypeAll;
@@ -122,7 +143,7 @@
 
 - (CGRect)pageController:(nonnull WMPageController *)pageController preferredFrameForContentView:(nonnull WMScrollView *)contentView {
     CGFloat originY = CGRectGetMaxY([self pageController:pageController preferredFrameForMenuView:self.pageController.menuView]);
-    return CGRectMake(0, originY+AD_HEIGHT(5), ScreenWidth,ScreenHeight- (originY+AD_HEIGHT(5))-navH-(iPhoneX?83:49));
+    return CGRectMake(0, originY, ScreenWidth,ScreenHeight- originY-navH-(iPhoneX?83:49));
 }
 
 - (CGRect)pageController:(nonnull WMPageController *)pageController preferredFrameForMenuView:(nonnull WMMenuView *)menuView {

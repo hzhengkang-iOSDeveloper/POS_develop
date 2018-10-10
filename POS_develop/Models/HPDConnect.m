@@ -354,7 +354,7 @@
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         if (![self wasNetworkValid]) {
-            [SVProgressHUD showInfoWithStatus:@"网络繁忙，请稍后~"];
+            HUD_TIP(@"网络繁忙，请稍后~");
     #if DEBUG
             NSLog(@"--->net work can not used!");
     #endif
@@ -394,7 +394,7 @@
     
     if (error) {
         result(NO,nil);
-        [SVProgressHUD showInfoWithStatus:@"网络繁忙，请稍后~"];
+        HUD_TIP(@"网络繁忙，请稍后~");
         return NO;      // connect error
     }
     else {
