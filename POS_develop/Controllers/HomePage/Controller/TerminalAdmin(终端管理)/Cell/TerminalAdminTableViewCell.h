@@ -14,7 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIButton *selectBtn;
 @property (nonatomic, strong) UILabel *delegateName;
 @property (nonatomic, strong) UILabel *delegateAccount;
-@property (nonatomic, copy) void (^clickSelectBtnHandler)(void);
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 @end
 

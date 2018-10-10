@@ -33,7 +33,6 @@
     [self.selectBtn setImage:[UIImage imageNamed:@"图层4拷贝10"] forState:UIControlStateNormal];
     [self.selectBtn setImage:[UIImage imageNamed:@"选中"] forState:UIControlStateSelected];
     self.selectBtn.userInteractionEnabled = NO;
-//    [self.selectBtn addTarget:self action:@selector(selectClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.selectBtn];
     [self.selectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(FITiPhone6(15));
@@ -61,11 +60,4 @@
 
 }
 
-
-//- (void)selectClick:(UIButton *)sender {
-//    
-//    if (self.clickSelectBtnHandler) {
-//        self.clickSelectBtnHandler();
-//    }
-//}
 @end

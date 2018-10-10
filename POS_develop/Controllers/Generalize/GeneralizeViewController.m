@@ -9,6 +9,8 @@
 #import "GeneralizeViewController.h"
 #import "XRCarouselView.h"
 #import "ImageGeneralizeViewController.h"
+#import "QRGenerailzeViewController.h"
+#import "HtmlGenerailzeViewController.h"
 
 @interface GeneralizeViewController () <XRCarouselViewDelegate>
 @property (nonatomic, strong) XRCarouselView *advView;
@@ -132,7 +134,9 @@
 }
 #pragma mark ---- 二维码推广 ----
 - (void)qrCodeClick {
-    
+    QRGenerailzeViewController *vc = [[QRGenerailzeViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark ---- 图片推广 ----
@@ -144,7 +148,9 @@
 
 #pragma mark ---- html推广 ----
 - (void)htmlClick {
-    
+    HtmlGenerailzeViewController *vc = [[HtmlGenerailzeViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 #pragma mark -- 轮播图点击方法
 - (void)carouselView:(XRCarouselView *)carouselView clickImageAtIndex:(NSInteger)index{

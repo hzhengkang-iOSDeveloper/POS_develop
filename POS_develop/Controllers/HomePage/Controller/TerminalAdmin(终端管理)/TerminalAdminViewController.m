@@ -78,10 +78,6 @@
     TerminalAdminTableViewCell *cell = [TerminalAdminTableViewCell cellWithTableView:tableView];
     cell.delegateAccount.text = @"代理商账号：sy70022";
     cell.delegateName.text = @"代理商名称：胡子";
-//    MJWeakSelf;
-//    cell.clickSelectBtnHandler = ^{
-//
-//    };
     
     if ([self.selectStr isEqualToString:[NSString stringWithFormat:@"%li",indexPath.row]]) {
         cell.selectBtn.selected = YES;

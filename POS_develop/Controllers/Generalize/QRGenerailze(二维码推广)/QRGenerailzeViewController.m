@@ -1,20 +1,22 @@
 //
-//  ImageGeneralizeViewController.m
+//  QRGenerailzeViewController.m
 //  POS_develop
 //
-//  Created by sunyn on 2018/10/9.
+//  Created by sunyn on 2018/10/10.
 //  Copyright © 2018年 sunyn. All rights reserved.
 //
 
-#import "ImageGeneralizeViewController.h"
-#import "ImageGeneralizeCollectionViewCell.h"
+#import "QRGenerailzeViewController.h"
 #import "CopywritingSelectViewController.h"
-@interface ImageGeneralizeViewController ()  <UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+#import "ImageGeneralizeCollectionViewCell.h"
+
+@interface QRGenerailzeViewController () <UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) UICollectionView *myCollection;
 @property (nonatomic, copy) NSString *selectStr;
+
 @end
 
-@implementation ImageGeneralizeViewController
+@implementation QRGenerailzeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,6 +26,7 @@
     [self addStandardRightButtonWithTitle:@"下一步" selector:@selector(nextClick)];
     [self createCollectionView];
 }
+
 #pragma mark ---- 下一步 ----
 - (void)nextClick {
     CopywritingSelectViewController *vc = [[CopywritingSelectViewController alloc] init];
@@ -38,7 +41,7 @@
     [self.view addSubview:_myCollection];
     
     [_myCollection registerClass:[ImageGeneralizeCollectionViewCell class] forCellWithReuseIdentifier:@"ImageGeneralizeCollectionViewCell"];
-
+    
     _myCollection.delegate = self;
     _myCollection.dataSource = self;
     
@@ -49,13 +52,13 @@
     return 1;
 }
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-
+    
     return 16;
-   
+    
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-
+    
     ImageGeneralizeCollectionViewCell *cell = (ImageGeneralizeCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"ImageGeneralizeCollectionViewCell" forIndexPath:indexPath];
     cell.backgroundColor = WhiteColor;
     [cell.selectBtn setTitle:@"07月24日 09：11" forState:UIControlStateNormal];
@@ -83,15 +86,15 @@
 //}
 //设置每个item垂直间距
 -(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-
+    
     return FITiPhone6(5);
-  
+    
 }
 //设置每个item水平间距
 -(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
     
     return 0.01f;
-
+    
 }
 
 //点击item方法
@@ -108,7 +111,6 @@
     [_myCollection reloadData];
     
 }
-
 
 
 @end
