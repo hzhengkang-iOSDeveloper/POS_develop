@@ -11,6 +11,7 @@
 #import "ImageGeneralizeViewController.h"
 #import "QRGenerailzeViewController.h"
 #import "HtmlGenerailzeViewController.h"
+#import "BuySuccessViewController.h"
 
 @interface GeneralizeViewController () <XRCarouselViewDelegate>
 @property (nonatomic, strong) XRCarouselView *advView;
@@ -144,6 +145,9 @@
     ImageGeneralizeViewController *vc = [[ImageGeneralizeViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
+//    BuySuccessViewController *vc = [[BuySuccessViewController alloc] init];
+//    vc.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark ---- html推广 ----

@@ -260,6 +260,7 @@
 		7888F3C92147C33900AAC8B0 /* PlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F3AC2147C33900AAC8B0 /* PlaceholderTextView.m */; };
 		7888F3CA2147C33900AAC8B0 /* TPPasswordTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F3AE2147C33900AAC8B0 /* TPPasswordTextView.m */; };
 		78A320F9216E0B4E00D48B95 /* HtmlGenerailzeDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A320F8216E0B4E00D48B95 /* HtmlGenerailzeDetailCell.m */; };
+		78A320FD216E24DC00D48B95 /* BuySuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A320FC216E24DC00D48B95 /* BuySuccessViewController.m */; };
 		78CB4B74214B8BD7000F6A9D /* VipSystemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CB4B73214B8BD7000F6A9D /* VipSystemViewController.m */; };
 		78CB4B77214BA8D7000F6A9D /* MyBillViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CB4B76214BA8D7000F6A9D /* MyBillViewController.m */; };
 		78CB4B7B214BAA29000F6A9D /* MyBillTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CB4B7A214BAA29000F6A9D /* MyBillTableViewCell.m */; };
@@ -762,6 +763,8 @@
 		7888F3AE2147C33900AAC8B0 /* TPPasswordTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPasswordTextView.m; sourceTree = "<group>"; };
 		78A320F7216E0B4E00D48B95 /* HtmlGenerailzeDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HtmlGenerailzeDetailCell.h; sourceTree = "<group>"; };
 		78A320F8216E0B4E00D48B95 /* HtmlGenerailzeDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HtmlGenerailzeDetailCell.m; sourceTree = "<group>"; };
+		78A320FB216E24DC00D48B95 /* BuySuccessViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuySuccessViewController.h; sourceTree = "<group>"; };
+		78A320FC216E24DC00D48B95 /* BuySuccessViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuySuccessViewController.m; sourceTree = "<group>"; };
 		78CB4B72214B8BD7000F6A9D /* VipSystemViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VipSystemViewController.h; sourceTree = "<group>"; };
 		78CB4B73214B8BD7000F6A9D /* VipSystemViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VipSystemViewController.m; sourceTree = "<group>"; };
 		78CB4B75214BA8D7000F6A9D /* MyBillViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyBillViewController.h; sourceTree = "<group>"; };
@@ -1491,6 +1494,7 @@
 		787166B8214917BD00452C51 /* POS */ = {
 			isa = PBXGroup;
 			children = (
+				78A320FA216E24B000D48B95 /* BuySuccess(购买成功) */,
 				5022DC76216C9E2400CE14C1 /* View */,
 				787166B9214917D400452C51 /* POSViewController.h */,
 				787166BA214917D400452C51 /* POSViewController.m */,
@@ -2038,6 +2042,15 @@
 			path = NotPrjView;
 			sourceTree = "<group>";
 		};
+		78A320FA216E24B000D48B95 /* BuySuccess(购买成功) */ = {
+			isa = PBXGroup;
+			children = (
+				78A320FB216E24DC00D48B95 /* BuySuccessViewController.h */,
+				78A320FC216E24DC00D48B95 /* BuySuccessViewController.m */,
+			);
+			path = "BuySuccess(购买成功)";
+			sourceTree = "<group>";
+		};
 		78CB4B71214B8BBA000F6A9D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -2429,6 +2442,7 @@
 				50A89AEF216B653200E68BEB /* XAreaLineChartConfiguration.m in Sources */,
 				50184CDC2158BDC400D11AC6 /* TransactionQueryViewController.m in Sources */,
 				501B572B215DFBF10025086D /* PD_BillDetailOnLineView.m in Sources */,
+				78A320FD216E24DC00D48B95 /* BuySuccessViewController.m in Sources */,
 				7888F2DC2147C31600AAC8B0 /* RootViewController.m in Sources */,
 				787166BF2149183200452C51 /* GeneralizeViewController.m in Sources */,
 				DA8D1773214E8CBC006574E4 /* PD_BillListViewController.m in Sources */,
