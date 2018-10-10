@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface POSRootViewController : BaseSonViewController
-
+@property (nonatomic, copy) void (^changeShopCarCount)(void);
 @end
 
 NS_ASSUME_NONNULL_END

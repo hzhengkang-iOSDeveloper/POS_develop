@@ -12,8 +12,10 @@
 + (void)load {
     [super load];
     
-    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
+    [SVProgressHUD setDefaultStyle:SVProgressHUDMaskTypeCustom];
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
-    [SVProgressHUD setBackgroundColor:[[UIColor darkGrayColor] colorWithAlphaComponent:.9]];
+    [SVProgressHUD setBackgroundColor:[UIColor blackColor]];
+    [SVProgressHUD setBackgroundLayerColor:[UIColor clearColor]];
+
 }
 @end
