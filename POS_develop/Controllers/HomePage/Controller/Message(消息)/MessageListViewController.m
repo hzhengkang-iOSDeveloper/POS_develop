@@ -8,6 +8,7 @@
 
 #import "MessageListViewController.h"
 #import "MessageListTableViewCell.h"
+#import "SelectDetailBrandViewController.h"
 
 @interface MessageListViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *myTableView;
@@ -59,7 +60,12 @@
 
 #pragma mark - UITableViewDelegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    MessageListTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    SelectDetailBrandViewController *vc = [[SelectDetailBrandViewController alloc] init];
+    vc.titleStr = cell.titleLabel.text;
+    vc.contentStr = cell.contentLabel.text;
+    vc.timeStr = cell.timeLabel.text;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

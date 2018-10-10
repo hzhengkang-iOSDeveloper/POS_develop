@@ -10,6 +10,7 @@
 #import "SLHomeFivePartBtn.h"
 #import "XRCarouselView.h"
 #import "BrandIntroductionViewController.h"//品牌介绍
+#import "NullViewController.h"
 @interface PosHomePageHeaderView ()<XRCarouselViewDelegate>
 //轮播图
 @property (nonatomic, strong) XRCarouselView *advView;
@@ -74,7 +75,7 @@
         make.size.mas_offset(CGSizeMake(ScreenWidth/2 - FITiPhone6(70), FITiPhone6(15)));
     }];
     UIButton *volumeOfTransactionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    volumeOfTransactionBtn.backgroundColor = [UIColor redColor];
+    //    volumeOfTransactionBtn.backgroundColor = [UIColor redColor];
     [volumeOfTransactionBtn addTarget:self action:@selector(volumeOfTransactionClick) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:volumeOfTransactionBtn];
     [volumeOfTransactionBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -102,7 +103,7 @@
         make.size.mas_offset(CGSizeMake(ScreenWidth - FITiPhone6(221) - FITiPhone6(35), FITiPhone6(15)));
     }];
     UIButton *shareProfitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    shareProfitBtn.backgroundColor = [UIColor redColor];
+    //    shareProfitBtn.backgroundColor = [UIColor redColor];
     [shareProfitBtn addTarget:self action:@selector(volumeOfTransactionClick) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:shareProfitBtn];
     [shareProfitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -187,48 +188,56 @@
     self.starFansBtn.holdImage = ImageNamed(@"推荐");
     self.starFansBtn.name = @"推荐办卡";
     [self.contentV addSubview:self.starFansBtn];
-//    [self.starFansBtn addTarget:self action:@selector(starFansBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    //    [self.starFansBtn addTarget:self action:@selector(starFansBtnClick) forControlEvents:UIControlEventTouchUpInside];
     self.starFansBtn.selfClickEcho = ^{
-//        [weakSelf starFansBtnClick];
+        NullViewController *vc = [[NullViewController alloc]init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [weakSelf.viewController.navigationController pushViewController:vc animated:YES];
+        //        [weakSelf starFansBtnClick];
     };
     //申请贷款
     self.maiBangKeBtn = [SLHomeFivePartBtn new];
     self.maiBangKeBtn.holdImage = ImageNamed(@"申请企业认证");
     self.maiBangKeBtn.name = @"申请贷款";
     [self.contentV addSubview:self.maiBangKeBtn];
-//    [self.maiBangKeBtn addTarget:self action:@selector(maiBangKeBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    //    [self.maiBangKeBtn addTarget:self action:@selector(maiBangKeBtnClick) forControlEvents:UIControlEventTouchUpInside];
     self.maiBangKeBtn.selfClickEcho = ^{
-//        [weakSelf maiBangKeBtnClick];
+        NullViewController *vc = [[NullViewController alloc]init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [weakSelf.viewController.navigationController pushViewController:vc animated:YES];
+        //        [weakSelf maiBangKeBtnClick];
     };
     //免费领取
     self.bigVCardBtn = [SLHomeFivePartBtn new];
     self.bigVCardBtn.holdImage = ImageNamed(@"立即领取");
     self.bigVCardBtn.name = @"免费领取";
     [self.contentV addSubview:self.bigVCardBtn];
-//    [self.bigVCardBtn addTarget:self action:@selector(bigVCardBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    //    [self.bigVCardBtn addTarget:self action:@selector(bigVCardBtnClick) forControlEvents:UIControlEventTouchUpInside];
     self.bigVCardBtn.selfClickEcho = ^{
-//        [weakSelf bigVCardBtnClick];
+        //        [weakSelf bigVCardBtnClick];
     };
     //业务培训
     self.couponCenterBtn = [SLHomeFivePartBtn new];
     self.couponCenterBtn.holdImage = ImageNamed(@"培训宣传");
     self.couponCenterBtn.name = @"业务培训";
     [self.contentV addSubview:self.couponCenterBtn];
-//    [self.couponCenterBtn addTarget:self action:@selector(couponCenterBtnClick) forControlEvents:UIControlEventTouchUpInside];
     self.couponCenterBtn.selfClickEcho = ^{
-//        [weakSelf couponCenterBtnClick];
+        NullViewController *vc = [[NullViewController alloc]init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [weakSelf.viewController.navigationController pushViewController:vc animated:YES];
+        //        [weakSelf couponCenterBtnClick];
     };
     //品牌介绍
     self.starAllianceBtn = [SLHomeFivePartBtn new];
     self.starAllianceBtn.holdImage = ImageNamed(@"介绍信息");
     self.starAllianceBtn.name = @"品牌介绍";
     [self.contentV addSubview:self.starAllianceBtn];
-//    [self.starAllianceBtn addTarget:self action:@selector(starAllianceBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    //    [self.starAllianceBtn addTarget:self action:@selector(starAllianceBtnClick) forControlEvents:UIControlEventTouchUpInside];
     self.starAllianceBtn.selfClickEcho = ^{
         BrandIntroductionViewController *vc = [[BrandIntroductionViewController alloc]init];
         vc.hidesBottomBarWhenPushed = YES;
         [weakSelf.viewController.navigationController pushViewController:vc animated:YES];
-//        [weakSelf starAllianceBtnClick];
+        //        [weakSelf starAllianceBtnClick];
     };
     
     CGFloat btnW = (ScreenWidth-AD_WIDTH(25))/5;
@@ -275,7 +284,7 @@
     //设置每张图片的停留时间，默认值为5s，最少为2s
     self.advView.time = 3;
     [advView setPageImage:ImageNamed(@"图层11拷贝2") andCurrentPageImage:ImageNamed(@"椭圆2拷贝")];
-//    [advView setPageColor:C_White_FFFFFF andCurrentPageColor:C_LightRed_EB3349];
+    //    [advView setPageColor:C_White_FFFFFF andCurrentPageColor:C_LightRed_EB3349];
     [_advView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(AD_HEIGHT(15));
         make.right.offset(-AD_HEIGHT(15));
@@ -287,12 +296,12 @@
     [imgs addObject:ImageNamed(@"图层6")];
     [imgs addObject:ImageNamed(@"图层6")];
     [imgs addObject:ImageNamed(@"图层6")];
-//    [imgs addObject:ImageNamed(@"我的账单")];
-//    [imgs addObject:ImageNamed(@"查看订单")];
+    //    [imgs addObject:ImageNamed(@"我的账单")];
+    //    [imgs addObject:ImageNamed(@"查看订单")];
     
-//    for (SLAdvModel *model in homeAdvModel.A_A_Models) {
-//        [imgs addObject:IF_NULL_TO_STRING(model.picture_full)];
-//    }
+    //    for (SLAdvModel *model in homeAdvModel.A_A_Models) {
+    //        [imgs addObject:IF_NULL_TO_STRING(model.picture_full)];
+    //    }
     self.advView.imageArray = imgs;
     
     //组合套餐
@@ -309,21 +318,21 @@
     UIButton *moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [moreBtn setTitle:@"查看更多 >" forState:UIControlStateNormal];
     [moreBtn setTitleColor:C989898 forState:UIControlStateNormal];
-//    [moreBtn layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleRight imageTitleSpace:AD_HEIGHT(-15)];
-//    [moreBtn setImage:[UIImage imageNamed:@"更多"] forState:normal];
+    //    [moreBtn layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleRight imageTitleSpace:AD_HEIGHT(-15)];
+    //    [moreBtn setImage:[UIImage imageNamed:@"更多"] forState:normal];
     [moreBtn addTarget:self action:@selector(moreClick:) forControlEvents:UIControlEventTouchUpInside];
     moreBtn.titleLabel.font = F12;
     moreBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     moreBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
     [self addSubview:moreBtn];
     [moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.width.mas_equalTo(AD_HEIGHT(90));
+        //        make.width.mas_equalTo(AD_HEIGHT(90));
         make.right.equalTo(self).offset(AD_HEIGHT(-15));
         make.top.equalTo(weakSelf.advView.mas_bottom);
         make.height.mas_offset(AD_HEIGHT(44));
     }];
     
-
+    
     
 }
 #pragma mark ---- 当月交易量和当月分润点击 ----

@@ -8,7 +8,7 @@
 
 #import "BrandIntroductionViewController.h"
 #import "BrandIntroductionCell.h"
-#import "SelectDetailBrandViewController.h"
+
 
 @interface BrandIntroductionViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *myTableView;
@@ -71,12 +71,9 @@
 #pragma mark - UITableViewDelegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    BrandIntroductionCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
-    SelectDetailBrandViewController *vc = [[SelectDetailBrandViewController alloc] init];
-    vc.titleStr = cell.titleLabel.text;
-    vc.contentStr = cell.contentLabel.text;
-    [self.navigationController pushViewController:vc animated:YES];
+    
+  
     
 }
 

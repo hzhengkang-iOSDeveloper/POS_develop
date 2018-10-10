@@ -36,6 +36,18 @@
 		502AF8132163A5E100260979 /* SheetPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 502AF8122163A5E100260979 /* SheetPickerView.m */; };
 		502BAFC3215C884B005EDE6F /* PD_BillDetailOutLineInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 502BAFC2215C884B005EDE6F /* PD_BillDetailOutLineInfoView.m */; };
 		50339EAE2152968F003011E9 /* PD_BillListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50339EAD2152968F003011E9 /* PD_BillListCell.m */; };
+		505B6F62216D8D5C000D49B2 /* POSRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505B6F61216D8D5C000D49B2 /* POSRootViewController.m */; };
+		505B6F67216D9882000D49B2 /* SetMealOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 505B6F65216D9881000D49B2 /* SetMealOrderCell.m */; };
+		505B6F6B216D98F9000D49B2 /* NullViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505B6F69216D98F9000D49B2 /* NullViewController.m */; };
+		505B6F72216D99A0000D49B2 /* ImageGeneralizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505B6F6D216D99A0000D49B2 /* ImageGeneralizeViewController.m */; };
+		505B6F73216D99A0000D49B2 /* ImageGeneralizeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 505B6F70216D99A0000D49B2 /* ImageGeneralizeCollectionViewCell.m */; };
+		505B6F80216D99FC000D49B2 /* MessageNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505B6F75216D99FC000D49B2 /* MessageNoticeViewController.m */; };
+		505B6F81216D99FC000D49B2 /* SelectDetailBrandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505B6F77216D99FC000D49B2 /* SelectDetailBrandViewController.m */; };
+		505B6F82216D99FC000D49B2 /* MessageListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 505B6F79216D99FC000D49B2 /* MessageListTableViewCell.m */; };
+		505B6F83216D99FC000D49B2 /* MessageNoticeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 505B6F7A216D99FC000D49B2 /* MessageNoticeTableViewCell.m */; };
+		505B6F84216D99FC000D49B2 /* MessageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505B6F7F216D99FC000D49B2 /* MessageListViewController.m */; };
+		505B6F8B216D9B9B000D49B2 /* BrandIntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505B6F86216D9B9B000D49B2 /* BrandIntroductionViewController.m */; };
+		505B6F8C216D9B9B000D49B2 /* BrandIntroductionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 505B6F88216D9B9B000D49B2 /* BrandIntroductionCell.m */; };
 		5067AB96215F8518005A1FD7 /* ActivationMoneyRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5067AB95215F8518005A1FD7 /* ActivationMoneyRootViewController.m */; };
 		5067AB9A215F887B005A1FD7 /* ActivationMoneyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5067AB99215F887B005A1FD7 /* ActivationMoneyCell.m */; };
 		506EDEF7215B27E4000CCF50 /* SeparateQueryRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506EDEF6215B27E4000CCF50 /* SeparateQueryRootViewController.m */; };
@@ -108,8 +120,6 @@
 		50C5449C2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C5449A2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.m */; };
 		50D4449C215F0DF100AE6219 /* PD_BillDetailComfirInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D4449B215F0DF100AE6219 /* PD_BillDetailComfirInfoView.m */; };
 		50DAAF4C216A20470060EBBC /* DelegateManagerEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DAAF4B216A20470060EBBC /* DelegateManagerEditCell.m */; };
-		50DAAF50216A32A80060EBBC /* BrandIntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DAAF4F216A32A80060EBBC /* BrandIntroductionViewController.m */; };
-		50DAAF54216A33700060EBBC /* BrandIntroductionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DAAF53216A33700060EBBC /* BrandIntroductionCell.m */; };
 		50F1C8D0215B963100CCF6C0 /* SVProgressHUD+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F1C8CF215B963100CCF6C0 /* SVProgressHUD+Extension.m */; };
 		50F68C3521578C5B00DCFE85 /* XRCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F68C3421578C5B00DCFE85 /* XRCarouselView.m */; };
 		50F68C382158987800DCFE85 /* PD_BillDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F68C372158987800DCFE85 /* PD_BillDetailViewController.m */; };
@@ -239,10 +249,6 @@
 		7888F3C82147C33900AAC8B0 /* NotPrjView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7888F3AA2147C33900AAC8B0 /* NotPrjView.xib */; };
 		7888F3C92147C33900AAC8B0 /* PlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F3AC2147C33900AAC8B0 /* PlaceholderTextView.m */; };
 		7888F3CA2147C33900AAC8B0 /* TPPasswordTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F3AE2147C33900AAC8B0 /* TPPasswordTextView.m */; };
-		78A79E2E216B785D005C0E54 /* MessageListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A79E2D216B785D005C0E54 /* MessageListTableViewCell.m */; };
-		78AA2574216B7119009EFDAF /* MessageNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AA2573216B7119009EFDAF /* MessageNoticeViewController.m */; };
-		78AA2578216B72D4009EFDAF /* MessageNoticeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AA2577216B72D4009EFDAF /* MessageNoticeTableViewCell.m */; };
-		78AA257B216B7705009EFDAF /* MessageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AA257A216B7705009EFDAF /* MessageListViewController.m */; };
 		78CB4B74214B8BD7000F6A9D /* VipSystemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CB4B73214B8BD7000F6A9D /* VipSystemViewController.m */; };
 		78CB4B77214BA8D7000F6A9D /* MyBillViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CB4B76214BA8D7000F6A9D /* MyBillViewController.m */; };
 		78CB4B7B214BAA29000F6A9D /* MyBillTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CB4B7A214BAA29000F6A9D /* MyBillTableViewCell.m */; };
@@ -251,7 +257,6 @@
 		78CB4BE3214BD9DD000F6A9D /* AddAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CB4BE2214BD9DD000F6A9D /* AddAddressViewController.m */; };
 		78D1F0B7216B31B700A98425 /* TerminalSelectResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D1F0B6216B31B600A98425 /* TerminalSelectResultViewController.m */; };
 		78D1F0B9216B321500A98425 /* DelegateManagerMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D1F0B8216B321400A98425 /* DelegateManagerMainView.m */; };
-		78D1F0D4216B659B00A98425 /* SelectDetailBrandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D1F0D3216B659B00A98425 /* SelectDetailBrandViewController.m */; };
 		DA8D1773214E8CBC006574E4 /* PD_BillListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8D1772214E8CBC006574E4 /* PD_BillListViewController.m */; };
 		DA8D1776214E8EE7006574E4 /* SLConst.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8D1774214E8EE6006574E4 /* SLConst.m */; };
 /* End PBXBuildFile section */
@@ -311,6 +316,30 @@
 		502BAFC2215C884B005EDE6F /* PD_BillDetailOutLineInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillDetailOutLineInfoView.m; sourceTree = "<group>"; };
 		50339EAC2152968F003011E9 /* PD_BillListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillListCell.h; sourceTree = "<group>"; };
 		50339EAD2152968F003011E9 /* PD_BillListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillListCell.m; sourceTree = "<group>"; };
+		505B6F60216D8D5C000D49B2 /* POSRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POSRootViewController.h; sourceTree = "<group>"; };
+		505B6F61216D8D5C000D49B2 /* POSRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = POSRootViewController.m; sourceTree = "<group>"; };
+		505B6F65216D9881000D49B2 /* SetMealOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetMealOrderCell.m; sourceTree = "<group>"; };
+		505B6F66216D9881000D49B2 /* SetMealOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetMealOrderCell.h; sourceTree = "<group>"; };
+		505B6F69216D98F9000D49B2 /* NullViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullViewController.m; sourceTree = "<group>"; };
+		505B6F6A216D98F9000D49B2 /* NullViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NullViewController.h; sourceTree = "<group>"; };
+		505B6F6D216D99A0000D49B2 /* ImageGeneralizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGeneralizeViewController.m; sourceTree = "<group>"; };
+		505B6F6F216D99A0000D49B2 /* ImageGeneralizeCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGeneralizeCollectionViewCell.h; sourceTree = "<group>"; };
+		505B6F70216D99A0000D49B2 /* ImageGeneralizeCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGeneralizeCollectionViewCell.m; sourceTree = "<group>"; };
+		505B6F71216D99A0000D49B2 /* ImageGeneralizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGeneralizeViewController.h; sourceTree = "<group>"; };
+		505B6F75216D99FC000D49B2 /* MessageNoticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageNoticeViewController.m; sourceTree = "<group>"; };
+		505B6F76216D99FC000D49B2 /* MessageListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageListViewController.h; sourceTree = "<group>"; };
+		505B6F77216D99FC000D49B2 /* SelectDetailBrandViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectDetailBrandViewController.m; sourceTree = "<group>"; };
+		505B6F79216D99FC000D49B2 /* MessageListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageListTableViewCell.m; sourceTree = "<group>"; };
+		505B6F7A216D99FC000D49B2 /* MessageNoticeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageNoticeTableViewCell.m; sourceTree = "<group>"; };
+		505B6F7B216D99FC000D49B2 /* MessageNoticeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageNoticeTableViewCell.h; sourceTree = "<group>"; };
+		505B6F7C216D99FC000D49B2 /* MessageListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageListTableViewCell.h; sourceTree = "<group>"; };
+		505B6F7D216D99FC000D49B2 /* MessageNoticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageNoticeViewController.h; sourceTree = "<group>"; };
+		505B6F7E216D99FC000D49B2 /* SelectDetailBrandViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectDetailBrandViewController.h; sourceTree = "<group>"; };
+		505B6F7F216D99FC000D49B2 /* MessageListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageListViewController.m; sourceTree = "<group>"; };
+		505B6F86216D9B9B000D49B2 /* BrandIntroductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrandIntroductionViewController.m; sourceTree = "<group>"; };
+		505B6F88216D9B9B000D49B2 /* BrandIntroductionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrandIntroductionCell.m; sourceTree = "<group>"; };
+		505B6F89216D9B9B000D49B2 /* BrandIntroductionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrandIntroductionCell.h; sourceTree = "<group>"; };
+		505B6F8A216D9B9B000D49B2 /* BrandIntroductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrandIntroductionViewController.h; sourceTree = "<group>"; };
 		5067AB94215F8518005A1FD7 /* ActivationMoneyRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActivationMoneyRootViewController.h; sourceTree = "<group>"; };
 		5067AB95215F8518005A1FD7 /* ActivationMoneyRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActivationMoneyRootViewController.m; sourceTree = "<group>"; };
 		5067AB98215F887B005A1FD7 /* ActivationMoneyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActivationMoneyCell.h; sourceTree = "<group>"; };
@@ -458,10 +487,6 @@
 		50D4449B215F0DF100AE6219 /* PD_BillDetailComfirInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillDetailComfirInfoView.m; sourceTree = "<group>"; };
 		50DAAF4A216A20470060EBBC /* DelegateManagerEditCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelegateManagerEditCell.h; sourceTree = "<group>"; };
 		50DAAF4B216A20470060EBBC /* DelegateManagerEditCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DelegateManagerEditCell.m; sourceTree = "<group>"; };
-		50DAAF4E216A32A80060EBBC /* BrandIntroductionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrandIntroductionViewController.h; sourceTree = "<group>"; };
-		50DAAF4F216A32A80060EBBC /* BrandIntroductionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrandIntroductionViewController.m; sourceTree = "<group>"; };
-		50DAAF52216A33700060EBBC /* BrandIntroductionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrandIntroductionCell.h; sourceTree = "<group>"; };
-		50DAAF53216A33700060EBBC /* BrandIntroductionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrandIntroductionCell.m; sourceTree = "<group>"; };
 		50F1C8CE215B963100CCF6C0 /* SVProgressHUD+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD+Extension.h"; sourceTree = "<group>"; };
 		50F1C8CF215B963100CCF6C0 /* SVProgressHUD+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SVProgressHUD+Extension.m"; sourceTree = "<group>"; };
 		50F68C3321578C5B00DCFE85 /* XRCarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XRCarouselView.h; sourceTree = "<group>"; };
@@ -704,14 +729,6 @@
 		7888F3AC2147C33900AAC8B0 /* PlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceholderTextView.m; sourceTree = "<group>"; };
 		7888F3AD2147C33900AAC8B0 /* TPPasswordTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPPasswordTextView.h; sourceTree = "<group>"; };
 		7888F3AE2147C33900AAC8B0 /* TPPasswordTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPasswordTextView.m; sourceTree = "<group>"; };
-		78A79E2C216B785D005C0E54 /* MessageListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageListTableViewCell.h; sourceTree = "<group>"; };
-		78A79E2D216B785D005C0E54 /* MessageListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageListTableViewCell.m; sourceTree = "<group>"; };
-		78AA2572216B7119009EFDAF /* MessageNoticeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageNoticeViewController.h; sourceTree = "<group>"; };
-		78AA2573216B7119009EFDAF /* MessageNoticeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageNoticeViewController.m; sourceTree = "<group>"; };
-		78AA2576216B72D4009EFDAF /* MessageNoticeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageNoticeTableViewCell.h; sourceTree = "<group>"; };
-		78AA2577216B72D4009EFDAF /* MessageNoticeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageNoticeTableViewCell.m; sourceTree = "<group>"; };
-		78AA2579216B7705009EFDAF /* MessageListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageListViewController.h; sourceTree = "<group>"; };
-		78AA257A216B7705009EFDAF /* MessageListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageListViewController.m; sourceTree = "<group>"; };
 		78CB4B72214B8BD7000F6A9D /* VipSystemViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VipSystemViewController.h; sourceTree = "<group>"; };
 		78CB4B73214B8BD7000F6A9D /* VipSystemViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VipSystemViewController.m; sourceTree = "<group>"; };
 		78CB4B75214BA8D7000F6A9D /* MyBillViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyBillViewController.h; sourceTree = "<group>"; };
@@ -727,8 +744,6 @@
 		78D1F0B6216B31B600A98425 /* TerminalSelectResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerminalSelectResultViewController.m; sourceTree = "<group>"; };
 		78D1F0B8216B321400A98425 /* DelegateManagerMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelegateManagerMainView.m; sourceTree = "<group>"; };
 		78D1F0BA216B343100A98425 /* POSInterfaceName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POSInterfaceName.h; sourceTree = "<group>"; };
-		78D1F0D2216B659B00A98425 /* SelectDetailBrandViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectDetailBrandViewController.h; sourceTree = "<group>"; };
-		78D1F0D3216B659B00A98425 /* SelectDetailBrandViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectDetailBrandViewController.m; sourceTree = "<group>"; };
 		86630A622457BA042EF8C924 /* Pods-POS_develop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-POS_develop.release.xcconfig"; path = "Pods/Target Support Files/Pods-POS_develop/Pods-POS_develop.release.xcconfig"; sourceTree = "<group>"; };
 		DA8D1771214E8CBC006574E4 /* PD_BillListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillListViewController.h; sourceTree = "<group>"; };
 		DA8D1772214E8CBC006574E4 /* PD_BillListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillListViewController.m; sourceTree = "<group>"; };
@@ -830,6 +845,95 @@
 				50D4449B215F0DF100AE6219 /* PD_BillDetailComfirInfoView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		505B6F63216D9881000D49B2 /* CombinationSetMeal(组合套餐) */ = {
+			isa = PBXGroup;
+			children = (
+				505B6F64216D9881000D49B2 /* Cell */,
+			);
+			path = "CombinationSetMeal(组合套餐)";
+			sourceTree = "<group>";
+		};
+		505B6F64216D9881000D49B2 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				505B6F66216D9881000D49B2 /* SetMealOrderCell.h */,
+				505B6F65216D9881000D49B2 /* SetMealOrderCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		505B6F68216D98F9000D49B2 /* NULLController */ = {
+			isa = PBXGroup;
+			children = (
+				505B6F6A216D98F9000D49B2 /* NullViewController.h */,
+				505B6F69216D98F9000D49B2 /* NullViewController.m */,
+			);
+			path = NULLController;
+			sourceTree = "<group>";
+		};
+		505B6F6C216D99A0000D49B2 /* ImageGeneralize(图片推广) */ = {
+			isa = PBXGroup;
+			children = (
+				505B6F71216D99A0000D49B2 /* ImageGeneralizeViewController.h */,
+				505B6F6D216D99A0000D49B2 /* ImageGeneralizeViewController.m */,
+				505B6F6E216D99A0000D49B2 /* Cell */,
+			);
+			path = "ImageGeneralize(图片推广)";
+			sourceTree = "<group>";
+		};
+		505B6F6E216D99A0000D49B2 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				505B6F6F216D99A0000D49B2 /* ImageGeneralizeCollectionViewCell.h */,
+				505B6F70216D99A0000D49B2 /* ImageGeneralizeCollectionViewCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		505B6F74216D99FC000D49B2 /* Message(消息) */ = {
+			isa = PBXGroup;
+			children = (
+				505B6F7D216D99FC000D49B2 /* MessageNoticeViewController.h */,
+				505B6F75216D99FC000D49B2 /* MessageNoticeViewController.m */,
+				505B6F76216D99FC000D49B2 /* MessageListViewController.h */,
+				505B6F7F216D99FC000D49B2 /* MessageListViewController.m */,
+				505B6F7E216D99FC000D49B2 /* SelectDetailBrandViewController.h */,
+				505B6F77216D99FC000D49B2 /* SelectDetailBrandViewController.m */,
+				505B6F78216D99FC000D49B2 /* Cell */,
+			);
+			path = "Message(消息)";
+			sourceTree = "<group>";
+		};
+		505B6F78216D99FC000D49B2 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				505B6F7C216D99FC000D49B2 /* MessageListTableViewCell.h */,
+				505B6F79216D99FC000D49B2 /* MessageListTableViewCell.m */,
+				505B6F7B216D99FC000D49B2 /* MessageNoticeTableViewCell.h */,
+				505B6F7A216D99FC000D49B2 /* MessageNoticeTableViewCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		505B6F85216D9B9B000D49B2 /* BrandIntroduction(品牌介绍) */ = {
+			isa = PBXGroup;
+			children = (
+				505B6F8A216D9B9B000D49B2 /* BrandIntroductionViewController.h */,
+				505B6F86216D9B9B000D49B2 /* BrandIntroductionViewController.m */,
+				505B6F87216D9B9B000D49B2 /* Cell */,
+			);
+			path = "BrandIntroduction(品牌介绍)";
+			sourceTree = "<group>";
+		};
+		505B6F87216D9B9B000D49B2 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				505B6F89216D9B9B000D49B2 /* BrandIntroductionCell.h */,
+				505B6F88216D9B9B000D49B2 /* BrandIntroductionCell.m */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		5067AB97215F8852005A1FD7 /* Cell */ = {
@@ -1137,27 +1241,6 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		50DAAF4D216A328A0060EBBC /* BrandIntroduction(品牌介绍) */ = {
-			isa = PBXGroup;
-			children = (
-				50DAAF51216A334A0060EBBC /* Cell */,
-				50DAAF4E216A32A80060EBBC /* BrandIntroductionViewController.h */,
-				50DAAF4F216A32A80060EBBC /* BrandIntroductionViewController.m */,
-				78D1F0D2216B659B00A98425 /* SelectDetailBrandViewController.h */,
-				78D1F0D3216B659B00A98425 /* SelectDetailBrandViewController.m */,
-			);
-			path = "BrandIntroduction(品牌介绍)";
-			sourceTree = "<group>";
-		};
-		50DAAF51216A334A0060EBBC /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				50DAAF52216A33700060EBBC /* BrandIntroductionCell.h */,
-				50DAAF53216A33700060EBBC /* BrandIntroductionCell.m */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
 		786AD0DE215A2C3C005D7363 /* Unit */ = {
 			isa = PBXGroup;
 			children = (
@@ -1331,6 +1414,8 @@
 				5022DC76216C9E2400CE14C1 /* View */,
 				787166B9214917D400452C51 /* POSViewController.h */,
 				787166BA214917D400452C51 /* POSViewController.m */,
+				505B6F60216D8D5C000D49B2 /* POSRootViewController.h */,
+				505B6F61216D8D5C000D49B2 /* POSRootViewController.m */,
 			);
 			path = POS;
 			sourceTree = "<group>";
@@ -1338,6 +1423,7 @@
 		787166BC2149182200452C51 /* Generalize */ = {
 			isa = PBXGroup;
 			children = (
+				505B6F6C216D99A0000D49B2 /* ImageGeneralize(图片推广) */,
 				787166BD2149183200452C51 /* GeneralizeViewController.h */,
 				787166BE2149183200452C51 /* GeneralizeViewController.m */,
 			);
@@ -1393,9 +1479,11 @@
 		787FFC9321522D4400318BBC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				78AA2571216B70E5009EFDAF /* Message(消息) */,
+				505B6F63216D9881000D49B2 /* CombinationSetMeal(组合套餐) */,
+				505B6F68216D98F9000D49B2 /* NULLController */,
 				50A89A8A216B516200E68BEB /* StatisticAnalysis(统计分析) */,
-				50DAAF4D216A328A0060EBBC /* BrandIntroduction(品牌介绍) */,
+				505B6F74216D99FC000D49B2 /* Message(消息) */,
+				505B6F85216D9B9B000D49B2 /* BrandIntroduction(品牌介绍) */,
 				50B136122166031E009C435C /* DelegateManager(代理商管理) */,
 				502AF8092163872600260979 /* TerminalAdmin(终端管理) */,
 				50BD2ABB21626E98008D201B /* TerminalSelect(终端查询) */,
@@ -1847,29 +1935,6 @@
 			path = NotPrjView;
 			sourceTree = "<group>";
 		};
-		78AA2571216B70E5009EFDAF /* Message(消息) */ = {
-			isa = PBXGroup;
-			children = (
-				78AA2575216B72BF009EFDAF /* Cell */,
-				78AA2572216B7119009EFDAF /* MessageNoticeViewController.h */,
-				78AA2573216B7119009EFDAF /* MessageNoticeViewController.m */,
-				78AA2579216B7705009EFDAF /* MessageListViewController.h */,
-				78AA257A216B7705009EFDAF /* MessageListViewController.m */,
-			);
-			path = "Message(消息)";
-			sourceTree = "<group>";
-		};
-		78AA2575216B72BF009EFDAF /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				78AA2576216B72D4009EFDAF /* MessageNoticeTableViewCell.h */,
-				78AA2577216B72D4009EFDAF /* MessageNoticeTableViewCell.m */,
-				78A79E2C216B785D005C0E54 /* MessageListTableViewCell.h */,
-				78A79E2D216B785D005C0E54 /* MessageListTableViewCell.m */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
 		78CB4B71214B8BBA000F6A9D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -2128,14 +2193,13 @@
 				50A89AFA216B653200E68BEB /* XColor.m in Sources */,
 				50184CD921589E2C00D11AC6 /* UIButton+Style.m in Sources */,
 				7888F3572147C32C00AAC8B0 /* UIAlertView+Blocks.m in Sources */,
+				505B6F73216D99A0000D49B2 /* ImageGeneralizeCollectionViewCell.m in Sources */,
 				2591E55E214D72C100469452 /* BLAreaPickerView.m in Sources */,
 				502AF8132163A5E100260979 /* SheetPickerView.m in Sources */,
 				7888F34F2147C32C00AAC8B0 /* HDeviceIdentifier.m in Sources */,
-				50DAAF54216A33700060EBBC /* BrandIntroductionCell.m in Sources */,
 				502BAFC3215C884B005EDE6F /* PD_BillDetailOutLineInfoView.m in Sources */,
 				7888F3B62147C33900AAC8B0 /* UIView+Extension.m in Sources */,
 				7888F2DE2147C31600AAC8B0 /* WebViewAction.m in Sources */,
-				78AA257B216B7705009EFDAF /* MessageListViewController.m in Sources */,
 				5089376621561DB8007C6239 /* HomeTableViewCell.m in Sources */,
 				7888F3C32147C33900AAC8B0 /* SY_ImageAndLabelAndLaeblBtn.m in Sources */,
 				50A89B06216B653200E68BEB /* XAbscissaView.m in Sources */,
@@ -2158,9 +2222,10 @@
 				50BD2ABA2162698C008D201B /* SureBindViewController.m in Sources */,
 				50F68C3521578C5B00DCFE85 /* XRCarouselView.m in Sources */,
 				50A89B0D216B653200E68BEB /* XLineContainerView.m in Sources */,
+				505B6F67216D9882000D49B2 /* SetMealOrderCell.m in Sources */,
 				7888F2DA2147C31600AAC8B0 /* CFTabBarViewController.m in Sources */,
-				78A79E2E216B785D005C0E54 /* MessageListTableViewCell.m in Sources */,
 				50A89B00216B653200E68BEB /* XCycleView.m in Sources */,
+				505B6F83216D99FC000D49B2 /* MessageNoticeTableViewCell.m in Sources */,
 				786AD103215A440C005D7363 /* ActivationMoneyDetailViewController.m in Sources */,
 				7888F2DB2147C31600AAC8B0 /* DirectivePageViewController.m in Sources */,
 				7888F34D2147C32C00AAC8B0 /* GDataXMLNode.m in Sources */,
@@ -2196,7 +2261,6 @@
 				7888F3B52147C33900AAC8B0 /* UITableView+BackgroundImageView.m in Sources */,
 				78D1F0B9216B321500A98425 /* DelegateManagerMainView.m in Sources */,
 				2546E2D1214D2F250066DBFB /* SettingTableViewCell.m in Sources */,
-				50DAAF50216A32A80060EBBC /* BrandIntroductionViewController.m in Sources */,
 				787166B7214912E200452C51 /* PosHomePageViewController.m in Sources */,
 				50B136112165F3D9009C435C /* BrandTableViewCell.m in Sources */,
 				251A4103214FF45E00AC2C81 /* WithdrawCashViewController.m in Sources */,
@@ -2205,6 +2269,7 @@
 				7888F3622147C32C00AAC8B0 /* NetWorkDetectionManager.m in Sources */,
 				50B1361521660341009C435C /* DelegateManagerViewController.m in Sources */,
 				78CB4BE0214BCE67000F6A9D /* MyAddressTableViewCell.m in Sources */,
+				505B6F84216D99FC000D49B2 /* MessageListViewController.m in Sources */,
 				7888F3612147C32C00AAC8B0 /* MJChiBaoZiHeader.m in Sources */,
 				50A89AF5216B653200E68BEB /* XPointDetect.m in Sources */,
 				259646E32158DFAE00E516BF /* SeparateQueryViewController.m in Sources */,
@@ -2212,6 +2277,7 @@
 				50B1362B216984E5009C435C /* DelegateManagerResultViewController.m in Sources */,
 				78D1F0B7216B31B700A98425 /* TerminalSelectResultViewController.m in Sources */,
 				50B060822153A0DC00B7B411 /* PD_BillSkuHeaderView.m in Sources */,
+				505B6F6B216D98F9000D49B2 /* NullViewController.m in Sources */,
 				5067AB96215F8518005A1FD7 /* ActivationMoneyRootViewController.m in Sources */,
 				7871669B214911BC00452C51 /* TBCityIconInfo.m in Sources */,
 				786AD0F9215A3893005D7363 /* SeparateQueryCell.m in Sources */,
@@ -2220,24 +2286,29 @@
 				50F68C382158987800DCFE85 /* PD_BillDetailViewController.m in Sources */,
 				50C5449C2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.m in Sources */,
 				7888F3692147C32C00AAC8B0 /* SGActionView.m in Sources */,
+				505B6F8C216D9B9B000D49B2 /* BrandIntroductionCell.m in Sources */,
 				50A89AFB216B653200E68BEB /* XAnimationPath.m in Sources */,
 				253647E0214E11C60094576C /* WithdrawCashTableViewCell.m in Sources */,
 				7888F2E12147C31600AAC8B0 /* PopView.m in Sources */,
 				50A89AEB216B653200E68BEB /* CALayer+XLayerSelectHelper.m in Sources */,
+				505B6F82216D99FC000D49B2 /* MessageListTableViewCell.m in Sources */,
 				7888F3662147C32C00AAC8B0 /* RSA+AES+GZIP.m in Sources */,
 				78765A92214A89D600261ED3 /* FastLoginViewController.m in Sources */,
 				7888F3652147C32C00AAC8B0 /* NSData+AES.m in Sources */,
-				78AA2574216B7119009EFDAF /* MessageNoticeViewController.m in Sources */,
 				50A89AFE216B653200E68BEB /* XAuxiliaryCalculationHelper.m in Sources */,
+				505B6F72216D99A0000D49B2 /* ImageGeneralizeViewController.m in Sources */,
 				78CB4BDD214BCCE3000F6A9D /* MyAddressViewController.m in Sources */,
 				7888F35B2147C32C00AAC8B0 /* ZZActionButton.m in Sources */,
 				7888F2D82147C31600AAC8B0 /* BaseViewController.m in Sources */,
 				7888F3C62147C33900AAC8B0 /* CF_LeftNavigationBar_BackBtn.m in Sources */,
+				505B6F62216D8D5C000D49B2 /* POSRootViewController.m in Sources */,
 				253647D4214E030D0094576C /* UpdatePhoneViewController.m in Sources */,
+				505B6F80216D99FC000D49B2 /* MessageNoticeViewController.m in Sources */,
 				50A89B09216B653200E68BEB /* XStackAreaLineContainerView.m in Sources */,
 				7888F3BD2147C33900AAC8B0 /* ZJPPTViewOC.m in Sources */,
 				7871669A214911BC00452C51 /* TBCityIconFont.m in Sources */,
 				502AF80C2163875E00260979 /* TerminalAdminViewController.m in Sources */,
+				505B6F8B216D9B9B000D49B2 /* BrandIntroductionViewController.m in Sources */,
 				7888F2F52147C32600AAC8B0 /* NSUserDefaults+Helper.m in Sources */,
 				7888F34C2147C32C00AAC8B0 /* UITableViewCell+Extension.m in Sources */,
 				787166BB214917D400452C51 /* POSViewController.m in Sources */,
@@ -2264,6 +2335,7 @@
 				501B5728215DC64B0025086D /* PD_BillDetailUnCheckView.m in Sources */,
 				5089375F21561B32007C6239 /* AchievementsViewController.m in Sources */,
 				7888F2DD2147C31600AAC8B0 /* CommunityWebViewController.m in Sources */,
+				505B6F81216D99FC000D49B2 /* SelectDetailBrandViewController.m in Sources */,
 				7888F3AF2147C33900AAC8B0 /* NSString+Helper.m in Sources */,
 				2520A68E214CE38900D48B26 /* SettingViewController.m in Sources */,
 				787FFC9B21522DE800318BBC /* TransactionListCell.m in Sources */,
@@ -2276,10 +2348,8 @@
 				7888F3C52147C33900AAC8B0 /* UIButton+ImageTitleSpacing.m in Sources */,
 				7888F2B72147C0AC00AAC8B0 /* main.m in Sources */,
 				50BD2AB721626892008D201B /* TerminalSearchViewController.m in Sources */,
-				78AA2578216B72D4009EFDAF /* MessageNoticeTableViewCell.m in Sources */,
 				50BD2AC221626F0F008D201B /* TerminalSelectViewController.m in Sources */,
 				7871669C214911BC00452C51 /* UIImage+TBCityIconFont.m in Sources */,
-				78D1F0D4216B659B00A98425 /* SelectDetailBrandViewController.m in Sources */,
 				50A89B0A216B653200E68BEB /* XPositiveNegativeBarContainerView.m in Sources */,
 				786AD10A215A44A3005D7363 /* ActivationMoneyDetailHeaderView.m in Sources */,
 				7888F3672147C32C00AAC8B0 /* RSA.m in Sources */,

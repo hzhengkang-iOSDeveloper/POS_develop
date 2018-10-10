@@ -33,7 +33,7 @@
         make.top.mas_equalTo(titleLabel.mas_bottom).offset(AD_HEIGHT(12));
         make.width.mas_equalTo(ScreenWidth - AD_HEIGHT(30));
     }];
-    timeLabel.text = @"2018.10.7";
+    timeLabel.text = self.timeStr;
     
     UIView *lineView = [UIView getViewWithColor:RGB(216, 214, 214) superView:self.view masonrySet:^(UIView *view, MASConstraintMaker *make) {
         make.left.right.offset(0);

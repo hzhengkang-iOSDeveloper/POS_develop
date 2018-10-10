@@ -6,8 +6,8 @@
 //  Copyright © 2018年 sunyn. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "BaseSonViewController.h"
 
-@interface GeneralizeViewController : BaseViewController
+@interface GeneralizeViewController : BaseSonViewController
 
 @end
