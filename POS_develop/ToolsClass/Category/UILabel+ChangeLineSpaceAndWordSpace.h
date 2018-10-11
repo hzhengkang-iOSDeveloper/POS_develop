@@ -23,5 +23,8 @@
  *  改变行间距和字间距
  */
 + (void)changeSpaceForLabel:(UILabel *)label withLineSpace:(float)lineSpace WordSpace:(float)wordSpace;
-
+/**
+ * masonry自适应高度
+ */
+- (void)changeLabelHeightWithWidth:(CGFloat)witdh;
 @end
