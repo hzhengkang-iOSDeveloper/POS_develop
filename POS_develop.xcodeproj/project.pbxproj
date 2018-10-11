@@ -123,6 +123,10 @@
 		50C5449C2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C5449A2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.m */; };
 		50D4449C215F0DF100AE6219 /* PD_BillDetailComfirInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D4449B215F0DF100AE6219 /* PD_BillDetailComfirInfoView.m */; };
 		50DAAF4C216A20470060EBBC /* DelegateManagerEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DAAF4B216A20470060EBBC /* DelegateManagerEditCell.m */; };
+		50E0C99F216EE88C0079ABF2 /* POS_ShopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E0C99E216EE88C0079ABF2 /* POS_ShopDetailViewController.m */; };
+		50E0C9A2216EF57C0079ABF2 /* SLGoodDetailImageDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E0C9A0216EF57C0079ABF2 /* SLGoodDetailImageDetailView.m */; };
+		50E0C9A8216F1FFF0079ABF2 /* POS_ShopDetailInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E0C9A7216F1FFF0079ABF2 /* POS_ShopDetailInfoView.m */; };
+		50E0C9AB216F55870079ABF2 /* POS_ShopRecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E0C9AA216F55870079ABF2 /* POS_ShopRecommendCell.m */; };
 		50F68C3521578C5B00DCFE85 /* XRCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F68C3421578C5B00DCFE85 /* XRCarouselView.m */; };
 		50F68C382158987800DCFE85 /* PD_BillDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F68C372158987800DCFE85 /* PD_BillDetailViewController.m */; };
 		50F68C3E21589BE100DCFE85 /* PD_BillDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F68C3D21589BE100DCFE85 /* PD_BillDetailHeaderView.m */; };
@@ -505,6 +509,14 @@
 		50D4449B215F0DF100AE6219 /* PD_BillDetailComfirInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillDetailComfirInfoView.m; sourceTree = "<group>"; };
 		50DAAF4A216A20470060EBBC /* DelegateManagerEditCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelegateManagerEditCell.h; sourceTree = "<group>"; };
 		50DAAF4B216A20470060EBBC /* DelegateManagerEditCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DelegateManagerEditCell.m; sourceTree = "<group>"; };
+		50E0C99D216EE88C0079ABF2 /* POS_ShopDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POS_ShopDetailViewController.h; sourceTree = "<group>"; };
+		50E0C99E216EE88C0079ABF2 /* POS_ShopDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = POS_ShopDetailViewController.m; sourceTree = "<group>"; };
+		50E0C9A0216EF57C0079ABF2 /* SLGoodDetailImageDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLGoodDetailImageDetailView.m; sourceTree = "<group>"; };
+		50E0C9A1216EF57C0079ABF2 /* SLGoodDetailImageDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLGoodDetailImageDetailView.h; sourceTree = "<group>"; };
+		50E0C9A6216F1FFF0079ABF2 /* POS_ShopDetailInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POS_ShopDetailInfoView.h; sourceTree = "<group>"; };
+		50E0C9A7216F1FFF0079ABF2 /* POS_ShopDetailInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = POS_ShopDetailInfoView.m; sourceTree = "<group>"; };
+		50E0C9A9216F55870079ABF2 /* POS_ShopRecommendCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POS_ShopRecommendCell.h; sourceTree = "<group>"; };
+		50E0C9AA216F55870079ABF2 /* POS_ShopRecommendCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = POS_ShopRecommendCell.m; sourceTree = "<group>"; };
 		50F68C3321578C5B00DCFE85 /* XRCarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XRCarouselView.h; sourceTree = "<group>"; };
 		50F68C3421578C5B00DCFE85 /* XRCarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XRCarouselView.m; sourceTree = "<group>"; };
 		50F68C362158987800DCFE85 /* PD_BillDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillDetailViewController.h; sourceTree = "<group>"; };
@@ -823,8 +835,14 @@
 		5022DC76216C9E2400CE14C1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				50E0C9A1216EF57C0079ABF2 /* SLGoodDetailImageDetailView.h */,
+				50E0C9A0216EF57C0079ABF2 /* SLGoodDetailImageDetailView.m */,
+				50E0C9A6216F1FFF0079ABF2 /* POS_ShopDetailInfoView.h */,
+				50E0C9A7216F1FFF0079ABF2 /* POS_ShopDetailInfoView.m */,
 				505B6F8D216DD038000D49B2 /* POSRootCell.h */,
 				505B6F8E216DD038000D49B2 /* POSRootCell.m */,
+				50E0C9A9216F55870079ABF2 /* POS_ShopRecommendCell.h */,
+				50E0C9AA216F55870079ABF2 /* POS_ShopRecommendCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1500,6 +1518,8 @@
 				787166BA214917D400452C51 /* POSViewController.m */,
 				505B6F60216D8D5C000D49B2 /* POSRootViewController.h */,
 				505B6F61216D8D5C000D49B2 /* POSRootViewController.m */,
+				50E0C99D216EE88C0079ABF2 /* POS_ShopDetailViewController.h */,
+				50E0C99E216EE88C0079ABF2 /* POS_ShopDetailViewController.m */,
 			);
 			path = POS;
 			sourceTree = "<group>";
@@ -2277,6 +2297,7 @@
 				7888F3C02147C33900AAC8B0 /* UserInformation.m in Sources */,
 				50DAAF4C216A20470060EBBC /* DelegateManagerEditCell.m in Sources */,
 				7888F3B02147C33900AAC8B0 /* ProjectExtension.m in Sources */,
+				50E0C9A2216EF57C0079ABF2 /* SLGoodDetailImageDetailView.m in Sources */,
 				7888F3C72147C33900AAC8B0 /* NotPrjView.m in Sources */,
 				7888F3BE2147C33900AAC8B0 /* BaseModel.m in Sources */,
 				50A89AFF216B653200E68BEB /* XRandomNumerHelper.m in Sources */,
@@ -2324,6 +2345,8 @@
 				5089376621561DB8007C6239 /* HomeTableViewCell.m in Sources */,
 				7888F3C32147C33900AAC8B0 /* SY_ImageAndLabelAndLaeblBtn.m in Sources */,
 				50A89B06216B653200E68BEB /* XAbscissaView.m in Sources */,
+				50E0C9A8216F1FFF0079ABF2 /* POS_ShopDetailInfoView.m in Sources */,
+				50E0C9AB216F55870079ABF2 /* POS_ShopRecommendCell.m in Sources */,
 				7888F36C2147C32C00AAC8B0 /* NSTimer+addition.m in Sources */,
 				7888F3BB2147C33900AAC8B0 /* ZJPPTViewCustomCell.m in Sources */,
 				50A89B01216B653200E68BEB /* XAlignLabel.m in Sources */,
@@ -2480,6 +2503,7 @@
 				7871669C214911BC00452C51 /* UIImage+TBCityIconFont.m in Sources */,
 				50A89B0A216B653200E68BEB /* XPositiveNegativeBarContainerView.m in Sources */,
 				786AD10A215A44A3005D7363 /* ActivationMoneyDetailHeaderView.m in Sources */,
+				50E0C99F216EE88C0079ABF2 /* POS_ShopDetailViewController.m in Sources */,
 				7888F3672147C32C00AAC8B0 /* RSA.m in Sources */,
 				7888F3B72147C33900AAC8B0 /* CustomImage.m in Sources */,
 				78765A84214A447400261ED3 /* PersonalHeaderView.m in Sources */,

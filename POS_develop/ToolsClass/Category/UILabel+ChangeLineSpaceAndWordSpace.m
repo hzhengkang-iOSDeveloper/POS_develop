@@ -43,5 +43,9 @@
     [label sizeToFit];
     
 }
-
+- (void)changeLabelHeightWithWidth:(CGFloat)witdh
+{
+    self.preferredMaxLayoutWidth = witdh;
+    [self setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
+}
 @end

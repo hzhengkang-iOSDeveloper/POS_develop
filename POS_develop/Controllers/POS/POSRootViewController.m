@@ -8,6 +8,7 @@
 
 #import "POSRootViewController.h"
 #import "POSRootCell.h"
+#import "POS_ShopDetailViewController.h"
 @interface POSRootViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, weak) UITableView *myTable;
 // 加入购物车动画商品logo
@@ -114,7 +115,9 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    POS_ShopDetailViewController *vc = [[POS_ShopDetailViewController alloc]init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     return [UIView new];
