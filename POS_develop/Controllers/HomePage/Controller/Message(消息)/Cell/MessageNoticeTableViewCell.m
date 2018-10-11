@@ -31,7 +31,7 @@
 
 - (void)initUI{
     self.iconImageView = [[UIImageView alloc] init];
-    self.iconImageView.image = [UIImage imageNamed:@"logo"];
+    self.iconImageView.image = [UIImage imageNamed:@"默认头像"];
     self.iconImageView.layer.cornerRadius = AD_HEIGHT(35/2);
     self.iconImageView.layer.masksToBounds = YES;
     [self.contentView addSubview:self.iconImageView];

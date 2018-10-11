@@ -2042,20 +2042,9 @@
 			path = NotPrjView;
 			sourceTree = "<group>";
 		};
-		78A320FA216E24B000D48B95 /* BuySuccess(购买成功) */ = {
+		789722CE216F294000425C62 /* MainController */ = {
 			isa = PBXGroup;
 			children = (
-				78A320FB216E24DC00D48B95 /* BuySuccessViewController.h */,
-				78A320FC216E24DC00D48B95 /* BuySuccessViewController.m */,
-			);
-			path = "BuySuccess(购买成功)";
-			sourceTree = "<group>";
-		};
-		78CB4B71214B8BBA000F6A9D /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				DA8D1770214E8C84006574E4 /* MyBill */,
-				78CB4B78214BAA0B000F6A9D /* Cell */,
 				78CB4B72214B8BD7000F6A9D /* VipSystemViewController.h */,
 				78CB4B73214B8BD7000F6A9D /* VipSystemViewController.m */,
 				78CB4B75214BA8D7000F6A9D /* MyBillViewController.h */,
@@ -2074,6 +2063,25 @@
 				253647D9214E05BC0094576C /* SettingNameViewController.m */,
 				251A4101214FF45E00AC2C81 /* WithdrawCashViewController.h */,
 				251A4102214FF45E00AC2C81 /* WithdrawCashViewController.m */,
+			);
+			path = MainController;
+			sourceTree = "<group>";
+		};
+		78A320FA216E24B000D48B95 /* BuySuccess(购买成功) */ = {
+			isa = PBXGroup;
+			children = (
+				78A320FB216E24DC00D48B95 /* BuySuccessViewController.h */,
+				78A320FC216E24DC00D48B95 /* BuySuccessViewController.m */,
+			);
+			path = "BuySuccess(购买成功)";
+			sourceTree = "<group>";
+		};
+		78CB4B71214B8BBA000F6A9D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				789722CE216F294000425C62 /* MainController */,
+				DA8D1770214E8C84006574E4 /* MyBill */,
+				78CB4B78214BAA0B000F6A9D /* Cell */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

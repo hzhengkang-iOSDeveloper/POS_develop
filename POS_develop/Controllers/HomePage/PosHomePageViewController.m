@@ -30,6 +30,13 @@
 
     }];
     [self createTableView];
+    
+    [self getHeaderRequest];
+}
+- (void)getHeaderRequest {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"dayId":@"201810", @"statType":@"0"} cookie:nil result:^(bool success, id result) {
+        NSLog(@"result ------- %@", result);
+    }];
 }
 - (void)createTableView {
     _homeTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - TabbarHeight - navH) style:UITableViewStylePlain];

@@ -21,7 +21,7 @@
     [super viewDidLoad];
     self.navigationItemTitle = @"终端绑定";
     MJWeakSelf;
-    [self addRightBarButtonWithImage:[UIImage imageNamed:@"语音"] clickHandler:^{
+    [self addRightBarButtonWithImage:[UIImage imageNamed:@"增加"] clickHandler:^{
         NSLog(@"点击右边按钮");
         TerminalSearchViewController *vc = [[TerminalSearchViewController alloc] init];
         [weakSelf.navigationController pushViewController:vc animated:YES];

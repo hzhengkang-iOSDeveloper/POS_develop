@@ -31,7 +31,7 @@
 
 - (void)initUI{
     self.iconImageView = [[UIImageView alloc] init];
-    self.iconImageView.image = [UIImage imageNamed:@"失败"];
+    self.iconImageView.image = [UIImage imageNamed:@"头像女孩拷贝"];
     [self.contentView addSubview:self.iconImageView];
     [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.offset(AD_HEIGHT(15));

@@ -8,6 +8,7 @@
 
 #import "DelegateManagerEditViewController.h"
 #import "DelegateManagerEditCell.h"
+#import "VipSystemViewController.h"
 
 @interface DelegateManagerEditViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *myTableView;
@@ -83,6 +84,12 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 2) {
+        VipSystemViewController *vc = [[VipSystemViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return AD_HEIGHT(50);
 }

@@ -19,21 +19,14 @@
 @implementation HPDConnect
 
 //生产环境
-#define  kFormalURL      @"https://api.hepancaifu.com"
+#define  kFormalURL      @"https://api.hepancaifu.com/"
 
 //测试环境
+#define  newLocalHost    @"http://106.14.7.85:8000/"
 
-#define  newLocalHost    @"http://106.14.7.85:8000/v2/api-docs"
-
-#define  BaseHeaderURL   kFormalURL
-
-//#define  TEST2           @"http://mp.hepandai.com/webservice/API.asmx"
+#define  BaseHeaderURL   newLocalHost
 
 
-//#define  kBaseURL      [NSString stringWithFormat:@"%@/WebService/WebService.asmx",BaseHeaderURL]
-//#define  kBaseUintURL      [NSString stringWithFormat:@"%@/webservice/API.asmx",BaseHeaderURL]
-//
-//#define  BaseHTTPURL     [NSString stringWithFormat:@"%@%@", kFormalURL,@"/Base/InvokeWS"]
 
 + (HPDConnect *)connect
 {
@@ -451,5 +444,67 @@
     }
     [dict setObject:[NSString stringWithFormat:@"%@_%@",[infoDictionary objectForKey:@"CFBundleShortVersionString"],[USER_DEFAULT objectForKey:@"IOSVessionNum"] ] forKey:@"version"];
     return dict;
+}
+
+
+
+- (void)PostNetRequestMethod:(NSString *)method params:(NSDictionary*)params cookie:(NSHTTPCookie *)cookie result:(AFNetRequestResultBlock)result {
+    AFHTTPSessionManager *session = [self GetAFHTTPSessionManagerObject];
+
+    [session POST:[NSString stringWithFormat:@"%@%@",BaseHeaderURL,method] parameters:@{@"str":[GlobalMethod GlobalStringWithDictionary:params]} progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        result(YES,responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (![self wasNetworkValid]) {
+            HUD_TIP(@"网络繁忙，请稍后~");
+#if DEBUG
+            NSLog(@"--->net work can not used!");
+#endif
+            result(NO, nil);
+            return;
+        }
+        result(NO,error);
+    }];
+//    [session POST:[NSString stringWithFormat:@"%@%@",BaseHeaderURL,method]  parameters:@{@"str":[GlobalMethod GlobalStringWithDictionary:params]} success:^(NSURLSessionDataTask *task, id responseObject) {
+//
+//        result(YES,responseObject);
+//
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        if (![self wasNetworkValid]) {
+//            HUD_TIP(@"网络繁忙，请稍后~");
+//#if DEBUG
+//            NSLog(@"--->net work can not used!");
+//#endif
+//            result(NO, nil);
+//            return;
+//        }
+//        result(NO,error);
+//    }];
+    
+}
+
+- (void)GetNetRequestMethod:(NSString *)method params:(NSDictionary*)params cookie:(NSHTTPCookie *)cookie result:(AFNetRequestResultBlock)result {
+    AFHTTPSessionManager *session = [self GetAFHTTPSessionManagerObject];
+    
+    [session GET:[NSString stringWithFormat:@"%@%@",BaseHeaderURL,method] parameters:@{@"str":[GlobalMethod GlobalStringWithDictionary:params]} progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        result(YES,responseObject);
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        if (![self wasNetworkValid]) {
+            HUD_TIP(@"网络繁忙，请稍后~");
+#if DEBUG
+            NSLog(@"--->net work can not used!");
+#endif
+            result(NO, nil);
+            return;
+        }
+        result(NO,error);
+        
+    }];
+    
 }
 @end

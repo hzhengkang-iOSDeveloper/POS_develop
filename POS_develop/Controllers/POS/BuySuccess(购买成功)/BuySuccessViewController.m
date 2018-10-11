@@ -24,7 +24,7 @@
 
 - (void)initUI {
     UIImageView *successImageView = [[UIImageView alloc] init];
-    successImageView.image = [UIImage imageNamed:@"成功"];
+    successImageView.image = [UIImage imageNamed:@"分享成功"];
     [self.view addSubview:successImageView];
     [successImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.offset(0);

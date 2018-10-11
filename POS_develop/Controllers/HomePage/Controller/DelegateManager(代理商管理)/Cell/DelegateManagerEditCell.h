@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DelegateManagerEditCell : UITableViewCell
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UITextField *contentTF;
-
+@property (nonatomic, strong) UIButton *vipGradeBtn;
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 @end
 

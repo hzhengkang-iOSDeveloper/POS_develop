@@ -31,7 +31,7 @@
 - (void)initUI{
     self.selectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.selectBtn setImage:[UIImage imageNamed:@"图层4拷贝10"] forState:UIControlStateNormal];
-    [self.selectBtn setImage:[UIImage imageNamed:@"选中"] forState:UIControlStateSelected];
+    [self.selectBtn setImage:[UIImage imageNamed:@"推广选中"] forState:UIControlStateSelected];
     self.selectBtn.userInteractionEnabled = NO;
     [self addSubview:self.selectBtn];
     [self.selectBtn mas_makeConstraints:^(MASConstraintMaker *make) {

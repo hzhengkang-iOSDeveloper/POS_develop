@@ -49,5 +49,17 @@
         make.right.offset(0);
         make.height.mas_equalTo(AD_HEIGHT(1));
     }];
+    self.vipGradeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.vipGradeBtn setTitle:@"V3" forState:UIControlStateNormal];
+    [self.vipGradeBtn setTitleColor:C000000 forState:UIControlStateNormal];
+    [self.vipGradeBtn layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleLeft imageTitleSpace:FITiPhone6(5)];
+    [self.vipGradeBtn setImage:[UIImage imageNamed:@"更多"] forState:normal];
+    self.vipGradeBtn.titleLabel.font = F13;
+    self.vipGradeBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
+    [self addSubview:self.vipGradeBtn];
+    [self.vipGradeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.offset(AD_HEIGHT(-15));
+        make.centerY.offset(0);
+    }];
 }
 @end
