@@ -362,6 +362,8 @@
     session.requestSerializer = [AFJSONRequestSerializer serializer];
     session.responseSerializer = [AFJSONResponseSerializer serializer];
     [session.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+//    [session.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+
     return session;
 }
 //webservice 同步统一方法
@@ -446,12 +448,18 @@
     return dict;
 }
 
-
+- (NSDictionary *)getRequestDic:(NSDictionary *)params {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:params];
+    [dict setObject:@"100" forKey:@"authCode"];
+    [dict setObject:@"100" forKey:@"authUserId"];
+    return dict;
+}
 
 - (void)PostNetRequestMethod:(NSString *)method params:(NSDictionary*)params cookie:(NSHTTPCookie *)cookie result:(AFNetRequestResultBlock)result {
     AFHTTPSessionManager *session = [self GetAFHTTPSessionManagerObject];
-
-    [session POST:[NSString stringWithFormat:@"%@%@",BaseHeaderURL,method] parameters:@{@"str":[GlobalMethod GlobalStringWithDictionary:params]} progress:^(NSProgress * _Nonnull uploadProgress) {
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",BaseHeaderURL,method];
+    [session POST:urlStr parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         result(YES,responseObject);
@@ -466,21 +474,7 @@
         }
         result(NO,error);
     }];
-//    [session POST:[NSString stringWithFormat:@"%@%@",BaseHeaderURL,method]  parameters:@{@"str":[GlobalMethod GlobalStringWithDictionary:params]} success:^(NSURLSessionDataTask *task, id responseObject) {
-//
-//        result(YES,responseObject);
-//
-//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//        if (![self wasNetworkValid]) {
-//            HUD_TIP(@"网络繁忙，请稍后~");
-//#if DEBUG
-//            NSLog(@"--->net work can not used!");
-//#endif
-//            result(NO, nil);
-//            return;
-//        }
-//        result(NO,error);
-//    }];
+
     
 }
 

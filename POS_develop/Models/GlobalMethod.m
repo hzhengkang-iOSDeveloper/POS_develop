@@ -298,7 +298,7 @@
 }
 
 //字典转json字符串
-+(NSString*)GlobalStringWithDictionary:(NSDictionary*)dic{
++(NSString*)GlobalStringWithDictionary:(NSMutableArray*)dic{
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil];
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
