@@ -36,6 +36,9 @@
 		502AF8132163A5E100260979 /* SheetPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 502AF8122163A5E100260979 /* SheetPickerView.m */; };
 		502BAFC3215C884B005EDE6F /* PD_BillDetailOutLineInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 502BAFC2215C884B005EDE6F /* PD_BillDetailOutLineInfoView.m */; };
 		50339EAE2152968F003011E9 /* PD_BillListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50339EAD2152968F003011E9 /* PD_BillListCell.m */; };
+		504D8E172170407200478C50 /* POS_CommitBillViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 504D8E162170407200478C50 /* POS_CommitBillViewController.m */; };
+		504D8E1A2170740000478C50 /* POS_CommfirBillOutLinePayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 504D8E192170740000478C50 /* POS_CommfirBillOutLinePayView.m */; };
+		504D8E1D217075E800478C50 /* POS_CommfirBillOnLinePayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 504D8E1C217075E800478C50 /* POS_CommfirBillOnLinePayView.m */; };
 		505B6F62216D8D5C000D49B2 /* POSRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505B6F61216D8D5C000D49B2 /* POSRootViewController.m */; };
 		505B6F67216D9882000D49B2 /* SetMealOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 505B6F65216D9881000D49B2 /* SetMealOrderCell.m */; };
 		505B6F6B216D98F9000D49B2 /* NullViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505B6F69216D98F9000D49B2 /* NullViewController.m */; };
@@ -332,6 +335,12 @@
 		502BAFC2215C884B005EDE6F /* PD_BillDetailOutLineInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillDetailOutLineInfoView.m; sourceTree = "<group>"; };
 		50339EAC2152968F003011E9 /* PD_BillListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillListCell.h; sourceTree = "<group>"; };
 		50339EAD2152968F003011E9 /* PD_BillListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillListCell.m; sourceTree = "<group>"; };
+		504D8E152170407200478C50 /* POS_CommitBillViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POS_CommitBillViewController.h; sourceTree = "<group>"; };
+		504D8E162170407200478C50 /* POS_CommitBillViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = POS_CommitBillViewController.m; sourceTree = "<group>"; };
+		504D8E182170740000478C50 /* POS_CommfirBillOutLinePayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POS_CommfirBillOutLinePayView.h; sourceTree = "<group>"; };
+		504D8E192170740000478C50 /* POS_CommfirBillOutLinePayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = POS_CommfirBillOutLinePayView.m; sourceTree = "<group>"; };
+		504D8E1B217075E800478C50 /* POS_CommfirBillOnLinePayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POS_CommfirBillOnLinePayView.h; sourceTree = "<group>"; };
+		504D8E1C217075E800478C50 /* POS_CommfirBillOnLinePayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = POS_CommfirBillOnLinePayView.m; sourceTree = "<group>"; };
 		505B6F60216D8D5C000D49B2 /* POSRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POSRootViewController.h; sourceTree = "<group>"; };
 		505B6F61216D8D5C000D49B2 /* POSRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = POSRootViewController.m; sourceTree = "<group>"; };
 		505B6F65216D9881000D49B2 /* SetMealOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetMealOrderCell.m; sourceTree = "<group>"; };
@@ -843,6 +852,10 @@
 				505B6F8E216DD038000D49B2 /* POSRootCell.m */,
 				50E0C9A9216F55870079ABF2 /* POS_ShopRecommendCell.h */,
 				50E0C9AA216F55870079ABF2 /* POS_ShopRecommendCell.m */,
+				504D8E182170740000478C50 /* POS_CommfirBillOutLinePayView.h */,
+				504D8E192170740000478C50 /* POS_CommfirBillOutLinePayView.m */,
+				504D8E1B217075E800478C50 /* POS_CommfirBillOnLinePayView.h */,
+				504D8E1C217075E800478C50 /* POS_CommfirBillOnLinePayView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1520,6 +1533,8 @@
 				505B6F61216D8D5C000D49B2 /* POSRootViewController.m */,
 				50E0C99D216EE88C0079ABF2 /* POS_ShopDetailViewController.h */,
 				50E0C99E216EE88C0079ABF2 /* POS_ShopDetailViewController.m */,
+				504D8E152170407200478C50 /* POS_CommitBillViewController.h */,
+				504D8E162170407200478C50 /* POS_CommitBillViewController.m */,
 			);
 			path = POS;
 			sourceTree = "<group>";
@@ -2335,6 +2350,7 @@
 				50A89B08216B653200E68BEB /* XPieChart.m in Sources */,
 				50A89B16216B65A800E68BEB /* Colours.m in Sources */,
 				7888F3502147C32C00AAC8B0 /* SFHFKeychainUtils.m in Sources */,
+				504D8E1D217075E800478C50 /* POS_CommfirBillOnLinePayView.m in Sources */,
 				786AD0DD215A02F1005D7363 /* SeparateQueryDetailHeaderView.m in Sources */,
 				7888F3B82147C33900AAC8B0 /* DateManager.m in Sources */,
 				7888F2D72147C31600AAC8B0 /* BaseSonViewController.m in Sources */,
@@ -2405,6 +2421,7 @@
 				7888F3C12147C33900AAC8B0 /* BaseButton.m in Sources */,
 				25E2A36A214D7831006EB5B5 /* PD_SelectAreaPickerView.m in Sources */,
 				50A89AFC216B653200E68BEB /* XAnimation.m in Sources */,
+				504D8E1A2170740000478C50 /* POS_CommfirBillOutLinePayView.m in Sources */,
 				7888F36E2147C32C00AAC8B0 /* WYWebProgressLayer.m in Sources */,
 				787223BC2154E348004C21FE /* AchievementsTopCollectionViewCell.m in Sources */,
 				50A89B04216B653200E68BEB /* XAnimationLabel.m in Sources */,
@@ -2427,6 +2444,7 @@
 				78CB4BE0214BCE67000F6A9D /* MyAddressTableViewCell.m in Sources */,
 				505B6F84216D99FC000D49B2 /* MessageListViewController.m in Sources */,
 				7888F3612147C32C00AAC8B0 /* MJChiBaoZiHeader.m in Sources */,
+				504D8E172170407200478C50 /* POS_CommitBillViewController.m in Sources */,
 				50A89AF5216B653200E68BEB /* XPointDetect.m in Sources */,
 				259646E32158DFAE00E516BF /* SeparateQueryViewController.m in Sources */,
 				786AD100215A3BA8005D7363 /* ActivationMoneyViewController.m in Sources */,

@@ -1,13 +1,13 @@
 //
-//  PD_BillDetailOnLineView.m
+//  POS_CommfirBillOnLinePayView.m
 //  POS_develop
 //
-//  Created by 胡正康 on 2018/9/28.
+//  Created by 胡正康 on 2018/10/12.
 //  Copyright © 2018 sunyn. All rights reserved.
 //
 
-#import "PD_BillDetailOnLineView.h"
-@interface PD_BillDetailOnLineView ()
+#import "POS_CommfirBillOnLinePayView.h"
+@interface POS_CommfirBillOnLinePayView ()
 {
     BOOL _wxSelectStatus;
     BOOL _aliSelectStatus;
@@ -17,11 +17,11 @@
 @property (nonatomic, weak) UIImageView *aliSelectImage;
 
 @end
-@implementation PD_BillDetailOnLineView
+@implementation POS_CommfirBillOnLinePayView
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:frame];
+    self  = [super initWithFrame:frame];
     if (self) {
         [self initUI];
         _wxSelectStatus = NO;
@@ -34,7 +34,7 @@
 {
     self.backgroundColor = CF6F6F6;
     
-//    MJWeakSelf;
+    
     //微信支付
     UIView *wxPayView = [UIView getViewWithColor:WhiteColor superView:self masonrySet:^(UIView *view, MASConstraintMaker *make) {
         make.left.top.offset(0);
@@ -121,9 +121,9 @@
     [newStr addAttribute:NSForegroundColorAttributeName value:CF52542 range:NSMakeRange(3,tmpStr.length - 3)];
     totalCountLabel.attributedText=newStr;
     
-   
+    
     //确认支付
-    UIButton *commfirBtn = [UIButton getButtonWithImageName:@"" titleText:@"确认支付" superView:self masonrySet:^(UIButton * _Nonnull btn, MASConstraintMaker * _Nonnull make) {
+    UIButton *commfirBtn = [UIButton getButtonWithImageName:@"" titleText:@"支付" superView:self masonrySet:^(UIButton * _Nonnull btn, MASConstraintMaker * _Nonnull make) {
         make.top.equalTo(totalCountLabel.mas_bottom).offset(AD_HEIGHT(16));
         make.left.offset(AD_HEIGHT(15));
         make.right.offset(-AD_HEIGHT(15));
@@ -138,9 +138,7 @@
         [btn addTarget:self action:@selector(comfirPay) forControlEvents:UIControlEventTouchUpInside];
     }];
     self.commfirBtn = commfirBtn;
-    
 }
-
 #pragma mark ---- 微信支付 ----
 - (void)wxPayGest
 {

@@ -361,7 +361,7 @@
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
     session.requestSerializer = [AFJSONRequestSerializer serializer];
     session.responseSerializer = [AFJSONResponseSerializer serializer];
-    [session.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [session.requestSerializer setValue:@"multipart/form-data" forHTTPHeaderField:@"Content-Type"];
 //    [session.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
 
     return session;

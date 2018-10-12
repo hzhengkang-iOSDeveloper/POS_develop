@@ -9,7 +9,8 @@
 #import "POS_ShopDetailViewController.h"
 #import "POS_ShopDetailInfoView.h"
 #import "POS_ShopRecommendCell.h"
-@interface POS_ShopDetailViewController ()<UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
+#import "SLGoodDetailImageDetailView.h"//图文详情
+@interface POS_ShopDetailViewController ()<UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,SLGoodDetailImageDetailViewDelegate>
 {
     NSUInteger _skuCount;//记录sku 数量
 }
@@ -23,6 +24,8 @@
 @property (nonatomic, weak) POS_ShopDetailInfoView *shopDetailInfoView;
 //推荐商品
 @property (nonatomic, weak) UITableView *recommendGoodTableView;
+//图文详情
+@property (nonatomic, strong) SLGoodDetailImageDetailView *imageDetailView;
 @end
 
 @implementation POS_ShopDetailViewController
@@ -31,6 +34,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.navigationItemTitle =  @"详情";
     self.view.backgroundColor  = WhiteColor;
     _skuCount = 1;
     // 解决iOS11 automaticallyAdjustsScrollViewInsets 失效 (scrollview 的 20 偏移量)
@@ -70,6 +74,7 @@
     recommendGoodTableView.delegate = self;
     recommendGoodTableView.dataSource = self;
     recommendGoodTableView.separatorStyle = NO;
+    recommendGoodTableView.scrollEnabled = NO;
     [self.mainScrollView addSubview:recommendGoodTableView];
     self.recommendGoodTableView = recommendGoodTableView;
     [_recommendGoodTableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -77,6 +82,17 @@
         make.left.equalTo(weakSelf.view).offset(0);
         make.width.mas_equalTo(ScreenWidth);
         make.height.mas_equalTo(AD_HEIGHT(28)+AD_HEIGHT(89)*2);
+    }];
+    
+    
+    //商品图文介绍
+    _imageDetailView = [SLGoodDetailImageDetailView new];
+    _imageDetailView.delegate = self;
+    [self.mainScrollView addSubview:_imageDetailView];
+    
+    [_imageDetailView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(weakSelf.recommendGoodTableView.mas_bottom).offset(AD_HEIGHT(5));
+        make.left.right.mas_equalTo(weakSelf.view);
     }];
 }
 
@@ -258,4 +274,16 @@
     return [UIView new];
 }
 
+#pragma mark - SLGoodDetailImageDetailViewDelegate   图文详情加载完成回调高度
+-(void)SLGoodDetailImageDetailViewChangeViewHeight:(CGFloat)offsetHeight {
+    
+    [_imageDetailView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(offsetHeight);
+    }];
+    
+    // 更新滑动范围
+//    [self.mainScrollView layoutIfNeeded];
+//    [self.imageDetailView layoutIfNeeded];
+//    self.mainScrollView.contentSize = CGSizeMake(SCREEN_WIDTH, self.imageDetailView.maxY);
+}
 @end
