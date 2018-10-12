@@ -459,7 +459,7 @@
     AFHTTPSessionManager *session = [self GetAFHTTPSessionManagerObject];
     
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",BaseHeaderURL,method];
-    [session POST:urlStr parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+    [session POST:urlStr parameters:[GlobalMethod GlobalStringWithDictionary:params] progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         result(YES,responseObject);

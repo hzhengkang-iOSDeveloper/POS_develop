@@ -12,6 +12,7 @@
 #import "PD_BillDetailFooterView.h"
 #import "POS_CommfirBillOutLinePayView.h"//线下支付
 #import "POS_CommfirBillOnLinePayView.h"//线上支付
+#import "MyAddressViewController.h"//我的地址
 #import "PD_BillListSkuCell.h"
 @interface POS_CommitBillViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, weak) UITableView *orderDetailTable;
@@ -191,7 +192,9 @@
 #pragma mark ---- 进入地址详情 ----
 - (void)clickAddressBtn
 {
-    
+    MyAddressViewController *vc = [[MyAddressViewController alloc]init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark -- tableView代理数据源方法

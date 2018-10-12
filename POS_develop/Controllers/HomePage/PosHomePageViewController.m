@@ -31,7 +31,7 @@
     }];
     [self createTableView];
     
-    [self getHeaderRequest];
+//    [self getHeaderRequest];
 }
 - (void)getHeaderRequest {
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statShareBenefit/list" params:@{@"statType":@"1", @"authCode":@"100", @"authUserId":@"100", @"userid":@"1000", @"startTime":@"2018-10-10", @"endTime":@"2018-10-11",@"dateType":@"2"} cookie:nil result:^(bool success, id result) {
