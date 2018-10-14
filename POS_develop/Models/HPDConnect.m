@@ -22,7 +22,7 @@
 #define  kFormalURL      @"https://api.hepancaifu.com/"
 
 //测试环境
-#define  newLocalHost    @"http://106.14.7.85:8000/"
+#define  newLocalHost    @"http://106.14.7.85:8000/api/trans/"
 
 #define  BaseHeaderURL   newLocalHost
 
@@ -359,11 +359,10 @@
 }
 -(AFHTTPSessionManager*)GetAFHTTPSessionManagerObject{
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-    session.requestSerializer = [AFJSONRequestSerializer serializer];
+//    session.requestSerializer = [AFJSONRequestSerializer serializer];
     session.responseSerializer = [AFJSONResponseSerializer serializer];
-    [session.requestSerializer setValue:@"multipart/form-data" forHTTPHeaderField:@"Content-Type"];
-//    [session.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-
+//    [session.requestSerializer setValue:@"multipart/form-data" forHTTPHeaderField:@"Content-Type"];
+    [session.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     return session;
 }
 //webservice 同步统一方法
@@ -450,16 +449,16 @@
 
 - (NSDictionary *)getRequestDic:(NSDictionary *)params {
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:params];
-    [dict setObject:@"100" forKey:@"authCode"];
-    [dict setObject:@"100" forKey:@"authUserId"];
+    [dict setObject:@"13666666666" forKey:@"authCode"];
+    [dict setObject:@"123" forKey:@"authUserId"];
     return dict;
 }
 
 - (void)PostNetRequestMethod:(NSString *)method params:(NSDictionary*)params cookie:(NSHTTPCookie *)cookie result:(AFNetRequestResultBlock)result {
     AFHTTPSessionManager *session = [self GetAFHTTPSessionManagerObject];
-    
+    NSDictionary *dict = [self getRequestDic:params];
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",BaseHeaderURL,method];
-    [session POST:urlStr parameters:[GlobalMethod GlobalStringWithDictionary:params] progress:^(NSProgress * _Nonnull uploadProgress) {
+    [session POST:urlStr parameters:dict progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         result(YES,responseObject);

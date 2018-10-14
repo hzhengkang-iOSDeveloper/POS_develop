@@ -15,6 +15,8 @@
 @property (nonatomic, strong) UIButton *defaultAddressBtn;
 @property (nonatomic, strong) UIButton *editAddressBtn;
 @property (nonatomic, strong) UIButton *deleteAddressBtn;
-
+@property (nonatomic, copy) void(^clickDefaultAddBlock)(UIButton *sender);
+@property (nonatomic, copy) void(^clickEditAddBlock)(void);
+@property (nonatomic, copy) void(^clickDeleteAddBlock)(void);
 +(instancetype)cellWithTableView:(UITableView *)tableView;
 @end

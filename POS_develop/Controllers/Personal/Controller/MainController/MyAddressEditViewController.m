@@ -1,14 +1,14 @@
 //
-//  AddAddressViewController.m
+//  MyAddressEditViewController.m
 //  POS_develop
 //
-//  Created by sunyn on 2018/9/14.
-//  Copyright © 2018年 sunyn. All rights reserved.
+//  Created by 胡正康 on 2018/10/14.
+//  Copyright © 2018 sunyn. All rights reserved.
 //
 
-#import "AddAddressViewController.h"
+#import "MyAddressEditViewController.h"
 #import "BLAreaPickerView.h"//地址选择
-@interface AddAddressViewController ()<BLPickerViewDelegate>
+@interface MyAddressEditViewController ()<BLPickerViewDelegate>
 {
     NSInteger count;
 }
@@ -18,14 +18,15 @@
 @property (nonatomic, strong) UITextField *detailAddress;
 @property (nonatomic, strong) UIButton *defaultAddressBtn;
 @property (nonatomic, strong)  UIButton *saveBtn;
+
 @end
 
-@implementation AddAddressViewController
+@implementation MyAddressEditViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    count = 0;
-    self.navigationItemTitle = @"新增地址";
+    self.navigationItemTitle = @"编辑地址";
+    
     [self initUI];
 }
 
@@ -43,13 +44,13 @@
     self.nameTF.leftViewMode = UITextFieldViewModeAlways;
     self.nameTF.placeholder = @"请输入收货人姓名";
     [self.nameTF setValue:C989898
-                    forKeyPath:@"_placeholderLabel.textColor"];
+               forKeyPath:@"_placeholderLabel.textColor"];
     [self.nameTF setValue:F13 forKeyPath:@"_placeholderLabel.font"];
     self.nameTF.borderStyle = UITextBorderStyleNone;
     self.nameTF.font = F13;
     self.nameTF.layer.cornerRadius = FITiPhone6(5);
     self.nameTF.layer.masksToBounds = YES;
-//    self.nameTF.backgroundColor = WhiteColor;
+    //    self.nameTF.backgroundColor = WhiteColor;
     [self.nameTF addTarget:self action:@selector(textFieldEditChanged:) forControlEvents:UIControlEventEditingChanged];
     [whiteBgView addSubview:_nameTF];
     [_nameTF mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -70,7 +71,7 @@
     self.telephoneTF.leftViewMode = UITextFieldViewModeAlways;
     self.telephoneTF.placeholder = @"请输入收货人手机号";
     [self.telephoneTF setValue:C989898
-               forKeyPath:@"_placeholderLabel.textColor"];
+                    forKeyPath:@"_placeholderLabel.textColor"];
     [self.telephoneTF setValue:F13 forKeyPath:@"_placeholderLabel.font"];
     self.telephoneTF.keyboardType = UIKeyboardTypeNumberPad;
     self.telephoneTF.borderStyle = UITextBorderStyleNone;
@@ -117,7 +118,7 @@
     self.detailAddress.leftViewMode = UITextFieldViewModeAlways;
     self.detailAddress.placeholder = @"请输入详细地址";
     [self.detailAddress setValue:C989898
-                    forKeyPath:@"_placeholderLabel.textColor"];
+                      forKeyPath:@"_placeholderLabel.textColor"];
     [self.detailAddress setValue:F13 forKeyPath:@"_placeholderLabel.font"];
     self.detailAddress.borderStyle = UITextBorderStyleNone;
     self.detailAddress.font = F13;
@@ -130,7 +131,7 @@
         make.top.equalTo(line3.mas_bottom);
         make.size.mas_offset(CGSizeMake(ScreenWidth - FITiPhone6(15), FITiPhone6(46)));
     }];
-
+    
     self.defaultAddressBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.defaultAddressBtn setTitle:@"默认地址" forState:UIControlStateNormal];
     [self.defaultAddressBtn setTitleColor:C000000 forState:UIControlStateNormal];
@@ -179,7 +180,7 @@
 #pragma mark ---- BLPickerViewDelegate ----
 - (void)bl_selectedAreaResultWithProvince:(NSString *)provinceTitle city:(NSString *)cityTitle area:(NSString *)areaTitle region_id:(NSString *)region_id{
     
-//    self.regin_id = region_id;
+    //    self.regin_id = region_id;
     [self.cityBtn setTitle:[NSString stringWithFormat:@"%@%@%@",provinceTitle,cityTitle,areaTitle] forState:normal];
     [self.cityBtn setTitleColor:C000000 forState:normal];
     count = 1;
@@ -196,7 +197,7 @@
     if (self.nameTF.text.length > 0 && self.telephoneTF.text.length > 0 && self.detailAddress.text.length > 0 && count ==1) {
         self.saveBtn.userInteractionEnabled = YES;
         self.saveBtn.backgroundColor = C1E95F9;
-       
+        
     }else {
         
         self.saveBtn.userInteractionEnabled = NO;
@@ -232,16 +233,6 @@
         
         NSLog(@"result ------- %@", result);
     }];
-
+    
 }
 @end
-
-
-
-
-
-
-
-
-
-

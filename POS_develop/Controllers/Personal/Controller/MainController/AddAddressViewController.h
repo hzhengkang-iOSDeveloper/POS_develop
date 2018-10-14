@@ -9,5 +9,5 @@
 #import "BaseSonViewController.h"
 
 @interface AddAddressViewController : BaseSonViewController
-
+@property (nonatomic, copy) void (^updateAddressList)(void);
 @end

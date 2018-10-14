@@ -130,6 +130,8 @@
 		50E0C9A2216EF57C0079ABF2 /* SLGoodDetailImageDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E0C9A0216EF57C0079ABF2 /* SLGoodDetailImageDetailView.m */; };
 		50E0C9A8216F1FFF0079ABF2 /* POS_ShopDetailInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E0C9A7216F1FFF0079ABF2 /* POS_ShopDetailInfoView.m */; };
 		50E0C9AB216F55870079ABF2 /* POS_ShopRecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E0C9AA216F55870079ABF2 /* POS_ShopRecommendCell.m */; };
+		50EEB20C217331B200B41353 /* MyAddressViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EEB20B217331B200B41353 /* MyAddressViewModel.m */; };
+		50EEB20F21737E6F00B41353 /* MyAddressEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EEB20E21737E6F00B41353 /* MyAddressEditViewController.m */; };
 		50F68C3521578C5B00DCFE85 /* XRCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F68C3421578C5B00DCFE85 /* XRCarouselView.m */; };
 		50F68C382158987800DCFE85 /* PD_BillDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F68C372158987800DCFE85 /* PD_BillDetailViewController.m */; };
 		50F68C3E21589BE100DCFE85 /* PD_BillDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F68C3D21589BE100DCFE85 /* PD_BillDetailHeaderView.m */; };
@@ -526,6 +528,10 @@
 		50E0C9A7216F1FFF0079ABF2 /* POS_ShopDetailInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = POS_ShopDetailInfoView.m; sourceTree = "<group>"; };
 		50E0C9A9216F55870079ABF2 /* POS_ShopRecommendCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POS_ShopRecommendCell.h; sourceTree = "<group>"; };
 		50E0C9AA216F55870079ABF2 /* POS_ShopRecommendCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = POS_ShopRecommendCell.m; sourceTree = "<group>"; };
+		50EEB20A217331B200B41353 /* MyAddressViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyAddressViewModel.h; sourceTree = "<group>"; };
+		50EEB20B217331B200B41353 /* MyAddressViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyAddressViewModel.m; sourceTree = "<group>"; };
+		50EEB20D21737E6F00B41353 /* MyAddressEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyAddressEditViewController.h; sourceTree = "<group>"; };
+		50EEB20E21737E6F00B41353 /* MyAddressEditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyAddressEditViewController.m; sourceTree = "<group>"; };
 		50F68C3321578C5B00DCFE85 /* XRCarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XRCarouselView.h; sourceTree = "<group>"; };
 		50F68C3421578C5B00DCFE85 /* XRCarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XRCarouselView.m; sourceTree = "<group>"; };
 		50F68C362158987800DCFE85 /* PD_BillDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillDetailViewController.h; sourceTree = "<group>"; };
@@ -1312,6 +1318,15 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		50EEB2092173318600B41353 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				50EEB20A217331B200B41353 /* MyAddressViewModel.h */,
+				50EEB20B217331B200B41353 /* MyAddressViewModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		7813B7F8216DED150086CE68 /* QRGenerailze(二维码推广) */ = {
 			isa = PBXGroup;
 			children = (
@@ -2080,6 +2095,7 @@
 		789722CE216F294000425C62 /* MainController */ = {
 			isa = PBXGroup;
 			children = (
+				50EEB2092173318600B41353 /* Model */,
 				78CB4B72214B8BD7000F6A9D /* VipSystemViewController.h */,
 				78CB4B73214B8BD7000F6A9D /* VipSystemViewController.m */,
 				78CB4B75214BA8D7000F6A9D /* MyBillViewController.h */,
@@ -2088,6 +2104,8 @@
 				78CB4BDC214BCCE3000F6A9D /* MyAddressViewController.m */,
 				78CB4BE1214BD9DD000F6A9D /* AddAddressViewController.h */,
 				78CB4BE2214BD9DD000F6A9D /* AddAddressViewController.m */,
+				50EEB20D21737E6F00B41353 /* MyAddressEditViewController.h */,
+				50EEB20E21737E6F00B41353 /* MyAddressEditViewController.m */,
 				2520A68C214CE38900D48B26 /* SettingViewController.h */,
 				2520A68D214CE38900D48B26 /* SettingViewController.m */,
 				2546E2D5214D4D0F0066DBFB /* UpdatePasswordViewController.h */,
@@ -2359,6 +2377,7 @@
 				50184CD921589E2C00D11AC6 /* UIButton+Style.m in Sources */,
 				7888F3572147C32C00AAC8B0 /* UIAlertView+Blocks.m in Sources */,
 				505B6F73216D99A0000D49B2 /* ImageGeneralizeCollectionViewCell.m in Sources */,
+				50EEB20C217331B200B41353 /* MyAddressViewModel.m in Sources */,
 				2591E55E214D72C100469452 /* BLAreaPickerView.m in Sources */,
 				502AF8132163A5E100260979 /* SheetPickerView.m in Sources */,
 				7888F34F2147C32C00AAC8B0 /* HDeviceIdentifier.m in Sources */,
@@ -2466,6 +2485,7 @@
 				253647E0214E11C60094576C /* WithdrawCashTableViewCell.m in Sources */,
 				7888F2E12147C31600AAC8B0 /* PopView.m in Sources */,
 				50A89AEB216B653200E68BEB /* CALayer+XLayerSelectHelper.m in Sources */,
+				50EEB20F21737E6F00B41353 /* MyAddressEditViewController.m in Sources */,
 				505B6F82216D99FC000D49B2 /* MessageListTableViewCell.m in Sources */,
 				7888F3662147C32C00AAC8B0 /* RSA+AES+GZIP.m in Sources */,
 				78765A92214A89D600261ED3 /* FastLoginViewController.m in Sources */,

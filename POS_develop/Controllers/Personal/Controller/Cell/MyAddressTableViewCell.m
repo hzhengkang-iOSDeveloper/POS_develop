@@ -115,15 +115,22 @@
 #pragma mark ---- 默认地址 ----
 - (void)defaultAddressClick:(UIButton *)sender {
     sender.selected = !sender.selected;
+    if (self.clickDefaultAddBlock) {
+        self.clickDefaultAddBlock(sender);
+    }
 }
 
 #pragma mark ---- 编辑 ----
 - (void)editAddresClick:(UIButton *)sender {
-    
+    if (self.clickEditAddBlock) {
+        self.clickEditAddBlock();
+    }
 }
 #pragma mark ---- 删除 ----
 - (void)deleteAddressClick:(UIButton *)sender {
-    
+    if (self.clickDeleteAddBlock) {
+        self.clickDeleteAddBlock();
+    }
 }
 
 
