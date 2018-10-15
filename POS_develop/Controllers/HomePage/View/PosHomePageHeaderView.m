@@ -292,18 +292,6 @@
         make.height.mas_equalTo(AD_HEIGHT(165));
     }];
     
-    NSMutableArray *imgs = [NSMutableArray array];
-    [imgs addObject:ImageNamed(@"图层6")];
-    [imgs addObject:ImageNamed(@"图层6")];
-    [imgs addObject:ImageNamed(@"图层6")];
-    //    [imgs addObject:ImageNamed(@"我的账单")];
-    //    [imgs addObject:ImageNamed(@"查看订单")];
-    
-    //    for (SLAdvModel *model in homeAdvModel.A_A_Models) {
-    //        [imgs addObject:IF_NULL_TO_STRING(model.picture_full)];
-    //    }
-    self.advView.imageArray = imgs;
-    
     //组合套餐
     UILabel *textLabel = [[UILabel alloc] init];
     textLabel.text = @"组合套餐";
@@ -335,6 +323,17 @@
     
     
 }
+
+- (void)setAdArray:(NSArray *)adArray
+{
+    if (adArray) {
+        _adArray = adArray;
+        
+        self.advView.imageArray = adArray;
+    }
+}
+
+
 #pragma mark ---- 当月交易量和当月分润点击 ----
 - (void)volumeOfTransactionClick {
     if (self.currentMonthBlock) {

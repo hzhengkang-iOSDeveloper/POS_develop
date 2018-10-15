@@ -16,10 +16,17 @@
 @interface PosHomePageViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *homeTableView;
 @property (nonatomic, strong) NSMutableArray *adArray;//首页广告banner数据源
+@property (nonatomic, weak) PosHomePageHeaderView *headerView;
 @end
 
 @implementation PosHomePageViewController
-
+- (NSMutableArray *)adArray
+{
+    if (!_adArray) {
+        _adArray = [NSMutableArray array];
+    }
+    return _adArray;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItemTitle = @"支付管理";
@@ -42,8 +49,20 @@
 - (void)loadIndexBannerListRequest {
     [[HPDConnect connect] PostNetRequestMethod:@"indexBanner/list" params:nil cookie:nil result:^(bool success, id result) {
         if (success) {
-            NSArray *array =result[@"data"][@"rows"];
-            [self.adArray addObjectsFromArray:[IndexBannerListModel mj_objectArrayWithKeyValuesArray:array]];
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSArray *array =result[@"data"][@"rows"];
+                    NSMutableArray *dataArr = [NSMutableArray arrayWithArray:[IndexBannerListModel mj_objectArrayWithKeyValuesArray:array]];
+                    [dataArr enumerateObjectsUsingBlock:^(IndexBannerListModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
+                        [self.adArray addObject:model.bannerPic];
+                    }];
+                    
+                    self.headerView.adArray = [NSArray arrayWithArray:self.adArray];
+
+                }
+            }
+            
+            
         }
         NSLog(@"result ------- %@", result);
     }];
@@ -75,7 +94,7 @@
         [self.navigationController pushViewController:vc animated:YES];
     };
     
-    headerView.adArray = self.adArray;
+    self.headerView = headerView;
     return headerView;
 }
 #pragma mark - UITableViewDataSource
