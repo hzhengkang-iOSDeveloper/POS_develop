@@ -181,6 +181,8 @@
 		787FFC9B21522DE800318BBC /* TransactionListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 787FFC9A21522DE800318BBC /* TransactionListCell.m */; };
 		787FFC9E215232C200318BBC /* TransactionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787FFC9D215232C200318BBC /* TransactionDetailViewController.m */; };
 		787FFCA1215232E900318BBC /* TransactionDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 787FFCA0215232E900318BBC /* TransactionDetailCell.m */; };
+		788683EA2174A67C00804F85 /* IndexBannerListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 788683E92174A67C00804F85 /* IndexBannerListModel.m */; };
+		788683EF2174AB6D00804F85 /* MessageListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 788683EE2174AB6D00804F85 /* MessageListModel.m */; };
 		7888F2A92147C0AA00AAC8B0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F2A82147C0AA00AAC8B0 /* AppDelegate.m */; };
 		7888F2AC2147C0AA00AAC8B0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F2AB2147C0AA00AAC8B0 /* ViewController.m */; };
 		7888F2AF2147C0AA00AAC8B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7888F2AD2147C0AA00AAC8B0 /* Main.storyboard */; };
@@ -620,6 +622,10 @@
 		787FFC9D215232C200318BBC /* TransactionDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionDetailViewController.m; sourceTree = "<group>"; };
 		787FFC9F215232E900318BBC /* TransactionDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionDetailCell.h; sourceTree = "<group>"; };
 		787FFCA0215232E900318BBC /* TransactionDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionDetailCell.m; sourceTree = "<group>"; };
+		788683E82174A67C00804F85 /* IndexBannerListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IndexBannerListModel.h; sourceTree = "<group>"; };
+		788683E92174A67C00804F85 /* IndexBannerListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IndexBannerListModel.m; sourceTree = "<group>"; };
+		788683ED2174AB6D00804F85 /* MessageListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageListModel.h; sourceTree = "<group>"; };
+		788683EE2174AB6D00804F85 /* MessageListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageListModel.m; sourceTree = "<group>"; };
 		7888F2A42147C0AA00AAC8B0 /* POS_develop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = POS_develop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7888F2A72147C0AA00AAC8B0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7888F2A82147C0AA00AAC8B0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -1528,6 +1534,7 @@
 		787166B4214912B800452C51 /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
+				788683E72174A63A00804F85 /* Model */,
 				786AD0DE215A2C3C005D7363 /* Unit */,
 				5089376021561C55007C6239 /* View */,
 				787FFC9321522D4400318BBC /* Controller */,
@@ -1665,6 +1672,25 @@
 				787EA23B2154F5C700D08F58 /* AchievementsBottomCollectionViewCell.m */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		788683E72174A63A00804F85 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				788683EC2174AB4900804F85 /* MessageModel(消息) */,
+				788683E82174A67C00804F85 /* IndexBannerListModel.h */,
+				788683E92174A67C00804F85 /* IndexBannerListModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		788683EC2174AB4900804F85 /* MessageModel(消息) */ = {
+			isa = PBXGroup;
+			children = (
+				788683ED2174AB6D00804F85 /* MessageListModel.h */,
+				788683EE2174AB6D00804F85 /* MessageListModel.m */,
+			);
+			path = "MessageModel(消息)";
 			sourceTree = "<group>";
 		};
 		7888F29B2147C0AA00AAC8B0 = {
@@ -2150,8 +2176,8 @@
 				2546E2D0214D2F250066DBFB /* SettingTableViewCell.m */,
 				2546E2D2214D47570066DBFB /* UpdatePasswordTableViewCell.h */,
 				2546E2D3214D47570066DBFB /* UpdatePasswordTableViewCell.m */,
-				253647D5214E053C0094576C /* UpdatePhoneTableViewCell.h */,
 				253647D6214E053C0094576C /* UpdatePhoneTableViewCell.m */,
+				253647D5214E053C0094576C /* UpdatePhoneTableViewCell.h */,
 				253647DE214E11C60094576C /* WithdrawCashTableViewCell.h */,
 				253647DF214E11C60094576C /* WithdrawCashTableViewCell.m */,
 			);
@@ -2322,6 +2348,7 @@
 				5067AB9A215F887B005A1FD7 /* ActivationMoneyCell.m in Sources */,
 				50A89AF0216B653200E68BEB /* XNormalLineChartConfiguration.m in Sources */,
 				78CB4B7B214BAA29000F6A9D /* MyBillTableViewCell.m in Sources */,
+				788683EA2174A67C00804F85 /* IndexBannerListModel.m in Sources */,
 				7813B80D216E07280086CE68 /* HtmlGenerailzeDetailViewController.m in Sources */,
 				787EA23C2154F5C700D08F58 /* AchievementsBottomCollectionViewCell.m in Sources */,
 				787FFCA1215232E900318BBC /* TransactionDetailCell.m in Sources */,
@@ -2539,6 +2566,7 @@
 				50184CE02158C56C00D11AC6 /* DatePickerView.m in Sources */,
 				7888F3682147C32C00AAC8B0 /* StaticLibrary.m in Sources */,
 				DA8D1776214E8EE7006574E4 /* SLConst.m in Sources */,
+				788683EF2174AB6D00804F85 /* MessageListModel.m in Sources */,
 				7888F3B12147C33900AAC8B0 /* UIColor+HEXString.m in Sources */,
 				786AD0E1215A2C46005D7363 /* XLBasePageController.m in Sources */,
 				78765A8C214A6AB200261ED3 /* LoginTypeViewController.m in Sources */,

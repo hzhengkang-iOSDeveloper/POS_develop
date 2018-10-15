@@ -12,7 +12,7 @@
 
 @interface MessageNoticeViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *myTableView;
-
+@property (nonatomic, strong) NSMutableArray *dataArray;
 @end
 
 @implementation MessageNoticeViewController
@@ -20,7 +20,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItemTitle = @"消息通知";
+    self.dataArray = [NSMutableArray array];
     [self createTableView];
+    
+//    [self loadMessageCategoreRequest];
 }
 - (void)createTableView {
     _myTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
@@ -66,5 +69,20 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return AD_HEIGHT(60);
+}
+
+
+
+#pragma mark ---- 接口 ----
+-(void)loadMessageCategoreRequest {
+    [[HPDConnect connect] PostNetRequestMethod:@"messageCategory/list" params:nil cookie:nil result:^(bool success, id result) {
+        if (success) {
+            NSArray *array = result[@"data"][@"rows"];
+//            [self.dataArray addObjectsFromArray:[MessageListModel mj_objectArrayWithKeyValuesArray:array]];
+            
+            [self.myTableView reloadData];
+        }
+        NSLog(@"result ------- %@", result);
+    }];
 }
 @end

@@ -13,10 +13,13 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MyAddressEditViewController : BaseSonViewController
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *telephone;
-@property (nonatomic, copy) NSString *city;
 @property (nonatomic, copy) NSString *detailAdd;
 @property (nonatomic, copy) NSString *isDefault;
-
+@property (nonatomic, copy) NSString *province;
+@property (nonatomic, copy) NSString *city;
+@property (nonatomic, copy) NSString *county;
+@property (nonatomic, copy) NSString *defaultFlag;
+@property (nonatomic, copy) NSString *ID;//地址id
 @property (nonatomic, copy) void (^updateAddressList)(void);
 @end
 

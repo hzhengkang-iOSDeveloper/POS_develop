@@ -70,7 +70,7 @@
     MyAddressViewModel *model = [_dataArray objectAtIndex:indexPath.section];
     MyAddressTableViewCell *cell = [MyAddressTableViewCell cellWithTableView:tableView];
     cell.nameLabel.text = model.receiverName;
-    cell.addressLabel.text = model.receiverAddr;
+    cell.addressLabel.text = [NSString stringWithFormat:@"%@ %@ %@ %@", model.province, model.city, model.county, model.receiverAddr];
     cell.telephoneLabel.text = model.receiverMp;
 //    cell.telephoneLabel.text = [model.receiverMp stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
     if ([model.defaultFlag isEqualToString:@"0"]) {
@@ -79,6 +79,7 @@
         cell.defaultAddressBtn.selected = NO;
     }
     cell.clickDefaultAddBlock = ^(UIButton *sender) {
+        sender.selected = !sender.selected;
         [self loadUpdateAddressRequest:sender WithID:model.ID];
     };
     cell.clickDeleteAddBlock = ^{
@@ -89,7 +90,14 @@
         vc.name = model.receiverName;
         vc.telephone = model.receiverMp;
         vc.detailAdd = model.receiverAddr;
-        
+        vc.province = model.province;
+        vc.city = model.city;
+        vc.county = model.city;
+        vc.ID = model.ID;
+        vc.defaultFlag = model.defaultFlag;
+        vc.updateAddressList = ^{
+            [self.myAddressTableView.mj_header beginRefreshing];
+        };
         [self.navigationController pushViewController:vc animated:YES];
     };
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -130,10 +138,6 @@
     return view;
 }
 
-
-
-
-
 #pragma mark ---- 接口 ----
 - (void)loadAddressRequest {
     [[HPDConnect connect] PostNetRequestMethod:@"address/list" params:@{@"userid":@"1"} cookie:nil result:^(bool success, id result) {
@@ -156,7 +160,6 @@
 }
 #pragma mark ---- 删除 ----
 - (void)loadDeleteAddressRequest:(NSString *)ID withIndexP:(NSIndexPath *)indexP {
-    
     
     UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"确认删除此地址么" message:@"" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *comfir = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {

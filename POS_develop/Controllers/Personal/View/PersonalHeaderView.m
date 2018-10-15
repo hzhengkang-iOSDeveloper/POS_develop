@@ -25,14 +25,14 @@
     [bgImageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self);
         make.top.equalTo(self);
-        make.size.mas_offset(CGSizeMake(ScreenWidth, FITiPhone6(217)));
+        make.size.mas_offset(CGSizeMake(ScreenWidth, FITiPhone6(217) + STATUSBAR_H));
     }];
     UIImageView *iconImageV = [[UIImageView alloc] init];
     iconImageV.image = [UIImage imageNamed:@"头像"];
     [bgImageV addSubview:iconImageV];
     [iconImageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(bgImageV).offset(FITiPhone6(15));
-        make.top.equalTo(bgImageV).offset(FITiPhone6(39));
+        make.top.equalTo(bgImageV).offset(FITiPhone6(39) + STATUSBAR_H);
         make.size.mas_offset(CGSizeMake(FITiPhone6(40), FITiPhone6(40)));
     }];
     UIButton *userName = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -52,7 +52,7 @@
     [bgImageV addSubview:messageV];
     [messageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(bgImageV).offset(FITiPhone6(-21));
-        make.top.equalTo(bgImageV).offset(FITiPhone6(20));
+        make.top.equalTo(bgImageV).offset(FITiPhone6(20) + STATUSBAR_H);
         make.size.mas_offset(CGSizeMake(FITiPhone6(17), FITiPhone6(15)));
     }];
     UILabel *yesterdayEarningsText = [[UILabel alloc] init];
@@ -63,7 +63,7 @@
     [bgImageV addSubview:yesterdayEarningsText];
     [yesterdayEarningsText mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(bgImageV);
-        make.top.equalTo(bgImageV).offset(FITiPhone6(87));
+        make.top.equalTo(bgImageV).offset(FITiPhone6(87) + STATUSBAR_H);
         make.size.mas_offset(CGSizeMake(ScreenWidth, FITiPhone6(15)));
     }];
     UILabel *yesterdayEarningsMoney = [[UILabel alloc] init];

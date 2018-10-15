@@ -11,9 +11,11 @@
 #import "PosHomePageHeaderView.h"
 #import "AchievementsViewController.h"
 #import "MessageNoticeViewController.h"
+#import "IndexBannerListModel.h"
 
 @interface PosHomePageViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *homeTableView;
+@property (nonatomic, strong) NSMutableArray *adArray;//首页广告banner数据源
 @end
 
 @implementation PosHomePageViewController
@@ -24,14 +26,27 @@
     MJWeakSelf;
     [self addRightBarButtonWithImage:[UIImage imageNamed:@"消息"] clickHandler:^{
         MessageNoticeViewController *vc = [[MessageNoticeViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
     [self addBackButtonWithImage:[UIImage imageNamed:@"图层3拷贝-1"]  clickHandler:^{
 
     }];
+    [self loadIndexBannerListRequest];
+    NSArray *array = [PosHomePageViewController getFirstAndLastDayOfThisMonth];
+    NSLog(@"array === %@", array);
     [self createTableView];
     
     [self getHeaderRequest];
+}
+- (void)loadIndexBannerListRequest {
+    [[HPDConnect connect] PostNetRequestMethod:@"indexBanner/list" params:nil cookie:nil result:^(bool success, id result) {
+        if (success) {
+            NSArray *array =result[@"data"][@"rows"];
+            [self.adArray addObjectsFromArray:[IndexBannerListModel mj_objectArrayWithKeyValuesArray:array]];
+        }
+        NSLog(@"result ------- %@", result);
+    }];
 }
 - (void)getHeaderRequest {
     [[HPDConnect connect] PostNetRequestMethod:@"statAchievement/list" params:@{@"statType":@"0", @"userid":@"1", @"startTime":@"2017-10-10", @"endTime":@"2018-10-13",@"dateType":@"2"} cookie:nil result:^(bool success, id result) {
@@ -59,6 +74,8 @@
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     };
+    
+    headerView.adArray = self.adArray;
     return headerView;
 }
 #pragma mark - UITableViewDataSource
@@ -116,5 +133,20 @@
     UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, FITiPhone6(5))];
     view.backgroundColor = CF6F6F6;
     return view;
+}
+
+
++(NSArray *)getFirstAndLastDayOfThisMonth
+{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDate *firstDay;
+    [calendar rangeOfUnit:NSMonthCalendarUnit startDate:&firstDay interval:nil forDate:[NSDate date]];
+    NSDateComponents *lastDateComponents = [calendar components:NSMonthCalendarUnit | NSYearCalendarUnit |NSDayCalendarUnit fromDate:firstDay];
+    NSUInteger dayNumberOfMonth = [calendar rangeOfUnit:NSDayCalendarUnit inUnit:NSMonthCalendarUnit forDate:[NSDate date]].length;
+    NSInteger day = [lastDateComponents day];
+    [lastDateComponents setDay:day+dayNumberOfMonth-1];
+    NSDate *lastDay = [calendar dateFromComponents:lastDateComponents];
+    return [NSArray arrayWithObjects:firstDay,lastDay, nil];
+    
 }
 @end

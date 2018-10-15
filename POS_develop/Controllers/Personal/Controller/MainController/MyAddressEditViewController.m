@@ -11,6 +11,9 @@
 @interface MyAddressEditViewController ()<BLPickerViewDelegate>
 {
     NSInteger count;
+    NSString *province;
+    NSString *city;
+    NSString *county;
 }
 @property (nonatomic, strong) UITextField *nameTF;
 @property (nonatomic, strong) UITextField *telephoneTF;
@@ -26,7 +29,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItemTitle = @"编辑地址";
-    
+    count = 1;
+    province = self.province;
+    city = self.city;
+    county = self.county;
     [self initUI];
 }
 
@@ -40,6 +46,7 @@
         make.size.mas_offset(CGSizeMake(ScreenWidth, FITiPhone6(186)));
     }];
     self.nameTF = [[UITextField alloc] init];
+    self.nameTF.text = self.name;
     self.nameTF.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, FITiPhone6(5), 0)];
     self.nameTF.leftViewMode = UITextFieldViewModeAlways;
     self.nameTF.placeholder = @"请输入收货人姓名";
@@ -67,6 +74,7 @@
         make.size.sizeOffset(CGSizeMake(ScreenWidth - FITiPhone6(15), FITiPhone6(0.5)));
     }];
     self.telephoneTF = [[UITextField alloc] init];
+    self.telephoneTF.text = self.telephone;
     self.telephoneTF.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, FITiPhone6(5), 0)];
     self.telephoneTF.leftViewMode = UITextFieldViewModeAlways;
     self.telephoneTF.placeholder = @"请输入收货人手机号";
@@ -95,9 +103,9 @@
     }];
     self.cityBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.cityBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [self.cityBtn setTitle:@"请选择" forState:UIControlStateNormal];
+    [self.cityBtn setTitle:[NSString stringWithFormat:@"%@ %@ %@", self.province, self.city, self.county] forState:UIControlStateNormal];
     self.cityBtn.titleLabel.font = F13;
-    [self.cityBtn setTitleColor:C989898 forState:UIControlStateNormal];
+    [self.cityBtn setTitleColor:C000000 forState:UIControlStateNormal];
     [self.cityBtn addTarget:self action:@selector(selectAddress) forControlEvents:UIControlEventTouchUpInside];
     [whiteBgView addSubview:self.cityBtn];
     [self.cityBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -114,6 +122,7 @@
         make.size.sizeOffset(CGSizeMake(ScreenWidth - FITiPhone6(15), FITiPhone6(0.5)));
     }];
     self.detailAddress = [[UITextField alloc] init];
+    self.detailAddress.text = self.detailAdd;
     self.detailAddress.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, FITiPhone6(5), 0)];
     self.detailAddress.leftViewMode = UITextFieldViewModeAlways;
     self.detailAddress.placeholder = @"请输入详细地址";
@@ -136,6 +145,11 @@
     [self.defaultAddressBtn setTitle:@"默认地址" forState:UIControlStateNormal];
     [self.defaultAddressBtn setTitleColor:C000000 forState:UIControlStateNormal];
     [self.defaultAddressBtn layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleLeft imageTitleSpace:FITiPhone6(23)];
+    if ([self.defaultFlag isEqualToString:@"0"]) {
+        self.defaultAddressBtn.selected = YES;
+    }else {
+        self.defaultAddressBtn.selected = NO;
+    }
     [self.defaultAddressBtn setImage:[UIImage imageNamed:@"默认"] forState:normal];
     [self.defaultAddressBtn setImage:[UIImage imageNamed:@"默认地址"] forState:UIControlStateSelected];
     [self.defaultAddressBtn addTarget:self action:@selector(defaultAddressClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -147,7 +161,7 @@
         make.size.sizeOffset(CGSizeMake(FITiPhone6(90), FITiPhone6(15)));
     }];
     self.saveBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.saveBtn.backgroundColor = CC9C9C9;
+    self.saveBtn.backgroundColor = C1E95F9;
     [self.saveBtn setTitle:@"保存" forState:UIControlStateNormal];
     [self.saveBtn setTitleColor:WhiteColor forState:UIControlStateNormal];
     self.saveBtn.layer.cornerRadius = FITiPhone6(3);
@@ -182,6 +196,9 @@
     
     //    self.regin_id = region_id;
     [self.cityBtn setTitle:[NSString stringWithFormat:@"%@%@%@",provinceTitle,cityTitle,areaTitle] forState:normal];
+    province = provinceTitle;
+    city = cityTitle;
+    county = areaTitle;
     [self.cityBtn setTitleColor:C000000 forState:normal];
     count = 1;
     if (self.nameTF.text.length > 0 && self.telephoneTF.text.length > 0 && self.detailAddress.text.length > 0) {
@@ -218,8 +235,7 @@
         HUD_TIP(@"请输入11位手机号");
         return;
     }
-    NSString *riceiverAddr = [NSString stringWithFormat:@"%@ %@", self.cityBtn.titleLabel.text,self.detailAddress.text];
-    [[HPDConnect connect] PostNetRequestMethod:@"address/save" params:@{@"userid":@"1", @"defaultFlag":self.defaultAddressBtn.selected?@0:@1, @"receiverName":self.nameTF.text, @"receiverMp":self.telephoneTF.text, @"receiverAddr":riceiverAddr} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"address/update" params:@{@"userid":@"1", @"defaultFlag":self.defaultAddressBtn.selected?@0:@1, @"receiverName":self.nameTF.text, @"receiverMp":self.telephoneTF.text, @"province" : province, @"city" : city, @"county": county, @"receiverAddr":self.detailAddress.text, @"id":self.ID} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"msg"] isEqualToString:@"success"]) {
                 HUD_TIP(@"保存成功");

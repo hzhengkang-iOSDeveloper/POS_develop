@@ -11,6 +11,9 @@
 @interface AddAddressViewController ()<BLPickerViewDelegate>
 {
     NSInteger count;
+    NSString *province;
+    NSString *city;
+    NSString *county;
 }
 @property (nonatomic, strong) UITextField *nameTF;
 @property (nonatomic, strong) UITextField *telephoneTF;
@@ -181,6 +184,9 @@
     
 //    self.regin_id = region_id;
     [self.cityBtn setTitle:[NSString stringWithFormat:@"%@%@%@",provinceTitle,cityTitle,areaTitle] forState:normal];
+    province = provinceTitle;
+    city = cityTitle;
+    county = areaTitle;
     [self.cityBtn setTitleColor:C000000 forState:normal];
     count = 1;
     if (self.nameTF.text.length > 0 && self.telephoneTF.text.length > 0 && self.detailAddress.text.length > 0) {
@@ -217,8 +223,7 @@
         HUD_TIP(@"请输入11位手机号");
         return;
     }
-    NSString *riceiverAddr = [NSString stringWithFormat:@"%@ %@", self.cityBtn.titleLabel.text,self.detailAddress.text];
-    [[HPDConnect connect] PostNetRequestMethod:@"address/save" params:@{@"userid":@"1", @"defaultFlag":self.defaultAddressBtn.selected?@0:@1, @"receiverName":self.nameTF.text, @"receiverMp":self.telephoneTF.text, @"receiverAddr":riceiverAddr} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"address/save" params:@{@"userid":@"1", @"defaultFlag":self.defaultAddressBtn.selected?@0:@1, @"receiverName":self.nameTF.text, @"receiverMp":self.telephoneTF.text, @"province" : province, @"city" : city, @"county": county, @"receiverAddr":self.detailAddress.text} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"msg"] isEqualToString:@"success"]) {
                 HUD_TIP(@"保存成功");

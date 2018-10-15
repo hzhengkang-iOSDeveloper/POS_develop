@@ -114,7 +114,7 @@
 
 #pragma mark ---- 默认地址 ----
 - (void)defaultAddressClick:(UIButton *)sender {
-    sender.selected = !sender.selected;
+    
     if (self.clickDefaultAddBlock) {
         self.clickDefaultAddBlock(sender);
     }

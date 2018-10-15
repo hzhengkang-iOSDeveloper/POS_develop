@@ -9,10 +9,10 @@
 #import "MessageListViewController.h"
 #import "MessageListTableViewCell.h"
 #import "SelectDetailBrandViewController.h"
-
+#import "MessageListModel.h"
 @interface MessageListViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *myTableView;
-
+@property (nonatomic, strong) NSMutableArray *dataArray;
 @end
 
 @implementation MessageListViewController
@@ -20,7 +20,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItemTitle = @"消息列表";
+    self.dataArray = [NSMutableArray array];
     [self createTableView];
+    [self loadMessageListRequest];
 }
 
 - (void)createTableView {
@@ -43,14 +45,17 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 10;
+    return self.dataArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MessageListTableViewCell *cell = [MessageListTableViewCell cellWithTableView:tableView];
-    cell.timeLabel.text = @"2018.10.7";
-    cell.titleLabel.text = @"万福海鸿 - CEO来信";
-    cell.contentLabel.text = @"我是CEO 我看看谁写代码写的这么好，优秀优秀优秀优秀优秀优秀优秀优秀优秀优秀优秀优秀优秀优秀优秀优秀优秀优秀优秀";
+    MessageListModel *model = self.dataArray[indexPath.row];
+    cell.timeLabel.text = [model.createtime substringToIndex:10];
+    cell.titleLabel.text = model.msgTitle;
+    cell.contentLabel.text = model.msgContent;
+    [cell.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.msgIconUrl]];
+//    [cell.iconImageView sd_setImageWithURL:model.msgIconUrl placeholderImage:[UIImage imageNamed:@"default"]];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     
@@ -72,4 +77,17 @@
     return AD_HEIGHT(88+32);
 }
 
+
+#pragma mark ---- 接口 ----
+-(void)loadMessageListRequest {
+    [[HPDConnect connect] PostNetRequestMethod:@"message/list" params:nil cookie:nil result:^(bool success, id result) {
+        if (success) {
+            NSArray *array = result[@"data"][@"rows"];
+            [self.dataArray addObjectsFromArray:[MessageListModel mj_objectArrayWithKeyValuesArray:array]];
+            
+            [self.myTableView reloadData];
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
 @end

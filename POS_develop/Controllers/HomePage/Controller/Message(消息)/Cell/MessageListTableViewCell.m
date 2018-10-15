@@ -59,7 +59,7 @@
     }];
     
     self.iconImageView = [[UIImageView alloc] init];
-    self.iconImageView.image = [UIImage imageNamed:@"培训宣传"];
+//    self.iconImageView.image = [UIImage imageNamed:@"培训宣传"];
     [whiteBgView addSubview:self.iconImageView];
     [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(AD_HEIGHT(5));

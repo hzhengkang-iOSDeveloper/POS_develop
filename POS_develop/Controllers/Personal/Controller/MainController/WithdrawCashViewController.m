@@ -19,9 +19,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItemTitle = @"立即提现";
+    [self addStandardRightButtonWithTitle:@"提现记录" selector:@selector(withdrawCashRecord)];
     [self initPromptLabel];
     [self createTableView];
     [self createWithdrawBtn];
+    [self loadBagWithdrawListRequest];
+}
+#pragma mark ---- 提现记录 ----
+- (void)withdrawCashRecord {
+    
 }
 - (void)initPromptLabel {
     UILabel *promptLabel = [[UILabel alloc] init];
@@ -137,6 +143,13 @@
 }
 
 
+#pragma mark ---- 接口 ----
+- (void)loadBagWithdrawListRequest {
+//    [[HPDConnect connect] PostNetRequestMethod:@"bagWithdraw/list" params:@{@"userid":@"1", @"defaultFlag":sender.selected?@0:@1, @"id":ID} cookie:nil result:^(bool success, id result) {
+//        [self.myAddressTableView reloadData];
+//        NSLog(@"result ------- %@", result);
+//    }];
+}
 @end
 
 

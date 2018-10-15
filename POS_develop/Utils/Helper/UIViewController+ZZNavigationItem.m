@@ -68,9 +68,9 @@
 }
 
 - (ZZActionButton *)addStandardRightButtonWithTitle:(NSString *)title clickHandler:(ZZActionButtonClickBlockType)handler {
-    ZZActionButton *button = [ZZActionButton actionButtonWithType:UIButtonTypeCustom frame:CGRectMake(0, 0, 44, 44) title:title image:nil clickHandler:handler];
+    ZZActionButton *button = [ZZActionButton actionButtonWithType:UIButtonTypeCustom frame:CGRectMake(0, 0, 60, 44) title:title image:nil clickHandler:handler];
     // 考虑title过长的情况，让button的宽等于title所占的宽
-    if (button.intrinsicContentSize.width > 45) {
+    if (button.intrinsicContentSize.width > 60) {
         CGRect frame     = button.frame;
         frame.size.width = button.intrinsicContentSize.width;
         button.frame     = frame;

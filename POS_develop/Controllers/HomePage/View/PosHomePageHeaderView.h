@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "IndexBannerListModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PosHomePageHeaderView : UIView
@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel *activationL;
 @property (nonatomic, strong) UILabel *teamPersonL;
 
+@property (nonatomic, strong) NSArray *adArray;
 @property (nonatomic, copy) void (^currentMonthBlock)(void);//当月交易量和当月分润点击
 @end
 

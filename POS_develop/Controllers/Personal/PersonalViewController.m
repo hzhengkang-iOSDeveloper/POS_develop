@@ -15,7 +15,7 @@
 #import "MyAddressViewController.h"
 #import "SettingViewController.h"
 
-//#import "WithdrawCashViewController.h"
+#import "WithdrawCashViewController.h"
 
 
 #import "PD_BillListViewController.h"//我的订单
@@ -60,15 +60,16 @@
 #pragma mark -- 创建headerView
 - (UIView *)creatTabHeaderView
 {
-    headerView = [[PersonalHeaderView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, FITiPhone6(217))];
+    headerView = [[PersonalHeaderView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, FITiPhone6(217) + STATUSBAR_H)];
     MJWeakSelf;
     headerView.loginBlock = ^{
         LoginTypeViewController *vc = [[LoginTypeViewController alloc] init];
         [weakSelf.navigationController pushViewController:vc animated:YES];
     };
     headerView.withdrawBlock = ^{
-//        WithdrawCashViewController *vc = [[WithdrawCashViewController alloc] init];
-//        [weakSelf.navigationController pushViewController:vc animated:YES];
+        WithdrawCashViewController *vc = [[WithdrawCashViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [weakSelf.navigationController pushViewController:vc animated:YES];
     };
     return headerView;
 }

@@ -22,6 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *updatetime;
 @property (nonatomic, copy) NSString *updateuserno;
 @property (nonatomic, copy) NSString *userid;
+@property (nonatomic, copy) NSString *province;//省
+@property (nonatomic, copy) NSString *city;//市
+@property (nonatomic, copy) NSString *county;//区
+
 @end
 
 NS_ASSUME_NONNULL_END
