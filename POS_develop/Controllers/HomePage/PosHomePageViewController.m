@@ -12,10 +12,16 @@
 #import "AchievementsViewController.h"
 #import "MessageNoticeViewController.h"
 #import "IndexBannerListModel.h"
+#import "HomeHeaderModel.h"
+#import "PackageChargeListModel.h"
 
-@interface PosHomePageViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface PosHomePageViewController () <UITableViewDelegate, UITableViewDataSource>{
+    NSString *startTime;
+    NSString *endTime;
+}
 @property (nonatomic, strong) UITableView *homeTableView;
 @property (nonatomic, strong) NSMutableArray *adArray;//首页广告banner数据源
+@property (nonatomic, strong) NSMutableArray *dataArray;//套餐数据源
 @property (nonatomic, weak) PosHomePageHeaderView *headerView;
 @end
 
@@ -26,6 +32,13 @@
         _adArray = [NSMutableArray array];
     }
     return _adArray;
+}
+- (NSMutableArray *)dataArray
+{
+    if (!_dataArray) {
+        _dataArray = [NSMutableArray array];
+    }
+    return _dataArray;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,39 +52,15 @@
     [self addBackButtonWithImage:[UIImage imageNamed:@"图层3拷贝-1"]  clickHandler:^{
 
     }];
-    [self loadIndexBannerListRequest];
-    NSArray *array = [PosHomePageViewController getFirstAndLastDayOfThisMonth];
-    NSLog(@"array === %@", array);
+  
+    
     [self createTableView];
     
+    [self loadIndexBannerListRequest];
+    [self loadPackageChargeListRequest];
     [self getHeaderRequest];
 }
-- (void)loadIndexBannerListRequest {
-    [[HPDConnect connect] PostNetRequestMethod:@"indexBanner/list" params:nil cookie:nil result:^(bool success, id result) {
-        if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
-                    NSArray *array =result[@"data"][@"rows"];
-                    NSMutableArray *dataArr = [NSMutableArray arrayWithArray:[IndexBannerListModel mj_objectArrayWithKeyValuesArray:array]];
-                    [dataArr enumerateObjectsUsingBlock:^(IndexBannerListModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
-                        [self.adArray addObject:model.bannerPic];
-                    }];
-                    
-                    self.headerView.adArray = [NSArray arrayWithArray:self.adArray];
 
-                }
-            }
-            
-            
-        }
-        NSLog(@"result ------- %@", result);
-    }];
-}
-- (void)getHeaderRequest {
-    [[HPDConnect connect] PostNetRequestMethod:@"statAchievement/list" params:@{@"statType":@"0", @"userid":@"1", @"startTime":@"2017-10-10", @"endTime":@"2018-10-13",@"dateType":@"2"} cookie:nil result:^(bool success, id result) {
-        NSLog(@"result ------- %@", result);
-    }];
-}
 - (void)createTableView {
     _homeTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - TabbarHeight - navH) style:UITableViewStylePlain];
     _homeTableView.backgroundColor = CF6F6F6;
@@ -82,12 +71,10 @@
     _homeTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_homeTableView];
 }
+
+
 - (UIView *)createHeaderView {
     PosHomePageHeaderView *headerView = [[PosHomePageHeaderView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(140)+AD_HEIGHT(32)+AD_HEIGHT(82)+AD_HEIGHT(25)+AD_HEIGHT(165)+AD_HEIGHT(44))];
-    headerView.volumeOfTransactionL.text = @"200000.00";
-    headerView.shareProfitL.text = @"1000.00";
-    headerView.activationL.text = @"20";
-    headerView.teamPersonL.text = @"10";
     headerView.currentMonthBlock = ^{
         AchievementsViewController *vc = [[AchievementsViewController alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
@@ -100,7 +87,7 @@
 #pragma mark - UITableViewDataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return 10;
+    return _dataArray.count;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -111,8 +98,9 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     HomeTableViewCell *cell = [HomeTableViewCell cellWithTableView:tableView];
-    cell.bgImg.image = [UIImage imageNamed:@"图层7"];
-    cell.label.text = @"移动post机固定刷卡机百富S58（S58G）移动机专用充电器电源电源指示灯";
+    PackageChargeListModel *model = self.dataArray[indexPath.section];
+    [cell.bgImg sd_setImageWithURL:[NSURL URLWithString:model.packagePic]];
+    cell.label.text = model.packageName;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
 
@@ -155,17 +143,133 @@
 }
 
 
-+(NSArray *)getFirstAndLastDayOfThisMonth
-{
+- (void)getMonthBeginAndEndWith:(NSString *)dateStr{
+    NSDateFormatter *format=[[NSDateFormatter alloc] init];
+    [format setDateFormat:@"yyyy-MM-dd"];
+    NSDate *newDate=[format dateFromString:dateStr];
+    double interval = 0;
+    NSDate *beginDate = nil;
+    NSDate *endDate = nil;
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDate *firstDay;
-    [calendar rangeOfUnit:NSMonthCalendarUnit startDate:&firstDay interval:nil forDate:[NSDate date]];
-    NSDateComponents *lastDateComponents = [calendar components:NSMonthCalendarUnit | NSYearCalendarUnit |NSDayCalendarUnit fromDate:firstDay];
-    NSUInteger dayNumberOfMonth = [calendar rangeOfUnit:NSDayCalendarUnit inUnit:NSMonthCalendarUnit forDate:[NSDate date]].length;
-    NSInteger day = [lastDateComponents day];
-    [lastDateComponents setDay:day+dayNumberOfMonth-1];
-    NSDate *lastDay = [calendar dateFromComponents:lastDateComponents];
-    return [NSArray arrayWithObjects:firstDay,lastDay, nil];
+    [calendar setFirstWeekday:2];//设定周一为周首日
+    BOOL ok = [calendar rangeOfUnit:NSMonthCalendarUnit startDate:&beginDate interval:&interval forDate:newDate];
+    if (ok) {
+        endDate = [beginDate dateByAddingTimeInterval:interval-1];
+    }
+    NSDateFormatter *myDateFormatter = [[NSDateFormatter alloc] init];
+    [myDateFormatter setDateFormat:@"YYYY-MM-dd"];
+    NSString  *strStateTime = [myDateFormatter stringFromDate:beginDate];
+    NSString  *strEndTime = [myDateFormatter stringFromDate:endDate];
+    
+    startTime = strStateTime;
+    endTime = strEndTime;
+    
+}
+
+
+#pragma mark ---- 接口 ----
+- (void)loadIndexBannerListRequest {
+    [[HPDConnect connect] PostNetRequestMethod:@"indexBanner/list" params:nil cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSArray *array =result[@"data"][@"rows"];
+                    NSMutableArray *dataArr = [NSMutableArray arrayWithArray:[IndexBannerListModel mj_objectArrayWithKeyValuesArray:array]];
+                    [dataArr enumerateObjectsUsingBlock:^(IndexBannerListModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
+                        [self.adArray addObject:model.bannerPic];
+                    }];
+                    
+                    self.headerView.adArray = [NSArray arrayWithArray:self.adArray];
+                    
+                }
+            }
+            
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
+
+
+- (void)getHeaderRequest {
+    //当前时间
+    NSDate *dateNow = [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *dateStr = [formatter stringFromDate:dateNow];
+    [self getMonthBeginAndEndWith:dateStr];
+    
+    //当⽉月交易易量量
+    [[HPDConnect connect] PostNetRequestMethod:@"statAchievement/list" params:@{@"statType":@"0", @"userid":@"1", @"startTime":startTime, @"endTime":endTime,@"dateType":@"2"} cookie:nil result:^(bool success, id result) {
+        if (success) {
+            NSDictionary *array = result[@"data"][@"rows"];
+            NSMutableArray *dataArr = [NSMutableArray arrayWithArray:[HomeHeaderModel mj_objectArrayWithKeyValuesArray:array]];
+            if (array.count > 0) {
+                [dataArr enumerateObjectsUsingBlock:^(HomeHeaderModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
+                    self.headerView.volumeOfTransactionL.text = model.statAmount;
+                }];
+            }
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+    //当⽉月分润
+    [[HPDConnect connect] PostNetRequestMethod:@"statShareBenefit/list" params:@{@"statType":@"1", @"userid":@"1", @"startTime":startTime, @"endTime":endTime,@"dateType":@"2"} cookie:nil result:^(bool success, id result) {
+        if (success) {
+            
+            NSDictionary *array = result[@"data"][@"rows"];
+            NSMutableArray *dataArr = [NSMutableArray arrayWithArray:[HomeHeaderModel mj_objectArrayWithKeyValuesArray:array]];
+            if (array.count > 0) {
+                [dataArr enumerateObjectsUsingBlock:^(HomeHeaderModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
+                    self.headerView.shareProfitL.text = model.statAmount;
+                }];
+            }
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+    //当⽉月激活数量量
+    [[HPDConnect connect] PostNetRequestMethod:@"statAchievement/list" params:@{@"statType":@"2", @"userid":@"1", @"startTime":startTime, @"endTime":endTime,@"dateType":@"2"} cookie:nil result:^(bool success, id result) {
+        if (success) {
+            NSDictionary *array = result[@"data"][@"rows"];
+            NSMutableArray *dataArr = [NSMutableArray arrayWithArray:[HomeHeaderModel mj_objectArrayWithKeyValuesArray:array]];
+            if (array.count > 0) {
+                [dataArr enumerateObjectsUsingBlock:^(HomeHeaderModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
+                    self.headerView.activationL.text = model.statAmount;
+                }];
+            }
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+//    //当前团队⼈人数
+    [[HPDConnect connect] PostNetRequestMethod:@"statAchievement/list" params:@{@"statType":@"4", @"userid":@"1", @"startTime":startTime, @"endTime":endTime,@"dateType":@"2"} cookie:nil result:^(bool success, id result) {
+        if (success) {
+            
+            NSDictionary *array = result[@"data"][@"rows"];
+            NSMutableArray *dataArr = [NSMutableArray arrayWithArray:[HomeHeaderModel mj_objectArrayWithKeyValuesArray:array]];
+            if (array.count > 0) {
+                [dataArr enumerateObjectsUsingBlock:^(HomeHeaderModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
+                    self.headerView.teamPersonL.text = model.statAmount;
+                }];
+            }
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+    
+}
+
+
+#pragma mark ---- 套餐接口 ----
+- (void)loadPackageChargeListRequest {
+    [[HPDConnect connect] PostNetRequestMethod:@"packageCharge/list" params:nil cookie:nil result:^(bool success, id result) {
+        if (success) {
+            
+            NSDictionary *array = result[@"data"][@"rows"];
+            self.dataArray = [NSMutableArray arrayWithArray:[PackageChargeListModel mj_objectArrayWithKeyValuesArray:array]];
+
+            [self.homeTableView reloadData];
+        }
+        NSLog(@"result ------- %@", result);
+    }];
     
 }
 @end

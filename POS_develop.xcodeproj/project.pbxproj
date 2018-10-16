@@ -142,6 +142,8 @@
 		7813B806216E023B0086CE68 /* HtmlGenerailzeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7813B805216E023B0086CE68 /* HtmlGenerailzeViewController.m */; };
 		7813B809216E03D80086CE68 /* HtmlGenerailzeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7813B808216E03D80086CE68 /* HtmlGenerailzeCell.m */; };
 		7813B80D216E07280086CE68 /* HtmlGenerailzeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7813B80C216E07280086CE68 /* HtmlGenerailzeDetailViewController.m */; };
+		78632B372175B340005AAF88 /* HomeHeaderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78632B362175B340005AAF88 /* HomeHeaderModel.m */; };
+		78632B3A2175BAF6005AAF88 /* PackageChargeListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78632B392175BAF6005AAF88 /* PackageChargeListModel.m */; };
 		786AD0DD215A02F1005D7363 /* SeparateQueryDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 786AD0DC215A02F1005D7363 /* SeparateQueryDetailHeaderView.m */; };
 		786AD0E1215A2C46005D7363 /* XLBasePageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 786AD0E0215A2C46005D7363 /* XLBasePageController.m */; };
 		786AD0F5215A311D005D7363 /* SeparateQuerySearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 786AD0F4215A311D005D7363 /* SeparateQuerySearchViewController.m */; };
@@ -270,6 +272,7 @@
 		7888F3C82147C33900AAC8B0 /* NotPrjView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7888F3AA2147C33900AAC8B0 /* NotPrjView.xib */; };
 		7888F3C92147C33900AAC8B0 /* PlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F3AC2147C33900AAC8B0 /* PlaceholderTextView.m */; };
 		7888F3CA2147C33900AAC8B0 /* TPPasswordTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F3AE2147C33900AAC8B0 /* TPPasswordTextView.m */; };
+		789E379021760D4D001673A3 /* BrandIntroductionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 789E378F21760D4D001673A3 /* BrandIntroductionModel.m */; };
 		78A320F9216E0B4E00D48B95 /* HtmlGenerailzeDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A320F8216E0B4E00D48B95 /* HtmlGenerailzeDetailCell.m */; };
 		78A320FD216E24DC00D48B95 /* BuySuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A320FC216E24DC00D48B95 /* BuySuccessViewController.m */; };
 		78CB4B74214B8BD7000F6A9D /* VipSystemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CB4B73214B8BD7000F6A9D /* VipSystemViewController.m */; };
@@ -554,6 +557,10 @@
 		7813B808216E03D80086CE68 /* HtmlGenerailzeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HtmlGenerailzeCell.m; sourceTree = "<group>"; };
 		7813B80B216E07280086CE68 /* HtmlGenerailzeDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HtmlGenerailzeDetailViewController.h; sourceTree = "<group>"; };
 		7813B80C216E07280086CE68 /* HtmlGenerailzeDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HtmlGenerailzeDetailViewController.m; sourceTree = "<group>"; };
+		78632B352175B340005AAF88 /* HomeHeaderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeHeaderModel.h; sourceTree = "<group>"; };
+		78632B362175B340005AAF88 /* HomeHeaderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeHeaderModel.m; sourceTree = "<group>"; };
+		78632B382175BAF6005AAF88 /* PackageChargeListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PackageChargeListModel.h; sourceTree = "<group>"; };
+		78632B392175BAF6005AAF88 /* PackageChargeListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PackageChargeListModel.m; sourceTree = "<group>"; };
 		786AD0DB215A02F1005D7363 /* SeparateQueryDetailHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeparateQueryDetailHeaderView.h; sourceTree = "<group>"; };
 		786AD0DC215A02F1005D7363 /* SeparateQueryDetailHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeparateQueryDetailHeaderView.m; sourceTree = "<group>"; };
 		786AD0DF215A2C46005D7363 /* XLBasePageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLBasePageController.h; sourceTree = "<group>"; };
@@ -794,6 +801,8 @@
 		7888F3AC2147C33900AAC8B0 /* PlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceholderTextView.m; sourceTree = "<group>"; };
 		7888F3AD2147C33900AAC8B0 /* TPPasswordTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPPasswordTextView.h; sourceTree = "<group>"; };
 		7888F3AE2147C33900AAC8B0 /* TPPasswordTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPasswordTextView.m; sourceTree = "<group>"; };
+		789E378E21760D4D001673A3 /* BrandIntroductionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrandIntroductionModel.h; sourceTree = "<group>"; };
+		789E378F21760D4D001673A3 /* BrandIntroductionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrandIntroductionModel.m; sourceTree = "<group>"; };
 		78A320F7216E0B4E00D48B95 /* HtmlGenerailzeDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HtmlGenerailzeDetailCell.h; sourceTree = "<group>"; };
 		78A320F8216E0B4E00D48B95 /* HtmlGenerailzeDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HtmlGenerailzeDetailCell.m; sourceTree = "<group>"; };
 		78A320FB216E24DC00D48B95 /* BuySuccessViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuySuccessViewController.h; sourceTree = "<group>"; };
@@ -1677,9 +1686,14 @@
 		788683E72174A63A00804F85 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				789E378D21760D0B001673A3 /* BrandIntroductionModel(品牌介绍) */,
 				788683EC2174AB4900804F85 /* MessageModel(消息) */,
 				788683E82174A67C00804F85 /* IndexBannerListModel.h */,
 				788683E92174A67C00804F85 /* IndexBannerListModel.m */,
+				78632B352175B340005AAF88 /* HomeHeaderModel.h */,
+				78632B362175B340005AAF88 /* HomeHeaderModel.m */,
+				78632B382175BAF6005AAF88 /* PackageChargeListModel.h */,
+				78632B392175BAF6005AAF88 /* PackageChargeListModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2146,6 +2160,15 @@
 			path = MainController;
 			sourceTree = "<group>";
 		};
+		789E378D21760D0B001673A3 /* BrandIntroductionModel(品牌介绍) */ = {
+			isa = PBXGroup;
+			children = (
+				789E378E21760D4D001673A3 /* BrandIntroductionModel.h */,
+				789E378F21760D4D001673A3 /* BrandIntroductionModel.m */,
+			);
+			path = "BrandIntroductionModel(品牌介绍)";
+			sourceTree = "<group>";
+		};
 		78A320FA216E24B000D48B95 /* BuySuccess(购买成功) */ = {
 			isa = PBXGroup;
 			children = (
@@ -2384,6 +2407,7 @@
 				7888F3B42147C33900AAC8B0 /* UILabel+Style.m in Sources */,
 				78A320F9216E0B4E00D48B95 /* HtmlGenerailzeDetailCell.m in Sources */,
 				786AD0F5215A311D005D7363 /* SeparateQuerySearchViewController.m in Sources */,
+				78632B3A2175BAF6005AAF88 /* PackageChargeListModel.m in Sources */,
 				50A89AF1216B653200E68BEB /* XStackAreaLineChartConfiguration.m in Sources */,
 				787FFC9E215232C200318BBC /* TransactionDetailViewController.m in Sources */,
 				50A89B0F216B653200E68BEB /* OrdinateView.m in Sources */,
@@ -2583,6 +2607,8 @@
 				78765A84214A447400261ED3 /* PersonalHeaderView.m in Sources */,
 				50A89AF2216B653200E68BEB /* XLineChartConfiguration.m in Sources */,
 				50A89AF4216B653200E68BEB /* CAKeyframeAnimation+AHEasing.m in Sources */,
+				78632B372175B340005AAF88 /* HomeHeaderModel.m in Sources */,
+				789E379021760D4D001673A3 /* BrandIntroductionModel.m in Sources */,
 				7888F3522147C32C00AAC8B0 /* HpCFNavigationController.m in Sources */,
 				50A89B0B216B653200E68BEB /* XBarChart.m in Sources */,
 				50BD2AAF21625E48008D201B /* TerminalBindViewController.m in Sources */,

@@ -20,12 +20,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "POS_develop/Controllers/HomePage/PosHomePageViewController.m"
-            timestampString = "561298306.718321"
+            timestampString = "561381504.155148"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "-viewDidLoad"
+            startingLineNumber = "267"
+            endingLineNumber = "267"
+            landmarkName = "-loadPackageChargeListRequest"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

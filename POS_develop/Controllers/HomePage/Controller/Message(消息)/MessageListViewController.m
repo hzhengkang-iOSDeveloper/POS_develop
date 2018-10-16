@@ -83,9 +83,12 @@
     [[HPDConnect connect] PostNetRequestMethod:@"message/list" params:nil cookie:nil result:^(bool success, id result) {
         if (success) {
             NSArray *array = result[@"data"][@"rows"];
-            [self.dataArray addObjectsFromArray:[MessageListModel mj_objectArrayWithKeyValuesArray:array]];
+            if (array.count > 0) {
+                [self.dataArray addObjectsFromArray:[MessageListModel mj_objectArrayWithKeyValuesArray:array]];
+                
+                [self.myTableView reloadData];
+            }
             
-            [self.myTableView reloadData];
         }
         NSLog(@"result ------- %@", result);
     }];
