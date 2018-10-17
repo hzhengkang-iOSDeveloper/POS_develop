@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class ShareH5ListModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HtmlGenerailzeCell : UITableViewCell
@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel *contentLabel;
 @property (nonatomic, strong) UIButton *seeDetailBtn;
 @property (nonatomic, copy) void(^seeDetailBlock)(void);
+@property (nonatomic, strong) ShareH5ListModel *model;
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 @end
 

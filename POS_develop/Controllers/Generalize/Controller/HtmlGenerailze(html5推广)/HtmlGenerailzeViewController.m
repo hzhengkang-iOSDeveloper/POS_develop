@@ -60,13 +60,12 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HtmlGenerailzeCell *cell = [HtmlGenerailzeCell cellWithTableView:tableView];
     ShareH5ListModel *model = self.dataArray[indexPath.row];
-    cell.contentLabel.text = model.shareContent;
-    [cell.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.sharePic]];
-    __weak typeof(cell) weakCell = cell;
+    
+    cell.model = model;
     
     cell.seeDetailBlock = ^{
         HtmlGenerailzeDetailViewController *vc = [[HtmlGenerailzeDetailViewController alloc] init];
-        vc.contentStr = weakCell.contentLabel.text;
+        vc.contentStr = model.shareContent;
         [self.navigationController pushViewController:vc animated:YES];
     };
     

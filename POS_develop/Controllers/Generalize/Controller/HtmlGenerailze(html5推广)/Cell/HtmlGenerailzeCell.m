@@ -7,7 +7,7 @@
 //
 
 #import "HtmlGenerailzeCell.h"
-
+#import "ShareH5ListModel.h"
 @implementation HtmlGenerailzeCell
 
 + (instancetype)cellWithTableView:(UITableView *)tableView{
@@ -26,8 +26,8 @@
         [self initUI];
     }
     return self;
-}
 
+}
 
 - (void)initUI{
     self.selectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -85,4 +85,11 @@
     }
 }
 
+- (void)setModel:(ShareH5ListModel *)model {
+    if (model) {
+        _model = model;
+        self.contentLabel.text = model.shareContent;
+        [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.sharePic]];
+    }
+}
 @end
