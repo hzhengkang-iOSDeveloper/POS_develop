@@ -11,6 +11,7 @@
 #import "XRCarouselView.h"
 #import "BrandIntroductionViewController.h"//品牌介绍
 #import "NullViewController.h"
+#import "CombinationSetMealViewController.h"
 @interface PosHomePageHeaderView ()<XRCarouselViewDelegate>
 //轮播图
 @property (nonatomic, strong) XRCarouselView *advView;
@@ -346,6 +347,8 @@
 }
 #pragma mark ---- 查看更多组合套餐 ----
 - (void)moreClick:(UIButton *)sender {
-    
+    CombinationSetMealViewController *vc = [[CombinationSetMealViewController alloc]init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.viewController.navigationController pushViewController:vc animated:YES];
 }
 @end

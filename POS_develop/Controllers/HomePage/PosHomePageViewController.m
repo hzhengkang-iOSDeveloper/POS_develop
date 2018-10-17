@@ -58,7 +58,7 @@
     
     [self loadIndexBannerListRequest];
     [self loadPackageChargeListRequest];
-    [self getHeaderRequest];
+//    [self getHeaderRequest];
 }
 
 - (void)createTableView {

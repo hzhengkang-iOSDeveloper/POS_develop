@@ -36,26 +36,39 @@
     [self.myImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(AD_HEIGHT(15));
         make.top.offset(AD_HEIGHT(8));
-        make.size.mas_offset(CGSizeMake(ScreenWidth - AD_HEIGHT(80), AD_HEIGHT(69)));
+        make.size.mas_offset(CGSizeMake(AD_HEIGHT(80), AD_HEIGHT(69)));
     }];
+    
     self.titleLabel = [UILabel getLabelWithFont:F13 textColor:C000000 superView:self.contentView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
         make.left.equalTo(self.myImageView.mas_right).offset(AD_HEIGHT(26));
         make.top.equalTo(self.myImageView.mas_top);
         
+        view.textAlignment = NSTextAlignmentLeft;
+        view.text = @"创立包（立刷999）";
     }];
+    
     self.purchasePrice = [UILabel getLabelWithFont:F10 textColor:C989898 superView:self.contentView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
         make.left.equalTo(self.titleLabel.mas_left);
         make.top.equalTo(self.titleLabel.mas_bottom).offset(AD_HEIGHT(7));
         
+        
+        view.textAlignment = NSTextAlignmentLeft;
+        view.text = @"采购价格：333.00元/8台";
     }];
     self.activationCash = [UILabel getLabelWithFont:F10 textColor:C989898 superView:self.contentView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
         make.left.equalTo(self.titleLabel.mas_left);
         make.top.equalTo(self.purchasePrice.mas_bottom).offset(AD_HEIGHT(7));
         
+        view.textAlignment = NSTextAlignmentLeft;
+        view.text = @"激活返现金：160.00元/台";
+        
     }];
     self.number = [UILabel getLabelWithFont:F12 textColor:C000000 superView:self.contentView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
         make.right.offset(AD_HEIGHT(-16));
         make.top.offset(AD_HEIGHT(8));
+        
+        view.textAlignment = NSTextAlignmentRight;
+        view.text = @"x2";
     }];
     [UIView getViewWithColor:CE6E2E2 superView:self.contentView masonrySet:^(UIView *view, MASConstraintMaker *make) {
         make.left.offset(AD_HEIGHT(15));
