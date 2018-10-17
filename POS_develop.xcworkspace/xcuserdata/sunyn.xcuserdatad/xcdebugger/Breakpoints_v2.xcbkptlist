@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "POS_develop/Controllers/HomePage/PosHomePageViewController.m"
-            timestampString = "561381504.155148"
+            filePath = "POS_develop/Controllers/Generalize/Controller/HtmlGenerailze(html5&#x63a8;&#x5e7f;)/HtmlGenerailzeViewController.m"
+            timestampString = "561440429.240899"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "267"
-            endingLineNumber = "267"
-            landmarkName = "-loadPackageChargeListRequest"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

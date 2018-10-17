@@ -275,6 +275,10 @@
 		7888F3C92147C33900AAC8B0 /* PlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F3AC2147C33900AAC8B0 /* PlaceholderTextView.m */; };
 		7888F3CA2147C33900AAC8B0 /* TPPasswordTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F3AE2147C33900AAC8B0 /* TPPasswordTextView.m */; };
 		789E379021760D4D001673A3 /* BrandIntroductionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 789E378F21760D4D001673A3 /* BrandIntroductionModel.m */; };
+		789F27602176D6E400979C1A /* ShareBannerListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 789F275F2176D6E400979C1A /* ShareBannerListModel.m */; };
+		789F27642176D87700979C1A /* SharePicListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 789F27632176D87700979C1A /* SharePicListModel.m */; };
+		789F27672176DD5500979C1A /* ShareH5ListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 789F27662176DD5500979C1A /* ShareH5ListModel.m */; };
+		789F276C2176E5D300979C1A /* ShareTextModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 789F276B2176E5D300979C1A /* ShareTextModel.m */; };
 		78A320F9216E0B4E00D48B95 /* HtmlGenerailzeDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A320F8216E0B4E00D48B95 /* HtmlGenerailzeDetailCell.m */; };
 		78A320FD216E24DC00D48B95 /* BuySuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A320FC216E24DC00D48B95 /* BuySuccessViewController.m */; };
 		78CB4B74214B8BD7000F6A9D /* VipSystemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CB4B73214B8BD7000F6A9D /* VipSystemViewController.m */; };
@@ -809,6 +813,14 @@
 		7888F3AE2147C33900AAC8B0 /* TPPasswordTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPasswordTextView.m; sourceTree = "<group>"; };
 		789E378E21760D4D001673A3 /* BrandIntroductionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrandIntroductionModel.h; sourceTree = "<group>"; };
 		789E378F21760D4D001673A3 /* BrandIntroductionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrandIntroductionModel.m; sourceTree = "<group>"; };
+		789F275E2176D6E400979C1A /* ShareBannerListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareBannerListModel.h; sourceTree = "<group>"; };
+		789F275F2176D6E400979C1A /* ShareBannerListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareBannerListModel.m; sourceTree = "<group>"; };
+		789F27622176D87700979C1A /* SharePicListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SharePicListModel.h; sourceTree = "<group>"; };
+		789F27632176D87700979C1A /* SharePicListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SharePicListModel.m; sourceTree = "<group>"; };
+		789F27652176DD5500979C1A /* ShareH5ListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareH5ListModel.h; sourceTree = "<group>"; };
+		789F27662176DD5500979C1A /* ShareH5ListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareH5ListModel.m; sourceTree = "<group>"; };
+		789F276A2176E5D300979C1A /* ShareTextModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareTextModel.h; sourceTree = "<group>"; };
+		789F276B2176E5D300979C1A /* ShareTextModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareTextModel.m; sourceTree = "<group>"; };
 		78A320F7216E0B4E00D48B95 /* HtmlGenerailzeDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HtmlGenerailzeDetailCell.h; sourceTree = "<group>"; };
 		78A320F8216E0B4E00D48B95 /* HtmlGenerailzeDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HtmlGenerailzeDetailCell.m; sourceTree = "<group>"; };
 		78A320FB216E24DC00D48B95 /* BuySuccessViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuySuccessViewController.h; sourceTree = "<group>"; };
@@ -976,6 +988,7 @@
 		505B6F6C216D99A0000D49B2 /* ImageGeneralize(图片推广) */ = {
 			isa = PBXGroup;
 			children = (
+				789F27612176D86300979C1A /* Model */,
 				505B6F71216D99A0000D49B2 /* ImageGeneralizeViewController.h */,
 				505B6F6D216D99A0000D49B2 /* ImageGeneralizeViewController.m */,
 				505B6F6E216D99A0000D49B2 /* Cell */,
@@ -1375,6 +1388,7 @@
 		7813B803216E01AB0086CE68 /* HtmlGenerailze(html5推广) */ = {
 			isa = PBXGroup;
 			children = (
+				789F27682176DD5A00979C1A /* Model */,
 				7813B80A216E03DD0086CE68 /* Cell */,
 				7813B804216E023B0086CE68 /* HtmlGenerailzeViewController.h */,
 				7813B805216E023B0086CE68 /* HtmlGenerailzeViewController.m */,
@@ -1583,11 +1597,8 @@
 		787166BC2149182200452C51 /* Generalize */ = {
 			isa = PBXGroup;
 			children = (
-				7813B803216E01AB0086CE68 /* HtmlGenerailze(html5推广) */,
-				7813B7FC216DEE430086CE68 /* Share */,
-				7813B7F8216DED150086CE68 /* QRGenerailze(二维码推广) */,
-				7873B294216DDD0F00A04C52 /* CopywritingSelect(文案选择) */,
-				505B6F6C216D99A0000D49B2 /* ImageGeneralize(图片推广) */,
+				789F275D2176D6D000979C1A /* Model */,
+				789F275C2176D6BF00979C1A /* Controller */,
 				787166BD2149183200452C51 /* GeneralizeViewController.h */,
 				787166BE2149183200452C51 /* GeneralizeViewController.m */,
 			);
@@ -1628,6 +1639,7 @@
 		7873B294216DDD0F00A04C52 /* CopywritingSelect(文案选择) */ = {
 			isa = PBXGroup;
 			children = (
+				789F27692176E5B700979C1A /* Model */,
 				7872DDBB216DDE200021FEEA /* Cell */,
 				7873B295216DDD3300A04C52 /* CopywritingSelectViewController.h */,
 				7873B296216DDD3300A04C52 /* CopywritingSelectViewController.m */,
@@ -2179,6 +2191,54 @@
 			path = "BrandIntroductionModel(品牌介绍)";
 			sourceTree = "<group>";
 		};
+		789F275C2176D6BF00979C1A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7813B803216E01AB0086CE68 /* HtmlGenerailze(html5推广) */,
+				7813B7FC216DEE430086CE68 /* Share */,
+				7813B7F8216DED150086CE68 /* QRGenerailze(二维码推广) */,
+				7873B294216DDD0F00A04C52 /* CopywritingSelect(文案选择) */,
+				505B6F6C216D99A0000D49B2 /* ImageGeneralize(图片推广) */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		789F275D2176D6D000979C1A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				789F275E2176D6E400979C1A /* ShareBannerListModel.h */,
+				789F275F2176D6E400979C1A /* ShareBannerListModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		789F27612176D86300979C1A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				789F27622176D87700979C1A /* SharePicListModel.h */,
+				789F27632176D87700979C1A /* SharePicListModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		789F27682176DD5A00979C1A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				789F27652176DD5500979C1A /* ShareH5ListModel.h */,
+				789F27662176DD5500979C1A /* ShareH5ListModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		789F27692176E5B700979C1A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				789F276A2176E5D300979C1A /* ShareTextModel.h */,
+				789F276B2176E5D300979C1A /* ShareTextModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		78A320FA216E24B000D48B95 /* BuySuccess(购买成功) */ = {
 			isa = PBXGroup;
 			children = (
@@ -2390,6 +2450,7 @@
 				259646E62158E1ED00E516BF /* SeparateQueryMainView.m in Sources */,
 				50BD2AC621627870008D201B /* TerminalSelectMainView.m in Sources */,
 				7873B297216DDD3300A04C52 /* CopywritingSelectViewController.m in Sources */,
+				789F27602176D6E400979C1A /* ShareBannerListModel.m in Sources */,
 				50B0607F2153520E00B7B411 /* PD_BillListSkuCell.m in Sources */,
 				7813B7FF216DEE4F0086CE68 /* ShareSuccessViewController.m in Sources */,
 				78765A88214A4EEE00261ED3 /* PersonalTableViewCell.m in Sources */,
@@ -2428,6 +2489,7 @@
 				7888F3C42147C33900AAC8B0 /* SY_ImageAndLabelBtn.m in Sources */,
 				50A89B08216B653200E68BEB /* XPieChart.m in Sources */,
 				50A89B16216B65A800E68BEB /* Colours.m in Sources */,
+				789F276C2176E5D300979C1A /* ShareTextModel.m in Sources */,
 				7888F3502147C32C00AAC8B0 /* SFHFKeychainUtils.m in Sources */,
 				504D8E1D217075E800478C50 /* POS_CommfirBillOnLinePayView.m in Sources */,
 				786AD0DD215A02F1005D7363 /* SeparateQueryDetailHeaderView.m in Sources */,
@@ -2475,6 +2537,7 @@
 				505B6F67216D9882000D49B2 /* SetMealOrderCell.m in Sources */,
 				7888F2DA2147C31600AAC8B0 /* CFTabBarViewController.m in Sources */,
 				50A89B00216B653200E68BEB /* XCycleView.m in Sources */,
+				789F27672176DD5500979C1A /* ShareH5ListModel.m in Sources */,
 				505B6F83216D99FC000D49B2 /* MessageNoticeTableViewCell.m in Sources */,
 				786AD103215A440C005D7363 /* ActivationMoneyDetailViewController.m in Sources */,
 				7888F2DB2147C31600AAC8B0 /* DirectivePageViewController.m in Sources */,
@@ -2500,6 +2563,7 @@
 				78CB4BE3214BD9DD000F6A9D /* AddAddressViewController.m in Sources */,
 				7888F3C12147C33900AAC8B0 /* BaseButton.m in Sources */,
 				25E2A36A214D7831006EB5B5 /* PD_SelectAreaPickerView.m in Sources */,
+				789F27642176D87700979C1A /* SharePicListModel.m in Sources */,
 				50A89AFC216B653200E68BEB /* XAnimation.m in Sources */,
 				504D8E1A2170740000478C50 /* POS_CommfirBillOutLinePayView.m in Sources */,
 				7888F36E2147C32C00AAC8B0 /* WYWebProgressLayer.m in Sources */,
@@ -2800,7 +2864,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/POS_develop/Utils/Security",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "syn.com.POS-develop";
+				PRODUCT_BUNDLE_IDENTIFIER = com.POS.develop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2840,7 +2904,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/POS_develop/Utils/Security",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "syn.com.POS-develop";
+				PRODUCT_BUNDLE_IDENTIFIER = com.POS.develop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

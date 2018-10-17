@@ -11,6 +11,7 @@
 
 @interface HtmlGenerailzeDetailViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *myTableView;
+@property (nonatomic, strong) NSMutableArray *dataArray;
 
 @end
 
@@ -19,6 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItemTitle = @"html5推广";
+    self.dataArray == [NSMutableArray array];
     [self createTableView];
 }
 
@@ -148,4 +150,26 @@
     return headerView;
     
 }
+
+
+#pragma mark ---- 接口 ----
+- (void)loadShareH5ReaderRequest {
+    [[HPDConnect connect] PostNetRequestMethod:@"shareH5Reader/list" params:nil cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSDictionary *array = result[@"data"][@"rows"];
+//                    self.dataArray = [NSMutableArray arrayWithArray:[ShareH5ListModel mj_objectArrayWithKeyValuesArray:array]];
+                    
+                    [self.myTableView reloadData];
+                }
+                
+            }
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
+
+
 @end

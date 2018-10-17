@@ -12,21 +12,30 @@
 #import "QRGenerailzeViewController.h"
 #import "HtmlGenerailzeViewController.h"
 #import "BuySuccessViewController.h"
+#import "ShareBannerListModel.h"
 
 @interface GeneralizeViewController () <XRCarouselViewDelegate>
 @property (nonatomic, strong) XRCarouselView *advView;
 @property (nonatomic, strong) UIButton *qrCodeBtn;//二维码推广
 @property (nonatomic, strong) UIButton *imageBtn;//图片推广
 @property (nonatomic, strong) UIButton *htmlBtn;//h5推广
+@property (nonatomic, strong) NSMutableArray *adArray;
 @end
 
 @implementation GeneralizeViewController
-
+- (NSMutableArray *)adArray
+{
+    if (!_adArray) {
+        _adArray = [NSMutableArray array];
+    }
+    return _adArray;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItemTitle = @"推广";
     [self initAdvView];//创建轮播图
     [self initMainView];
+    [self loadIndexBannerListRequest];
 }
 - (void)initAdvView {
     //轮播图
@@ -43,12 +52,6 @@
         make.top.offset(AD_HEIGHT(4));
         make.height.mas_equalTo(AD_HEIGHT(165));
     }];
-    
-    NSMutableArray *imgs = [NSMutableArray array];
-    [imgs addObject:ImageNamed(@"图层6")];
-    [imgs addObject:ImageNamed(@"图层6")];
-    [imgs addObject:ImageNamed(@"图层6")];
-    self.advView.imageArray = imgs;
 }
 
 - (void)initMainView {
@@ -160,4 +163,31 @@
 - (void)carouselView:(XRCarouselView *)carouselView clickImageAtIndex:(NSInteger)index{
     
 }
+
+
+
+#pragma mark ---- 接口 ----
+- (void)loadIndexBannerListRequest {
+    [[HPDConnect connect] PostNetRequestMethod:@"shareBanner/list" params:nil cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSArray *array =result[@"data"][@"rows"];
+                    NSMutableArray *dataArr = [NSMutableArray arrayWithArray:[ShareBannerListModel mj_objectArrayWithKeyValuesArray:array]];
+                    [dataArr enumerateObjectsUsingBlock:^(ShareBannerListModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
+                        [self.adArray addObject:model.bannerPic];
+                    }];
+                    
+                    self.advView.imageArray = [NSArray arrayWithArray:self.adArray];
+                    
+                }
+            }
+            
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
+
+
 @end

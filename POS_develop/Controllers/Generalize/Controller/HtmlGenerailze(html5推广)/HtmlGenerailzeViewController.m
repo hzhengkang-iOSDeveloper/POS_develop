@@ -10,9 +10,12 @@
 #import "HtmlGenerailzeCell.h"
 #import "HtmlGenerailzeDetailViewController.h"
 #import "CopywritingSelectViewController.h"
+#import "ShareH5ListModel.h"
+
 @interface HtmlGenerailzeViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *myTableView;
 @property (nonatomic, copy) NSString *selectStr;
+@property (nonatomic, strong) NSMutableArray *dataArray;
 @end
 
 @implementation HtmlGenerailzeViewController
@@ -20,9 +23,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItemTitle = @"html5推广";
+    self.dataArray = [NSMutableArray array];
     [self addStandardRightButtonWithTitle:@"下一步" selector:@selector(nextClick)];
     self.selectStr = @"";
     [self createTableView];
+    [self loadShareH5ListRequest];
 }
 #pragma mark ---- 下一步 ----
 - (void)nextClick {
@@ -49,16 +54,19 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 10;
+    return self.dataArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HtmlGenerailzeCell *cell = [HtmlGenerailzeCell cellWithTableView:tableView];
-    cell.contentLabel.text = @"是安徽省等会看看安徽大家哈偶杜宇看看那，啊，了解了解欧式都普拉斯的聊扣扣OK哦偶uuuuka没空没空就看见alsjklajsdk框架爱健康hi是uayuya啊可能是大家见过人那可是  了撒娇了大家搜UI阿木木啦啦啦啦来了垃圾啊撒";
+    ShareH5ListModel *model = self.dataArray[indexPath.row];
+    cell.contentLabel.text = model.shareContent;
+    [cell.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.sharePic]];
+    __weak typeof(cell) weakCell = cell;
     
     cell.seeDetailBlock = ^{
         HtmlGenerailzeDetailViewController *vc = [[HtmlGenerailzeDetailViewController alloc] init];
-        vc.contentStr = cell.contentLabel.text;
+        vc.contentStr = weakCell.contentLabel.text;
         [self.navigationController pushViewController:vc animated:YES];
     };
     
@@ -92,4 +100,23 @@
     return AD_HEIGHT(71);
 }
 
+
+#pragma mark ---- 接口 ----
+- (void)loadShareH5ListRequest {
+    [[HPDConnect connect] PostNetRequestMethod:@"shareH5/list" params:nil cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSDictionary *array = result[@"data"][@"rows"];
+                    self.dataArray = [NSMutableArray arrayWithArray:[ShareH5ListModel mj_objectArrayWithKeyValuesArray:array]];
+                    
+                    [self.myTableView reloadData];
+                }
+                
+            }
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
 @end

@@ -202,13 +202,19 @@
     //当⽉月交易易量量
     [[HPDConnect connect] PostNetRequestMethod:@"statAchievement/list" params:@{@"statType":@"0", @"userid":@"1", @"startTime":startTime, @"endTime":endTime,@"dateType":@"2"} cookie:nil result:^(bool success, id result) {
         if (success) {
-            NSDictionary *array = result[@"data"][@"rows"];
-            NSMutableArray *dataArr = [NSMutableArray arrayWithArray:[HomeHeaderModel mj_objectArrayWithKeyValuesArray:array]];
-            if (array.count > 0) {
-                [dataArr enumerateObjectsUsingBlock:^(HomeHeaderModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
-                    self.headerView.volumeOfTransactionL.text = model.statAmount;
-                }];
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSDictionary *array = result[@"data"][@"rows"];
+                    NSMutableArray *dataArr = [NSMutableArray arrayWithArray:[HomeHeaderModel mj_objectArrayWithKeyValuesArray:array]];
+                    if (array.count > 0) {
+                        [dataArr enumerateObjectsUsingBlock:^(HomeHeaderModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
+                            self.headerView.volumeOfTransactionL.text = model.statAmount;
+                        }];
+                    }
+                }
+                
             }
+            
             
         }
         NSLog(@"result ------- %@", result);
@@ -216,41 +222,56 @@
     //当⽉月分润
     [[HPDConnect connect] PostNetRequestMethod:@"statShareBenefit/list" params:@{@"statType":@"1", @"userid":@"1", @"startTime":startTime, @"endTime":endTime,@"dateType":@"2"} cookie:nil result:^(bool success, id result) {
         if (success) {
-            
-            NSDictionary *array = result[@"data"][@"rows"];
-            NSMutableArray *dataArr = [NSMutableArray arrayWithArray:[HomeHeaderModel mj_objectArrayWithKeyValuesArray:array]];
-            if (array.count > 0) {
-                [dataArr enumerateObjectsUsingBlock:^(HomeHeaderModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
-                    self.headerView.shareProfitL.text = model.statAmount;
-                }];
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSDictionary *array = result[@"data"][@"rows"];
+                    NSMutableArray *dataArr = [NSMutableArray arrayWithArray:[HomeHeaderModel mj_objectArrayWithKeyValuesArray:array]];
+                    if (array.count > 0) {
+                        [dataArr enumerateObjectsUsingBlock:^(HomeHeaderModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
+                            self.headerView.shareProfitL.text = model.statAmount;
+                        }];
+                    }
+                }
+                
             }
+            
         }
         NSLog(@"result ------- %@", result);
     }];
     //当⽉月激活数量量
     [[HPDConnect connect] PostNetRequestMethod:@"statAchievement/list" params:@{@"statType":@"2", @"userid":@"1", @"startTime":startTime, @"endTime":endTime,@"dateType":@"2"} cookie:nil result:^(bool success, id result) {
         if (success) {
-            NSDictionary *array = result[@"data"][@"rows"];
-            NSMutableArray *dataArr = [NSMutableArray arrayWithArray:[HomeHeaderModel mj_objectArrayWithKeyValuesArray:array]];
-            if (array.count > 0) {
-                [dataArr enumerateObjectsUsingBlock:^(HomeHeaderModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
-                    self.headerView.activationL.text = model.statAmount;
-                }];
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSDictionary *array = result[@"data"][@"rows"];
+                    NSMutableArray *dataArr = [NSMutableArray arrayWithArray:[HomeHeaderModel mj_objectArrayWithKeyValuesArray:array]];
+                    if (array.count > 0) {
+                        [dataArr enumerateObjectsUsingBlock:^(HomeHeaderModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
+                            self.headerView.activationL.text = model.statAmount;
+                        }];
+                    }
+                }
+                
             }
+            
         }
         NSLog(@"result ------- %@", result);
     }];
 //    //当前团队⼈人数
     [[HPDConnect connect] PostNetRequestMethod:@"statAchievement/list" params:@{@"statType":@"4", @"userid":@"1", @"startTime":startTime, @"endTime":endTime,@"dateType":@"2"} cookie:nil result:^(bool success, id result) {
         if (success) {
-            
-            NSDictionary *array = result[@"data"][@"rows"];
-            NSMutableArray *dataArr = [NSMutableArray arrayWithArray:[HomeHeaderModel mj_objectArrayWithKeyValuesArray:array]];
-            if (array.count > 0) {
-                [dataArr enumerateObjectsUsingBlock:^(HomeHeaderModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
-                    self.headerView.teamPersonL.text = model.statAmount;
-                }];
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSDictionary *array = result[@"data"][@"rows"];
+                    NSMutableArray *dataArr = [NSMutableArray arrayWithArray:[HomeHeaderModel mj_objectArrayWithKeyValuesArray:array]];
+                    if (array.count > 0) {
+                        [dataArr enumerateObjectsUsingBlock:^(HomeHeaderModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
+                            self.headerView.teamPersonL.text = model.statAmount;
+                        }];
+                    }
+                }
             }
+           
         }
         NSLog(@"result ------- %@", result);
     }];
@@ -262,11 +283,16 @@
 - (void)loadPackageChargeListRequest {
     [[HPDConnect connect] PostNetRequestMethod:@"packageCharge/list" params:nil cookie:nil result:^(bool success, id result) {
         if (success) {
-            
-            NSDictionary *array = result[@"data"][@"rows"];
-            self.dataArray = [NSMutableArray arrayWithArray:[PackageChargeListModel mj_objectArrayWithKeyValuesArray:array]];
-
-            [self.homeTableView reloadData];
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSDictionary *array = result[@"data"][@"rows"];
+                    self.dataArray = [NSMutableArray arrayWithArray:[PackageChargeListModel mj_objectArrayWithKeyValuesArray:array]];
+                    
+                    [self.homeTableView reloadData];
+                }
+                
+            }
+           
         }
         NSLog(@"result ------- %@", result);
     }];
