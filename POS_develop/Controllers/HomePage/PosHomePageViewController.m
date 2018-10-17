@@ -262,6 +262,7 @@
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    
                     NSDictionary *array = result[@"data"][@"rows"];
                     NSMutableArray *dataArr = [NSMutableArray arrayWithArray:[HomeHeaderModel mj_objectArrayWithKeyValuesArray:array]];
                     if (array.count > 0) {
@@ -285,7 +286,7 @@
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
-                    NSDictionary *array = result[@"data"][@"rows"];
+                    NSArray *array = result[@"data"][@"rows"];
                     self.dataArray = [NSMutableArray arrayWithArray:[PackageChargeListModel mj_objectArrayWithKeyValuesArray:array]];
                     
                     [self.homeTableView reloadData];

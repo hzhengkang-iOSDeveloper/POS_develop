@@ -21,12 +21,13 @@
 #import "PD_BillListViewController.h"//我的订单
 
 @interface PersonalViewController () <UITableViewDelegate,UITableViewDataSource> {
-    PersonalHeaderView *headerView;
+    
 }
 
 @property (nonatomic, strong) UITableView *personalTableView;
 @property (nonatomic, strong) NSArray *imageArray;
 @property (nonatomic, strong) NSArray *titleArray;
+@property (nonatomic, strong) PersonalHeaderView *headerView;
 @end
 
 @implementation PersonalViewController
@@ -43,6 +44,8 @@
     _titleArray = @[@{@"section":@[@"会员系统",@"我的订单",@"我的账单",@"免费领取",@"我的地址"]},@{@"section":@[@"我的客服",@"设置"]}];
     _imageArray = @[@{@"section":@[@"会员V1",@"我的订单",@"我的账单",@"免费领取",@"我的地址"]},@{@"section":@[@"我的客服",@"设置"]}];
     [self creatTabelView];
+    [self loadBagListRequest];
+    [self loadStatAchievementRequest];
 }
 
 #pragma mark CreatTabelView
@@ -60,18 +63,18 @@
 #pragma mark -- 创建headerView
 - (UIView *)creatTabHeaderView
 {
-    headerView = [[PersonalHeaderView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, FITiPhone6(217) + STATUSBAR_H)];
+    self.headerView = [[PersonalHeaderView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, FITiPhone6(217) + STATUSBAR_H)];
     MJWeakSelf;
-    headerView.loginBlock = ^{
+    self.headerView.loginBlock = ^{
         LoginTypeViewController *vc = [[LoginTypeViewController alloc] init];
         [weakSelf.navigationController pushViewController:vc animated:YES];
     };
-    headerView.withdrawBlock = ^{
+    self.headerView.withdrawBlock = ^{
         WithdrawCashViewController *vc = [[WithdrawCashViewController alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
         [weakSelf.navigationController pushViewController:vc animated:YES];
     };
-    return headerView;
+    return self.headerView;
 }
 
 #pragma mark - UITableViewDataSource
@@ -175,6 +178,54 @@
     view.backgroundColor = CF6F6F6;
     return view;
 }
+
+
+
+#pragma mark ---------------------------- 接口 --------------------------------
+
+#pragma mark ---- 个人余额 ----
+- (void)loadBagListRequest {
+    [[HPDConnect connect] PostNetRequestMethod:@"bag/list" params:nil cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSArray *array = [NSArray arrayWithArray:result[@"data"][@"rows"]];
+                    self.headerView.balanceL.text = [NSString stringWithFormat:@"余额：%@", [[array firstObject] valueForKey:@"accountBalance"]];
+                }
+                
+            }
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
+#pragma mark ---- 昨日收益 ----
+- (void)loadStatAchievementRequest {
+    NSDate *date = [NSDate date];//当前时间
+    NSDate *lastDay = [NSDate dateWithTimeInterval:-24*60*60 sinceDate:date];//前一天
+
+
+    [[HPDConnect connect] PostNetRequestMethod:@"statAchievement/list" params:@{@"userid":@"1", @"startTime":[[NSString stringWithFormat:@"%@", lastDay] substringToIndex:10], @"endTime":[[NSString stringWithFormat:@"%@", lastDay] substringToIndex:10], @"dateType":@"0", @"statType":@"1"} cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSArray class]]) {
+            
+                NSArray *array = [NSArray arrayWithArray:result[@"data"]];
+                if ([[array firstObject] valueForKey:@"value"]) {
+                    self.headerView.yesterdayEarningsMoney.text = [[array firstObject] valueForKey:@"value"];
+                }else {
+                    self.headerView.yesterdayEarningsMoney.text = @"0.00";
+                }
+                
+                
+                
+            }
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
+
+
 @end
 
 

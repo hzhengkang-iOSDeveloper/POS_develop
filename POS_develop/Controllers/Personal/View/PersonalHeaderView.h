@@ -11,4 +11,6 @@
 @interface PersonalHeaderView : UIView
 @property (nonatomic, copy) void (^loginBlock)(void);
 @property (nonatomic, copy) void (^withdrawBlock)(void);
+@property (nonatomic, strong) UILabel *balanceL;
+@property (nonatomic, strong) UILabel *yesterdayEarningsMoney;
 @end

@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "POS_develop/Controllers/Generalize/Controller/HtmlGenerailze(html5&#x63a8;&#x5e7f;)/HtmlGenerailzeViewController.m"
-            timestampString = "561440429.240899"
+            filePath = "POS_develop/Controllers/Personal/PersonalViewController.m"
+            timestampString = "561452444.319337"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
+            landmarkName = "-loadStatAchievementRequest"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

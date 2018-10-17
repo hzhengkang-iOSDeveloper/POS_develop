@@ -107,7 +107,7 @@
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
-                    NSDictionary *array = result[@"data"][@"rows"];
+                    NSArray *array = result[@"data"][@"rows"];
                     self.dataArray = [NSMutableArray arrayWithArray:[ShareH5ListModel mj_objectArrayWithKeyValuesArray:array]];
                     
                     [self.myTableView reloadData];

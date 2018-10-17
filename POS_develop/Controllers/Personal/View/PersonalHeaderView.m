@@ -66,13 +66,13 @@
         make.top.equalTo(bgImageV).offset(FITiPhone6(87) + STATUSBAR_H);
         make.size.mas_offset(CGSizeMake(ScreenWidth, FITiPhone6(15)));
     }];
-    UILabel *yesterdayEarningsMoney = [[UILabel alloc] init];
-    yesterdayEarningsMoney.text = @"0.00";
-    yesterdayEarningsMoney.textColor = WhiteColor;
-    yesterdayEarningsMoney.font = F15;
-    yesterdayEarningsMoney.textAlignment = NSTextAlignmentCenter;
-    [bgImageV addSubview:yesterdayEarningsMoney];
-    [yesterdayEarningsMoney mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.yesterdayEarningsMoney = [[UILabel alloc] init];
+//    self.yesterdayEarningsMoney.text = @"0.00";
+    self.yesterdayEarningsMoney.textColor = WhiteColor;
+    self.yesterdayEarningsMoney.font = F15;
+    self.yesterdayEarningsMoney.textAlignment = NSTextAlignmentCenter;
+    [bgImageV addSubview:self.yesterdayEarningsMoney];
+    [self.yesterdayEarningsMoney mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(bgImageV);
         make.top.equalTo(yesterdayEarningsText.mas_bottom).offset(FITiPhone6(12));
         make.size.mas_offset(CGSizeMake(ScreenWidth, FITiPhone6(15)));
@@ -85,12 +85,11 @@
         make.bottom.equalTo(bgImageV).offset(FITiPhone6(-51));
         make.size.mas_offset(CGSizeMake(ScreenWidth, FITiPhone6(0.5)));
     }];
-    UILabel *balanceL = [[UILabel alloc] init];
-    balanceL.text = @"余额 300.00";
-    balanceL.textColor = WhiteColor;
-    balanceL.font = F15;
-    [bgImageV addSubview:balanceL];
-    [balanceL mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.balanceL = [[UILabel alloc] init];
+    self.balanceL.textColor = WhiteColor;
+    self.balanceL.font = F15;
+    [bgImageV addSubview:self.balanceL];
+    [self.balanceL mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(bgImageV).offset(FITiPhone6(15));
         make.bottom.equalTo(bgImageV).offset(FITiPhone6(-17));
         make.size.mas_offset(CGSizeMake(ScreenWidth - FITiPhone6(120), FITiPhone6(15)));
@@ -106,7 +105,7 @@
     [bgImageV addSubview:withdrawBtn];
     [withdrawBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(bgImageV).offset(FITiPhone6(-15));
-        make.bottom.equalTo(balanceL.mas_bottom);
+        make.bottom.equalTo(self.balanceL.mas_bottom);
         make.size.mas_offset(CGSizeMake(FITiPhone6(100), FITiPhone6(15)));
     }];
 }
