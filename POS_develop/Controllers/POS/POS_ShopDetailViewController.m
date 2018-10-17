@@ -48,12 +48,17 @@
 - (UIScrollView *)mainScrollView
 {
     if (!_mainScrollView) {
-        _mainScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-AD_HEIGHT(54))];
+        _mainScrollView = [[UIScrollView alloc]init];
         _mainScrollView.delegate = self;
         _mainScrollView.showsVerticalScrollIndicator = NO;
         _mainScrollView.backgroundColor = CF6F6F6;
         [self.view addSubview:_mainScrollView];
-        
+        [_mainScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.offset(0);
+            make.top.offset(0);
+            make.width.mas_equalTo(ScreenWidth);
+            make.bottom.equalTo(self.mas_bottomLayoutGuideTop).offset(0);
+        }];
     }
     return _mainScrollView;
 }

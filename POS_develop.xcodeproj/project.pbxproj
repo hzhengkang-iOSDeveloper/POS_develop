@@ -25,6 +25,7 @@
 		259646E62158E1ED00E516BF /* SeparateQueryMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 259646E52158E1ED00E516BF /* SeparateQueryMainView.m */; };
 		259646E82158E1FA00E516BF /* SeparateQueryMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 259646E72158E1FA00E516BF /* SeparateQueryMainView.xib */; };
 		25E2A36A214D7831006EB5B5 /* PD_SelectAreaPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E2A369214D7831006EB5B5 /* PD_SelectAreaPickerView.m */; };
+		5009BA7D2176D72600FF1AE9 /* CombinationSetMealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5009BA7C2176D72600FF1AE9 /* CombinationSetMealViewController.m */; };
 		50184CD921589E2C00D11AC6 /* UIButton+Style.m in Sources */ = {isa = PBXBuildFile; fileRef = 50184CD821589E2C00D11AC6 /* UIButton+Style.m */; };
 		50184CDC2158BDC400D11AC6 /* TransactionQueryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50184CDB2158BDC400D11AC6 /* TransactionQueryViewController.m */; };
 		50184CE02158C56C00D11AC6 /* DatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50184CDF2158C56C00D11AC6 /* DatePickerView.m */; };
@@ -36,6 +37,7 @@
 		502AF8132163A5E100260979 /* SheetPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 502AF8122163A5E100260979 /* SheetPickerView.m */; };
 		502BAFC3215C884B005EDE6F /* PD_BillDetailOutLineInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 502BAFC2215C884B005EDE6F /* PD_BillDetailOutLineInfoView.m */; };
 		50339EAE2152968F003011E9 /* PD_BillListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50339EAD2152968F003011E9 /* PD_BillListCell.m */; };
+		5040E98321770CDE00E39628 /* CombinationSetMealDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5040E98221770CDE00E39628 /* CombinationSetMealDetailViewController.m */; };
 		504D8E172170407200478C50 /* POS_CommitBillViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 504D8E162170407200478C50 /* POS_CommitBillViewController.m */; };
 		504D8E1A2170740000478C50 /* POS_CommfirBillOutLinePayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 504D8E192170740000478C50 /* POS_CommfirBillOutLinePayView.m */; };
 		504D8E1D217075E800478C50 /* POS_CommfirBillOnLinePayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 504D8E1C217075E800478C50 /* POS_CommfirBillOnLinePayView.m */; };
@@ -320,6 +322,8 @@
 		259646E72158E1FA00E516BF /* SeparateQueryMainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SeparateQueryMainView.xib; sourceTree = "<group>"; };
 		25E2A368214D7831006EB5B5 /* PD_SelectAreaPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_SelectAreaPickerView.h; sourceTree = "<group>"; };
 		25E2A369214D7831006EB5B5 /* PD_SelectAreaPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_SelectAreaPickerView.m; sourceTree = "<group>"; };
+		5009BA7B2176D72600FF1AE9 /* CombinationSetMealViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CombinationSetMealViewController.h; sourceTree = "<group>"; };
+		5009BA7C2176D72600FF1AE9 /* CombinationSetMealViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CombinationSetMealViewController.m; sourceTree = "<group>"; };
 		50184CD721589E2C00D11AC6 /* UIButton+Style.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+Style.h"; sourceTree = "<group>"; };
 		50184CD821589E2C00D11AC6 /* UIButton+Style.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Style.m"; sourceTree = "<group>"; };
 		50184CDA2158BDC400D11AC6 /* TransactionQueryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionQueryViewController.h; sourceTree = "<group>"; };
@@ -342,6 +346,8 @@
 		502BAFC2215C884B005EDE6F /* PD_BillDetailOutLineInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillDetailOutLineInfoView.m; sourceTree = "<group>"; };
 		50339EAC2152968F003011E9 /* PD_BillListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillListCell.h; sourceTree = "<group>"; };
 		50339EAD2152968F003011E9 /* PD_BillListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillListCell.m; sourceTree = "<group>"; };
+		5040E98121770CDE00E39628 /* CombinationSetMealDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CombinationSetMealDetailViewController.h; sourceTree = "<group>"; };
+		5040E98221770CDE00E39628 /* CombinationSetMealDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CombinationSetMealDetailViewController.m; sourceTree = "<group>"; };
 		504D8E152170407200478C50 /* POS_CommitBillViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POS_CommitBillViewController.h; sourceTree = "<group>"; };
 		504D8E162170407200478C50 /* POS_CommitBillViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = POS_CommitBillViewController.m; sourceTree = "<group>"; };
 		504D8E182170740000478C50 /* POS_CommfirBillOutLinePayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POS_CommfirBillOutLinePayView.h; sourceTree = "<group>"; };
@@ -941,6 +947,10 @@
 			isa = PBXGroup;
 			children = (
 				505B6F64216D9881000D49B2 /* Cell */,
+				5009BA7B2176D72600FF1AE9 /* CombinationSetMealViewController.h */,
+				5009BA7C2176D72600FF1AE9 /* CombinationSetMealViewController.m */,
+				5040E98121770CDE00E39628 /* CombinationSetMealDetailViewController.h */,
+				5040E98221770CDE00E39628 /* CombinationSetMealDetailViewController.m */,
 			);
 			path = "CombinationSetMeal(组合套餐)";
 			sourceTree = "<group>";
@@ -2535,6 +2545,7 @@
 				50A89AFB216B653200E68BEB /* XAnimationPath.m in Sources */,
 				253647E0214E11C60094576C /* WithdrawCashTableViewCell.m in Sources */,
 				7888F2E12147C31600AAC8B0 /* PopView.m in Sources */,
+				5009BA7D2176D72600FF1AE9 /* CombinationSetMealViewController.m in Sources */,
 				50A89AEB216B653200E68BEB /* CALayer+XLayerSelectHelper.m in Sources */,
 				50EEB20F21737E6F00B41353 /* MyAddressEditViewController.m in Sources */,
 				505B6F82216D99FC000D49B2 /* MessageListTableViewCell.m in Sources */,
@@ -2569,6 +2580,7 @@
 				7888F2F12147C32600AAC8B0 /* GlobalMethod.m in Sources */,
 				7888F35E2147C32C00AAC8B0 /* JSONKit.m in Sources */,
 				7888F3B22147C33900AAC8B0 /* UIImage+Extension.m in Sources */,
+				5040E98321770CDE00E39628 /* CombinationSetMealDetailViewController.m in Sources */,
 				253647D7214E053C0094576C /* UpdatePhoneTableViewCell.m in Sources */,
 				7888F3BA2147C33900AAC8B0 /* ZJPPTViewCustom.m in Sources */,
 				50A89B07216B653200E68BEB /* XLineChartView.m in Sources */,

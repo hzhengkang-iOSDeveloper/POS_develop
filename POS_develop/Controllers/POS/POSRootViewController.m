@@ -116,7 +116,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    POS_CommitBillViewController *vc = [[POS_CommitBillViewController alloc]init];
+    POS_ShopDetailViewController *vc = [[POS_ShopDetailViewController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
