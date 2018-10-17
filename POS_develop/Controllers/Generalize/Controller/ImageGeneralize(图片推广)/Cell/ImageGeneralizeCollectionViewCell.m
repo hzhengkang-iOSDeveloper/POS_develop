@@ -29,13 +29,14 @@
     }];
     
     self.selectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.selectBtn.userInteractionEnabled = NO;
     [self.selectBtn setTitleColor:C000000 forState:UIControlStateNormal];
     [self.selectBtn layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleLeft imageTitleSpace:FITiPhone6(5)];
     [self.selectBtn setImage:[UIImage imageNamed:@"图层5拷贝"] forState:normal];
-    [self.selectBtn setImage:[UIImage imageNamed:@"椭圆2拷贝"] forState:UIControlStateSelected];
+    [self.selectBtn setImage:[UIImage imageNamed:@"选中"] forState:UIControlStateSelected];
 //    [self.selectBtn addTarget:self action:@selector(selectBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     self.selectBtn.titleLabel.font = F12;
-    self.selectBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
+//    self.selectBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
     [self.contentView addSubview:self.selectBtn];
     [self.selectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(AD_HEIGHT(30));

@@ -10,12 +10,15 @@
 #import "CopywritingSelectCell.h"
 #import "ShareSuccessViewController.h"
 #import "ShareFailViewController.h"
+#import "ShareTextModel.h"
 @interface CopywritingSelectViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *myTableView;
 @property (nonatomic, copy) NSString *pasteStr;//复制的文字，用于转发时
+@property (nonatomic, strong) NSMutableArray *dataArray;
 @end
 
 @implementation CopywritingSelectViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -25,7 +28,9 @@
         ShareFailViewController *vc = [[ShareFailViewController alloc] init];
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
+    self.dataArray = [NSMutableArray array];
     [self createTableView];
+    [self loadShareTextListRequest];
 }
 
 - (void)createTableView {
@@ -45,7 +50,7 @@
 #pragma mark - UITableViewDataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
-    return 10;
+    return self.dataArray.count;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -55,13 +60,9 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CopywritingSelectCell *cell = [CopywritingSelectCell cellWithTableView:tableView];
-    if (indexPath.section == 0) {
-        cell.contentLabel.text = @"卡接口是你打开那等你家厚度uayduyaioa";
-    }else if (indexPath.section == 2) {
-        cell.contentLabel.text = @"ahsdjahkdnandkidj爱好的四海的回忆啊好看大砍刀卡的复活爱的还是覅和爱的很舒服ad俺的沙发阿ahsdjahkdnandkidj爱好的四海的回忆啊好看大砍刀卡的复活爱的还是覅和爱的很舒服ad俺的沙发阿道夫ad啊ahsdjahkdnandkidj爱好的四海的回忆啊好看大砍刀卡的复活爱的还是覅和爱的很舒服ad俺的沙发阿道夫ad啊ahsdjahkdnandkidj爱好的四海的回忆啊好看大砍刀卡的复活爱的还是覅和爱的很舒服ad俺的沙发阿道夫ad啊ahsdjahkdnandkidj爱好的四海的回忆啊好看大砍刀卡的复活爱的还是覅和爱的很舒服ad俺的沙发阿道夫ad啊ahsdjahkdnandkidj爱好的四海的回忆啊好看大砍刀卡的复活爱的还是覅和爱的很舒服ad俺的沙发阿道夫ad啊道夫ad啊";
-    }else {
-        cell.contentLabel.text = @"ahsdjahkdnandki夫ad啊ahsdjahkdnandkidj爱好的四海的回忆啊好看大砍刀卡的复活爱的还是覅和爱的很舒服ad俺的沙发阿道夫ad啊ahsdjahkdnandkidj爱好的四海的回忆啊好";
-    }
+    ShareTextModel *model = self.dataArray[indexPath.section];
+    cell.contentLabel.text = model.shareContent;
+    
     __weak typeof(cell)weakCell = cell;
     cell.copyClick = ^{
         UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
@@ -83,10 +84,6 @@
 //    [self.navigationController pushViewController:vc animated:YES];
 }
 
-//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return AD_HEIGHT(60);
-//}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return AD_HEIGHT(5);
 }
@@ -101,5 +98,26 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectZero];
     return headerView;
+}
+
+
+
+#pragma mark ---- 接口 ----
+- (void)loadShareTextListRequest {
+    [[HPDConnect connect] PostNetRequestMethod:@"shareText/list" params:nil cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSDictionary *array = result[@"data"][@"rows"];
+                    self.dataArray = [NSMutableArray arrayWithArray:[ShareTextModel mj_objectArrayWithKeyValuesArray:array]];
+                    
+                    [self.myTableView reloadData];
+                }
+                
+            }
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
 }
 @end

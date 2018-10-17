@@ -30,7 +30,6 @@
 
 - (void)initUI{
     self.myImageView = [[UIImageView alloc] init];
-    self.myImageView.image = [UIImage imageNamed:@"图层7"];
     [self.contentView addSubview:self.myImageView];
     [self.myImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(AD_HEIGHT(15));

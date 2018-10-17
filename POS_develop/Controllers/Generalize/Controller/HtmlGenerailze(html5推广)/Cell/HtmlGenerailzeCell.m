@@ -41,7 +41,6 @@
         make.size.mas_offset(CGSizeMake(AD_HEIGHT(15), AD_HEIGHT(15)));
     }];
     self.iconImageView = [[UIImageView alloc] init];
-    self.iconImageView.image = [UIImage imageNamed:@"图层7"];
     [self.contentView addSubview:self.iconImageView];
     [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.selectBtn.mas_right).offset(AD_HEIGHT(16));

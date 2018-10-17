@@ -9,10 +9,13 @@
 #import "QRGenerailzeViewController.h"
 #import "CopywritingSelectViewController.h"
 #import "ImageGeneralizeCollectionViewCell.h"
+#import "SharePicListModel.h"
 
 @interface QRGenerailzeViewController () <UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) UICollectionView *myCollection;
 @property (nonatomic, copy) NSString *selectStr;
+
+@property (nonatomic, strong) NSMutableArray *dataArray;
 
 @end
 
@@ -21,10 +24,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItemTitle = @"推广";
+    self.dataArray = [NSMutableArray array];
     self.view.backgroundColor = WhiteColor;
     self.selectStr = @"";
     [self addStandardRightButtonWithTitle:@"下一步" selector:@selector(nextClick)];
     [self createCollectionView];
+    [self loadShareQrcoeListRequest];
 }
 
 #pragma mark ---- 下一步 ----
@@ -53,16 +58,17 @@
 }
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return 16;
+    return self.dataArray.count;
     
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     
     ImageGeneralizeCollectionViewCell *cell = (ImageGeneralizeCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"ImageGeneralizeCollectionViewCell" forIndexPath:indexPath];
+    SharePicListModel *model = self.dataArray[indexPath.row];
     cell.backgroundColor = WhiteColor;
-    [cell.selectBtn setTitle:@"07月24日 09：11" forState:UIControlStateNormal];
-    cell.myImageView.image = [UIImage imageNamed:@"图层7"];
+    [cell.selectBtn setTitle:[model.createtime substringToIndex:16] forState:UIControlStateNormal];
+    [cell.myImageView sd_setImageWithURL:[NSURL URLWithString:model.sharePic]];
     
     if ([self.selectStr isEqualToString:[NSString stringWithFormat:@"%li",indexPath.row]]) {
         cell.selectBtn.selected = YES;
@@ -113,4 +119,22 @@
 }
 
 
+#pragma mark ---- 接口 ----
+- (void)loadShareQrcoeListRequest {
+    [[HPDConnect connect] PostNetRequestMethod:@"shareQrcoe/list" params:nil cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSDictionary *array = result[@"data"][@"rows"];
+                    self.dataArray = [NSMutableArray arrayWithArray:[SharePicListModel mj_objectArrayWithKeyValuesArray:array]];
+                    
+                    [self.myCollection reloadData];
+                }
+                
+            }
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
 @end
