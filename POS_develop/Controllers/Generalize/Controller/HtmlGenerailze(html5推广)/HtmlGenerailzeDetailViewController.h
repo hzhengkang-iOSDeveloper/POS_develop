@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HtmlGenerailzeDetailViewController : BaseSonViewController
 @property (nonatomic, copy) NSString *contentStr;
+@property (nonatomic, copy) NSString *iconStr;
+@property (nonatomic, copy) NSString *tbShareH5Id;
 @end
 
 NS_ASSUME_NONNULL_END

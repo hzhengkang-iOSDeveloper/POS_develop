@@ -46,6 +46,7 @@
     [self creatTabelView];
     [self loadBagListRequest];
     [self loadStatAchievementRequest];
+    [self loadUserinfoRequest];
 }
 
 #pragma mark CreatTabelView
@@ -57,6 +58,12 @@
     _personalTableView.showsVerticalScrollIndicator = NO;
     _personalTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _personalTableView.tableHeaderView = [self creatTabHeaderView];
+    MJWeakSelf;
+    _personalTableView.mj_header = [SLRefreshHeader headerWithRefreshingBlock:^{
+        [weakSelf loadBagListRequest];
+        [weakSelf loadStatAchievementRequest];
+        [weakSelf loadUserinfoRequest];
+    }];
     [self.view addSubview:_personalTableView];
 }
 
@@ -74,6 +81,9 @@
         vc.hidesBottomBarWhenPushed = YES;
         [weakSelf.navigationController pushViewController:vc animated:YES];
     };
+    
+    self.headerView.userNameLabel.hidden = NO;
+    self.headerView.invitedCodeLabel.hidden = NO;
     return self.headerView;
 }
 
@@ -185,7 +195,8 @@
 
 #pragma mark ---- 个人余额 ----
 - (void)loadBagListRequest {
-    [[HPDConnect connect] PostNetRequestMethod:@"bag/list" params:nil cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/bag/list" params:nil cookie:nil result:^(bool success, id result) {
+        [self.personalTableView.mj_header endRefreshing];
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
@@ -205,7 +216,8 @@
     NSDate *lastDay = [NSDate dateWithTimeInterval:-24*60*60 sinceDate:date];//前一天
 
 
-    [[HPDConnect connect] PostNetRequestMethod:@"statAchievement/list" params:@{@"userid":@"1", @"startTime":[[NSString stringWithFormat:@"%@", lastDay] substringToIndex:10], @"endTime":[[NSString stringWithFormat:@"%@", lastDay] substringToIndex:10], @"dateType":@"0", @"statType":@"1"} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"userid":@"1", @"startTime":[[NSString stringWithFormat:@"%@", lastDay] substringToIndex:10], @"endTime":[[NSString stringWithFormat:@"%@", lastDay] substringToIndex:10], @"dateType":@"0", @"statType":@"1"} cookie:nil result:^(bool success, id result) {
+        [self.personalTableView.mj_header endRefreshing];
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSArray class]]) {
             
@@ -215,16 +227,24 @@
                 }else {
                     self.headerView.yesterdayEarningsMoney.text = @"0.00";
                 }
-                
-                
-                
             }
             
         }
         NSLog(@"result ------- %@", result);
     }];
 }
+#pragma mark ---- 个人 用户信息 ----
+- (void)loadUserinfoRequest {
+    [[HPDConnect connect] PostNetRequestMethod:@"sys/user/userinfo" params:nil cookie:nil result:^(bool success, id result) {
+        [self.personalTableView.mj_header endRefreshing];
+        if (success) {
+            self.headerView.userNameLabel.text = [result valueForKey:@"nickname"];
+            self.headerView.invitedCodeLabel.text = [result valueForKey:@"invitedCode"];
 
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
 
 @end
 

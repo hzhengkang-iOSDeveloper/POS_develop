@@ -7,7 +7,7 @@
 //
 
 #import "HtmlGenerailzeDetailCell.h"
-
+#import "ShareH5ReaderModel.h"
 @implementation HtmlGenerailzeDetailCell
 
 + (instancetype)cellWithTableView:(UITableView *)tableView{
@@ -31,7 +31,7 @@
 
 - (void)initUI{
     self.iconImageView = [[UIImageView alloc] init];
-    self.iconImageView.image = [UIImage imageNamed:@"头像女孩拷贝"];
+    
     [self.contentView addSubview:self.iconImageView];
     [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.offset(AD_HEIGHT(15));
@@ -64,4 +64,36 @@
     }];
 }
 
+- (void)setModel:(ShareH5ReaderModel *)model {
+    if (model) {
+        _model = model;
+        self.idLabel.text = [NSString stringWithFormat:@"ID：%@", model.readerOpenid];
+        self.nickNameLabel.text = [NSString stringWithFormat:@"昵称：%@", model.readerNickname];
+        [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.readerIcon] placeholderImage:[UIImage imageNamed:@"头像女孩拷贝"]];
+        self.readTime.text = [NSString stringWithFormat:@"阅读时间：%@秒", model.readerTime];
+        NSMutableAttributedString *idStr = [[NSMutableAttributedString alloc] initWithString:self.idLabel.text];
+        // 改变颜色
+        [idStr addAttribute:NSForegroundColorAttributeName value:C989898 range:NSMakeRange(3,self.idLabel.text.length-3)];
+        [idStr addAttribute:NSFontAttributeName value:
+         F10 range:NSMakeRange(3,self.idLabel.text.length-3)];
+        
+        self.idLabel.attributedText = idStr;
+        
+        NSMutableAttributedString *nickNameStr = [[NSMutableAttributedString alloc] initWithString:self.nickNameLabel.text];
+        // 改变颜色
+        [nickNameStr addAttribute:NSForegroundColorAttributeName value:C989898 range:NSMakeRange(3,self.nickNameLabel.text.length-3)];
+        [nickNameStr addAttribute:NSFontAttributeName value:
+         F10 range:NSMakeRange(3,self.nickNameLabel.text.length-3)];
+        
+        self.nickNameLabel.attributedText = nickNameStr;
+        
+        NSMutableAttributedString *readTimeStr = [[NSMutableAttributedString alloc] initWithString:self.readTime.text];
+        // 改变颜色
+        [readTimeStr addAttribute:NSForegroundColorAttributeName value:C1E95F9 range:NSMakeRange(5,self.readTime.text.length-5)];
+        
+        
+        self.readTime.attributedText = readTimeStr;
+
+    }
+}
 @end

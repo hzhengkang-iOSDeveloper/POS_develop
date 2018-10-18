@@ -41,6 +41,9 @@
     _myTableView.dataSource = self;
     _myTableView.showsVerticalScrollIndicator = NO;
     _myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _myTableView.mj_header = [SLRefreshHeader headerWithRefreshingBlock:^{
+        [self loadShareH5ListRequest];
+    }];
     [self.view addSubview:_myTableView];
     [_myTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.bottom.offset(0);
@@ -66,6 +69,8 @@
     cell.seeDetailBlock = ^{
         HtmlGenerailzeDetailViewController *vc = [[HtmlGenerailzeDetailViewController alloc] init];
         vc.contentStr = model.shareContent;
+        vc.iconStr = model.sharePic;
+        vc.tbShareH5Id = model.ID;
         [self.navigationController pushViewController:vc animated:YES];
     };
     
@@ -102,7 +107,8 @@
 
 #pragma mark ---- 接口 ----
 - (void)loadShareH5ListRequest {
-    [[HPDConnect connect] PostNetRequestMethod:@"shareH5/list" params:nil cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/shareH5/list" params:nil cookie:nil result:^(bool success, id result) {
+        [self.myTableView.mj_header endRefreshing];
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class ShareH5ReaderModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HtmlGenerailzeDetailCell : UITableViewCell
@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel *idLabel;
 @property (nonatomic, strong) UILabel *nickNameLabel;
 @property (nonatomic, strong) UILabel *readTime;
+@property (nonatomic, strong) ShareH5ReaderModel *model;
 
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 @end

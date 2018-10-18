@@ -8,9 +8,11 @@
 
 #import "MyBillViewController.h"
 #import "MyBillTableViewCell.h"
+#import "BagLogListModel.h"
 
 @interface MyBillViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *billTableView;
+@property (nonatomic, strong) NSMutableArray *dataArray;
 @end
 
 @implementation MyBillViewController
@@ -19,13 +21,12 @@
     [super viewDidLoad];
     self.view.backgroundColor = WhiteColor;
     self.navigationItemTitle = @"明细";
-//    UIButton *rightBtn = [self addRightBarButtonWithImage:[UIImage imageNamed:@"图层1"] clickHandler:^{
-//
-//    }];
-    UIButton *rightBtn = [self addRightBarButtonWithImage:[UIImage imageNamed:@"语音"] clickHandler:^{
+    self.dataArray = [NSMutableArray array];
+    [self addRightBarButtonWithImage:[UIImage imageNamed:@"图层1"] clickHandler:^{
         NSLog(@"点击右边按钮");
     }];
     [self createTableView];
+    [self loadBagLogListRequest];
 }
 
 - (void)createTableView {
@@ -35,6 +36,10 @@
     _billTableView.dataSource = self;
     _billTableView.showsVerticalScrollIndicator = NO;
     _billTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    MJWeakSelf;
+    _billTableView.mj_header = [SLRefreshHeader headerWithRefreshingBlock:^{
+        [weakSelf loadBagLogListRequest];
+    }];
     [self.view addSubview:_billTableView];
 }
 
@@ -46,16 +51,14 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 10;
+    return self.dataArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     MyBillTableViewCell *cell = [MyBillTableViewCell cellWithTableView:tableView];
-    cell.contentLabel.text = @"提现";
-    cell.timeLabel.text = @"2018.7.7 14:00";
-    cell.amountLabel.text = @"+99";
-    cell.totalAmountLabel.text = @"3000";
+    BagLogListModel *model = self.dataArray[indexPath.row];
+    cell.model = model;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
    
     
@@ -71,17 +74,48 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return FITiPhone6(65);
 }
-//#pragma  mark || SafeArea-适配iPhone X ||
-//- (void)viewSafeAreaInsetsDidChange {
-//    [super viewSafeAreaInsetsDidChange];
-//
-//    if (@available(iOS 11.0, *)) {
-//        CGRect frame = self.billTableView.frame;
-//        frame.origin.y = self.view.safeAreaInsets.top;
-//        frame.origin.x = self.view.safeAreaInsets.left;
-//        frame.size.width = self.view.frame.size.width - self.view.safeAreaInsets.left - self.view.safeAreaInsets.right;
-//        frame.size.height = self.view.frame.size.height - self.view.safeAreaInsets.bottom - self.view.safeAreaInsets.top;
-//        self.billTableView.frame = frame;
-//    }
-//}
+
+
+#pragma mark -------------------------------- 接口 ------------------------------------
+
+- (void)loadBagLogListRequest {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/bagLog/list" params:nil cookie:nil result:^(bool success, id result) {
+        [self.billTableView.mj_header endRefreshing];
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSArray *array = result[@"data"][@"rows"];
+                    self.dataArray = [NSMutableArray arrayWithArray:[BagLogListModel mj_objectArrayWithKeyValuesArray:array]];
+                    
+                    [self.billTableView reloadData];
+                }
+                
+            }
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

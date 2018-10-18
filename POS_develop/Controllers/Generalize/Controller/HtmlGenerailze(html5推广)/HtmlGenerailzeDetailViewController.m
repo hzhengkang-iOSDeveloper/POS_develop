@@ -8,6 +8,7 @@
 
 #import "HtmlGenerailzeDetailViewController.h"
 #import "HtmlGenerailzeDetailCell.h"
+#import "ShareH5ReaderModel.h"
 
 @interface HtmlGenerailzeDetailViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *myTableView;
@@ -20,8 +21,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItemTitle = @"html5推广";
-    self.dataArray == [NSMutableArray array];
+    self.dataArray = [NSMutableArray array];
     [self createTableView];
+    [self loadShareH5ReaderRequest];
 }
 
 - (void)createTableView {
@@ -31,6 +33,9 @@
     _myTableView.dataSource = self;
     _myTableView.showsVerticalScrollIndicator = NO;
     _myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _myTableView.mj_header = [SLRefreshHeader headerWithRefreshingBlock:^{
+        [self loadShareH5ReaderRequest];
+    }];
     [self.view addSubview:_myTableView];
     [_myTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.bottom.offset(0);
@@ -39,7 +44,7 @@
 #pragma mark - UITableViewDataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
-    return 10;
+    return self.dataArray.count;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -49,32 +54,9 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HtmlGenerailzeDetailCell *cell = [HtmlGenerailzeDetailCell cellWithTableView:tableView];
-    cell.idLabel.text = @"ID:123123";
-    cell.nickNameLabel.text = @"昵称:胡子";
-    cell.readTime.text = @"阅读时间:17秒";
-    NSMutableAttributedString *idStr = [[NSMutableAttributedString alloc] initWithString:cell.idLabel.text];
-    // 改变颜色
-    [idStr addAttribute:NSForegroundColorAttributeName value:C989898 range:NSMakeRange(3,cell.idLabel.text.length-3)];
-    [idStr addAttribute:NSFontAttributeName value:
-     F10 range:NSMakeRange(3,cell.idLabel.text.length-3)];
+    ShareH5ReaderModel *model = self.dataArray[indexPath.section];
+    cell.model = model;
     
-    cell.idLabel.attributedText = idStr;
-    
-    NSMutableAttributedString *nickNameStr = [[NSMutableAttributedString alloc] initWithString:cell.nickNameLabel.text];
-    // 改变颜色
-    [nickNameStr addAttribute:NSForegroundColorAttributeName value:C989898 range:NSMakeRange(3,cell.nickNameLabel.text.length-3)];
-    [nickNameStr addAttribute:NSFontAttributeName value:
-     F10 range:NSMakeRange(3,cell.nickNameLabel.text.length-3)];
-    
-    cell.nickNameLabel.attributedText = nickNameStr;
-    
-    NSMutableAttributedString *readTimeStr = [[NSMutableAttributedString alloc] initWithString:cell.readTime.text];
-    // 改变颜色
-    [readTimeStr addAttribute:NSForegroundColorAttributeName value:C1E95F9 range:NSMakeRange(5,cell.readTime.text.length-5)];
-
-    
-    cell.readTime.attributedText = readTimeStr;
-
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     
@@ -115,7 +97,7 @@
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(98))];
     headerView.backgroundColor = WhiteColor;
     UIImageView *iconImageView = [[UIImageView alloc] init];
-    iconImageView.image = [UIImage imageNamed:@"图层7"];
+    iconImageView.image = [UIImage imageNamed:self.iconStr];
     [headerView addSubview:iconImageView];
     [iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(AD_HEIGHT(15));
@@ -154,12 +136,13 @@
 
 #pragma mark ---- 接口 ----
 - (void)loadShareH5ReaderRequest {
-    [[HPDConnect connect] PostNetRequestMethod:@"shareH5Reader/list" params:nil cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/shareH5Reader/list" params:@{@"tbShareH5Id":self.tbShareH5Id} cookie:nil result:^(bool success, id result) {
+        [self.myTableView.mj_header endRefreshing];
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
                     NSDictionary *array = result[@"data"][@"rows"];
-//                    self.dataArray = [NSMutableArray arrayWithArray:[ShareH5ListModel mj_objectArrayWithKeyValuesArray:array]];
+                    self.dataArray = [NSMutableArray arrayWithArray:[ShareH5ReaderModel mj_objectArrayWithKeyValuesArray:array]];
                     
                     [self.myTableView reloadData];
                 }

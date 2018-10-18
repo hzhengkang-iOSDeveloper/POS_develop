@@ -7,6 +7,7 @@
 //
 
 #import "MyBillTableViewCell.h"
+#import "BagLogListModel.h"
 
 @implementation MyBillTableViewCell
 
@@ -78,6 +79,16 @@
         make.top.equalTo(self.mas_bottom);
         make.size.sizeOffset(CGSizeMake(ScreenWidth - FITiPhone6(30), FITiPhone6(0.5)));
     }];
+}
+
+- (void)setModel:(BagLogListModel *)model {
+    if (model) {
+        _model = model;
+        self.contentLabel.text = @"提现";
+        self.timeLabel.text = [model.createtime substringToIndex:10];
+        self.amountLabel.text = @"+99";
+        self.totalAmountLabel.text = @"3000";
+    }
 }
 @end
 

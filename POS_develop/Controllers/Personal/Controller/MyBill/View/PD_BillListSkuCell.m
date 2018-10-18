@@ -7,6 +7,9 @@
 //
 
 #import "PD_BillListSkuCell.h"
+//#import "DetailDOModel.h"
+#import "BillListModel.h"
+
 @interface PD_BillListSkuCell ()
 //sku 图片
 @property (nonatomic, weak) UIImageView *skuImageView;
@@ -75,7 +78,7 @@
     
     //sku 价格
     UILabel *skuPriceLabel = [UILabel new];
-    skuPriceLabel.text = @"￥123";
+//    skuPriceLabel.text = @"￥123";
     skuPriceLabel.textColor = C000000;
     skuPriceLabel.font = F12;
     skuPriceLabel.textAlignment = NSTextAlignmentLeft;
@@ -89,7 +92,7 @@
     
     //sku 数量
     UILabel *skuCountLabel = [UILabel new];
-    skuCountLabel.text = @"x2";
+//    skuCountLabel.text = @"x2";
     skuCountLabel.textColor = C989898;
     skuCountLabel.font = F12;
     skuCountLabel.textAlignment = NSTextAlignmentRight;
@@ -112,4 +115,12 @@
     }];
 }
 
+- (void)setOrderModel:(DetailDOModel *)orderModel {
+    if (orderModel) {
+        _orderModel = orderModel;
+        self.skuPriceLabel.text = [NSString stringWithFormat:@"￥%@", orderModel.orderPrice];
+        self.skuCountLabel.text = [NSString stringWithFormat:@"x%@", orderModel.itemCount];
+        
+    }
+}
 @end

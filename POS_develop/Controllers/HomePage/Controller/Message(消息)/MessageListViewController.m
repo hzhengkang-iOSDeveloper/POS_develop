@@ -80,7 +80,7 @@
 
 #pragma mark ---- 接口 ----
 -(void)loadMessageListRequest {
-    [[HPDConnect connect] PostNetRequestMethod:@"message/list" params:nil cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/message/list" params:@{@"tbMsgCateId":self.tbMsgCateId} cookie:nil result:^(bool success, id result) {
         if (success) {
             NSArray *array = result[@"data"][@"rows"];
             if (array.count > 0) {

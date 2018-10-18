@@ -223,7 +223,7 @@
         HUD_TIP(@"请输入11位手机号");
         return;
     }
-    [[HPDConnect connect] PostNetRequestMethod:@"address/save" params:@{@"userid":@"1", @"defaultFlag":self.defaultAddressBtn.selected?@0:@1, @"receiverName":self.nameTF.text, @"receiverMp":self.telephoneTF.text, @"province" : province, @"city" : city, @"county": county, @"receiverAddr":self.detailAddress.text} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/address/save" params:@{@"userid":@"1", @"defaultFlag":self.defaultAddressBtn.selected?@0:@1, @"receiverName":self.nameTF.text, @"receiverMp":self.telephoneTF.text, @"province" : province, @"city" : city, @"county": county, @"receiverAddr":self.detailAddress.text} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"msg"] isEqualToString:@"success"]) {
                 HUD_TIP(@"保存成功");

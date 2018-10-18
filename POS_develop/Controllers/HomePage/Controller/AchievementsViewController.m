@@ -24,6 +24,13 @@
 @property (nonatomic, strong) NSArray *explainTopArr;
 @property (nonatomic, strong) NSArray *titleBottomArr;
 @property (nonatomic, strong) NSArray *imageBottomArr;
+
+@property (nonatomic, copy) NSString *top1Str;
+@property (nonatomic, copy) NSString *top2Str;
+@property (nonatomic, copy) NSString *top3Str;
+@property (nonatomic, copy) NSString *top4Str;
+@property (nonatomic, copy) NSString *top5Str;
+@property (nonatomic, copy) NSString *top6Str;
 @end
 
 @implementation AchievementsViewController
@@ -33,7 +40,7 @@
     [self initUI];
     [self createCollectionView];
     _titleTopArr = @[@"日交易量", @"日分润", @"激活数量", @"激活奖励", @"商品数量", @"其他奖励"];
-    _explainTopArr = @[@"200.00", @"200.00", @"200.00", @"200.00", @"200.00", @"200.00"];
+//    _explainTopArr = @[@"200.00", @"200.00", @"200.00", @"200.00", @"200.00", @"200.00"];
     _titleBottomArr = @[@"交易查询", @"统计分析", @"分润查询", @"激活返现查询", @"终端绑定", @"终端查询", @"终端管理", @"代理商管理"];
     _imageBottomArr = @[@"交易查询", @"统计分析", @"分润查询", @"激活", @"终端绑定", @"图层17", @"终端管理", @"代理商管理"];
 
@@ -176,5 +183,95 @@
 
 
 #pragma mark ---- 接口 ----
-
+- (void)loadStatAchievementListRequestWithStartType:(NSString *)stateType {
+    NSDate *date = [NSDate date];//当前时间
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"userid":@"1", @"startTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"endTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"dateType":@"0", @"statType":@"0"} cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSArray class]]) {
+                NSArray *array = result[@"data"];
+                self.top1Str = [[array firstObject] objectForKey:@"value"];
+                [self.myTopCollection reloadData];
+            }
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"userid":@"1", @"startTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"endTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"dateType":@"0", @"statType":@"1"} cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSArray class]]) {
+                NSArray *array = result[@"data"];
+                self.top2Str = [[array firstObject] objectForKey:@"value"];
+                [self.myTopCollection reloadData];
+            }
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"userid":@"1", @"startTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"endTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"dateType":@"0", @"statType":@"2"} cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSArray class]]) {
+                NSArray *array = result[@"data"];
+                self.top3Str = [[array firstObject] objectForKey:@"value"];
+                [self.myTopCollection reloadData];
+            }
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"userid":@"1", @"startTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"endTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"dateType":@"0", @"statType":@"3"} cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSArray class]]) {
+                NSArray *array = result[@"data"];
+                self.top4Str = [[array firstObject] objectForKey:@"value"];
+                [self.myTopCollection reloadData];
+            }
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"userid":@"1", @"startTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"endTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"dateType":@"0", @"statType":@"4"} cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSArray class]]) {
+                NSArray *array = result[@"data"];
+                self.top5Str = [[array firstObject] objectForKey:@"value"];
+                [self.myTopCollection reloadData];
+            }
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"userid":@"1", @"startTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"endTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"dateType":@"0", @"statType":@"5"} cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSArray class]]) {
+                NSArray *array = result[@"data"];
+                self.top6Str = [[array firstObject] objectForKey:@"value"];
+                [self.myTopCollection reloadData];
+            }
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+    
+}
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

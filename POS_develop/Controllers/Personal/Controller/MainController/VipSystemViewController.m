@@ -10,7 +10,11 @@
 #import "UILabel+Style.h"
 
 @interface VipSystemViewController ()
-
+@property (nonatomic, strong) UILabel *vipGradeL;
+@property (nonatomic, strong) UILabel *powerContentL;
+@property (nonatomic, strong) UILabel *receivePosTextL;
+@property (nonatomic, strong) UILabel *highLevelL;
+@property (nonatomic, strong) UILabel *highLevelPhoneL;
 @end
 
 @implementation VipSystemViewController
@@ -20,6 +24,9 @@
     self.navigationItemTitle = @"会员中心";
     self.view.backgroundColor = WhiteColor;
     [self initUI];
+    [self loadAgentListRequest];
+    [self loadAgentListAncesRequest];
+    [self loadVipDescAncesRequest];
 }
 
 - (void)initUI {
@@ -51,7 +58,8 @@
         make.height.mas_equalTo(FITiPhone6(12));
     }];
     UILabel *vipGradeL = [[UILabel alloc] init];
-    vipGradeL.text = @"VIP6";
+    self.vipGradeL = vipGradeL;
+//    vipGradeL.text = @"VIP6";
     vipGradeL.textColor = C000000;
     vipGradeL.font = FB18;
     [topView addSubview:vipGradeL];
@@ -71,9 +79,10 @@
         make.size.mas_offset(CGSizeMake(FITiPhone6(80), FITiPhone6(13)));
     }];
     UILabel *powerContentL = [[UILabel alloc] init];
+    self.powerContentL = powerContentL;
     powerContentL.font = F12;
     powerContentL.numberOfLines = 0;
-    powerContentL.text = @"忙我IEhi教案设计的就爱就开始打进口红酒案件被大家把几点回家噶不敢速度噶US高度牙膏已收到各环节氨甲环酸嘎哈就是地沟油盎司的后果暗红色的：爱仕达多阿道夫俺的沙发大大声道俺的沙发俺的沙发奥瑞特让他富饶的啊设计的就爱就开始打进口红酒案件被大家把几点回家噶不敢速度噶US高度牙膏已收到各环节氨甲环酸嘎哈就是地沟油盎司的后果暗红色的：爱仕达多阿设计的就爱就开始打进口红酒案件被大家把几点回家噶不敢速度噶US高度牙膏已收到各环节氨甲环酸嘎哈就是地沟油盎司的后果暗红色的：爱仕达多阿吃";
+//    powerContentL.text = @"忙我IEhi教案设计的就爱就开始打进口红酒案件被大家把几点回家噶不敢速度噶US高度牙膏已收到各环节氨甲环酸嘎哈就是地沟油盎司的后果暗红色的：爱仕达多阿道夫俺的沙发大大声道俺的沙发俺的沙发奥瑞特让他富饶的啊设计的就爱就开始打进口红酒案件被大家把几点回家噶不敢速度噶US高度牙膏已收到各环节氨甲环酸嘎哈就是地沟油盎司的后果暗红色的：爱仕达多阿设计的就爱就开始打进口红酒案件被大家把几点回家噶不敢速度噶US高度牙膏已收到各环节氨甲环酸嘎哈就是地沟油盎司的后果暗红色的：爱仕达多阿吃";
     powerContentL.textColor = C000000;
     [powerContentL changeLabelHeightWithWidth:(ScreenWidth-FITiPhone6(30))];//加上这句
     [UILabel heightWithText:powerContentL.text fontSize:FITiPhone6(13) labelWidth:ScreenWidth - FITiPhone6(30)];
@@ -107,8 +116,9 @@
         make.height.mas_equalTo(FITiPhone6(13));
     }];
     UILabel *receivePosTextL = [[UILabel alloc] init];
+    self.receivePosTextL = receivePosTextL;
     receivePosTextL.numberOfLines = 0;
-    receivePosTextL.text = @"已领3台，还可以领取2台";
+//    receivePosTextL.text = @"已领3台，还可以领取2台";
     receivePosTextL.textColor = C989898;
     receivePosTextL.font = F13;
     receivePosTextL.adjustsFontSizeToFitWidth = YES;
@@ -120,7 +130,8 @@
     }];
     
     UILabel *highLevelL = [[UILabel alloc] init];
-    highLevelL.text = @"我的上级：纪总";
+    self.highLevelL = highLevelL;
+//    highLevelL.text = @"我的上级：纪总";
     highLevelL.textColor = C000000;
     highLevelL.font = F13;
     highLevelL.adjustsFontSizeToFitWidth = YES;
@@ -131,7 +142,8 @@
         make.height.mas_equalTo(FITiPhone6(13));
     }];
     UILabel *highLevelPhoneL = [[UILabel alloc] init];
-    highLevelPhoneL.text = @"上级电话：13020320302";
+    self.highLevelPhoneL = highLevelPhoneL;
+//    highLevelPhoneL.text = @"上级电话：13020320302";
     highLevelPhoneL.textColor = C000000;
     highLevelPhoneL.font = F13;
     highLevelPhoneL.adjustsFontSizeToFitWidth = YES;
@@ -157,4 +169,80 @@
     
 }
 
+#pragma mark -------------------------------- 接口 ------------------------------------
+- (void)loadAgentListRequest {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agent/list" params:@{@"userid":@"1"} cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSArray *array = result[@"data"][@"rows"];
+                    self.vipGradeL.text = [NSString stringWithFormat:@"VIP%@",[[array firstObject] valueForKey:@"sbLevel"]];
+                    self.receivePosTextL.text = [NSString stringWithFormat:@"已领%@台，还可以领取%@台",[[array firstObject] valueForKey:@"drawCount"] , [[array firstObject] valueForKey:@"totalCount"]];
+                    
+                }
+            }
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
+
+- (void)loadAgentListAncesRequest {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agent/listAnces" params:@{@"userid":@"1"} cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSArray *array = result[@"data"][@"rows"];
+                    self.highLevelL.text = [NSString stringWithFormat:@"我的上级：%@",[[array firstObject] valueForKey:@"ancesName"]];
+                    self.highLevelPhoneL.text = [NSString stringWithFormat:@"上级电话：%@",[[array firstObject] valueForKey:@"ancesName"]];
+                    
+                }
+            }
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
+
+
+- (void)loadVipDescAncesRequest {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agent/vipDesc" params:@{@"userid":@"1"} cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSArray *array = result[@"data"][@"rows"];
+                    self.powerContentL.text = [NSString stringWithFormat:@"我的上级：%@",[[array firstObject] valueForKey:@"des"]];
+                    
+                }
+            }
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

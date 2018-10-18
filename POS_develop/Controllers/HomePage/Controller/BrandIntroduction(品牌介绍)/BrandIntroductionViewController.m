@@ -75,7 +75,7 @@
 
 #pragma mark ---- 接口 ----
 - (void)loadPosBrandListRequest {
-    [[HPDConnect connect] PostNetRequestMethod:@"posBrand/list" params:nil cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/posBrand/list" params:nil cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {

@@ -11,16 +11,22 @@
 #import "PD_BillListSkuCell.h"
 #import "PD_BillSkuHeaderView.h"
 #import "PD_BillSkuFooterView.h"
+#import "BillListModel.h"
+
 @interface PD_BillListRootViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, weak) UITableView *orderTableView;
+@property (nonatomic, strong) NSMutableArray *orderArray;
+@property (nonatomic, strong) NSMutableArray *orderGoodArray;
 @end
 
 @implementation PD_BillListRootViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.orderArray = [NSMutableArray array];
+    self.orderGoodArray = [NSMutableArray array];
     [self creatTableView];
+    [self loadOrderListRequest];
 }
 
 #pragma mark ---- Table ----
@@ -33,37 +39,13 @@
     self.orderTableView = orderTableView;
     orderTableView.separatorStyle = NO;
     
-    //    MJWeakSelf;
+    MJWeakSelf;
     orderTableView.mj_header = [SLRefreshHeader headerWithRefreshingBlock:^{
-        //        weakSelf.orderArr = nil;
-        //        weakSelf.orderArr = [NSMutableArray array];
-        //        weakSelf.orderModelArr = nil;
-        //        weakSelf.orderModelArr = [NSMutableArray array];
-        //        weakSelf.loadDataIndex = 1;
-        //
-        //        [weakSelf loadDataWithStatus:self.status];
+        [weakSelf loadOrderListRequest];
     }];
     
     orderTableView.mj_footer = [SLRefreshFooter footerWithRefreshingBlock:^{
-        //        weakSelf.loadDataIndex += 1;
-        //
-        //        if (weakSelf.count%10 >0) {
-        //            if (weakSelf.loadDataIndex <= weakSelf.count/10 + 1) {
-        //
-        //                [weakSelf loadDataWithStatus:weakSelf.status];
-        //            }else{
-        //
-        //                [orderTableView.mj_footer endRefreshingWithNoMoreData];
-        //            }
-        //        }else{
-        //
-        //            if (weakSelf.loadDataIndex <= weakSelf.count/10) {
-        //
-        //                [weakSelf loadDataWithStatus:weakSelf.status];
-        //            }else{
-        //                [orderTableView.mj_footer endRefreshingWithNoMoreData];
-        //            }
-        //        }
+      
     }];
     [_orderTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.bottom.offset(0);
@@ -72,16 +54,22 @@
 }
 #pragma mark -- tableView代理数据源方法
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 5;
+    return self.orderArray.count;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     //    SLLog(@"%lu",(unsigned long)[[self.orderModelArr[section] items] count]);
-    return 2;
+    BillListModel *model = self.orderArray[section];
+    return model.detailDOList.count;
     //    return 0;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     PD_BillListSkuCell *cell = [PD_BillListSkuCell cellWithTableView:tableView];
+//    BillListModel *model = self.orderArray[indexPath.section];
+//    cell.orderModel = model;
+    BillListModel *model = self.orderArray[indexPath.section];
+    DetailDOModel *detailModel = model.detailDOList[indexPath.row];
+    cell.orderModel = detailModel;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     
@@ -101,6 +89,8 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
     PD_BillSkuHeaderView *headerView = [[PD_BillSkuHeaderView alloc] init];
+    BillListModel *model = self.orderArray[section];
+    headerView.model = model;
     return headerView;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -116,4 +106,57 @@
     
     return footerView;
 }
+
+
+#pragma mark ------------------------------------ 接口 ------------------------------------
+- (void)loadOrderListRequest {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/order/list" params:@{@"orderStatus":@"10"} cookie:nil result:^(bool success, id result) {
+        [self.orderTableView.mj_header endRefreshing];
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSArray *array = result[@"data"][@"rows"];
+                    self.orderArray = [NSMutableArray arrayWithArray:[BillListModel mj_objectArrayWithKeyValuesArray:array]];
+                    
+                    [self.orderTableView reloadData];
+                }
+                
+            }
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class DetailDOModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PD_BillListSkuCell : UITableViewCell
+
+@property (nonatomic, strong) DetailDOModel *orderModel;
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 @end
 

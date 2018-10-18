@@ -13,4 +13,7 @@
 @property (nonatomic, copy) void (^withdrawBlock)(void);
 @property (nonatomic, strong) UILabel *balanceL;
 @property (nonatomic, strong) UILabel *yesterdayEarningsMoney;
+
+@property (nonatomic, strong) UILabel *userNameLabel;
+@property (nonatomic, strong) UILabel *invitedCodeLabel;
 @end

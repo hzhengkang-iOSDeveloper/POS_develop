@@ -121,7 +121,7 @@
 
 #pragma mark ---- 接口 ----
 - (void)loadShareQrcoeListRequest {
-    [[HPDConnect connect] PostNetRequestMethod:@"shareQrcoe/list" params:nil cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/shareQrcoe/list" params:nil cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {

@@ -22,7 +22,7 @@
 #define  kFormalURL      @"https://api.hepancaifu.com/"
 
 //测试环境
-#define  newLocalHost    @"http://106.14.7.85:8000/api/trans/"
+#define  newLocalHost    @"http://106.14.7.85:8000/"
 
 #define  BaseHeaderURL   newLocalHost
 
@@ -449,8 +449,8 @@
 
 - (NSDictionary *)getRequestDic:(NSDictionary *)params {
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:params];
-    [dict setObject:@"13666666666" forKey:@"authCode"];
-    [dict setObject:@"123" forKey:@"authUserId"];
+    [dict setObject:@"1" forKey:@"authCode"];
+    [dict setObject:@"1" forKey:@"authUserId"];
     return dict;
 }
 

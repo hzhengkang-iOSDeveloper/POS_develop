@@ -1,14 +1,14 @@
 //
-//  ShareH5ListModel.m
+//  MessageCategoryListModel.m
 //  POS_develop
 //
-//  Created by sunyn on 2018/10/17.
+//  Created by syn on 2018/10/18.
 //  Copyright © 2018年 sunyn. All rights reserved.
 //
 
-#import "ShareH5ListModel.h"
+#import "MessageCategoryListModel.h"
 
-@implementation ShareH5ListModel
+@implementation MessageCategoryListModel
 + (NSDictionary *)replacedKeyFromPropertyName
 {
     

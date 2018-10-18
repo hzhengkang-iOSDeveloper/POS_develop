@@ -168,7 +168,7 @@
 
 #pragma mark ---- 接口 ----
 - (void)loadIndexBannerListRequest {
-    [[HPDConnect connect] PostNetRequestMethod:@"shareBanner/list" params:nil cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/shareBanner/list" params:nil cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {

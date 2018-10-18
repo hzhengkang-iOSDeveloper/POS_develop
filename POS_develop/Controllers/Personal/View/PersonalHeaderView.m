@@ -47,6 +47,18 @@
         make.centerY.equalTo(iconImageV.mas_centerY);
         make.size.mas_offset(CGSizeMake(FITiPhone6(100), FITiPhone6(13)));
     }];
+    userName.hidden = YES;
+    self.userNameLabel = [UILabel getLabelWithFont:F13 textColor:WhiteColor superView:bgImageV masonrySet:^(UILabel *view, MASConstraintMaker *make) {
+        make.left.equalTo(iconImageV.mas_right).offset(FITiPhone6(12));
+        make.top.equalTo(bgImageV).offset(FITiPhone6(45) + STATUSBAR_H);
+    }];
+    self.userNameLabel.hidden = YES;
+    self.invitedCodeLabel = [UILabel getLabelWithFont:F10 textColor:WhiteColor superView:bgImageV masonrySet:^(UILabel *view, MASConstraintMaker *make) {
+        make.left.equalTo(iconImageV.mas_right).offset(FITiPhone6(12));
+        make.top.equalTo(self.userNameLabel.mas_bottom).offset(FITiPhone6(5));
+    }];
+    self.invitedCodeLabel.hidden = YES;
+    
     UIImageView *messageV = [[UIImageView alloc] init];
     messageV.image = [UIImage imageNamed:@"消息"];
     [bgImageV addSubview:messageV];

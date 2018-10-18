@@ -145,7 +145,7 @@
 
 #pragma mark ---- 接口 ----
 - (void)loadBagWithdrawListRequest {
-//    [[HPDConnect connect] PostNetRequestMethod:@"bagWithdraw/list" params:@{@"userid":@"1", @"defaultFlag":sender.selected?@0:@1, @"id":ID} cookie:nil result:^(bool success, id result) {
+//    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/bagWithdraw/list" params:@{@"userid":@"1", @"defaultFlag":sender.selected?@0:@1, @"id":ID} cookie:nil result:^(bool success, id result) {
 //        [self.myAddressTableView reloadData];
 //        NSLog(@"result ------- %@", result);
 //    }];

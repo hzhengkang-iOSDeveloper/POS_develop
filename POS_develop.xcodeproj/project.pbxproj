@@ -14,6 +14,10 @@
 		253647D7214E053C0094576C /* UpdatePhoneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 253647D6214E053C0094576C /* UpdatePhoneTableViewCell.m */; };
 		253647DA214E05BC0094576C /* SettingNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 253647D9214E05BC0094576C /* SettingNameViewController.m */; };
 		253647E0214E11C60094576C /* WithdrawCashTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 253647DF214E11C60094576C /* WithdrawCashTableViewCell.m */; };
+		2546B203217849CF001CFE0D /* ShareH5ReaderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2546B202217849CF001CFE0D /* ShareH5ReaderModel.m */; };
+		2546B20721787A8E001CFE0D /* BillListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2546B20621787A8E001CFE0D /* BillListModel.m */; };
+		2546B20A2178A2C5001CFE0D /* BagLogListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2546B2092178A2C5001CFE0D /* BagLogListModel.m */; };
+		2546B20D2178A62A001CFE0D /* MessageCategoryListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2546B20C2178A62A001CFE0D /* MessageCategoryListModel.m */; };
 		2546E2D1214D2F250066DBFB /* SettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2546E2D0214D2F250066DBFB /* SettingTableViewCell.m */; };
 		2546E2D4214D47570066DBFB /* UpdatePasswordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2546E2D3214D47570066DBFB /* UpdatePasswordTableViewCell.m */; };
 		2546E2D7214D4D0F0066DBFB /* UpdatePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2546E2D6214D4D0F0066DBFB /* UpdatePasswordViewController.m */; };
@@ -307,6 +311,14 @@
 		253647D9214E05BC0094576C /* SettingNameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingNameViewController.m; sourceTree = "<group>"; };
 		253647DE214E11C60094576C /* WithdrawCashTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WithdrawCashTableViewCell.h; sourceTree = "<group>"; };
 		253647DF214E11C60094576C /* WithdrawCashTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WithdrawCashTableViewCell.m; sourceTree = "<group>"; };
+		2546B201217849CF001CFE0D /* ShareH5ReaderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareH5ReaderModel.h; sourceTree = "<group>"; };
+		2546B202217849CF001CFE0D /* ShareH5ReaderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareH5ReaderModel.m; sourceTree = "<group>"; };
+		2546B20521787A8E001CFE0D /* BillListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BillListModel.h; sourceTree = "<group>"; };
+		2546B20621787A8E001CFE0D /* BillListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BillListModel.m; sourceTree = "<group>"; };
+		2546B2082178A2C5001CFE0D /* BagLogListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BagLogListModel.h; sourceTree = "<group>"; };
+		2546B2092178A2C5001CFE0D /* BagLogListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BagLogListModel.m; sourceTree = "<group>"; };
+		2546B20B2178A62A001CFE0D /* MessageCategoryListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageCategoryListModel.h; sourceTree = "<group>"; };
+		2546B20C2178A62A001CFE0D /* MessageCategoryListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageCategoryListModel.m; sourceTree = "<group>"; };
 		2546E2CF214D2F250066DBFB /* SettingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingTableViewCell.h; sourceTree = "<group>"; };
 		2546E2D0214D2F250066DBFB /* SettingTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewCell.m; sourceTree = "<group>"; };
 		2546E2D2214D47570066DBFB /* UpdatePasswordTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdatePasswordTableViewCell.h; sourceTree = "<group>"; };
@@ -862,6 +874,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2546B20421787A7E001CFE0D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2546B20521787A8E001CFE0D /* BillListModel.h */,
+				2546B20621787A8E001CFE0D /* BillListModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		4F67476230474D132B2BE4A8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1361,6 +1382,8 @@
 			children = (
 				50EEB20A217331B200B41353 /* MyAddressViewModel.h */,
 				50EEB20B217331B200B41353 /* MyAddressViewModel.m */,
+				2546B2082178A2C5001CFE0D /* BagLogListModel.h */,
+				2546B2092178A2C5001CFE0D /* BagLogListModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1725,6 +1748,8 @@
 			children = (
 				788683ED2174AB6D00804F85 /* MessageListModel.h */,
 				788683EE2174AB6D00804F85 /* MessageListModel.m */,
+				2546B20B2178A62A001CFE0D /* MessageCategoryListModel.h */,
+				2546B20C2178A62A001CFE0D /* MessageCategoryListModel.m */,
 			);
 			path = "MessageModel(消息)";
 			sourceTree = "<group>";
@@ -2226,6 +2251,8 @@
 			children = (
 				789F27652176DD5500979C1A /* ShareH5ListModel.h */,
 				789F27662176DD5500979C1A /* ShareH5ListModel.m */,
+				2546B201217849CF001CFE0D /* ShareH5ReaderModel.h */,
+				2546B202217849CF001CFE0D /* ShareH5ReaderModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2289,6 +2316,7 @@
 		DA8D1770214E8C84006574E4 /* MyBill */ = {
 			isa = PBXGroup;
 			children = (
+				2546B20421787A7E001CFE0D /* Model */,
 				DA8D1771214E8CBC006574E4 /* PD_BillListViewController.h */,
 				DA8D1772214E8CBC006574E4 /* PD_BillListViewController.m */,
 				506EDEF8215B3561000CCF50 /* PD_BillListRootViewController.h */,
@@ -2510,6 +2538,7 @@
 				7888F2DE2147C31600AAC8B0 /* WebViewAction.m in Sources */,
 				5089376621561DB8007C6239 /* HomeTableViewCell.m in Sources */,
 				7888F3C32147C33900AAC8B0 /* SY_ImageAndLabelAndLaeblBtn.m in Sources */,
+				2546B20D2178A62A001CFE0D /* MessageCategoryListModel.m in Sources */,
 				50A89B06216B653200E68BEB /* XAbscissaView.m in Sources */,
 				50E0C9A8216F1FFF0079ABF2 /* POS_ShopDetailInfoView.m in Sources */,
 				50E0C9AB216F55870079ABF2 /* POS_ShopRecommendCell.m in Sources */,
@@ -2545,6 +2574,7 @@
 				50A89B0C216B653200E68BEB /* XBarContainerView.m in Sources */,
 				50A89B03216B653200E68BEB /* XAreaLineContainerView.m in Sources */,
 				7888F2F32147C32600AAC8B0 /* HPDStatusCode.m in Sources */,
+				2546B203217849CF001CFE0D /* ShareH5ReaderModel.m in Sources */,
 				7888F35A2147C32C00AAC8B0 /* UIViewController+ZZNavigationItem.m in Sources */,
 				7888F36B2147C32C00AAC8B0 /* SGGridMenu.m in Sources */,
 				7888F3B92147C33900AAC8B0 /* verifyTool.m in Sources */,
@@ -2574,6 +2604,7 @@
 				7888F2F42147C32600AAC8B0 /* LoginManager.m in Sources */,
 				7813B7FB216DED3B0086CE68 /* QRGenerailzeViewController.m in Sources */,
 				502AF8102163880000260979 /* TerminalAdminTableViewCell.m in Sources */,
+				2546B20721787A8E001CFE0D /* BillListModel.m in Sources */,
 				7888F3B52147C33900AAC8B0 /* UITableView+BackgroundImageView.m in Sources */,
 				78D1F0B9216B321500A98425 /* DelegateManagerMainView.m in Sources */,
 				2546E2D1214D2F250066DBFB /* SettingTableViewCell.m in Sources */,
@@ -2614,6 +2645,7 @@
 				50EEB20F21737E6F00B41353 /* MyAddressEditViewController.m in Sources */,
 				505B6F82216D99FC000D49B2 /* MessageListTableViewCell.m in Sources */,
 				7888F3662147C32C00AAC8B0 /* RSA+AES+GZIP.m in Sources */,
+				2546B20A2178A2C5001CFE0D /* BagLogListModel.m in Sources */,
 				78765A92214A89D600261ED3 /* FastLoginViewController.m in Sources */,
 				7888F3652147C32C00AAC8B0 /* NSData+AES.m in Sources */,
 				50A89AFE216B653200E68BEB /* XAuxiliaryCalculationHelper.m in Sources */,

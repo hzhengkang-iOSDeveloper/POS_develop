@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class MessageCategoryListModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MessageNoticeTableViewCell : UITableViewCell
@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *contentLabel;
 @property (nonatomic, strong) UILabel *timeLabel;
-
+@property (nonatomic, strong) MessageCategoryListModel *model;
 
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 @end

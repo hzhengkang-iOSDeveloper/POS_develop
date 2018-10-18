@@ -7,6 +7,7 @@
 //
 
 #import "MessageNoticeTableViewCell.h"
+#import "MessageCategoryListModel.h"
 
 @implementation MessageNoticeTableViewCell
 
@@ -60,4 +61,30 @@
     }];
     
 }
+
+- (void)setModel:(MessageCategoryListModel *)model {
+    if (model) {
+        _model = model;
+        self.titleLabel.text = model.ctgName;
+        self.contentLabel.text = model.ctgDesc;
+        self.timeLabel.text = [model.createtime substringToIndex:10];
+    }
+}
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

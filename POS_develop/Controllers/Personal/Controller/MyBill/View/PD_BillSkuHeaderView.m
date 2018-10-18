@@ -7,6 +7,8 @@
 //
 
 #import "PD_BillSkuHeaderView.h"
+#import "BillListModel.h"
+
 @interface PD_BillSkuHeaderView ()
 //状态view
 @property (nonatomic, weak) UIView *billStatusView;
@@ -46,7 +48,7 @@
     
     //日期
     UILabel *dateLabel = [UILabel new];
-    dateLabel.text = @"2017.08.21";
+//    dateLabel.text = @"2017.08.21";
     dateLabel.textColor = C000000;
     dateLabel.font = F13;
     dateLabel.textAlignment = NSTextAlignmentLeft;
@@ -60,7 +62,7 @@
     
     //订单状态
     UILabel *billStatusLabel = [UILabel new];
-    billStatusLabel.text = @"待发货";
+//    billStatusLabel.text = @"待发货";
     billStatusLabel.textColor = C000000;
     billStatusLabel.font = F13;
     billStatusLabel.textAlignment = NSTextAlignmentRight;
@@ -81,5 +83,21 @@
         make.height.mas_equalTo(1);
         make.bottom.offset(0);
     }];
+}
+- (void)setModel:(BillListModel *)model {
+    if (model) {
+        _model = model;
+        self.dateLabel.text = [model.createtime substringToIndex:10];
+        if ([model.orderStatus isEqualToString:@"10"]) {
+            self.billStatusLabel.text = @"待付款";
+        }else if ([model.orderStatus isEqualToString:@"20"]) {
+            self.billStatusLabel.text = @"待发货";
+        }else if ([model.orderStatus isEqualToString:@"30"]) {
+            self.billStatusLabel.text = @"待确认";
+        }else {
+            self.billStatusLabel.text = @"已完成";
+        }
+        
+    }
 }
 @end

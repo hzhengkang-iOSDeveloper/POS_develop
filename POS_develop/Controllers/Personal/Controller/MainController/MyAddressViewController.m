@@ -140,7 +140,7 @@
 
 #pragma mark ---- 接口 ----
 - (void)loadAddressRequest {
-    [[HPDConnect connect] PostNetRequestMethod:@"address/list" params:@{@"userid":@"1"} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/address/list" params:@{@"userid":@"1"} cookie:nil result:^(bool success, id result) {
         [self.myAddressTableView.mj_header endRefreshing];
         NSArray *array = result[@"data"][@"rows"];
         if (self.dataArray) {
@@ -153,7 +153,7 @@
     }];
 }
 - (void)loadUpdateAddressRequest:(UIButton *)sender WithID:(NSString *)ID {
-    [[HPDConnect connect] PostNetRequestMethod:@"address/update" params:@{@"userid":@"1", @"defaultFlag":sender.selected?@0:@1, @"id":ID} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/address/update" params:@{@"userid":@"1", @"defaultFlag":sender.selected?@0:@1, @"id":ID} cookie:nil result:^(bool success, id result) {
         [self.myAddressTableView reloadData];
         NSLog(@"result ------- %@", result);
     }];
@@ -163,7 +163,7 @@
     
     UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"确认删除此地址么" message:@"" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *comfir = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [[HPDConnect connect] PostNetRequestMethod:@"address/remove" params:@{@"id":ID} cookie:nil result:^(bool success, id result) {
+        [[HPDConnect connect] PostNetRequestMethod:@"api/trans/address/remove" params:@{@"id":ID} cookie:nil result:^(bool success, id result) {
             if (success) {
                 if ([result[@"msg"] isEqualToString:@"success"]) {
                     HUD_TIP(@"删除成功");
