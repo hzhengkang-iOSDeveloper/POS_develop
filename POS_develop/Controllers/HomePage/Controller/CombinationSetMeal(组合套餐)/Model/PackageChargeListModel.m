@@ -1,14 +1,15 @@
 //
-//  BillListModel.m
+//  PackageChargeListModel.m
 //  POS_develop
 //
-//  Created by syn on 2018/10/18.
+//  Created by syn on 2018/10/19.
 //  Copyright © 2018年 sunyn. All rights reserved.
 //
 
-#import "BillListModel.h"
+#import "PackageChargeListModel.h"
 
-@implementation BillListModel
+@implementation PackageChargeListModel
+
 + (NSDictionary *)replacedKeyFromPropertyName
 {
     
@@ -18,19 +19,17 @@
 +(NSDictionary *)mj_objectClassInArray
 {
     return @{
-             @"detailDOList" : @"DetailDOModel"
+             @"packageChargeItemDOList" : @"packageChargeItemDOListModel"
              };
 }
 
 @end
 
-@implementation DetailDOModel
+@implementation packageChargeItemDOListModel
 + (NSDictionary *)replacedKeyFromPropertyName
 {
     
     return @{@"ID" : @"id"};
     
 }
-
 @end
-

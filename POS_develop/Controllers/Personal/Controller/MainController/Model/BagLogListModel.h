@@ -13,7 +13,10 @@
 @property (nonatomic, copy) NSString *userid; //是否是默认地址，0:是，1:否
 @property (nonatomic, copy) NSString *balanceAmount;
 @property (nonatomic, copy) NSString *balanceType;
+@property (nonatomic, copy) NSString *balanceTypeZh;
 @property (nonatomic, copy) NSString *balanceStatus;
+@property (nonatomic, copy) NSString *balanceStatusZh;
+@property (nonatomic, copy) NSString *currentAmount;
 @property (nonatomic, copy) NSString *createtime;
 @property (nonatomic, copy) NSString *createusername;
 @property (nonatomic, copy) NSString *updateuserno;

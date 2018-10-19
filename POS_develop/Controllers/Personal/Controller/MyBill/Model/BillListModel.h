@@ -41,5 +41,8 @@
 @property (nonatomic , copy) NSString              * updateuserno;
 @property (nonatomic , copy) NSString              * updatetime;
 @property (nonatomic , copy) NSString              * deleteflag;
+@property (nonatomic, copy) NSString               *itemPic;
+@property (nonatomic , copy) NSString              * itemName;
+@property (nonatomic, copy) NSString               *itemObj;
 
 @end

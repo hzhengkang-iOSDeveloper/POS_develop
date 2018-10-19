@@ -41,6 +41,17 @@
         make.top.equalTo(self).offset(FITiPhone6(18));
         make.height.mas_equalTo(FITiPhone6(14));
     }];
+    self.contentStatusLabel = [[UILabel alloc] init];
+    self.contentStatusLabel.hidden = YES;
+//    self.contentStatusLabel.textColor = C1E95F9;
+    self.contentStatusLabel.font = F13;
+    self.contentStatusLabel.adjustsFontSizeToFitWidth = YES;
+    [self addSubview:self.contentStatusLabel];
+    [self.contentStatusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentLabel.mas_right).offset(FITiPhone6(5));
+        make.top.equalTo(self).offset(FITiPhone6(18));
+        make.height.mas_equalTo(FITiPhone6(14));
+    }];
     self.timeLabel = [[UILabel alloc] init];
     self.timeLabel.textColor = C989898;
     self.timeLabel.font = F10;
@@ -84,10 +95,28 @@
 - (void)setModel:(BagLogListModel *)model {
     if (model) {
         _model = model;
-        self.contentLabel.text = @"提现";
+        self.contentLabel.text = model.balanceTypeZh;
         self.timeLabel.text = [model.createtime substringToIndex:10];
-        self.amountLabel.text = @"+99";
-        self.totalAmountLabel.text = @"3000";
+        if ([model.balanceAmount integerValue] > 0) {
+            self.amountLabel.text = [NSString stringWithFormat:@"+%@", model.balanceAmount];
+        }else {
+            self.amountLabel.text = model.balanceAmount;
+        }
+        self.totalAmountLabel.text = model.currentAmount;
+        if (![model.balanceStatusZh isEqualToString:@""] || model.balanceStatusZh != nil) {
+            self.contentStatusLabel.hidden = NO;
+            self.contentStatusLabel.text = model.balanceStatusZh;
+        }else {
+            self.contentStatusLabel.hidden = YES;
+        }
+        
+        if ([model.balanceStatus isEqualToString:@"30"]) {
+            self.contentStatusLabel.textColor = C1E95F9;
+        }else if ([model.balanceStatus isEqualToString:@"20"]) {
+            self.contentStatusLabel.textColor = RGB(245, 37, 66);
+        }else {
+            self.contentStatusLabel.textColor = RGB(22, 161, 191);
+        }
     }
 }
 @end

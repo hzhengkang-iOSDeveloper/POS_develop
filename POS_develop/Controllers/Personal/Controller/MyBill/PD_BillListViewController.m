@@ -57,6 +57,32 @@
 
 - (__kindof UIViewController *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index {
     PD_BillListRootViewController* controller = [[PD_BillListRootViewController alloc]init];
+    switch (index) {
+        case 0:{
+            controller.index = @"";
+        }
+            break;
+        case 1:{
+            controller.index = @"10";
+        }
+            break;
+        case 2:{
+            controller.index = @"20";
+        }
+            break;
+        case 3:{
+            controller.index = @"30";
+        }
+            break;
+            
+        case 4:{
+            controller.index = @"40";
+        }
+            break;
+            
+        default:
+            break;
+    }
 
     return controller;
 }

@@ -9,8 +9,11 @@
 #import "CombinationSetMealViewController.h"
 #import "SetMealOrderCell.h"
 #import "CombinationSetMealDetailViewController.h"//套餐详情
+#import "PackageChargeListModel.h"
+
 @interface CombinationSetMealViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, weak) UITableView *myTable;
+@property (nonatomic, strong) NSMutableArray *dataArray;
 
 @end
 
@@ -20,8 +23,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self confir];
+    self.dataArray = [NSMutableArray array];
     [self creatTableView];
-    
+    [self loadPackageChargeListRequest];
 }
 
 - (void)confir
@@ -39,38 +43,13 @@
     self.myTable = myTable;
     myTable.separatorStyle = NO;
     
-//    MJWeakSelf;
+    MJWeakSelf;
     myTable.mj_header = [SLRefreshHeader headerWithRefreshingBlock:^{
-        //        weakSelf.orderArr = nil;
-        //        weakSelf.orderArr = [NSMutableArray array];
-        //        weakSelf.orderModelArr = nil;
-        //        weakSelf.orderModelArr = [NSMutableArray array];
-        //        weakSelf.loadDataIndex = 1;
-        //
-        //        [weakSelf loadDataWithStatus:self.status];
+     [weakSelf loadPackageChargeListRequest];
     }];
     
     myTable.mj_footer = [SLRefreshFooter footerWithRefreshingBlock:^{
-//        [self performSelector:@selector(endRefresh) withObject:nil afterDelay:2];
-        //        weakSelf.loadDataIndex += 1;
-        //
-        //        if (weakSelf.count%10 >0) {
-        //            if (weakSelf.loadDataIndex <= weakSelf.count/10 + 1) {
-        //
-        //                [weakSelf loadDataWithStatus:weakSelf.status];
-        //            }else{
-        //
-        //                [orderTableView.mj_footer endRefreshingWithNoMoreData];
-        //            }
-        //        }else{
-        //
-        //            if (weakSelf.loadDataIndex <= weakSelf.count/10) {
-        //
-        //                [weakSelf loadDataWithStatus:weakSelf.status];
-        //            }else{
-        //                [orderTableView.mj_footer endRefreshingWithNoMoreData];
-        //            }
-        //        }
+
     }];
     [_myTable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.offset(0);
@@ -86,14 +65,15 @@
 }
 
 #pragma mark ---- header ----
-- (UIView *)creatSectionHeaderView
+- (UIView *)creatSectionHeaderView:(PackageChargeListModel *)model
 {
     UIView *headerView = [[UIView alloc]init];
     headerView.backgroundColor = WhiteColor;
     
     UIImageView *img = [[UIImageView alloc]init];
     img.contentMode = UIViewContentModeScaleAspectFit;
-    img.image = ImageNamed(@"WechatIMG48-1");
+//    img.image = ImageNamed(@"WechatIMG48-1");
+    [img sd_setImageWithURL:[NSURL URLWithString:model.packagePic]];
     [headerView addSubview:img];
     [img mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(AD_HEIGHT(15));
@@ -107,13 +87,14 @@
         make.top.equalTo(img.mas_top).offset(AD_HEIGHT(12));
         
         view.textAlignment = NSTextAlignmentLeft;
-        view.text = @"双喜临门套餐";
+//        view.text = @"双喜临门套餐";
+        view.text = model.packageName;
     }];
     
     return headerView;
 }
 #pragma mark ---- footer ----
-- (UIView *)creatSectionFooterView
+- (UIView *)creatSectionFooterView:(PackageChargeListModel *)model
 {
     UIView *footerView = [[UIView alloc]init];
     footerView.backgroundColor = CF6F6F6;
@@ -129,24 +110,32 @@
         make.centerY.offset(0);
         
         view.textAlignment = NSTextAlignmentLeft;
-        view.text = @"￥800";
+//        view.text = @"￥800";
+        view.text = [NSString stringWithFormat:@"￥%@",model.packagePrice];
     }];
     
-    UILabel *orignPriceLabel = [UILabel getLabelWithFont:F12 textColor:C989898 superView:mainView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
+    [UILabel getLabelWithFont:F12 textColor:C989898 superView:mainView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
         make.left.equalTo(realPriceLabel.mas_right).offset(AD_HEIGHT(27));
         make.centerY.offset(0);
         
         view.textAlignment = NSTextAlignmentLeft;
-        NSString *str = @"981.00";
+//        NSString *str = @"981.00";
+        NSString *str = model.originPrice;
         //中划线
         NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
         NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:str attributes:attribtDic];
         // 赋值
         view.attributedText = attribtStr;
+        
+        if ([model.originPrice isEqualToString:model.packagePrice]) {
+            view.hidden = YES;
+        }else {
+            view.hidden = NO;
+        }
     }];
     
     //加入购物车
-    UIButton *addCarBtn = [UIButton getButtonWithImageName:@"购物车" titleText:@"加入购物车" superView:mainView masonrySet:^(UIButton * _Nonnull btn, MASConstraintMaker * _Nonnull make) {
+    [UIButton getButtonWithImageName:@"购物车" titleText:@"加入购物车" superView:mainView masonrySet:^(UIButton * _Nonnull btn, MASConstraintMaker * _Nonnull make) {
         make.right.offset(-AD_HEIGHT(16));
         make.centerY.offset(0);
         make.size.mas_offset(CGSizeMake(AD_HEIGHT(96), AD_HEIGHT(32)));
@@ -169,17 +158,21 @@
 
 #pragma mark -- tableView代理数据源方法
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 2;
+    PackageChargeListModel *model = self.dataArray[section];
+    return model.packageChargeItemDOList.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return self.dataArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     SetMealOrderCell *cell = [SetMealOrderCell cellWithTableView:tableView];
+    PackageChargeListModel *model = self.dataArray[indexPath.section];
+    packageChargeItemDOListModel *detailModel = model.packageChargeItemDOList[indexPath.row];
+    cell.model = detailModel;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     
@@ -192,11 +185,15 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     CombinationSetMealDetailViewController *vc = [[CombinationSetMealDetailViewController alloc]init];
+    PackageChargeListModel *model = self.dataArray[indexPath.section];
+    vc.myID = model.ID;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    return [self creatSectionHeaderView];
+    PackageChargeListModel *model = self.dataArray[section];
+    
+    return [self creatSectionHeaderView:model];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return AD_HEIGHT(136);
@@ -206,7 +203,51 @@
     return AD_HEIGHT(55);
 }
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    
-    return [self creatSectionFooterView];
+    PackageChargeListModel *model = self.dataArray[section];
+    return [self creatSectionFooterView:model];
 }
+
+#pragma mark ---- 套餐接口 ----
+- (void)loadPackageChargeListRequest {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/packageCharge/list" params:nil cookie:nil result:^(bool success, id result) {
+        [self.myTable.mj_header endRefreshing];
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSArray *array = result[@"data"][@"rows"];
+                    self.dataArray = [NSMutableArray arrayWithArray:[PackageChargeListModel mj_objectArrayWithKeyValuesArray:array]];
+                    
+                    [self.myTable reloadData];
+                }
+                
+            }
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+    
+}
+
+
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -7,11 +7,11 @@
 //
 
 #import "PD_BillSkuFooterView.h"
+#import "BillListModel.h"
 @interface PD_BillSkuFooterView ()
 //免费
 @property (nonatomic, weak) UILabel *isFreeLabel;
-//数量 价格描述
-@property (nonatomic, weak) UILabel *countAndPriceLabel;
+
 //右边按钮
 @property (nonatomic, weak) UIButton *rightBtn;
 //左侧按钮
@@ -38,7 +38,7 @@
     
     //免费
     UILabel *isFreeLabel = [UILabel new];
-    isFreeLabel.text = @"免费";
+//    isFreeLabel.text = @"免费";
     isFreeLabel.textColor = CF52542;
     isFreeLabel.font = F13;
     isFreeLabel.textAlignment = NSTextAlignmentLeft;
@@ -59,11 +59,7 @@
         make.right.offset(-AD_HEIGHT(16));
         make.top.offset(AD_HEIGHT(14));
     }];
-    NSString *priceStr = @"共2件 应付总额：￥184.20";
-    NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc]initWithString:priceStr];
-    [attriStr addAttribute:NSForegroundColorAttributeName value:C000000 range:NSMakeRange(0, 9)];
-    [attriStr addAttribute:NSForegroundColorAttributeName value:CF60303 range:NSMakeRange(9, priceStr.length-9)];
-    countAndPriceLabel.attributedText = attriStr;
+    
     
     //右边按钮
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -111,4 +107,21 @@
 {
     
 }
+
+- (void)setModel:(BillListModel *)model {
+    if (model) {
+        _model = model;
+        if ([model.orderPrice isEqualToString:@"0"]) {
+            self.isFreeLabel.text = @"免费";
+        }else{
+            self.isFreeLabel.text = @"";
+        }
+        
+        
+
+        
+    }
+}
+
+
 @end

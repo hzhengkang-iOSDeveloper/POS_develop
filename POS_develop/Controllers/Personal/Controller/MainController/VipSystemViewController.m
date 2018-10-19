@@ -26,7 +26,6 @@
     [self initUI];
     [self loadAgentListRequest];
     [self loadAgentListAncesRequest];
-    [self loadVipDescAncesRequest];
 }
 
 - (void)initUI {
@@ -179,6 +178,8 @@
                     self.vipGradeL.text = [NSString stringWithFormat:@"VIP%@",[[array firstObject] valueForKey:@"sbLevel"]];
                     self.receivePosTextL.text = [NSString stringWithFormat:@"已领%@台，还可以领取%@台",[[array firstObject] valueForKey:@"drawCount"] , [[array firstObject] valueForKey:@"totalCount"]];
                     
+                    
+                    [self loadVipDescAncesRequest];
                 }
             }
             
@@ -191,29 +192,25 @@
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agent/listAnces" params:@{@"userid":@"1"} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
-                    NSArray *array = result[@"data"][@"rows"];
-                    self.highLevelL.text = [NSString stringWithFormat:@"我的上级：%@",[[array firstObject] valueForKey:@"ancesName"]];
-                    self.highLevelPhoneL.text = [NSString stringWithFormat:@"上级电话：%@",[[array firstObject] valueForKey:@"ancesName"]];
+                
+                self.highLevelL.text = [NSString stringWithFormat:@"我的上级：%@",[result[@"data"] valueForKey:@"ancesName"]];
+                self.highLevelPhoneL.text = [NSString stringWithFormat:@"上级电话：%@",[result[@"data"] valueForKey:@"ancesMp"]];
                     
                 }
             }
-            
-        }
+        
         NSLog(@"result ------- %@", result);
     }];
 }
 
 
 - (void)loadVipDescAncesRequest {
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agent/vipDesc" params:@{@"userid":@"1"} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agent/vipDesc" params:@{@"sbLevel":self.vipGradeL.text} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
-                    NSArray *array = result[@"data"][@"rows"];
-                    self.powerContentL.text = [NSString stringWithFormat:@"我的上级：%@",[[array firstObject] valueForKey:@"des"]];
+                    self.powerContentL.text = [NSString stringWithFormat:@"%@",[result[@"data"] valueForKey:@"des"]];
                     
-                }
+                
             }
             
         }

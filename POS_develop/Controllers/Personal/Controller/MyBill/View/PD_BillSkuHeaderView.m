@@ -91,7 +91,7 @@
         if ([model.orderStatus isEqualToString:@"10"]) {
             self.billStatusLabel.text = @"待付款";
         }else if ([model.orderStatus isEqualToString:@"20"]) {
-            self.billStatusLabel.text = @"待发货";
+            self.billStatusLabel.text = @"待收货";
         }else if ([model.orderStatus isEqualToString:@"30"]) {
             self.billStatusLabel.text = @"待确认";
         }else {

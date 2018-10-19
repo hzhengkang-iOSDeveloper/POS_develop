@@ -43,7 +43,7 @@
 //    _explainTopArr = @[@"200.00", @"200.00", @"200.00", @"200.00", @"200.00", @"200.00"];
     _titleBottomArr = @[@"交易查询", @"统计分析", @"分润查询", @"激活返现查询", @"终端绑定", @"终端查询", @"终端管理", @"代理商管理"];
     _imageBottomArr = @[@"交易查询", @"统计分析", @"分润查询", @"激活", @"终端绑定", @"图层17", @"终端管理", @"代理商管理"];
-
+    [self loadStatAchievementListRequest];
 }
 - (void)initUI {
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(FITiPhone6(15), 0, ScreenWidth, FITiPhone6(43))];
@@ -84,7 +84,33 @@
         AchievementsTopCollectionViewCell *cell = (AchievementsTopCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"AchievementsTopCollectionViewCell" forIndexPath:indexPath];
         cell.backgroundColor = WhiteColor;
         cell.titleLabel.text = _titleTopArr[indexPath.row];
-        cell.explainLabel.text = _explainTopArr[indexPath.row];
+//        cell.explainLabel.text = _explainTopArr[indexPath.row];
+        switch (indexPath.row) {
+            case 0:{
+                cell.explainLabel.text = self.top1Str;
+            }
+                break;
+            case 1:{
+                cell.explainLabel.text = self.top2Str;
+            }
+                break;
+            case 2:{
+                cell.explainLabel.text = self.top3Str;
+            }
+                break;
+            case 3:{
+                cell.explainLabel.text = self.top4Str;
+            }
+                break;
+            case 4:{
+                cell.explainLabel.text = self.top5Str;
+            }
+                break;
+            case 5:{
+                cell.explainLabel.text = self.top6Str;
+            }
+                break;
+        }
         
         return cell;
     }else {
@@ -183,13 +209,18 @@
 
 
 #pragma mark ---- 接口 ----
-- (void)loadStatAchievementListRequestWithStartType:(NSString *)stateType {
+- (void)loadStatAchievementListRequest {
     NSDate *date = [NSDate date];//当前时间
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"userid":@"1", @"startTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"endTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"dateType":@"0", @"statType":@"0"} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSArray class]]) {
                 NSArray *array = result[@"data"];
-                self.top1Str = [[array firstObject] objectForKey:@"value"];
+                if ([[array firstObject] objectForKey:@"value"] == nil || [[[array firstObject] objectForKey:@"value"] isEqualToString:@""]) {
+                    self.top1Str = @"0.00";
+                }else {
+                    self.top1Str = [[array firstObject] objectForKey:@"value"];
+                }
+                
                 [self.myTopCollection reloadData];
             }
         }
@@ -199,7 +230,12 @@
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSArray class]]) {
                 NSArray *array = result[@"data"];
-                self.top2Str = [[array firstObject] objectForKey:@"value"];
+                if ([[array firstObject] objectForKey:@"value"] == nil || [[[array firstObject] objectForKey:@"value"] isEqualToString:@""]) {
+                    self.top2Str = @"0.00";
+                }else {
+                    self.top2Str = [[array firstObject] objectForKey:@"value"];
+                }
+                
                 [self.myTopCollection reloadData];
             }
         }
@@ -209,7 +245,11 @@
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSArray class]]) {
                 NSArray *array = result[@"data"];
-                self.top3Str = [[array firstObject] objectForKey:@"value"];
+                if ([[array firstObject] objectForKey:@"value"] == nil || [[[array firstObject] objectForKey:@"value"] isEqualToString:@""]) {
+                    self.top3Str = @"0.00";
+                }else {
+                    self.top3Str = [[array firstObject] objectForKey:@"value"];
+                }
                 [self.myTopCollection reloadData];
             }
         }
@@ -219,7 +259,11 @@
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSArray class]]) {
                 NSArray *array = result[@"data"];
-                self.top4Str = [[array firstObject] objectForKey:@"value"];
+                if ([[array firstObject] objectForKey:@"value"] == nil || [[[array firstObject] objectForKey:@"value"] isEqualToString:@""]) {
+                    self.top4Str = @"0.00";
+                }else {
+                    self.top4Str = [[array firstObject] objectForKey:@"value"];
+                }
                 [self.myTopCollection reloadData];
             }
         }
@@ -229,7 +273,11 @@
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSArray class]]) {
                 NSArray *array = result[@"data"];
-                self.top5Str = [[array firstObject] objectForKey:@"value"];
+                if ([[array firstObject] objectForKey:@"value"] == nil || [[[array firstObject] objectForKey:@"value"] isEqualToString:@""]) {
+                    self.top5Str = @"0.00";
+                }else {
+                    self.top5Str = [[array firstObject] objectForKey:@"value"];
+                }
                 [self.myTopCollection reloadData];
             }
         }
@@ -239,7 +287,11 @@
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSArray class]]) {
                 NSArray *array = result[@"data"];
-                self.top6Str = [[array firstObject] objectForKey:@"value"];
+                if ([[array firstObject] objectForKey:@"value"] == nil || [[[array firstObject] objectForKey:@"value"] isEqualToString:@""]) {
+                    self.top6Str = @"0.00";
+                }else {
+                    self.top6Str = [[array firstObject] objectForKey:@"value"];
+                }
                 [self.myTopCollection reloadData];
             }
         }

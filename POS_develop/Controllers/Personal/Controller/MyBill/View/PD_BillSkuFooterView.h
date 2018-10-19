@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class BillListModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PD_BillSkuFooterView : UIView
-
+@property (nonatomic, strong) BillListModel *model;
+//数量 价格描述
+@property (nonatomic, weak) UILabel *countAndPriceLabel;
 @end
 
 NS_ASSUME_NONNULL_END

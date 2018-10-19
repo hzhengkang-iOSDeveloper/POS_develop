@@ -65,11 +65,12 @@
 
 #pragma mark - UITableViewDelegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    MessageListTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    MessageListModel *model = self.dataArray[indexPath.row];
     SelectDetailBrandViewController *vc = [[SelectDetailBrandViewController alloc] init];
-    vc.titleStr = cell.titleLabel.text;
-    vc.contentStr = cell.contentLabel.text;
-    vc.timeStr = cell.timeLabel.text;
+//    vc.titleStr = cell.titleLabel.text;
+//    vc.contentStr = cell.contentLabel.text;
+//    vc.timeStr = cell.timeLabel.text;
+    vc.myId = model.ID;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

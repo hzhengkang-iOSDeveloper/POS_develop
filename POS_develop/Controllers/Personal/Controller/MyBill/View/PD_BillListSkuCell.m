@@ -51,7 +51,7 @@
     //sku 图片
     UIImageView *skuImageView = [UIImageView new];
     skuImageView.contentMode = UIViewContentModeScaleAspectFit;
-    skuImageView.image = ImageNamed(@"头像2");
+//    skuImageView.image = ImageNamed(@"头像2");
     [self.contentView addSubview:skuImageView];
     self.skuImageView = skuImageView;
     [_skuImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -63,7 +63,7 @@
     
     //sku name
     UILabel *skuNameLabel = [UILabel new];
-    skuNameLabel.text = @"京东到家京东到家京东到家京东到家京东到家京东到家京东到家京东到家";
+//    skuNameLabel.text = @"京东到家京东到家京东到家京东到家京东到家京东到家京东到家京东到家";
     skuNameLabel.textColor = C000000;
     skuNameLabel.font = F13;
     skuNameLabel.textAlignment = NSTextAlignmentLeft;
@@ -118,8 +118,10 @@
 - (void)setOrderModel:(DetailDOModel *)orderModel {
     if (orderModel) {
         _orderModel = orderModel;
-        self.skuPriceLabel.text = [NSString stringWithFormat:@"￥%@", orderModel.orderPrice];
+        self.skuPriceLabel.text = [NSString stringWithFormat:@"￥%@", orderModel.displayPrice];
         self.skuCountLabel.text = [NSString stringWithFormat:@"x%@", orderModel.itemCount];
+        [self.skuImageView sd_setImageWithURL:[NSURL URLWithString:orderModel.itemPic]];
+        self.skuNameLabel.text = orderModel.itemName;
         
     }
 }

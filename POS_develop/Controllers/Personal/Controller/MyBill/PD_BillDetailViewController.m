@@ -35,6 +35,7 @@
     self.navigationItemTitle = @"订单完成";
     self.view.backgroundColor = CF6F6F6;
     [self creatTableView];
+    [self loadOrderGetRequest];
 }
 
 #pragma mark ---- Table ----
@@ -340,4 +341,37 @@
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = @"203498230482039482";
 }
+
+#pragma mark ---- 接口 ----
+-(void)loadOrderGetRequest {
+    [[HPDConnect connect] PostNetRequestMethod:[NSString stringWithFormat:@"%@%@",@"api/trans/order/get/",self.myID] params:nil cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+
+                
+            }
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

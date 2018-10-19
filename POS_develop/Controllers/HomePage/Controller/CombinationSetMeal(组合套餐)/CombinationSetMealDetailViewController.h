@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CombinationSetMealDetailViewController : BaseSonViewController
-
+@property (nonatomic, copy) NSString *myID;
 @end
 
 NS_ASSUME_NONNULL_END

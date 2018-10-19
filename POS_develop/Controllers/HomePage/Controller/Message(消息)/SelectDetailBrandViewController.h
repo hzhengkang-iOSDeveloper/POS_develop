@@ -11,9 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SelectDetailBrandViewController : BaseSonViewController
-@property (nonatomic, copy) NSString *titleStr;
-@property (nonatomic, copy) NSString *contentStr;
-@property (nonatomic, copy) NSString *timeStr;
+//@property (nonatomic, copy) NSString *titleStr;
+//@property (nonatomic, copy) NSString *contentStr;
+//@property (nonatomic, copy) NSString *timeStr;
+@property (nonatomic, copy) NSString *myId;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -7,6 +7,7 @@
 //
 
 #import "SetMealOrderCell.h"
+#import "PackageChargeListModel.h"
 
 @implementation SetMealOrderCell
 
@@ -31,7 +32,7 @@
 
 - (void)initUI{
     self.myImageView = [[UIImageView alloc] init];
-    self.myImageView.image = [UIImage imageNamed:@"图层7"];
+    
     [self.contentView addSubview:self.myImageView];
     [self.myImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(AD_HEIGHT(15));
@@ -44,7 +45,7 @@
         make.top.equalTo(self.myImageView.mas_top);
         
         view.textAlignment = NSTextAlignmentLeft;
-        view.text = @"创立包（立刷999）";
+//        view.text = @"创立包（立刷999）";
     }];
     
     self.purchasePrice = [UILabel getLabelWithFont:F10 textColor:C989898 superView:self.contentView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
@@ -53,14 +54,14 @@
         
         
         view.textAlignment = NSTextAlignmentLeft;
-        view.text = @"采购价格：333.00元/8台";
+        
     }];
     self.activationCash = [UILabel getLabelWithFont:F10 textColor:C989898 superView:self.contentView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
         make.left.equalTo(self.titleLabel.mas_left);
         make.top.equalTo(self.purchasePrice.mas_bottom).offset(AD_HEIGHT(7));
         
         view.textAlignment = NSTextAlignmentLeft;
-        view.text = @"激活返现金：160.00元/台";
+//        view.text = @"激活返现金：160.00元/台";
         
     }];
     self.number = [UILabel getLabelWithFont:F12 textColor:C000000 superView:self.contentView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
@@ -68,7 +69,7 @@
         make.top.offset(AD_HEIGHT(8));
         
         view.textAlignment = NSTextAlignmentRight;
-        view.text = @"x2";
+//        view.text = @"x2";
     }];
     [UIView getViewWithColor:CE6E2E2 superView:self.contentView masonrySet:^(UIView *view, MASConstraintMaker *make) {
         make.left.offset(AD_HEIGHT(15));
@@ -78,4 +79,29 @@
     }];
 }
 
+
+- (void)setModel:(packageChargeItemDOListModel *)model {
+    _model = model;
+    
+    [self.myImageView sd_setImageWithURL:[NSURL URLWithString:[model.productDO objectForKey:@"productImg"]]];
+    self.titleLabel.text = [model.productDO objectForKey:@"posBrandName"];
+    
+    self.purchasePrice.text = [NSString stringWithFormat:@"采购价格：%@元/%@台", [model.productDO objectForKey:@"posPrice"], model.posCount];
+    self.activationCash.text = [NSString stringWithFormat:@"激活返现金：%@元/台", [model.productDO objectForKey:@"posRebatePrice"]];
+    self.number.text = [NSString stringWithFormat:@"x%@", [model.productDO objectForKey:@"posCount"]];
+    
+}
+
 @end
+
+
+
+
+
+
+
+
+
+
+
+

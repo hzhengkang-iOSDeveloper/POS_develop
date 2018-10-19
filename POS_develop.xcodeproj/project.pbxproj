@@ -10,6 +10,7 @@
 		038600659A091FA731F079F0 /* libPods-POS_develop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E02FA8D445A9227508FFFE68 /* libPods-POS_develop.a */; };
 		251A4103214FF45E00AC2C81 /* WithdrawCashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 251A4102214FF45E00AC2C81 /* WithdrawCashViewController.m */; };
 		2520A68E214CE38900D48B26 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2520A68D214CE38900D48B26 /* SettingViewController.m */; };
+		2521FF4B2179F08100B02F7F /* PackageChargeListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2521FF4A2179F08100B02F7F /* PackageChargeListModel.m */; };
 		253647D4214E030D0094576C /* UpdatePhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 253647D3214E030D0094576C /* UpdatePhoneViewController.m */; };
 		253647D7214E053C0094576C /* UpdatePhoneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 253647D6214E053C0094576C /* UpdatePhoneTableViewCell.m */; };
 		253647DA214E05BC0094576C /* SettingNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 253647D9214E05BC0094576C /* SettingNameViewController.m */; };
@@ -149,7 +150,6 @@
 		7813B809216E03D80086CE68 /* HtmlGenerailzeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7813B808216E03D80086CE68 /* HtmlGenerailzeCell.m */; };
 		7813B80D216E07280086CE68 /* HtmlGenerailzeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7813B80C216E07280086CE68 /* HtmlGenerailzeDetailViewController.m */; };
 		78632B372175B340005AAF88 /* HomeHeaderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78632B362175B340005AAF88 /* HomeHeaderModel.m */; };
-		78632B3A2175BAF6005AAF88 /* PackageChargeListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78632B392175BAF6005AAF88 /* PackageChargeListModel.m */; };
 		786AD0DD215A02F1005D7363 /* SeparateQueryDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 786AD0DC215A02F1005D7363 /* SeparateQueryDetailHeaderView.m */; };
 		786AD0E1215A2C46005D7363 /* XLBasePageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 786AD0E0215A2C46005D7363 /* XLBasePageController.m */; };
 		786AD0F5215A311D005D7363 /* SeparateQuerySearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 786AD0F4215A311D005D7363 /* SeparateQuerySearchViewController.m */; };
@@ -303,6 +303,8 @@
 		251A4102214FF45E00AC2C81 /* WithdrawCashViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WithdrawCashViewController.m; sourceTree = "<group>"; };
 		2520A68C214CE38900D48B26 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		2520A68D214CE38900D48B26 /* SettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		2521FF492179F08100B02F7F /* PackageChargeListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PackageChargeListModel.h; sourceTree = "<group>"; };
+		2521FF4A2179F08100B02F7F /* PackageChargeListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PackageChargeListModel.m; sourceTree = "<group>"; };
 		253647D2214E030D0094576C /* UpdatePhoneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdatePhoneViewController.h; sourceTree = "<group>"; };
 		253647D3214E030D0094576C /* UpdatePhoneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpdatePhoneViewController.m; sourceTree = "<group>"; };
 		253647D5214E053C0094576C /* UpdatePhoneTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdatePhoneTableViewCell.h; sourceTree = "<group>"; };
@@ -581,8 +583,6 @@
 		7813B80C216E07280086CE68 /* HtmlGenerailzeDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HtmlGenerailzeDetailViewController.m; sourceTree = "<group>"; };
 		78632B352175B340005AAF88 /* HomeHeaderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeHeaderModel.h; sourceTree = "<group>"; };
 		78632B362175B340005AAF88 /* HomeHeaderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeHeaderModel.m; sourceTree = "<group>"; };
-		78632B382175BAF6005AAF88 /* PackageChargeListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PackageChargeListModel.h; sourceTree = "<group>"; };
-		78632B392175BAF6005AAF88 /* PackageChargeListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PackageChargeListModel.m; sourceTree = "<group>"; };
 		786AD0DB215A02F1005D7363 /* SeparateQueryDetailHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeparateQueryDetailHeaderView.h; sourceTree = "<group>"; };
 		786AD0DC215A02F1005D7363 /* SeparateQueryDetailHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeparateQueryDetailHeaderView.m; sourceTree = "<group>"; };
 		786AD0DF215A2C46005D7363 /* XLBasePageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLBasePageController.h; sourceTree = "<group>"; };
@@ -874,6 +874,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2521FF482179F06800B02F7F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2521FF492179F08100B02F7F /* PackageChargeListModel.h */,
+				2521FF4A2179F08100B02F7F /* PackageChargeListModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		2546B20421787A7E001CFE0D /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -979,6 +988,7 @@
 		505B6F63216D9881000D49B2 /* CombinationSetMeal(组合套餐) */ = {
 			isa = PBXGroup;
 			children = (
+				2521FF482179F06800B02F7F /* Model */,
 				505B6F64216D9881000D49B2 /* Cell */,
 				5009BA7B2176D72600FF1AE9 /* CombinationSetMealViewController.h */,
 				5009BA7C2176D72600FF1AE9 /* CombinationSetMealViewController.m */,
@@ -1737,8 +1747,6 @@
 				788683E92174A67C00804F85 /* IndexBannerListModel.m */,
 				78632B352175B340005AAF88 /* HomeHeaderModel.h */,
 				78632B362175B340005AAF88 /* HomeHeaderModel.m */,
-				78632B382175BAF6005AAF88 /* PackageChargeListModel.h */,
-				78632B392175BAF6005AAF88 /* PackageChargeListModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2477,6 +2485,7 @@
 				50893769215648CB007C6239 /* PosHomePageHeaderView.m in Sources */,
 				259646E62158E1ED00E516BF /* SeparateQueryMainView.m in Sources */,
 				50BD2AC621627870008D201B /* TerminalSelectMainView.m in Sources */,
+				2521FF4B2179F08100B02F7F /* PackageChargeListModel.m in Sources */,
 				7873B297216DDD3300A04C52 /* CopywritingSelectViewController.m in Sources */,
 				789F27602176D6E400979C1A /* ShareBannerListModel.m in Sources */,
 				50B0607F2153520E00B7B411 /* PD_BillListSkuCell.m in Sources */,
@@ -2506,7 +2515,6 @@
 				7888F3B42147C33900AAC8B0 /* UILabel+Style.m in Sources */,
 				78A320F9216E0B4E00D48B95 /* HtmlGenerailzeDetailCell.m in Sources */,
 				786AD0F5215A311D005D7363 /* SeparateQuerySearchViewController.m in Sources */,
-				78632B3A2175BAF6005AAF88 /* PackageChargeListModel.m in Sources */,
 				50A89AF1216B653200E68BEB /* XStackAreaLineChartConfiguration.m in Sources */,
 				787FFC9E215232C200318BBC /* TransactionDetailViewController.m in Sources */,
 				50A89B0F216B653200E68BEB /* OrdinateView.m in Sources */,

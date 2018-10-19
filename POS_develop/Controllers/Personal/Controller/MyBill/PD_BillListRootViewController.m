@@ -26,7 +26,7 @@
     self.orderArray = [NSMutableArray array];
     self.orderGoodArray = [NSMutableArray array];
     [self creatTableView];
-    [self loadOrderListRequest];
+    [self loadOrderListRequestWithIndex:self.index];
 }
 
 #pragma mark ---- Table ----
@@ -41,7 +41,7 @@
     
     MJWeakSelf;
     orderTableView.mj_header = [SLRefreshHeader headerWithRefreshingBlock:^{
-        [weakSelf loadOrderListRequest];
+        [weakSelf loadOrderListRequestWithIndex:self.index];
     }];
     
     orderTableView.mj_footer = [SLRefreshFooter footerWithRefreshingBlock:^{
@@ -65,8 +65,6 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     PD_BillListSkuCell *cell = [PD_BillListSkuCell cellWithTableView:tableView];
-//    BillListModel *model = self.orderArray[indexPath.section];
-//    cell.orderModel = model;
     BillListModel *model = self.orderArray[indexPath.section];
     DetailDOModel *detailModel = model.detailDOList[indexPath.row];
     cell.orderModel = detailModel;
@@ -80,8 +78,9 @@
     return AD_HEIGHT(94);
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    BillListModel *model = self.orderArray[indexPath.section];
     PD_BillDetailViewController *detailVc = [[PD_BillDetailViewController alloc]init];
+    detailVc.myID = [[model.detailDOList firstObject] valueForKey:@"ID"];
     detailVc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detailVc animated:YES];
     
@@ -103,14 +102,21 @@
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     
     PD_BillSkuFooterView *footerView = [[PD_BillSkuFooterView alloc] init];
+    BillListModel *model = self.orderArray[section];
+    footerView.model = model;
+    NSString *priceStr = [NSString stringWithFormat:@"共%ld件 应付总额：￥%@", model.detailDOList.count, model.orderPrice];
+    NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc]initWithString:priceStr];
+    [attriStr addAttribute:NSForegroundColorAttributeName value:C000000 range:NSMakeRange(0, 9)];
+    [attriStr addAttribute:NSForegroundColorAttributeName value:CF60303 range:NSMakeRange(9, priceStr.length-9)];
+    footerView.countAndPriceLabel.attributedText = attriStr;
     
     return footerView;
 }
 
 
 #pragma mark ------------------------------------ 接口 ------------------------------------
-- (void)loadOrderListRequest {
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/order/list" params:@{@"orderStatus":@"10"} cookie:nil result:^(bool success, id result) {
+- (void)loadOrderListRequestWithIndex:(NSString *)index{
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/order/list" params:@{@"orderStatus":index} cookie:nil result:^(bool success, id result) {
         [self.orderTableView.mj_header endRefreshing];
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
