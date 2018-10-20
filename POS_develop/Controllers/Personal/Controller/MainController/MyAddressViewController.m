@@ -143,7 +143,7 @@
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/address/list" params:@{@"userid":@"1"} cookie:nil result:^(bool success, id result) {
         [self.myAddressTableView.mj_header endRefreshing];
         NSArray *array = result[@"data"][@"rows"];
-        if (self.dataArray) {
+        if (self.dataArray.count > 0) {
             [self.dataArray removeAllObjects];
         }
         [self.dataArray addObjectsFromArray:[MyAddressViewModel mj_objectArrayWithKeyValuesArray:array]];

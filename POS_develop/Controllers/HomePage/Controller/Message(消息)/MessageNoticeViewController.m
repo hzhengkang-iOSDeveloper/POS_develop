@@ -89,6 +89,9 @@
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
                     NSArray *array = result[@"data"][@"rows"];
+                    if (self.dataArray.count > 0) {
+                        [self.dataArray removeAllObjects];
+                    }
                     [self.dataArray addObjectsFromArray:[MessageCategoryListModel mj_objectArrayWithKeyValuesArray:array]];
                     
                     [self.myTableView reloadData];

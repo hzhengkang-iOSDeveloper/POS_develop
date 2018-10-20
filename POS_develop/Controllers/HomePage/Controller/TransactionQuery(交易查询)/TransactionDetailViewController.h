@@ -9,5 +9,5 @@
 #import "BaseSonViewController.h"
 
 @interface TransactionDetailViewController : BaseSonViewController
-
+@property (nonatomic, copy) NSString *myID;
 @end

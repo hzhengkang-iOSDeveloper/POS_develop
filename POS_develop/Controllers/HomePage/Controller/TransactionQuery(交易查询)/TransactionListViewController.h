@@ -10,5 +10,5 @@
 #import "BaseSonViewController.h"
 
 @interface TransactionListViewController : BaseSonViewController
-
+@property (nonatomic, strong) NSMutableArray *dataArray;
 @end

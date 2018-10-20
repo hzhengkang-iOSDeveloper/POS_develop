@@ -7,6 +7,7 @@
 //
 
 #import "SeparateQueryCell.h"
+#import "ShareBenefitListModel.h"
 
 @implementation SeparateQueryCell
 
@@ -35,7 +36,7 @@
     
     
     self.totalAmount = [[UILabel alloc] init];
-    self.totalAmount.text = @"总金额:59072938749.01";
+//    self.totalAmount.text = @"总金额:59072938749.01";
     self.totalAmount.textAlignment = NSTextAlignmentLeft;
     self.totalAmount.textColor = C000000;
     self.totalAmount.font = F13;
@@ -48,7 +49,7 @@
     
     
     self.name = [[UILabel alloc] init];
-    self.name.text = @"高棉闪电发货";
+//    self.name.text = @"高棉闪电发货";
     self.name.textAlignment = NSTextAlignmentRight;
     self.name.textColor = C000000;
     self.name.font = F13;
@@ -62,7 +63,7 @@
 
     self.time = [[UILabel alloc] init];
     self.time.textAlignment = NSTextAlignmentLeft;
-    self.time.text = @"交易日期2018/09/19-2019/08/12";
+//    self.time.text = @"交易日期2018/09/19-2019/08/12";
     self.time.textColor = C989898;
     self.time.font = F10;
     [self.contentView addSubview:self.time];
@@ -74,7 +75,7 @@
 
     self.totalPenNumber = [UIButton buttonWithType:UIButtonTypeCustom];
     self.totalPenNumber.userInteractionEnabled = NO;
-    [self.totalPenNumber setTitle:@"总笔数:98" forState:UIControlStateNormal];
+//    [self.totalPenNumber setTitle:@"总笔数:98" forState:UIControlStateNormal];
     [self.totalPenNumber setTitleColor:C989898 forState:UIControlStateNormal];
     [self.totalPenNumber layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleLeft imageTitleSpace:FITiPhone6(8)];
     [self.totalPenNumber setImage:[UIImage imageNamed:@"总笔数"] forState:normal];
@@ -90,7 +91,7 @@
 
     self.totalShareProfit = [UIButton buttonWithType:UIButtonTypeCustom];
     self.totalShareProfit.userInteractionEnabled = NO;
-    [self.totalShareProfit setTitle:@"总分润:5000.06元" forState:UIControlStateNormal];
+//    [self.totalShareProfit setTitle:@"总分润:5000.06元" forState:UIControlStateNormal];
     [self.totalShareProfit setTitleColor:C000000 forState:UIControlStateNormal];
     [self.totalShareProfit layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleLeft imageTitleSpace:FITiPhone6(8)];
     [self.totalShareProfit setImage:[UIImage imageNamed:@"总分润"] forState:normal];
@@ -111,4 +112,32 @@
     }];
     
 }
+
+
+- (void)setModel:(ShareBenefitListModel *)model {
+    if (model) {
+        _model = model;
+        self.totalAmount.text = [NSString stringWithFormat:@"总金额:%@", model.transAmount];
+        self.name.text = [NSString stringWithFormat:@"%@", model.agentName];
+        self.time.text = [NSString stringWithFormat:@"交易日期%@", model.transTime];
+        //         [self.totalPenNumber setTitle:[NSString stringWithFormat:@"总笔数%@", ] forState:UIControlStateNormal];
+        [self.totalShareProfit setTitle:[NSString stringWithFormat:@"总分润%@",model.sbAmount ] forState:UIControlStateNormal];
+    
+    }
+}
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

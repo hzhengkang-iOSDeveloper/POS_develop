@@ -10,9 +10,12 @@
 #import "SeparateQueryDetailHeaderView.h"
 #import "SeparateQuerySearchViewController.h"
 #import "SeparateQueryRootViewController.h"
+
+
 @interface SeparateQueryDetailViewController ()<WMPageControllerDelegate,WMPageControllerDataSource>
 @property (nonatomic, weak) SeparateQueryDetailHeaderView *headerView;
 @property (nonatomic, strong, readwrite) WMPageController* pageController;//pageControl
+
 @end
 
 @implementation SeparateQueryDetailViewController
@@ -65,24 +68,16 @@
 }
 
 - (__kindof UIViewController *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index {
-    SeparateQueryRootViewController* controller = [[SeparateQueryRootViewController alloc]init];
-//    switch (index) {
-//        case 0:{
-//            controller.fileType = ARMFileTypeAll;
-//        }
-//            break;
-//        case 1:{
-//            controller.fileType = ARMFileTypeAudio;
-//        }
-//            break;
-//        case 2:{
-//            controller.fileType = ARMFileTypeTxt;
-//        }
-//            break;
-//        default:
-//            break;
-//    }
-    return controller;
+    SeparateQueryRootViewController* vc = [[SeparateQueryRootViewController alloc]init];
+    vc.startTime = self.startTime;
+    vc.endTime = self.endTime;
+    vc.agentName = self.agentName;
+    vc.agentNo = self.agentNo;
+    vc.agentType = self.agentType;
+    
+    
+    [vc loadShareBenefitListRequest:[NSString stringWithFormat:@"%li",(long)index]];
+    return vc;
 }
 
 - (NSString *)pageController:(WMPageController *)pageController titleAtIndex:(NSInteger)index {
@@ -108,4 +103,22 @@
     return CGRectMake(0, CGRectGetMaxY(self.headerView.frame)+AD_HEIGHT(5), ScreenWidth, AD_HEIGHT(38));
 }
 
+
+
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

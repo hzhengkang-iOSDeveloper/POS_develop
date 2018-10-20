@@ -7,6 +7,7 @@
 //
 
 #import "TransactionListCell.h"
+#import "TransactionListModel.h"
 
 @implementation TransactionListCell
 
@@ -34,7 +35,7 @@
     self.nameLabel.textColor = C000000;
     self.nameLabel.font = F13;
     self.nameLabel.adjustsFontSizeToFitWidth = YES;
-    [self addSubview:self.nameLabel];
+    [self.contentView addSubview:self.nameLabel];
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(FITiPhone6(15));
         make.top.equalTo(self).offset(FITiPhone6(11));
@@ -44,7 +45,7 @@
     self.snLabel.textColor = C000000;
     self.snLabel.font = F12;
     self.snLabel.adjustsFontSizeToFitWidth = YES;
-    [self addSubview:self.snLabel];
+    [self.contentView addSubview:self.snLabel];
     [self.snLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(FITiPhone6(15));
         make.top.equalTo(self.nameLabel.mas_bottom).offset(FITiPhone6(15));
@@ -54,7 +55,7 @@
     self.timeLabel.textColor = C989898;
     self.timeLabel.font = F10;
     self.timeLabel.adjustsFontSizeToFitWidth = YES;
-    [self addSubview:self.timeLabel];
+    [self.contentView addSubview:self.timeLabel];
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(FITiPhone6(15));
         make.top.equalTo(self.snLabel.mas_bottom).offset(FITiPhone6(15));
@@ -64,7 +65,7 @@
     self.amountLabel.textColor = C000000;
     self.amountLabel.font = F15;
     self.amountLabel.adjustsFontSizeToFitWidth = YES;
-    [self addSubview:self.amountLabel];
+    [self.contentView addSubview:self.amountLabel];
     [self.amountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self).offset(FITiPhone6(-15));
         make.top.equalTo(self.nameLabel.mas_top);
@@ -76,11 +77,17 @@
     self.seeDetail.titleLabel.font = F10;
     [self.seeDetail addTarget:self action:@selector(seeDetailClick) forControlEvents:UIControlEventTouchUpInside];
     self.seeDetail.titleLabel.adjustsFontSizeToFitWidth = YES;
-    [self addSubview:self.seeDetail];
+    [self.contentView addSubview:self.seeDetail];
     [self.seeDetail mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self).offset(FITiPhone6(-15));
         make.centerY.equalTo(self.timeLabel.mas_centerY);
         make.height.mas_equalTo(FITiPhone6(10));
+    }];
+    [UIView getViewWithColor:CF6F6F6 superView:self.contentView masonrySet:^(UIView *view, MASConstraintMaker *make) {
+        make.left.offset(AD_HEIGHT(15));
+        make.bottom.offset(AD_HEIGHT(0));
+        make.right.offset(0);
+        make.height.mas_equalTo(AD_HEIGHT(1));
     }];
 }
 
@@ -89,4 +96,33 @@
         self.seeDetailBlock();
     }
 }
+
+- (void)setModel:(TransactionListModel *)model {
+    if (model) {
+        _model = model;
+        self.nameLabel.text = model.agentName;
+        self.snLabel.text = [NSString stringWithFormat:@"SN:%@", model.posSnNo];
+        self.timeLabel.text = model.transTime;
+        if ([model.transAmount intValue] > 0) {
+            self.amountLabel.text = [NSString stringWithFormat:@"+%@",model.transAmount];
+        }else {
+            self.amountLabel.text = model.transAmount;
+        }
+        
+    }
+}
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+

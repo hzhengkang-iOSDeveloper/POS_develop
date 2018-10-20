@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class ShareBenefitListModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SeparateQueryCell : UITableViewCell
@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel *time;
 @property (nonatomic, strong) UIButton *totalPenNumber;
 @property (nonatomic, strong) UIButton *totalShareProfit;
-
+@property (nonatomic, strong) ShareBenefitListModel *model;
 +(instancetype)cellWithTableView:(UITableView *)tableView;
 @end
 

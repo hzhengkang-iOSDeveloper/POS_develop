@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class TransactionListModel;
 @interface TransactionListCell : UITableViewCell
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *snLabel;
@@ -16,6 +16,8 @@
 
 @property (nonatomic, strong) UIButton *seeDetail;
 @property (nonatomic, copy) void(^seeDetailBlock)(void);
+
+@property (nonatomic, strong) TransactionListModel *model;
 
 +(instancetype)cellWithTableView:(UITableView *)tableView;
 @end

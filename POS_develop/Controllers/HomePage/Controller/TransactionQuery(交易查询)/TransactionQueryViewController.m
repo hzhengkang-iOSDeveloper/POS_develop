@@ -10,11 +10,17 @@
 #import "DatePickerView.h"
 #import "TransactionQueryMainView.h"
 #import "TransactionListViewController.h"
+#import "PosBrandModel.h"
+#import "TransactionListModel.h"
 
 @interface TransactionQueryViewController () <UITextFieldDelegate>
 @property (nonatomic, strong) UIButton *agentBtn;
 @property (nonatomic, strong) UIButton *personBtn;
 @property (nonatomic, strong) UIButton *selectBtn;
+@property (nonatomic, strong) TransactionQueryMainView *mainVie;
+@property (nonatomic, strong) DatePickerView *datePickView;
+@property (nonatomic, strong) NSMutableArray *brandDataArray;
+@property (nonatomic, strong) NSMutableArray *dataArray;
 @end
 
 @implementation TransactionQueryViewController
@@ -23,20 +29,25 @@
     [super viewDidLoad];
     self.navigationItem.title = @"交易查询";
     self.view.backgroundColor = CF6F6F6;
-    
+    self.brandDataArray = [NSMutableArray array];
+    self.dataArray = [NSMutableArray array];
     [self initUI];
+    [self loadPosBrandRequest];
     
 }
 - (void)initUI {
     DatePickerView *datePickView = [[DatePickerView alloc] init];
+    self.datePickView = datePickView;
     [self.view addSubview:datePickView];
     [datePickView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.offset(0);
         make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(50)));
     }];
     TransactionQueryMainView *mainVie = [[[NSBundle mainBundle] loadNibNamed:@"TransactionQueryMainView" owner:self options:nil] lastObject];
-    mainVie.brandSelectBlock = ^{//品牌选择
-        
+    self.mainVie = mainVie;
+    __weak typeof(mainVie) weakMainVie = mainVie;
+    mainVie.brandBlock = ^(NSString *selectedStr) {
+        weakMainVie.brandLabel.text = selectedStr;
     };
     [self.view addSubview:mainVie];
     [mainVie mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -120,10 +131,76 @@
 
 #pragma mark ---- 查询 ----
 - (void)selectClick {
-    TransactionListViewController *vc = [[TransactionListViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self loadTransactionListRequest];
+    
 }
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
 }
+#pragma mark ------------------------------------ 接口 ------------------------------------
+
+#pragma mark ---- pos品牌 ----
+- (void)loadPosBrandRequest {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/posBrand/list" params:nil cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSArray *array = result[@"data"][@"rows"];
+                    if (array.count > 0) {
+                        [self.brandDataArray addObjectsFromArray:[PosBrandModel mj_objectArrayWithKeyValuesArray:array]];
+                        NSMutableArray *tempArray = [NSMutableArray array];
+                        for (int i = 0; i < self.brandDataArray.count; i++) {
+                            PosBrandModel *model = self.brandDataArray[i];
+                            [tempArray addObject:model.posBrandName];
+                        }
+                        self.mainVie.posBrandNameArr = [tempArray mutableCopy];
+                        
+                    }
+                }
+                
+            }
+            
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
+#pragma mark ---- 交易查询 ----
+- (void)loadTransactionListRequest {
+//   _agentBtn.selected?@"1":@"0"
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/transaction/list" params:@{@"userid":@"1", @"startTime":defaultObject(self.datePickView.datePickerStrA, @""), @"endTime":defaultObject(self.datePickView.datePickerStrB, @""), @"agentName":defaultObject(self.mainVie.name.text, @""), @"agentNo":defaultObject(self.mainVie.account.text, @""), @"posSnNo":defaultObject(self.mainVie.number.text, @""), @"posBrandNo":defaultObject(self.mainVie.brandLabel.text, @""), @"agentType":@""} cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSArray *array = result[@"data"][@"rows"];
+                    [self.dataArray addObjectsFromArray:[TransactionListModel mj_objectArrayWithKeyValuesArray:array]];
+                    
+                    TransactionListViewController *vc = [[TransactionListViewController alloc] init];
+                    vc.dataArray = [self.dataArray mutableCopy];
+                    [self.navigationController pushViewController:vc animated:YES];
+                    
+                }
+            }
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

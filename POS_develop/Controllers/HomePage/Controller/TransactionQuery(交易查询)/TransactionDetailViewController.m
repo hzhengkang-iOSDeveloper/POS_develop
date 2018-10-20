@@ -8,9 +8,12 @@
 
 #import "TransactionDetailViewController.h"
 #import "TransactionDetailCell.h"
+#import "TransactionListModel.h"
 
 @interface TransactionDetailViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *transactionDetailTableView;
+@property (nonatomic, strong) NSMutableArray *dataArray;
+
 
 @end
 
@@ -18,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.dataArray = [NSMutableArray array];
     [self createTableView];
 }
 
@@ -39,7 +43,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 10;
+    return self.dataArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -65,4 +69,48 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return FITiPhone6(50);
 }
+
+#pragma mark ------------------------------------ 接口 ------------------------------------
+
+#pragma mark ---- 交易查询详情 ----
+- (void)loadPosBrandRequest {
+    [[HPDConnect connect] PostNetRequestMethod:[NSString stringWithFormat:@"%@%@", @"api/trans/transaction/get/", self.myID] params:nil cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                
+                
+            }
+            
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -13,7 +13,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *name;
 @property (weak, nonatomic) IBOutlet UITextField *number;
 @property (weak, nonatomic) IBOutlet UITextField *account;
-@property (weak, nonatomic) IBOutlet UILabel *brandLabel;
 @property (weak, nonatomic) IBOutlet UILabel *conditionLabel;
-@property (nonatomic, copy) void(^brandSelectBlock)(void);
+@property (weak, nonatomic) IBOutlet UILabel *brandLabel;
+
+@property (nonatomic, strong) NSMutableArray *posBrandNameArr;
+@property (nonatomic, copy) void (^brandBlock)(NSString *selectedStr);//机器品牌
+
 @end

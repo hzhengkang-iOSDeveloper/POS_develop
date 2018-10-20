@@ -83,11 +83,16 @@
 -(void)loadMessageListRequest {
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/message/list" params:@{@"tbMsgCateId":self.tbMsgCateId} cookie:nil result:^(bool success, id result) {
         if (success) {
-            NSArray *array = result[@"data"][@"rows"];
-            if (array.count > 0) {
-                [self.dataArray addObjectsFromArray:[MessageListModel mj_objectArrayWithKeyValuesArray:array]];
-                
-                [self.myTableView reloadData];
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSArray *array = result[@"data"][@"rows"];
+                    if (array.count > 0) {
+                        [self.dataArray addObjectsFromArray:[MessageListModel mj_objectArrayWithKeyValuesArray:array]];
+                        
+                        [self.myTableView reloadData];
+                    }
+                    
+                }
             }
             
         }

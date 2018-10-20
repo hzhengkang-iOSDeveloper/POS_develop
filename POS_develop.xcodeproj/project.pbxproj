@@ -11,6 +11,9 @@
 		251A4103214FF45E00AC2C81 /* WithdrawCashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 251A4102214FF45E00AC2C81 /* WithdrawCashViewController.m */; };
 		2520A68E214CE38900D48B26 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2520A68D214CE38900D48B26 /* SettingViewController.m */; };
 		2521FF4B2179F08100B02F7F /* PackageChargeListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2521FF4A2179F08100B02F7F /* PackageChargeListModel.m */; };
+		2526315D217AD34000FD2B2E /* PosBrandModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2526315C217AD34000FD2B2E /* PosBrandModel.m */; };
+		25263160217AD9F400FD2B2E /* TransactionListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2526315F217AD9F400FD2B2E /* TransactionListModel.m */; };
+		25263164217AE98200FD2B2E /* ShareBenefitListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 25263163217AE98200FD2B2E /* ShareBenefitListModel.m */; };
 		253647D4214E030D0094576C /* UpdatePhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 253647D3214E030D0094576C /* UpdatePhoneViewController.m */; };
 		253647D7214E053C0094576C /* UpdatePhoneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 253647D6214E053C0094576C /* UpdatePhoneTableViewCell.m */; };
 		253647DA214E05BC0094576C /* SettingNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 253647D9214E05BC0094576C /* SettingNameViewController.m */; };
@@ -305,6 +308,12 @@
 		2520A68D214CE38900D48B26 /* SettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		2521FF492179F08100B02F7F /* PackageChargeListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PackageChargeListModel.h; sourceTree = "<group>"; };
 		2521FF4A2179F08100B02F7F /* PackageChargeListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PackageChargeListModel.m; sourceTree = "<group>"; };
+		2526315B217AD34000FD2B2E /* PosBrandModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PosBrandModel.h; sourceTree = "<group>"; };
+		2526315C217AD34000FD2B2E /* PosBrandModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PosBrandModel.m; sourceTree = "<group>"; };
+		2526315E217AD9F400FD2B2E /* TransactionListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionListModel.h; sourceTree = "<group>"; };
+		2526315F217AD9F400FD2B2E /* TransactionListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionListModel.m; sourceTree = "<group>"; };
+		25263162217AE98200FD2B2E /* ShareBenefitListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareBenefitListModel.h; sourceTree = "<group>"; };
+		25263163217AE98200FD2B2E /* ShareBenefitListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareBenefitListModel.m; sourceTree = "<group>"; };
 		253647D2214E030D0094576C /* UpdatePhoneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdatePhoneViewController.h; sourceTree = "<group>"; };
 		253647D3214E030D0094576C /* UpdatePhoneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpdatePhoneViewController.m; sourceTree = "<group>"; };
 		253647D5214E053C0094576C /* UpdatePhoneTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdatePhoneTableViewCell.h; sourceTree = "<group>"; };
@@ -883,6 +892,26 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		2526315A217AD32B00FD2B2E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2526315B217AD34000FD2B2E /* PosBrandModel.h */,
+				2526315C217AD34000FD2B2E /* PosBrandModel.m */,
+				2526315E217AD9F400FD2B2E /* TransactionListModel.h */,
+				2526315F217AD9F400FD2B2E /* TransactionListModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		25263161217AE96900FD2B2E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				25263162217AE98200FD2B2E /* ShareBenefitListModel.h */,
+				25263163217AE98200FD2B2E /* ShareBenefitListModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		2546B20421787A7E001CFE0D /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -1454,6 +1483,7 @@
 		786AD0E2215A2C6C005D7363 /* SeparateQuery(分润查询) */ = {
 			isa = PBXGroup;
 			children = (
+				25263161217AE96900FD2B2E /* Model */,
 				786AD0F6215A3881005D7363 /* Cell */,
 				786AD0F2215A3067005D7363 /* View */,
 				259646E12158DFAE00E516BF /* SeparateQueryViewController.h */,
@@ -1509,6 +1539,7 @@
 		786AD0FB215A3B2E005D7363 /* TransactionQuery(交易查询) */ = {
 			isa = PBXGroup;
 			children = (
+				2526315A217AD32B00FD2B2E /* Model */,
 				786AD0FD215A3B69005D7363 /* Cell */,
 				786AD0FC215A3B56005D7363 /* View */,
 				787FFC9621522DC400318BBC /* TransactionListViewController.h */,
@@ -2566,6 +2597,7 @@
 				50A89A8D216B51B300E68BEB /* StatisticAnalysisViewController.m in Sources */,
 				7813B809216E03D80086CE68 /* HtmlGenerailzeCell.m in Sources */,
 				50B0607C2153372C00B7B411 /* SLRefreshHeader.m in Sources */,
+				2526315D217AD34000FD2B2E /* PosBrandModel.m in Sources */,
 				253647DA214E05BC0094576C /* SettingNameViewController.m in Sources */,
 				7888F34E2147C32C00AAC8B0 /* GTMNSString+HTML.m in Sources */,
 				50BD2ABA2162698C008D201B /* SureBindViewController.m in Sources */,
@@ -2631,11 +2663,13 @@
 				50A89AF5216B653200E68BEB /* XPointDetect.m in Sources */,
 				259646E32158DFAE00E516BF /* SeparateQueryViewController.m in Sources */,
 				786AD100215A3BA8005D7363 /* ActivationMoneyViewController.m in Sources */,
+				25263164217AE98200FD2B2E /* ShareBenefitListModel.m in Sources */,
 				50B1362B216984E5009C435C /* DelegateManagerResultViewController.m in Sources */,
 				78D1F0B7216B31B700A98425 /* TerminalSelectResultViewController.m in Sources */,
 				50B060822153A0DC00B7B411 /* PD_BillSkuHeaderView.m in Sources */,
 				505B6F6B216D98F9000D49B2 /* NullViewController.m in Sources */,
 				5067AB96215F8518005A1FD7 /* ActivationMoneyRootViewController.m in Sources */,
+				25263160217AD9F400FD2B2E /* TransactionListModel.m in Sources */,
 				7871669B214911BC00452C51 /* TBCityIconInfo.m in Sources */,
 				786AD0F9215A3893005D7363 /* SeparateQueryCell.m in Sources */,
 				7888F3562147C32C00AAC8B0 /* PowerfulBannerView.m in Sources */,

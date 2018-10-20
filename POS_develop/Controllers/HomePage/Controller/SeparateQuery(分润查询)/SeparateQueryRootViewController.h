@@ -11,7 +11,13 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SeparateQueryRootViewController : BaseSonViewController
+@property (nonatomic, copy) NSString *startTime;
+@property (nonatomic, copy) NSString *endTime;
+@property (nonatomic, copy) NSString *agentName;
+@property (nonatomic, copy) NSString *agentNo;
+@property (nonatomic, copy) NSString *agentType;
 
+- (void)loadShareBenefitListRequest:(NSString *)orderBy;
 @end
 
 NS_ASSUME_NONNULL_END

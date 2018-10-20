@@ -9,6 +9,7 @@
 #import "TransactionListViewController.h"
 #import "TransactionListCell.h"
 #import "TransactionDetailViewController.h"
+#import "TransactionListModel.h"
 
 @interface TransactionListViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *transactionListTableView;
@@ -19,18 +20,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItemTitle = @"交易流水";
-    
     [self createTableView];
 }
 
 - (void)createTableView {
-    _transactionListTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - TabbarHeight) style:UITableViewStylePlain];
+    _transactionListTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     _transactionListTableView.backgroundColor = WhiteColor;
     _transactionListTableView.delegate = self;
     _transactionListTableView.dataSource = self;
     _transactionListTableView.showsVerticalScrollIndicator = NO;
-    _transactionListTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    _transactionListTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_transactionListTableView];
+    [_transactionListTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.bottom.offset(0);
+    }];
 }
 
 #pragma mark - UITableViewDataSource
@@ -41,18 +44,18 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 10;
+    return self.dataArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     TransactionListCell *cell = [TransactionListCell cellWithTableView:tableView];
-    cell.nameLabel.text = @"个体户-陈丽娜";
-    cell.timeLabel.text = @"2018/1/7-2018/1/18";
-    cell.amountLabel.text = @"+3000元";
-    cell.snLabel.text = @"SN:7300000000";
+    TransactionListModel *model = self.dataArray[indexPath.row];
+    cell.model = model;
+
     cell.seeDetailBlock = ^{
         TransactionDetailViewController *vc = [[TransactionDetailViewController alloc] init];
+        vc.myID = model.ID;
         [self.navigationController pushViewController:vc animated:YES];
     };
     

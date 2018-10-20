@@ -11,10 +11,14 @@
 #import "DatePickerView.h"
 #import "SeparateQueryMainView.h"
 #import "SeparateQueryDetailViewController.h"
+
+
 @interface SeparateQueryViewController ()
 @property (nonatomic, strong) UIButton *agentBtn;
 @property (nonatomic, strong) UIButton *personBtn;
 @property (nonatomic, strong) UIButton *selectBtn;
+@property (nonatomic, strong) DatePickerView *datePickView;
+@property (nonatomic, strong) SeparateQueryMainView *mainView;
 @end
 
 @implementation SeparateQueryViewController
@@ -22,6 +26,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"分润查询";
+    
+    
     [self initUI];
 }
 
@@ -40,6 +46,7 @@
         make.height.mas_offset(AD_HEIGHT(31));
     }];
     DatePickerView *datePickView = [[DatePickerView alloc] init];
+    self.datePickView = datePickView;
     [self.view addSubview:datePickView];
     [datePickView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(0);
@@ -47,7 +54,7 @@
         make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(50)));
     }];
     SeparateQueryMainView *mainView = [[[NSBundle mainBundle] loadNibNamed:@"SeparateQueryMainView" owner:self options:nil] lastObject];
-   
+    self.mainView = mainView;
     [self.view addSubview:mainView];
     [mainView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(datePickView.mas_bottom).offset(AD_HEIGHT(8));
@@ -131,9 +138,32 @@
 #pragma mark ---- 查询 ----
 - (void)selectClick {
     SeparateQueryDetailViewController *vc = [[SeparateQueryDetailViewController alloc] init];
+    vc.startTime = self.datePickView.datePickerStrA;
+    vc.endTime = self.datePickView.datePickerStrB;
+    vc.agentName = self.mainView.name.text;
+    vc.agentNo = self.mainView.account.text;
+    vc.agentType = _agentBtn.selected?@"1":@"0";
+    
     [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
 }
+
+
+
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
