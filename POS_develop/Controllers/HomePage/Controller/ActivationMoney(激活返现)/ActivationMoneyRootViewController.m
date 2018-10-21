@@ -8,16 +8,19 @@
 
 #import "ActivationMoneyRootViewController.h"
 #import "ActivationMoneyCell.h"
+#import "ActivationRebateListModel.h"
+
 @interface ActivationMoneyRootViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, weak) UITableView *myTable;
-
+@property (nonatomic, copy) NSString *index;
+@property (nonatomic, strong) NSMutableArray *dataArray;
 @end
 
 @implementation ActivationMoneyRootViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.dataArray = [NSMutableArray array];
     [self creatTableView];
 }
 
@@ -33,36 +36,10 @@
     
     MJWeakSelf;
     myTable.mj_header = [SLRefreshHeader headerWithRefreshingBlock:^{
-        //        weakSelf.orderArr = nil;
-        //        weakSelf.orderArr = [NSMutableArray array];
-        //        weakSelf.orderModelArr = nil;
-        //        weakSelf.orderModelArr = [NSMutableArray array];
-        //        weakSelf.loadDataIndex = 1;
-        //
-        //        [weakSelf loadDataWithStatus:self.status];
+        [weakSelf loadActivationRebateListRequest:weakSelf.index];
     }];
     
-    myTable.mj_footer = [SLRefreshFooter footerWithRefreshingBlock:^{
-        //        weakSelf.loadDataIndex += 1;
-        //
-        //        if (weakSelf.count%10 >0) {
-        //            if (weakSelf.loadDataIndex <= weakSelf.count/10 + 1) {
-        //
-        //                [weakSelf loadDataWithStatus:weakSelf.status];
-        //            }else{
-        //
-        //                [orderTableView.mj_footer endRefreshingWithNoMoreData];
-        //            }
-        //        }else{
-        //
-        //            if (weakSelf.loadDataIndex <= weakSelf.count/10) {
-        //
-        //                [weakSelf loadDataWithStatus:weakSelf.status];
-        //            }else{
-        //                [orderTableView.mj_footer endRefreshingWithNoMoreData];
-        //            }
-        //        }
-    }];
+    
     [_myTable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.offset(0);
         make.bottom.offset(0);
@@ -71,11 +48,13 @@
 }
 #pragma mark -- tableView代理数据源方法
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.dataArray.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     ActivationMoneyCell *cell = [ActivationMoneyCell cellWithTableView:tableView];
+    ActivationRebateListModel *model = self.dataArray[indexPath.row];
+    cell.model = model;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     
@@ -104,4 +83,45 @@
     return [UIView new];
 }
 
+#pragma mark ------------------------------------ 接口 ------------------------------------
+
+#pragma mark ---- 激活返现查询 ----
+- (void)loadActivationRebateListRequest:(NSString *)orderBy {
+    
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/activationRebate/list" params:@{@"userid":@"1",@"startTime":defaultObject(self.startTime, @""), @"endTime":defaultObject(self.endTime, @""), @"agentType":self.agentType, @"orderBy":orderBy} cookie:nil result:^(bool success, id result) {
+        [self.myTable.mj_header endRefreshing];
+        self.index = orderBy;
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSArray *array = result[@"data"][@"rows"];
+                    if (self.dataArray.count >0) {
+                        [self.dataArray removeAllObjects];
+                    }
+                    [self.dataArray addObjectsFromArray:[ActivationRebateListModel mj_objectArrayWithKeyValuesArray:array]];
+                    
+                    [self.myTable reloadData];
+                }
+            }
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

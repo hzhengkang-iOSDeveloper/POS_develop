@@ -11,7 +11,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ActivationMoneyRootViewController : BaseSonViewController
+@property (nonatomic, copy) NSString *startTime;
+@property (nonatomic, copy) NSString *endTime;
+@property (nonatomic, copy) NSString *agentType;
 
+- (void)loadActivationRebateListRequest:(NSString *)orderBy;
 @end
 
 NS_ASSUME_NONNULL_END

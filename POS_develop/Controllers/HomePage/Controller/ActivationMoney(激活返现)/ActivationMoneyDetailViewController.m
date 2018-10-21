@@ -69,22 +69,11 @@
 
 - (__kindof UIViewController *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index {
     ActivationMoneyRootViewController* controller = [[ActivationMoneyRootViewController alloc]init];
-    //    switch (index) {
-    //        case 0:{
-    //            controller.fileType = ARMFileTypeAll;
-    //        }
-    //            break;
-    //        case 1:{
-    //            controller.fileType = ARMFileTypeAudio;
-    //        }
-    //            break;
-    //        case 2:{
-    //            controller.fileType = ARMFileTypeTxt;
-    //        }
-    //            break;
-    //        default:
-    //            break;
-    //    }
+    controller.startTime = self.startTime;
+    controller.endTime = self.endTime;
+    controller.agentType = self.agentType;
+    
+    [controller loadActivationRebateListRequest:[NSString stringWithFormat:@"%li",(long)index]];
     return controller;
 }
 

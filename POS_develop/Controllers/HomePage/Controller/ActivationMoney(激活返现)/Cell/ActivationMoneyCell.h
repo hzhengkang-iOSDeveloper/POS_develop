@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class ActivationRebateListModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ActivationMoneyCell : UITableViewCell
+
+@property (nonatomic, strong) ActivationRebateListModel *model;
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 @end
 

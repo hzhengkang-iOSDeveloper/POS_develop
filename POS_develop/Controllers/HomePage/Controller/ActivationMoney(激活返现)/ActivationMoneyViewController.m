@@ -14,6 +14,8 @@
 @property (nonatomic, strong) UIButton *agentBtn;
 @property (nonatomic, strong) UIButton *personBtn;
 @property (nonatomic, strong) UIButton *selectBtn;
+@property (nonatomic, strong) DatePickerView *datePickView;
+
 @end
 
 @implementation ActivationMoneyViewController
@@ -47,6 +49,7 @@
         make.height.mas_offset(AD_HEIGHT(13));
     }];
     DatePickerView *datePickView = [[DatePickerView alloc] init];
+    self.datePickView = datePickView;
     [bgView addSubview:datePickView];
     [datePickView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(0);
@@ -130,6 +133,9 @@
 #pragma mark ---- 查询 ----
 - (void)selectClick {
     ActivationMoneyDetailViewController *vc = [[ActivationMoneyDetailViewController alloc] init];
+    vc.startTime = self.datePickView.datePickerStrA;
+    vc.endTime = self.datePickView.datePickerStrB;
+    vc.agentType = _agentBtn.selected?@"1":@"0";
     [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -137,3 +143,24 @@
 }
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

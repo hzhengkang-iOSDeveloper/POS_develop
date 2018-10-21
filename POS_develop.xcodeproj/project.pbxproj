@@ -14,6 +14,7 @@
 		2526315D217AD34000FD2B2E /* PosBrandModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2526315C217AD34000FD2B2E /* PosBrandModel.m */; };
 		25263160217AD9F400FD2B2E /* TransactionListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2526315F217AD9F400FD2B2E /* TransactionListModel.m */; };
 		25263164217AE98200FD2B2E /* ShareBenefitListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 25263163217AE98200FD2B2E /* ShareBenefitListModel.m */; };
+		25263168217B751200FD2B2E /* ActivationRebateListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 25263167217B751200FD2B2E /* ActivationRebateListModel.m */; };
 		253647D4214E030D0094576C /* UpdatePhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 253647D3214E030D0094576C /* UpdatePhoneViewController.m */; };
 		253647D7214E053C0094576C /* UpdatePhoneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 253647D6214E053C0094576C /* UpdatePhoneTableViewCell.m */; };
 		253647DA214E05BC0094576C /* SettingNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 253647D9214E05BC0094576C /* SettingNameViewController.m */; };
@@ -314,6 +315,8 @@
 		2526315F217AD9F400FD2B2E /* TransactionListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionListModel.m; sourceTree = "<group>"; };
 		25263162217AE98200FD2B2E /* ShareBenefitListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareBenefitListModel.h; sourceTree = "<group>"; };
 		25263163217AE98200FD2B2E /* ShareBenefitListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareBenefitListModel.m; sourceTree = "<group>"; };
+		25263166217B751200FD2B2E /* ActivationRebateListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActivationRebateListModel.h; sourceTree = "<group>"; };
+		25263167217B751200FD2B2E /* ActivationRebateListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActivationRebateListModel.m; sourceTree = "<group>"; };
 		253647D2214E030D0094576C /* UpdatePhoneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdatePhoneViewController.h; sourceTree = "<group>"; };
 		253647D3214E030D0094576C /* UpdatePhoneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpdatePhoneViewController.m; sourceTree = "<group>"; };
 		253647D5214E053C0094576C /* UpdatePhoneTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdatePhoneTableViewCell.h; sourceTree = "<group>"; };
@@ -908,6 +911,15 @@
 			children = (
 				25263162217AE98200FD2B2E /* ShareBenefitListModel.h */,
 				25263163217AE98200FD2B2E /* ShareBenefitListModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		25263165217B74FA00FD2B2E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				25263166217B751200FD2B2E /* ActivationRebateListModel.h */,
+				25263167217B751200FD2B2E /* ActivationRebateListModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1522,6 +1534,7 @@
 		786AD0FA215A3AEF005D7363 /* ActivationMoney(激活返现) */ = {
 			isa = PBXGroup;
 			children = (
+				25263165217B74FA00FD2B2E /* Model */,
 				5067AB97215F8852005A1FD7 /* Cell */,
 				786AD104215A4467005D7363 /* View */,
 				786AD0FE215A3BA8005D7363 /* ActivationMoneyViewController.h */,
@@ -2698,6 +2711,7 @@
 				7888F3C62147C33900AAC8B0 /* CF_LeftNavigationBar_BackBtn.m in Sources */,
 				505B6F62216D8D5C000D49B2 /* POSRootViewController.m in Sources */,
 				253647D4214E030D0094576C /* UpdatePhoneViewController.m in Sources */,
+				25263168217B751200FD2B2E /* ActivationRebateListModel.m in Sources */,
 				505B6F80216D99FC000D49B2 /* MessageNoticeViewController.m in Sources */,
 				50A89B09216B653200E68BEB /* XStackAreaLineContainerView.m in Sources */,
 				7888F3BD2147C33900AAC8B0 /* ZJPPTViewOC.m in Sources */,

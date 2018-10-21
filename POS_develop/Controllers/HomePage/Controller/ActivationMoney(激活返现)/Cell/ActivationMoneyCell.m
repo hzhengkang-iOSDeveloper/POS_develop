@@ -7,6 +7,8 @@
 //
 
 #import "ActivationMoneyCell.h"
+#import "ActivationRebateListModel.h"
+
 @interface ActivationMoneyCell ()
 //激活数量
 @property (nonatomic, weak) UILabel  *activationCountLabel;
@@ -57,7 +59,7 @@
         make.left.equalTo(activationImage.mas_right).offset(AD_HEIGHT(10));
         make.top.equalTo(activationImage.mas_top);
         
-        view.text = @"激活数量:98";
+//        view.text = @"激活数量:98";
         view.textAlignment = NSTextAlignmentLeft;
     }];
     self.activationCountLabel = activationCountLabel;
@@ -68,7 +70,7 @@
     UILabel   *returnMoneyLabel = [UILabel getLabelWithFont:F12 textColor:C989898 superView:self.contentView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.activationCountLabel.mas_left);
         make.bottom.offset(-AD_HEIGHT(22));
-        view.text = @"返现金额:4029.12";
+//        view.text = @"返现金额:4029.12";
         view.textAlignment = NSTextAlignmentLeft;
     }];
     self.returnMoneyLabel = returnMoneyLabel;
@@ -88,7 +90,7 @@
         make.top.offset(AD_HEIGHT(20));
         
         view.textAlignment = NSTextAlignmentRight;
-        view.text = @"高先生";
+//        view.text = @"高先生";
     }];
     self.nameLabel = nameLabel;
     
@@ -99,7 +101,7 @@
         make.bottom.offset(-AD_HEIGHT(22));
         
         view.textAlignment = NSTextAlignmentRight;
-        view.text = @"交易日期2018/09/21-2019/01/23";
+//        view.text = @"交易日期2018/09/21-2019/01/23";
     }];
     self.dateLabel = dateLabel;
     
@@ -111,4 +113,31 @@
     }];
 }
 
+- (void)setModel:(ActivationRebateListModel *)model {
+    if (model) {
+        _model = model;
+        self.activationCountLabel.text = [NSString stringWithFormat:@"激活数量:%@", model.arAmount];
+        self.returnMoneyLabel.text = [NSString stringWithFormat:@"返现金额:%@元", model.arAmount];
+        self.nameLabel.text = model.agentName;
+        self.dateLabel.text = [NSString stringWithFormat:@"交易日期%@", model.createtime];
+    }
+}
+
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

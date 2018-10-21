@@ -12,7 +12,7 @@
 
 @interface TransactionDetailViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *transactionDetailTableView;
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSDictionary *dataDict;
 
 
 @end
@@ -21,18 +21,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.dataArray = [NSMutableArray array];
+    self.dataDict = [NSDictionary dictionary];
     [self createTableView];
+    [self loadPosBrandRequest];
 }
 
 - (void)createTableView {
-    _transactionDetailTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - TabbarHeight) style:UITableViewStylePlain];
+    _transactionDetailTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     _transactionDetailTableView.backgroundColor = WhiteColor;
     _transactionDetailTableView.delegate = self;
     _transactionDetailTableView.dataSource = self;
     _transactionDetailTableView.showsVerticalScrollIndicator = NO;
-    _transactionDetailTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    _transactionDetailTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_transactionDetailTableView];
+    [_transactionDetailTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.bottom.offset(0);
+    }];
 }
 
 #pragma mark - UITableViewDataSource
@@ -43,16 +47,20 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return self.dataArray.count;
+    return 1;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     TransactionDetailCell *cell = [TransactionDetailCell cellWithTableView:tableView];
-    cell.titleLabel.text = @"实时收款";
-    cell.timeLabel.text = @"2018/1/7 14:00:10";
-    cell.amountLabel.text = @"+166元";
-    cell.statusLabel.text = @"成功";
+    cell.titleLabel.text = [self.dataDict objectForKey:@"agentName"];
+    cell.timeLabel.text = [self.dataDict objectForKey:@"transTime"];
+    if ([[self.dataDict objectForKey:@"transAmount"] intValue] > 0) {
+        cell.amountLabel.text = [NSString stringWithFormat:@"+%@",[self.dataDict objectForKey:@"transAmount"]];
+    }else {
+        cell.amountLabel.text = [self.dataDict objectForKey:@"transAmount"];
+    }
+    cell.statusLabel.text = [self.dataDict objectForKey:@"transResult"];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
@@ -77,7 +85,9 @@
     [[HPDConnect connect] PostNetRequestMethod:[NSString stringWithFormat:@"%@%@", @"api/trans/transaction/get/", self.myID] params:nil cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                
+                self.dataDict = result[@"data"];
+                self.navigationItemTitle = [self.dataDict objectForKey:@"agentName"];
+                [self.transactionDetailTableView reloadData];
                 
             }
             
