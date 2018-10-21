@@ -9,9 +9,16 @@
 #import "TerminalSelectViewController.h"
 #import "TerminalSelectMainView.h"
 #import "TerminalSelectResultViewController.h"
+#import "PosBrandModel.h"
+#import "PosTermTypeListModel.h"
+#import "PosTermModelListModel.h"
 
 @interface TerminalSelectViewController ()
 @property (nonatomic, strong) UIButton *selectBtn;
+@property (nonatomic, strong) NSMutableArray *brandDataArray;
+@property (nonatomic, strong) NSMutableArray *termTypeDataArray;
+@property (nonatomic, strong) NSMutableArray *termModelDataArray;
+@property (nonatomic, strong) TerminalSelectMainView *mainView;
 @end
 
 @implementation TerminalSelectViewController
@@ -19,8 +26,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItemTitle = @"终端查询";
+    self.brandDataArray = [NSMutableArray array];
+    self.termTypeDataArray = [NSMutableArray array];
+    self.termModelDataArray = [NSMutableArray array];
     self.view.backgroundColor = CF6F6F6;
     [self initUI];
+    [self loadPosBrandRequest];
 }
 
 
@@ -31,6 +42,7 @@
     
     
     TerminalSelectMainView *mainView = [[[NSBundle mainBundle] loadNibNamed:@"TerminalSelectMainView" owner:self options:nil] lastObject];
+    self.mainView = mainView;
     __weak typeof(mainView) wkmainView = mainView;
     mainView.brandBlock = ^(NSString * _Nonnull selectedStr) {//机器品牌
         wkmainView.brandNameLabel.text = selectedStr;
@@ -47,24 +59,7 @@
     mainView.frame = CGRectMake(0, 0, ScreenWidth, 520);
     mainView.backgroundColor = WhiteColor;
     [mainScrollView addSubview:mainView];
-//    [mainView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.left.offset(0);
-//        make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(520)));
-////        make.width.mas_equalTo(ScreenWidth);
-//    }];
-    
-//    UIButton *selectBtn = [UIButton getButtonWithImageName:@"" titleText:@"查询" superView:mainScrollView masonrySet:^(UIButton * _Nonnull btn, MASConstraintMaker * _Nonnull make) {
-//        make.left.offset(FITiPhone6(15));
-//        make.top.equalTo(mainView.mas_bottom).offset(FITiPhone6(23));
-//        make.size.mas_offset(CGSizeMake(ScreenWidth - FITiPhone6(30), FITiPhone6(46)));
-//
-//        [btn setTitleColor:WhiteColor forState:normal];
-//        btn.titleLabel.font = F15;
-//        [btn setBackgroundColor:C1E95F9];
-//        btn.layer.masksToBounds = YES;
-//        btn.layer.cornerRadius = 3.f;
-//        [btn addTarget:self action:@selector(clickSelectBtn) forControlEvents:UIControlEventTouchUpInside];
-//    }];
+
     UIButton *selectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     selectBtn.frame = CGRectMake(AD_HEIGHT(15), CGRectGetMaxY(mainView.frame)+AD_HEIGHT(23), ScreenWidth-AD_HEIGHT(30), AD_HEIGHT(46));
     [selectBtn setTitle:@"查询" forState:normal];
@@ -82,8 +77,149 @@
 
 #pragma mark ---- 查询 ----
 - (void)clickSelectBtn {
-    TerminalSelectResultViewController *vc = [[TerminalSelectResultViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self loadPosListRequest];
+   
 }
 
+
+#pragma mark ------------------------------------ 接口 ------------------------------------
+
+#pragma mark ---- pos品牌 ----
+- (void)loadPosBrandRequest {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/posBrand/list" params:nil cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSArray *array = result[@"data"][@"rows"];
+                    if (array.count > 0) {
+                        [self.brandDataArray addObjectsFromArray:[PosBrandModel mj_objectArrayWithKeyValuesArray:array]];
+                        NSMutableArray *tempArray = [NSMutableArray array];
+                        for (int i = 0; i < self.brandDataArray.count; i++) {
+                            PosBrandModel *model = self.brandDataArray[i];
+                            [tempArray addObject:model.posBrandName];
+                        }
+                        self.mainView.posBrandNameArr = [tempArray mutableCopy];
+                        
+                    }
+                }
+                
+            }
+            
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/posTermType/list" params:nil cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSArray *array = result[@"data"][@"rows"];
+                    if (array.count > 0) {
+                        [self.termTypeDataArray addObjectsFromArray:[PosTermTypeListModel mj_objectArrayWithKeyValuesArray:array]];
+                        NSMutableArray *tempArray = [NSMutableArray array];
+                        for (int i = 0; i < self.termTypeDataArray.count; i++) {
+                            PosTermTypeListModel *model = self.termTypeDataArray[i];
+                            [tempArray addObject:model.posTermTypeName];
+                        }
+                        self.mainView.posTermTypeNameArr = [tempArray mutableCopy];
+
+                    }
+                }
+
+            }
+
+
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/posTermModel/list" params:nil cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSArray *array = result[@"data"][@"rows"];
+                    if (array.count > 0) {
+                        [self.termModelDataArray addObjectsFromArray:[PosTermModelListModel mj_objectArrayWithKeyValuesArray:array]];
+                        NSMutableArray *tempArray = [NSMutableArray array];
+                        for (int i = 0; i < self.termModelDataArray.count; i++) {
+                            PosTermModelListModel *model = self.termModelDataArray[i];
+                            [tempArray addObject:model.posModelName];
+                        }
+                        self.mainView.posTermModelNameArr = [tempArray mutableCopy];
+                        
+                    }
+                }
+                
+            }
+            
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
+
+
+#pragma mark ---- 终端查询 ----
+- (void)loadPosListRequest {
+    NSString *activationType;
+    if ([self.mainView.isActivationNameLabel.text isEqualToString:@"是"]) {
+        activationType = @"1";
+    }else if ([self.mainView.isActivationNameLabel.text isEqualToString:@"否"]) {
+        activationType = @"0";
+    }else {
+        activationType = @"3";
+    }
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/pos/list" params:@{@"userid":@"1", @"posBrandName":self.mainView.brandNameLabel.text, @"posTermType":self.mainView.typeNameLabel.text, @"posTermModel":self.mainView.modelNameLabel.text, @"agentName":self.mainView.delegateNameTF.text, @"agentNo":self.mainView.platformAccountTF.text, @"startPosSnNo":self.mainView.snStartTF.text, @"endPosSnNo":self.mainView.snEndTF.text, @"activationType":activationType, @"startTime":self.mainView.activationStartTF.text, @"endTime":self.mainView.activationEndTF.text} cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSArray *array = result[@"data"][@"rows"];
+//                    if (array.count > 0) {
+//                        [self.brandDataArray addObjectsFromArray:[PosBrandModel mj_objectArrayWithKeyValuesArray:array]];
+//                        NSMutableArray *tempArray = [NSMutableArray array];
+//                        for (int i = 0; i < self.brandDataArray.count; i++) {
+//                            PosBrandModel *model = self.brandDataArray[i];
+//                            [tempArray addObject:model.posBrandName];
+//                        }
+//                        self.mainView.posBrandNameArr = [tempArray mutableCopy];
+//
+//                    }
+                    
+                    
+                    
+                    TerminalSelectResultViewController *vc = [[TerminalSelectResultViewController alloc] init];
+                    [self.navigationController pushViewController:vc animated:YES];
+                    
+                }
+                
+            }
+            
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+    
+}
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

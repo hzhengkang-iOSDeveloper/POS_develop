@@ -274,8 +274,8 @@
 #pragma mark ---- 机器品牌 ----
 - (IBAction)brandClick:(id)sender {
     NSString *titleStr = @"请选择";
-    NSMutableArray *nameArray = [NSMutableArray arrayWithObjects:@"不限",@"新国都",@"华智慧",@"新大陆", nil];
-    SheetPickerView *pickerView = [SheetPickerView SheetStringPickerWithTitle:nameArray andHeadTitle:titleStr withIsDatePicker:NO Andcall:^(SheetPickerView *pickerView, NSString *choiceString) {
+//    NSMutableArray *nameArray = [NSMutableArray arrayWithObjects:@"不限",@"新国都",@"华智慧",@"新大陆", nil];
+    SheetPickerView *pickerView = [SheetPickerView SheetStringPickerWithTitle:self.posBrandNameArr andHeadTitle:titleStr withIsDatePicker:NO Andcall:^(SheetPickerView *pickerView, NSString *choiceString) {
         [pickerView dismissPicker];
         if (self.brandBlock) {
             self.brandBlock(choiceString);
@@ -286,8 +286,8 @@
 #pragma mark ---- 机器类型 ----
 - (IBAction)typeClick:(id)sender {
     NSString *titleStr = @"请选择";
-    NSMutableArray *nameArray = [NSMutableArray arrayWithObjects:@"不限",@"G3",@"K320",@"K379", nil];
-    SheetPickerView *pickerView = [SheetPickerView SheetStringPickerWithTitle:nameArray andHeadTitle:titleStr withIsDatePicker:NO Andcall:^(SheetPickerView *pickerView, NSString *choiceString) {
+//    NSMutableArray *nameArray = [NSMutableArray arrayWithObjects:@"不限",@"G3",@"K320",@"K379", nil];
+    SheetPickerView *pickerView = [SheetPickerView SheetStringPickerWithTitle:self.posTermTypeNameArr andHeadTitle:titleStr withIsDatePicker:NO Andcall:^(SheetPickerView *pickerView, NSString *choiceString) {
         [pickerView dismissPicker];
         if (self.typeBlock) {
             self.typeBlock(choiceString);
@@ -298,8 +298,8 @@
 #pragma mark ---- 机器型号 ----
 - (IBAction)modelClick:(id)sender {
     NSString *titleStr = @"请选择";
-    NSMutableArray *nameArray = [NSMutableArray arrayWithObjects:@"不限",@"M1",@"M2",@"M3", nil];
-    SheetPickerView *pickerView = [SheetPickerView SheetStringPickerWithTitle:nameArray andHeadTitle:titleStr withIsDatePicker:NO Andcall:^(SheetPickerView *pickerView, NSString *choiceString) {
+//    NSMutableArray *nameArray = [NSMutableArray arrayWithObjects:@"不限",@"M1",@"M2",@"M3", nil];
+    SheetPickerView *pickerView = [SheetPickerView SheetStringPickerWithTitle:self.posTermModelNameArr andHeadTitle:titleStr withIsDatePicker:NO Andcall:^(SheetPickerView *pickerView, NSString *choiceString) {
         [pickerView dismissPicker];
         if (self.modelBlock) {
             self.modelBlock(choiceString);

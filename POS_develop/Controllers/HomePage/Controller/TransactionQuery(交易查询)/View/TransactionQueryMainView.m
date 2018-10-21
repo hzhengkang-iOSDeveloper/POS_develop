@@ -35,14 +35,6 @@
 }
 
 
-//- (void)setPosBrandNameArr:(NSMutableArray *)posBrandNameArr {
-//    if (posBrandNameArr) {
-//        _posBrandNameArr = posBrandNameArr;
-//        
-//        [self layoutSubviews];
-//    }
-//}
-
 @end
 
 

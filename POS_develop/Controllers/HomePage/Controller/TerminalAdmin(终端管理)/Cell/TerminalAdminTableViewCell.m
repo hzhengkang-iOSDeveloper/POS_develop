@@ -7,7 +7,7 @@
 //
 
 #import "TerminalAdminTableViewCell.h"
-
+#import "AgentListModel.h"
 @implementation TerminalAdminTableViewCell
 + (instancetype)cellWithTableView:(UITableView *)tableView{
     static NSString *identifier = @"TerminalAdminTableViewCell";
@@ -33,31 +33,58 @@
     [self.selectBtn setImage:[UIImage imageNamed:@"图层4拷贝10"] forState:UIControlStateNormal];
     [self.selectBtn setImage:[UIImage imageNamed:@"推广选中"] forState:UIControlStateSelected];
     self.selectBtn.userInteractionEnabled = NO;
-    [self addSubview:self.selectBtn];
+    [self.contentView addSubview:self.selectBtn];
     [self.selectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(FITiPhone6(15));
+        make.left.equalTo(self).offset(AD_HEIGHT(15));
         make.centerY.equalTo(self.mas_centerY);
-        make.size.mas_offset(CGSizeMake(FITiPhone6(15), FITiPhone6(15)));
+        make.size.mas_offset(CGSizeMake(AD_HEIGHT(15), AD_HEIGHT(15)));
     }];
     self.delegateName = [[UILabel alloc] init];
     self.delegateName.textColor = C000000;
     self.delegateName.font = F13;
     self.delegateName.adjustsFontSizeToFitWidth = YES;
-    [self addSubview:self.delegateName];
+    [self.contentView addSubview:self.delegateName];
     [self.delegateName mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.selectBtn.mas_right).offset(FITiPhone6(14));
-        make.top.equalTo(self).offset(FITiPhone6(12));
+        make.left.equalTo(self.selectBtn.mas_right).offset(AD_HEIGHT(14));
+        make.top.equalTo(self).offset(AD_HEIGHT(12));
     }];
     self.delegateAccount = [[UILabel alloc] init];
     self.delegateAccount.textColor = C000000;
     self.delegateAccount.font = F13;
     self.delegateAccount.adjustsFontSizeToFitWidth = YES;
-    [self addSubview:self.delegateAccount];
+    [self.contentView addSubview:self.delegateAccount];
     [self.delegateAccount mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.delegateName.mas_left);
-        make.bottom.equalTo(self).offset(FITiPhone6(-10));
+        make.bottom.equalTo(self).offset(AD_HEIGHT(-10));
     }];
 
+    [UIView getViewWithColor:CF6F6F6 superView:self.contentView masonrySet:^(UIView *view, MASConstraintMaker *make) {
+        make.left.offset(AD_HEIGHT(15));
+        make.right.bottom.offset(0);
+        make.height.mas_equalTo(AD_HEIGHT(1));
+    }];
 }
 
+- (void)setModel:(AgentListModel *)model {
+    if (model) {
+        _model = model;
+        self.delegateAccount.text = [NSString stringWithFormat:@"代理商账号：%@", model.agentNo];
+        self.delegateName.text = [NSString stringWithFormat:@"代理商名称：%@", model.agentName];
+        
+    }
+}
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
