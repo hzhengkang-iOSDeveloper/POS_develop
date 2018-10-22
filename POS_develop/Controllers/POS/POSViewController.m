@@ -8,6 +8,7 @@
 
 #import "POSViewController.h"
 #import "POSRootViewController.h"
+#import "POS_ShopCarViewController.h"//购物车
 @interface POSViewController ()<WMPageControllerDelegate,WMPageControllerDataSource>
 // 右边按钮array
 @property (nonatomic, strong) NSArray *rightItems;
@@ -75,7 +76,9 @@
 #pragma mark ---- 购物车按钮 ----
 - (void)shopCartBtnClick
 {
-    
+    POS_ShopCarViewController *vc = [[POS_ShopCarViewController alloc]init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark ---- 创建选择状态栏 ----

@@ -35,6 +35,9 @@
 		259646E82158E1FA00E516BF /* SeparateQueryMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 259646E72158E1FA00E516BF /* SeparateQueryMainView.xib */; };
 		25E2A36A214D7831006EB5B5 /* PD_SelectAreaPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E2A369214D7831006EB5B5 /* PD_SelectAreaPickerView.m */; };
 		5009BA7D2176D72600FF1AE9 /* CombinationSetMealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5009BA7C2176D72600FF1AE9 /* CombinationSetMealViewController.m */; };
+		500C2732217C3852008F221A /* POS_ShopCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 500C2731217C3852008F221A /* POS_ShopCarViewController.m */; };
+		500C2736217C6DBD008F221A /* ShopCarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 500C2735217C6DBD008F221A /* ShopCarTableViewCell.m */; };
+		500C2739217C81A1008F221A /* SingleShopCarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 500C2738217C81A1008F221A /* SingleShopCarCell.m */; };
 		50184CD921589E2C00D11AC6 /* UIButton+Style.m in Sources */ = {isa = PBXBuildFile; fileRef = 50184CD821589E2C00D11AC6 /* UIButton+Style.m */; };
 		50184CDC2158BDC400D11AC6 /* TransactionQueryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50184CDB2158BDC400D11AC6 /* TransactionQueryViewController.m */; };
 		50184CE02158C56C00D11AC6 /* DatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50184CDF2158C56C00D11AC6 /* DatePickerView.m */; };
@@ -143,6 +146,9 @@
 		50E0C9AB216F55870079ABF2 /* POS_ShopRecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E0C9AA216F55870079ABF2 /* POS_ShopRecommendCell.m */; };
 		50EEB20C217331B200B41353 /* MyAddressViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EEB20B217331B200B41353 /* MyAddressViewModel.m */; };
 		50EEB20F21737E6F00B41353 /* MyAddressEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EEB20E21737E6F00B41353 /* MyAddressEditViewController.m */; };
+		50F2D7F8217D6EC500749C85 /* ShopCarMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F2D7F7217D6EC500749C85 /* ShopCarMainCell.m */; };
+		50F2D7FB217D7BAE00749C85 /* SingleShopCarMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F2D7FA217D7BAE00749C85 /* SingleShopCarMainCell.m */; };
+		50F2D7FF217DCF1100749C85 /* ShopCarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F2D7FE217DCF1100749C85 /* ShopCarModel.m */; };
 		50F68C3521578C5B00DCFE85 /* XRCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F68C3421578C5B00DCFE85 /* XRCarouselView.m */; };
 		50F68C382158987800DCFE85 /* PD_BillDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F68C372158987800DCFE85 /* PD_BillDetailViewController.m */; };
 		50F68C3E21589BE100DCFE85 /* PD_BillDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F68C3D21589BE100DCFE85 /* PD_BillDetailHeaderView.m */; };
@@ -354,6 +360,12 @@
 		25E2A369214D7831006EB5B5 /* PD_SelectAreaPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_SelectAreaPickerView.m; sourceTree = "<group>"; };
 		5009BA7B2176D72600FF1AE9 /* CombinationSetMealViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CombinationSetMealViewController.h; sourceTree = "<group>"; };
 		5009BA7C2176D72600FF1AE9 /* CombinationSetMealViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CombinationSetMealViewController.m; sourceTree = "<group>"; };
+		500C2730217C3852008F221A /* POS_ShopCarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POS_ShopCarViewController.h; sourceTree = "<group>"; };
+		500C2731217C3852008F221A /* POS_ShopCarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = POS_ShopCarViewController.m; sourceTree = "<group>"; };
+		500C2734217C6DBD008F221A /* ShopCarTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopCarTableViewCell.h; sourceTree = "<group>"; };
+		500C2735217C6DBD008F221A /* ShopCarTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopCarTableViewCell.m; sourceTree = "<group>"; };
+		500C2737217C81A1008F221A /* SingleShopCarCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SingleShopCarCell.h; sourceTree = "<group>"; };
+		500C2738217C81A1008F221A /* SingleShopCarCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SingleShopCarCell.m; sourceTree = "<group>"; };
 		50184CD721589E2C00D11AC6 /* UIButton+Style.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+Style.h"; sourceTree = "<group>"; };
 		50184CD821589E2C00D11AC6 /* UIButton+Style.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Style.m"; sourceTree = "<group>"; };
 		50184CDA2158BDC400D11AC6 /* TransactionQueryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionQueryViewController.h; sourceTree = "<group>"; };
@@ -573,6 +585,12 @@
 		50EEB20B217331B200B41353 /* MyAddressViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyAddressViewModel.m; sourceTree = "<group>"; };
 		50EEB20D21737E6F00B41353 /* MyAddressEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyAddressEditViewController.h; sourceTree = "<group>"; };
 		50EEB20E21737E6F00B41353 /* MyAddressEditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyAddressEditViewController.m; sourceTree = "<group>"; };
+		50F2D7F6217D6EC500749C85 /* ShopCarMainCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopCarMainCell.h; sourceTree = "<group>"; };
+		50F2D7F7217D6EC500749C85 /* ShopCarMainCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopCarMainCell.m; sourceTree = "<group>"; };
+		50F2D7F9217D7BAE00749C85 /* SingleShopCarMainCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SingleShopCarMainCell.h; sourceTree = "<group>"; };
+		50F2D7FA217D7BAE00749C85 /* SingleShopCarMainCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SingleShopCarMainCell.m; sourceTree = "<group>"; };
+		50F2D7FD217DCF1100749C85 /* ShopCarModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopCarModel.h; sourceTree = "<group>"; };
+		50F2D7FE217DCF1100749C85 /* ShopCarModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopCarModel.m; sourceTree = "<group>"; };
 		50F68C3321578C5B00DCFE85 /* XRCarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XRCarouselView.h; sourceTree = "<group>"; };
 		50F68C3421578C5B00DCFE85 /* XRCarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XRCarouselView.m; sourceTree = "<group>"; };
 		50F68C362158987800DCFE85 /* PD_BillDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillDetailViewController.h; sourceTree = "<group>"; };
@@ -940,6 +958,32 @@
 				86630A622457BA042EF8C924 /* Pods-POS_develop.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		500C272F217C3747008F221A /* shopCar(购物车) */ = {
+			isa = PBXGroup;
+			children = (
+				50F2D7FC217DCEFC00749C85 /* Model */,
+				500C2733217C6DA6008F221A /* Cell */,
+				500C2730217C3852008F221A /* POS_ShopCarViewController.h */,
+				500C2731217C3852008F221A /* POS_ShopCarViewController.m */,
+			);
+			path = "shopCar(购物车)";
+			sourceTree = "<group>";
+		};
+		500C2733217C6DA6008F221A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				500C2734217C6DBD008F221A /* ShopCarTableViewCell.h */,
+				500C2735217C6DBD008F221A /* ShopCarTableViewCell.m */,
+				50F2D7F6217D6EC500749C85 /* ShopCarMainCell.h */,
+				50F2D7F7217D6EC500749C85 /* ShopCarMainCell.m */,
+				500C2737217C81A1008F221A /* SingleShopCarCell.h */,
+				500C2738217C81A1008F221A /* SingleShopCarCell.m */,
+				50F2D7F9217D7BAE00749C85 /* SingleShopCarMainCell.h */,
+				50F2D7FA217D7BAE00749C85 /* SingleShopCarMainCell.m */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		50184CDD2158C54D00D11AC6 /* View */ = {
@@ -1439,6 +1483,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		50F2D7FC217DCEFC00749C85 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				50F2D7FD217DCF1100749C85 /* ShopCarModel.h */,
+				50F2D7FE217DCF1100749C85 /* ShopCarModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		7813B7F8216DED150086CE68 /* QRGenerailze(二维码推广) */ = {
 			isa = PBXGroup;
 			children = (
@@ -1657,6 +1710,7 @@
 		787166B8214917BD00452C51 /* POS */ = {
 			isa = PBXGroup;
 			children = (
+				500C272F217C3747008F221A /* shopCar(购物车) */,
 				78A320FA216E24B000D48B95 /* BuySuccess(购买成功) */,
 				5022DC76216C9E2400CE14C1 /* View */,
 				787166B9214917D400452C51 /* POSViewController.h */,
@@ -2518,6 +2572,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50A89AED216B653200E68BEB /* UIGestureRecognizer+XGesHelper.m in Sources */,
+				50F2D7F8217D6EC500749C85 /* ShopCarMainCell.m in Sources */,
 				5067AB9A215F887B005A1FD7 /* ActivationMoneyCell.m in Sources */,
 				50A89AF0216B653200E68BEB /* XNormalLineChartConfiguration.m in Sources */,
 				78CB4B7B214BAA29000F6A9D /* MyBillTableViewCell.m in Sources */,
@@ -2555,6 +2610,7 @@
 				50B136082165E7BE009C435C /* TerminalDistributionViewController.m in Sources */,
 				7888F3552147C32C00AAC8B0 /* MyTools.m in Sources */,
 				50A89B0E216B653200E68BEB /* XBarChartView.m in Sources */,
+				500C2732217C3852008F221A /* POS_ShopCarViewController.m in Sources */,
 				50339EAE2152968F003011E9 /* PD_BillListCell.m in Sources */,
 				7888F3B42147C33900AAC8B0 /* UILabel+Style.m in Sources */,
 				78A320F9216E0B4E00D48B95 /* HtmlGenerailzeDetailCell.m in Sources */,
@@ -2621,6 +2677,7 @@
 				50A89B00216B653200E68BEB /* XCycleView.m in Sources */,
 				789F27672176DD5500979C1A /* ShareH5ListModel.m in Sources */,
 				505B6F83216D99FC000D49B2 /* MessageNoticeTableViewCell.m in Sources */,
+				50F2D7FF217DCF1100749C85 /* ShopCarModel.m in Sources */,
 				786AD103215A440C005D7363 /* ActivationMoneyDetailViewController.m in Sources */,
 				7888F2DB2147C31600AAC8B0 /* DirectivePageViewController.m in Sources */,
 				7888F34D2147C32C00AAC8B0 /* GDataXMLNode.m in Sources */,
@@ -2704,6 +2761,7 @@
 				78765A92214A89D600261ED3 /* FastLoginViewController.m in Sources */,
 				7888F3652147C32C00AAC8B0 /* NSData+AES.m in Sources */,
 				50A89AFE216B653200E68BEB /* XAuxiliaryCalculationHelper.m in Sources */,
+				500C2736217C6DBD008F221A /* ShopCarTableViewCell.m in Sources */,
 				505B6F72216D99A0000D49B2 /* ImageGeneralizeViewController.m in Sources */,
 				78CB4BDD214BCCE3000F6A9D /* MyAddressViewController.m in Sources */,
 				7888F35B2147C32C00AAC8B0 /* ZZActionButton.m in Sources */,
@@ -2730,6 +2788,7 @@
 				787166BF2149183200452C51 /* GeneralizeViewController.m in Sources */,
 				DA8D1773214E8CBC006574E4 /* PD_BillListViewController.m in Sources */,
 				7888F2F12147C32600AAC8B0 /* GlobalMethod.m in Sources */,
+				500C2739217C81A1008F221A /* SingleShopCarCell.m in Sources */,
 				7888F35E2147C32C00AAC8B0 /* JSONKit.m in Sources */,
 				7888F3B22147C33900AAC8B0 /* UIImage+Extension.m in Sources */,
 				5040E98321770CDE00E39628 /* CombinationSetMealDetailViewController.m in Sources */,
@@ -2778,6 +2837,7 @@
 				50BD2AAF21625E48008D201B /* TerminalBindViewController.m in Sources */,
 				50184CE32158C87E00D11AC6 /* PD_BillDetailFooterView.m in Sources */,
 				7888F3582147C32C00AAC8B0 /* UIView+SystemBackBar.m in Sources */,
+				50F2D7FB217D7BAE00749C85 /* SingleShopCarMainCell.m in Sources */,
 				50A89AF6216B653200E68BEB /* XNotificationBridge.m in Sources */,
 				50A89AF3216B653200E68BEB /* XBarChartConfiguration.m in Sources */,
 				78068BEB215A025F00DCC855 /* SeparateQueryDetailViewController.m in Sources */,
