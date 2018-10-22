@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		038600659A091FA731F079F0 /* libPods-POS_develop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E02FA8D445A9227508FFFE68 /* libPods-POS_develop.a */; };
+		250E65A1217CB553000B99B7 /* AgentPosListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 250E65A0217CB553000B99B7 /* AgentPosListModel.m */; };
+		250E65A7217CBD86000B99B7 /* AgentListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 250E65A6217CBD86000B99B7 /* AgentListModel.m */; };
+		250E65AB217CC44A000B99B7 /* PosTermTypeListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 250E65AA217CC44A000B99B7 /* PosTermTypeListModel.m */; };
+		250E65B1217CC57F000B99B7 /* PosTermModelListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 250E65B0217CC57F000B99B7 /* PosTermModelListModel.m */; };
 		251A4103214FF45E00AC2C81 /* WithdrawCashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 251A4102214FF45E00AC2C81 /* WithdrawCashViewController.m */; };
 		2520A68E214CE38900D48B26 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2520A68D214CE38900D48B26 /* SettingViewController.m */; };
 		2521FF4B2179F08100B02F7F /* PackageChargeListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2521FF4A2179F08100B02F7F /* PackageChargeListModel.m */; };
@@ -309,6 +313,14 @@
 
 /* Begin PBXFileReference section */
 		020DE3BAB18222E6591A3B7C /* Pods-POS_develop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-POS_develop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-POS_develop/Pods-POS_develop.debug.xcconfig"; sourceTree = "<group>"; };
+		250E659F217CB553000B99B7 /* AgentPosListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AgentPosListModel.h; sourceTree = "<group>"; };
+		250E65A0217CB553000B99B7 /* AgentPosListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AgentPosListModel.m; sourceTree = "<group>"; };
+		250E65A5217CBD86000B99B7 /* AgentListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AgentListModel.h; sourceTree = "<group>"; };
+		250E65A6217CBD86000B99B7 /* AgentListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AgentListModel.m; sourceTree = "<group>"; };
+		250E65A9217CC44A000B99B7 /* PosTermTypeListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PosTermTypeListModel.h; sourceTree = "<group>"; };
+		250E65AA217CC44A000B99B7 /* PosTermTypeListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PosTermTypeListModel.m; sourceTree = "<group>"; };
+		250E65AF217CC57F000B99B7 /* PosTermModelListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PosTermModelListModel.h; sourceTree = "<group>"; };
+		250E65B0217CC57F000B99B7 /* PosTermModelListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PosTermModelListModel.m; sourceTree = "<group>"; };
 		251A4101214FF45E00AC2C81 /* WithdrawCashViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WithdrawCashViewController.h; sourceTree = "<group>"; };
 		251A4102214FF45E00AC2C81 /* WithdrawCashViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WithdrawCashViewController.m; sourceTree = "<group>"; };
 		2520A68C214CE38900D48B26 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
@@ -904,6 +916,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		250E659E217CB538000B99B7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				250E659F217CB553000B99B7 /* AgentPosListModel.h */,
+				250E65A0217CB553000B99B7 /* AgentPosListModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		250E65A3217CB9EF000B99B7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				50BD2AC421627870008D201B /* TerminalSelectMainView.h */,
+				50BD2AC521627870008D201B /* TerminalSelectMainView.m */,
+				50BD2AC72162787E008D201B /* TerminalSelectMainView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		250E65A4217CBD70000B99B7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				250E65A5217CBD86000B99B7 /* AgentListModel.h */,
+				250E65A6217CBD86000B99B7 /* AgentListModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		250E65A8217CC433000B99B7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				250E65A9217CC44A000B99B7 /* PosTermTypeListModel.h */,
+				250E65AA217CC44A000B99B7 /* PosTermTypeListModel.m */,
+				250E65AF217CC57F000B99B7 /* PosTermModelListModel.h */,
+				250E65B0217CC57F000B99B7 /* PosTermModelListModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		2521FF482179F06800B02F7F /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -1017,6 +1068,7 @@
 		502AF8092163872600260979 /* TerminalAdmin(终端管理) */ = {
 			isa = PBXGroup;
 			children = (
+				250E65A4217CBD70000B99B7 /* Model */,
 				502AF80D216387E900260979 /* Cell */,
 				502AF80A2163875E00260979 /* TerminalAdminViewController.h */,
 				502AF80B2163875E00260979 /* TerminalAdminViewController.m */,
@@ -1416,6 +1468,7 @@
 		50BD2AAC21625E06008D201B /* TerminalBind(终端绑定) */ = {
 			isa = PBXGroup;
 			children = (
+				250E659E217CB538000B99B7 /* Model */,
 				50BD2AB021625F87008D201B /* Cell */,
 				50BD2AAD21625E48008D201B /* TerminalBindViewController.h */,
 				50BD2AAE21625E48008D201B /* TerminalBindViewController.m */,
@@ -1439,13 +1492,12 @@
 		50BD2ABB21626E98008D201B /* TerminalSelect(终端查询) */ = {
 			isa = PBXGroup;
 			children = (
+				250E65A8217CC433000B99B7 /* Model */,
+				250E65A3217CB9EF000B99B7 /* View */,
 				50B1362021697E91009C435C /* TerminalSelectResultViewController.h */,
 				78D1F0B6216B31B600A98425 /* TerminalSelectResultViewController.m */,
 				50BD2ABF21626F0F008D201B /* TerminalSelectViewController.h */,
 				50BD2AC021626F0F008D201B /* TerminalSelectViewController.m */,
-				50BD2AC421627870008D201B /* TerminalSelectMainView.h */,
-				50BD2AC521627870008D201B /* TerminalSelectMainView.m */,
-				50BD2AC72162787E008D201B /* TerminalSelectMainView.xib */,
 			);
 			path = "TerminalSelect(终端查询)";
 			sourceTree = "<group>";
@@ -2681,6 +2733,7 @@
 				786AD103215A440C005D7363 /* ActivationMoneyDetailViewController.m in Sources */,
 				7888F2DB2147C31600AAC8B0 /* DirectivePageViewController.m in Sources */,
 				7888F34D2147C32C00AAC8B0 /* GDataXMLNode.m in Sources */,
+				250E65A7217CBD86000B99B7 /* AgentListModel.m in Sources */,
 				50A89B0C216B653200E68BEB /* XBarContainerView.m in Sources */,
 				50A89B03216B653200E68BEB /* XAreaLineContainerView.m in Sources */,
 				7888F2F32147C32600AAC8B0 /* HPDStatusCode.m in Sources */,
@@ -2698,6 +2751,7 @@
 				50A89B10216B653200E68BEB /* XLineChart.m in Sources */,
 				78765A8F214A89C300261ED3 /* PasswordLoginViewController.m in Sources */,
 				50A89B02216B653200E68BEB /* XPositiveNegativeBarChartView.m in Sources */,
+				250E65AB217CC44A000B99B7 /* PosTermTypeListModel.m in Sources */,
 				2546E2D4214D47570066DBFB /* UpdatePasswordTableViewCell.m in Sources */,
 				50BD2AB321625FA3008D201B /* TerminalBindTableViewCell.m in Sources */,
 				78CB4BE3214BD9DD000F6A9D /* AddAddressViewController.m in Sources */,
@@ -2791,12 +2845,14 @@
 				500C2739217C81A1008F221A /* SingleShopCarCell.m in Sources */,
 				7888F35E2147C32C00AAC8B0 /* JSONKit.m in Sources */,
 				7888F3B22147C33900AAC8B0 /* UIImage+Extension.m in Sources */,
+				250E65A1217CB553000B99B7 /* AgentPosListModel.m in Sources */,
 				5040E98321770CDE00E39628 /* CombinationSetMealDetailViewController.m in Sources */,
 				253647D7214E053C0094576C /* UpdatePhoneTableViewCell.m in Sources */,
 				7888F3BA2147C33900AAC8B0 /* ZJPPTViewCustom.m in Sources */,
 				50A89B07216B653200E68BEB /* XLineChartView.m in Sources */,
 				7872DDBE216DDEA90021FEEA /* CopywritingSelectCell.m in Sources */,
 				7888F3B32147C33900AAC8B0 /* UILabel+ChangeLineSpaceAndWordSpace.m in Sources */,
+				250E65B1217CC57F000B99B7 /* PosTermModelListModel.m in Sources */,
 				50B060852153A10500B7B411 /* PD_BillSkuFooterView.m in Sources */,
 				7888F2AC2147C0AA00AAC8B0 /* ViewController.m in Sources */,
 				7888F36D2147C32C00AAC8B0 /* UIView+Frame.m in Sources */,

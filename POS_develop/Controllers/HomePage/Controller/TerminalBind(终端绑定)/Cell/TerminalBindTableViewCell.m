@@ -7,6 +7,7 @@
 //
 
 #import "TerminalBindTableViewCell.h"
+#import "AgentPosListModel.h"
 
 @implementation TerminalBindTableViewCell
 
@@ -81,4 +82,29 @@
         make.bottom.equalTo(self.snL.mas_bottom);
     }];
 }
+- (void)setModel:(AgentPosListModel *)model {
+    if (model) {
+        self.model = model;
+        self.productNameL.text = @"付钱宝";
+        self.viceProductNameL.text = @"小pos机";
+        self.snL.text = [NSString stringWithFormat:@"SN:%@", model.posSnNo];
+        self.modelL.text = @"型号：ky21920机器";
+    }
+}
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -10,9 +10,12 @@
 #import "TerminalBindTableViewCell.h"
 #import "TerminalSearchViewController.h"
 #import "SureBindViewController.h"
+#import "AgentPosListModel.h"
 
 @interface TerminalBindViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *terminalBindTableView;
+@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, copy) NSString *agentId;
 @end
 
 @implementation TerminalBindViewController
@@ -21,22 +24,33 @@
     [super viewDidLoad];
     self.navigationItemTitle = @"终端绑定";
     MJWeakSelf;
+    self.dataArray = [NSMutableArray array];
+    
     [self addRightBarButtonWithImage:[UIImage imageNamed:@"增加"] clickHandler:^{
         NSLog(@"点击右边按钮");
         TerminalSearchViewController *vc = [[TerminalSearchViewController alloc] init];
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
     [self createTableView];
+    [self loadAgentListRequest];
+    
 }
 
 - (void)createTableView {
-    _terminalBindTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - TabbarHeight) style:UITableViewStylePlain];
+    _terminalBindTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     _terminalBindTableView.backgroundColor = WhiteColor;
     _terminalBindTableView.delegate = self;
     _terminalBindTableView.dataSource = self;
     _terminalBindTableView.showsVerticalScrollIndicator = NO;
     _terminalBindTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    MJWeakSelf;
+    _terminalBindTableView.mj_header = [SLRefreshHeader headerWithRefreshingBlock:^{
+        [weakSelf loadAgentPosListRequest:self.agentId];
+    }];
     [self.view addSubview:_terminalBindTableView];
+    [_terminalBindTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.bottom.offset(0);
+    }];
 }
 
  #pragma mark - UITableViewDataSource
@@ -47,15 +61,14 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 10;
+    return self.dataArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TerminalBindTableViewCell *cell = [TerminalBindTableViewCell cellWithTableView:tableView];
-    cell.productNameL.text = @"付钱宝";
-    cell.viceProductNameL.text = @"小pos机";
-    cell.snL.text = @"SN:3419020300000SA";
-    cell.modelL.text = @"型号：ky21920机器";
+    AgentPosListModel * model = self.dataArray[indexPath.row];
+    
+    cell.model = model;
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
@@ -73,14 +86,70 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return AD_HEIGHT(62);
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+
+
+#pragma mark ------------------------------------ 接口 ------------------------------------
+
+#pragma mark ---- 终端绑定 id 获取 ----
+- (void)loadAgentListRequest {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agent/list" params:@{@"userid":@"1"} cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    self.agentId = [[result[@"data"][@"rows"] firstObject] objectForKey:@"id"];
+                    [self loadAgentPosListRequest:[[result[@"data"][@"rows"] firstObject] objectForKey:@"id"]];
+                }
+                
+            }
+            
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
 }
-*/
-
+#pragma mark ---- 终端绑定 ----
+- (void)loadAgentPosListRequest:(NSString *)agentId {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agentPos/list" params:@{@"userid":@"1", @"agentId":agentId, @"bindFlag":@"0"} cookie:nil result:^(bool success, id result) {
+        [self.terminalBindTableView.mj_header endRefreshing];
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSArray *array = result[@"data"][@"rows"];
+                    if (self.dataArray.count > 0) {
+                        [self.dataArray removeAllObjects];
+                    }
+                    [self.dataArray addObjectsFromArray:[AgentPosListModel mj_objectArrayWithKeyValuesArray:array]];
+                    
+                    [self.terminalBindTableView reloadData];
+                    
+                }
+                
+            }
+            
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
