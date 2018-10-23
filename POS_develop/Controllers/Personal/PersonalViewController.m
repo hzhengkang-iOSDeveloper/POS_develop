@@ -10,15 +10,17 @@
 #import "PersonalHeaderView.h"
 #import "PersonalTableViewCell.h"
 #import "LoginTypeViewController.h"
-#import "VipSystemViewController.h"
-#import "MyBillViewController.h"
-#import "MyAddressViewController.h"
+#import "VipSystemViewController.h"//会员系统
+#import "PD_BillListViewController.h"//我的订单
+#import "MyBillViewController.h"//账单
+#import "MyFreeGetViewController.h"//免费领取
+#import "MyAddressViewController.h"//我的地址
 #import "SettingViewController.h"
 
 #import "WithdrawCashViewController.h"
 
 
-#import "PD_BillListViewController.h"//我的订单
+
 
 @interface PersonalViewController () <UITableViewDelegate,UITableViewDataSource> {
     
@@ -131,6 +133,12 @@
                 break;
             case 2:{
                 MyBillViewController *vc = [[MyBillViewController alloc] init];
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+            case 3:{
+                MyFreeGetViewController *vc = [[MyFreeGetViewController alloc] init];
                 vc.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:vc animated:YES];
             }
