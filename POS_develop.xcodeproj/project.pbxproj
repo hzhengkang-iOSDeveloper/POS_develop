@@ -57,6 +57,9 @@
 		504D8E172170407200478C50 /* POS_CommitBillViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 504D8E162170407200478C50 /* POS_CommitBillViewController.m */; };
 		504D8E1A2170740000478C50 /* POS_CommfirBillOutLinePayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 504D8E192170740000478C50 /* POS_CommfirBillOutLinePayView.m */; };
 		504D8E1D217075E800478C50 /* POS_CommfirBillOnLinePayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 504D8E1C217075E800478C50 /* POS_CommfirBillOnLinePayView.m */; };
+		50523FE9217EB05C0091952C /* MyFreeGetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50523FE8217EB05C0091952C /* MyFreeGetViewController.m */; };
+		50523FEC217EB1810091952C /* MyFreeGetRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50523FEB217EB1810091952C /* MyFreeGetRootViewController.m */; };
+		50523FEF217EB2460091952C /* MyFreeGetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50523FEE217EB2460091952C /* MyFreeGetCell.m */; };
 		505B6F62216D8D5C000D49B2 /* POSRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505B6F61216D8D5C000D49B2 /* POSRootViewController.m */; };
 		505B6F67216D9882000D49B2 /* SetMealOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 505B6F65216D9881000D49B2 /* SetMealOrderCell.m */; };
 		505B6F6B216D98F9000D49B2 /* NullViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505B6F69216D98F9000D49B2 /* NullViewController.m */; };
@@ -408,6 +411,12 @@
 		504D8E192170740000478C50 /* POS_CommfirBillOutLinePayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = POS_CommfirBillOutLinePayView.m; sourceTree = "<group>"; };
 		504D8E1B217075E800478C50 /* POS_CommfirBillOnLinePayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POS_CommfirBillOnLinePayView.h; sourceTree = "<group>"; };
 		504D8E1C217075E800478C50 /* POS_CommfirBillOnLinePayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = POS_CommfirBillOnLinePayView.m; sourceTree = "<group>"; };
+		50523FE7217EB05C0091952C /* MyFreeGetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFreeGetViewController.h; sourceTree = "<group>"; };
+		50523FE8217EB05C0091952C /* MyFreeGetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFreeGetViewController.m; sourceTree = "<group>"; };
+		50523FEA217EB1810091952C /* MyFreeGetRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFreeGetRootViewController.h; sourceTree = "<group>"; };
+		50523FEB217EB1810091952C /* MyFreeGetRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFreeGetRootViewController.m; sourceTree = "<group>"; };
+		50523FED217EB2460091952C /* MyFreeGetCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFreeGetCell.h; sourceTree = "<group>"; };
+		50523FEE217EB2460091952C /* MyFreeGetCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFreeGetCell.m; sourceTree = "<group>"; };
 		505B6F60216D8D5C000D49B2 /* POSRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POSRootViewController.h; sourceTree = "<group>"; };
 		505B6F61216D8D5C000D49B2 /* POSRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = POSRootViewController.m; sourceTree = "<group>"; };
 		505B6F65216D9881000D49B2 /* SetMealOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetMealOrderCell.m; sourceTree = "<group>"; };
@@ -2361,6 +2370,10 @@
 				253647D9214E05BC0094576C /* SettingNameViewController.m */,
 				251A4101214FF45E00AC2C81 /* WithdrawCashViewController.h */,
 				251A4102214FF45E00AC2C81 /* WithdrawCashViewController.m */,
+				50523FE7217EB05C0091952C /* MyFreeGetViewController.h */,
+				50523FE8217EB05C0091952C /* MyFreeGetViewController.m */,
+				50523FEA217EB1810091952C /* MyFreeGetRootViewController.h */,
+				50523FEB217EB1810091952C /* MyFreeGetRootViewController.m */,
 			);
 			path = MainController;
 			sourceTree = "<group>";
@@ -2458,6 +2471,8 @@
 				253647D5214E053C0094576C /* UpdatePhoneTableViewCell.h */,
 				253647DE214E11C60094576C /* WithdrawCashTableViewCell.h */,
 				253647DF214E11C60094576C /* WithdrawCashTableViewCell.m */,
+				50523FED217EB2460091952C /* MyFreeGetCell.h */,
+				50523FEE217EB2460091952C /* MyFreeGetCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -2658,6 +2673,7 @@
 				50A89AF8216B653200E68BEB /* XPieItem.m in Sources */,
 				7888F3532147C32C00AAC8B0 /* InfiniteScrollView.m in Sources */,
 				78765A95214A89E500261ED3 /* RegisterViewController.m in Sources */,
+				50523FE9217EB05C0091952C /* MyFreeGetViewController.m in Sources */,
 				50BBD28D2161C11900C2AC5B /* ActivationMoneySearchViewController.m in Sources */,
 				50B136082165E7BE009C435C /* TerminalDistributionViewController.m in Sources */,
 				7888F3552147C32C00AAC8B0 /* MyTools.m in Sources */,
@@ -2696,6 +2712,7 @@
 				7888F3B62147C33900AAC8B0 /* UIView+Extension.m in Sources */,
 				505B6F8F216DD038000D49B2 /* POSRootCell.m in Sources */,
 				7888F2DE2147C31600AAC8B0 /* WebViewAction.m in Sources */,
+				50523FEF217EB2460091952C /* MyFreeGetCell.m in Sources */,
 				5089376621561DB8007C6239 /* HomeTableViewCell.m in Sources */,
 				7888F3C32147C33900AAC8B0 /* SY_ImageAndLabelAndLaeblBtn.m in Sources */,
 				2546B20D2178A62A001CFE0D /* MessageCategoryListModel.m in Sources */,
@@ -2799,6 +2816,7 @@
 				7888F3562147C32C00AAC8B0 /* PowerfulBannerView.m in Sources */,
 				7888F3BF2147C33900AAC8B0 /* Reachability.m in Sources */,
 				50F68C382158987800DCFE85 /* PD_BillDetailViewController.m in Sources */,
+				50523FEC217EB1810091952C /* MyFreeGetRootViewController.m in Sources */,
 				7813B806216E023B0086CE68 /* HtmlGenerailzeViewController.m in Sources */,
 				50C5449C2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.m in Sources */,
 				7888F3692147C32C00AAC8B0 /* SGActionView.m in Sources */,
