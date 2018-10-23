@@ -175,7 +175,7 @@
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
                     NSArray *array = result[@"data"][@"rows"];
-                    self.vipGradeL.text = [NSString stringWithFormat:@"VIP%@",[[array firstObject] valueForKey:@"sbLevel"]];
+                    self.vipGradeL.text = [[array firstObject] valueForKey:@"sbLevelVip"];
                     self.receivePosTextL.text = [NSString stringWithFormat:@"已领%@台，还可以领取%@台",[[array firstObject] valueForKey:@"drawCount"] , [[array firstObject] valueForKey:@"totalCount"]];
                     
                     

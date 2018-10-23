@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class AgentPosListModel;
+@class PosGetModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TerminalBindTableViewCell : UITableViewCell
@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel *viceProductNameL;
 @property (nonatomic, strong) UILabel *snL;
 @property (nonatomic, strong) UILabel *modelL;
-@property (nonatomic, strong) AgentPosListModel *model;
+@property (nonatomic, strong) PosGetModel *model;
 
 @property (nonatomic, strong) UILabel *bindStateL;//在终端查询界面用
 +(instancetype)cellWithTableView:(UITableView *)tableView;

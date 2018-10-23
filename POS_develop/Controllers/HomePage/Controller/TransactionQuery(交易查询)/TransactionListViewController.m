@@ -17,10 +17,17 @@
 
 @implementation TransactionListViewController
 
+- (NSMutableArray *)dataArray {
+    if (!_dataArray) {
+        _dataArray = [NSMutableArray array];
+    }
+    return _dataArray;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItemTitle = @"交易流水";
     [self createTableView];
+    
 }
 
 - (void)createTableView {

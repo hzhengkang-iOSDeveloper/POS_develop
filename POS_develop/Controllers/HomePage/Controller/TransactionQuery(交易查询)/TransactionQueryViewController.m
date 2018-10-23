@@ -21,6 +21,8 @@
 @property (nonatomic, strong) DatePickerView *datePickView;
 @property (nonatomic, strong) NSMutableArray *brandDataArray;
 @property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, assign) BOOL isSelectDate;
+@property (nonatomic, assign) BOOL isSelectAgentOrPerson;
 @end
 
 @implementation TransactionQueryViewController
@@ -34,10 +36,23 @@
     [self initUI];
     [self loadPosBrandRequest];
     
+    
+    self.isSelectDate = NO;
+    self.isSelectAgentOrPerson = NO;
+    
 }
 - (void)initUI {
+    MJWeakSelf;
+    
     DatePickerView *datePickView = [[DatePickerView alloc] init];
     self.datePickView = datePickView;
+    datePickView.clcikDateSelected = ^(BOOL isSelected) {
+        weakSelf.isSelectDate = YES;
+    };
+    datePickView.backVcChangeBtn = ^{
+        [weakSelf.selectBtn setBackgroundColor:C1E95F9];
+        weakSelf.selectBtn.userInteractionEnabled = YES;
+    };
     [self.view addSubview:datePickView];
     [datePickView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.offset(0);
@@ -91,7 +106,8 @@
         make.height.mas_offset(AD_HEIGHT(25));
     }];
     self.selectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.selectBtn.backgroundColor = C1E95F9;
+    self.selectBtn.backgroundColor = CC9C9C9;
+    self.selectBtn.userInteractionEnabled = NO;
     [self.selectBtn setTitle:@"查询" forState:UIControlStateNormal];
     [self.selectBtn setTitleColor:WhiteColor forState:UIControlStateNormal];
     self.selectBtn.layer.cornerRadius = FITiPhone6(3);
@@ -107,28 +123,36 @@
 }
 
 - (void)agentClick:(UIButton *)sender {
-    if (_agentBtn.selected) {
-        
-    }
-    else if (!_agentBtn.selected)
+    if (!_agentBtn.selected)
     {
         _agentBtn.selected = YES;
         _personBtn.selected = NO;
     }
-    NSLog(@"代理");
+    
+    
+    [self changeSelectBtn];
+    
+
 }
 - (void)personClick:(UIButton *)sender {
-    if (_personBtn.selected) {
-        
-    }
-    else if (!_personBtn.selected)
+    if (!_personBtn.selected)
     {
         _personBtn.selected = YES;
         _agentBtn.selected = NO;
     }
-    NSLog(@"个人");
+    [self changeSelectBtn];
 }
 
+#pragma mark ---- 按钮显示逻辑 ----
+- (void)changeSelectBtn
+{
+    if (!self.isSelectDate) {
+        self.datePickView.agentOrPersonIsSelected = YES;
+    } else {
+        [self.selectBtn setBackgroundColor:C1E95F9];
+        self.selectBtn.userInteractionEnabled = YES;
+    }
+}
 #pragma mark ---- 查询 ----
 - (void)selectClick {
     [self loadTransactionListRequest];
@@ -167,15 +191,19 @@
 }
 #pragma mark ---- 交易查询 ----
 - (void)loadTransactionListRequest {
-//   _agentBtn.selected?@"1":@"0"
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/transaction/list" params:@{@"userid":@"1", @"startTime":defaultObject(self.datePickView.datePickerStrA, @""), @"endTime":defaultObject(self.datePickView.datePickerStrB, @""), @"agentName":defaultObject(self.mainVie.name.text, @""), @"agentNo":defaultObject(self.mainVie.account.text, @""), @"posSnNo":defaultObject(self.mainVie.number.text, @""), @"posBrandNo":defaultObject(self.mainVie.brandLabel.text, @""), @"agentType":@""} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/transaction/list" params:@{@"userid":@"1", @"startTime":defaultObject(self.datePickView.datePickerStrA, @""), @"endTime":defaultObject(self.datePickView.datePickerStrB, @""), @"agentName":defaultObject(self.mainVie.name.text, @""), @"agentNo":defaultObject(self.mainVie.account.text, @""), @"posSnNo":defaultObject(self.mainVie.number.text, @""), @"posBrandNo":defaultObject(self.mainVie.brandLabel.text, @""), @"agentType":_agentBtn.selected?@"1":@"0"} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
                     NSArray *array = result[@"data"][@"rows"];
+                    if (self.dataArray.count > 0) {
+                        [self.dataArray removeAllObjects];
+                    }
                     [self.dataArray addObjectsFromArray:[TransactionListModel mj_objectArrayWithKeyValuesArray:array]];
                     
                     TransactionListViewController *vc = [[TransactionListViewController alloc] init];
+                    
+//                    vc.dataArray = [NSMutableArray array];
                     vc.dataArray = [self.dataArray mutableCopy];
                     [self.navigationController pushViewController:vc animated:YES];
                     

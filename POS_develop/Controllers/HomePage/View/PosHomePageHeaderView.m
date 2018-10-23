@@ -12,6 +12,7 @@
 #import "BrandIntroductionViewController.h"//品牌介绍
 #import "NullViewController.h"
 #import "CombinationSetMealViewController.h"
+#import "MyFreeGetViewController.h"
 @interface PosHomePageHeaderView ()<XRCarouselViewDelegate>
 //轮播图
 @property (nonatomic, strong) XRCarouselView *advView;
@@ -216,6 +217,9 @@
     //    [self.bigVCardBtn addTarget:self action:@selector(bigVCardBtnClick) forControlEvents:UIControlEventTouchUpInside];
     self.bigVCardBtn.selfClickEcho = ^{
         //        [weakSelf bigVCardBtnClick];
+        MyFreeGetViewController *vc = [[MyFreeGetViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [weakSelf.viewController.navigationController pushViewController:vc animated:YES];
     };
     //业务培训
     self.couponCenterBtn = [SLHomeFivePartBtn new];

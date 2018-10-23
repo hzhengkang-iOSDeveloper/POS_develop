@@ -11,6 +11,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SureBindViewController : BaseSonViewController
+@property (nonatomic, copy) NSString *posID;
+@property (nonatomic, copy) NSString *agentId;
+@property (nonatomic, copy) NSString *posBrandNo;
+@property (nonatomic, copy) NSString *posSnNo;
+@property (nonatomic, copy) void(^popBlock)(void);
 
 @end
 

@@ -27,11 +27,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) void (^typeBlock)(NSString *selectedStr);//机器类型
 @property (nonatomic, copy) void (^modelBlock)(NSString *selectedStr);//机器型号
 @property (nonatomic, copy) void (^isActivationBlock)(NSString *selectedStr);//是否激活
+@property (nonatomic, copy) void (^clcikDateSelected)(BOOL isSelected);
 
 
 @property (nonatomic, strong) NSMutableArray *posBrandNameArr;
 @property (nonatomic, strong) NSMutableArray *posTermTypeNameArr;
 @property (nonatomic, strong) NSMutableArray *posTermModelNameArr;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -19,6 +19,8 @@
 		25263160217AD9F400FD2B2E /* TransactionListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2526315F217AD9F400FD2B2E /* TransactionListModel.m */; };
 		25263164217AE98200FD2B2E /* ShareBenefitListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 25263163217AE98200FD2B2E /* ShareBenefitListModel.m */; };
 		25263168217B751200FD2B2E /* ActivationRebateListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 25263167217B751200FD2B2E /* ActivationRebateListModel.m */; };
+		253268B7217F1AF40040E3E4 /* PosGetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 253268B6217F1AF40040E3E4 /* PosGetModel.m */; };
+		253268D4217F27EB0040E3E4 /* PowerfulBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 253268D3217F27EB0040E3E4 /* PowerfulBannerView.m */; };
 		253647D4214E030D0094576C /* UpdatePhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 253647D3214E030D0094576C /* UpdatePhoneViewController.m */; };
 		253647D7214E053C0094576C /* UpdatePhoneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 253647D6214E053C0094576C /* UpdatePhoneTableViewCell.m */; };
 		253647DA214E05BC0094576C /* SettingNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 253647D9214E05BC0094576C /* SettingNameViewController.m */; };
@@ -243,7 +245,6 @@
 		7888F3532147C32C00AAC8B0 /* InfiniteScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F3102147C32C00AAC8B0 /* InfiniteScrollView.m */; };
 		7888F3542147C32C00AAC8B0 /* MyKeyChainHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F3122147C32C00AAC8B0 /* MyKeyChainHelper.m */; };
 		7888F3552147C32C00AAC8B0 /* MyTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F3142147C32C00AAC8B0 /* MyTools.m */; };
-		7888F3562147C32C00AAC8B0 /* PowerfulBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F3162147C32C00AAC8B0 /* PowerfulBannerView.m */; };
 		7888F3572147C32C00AAC8B0 /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F3182147C32C00AAC8B0 /* UIAlertView+Blocks.m */; };
 		7888F3582147C32C00AAC8B0 /* UIView+SystemBackBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F31A2147C32C00AAC8B0 /* UIView+SystemBackBar.m */; };
 		7888F3592147C32C00AAC8B0 /* UIViewController+BackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F31C2147C32C00AAC8B0 /* UIViewController+BackButtonHandler.m */; };
@@ -338,6 +339,10 @@
 		25263163217AE98200FD2B2E /* ShareBenefitListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareBenefitListModel.m; sourceTree = "<group>"; };
 		25263166217B751200FD2B2E /* ActivationRebateListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActivationRebateListModel.h; sourceTree = "<group>"; };
 		25263167217B751200FD2B2E /* ActivationRebateListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActivationRebateListModel.m; sourceTree = "<group>"; };
+		253268B5217F1AF40040E3E4 /* PosGetModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PosGetModel.h; sourceTree = "<group>"; };
+		253268B6217F1AF40040E3E4 /* PosGetModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PosGetModel.m; sourceTree = "<group>"; };
+		253268D3217F27EB0040E3E4 /* PowerfulBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PowerfulBannerView.m; sourceTree = "<group>"; };
+		253268D5217F27F50040E3E4 /* PowerfulBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PowerfulBannerView.h; sourceTree = "<group>"; };
 		253647D2214E030D0094576C /* UpdatePhoneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdatePhoneViewController.h; sourceTree = "<group>"; };
 		253647D3214E030D0094576C /* UpdatePhoneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpdatePhoneViewController.m; sourceTree = "<group>"; };
 		253647D5214E053C0094576C /* UpdatePhoneTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdatePhoneTableViewCell.h; sourceTree = "<group>"; };
@@ -774,8 +779,6 @@
 		7888F3122147C32C00AAC8B0 /* MyKeyChainHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyKeyChainHelper.m; sourceTree = "<group>"; };
 		7888F3132147C32C00AAC8B0 /* MyTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTools.h; sourceTree = "<group>"; };
 		7888F3142147C32C00AAC8B0 /* MyTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTools.m; sourceTree = "<group>"; };
-		7888F3152147C32C00AAC8B0 /* PowerfulBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PowerfulBannerView.h; sourceTree = "<group>"; };
-		7888F3162147C32C00AAC8B0 /* PowerfulBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PowerfulBannerView.m; sourceTree = "<group>"; };
 		7888F3172147C32C00AAC8B0 /* UIAlertView+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Blocks.h"; sourceTree = "<group>"; };
 		7888F3182147C32C00AAC8B0 /* UIAlertView+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Blocks.m"; sourceTree = "<group>"; };
 		7888F3192147C32C00AAC8B0 /* UIView+SystemBackBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SystemBackBar.h"; sourceTree = "<group>"; };
@@ -930,6 +933,8 @@
 			children = (
 				250E659F217CB553000B99B7 /* AgentPosListModel.h */,
 				250E65A0217CB553000B99B7 /* AgentPosListModel.m */,
+				253268B5217F1AF40040E3E4 /* PosGetModel.h */,
+				253268B6217F1AF40040E3E4 /* PosGetModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2121,6 +2126,8 @@
 		7888F30A2147C32C00AAC8B0 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				253268D5217F27F50040E3E4 /* PowerfulBannerView.h */,
+				253268D3217F27EB0040E3E4 /* PowerfulBannerView.m */,
 				7888F30B2147C32C00AAC8B0 /* ConfigurationItem.h */,
 				7888F30C2147C32C00AAC8B0 /* ConfigurationItem.m */,
 				7888F30D2147C32C00AAC8B0 /* HpCFNavigationController.h */,
@@ -2131,8 +2138,6 @@
 				7888F3122147C32C00AAC8B0 /* MyKeyChainHelper.m */,
 				7888F3132147C32C00AAC8B0 /* MyTools.h */,
 				7888F3142147C32C00AAC8B0 /* MyTools.m */,
-				7888F3152147C32C00AAC8B0 /* PowerfulBannerView.h */,
-				7888F3162147C32C00AAC8B0 /* PowerfulBannerView.m */,
 				7888F3172147C32C00AAC8B0 /* UIAlertView+Blocks.h */,
 				7888F3182147C32C00AAC8B0 /* UIAlertView+Blocks.m */,
 				7888F3192147C32C00AAC8B0 /* UIView+SystemBackBar.h */,
@@ -2818,10 +2823,10 @@
 				50B060822153A0DC00B7B411 /* PD_BillSkuHeaderView.m in Sources */,
 				505B6F6B216D98F9000D49B2 /* NullViewController.m in Sources */,
 				5067AB96215F8518005A1FD7 /* ActivationMoneyRootViewController.m in Sources */,
+				253268D4217F27EB0040E3E4 /* PowerfulBannerView.m in Sources */,
 				25263160217AD9F400FD2B2E /* TransactionListModel.m in Sources */,
 				7871669B214911BC00452C51 /* TBCityIconInfo.m in Sources */,
 				786AD0F9215A3893005D7363 /* SeparateQueryCell.m in Sources */,
-				7888F3562147C32C00AAC8B0 /* PowerfulBannerView.m in Sources */,
 				7888F3BF2147C33900AAC8B0 /* Reachability.m in Sources */,
 				50F68C382158987800DCFE85 /* PD_BillDetailViewController.m in Sources */,
 				50523FEC217EB1810091952C /* MyFreeGetRootViewController.m in Sources */,
@@ -2913,6 +2918,7 @@
 				50A89AF2216B653200E68BEB /* XLineChartConfiguration.m in Sources */,
 				50A89AF4216B653200E68BEB /* CAKeyframeAnimation+AHEasing.m in Sources */,
 				78632B372175B340005AAF88 /* HomeHeaderModel.m in Sources */,
+				253268B7217F1AF40040E3E4 /* PosGetModel.m in Sources */,
 				789E379021760D4D001673A3 /* BrandIntroductionModel.m in Sources */,
 				7888F3522147C32C00AAC8B0 /* HpCFNavigationController.m in Sources */,
 				50A89B0B216B653200E68BEB /* XBarChart.m in Sources */,

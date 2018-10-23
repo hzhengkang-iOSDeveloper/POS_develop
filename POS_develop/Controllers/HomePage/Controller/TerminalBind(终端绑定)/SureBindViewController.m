@@ -25,6 +25,7 @@
     [super viewDidLoad];
     self.navigationItemTitle = @"确认绑定";
     [self initUI];
+    [self loadPosGetRequest];
 }
 - (void)initUI {
     UIView *bgView = [[UIView alloc] init];
@@ -75,10 +76,7 @@
         //        make.height.mas_equalTo(FITiPhone6(14));
     }];
     
-    self.productNameL.text = @"付钱宝";
-    self.viceProductNameL.text = @"小pos机";
-    self.snL.text = @"SN:3419020300000SA";
-    self.modelL.text = @"型号：ky21920机器";
+   
     
     
     UIButton *sureBtn = [UIButton getButtonWithImageName:@"" titleText:@"确认绑定" superView:self.view masonrySet:^(UIButton * _Nonnull btn, MASConstraintMaker * _Nonnull make) {
@@ -98,16 +96,51 @@
 }
 #pragma mark ---- 确认绑定 ----
 - (void)clickComfirBindBtn {
-    
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agentPos/save" params:@{@"userid":@"1", @"agentId":self.agentId, @"posId":self.posID, @"posBrandNo":self.posBrandNo, @"posSnNo":self.posSnNo, @"bindFlag":@"1"} cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"msg"] isEqualToString:@"success"]) {
+                HUD_TIP(@"绑定成功");
+                if (self.popBlock) {
+                    self.popBlock();
+                }
+                [self.navigationController popViewControllerAnimated:YES];
+                
+            }
+            
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
 }
-/*
-#pragma mark - Navigation
+#pragma mark ---- 终端绑定get ----
+- (void)loadPosGetRequest {
+    [[HPDConnect connect] PostNetRequestMethod:[NSString stringWithFormat:@"%@%@", @"api/trans/pos/get/", self.posID] params:nil cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                
+                self.productNameL.text = [result[@"data"] objectForKey:@"posBrandName"];
+                self.viceProductNameL.text = [result[@"data"] objectForKey:@"posTermType"];
+                self.snL.text = [NSString stringWithFormat:@"SN:%@", [result[@"data"] objectForKey:@"posSnNo"]];
+                self.modelL.text = [NSString stringWithFormat:@"型号:%@", [result[@"data"] objectForKey:@"posTermModel"]];
+                
+                
+            }
+            
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+
+
+
+
+
+
+
+
+
+
 
 @end

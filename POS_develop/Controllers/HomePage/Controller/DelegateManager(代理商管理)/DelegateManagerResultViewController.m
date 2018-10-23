@@ -32,7 +32,8 @@
 - (void)initUI {
     self.view.backgroundColor = WhiteColor;
     UIButton *selectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    selectBtn.backgroundColor = C1E95F9;
+    selectBtn.backgroundColor = CC9C9C9;
+    selectBtn.userInteractionEnabled = NO;
     [selectBtn setTitle:@"选择" forState:UIControlStateNormal];
     [selectBtn setTitleColor:WhiteColor forState:UIControlStateNormal];
     selectBtn.layer.cornerRadius = FITiPhone6(3);
@@ -53,7 +54,7 @@
     _myTableView.delegate = self;
     _myTableView.dataSource = self;
     _myTableView.showsVerticalScrollIndicator = NO;
-    _myTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    _myTableView.separatorStyle = UITableViewCellSelectionStyleNone;
     _myTableView.mj_header = [SLRefreshHeader headerWithRefreshingBlock:^{
         [weakSelf loadAgentListRequest];
     }];
@@ -68,6 +69,12 @@
 #pragma mark ---- 选择 ----
 - (void)selectClick {
     DelegateManagerEditViewController *vc = [[DelegateManagerEditViewController alloc] init];
+    MJWeakSelf;
+    vc.popBlock = ^{
+        [weakSelf loadAgentListRequest];
+    };
+    AgentListModel *model = [self.dataArray objectAtIndex:[self.selectStr integerValue]];
+    vc.model = model;
     [self.navigationController pushViewController:vc animated:YES];
 }
 #pragma mark - UITableViewDataSource
@@ -109,9 +116,15 @@
         self.selectStr = [NSString stringWithFormat:@"%li",indexPath.row];
     }
     
+    
+    if ([self.selectStr isEqualToString:@""]) {
+        _selectBtn.backgroundColor = CC9C9C9;
+        _selectBtn.userInteractionEnabled = NO;
+    }else {
+        _selectBtn.backgroundColor = C1E95F9;
+        _selectBtn.userInteractionEnabled = YES;
+    }
     [tableView reloadData];
-    //    SureBindViewController *vc = [[SureBindViewController alloc] init];
-    //    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

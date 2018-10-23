@@ -19,6 +19,9 @@
 @property (nonatomic, strong) NSMutableArray *termTypeDataArray;
 @property (nonatomic, strong) NSMutableArray *termModelDataArray;
 @property (nonatomic, strong) TerminalSelectMainView *mainView;
+
+@property (nonatomic, assign) BOOL isSelectDate;
+@property (nonatomic, assign) BOOL isSelectAgentOrPerson;
 @end
 
 @implementation TerminalSelectViewController
@@ -43,6 +46,8 @@
     
     TerminalSelectMainView *mainView = [[[NSBundle mainBundle] loadNibNamed:@"TerminalSelectMainView" owner:self options:nil] lastObject];
     self.mainView = mainView;
+   
+    
     __weak typeof(mainView) wkmainView = mainView;
     mainView.brandBlock = ^(NSString * _Nonnull selectedStr) {//机器品牌
         wkmainView.brandNameLabel.text = selectedStr;
@@ -56,6 +61,13 @@
     mainView.isActivationBlock = ^(NSString * _Nonnull selectedStr){//是否激活
         wkmainView.isActivationNameLabel.text = selectedStr;
     };
+    
+    mainView.clcikDateSelected = ^(BOOL isSelected) {
+        if (isSelected) {
+            self.selectBtn.backgroundColor = C1E95F9;
+            self.selectBtn.userInteractionEnabled = YES;
+        }
+    };
     mainView.frame = CGRectMake(0, 0, ScreenWidth, 520);
     mainView.backgroundColor = WhiteColor;
     [mainScrollView addSubview:mainView];
@@ -65,7 +77,8 @@
     [selectBtn setTitle:@"查询" forState:normal];
     [selectBtn setTitleColor:WhiteColor forState:normal];
     selectBtn.titleLabel.font = F15;
-    [selectBtn setBackgroundColor:C1E95F9];
+    [selectBtn setBackgroundColor:CC9C9C9];
+    selectBtn.userInteractionEnabled = NO;
     selectBtn.layer.masksToBounds = YES;
     selectBtn.layer.cornerRadius = 3.f;
     [selectBtn addTarget:self action:@selector(clickSelectBtn) forControlEvents:UIControlEventTouchUpInside];
@@ -74,6 +87,8 @@
     
     mainScrollView.contentSize = CGSizeMake(ScreenWidth, CGRectGetMaxY(self.selectBtn.frame)+AD_HEIGHT(20));
 }
+
+
 
 #pragma mark ---- 查询 ----
 - (void)clickSelectBtn {

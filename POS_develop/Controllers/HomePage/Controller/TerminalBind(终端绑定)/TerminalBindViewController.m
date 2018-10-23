@@ -11,10 +11,12 @@
 #import "TerminalSearchViewController.h"
 #import "SureBindViewController.h"
 #import "AgentPosListModel.h"
+#import "PosGetModel.h"
 
 @interface TerminalBindViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *terminalBindTableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray *listDataArray;
 @property (nonatomic, copy) NSString *agentId;
 @end
 
@@ -25,6 +27,7 @@
     self.navigationItemTitle = @"终端绑定";
     MJWeakSelf;
     self.dataArray = [NSMutableArray array];
+    self.listDataArray = [NSMutableArray array];
     
     [self addRightBarButtonWithImage:[UIImage imageNamed:@"增加"] clickHandler:^{
         NSLog(@"点击右边按钮");
@@ -42,10 +45,10 @@
     _terminalBindTableView.delegate = self;
     _terminalBindTableView.dataSource = self;
     _terminalBindTableView.showsVerticalScrollIndicator = NO;
-    _terminalBindTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    _terminalBindTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     MJWeakSelf;
     _terminalBindTableView.mj_header = [SLRefreshHeader headerWithRefreshingBlock:^{
-        [weakSelf loadAgentPosListRequest:self.agentId];
+        [weakSelf loadAgentPosListRequest:weakSelf.agentId];
     }];
     [self.view addSubview:_terminalBindTableView];
     [_terminalBindTableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -66,7 +69,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TerminalBindTableViewCell *cell = [TerminalBindTableViewCell cellWithTableView:tableView];
-    AgentPosListModel * model = self.dataArray[indexPath.row];
+    PosGetModel * model = self.dataArray[indexPath.row];
     
     cell.model = model;
     
@@ -79,7 +82,17 @@
 
 #pragma mark - UITableViewDelegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     SureBindViewController *vc = [[SureBindViewController alloc] init];
+    MJWeakSelf;
+    vc.popBlock = ^{
+        [weakSelf.terminalBindTableView.mj_header beginRefreshing];
+    };
+    AgentPosListModel *model = self.listDataArray[indexPath.row];
+    vc.posID = model.posId;
+    vc.agentId = model.agentId;
+    vc.posBrandNo = model.posBrandNo;
+    vc.posSnNo = model.posSnNo;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -115,15 +128,38 @@
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
-                    NSArray *array = result[@"data"][@"rows"];
+                    NSArray *array = [NSArray arrayWithArray:[AgentPosListModel mj_objectArrayWithKeyValuesArray:result[@"data"][@"rows"]]];
+                    self.listDataArray = [array mutableCopy];
                     if (self.dataArray.count > 0) {
                         [self.dataArray removeAllObjects];
                     }
-                    [self.dataArray addObjectsFromArray:[AgentPosListModel mj_objectArrayWithKeyValuesArray:array]];
                     
-                    [self.terminalBindTableView reloadData];
+                    for (int i =0; i<array.count; i++) {
+                        AgentPosListModel *model = [array objectAtIndex:i];
+                        [self loadPosGetRequest:model.posId];
+                    }
                     
                 }
+                
+            }
+            
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
+
+#pragma mark ---- 终端绑定get ----
+- (void)loadPosGetRequest:(NSString *)posID {
+    [[HPDConnect connect] PostNetRequestMethod:[NSString stringWithFormat:@"%@%@", @"api/trans/pos/get/", posID] params:nil cookie:nil result:^(bool success, id result) {
+        [self.terminalBindTableView.mj_header endRefreshing];
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                
+                PosGetModel *poslistModel = [PosGetModel mj_objectWithKeyValues:result[@"data"]];
+                [self.dataArray addObject:poslistModel];
+                [self.terminalBindTableView reloadData];
+
                 
             }
             

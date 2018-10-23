@@ -7,7 +7,7 @@
 //
 
 #import "TerminalBindTableViewCell.h"
-#import "AgentPosListModel.h"
+#import "PosGetModel.h"
 
 @implementation TerminalBindTableViewCell
 
@@ -81,14 +81,20 @@
         make.right.equalTo(self.contentView).offset(FITiPhone6(-22));
         make.bottom.equalTo(self.snL.mas_bottom);
     }];
+    
+    [UIView getViewWithColor:CF6F6F6 superView:self.contentView masonrySet:^(UIView *view, MASConstraintMaker *make) {
+        make.left.offset(AD_HEIGHT(15));
+        make.right.bottom.offset(0);
+        make.height.mas_equalTo(AD_HEIGHT(1));
+    }];
 }
-- (void)setModel:(AgentPosListModel *)model {
+- (void)setModel:(PosGetModel *)model {
     if (model) {
-        self.model = model;
-        self.productNameL.text = @"付钱宝";
-        self.viceProductNameL.text = @"小pos机";
+        _model = model;
+        self.productNameL.text = model.posBrandName;
+        self.viceProductNameL.text = model.posTermType;
         self.snL.text = [NSString stringWithFormat:@"SN:%@", model.posSnNo];
-        self.modelL.text = @"型号：ky21920机器";
+        self.modelL.text = [NSString stringWithFormat:@"型号:%@", model.posTermModel];
     }
 }
 @end

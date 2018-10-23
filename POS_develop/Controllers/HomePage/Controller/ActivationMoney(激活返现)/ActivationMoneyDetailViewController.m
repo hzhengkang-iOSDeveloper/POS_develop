@@ -21,7 +21,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = @"激活返现详情（个人）";
+    if ([self.agentType isEqualToString:@"1"]) {
+        self.navigationItem.title = @"激活返现详情（代理商）";
+    }else {
+        self.navigationItem.title = @"激活返现详情（个人）";
+    }
+    
     
     [self creatSelectBillStatus];
     [self initUI];

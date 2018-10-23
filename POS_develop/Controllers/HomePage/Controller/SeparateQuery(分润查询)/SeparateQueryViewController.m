@@ -19,6 +19,10 @@
 @property (nonatomic, strong) UIButton *selectBtn;
 @property (nonatomic, strong) DatePickerView *datePickView;
 @property (nonatomic, strong) SeparateQueryMainView *mainView;
+
+@property (nonatomic, assign) BOOL isSelectDate;
+@property (nonatomic, assign) BOOL isSelectAgentOrPerson;
+
 @end
 
 @implementation SeparateQueryViewController
@@ -26,7 +30,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"分润查询";
-    
+    self.isSelectDate = NO;
+    self.isSelectAgentOrPerson = NO;
     
     [self initUI];
 }
@@ -45,7 +50,15 @@
         make.top.offset(0);
         make.height.mas_offset(AD_HEIGHT(31));
     }];
+    MJWeakSelf;
     DatePickerView *datePickView = [[DatePickerView alloc] init];
+    datePickView.clcikDateSelected = ^(BOOL isSelected) {
+        weakSelf.isSelectDate = YES;
+    };
+    datePickView.backVcChangeBtn = ^{
+        [weakSelf.selectBtn setBackgroundColor:C1E95F9];
+        weakSelf.selectBtn.userInteractionEnabled = YES;
+    };
     self.datePickView = datePickView;
     [self.view addSubview:datePickView];
     [datePickView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -97,7 +110,8 @@
         make.height.mas_offset(AD_HEIGHT(25));
     }];
     self.selectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.selectBtn.backgroundColor = C1E95F9;
+    self.selectBtn.backgroundColor = CC9C9C9;
+    self.selectBtn.userInteractionEnabled = NO;
     [self.selectBtn setTitle:@"查询" forState:UIControlStateNormal];
     [self.selectBtn setTitleColor:WhiteColor forState:UIControlStateNormal];
     self.selectBtn.layer.cornerRadius = FITiPhone6(3);
@@ -113,28 +127,33 @@
 }
 
 - (void)agentClick:(UIButton *)sender {
-    if (_agentBtn.selected) {
-        
-    }
-    else if (!_agentBtn.selected)
+    if (!_agentBtn.selected)
     {
         _agentBtn.selected = YES;
         _personBtn.selected = NO;
     }
-    NSLog(@"代理");
+    
+    
+    [self changeSelectBtn];
 }
 - (void)personClick:(UIButton *)sender {
-    if (_personBtn.selected) {
-        
-    }
-    else if (!_personBtn.selected)
+    if (!_personBtn.selected)
     {
         _personBtn.selected = YES;
         _agentBtn.selected = NO;
     }
-    NSLog(@"个人");
+    [self changeSelectBtn];
 }
-
+#pragma mark ---- 按钮显示逻辑 ----
+- (void)changeSelectBtn
+{
+    if (!self.isSelectDate) {
+        self.datePickView.agentOrPersonIsSelected = YES;
+    } else {
+        [self.selectBtn setBackgroundColor:C1E95F9];
+        self.selectBtn.userInteractionEnabled = YES;
+    }
+}
 #pragma mark ---- 查询 ----
 - (void)selectClick {
     SeparateQueryDetailViewController *vc = [[SeparateQueryDetailViewController alloc] init];

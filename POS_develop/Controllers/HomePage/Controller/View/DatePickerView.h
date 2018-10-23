@@ -18,6 +18,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong , nonatomic)UIToolbar * FirstToolBar;
 @property (nonatomic, strong) UITextField *startTimeTF;
 @property (nonatomic, strong) UITextField *endTimeTF;
+
+@property (nonatomic, assign) BOOL agentOrPersonIsSelected;
+@property (nonatomic, copy) void (^clcikDateSelected)(BOOL isSelected);
+@property (nonatomic, copy) void (^backVcChangeBtn)(void);
+
 @end
 
 NS_ASSUME_NONNULL_END

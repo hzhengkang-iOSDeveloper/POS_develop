@@ -14,6 +14,7 @@
 @property (nonatomic, copy) NSString *agentName;
 @property (nonatomic, copy) NSString *agentNo;
 @property (nonatomic, copy) NSString *sbLevel;
+@property (nonatomic, copy) NSString *sbLevelVip;
 @property (nonatomic, copy) NSString *creditLevel;
 @property (nonatomic, copy) NSString *agentType;
 @property (nonatomic, copy) NSString *drawCount;
@@ -23,4 +24,5 @@
 @property (nonatomic, copy) NSString *updateuserno;
 @property (nonatomic, copy) NSString *updatetime;
 @property (nonatomic, copy) NSString *deleteflag;
+
 @end

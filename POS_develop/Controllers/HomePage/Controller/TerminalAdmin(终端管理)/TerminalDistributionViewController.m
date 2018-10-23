@@ -10,6 +10,8 @@
 #import "TerminalNoDistributionCell.h"
 #import "TerminalAlreadyDistributionCell.h"
 #import "BrandTableViewCell.h"
+#import "PosBrandModel.h"
+#import "PosGetModel.h"
 
 @interface TerminalDistributionViewController () <UITableViewDataSource, UITableViewDelegate> {
     
@@ -27,6 +29,10 @@
 @property (nonatomic, strong) UITextField *endTF;//SN结束
 
 
+@property (nonatomic, strong) NSMutableArray *brandDataArray;
+@property (nonatomic, strong) NSMutableArray *mainDataArray;
+
+
 
 @end
 
@@ -35,9 +41,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItemTitle = @"终端分配";
+    self.brandDataArray = [NSMutableArray array];
+    self.mainDataArray = [NSMutableArray array];
     [self initUI];
     [self createTableView];
     [self createSNView];
+    [self loadPosBrandRequest];
 }
 
 
@@ -76,7 +85,7 @@
     [snBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.headerBgView).offset(FITiPhone6(-60));
         make.top.equalTo(self.headerBgView).offset(FITiPhone6(11));
-        make.width.mas_equalTo(AD_HEIGHT(100));
+        make.width.mas_equalTo(AD_HEIGHT(120));
     }];
     
     UIButton *selectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -227,7 +236,7 @@
     if (tableView == _mainTableView) {
         return 10;
     }else {
-        return 3;
+        return self.brandDataArray.count;
     }
 }
 
@@ -257,8 +266,9 @@
 
     }else {
         BrandTableViewCell *cell = [BrandTableViewCell cellWithTableView:tableView];
+        PosBrandModel *model = self.brandDataArray[indexPath.row];
         cell.backgroundColor = CF6F6F6;
-        cell.brandLabel.text = @"薪大陆";
+        cell.brandLabel.text = model.posBrandName;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
@@ -281,9 +291,20 @@
                 self.selectStr = [NSString stringWithFormat:@"%li",indexPath.row];
             }
             
-            [tableView reloadData];
+//            [tableView reloadData];
             
         }
+    }else {
+        BrandTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        cell.selectBtn.selected = !cell.selectBtn.selected;
+        if ([self.selectStr isEqualToString:[NSString stringWithFormat:@"%li",indexPath.row]]) {
+            self.selectStr = @"";
+        } else {
+            self.selectStr = [NSString stringWithFormat:@"%li",indexPath.row];
+        }
+        
+        
+//        [tableView reloadData];
     }
     
 }
@@ -297,14 +318,73 @@
 }
 
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark ---- pos品牌 ----
+- (void)loadPosBrandRequest {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/posBrand/list" params:nil cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSArray *array = result[@"data"][@"rows"];
+                    if (array.count > 0) {
+                        [self.brandDataArray addObjectsFromArray:[PosBrandModel mj_objectArrayWithKeyValuesArray:array]];
+                        [self.brandTableView mas_updateConstraints:^(MASConstraintMaker *make) {
+                            make.height.mas_offset(self.brandDataArray.count * FITiPhone6(40));
+                        }];
+                        
+                        [self.brandTableView reloadData];
+                        
+                    }
+                }
+                
+            }
+            
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+    
 }
-*/
+#pragma mark ---- 终端分配(查询) ----
+- (void)loadPosListRequest {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/pos/list" params:@{@"userid":@"1", @"posBrandNo":@"", @"startPosSnNo":@"", @"endPosSnNo":@""} cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSArray *array = result[@"data"][@"rows"];
+                    if (array.count > 0) {
+                        
+                        [self.mainDataArray addObjectsFromArray:[PosGetModel mj_objectArrayWithKeyValuesArray:array]];
+                        
+                        
+                        [self.mainTableView reloadData];
+                        
+                    }
+                    
+                    
+                }
+                
+            }
+            
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
+
+
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+

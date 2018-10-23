@@ -7,12 +7,16 @@
 //
 
 #import "DatePickerView.h"
+@interface DatePickerView ()
+@property (nonatomic, assign) NSUInteger selectedCount;
 
+@end
 @implementation DatePickerView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self initUI];
+        self.selectedCount = 0;
     }
     return self;
 }
@@ -139,7 +143,6 @@
     
     self.datePickerStrA = dateStr;
     
-    
 }
 -(void)selectLastDatePicker:(UIDatePicker *)sender{
     
@@ -156,6 +159,24 @@
     self.datePickerStrB = dateStr;
 }
 
+#pragma mark ---- 按钮显示逻辑 ----
+- (void)changeBtn
+{
+    self.selectedCount ++;
+    if (self.selectedCount >1) {
+        if (self.agentOrPersonIsSelected) {
+            if (self.backVcChangeBtn) {
+                self.backVcChangeBtn();
+            }
+        } else {
+            if (self.clcikDateSelected) {
+                self.clcikDateSelected(YES);
+            }
+        }
+    }
+}
+
+
 #pragma mark ----- 工具条点击事件
 -(void)clickToolBarBtn:(UIBarButtonItem *)item
 {
@@ -168,6 +189,7 @@
                 NSString * dateStr = [dateForma stringFromDate:date];
                 [self.startTimeTF setFont:[UIFont systemFontOfSize:14]];
                 self.startTimeTF.text = dateStr;
+                self.datePickerStrA = dateStr;
             }else{
                 self.startTimeTF.text = self.datePickerStrA;
             }
@@ -184,6 +206,7 @@
                 NSString * dateStr = [dateForma stringFromDate:date];
                 [self.endTimeTF setFont:[UIFont systemFontOfSize:14]];
                 self.endTimeTF.text = dateStr;
+                self.datePickerStrB = dateStr;
             }else{
                 self.endTimeTF.text = self.datePickerStrB;
             }
@@ -192,6 +215,7 @@
         [self.endTimeTF resignFirstResponder];
     }
     
+    [self changeBtn];
     
     
 }

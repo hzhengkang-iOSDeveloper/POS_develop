@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UITextField *contentTF;
 @property (nonatomic, strong) UIButton *vipGradeBtn;
+@property (nonatomic, weak) UIImageView *myImageView;
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 @end
 

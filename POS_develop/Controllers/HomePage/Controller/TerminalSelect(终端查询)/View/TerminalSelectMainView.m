@@ -19,10 +19,16 @@
 @property (copy   , nonatomic)NSString     * activationDatePickerStrB;//记录activation datePicker上日期
 @property (strong , nonatomic)UIToolbar * FirstToolBar;
 @property (strong , nonatomic)UIToolbar * SecondToolBar;
+
+@property (nonatomic, assign) NSUInteger selectedCount;
+
+
 @end
 @implementation TerminalSelectMainView
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.selectedCount = 0;
+
     [self initUI];
 
 }
@@ -197,6 +203,7 @@
                 NSString * dateStr = [dateForma stringFromDate:date];
                 [self.snStartTF setFont:[UIFont systemFontOfSize:14]];
                 self.snStartTF.text = dateStr;
+                self.snDatePickerStrA = dateStr;
             }else{
                 self.snStartTF.text = self.snDatePickerStrA;
             }
@@ -213,6 +220,7 @@
                 NSString * dateStr = [dateForma stringFromDate:date];
                 [self.snEndTF setFont:[UIFont systemFontOfSize:14]];
                 self.snEndTF.text = dateStr;
+                self.snDdatePickerStrB = dateStr;
             }else{
                 self.snEndTF.text = self.snDdatePickerStrB;
             }
@@ -236,6 +244,7 @@
                 NSString * dateStr = [dateForma stringFromDate:date];
                 [self.activationStartTF setFont:[UIFont systemFontOfSize:14]];
                 self.activationStartTF.text = dateStr;
+                self.activationDatePickerStrA = dateStr;
             }else{
                 self.activationStartTF.text = self.activationDatePickerStrA;
             }
@@ -252,6 +261,7 @@
                 NSString * dateStr = [dateForma stringFromDate:date];
                 [self.activationEndTF setFont:[UIFont systemFontOfSize:14]];
                 self.activationEndTF.text = dateStr;
+                self.activationDatePickerStrB = dateStr;
             }else{
                 self.activationEndTF.text = self.activationDatePickerStrB;
             }
@@ -260,8 +270,19 @@
         [self.activationEndTF resignFirstResponder];
     }
     
-    
-    
+    [self changeBtn];
+}
+
+
+#pragma mark ---- 按钮显示逻辑 ----
+- (void)changeBtn
+{
+    self.selectedCount ++;
+    if (self.selectedCount >1) {
+        if (self.clcikDateSelected) {
+            self.clcikDateSelected(YES);
+        }
+    }
 }
 #pragma mark ---- 优化边框
 -(void)solveBorderWithView:(UIView *)view

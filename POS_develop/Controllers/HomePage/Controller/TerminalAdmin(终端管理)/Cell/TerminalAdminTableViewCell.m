@@ -63,6 +63,8 @@
         make.right.bottom.offset(0);
         make.height.mas_equalTo(AD_HEIGHT(1));
     }];
+    
+    
 }
 
 - (void)setModel:(AgentListModel *)model {

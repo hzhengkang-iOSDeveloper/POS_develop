@@ -9,9 +9,13 @@
 #import "DelegateManagerEditViewController.h"
 #import "DelegateManagerEditCell.h"
 #import "VipSystemViewController.h"
-
+#import "AgentListModel.h"
 @interface DelegateManagerEditViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *myTableView;
+@property (nonatomic, copy) NSString *agentName;
+@property (nonatomic, copy) NSString *agentNo;
+@property (nonatomic, copy) NSString *sbLevel;
+@property (nonatomic, copy) NSString *sbLevelVip;
 
 @end
 
@@ -60,17 +64,25 @@
 
     switch (indexPath.row) {
         case 0:{
+            cell.myImageView.hidden = YES;
             cell.titleLabel.text = @"代理商名称";
-            cell.contentTF.placeholder = @"请输入代理商名称";
+            cell.contentTF.text = self.model.agentName;
+            cell.contentTF.enabled = NO;
         }
             break;
         case 1:{
+            cell.myImageView.hidden = YES;
             cell.titleLabel.text = @"代理商账号";
-            cell.contentTF.placeholder = @"请输入代理商账号";
+            cell.contentTF.text = self.model.agentNo;
+            cell.contentTF.enabled = NO;
         }
             break;
         case 2:{
+            cell.myImageView.hidden = NO;
+            cell.vipGradeBtn.hidden = NO;
+            [cell.vipGradeBtn setTitle:self.model.sbLevelVip forState:UIControlStateNormal];
             cell.titleLabel.text = @"代理商vip等级";
+            cell.contentTF.text = self.model.sbLevel;
             cell.contentTF.placeholder = @"请输入代理商vip等级";
         }
             break;
@@ -97,33 +109,19 @@
 
 #pragma mark ------------------------------------ 接口 ------------------------------------
 
-#pragma mark ---- 代理商管理详情 ----
-- (void)loadAgentGetRequest {
-    [[HPDConnect connect] PostNetRequestMethod:[NSString stringWithFormat:@"%@%@", @"api/trans/agent/get/", self.myID] params:nil cookie:nil result:^(bool success, id result) {
-        if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-//                self.dataDict = result[@"data"];
-//                self.navigationItemTitle = [self.dataDict objectForKey:@"agentName"];
-//                [self.transactionDetailTableView reloadData];
-                
-            }
-            
-            
-        }
-        NSLog(@"result ------- %@", result);
-    }];
-}
+
 
 #pragma mark ---- 保存 ----
 - (void)loadAgentUpdateRequest {
-    [[HPDConnect connect] PostNetRequestMethod:[NSString stringWithFormat:@"%@%@", @"api/trans/agent/update/", self.myID] params:nil cookie:nil result:^(bool success, id result) {
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:2 inSection:0];
+    DelegateManagerEditCell *cell = [self.myTableView cellForRowAtIndexPath:indexPath];
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agent/update" params:@{@"sbLevel":cell.contentTF.text, @"id":self.model.ID} cookie:nil result:^(bool success, id result) {
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                //                self.dataDict = result[@"data"];
-                //                self.navigationItemTitle = [self.dataDict objectForKey:@"agentName"];
-                //                [self.transactionDetailTableView reloadData];
-                
-                
+            if ([result[@"msg"] isEqualToString:@"success"]) {
+                HUD_TIP(@"保存成功");
+                if (self.popBlock) {
+                    self.popBlock();
+                }
                 [self.navigationController popViewControllerAnimated:YES];
             }
             

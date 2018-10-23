@@ -7,12 +7,12 @@
 //
 
 #import "BaseSonViewController.h"
-
+@class AgentListModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DelegateManagerEditViewController : BaseSonViewController
-@property (nonatomic, copy) NSString *myID;
-
+@property (nonatomic, strong) AgentListModel *model;
+@property (nonatomic, copy) void(^popBlock)(void);
 @end
 
 NS_ASSUME_NONNULL_END
