@@ -975,6 +975,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		253268B1217ED73A0040E3E4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		2546B20421787A7E001CFE0D /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -1399,6 +1406,7 @@
 		50B136122166031E009C435C /* DelegateManager(代理商管理) */ = {
 			isa = PBXGroup;
 			children = (
+				253268B1217ED73A0040E3E4 /* Model */,
 				50DAAF49216A20280060EBBC /* Cell */,
 				50B1362C216A1D58009C435C /* View */,
 				50B13629216984E5009C435C /* DelegateManagerResultViewController.h */,

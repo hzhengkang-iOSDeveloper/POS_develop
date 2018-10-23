@@ -12,6 +12,7 @@
 
 
 
+
 @interface DelegateManagerViewController () 
 @property (nonatomic, strong) UIButton *selectBtn;
 @property (nonatomic, strong) DelegateManagerMainView *mainView;
@@ -73,16 +74,21 @@
 }
 - (void)selectClick {
     DelegateManagerResultViewController *vc = [[DelegateManagerResultViewController alloc] init];
+    vc.agentName = _mainView.nameTF.text;
+    vc.agentNo = _mainView.platformAccountTF.text;
     [self.navigationController pushViewController:vc animated:YES];
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+

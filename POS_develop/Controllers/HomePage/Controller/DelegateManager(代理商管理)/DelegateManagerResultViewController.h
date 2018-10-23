@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DelegateManagerResultViewController : BaseSonViewController
-
+@property (nonatomic, copy) NSString *agentName;
+@property (nonatomic, copy) NSString *agentNo;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DelegateManagerEditViewController : BaseSonViewController
+@property (nonatomic, copy) NSString *myID;
 
 @end
 

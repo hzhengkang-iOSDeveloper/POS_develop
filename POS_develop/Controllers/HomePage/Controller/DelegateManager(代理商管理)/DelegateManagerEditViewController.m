@@ -40,7 +40,8 @@
 }
 #pragma mark ---- 保存 ----
 - (void)saveBtnClick {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self loadAgentUpdateRequest];
+    
 }
 
 #pragma mark - UITableViewDataSource
@@ -94,15 +95,44 @@
     return AD_HEIGHT(50);
 }
 
+#pragma mark ------------------------------------ 接口 ------------------------------------
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark ---- 代理商管理详情 ----
+- (void)loadAgentGetRequest {
+    [[HPDConnect connect] PostNetRequestMethod:[NSString stringWithFormat:@"%@%@", @"api/trans/agent/get/", self.myID] params:nil cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+//                self.dataDict = result[@"data"];
+//                self.navigationItemTitle = [self.dataDict objectForKey:@"agentName"];
+//                [self.transactionDetailTableView reloadData];
+                
+            }
+            
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
 }
-*/
 
+#pragma mark ---- 保存 ----
+- (void)loadAgentUpdateRequest {
+    [[HPDConnect connect] PostNetRequestMethod:[NSString stringWithFormat:@"%@%@", @"api/trans/agent/update/", self.myID] params:nil cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                //                self.dataDict = result[@"data"];
+                //                self.navigationItemTitle = [self.dataDict objectForKey:@"agentName"];
+                //                [self.transactionDetailTableView reloadData];
+                
+                
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
 @end
+
+
+

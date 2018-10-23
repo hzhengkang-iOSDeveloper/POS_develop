@@ -9,10 +9,12 @@
 #import "DelegateManagerResultViewController.h"
 #import "TerminalAdminTableViewCell.h"
 #import "DelegateManagerEditViewController.h"
+#import "AgentListModel.h"
 @interface DelegateManagerResultViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *myTableView;
 @property (nonatomic, weak) UIButton *selectBtn;
 @property (nonatomic, copy) NSString *selectStr;
+@property (nonatomic, strong) NSMutableArray *dataArray;
 
 @end
 
@@ -21,9 +23,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItemTitle = @"代理商管理";
+    self.dataArray = [NSMutableArray array];
     self.selectStr = @"";
     [self initUI];
     [self createTableView];
+    [self loadAgentListRequest];
 }
 - (void)initUI {
     self.view.backgroundColor = WhiteColor;
@@ -44,12 +48,15 @@
 }
 - (void)createTableView {
     MJWeakSelf;
-    _myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - TabbarHeight - FITiPhone6(68)) style:UITableViewStylePlain];
+    _myTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     _myTableView.backgroundColor = WhiteColor;
     _myTableView.delegate = self;
     _myTableView.dataSource = self;
     _myTableView.showsVerticalScrollIndicator = NO;
     _myTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    _myTableView.mj_header = [SLRefreshHeader headerWithRefreshingBlock:^{
+        [weakSelf loadAgentListRequest];
+    }];
     [self.view addSubview:_myTableView];
     [_myTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.offset(0);
@@ -71,17 +78,13 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 10;
+    return self.dataArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TerminalAdminTableViewCell *cell = [TerminalAdminTableViewCell cellWithTableView:tableView];
-    cell.delegateAccount.text = @"代理商账号：sy70022";
-    cell.delegateName.text = @"代理商名称：胡子";
-    //    MJWeakSelf;
-    //    cell.clickSelectBtnHandler = ^{
-    //
-    //    };
+    AgentListModel *model = self.dataArray[indexPath.row];
+    cell.model = model;
     
     if ([self.selectStr isEqualToString:[NSString stringWithFormat:@"%li",indexPath.row]]) {
         cell.selectBtn.selected = YES;
@@ -116,14 +119,31 @@
 }
 
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark ------------------------------------ 接口 ------------------------------------
+#pragma mark ---- 终端绑定查询 ----
+- (void)loadAgentListRequest {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agent/list" params:@{@"userid":@"1", @"agentName":self.agentName, @"agentNo":self.agentNo} cookie:nil result:^(bool success, id result) {
+        [self.myTableView.mj_header endRefreshing];
+        if (success) {
+            
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSArray *array = result[@"data"][@"rows"];
+                    if (self.dataArray.count > 0 ) {
+                        [self.dataArray removeAllObjects];
+                    }
+                    [self.dataArray addObjectsFromArray:[AgentListModel mj_objectArrayWithKeyValuesArray:array]];
+                    
+                    [self.myTableView reloadData];
+                    
+                    
+                }
+                
+            }
+            
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
 }
-*/
-
 @end
