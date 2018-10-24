@@ -44,8 +44,8 @@
     self.contentTF.textColor = C000000;
     self.contentTF.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, FITiPhone6(5), 0)];
     self.contentTF.leftViewMode = UITextFieldViewModeAlways;
-//    [self.contentTF setValue:C090909
-////                  forKeyPath:@"_placeholderLabel.textColor"];
+//    [self.contentTF setValue:C989898 forKeyPath:@"_placeholderLabel.textColor"];
+//
 
     self.contentTF.keyboardType = UIKeyboardTypeNumberPad;
     self.contentTF.borderStyle = UITextBorderStyleNone;
@@ -64,7 +64,8 @@
     [self.citySelectBtn setTitle:@"请选择省份城市" forState:UIControlStateNormal];
     [self.citySelectBtn setTitleColor:C989898 forState:UIControlStateNormal];
     self.citySelectBtn.titleLabel.font = F13;
-    [self.citySelectBtn addTarget:self action:@selector(citySelectClick) forControlEvents:UIControlEventTouchUpInside];
+    self.citySelectBtn.userInteractionEnabled = NO;
+//    [self.citySelectBtn addTarget:self action:@selector(citySelectClick) forControlEvents:UIControlEventTouchUpInside];
     self.citySelectBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
     [self addSubview:self.citySelectBtn];
     [self.citySelectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -88,13 +89,12 @@
     }];
     
 }
-#pragma mark ---- 城市选择 ----
-- (void)citySelectClick {
-    
-}
+
 #pragma mark ---- 全部提现 ----
 - (void)totalWithdrawClick {
-    
+    if (self.totalWithdrawClickBlock) {
+        self.totalWithdrawClickBlock();
+    }
 }
 @end
 

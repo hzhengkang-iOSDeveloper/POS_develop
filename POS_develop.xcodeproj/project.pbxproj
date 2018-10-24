@@ -39,6 +39,7 @@
 		259646E32158DFAE00E516BF /* SeparateQueryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 259646E22158DFAE00E516BF /* SeparateQueryViewController.m */; };
 		259646E62158E1ED00E516BF /* SeparateQueryMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 259646E52158E1ED00E516BF /* SeparateQueryMainView.m */; };
 		259646E82158E1FA00E516BF /* SeparateQueryMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 259646E72158E1FA00E516BF /* SeparateQueryMainView.xib */; };
+		25CBB298218087390063E701 /* WithdrawCashRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25CBB297218087390063E701 /* WithdrawCashRecordViewController.m */; };
 		25E2A36A214D7831006EB5B5 /* PD_SelectAreaPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E2A369214D7831006EB5B5 /* PD_SelectAreaPickerView.m */; };
 		5009BA7D2176D72600FF1AE9 /* CombinationSetMealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5009BA7C2176D72600FF1AE9 /* CombinationSetMealViewController.m */; };
 		500C2732217C3852008F221A /* POS_ShopCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 500C2731217C3852008F221A /* POS_ShopCarViewController.m */; };
@@ -376,6 +377,8 @@
 		259646E42158E1ED00E516BF /* SeparateQueryMainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeparateQueryMainView.h; sourceTree = "<group>"; };
 		259646E52158E1ED00E516BF /* SeparateQueryMainView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeparateQueryMainView.m; sourceTree = "<group>"; };
 		259646E72158E1FA00E516BF /* SeparateQueryMainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SeparateQueryMainView.xib; sourceTree = "<group>"; };
+		25CBB296218087390063E701 /* WithdrawCashRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WithdrawCashRecordViewController.h; sourceTree = "<group>"; };
+		25CBB297218087390063E701 /* WithdrawCashRecordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WithdrawCashRecordViewController.m; sourceTree = "<group>"; };
 		25E2A368214D7831006EB5B5 /* PD_SelectAreaPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_SelectAreaPickerView.h; sourceTree = "<group>"; };
 		25E2A369214D7831006EB5B5 /* PD_SelectAreaPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_SelectAreaPickerView.m; sourceTree = "<group>"; };
 		5009BA7B2176D72600FF1AE9 /* CombinationSetMealViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CombinationSetMealViewController.h; sourceTree = "<group>"; };
@@ -1021,6 +1024,27 @@
 				2546B20621787A8E001CFE0D /* BillListModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		25CBB299218087460063E701 /* 提现 */ = {
+			isa = PBXGroup;
+			children = (
+				25CBB29A218087590063E701 /* View */,
+				25CBB296218087390063E701 /* WithdrawCashRecordViewController.h */,
+				25CBB297218087390063E701 /* WithdrawCashRecordViewController.m */,
+				251A4101214FF45E00AC2C81 /* WithdrawCashViewController.h */,
+				251A4102214FF45E00AC2C81 /* WithdrawCashViewController.m */,
+			);
+			path = "提现";
+			sourceTree = "<group>";
+		};
+		25CBB29A218087590063E701 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				253647DE214E11C60094576C /* WithdrawCashTableViewCell.h */,
+				253647DF214E11C60094576C /* WithdrawCashTableViewCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		4F67476230474D132B2BE4A8 /* Pods */ = {
@@ -2362,6 +2386,7 @@
 		789722CE216F294000425C62 /* MainController */ = {
 			isa = PBXGroup;
 			children = (
+				25CBB299218087460063E701 /* 提现 */,
 				50EEB2092173318600B41353 /* Model */,
 				78CB4B72214B8BD7000F6A9D /* VipSystemViewController.h */,
 				78CB4B73214B8BD7000F6A9D /* VipSystemViewController.m */,
@@ -2381,8 +2406,6 @@
 				253647D3214E030D0094576C /* UpdatePhoneViewController.m */,
 				253647D8214E05BC0094576C /* SettingNameViewController.h */,
 				253647D9214E05BC0094576C /* SettingNameViewController.m */,
-				251A4101214FF45E00AC2C81 /* WithdrawCashViewController.h */,
-				251A4102214FF45E00AC2C81 /* WithdrawCashViewController.m */,
 				50523FE7217EB05C0091952C /* MyFreeGetViewController.h */,
 				50523FE8217EB05C0091952C /* MyFreeGetViewController.m */,
 				50523FEA217EB1810091952C /* MyFreeGetRootViewController.h */,
@@ -2482,8 +2505,6 @@
 				2546E2D3214D47570066DBFB /* UpdatePasswordTableViewCell.m */,
 				253647D6214E053C0094576C /* UpdatePhoneTableViewCell.m */,
 				253647D5214E053C0094576C /* UpdatePhoneTableViewCell.h */,
-				253647DE214E11C60094576C /* WithdrawCashTableViewCell.h */,
-				253647DF214E11C60094576C /* WithdrawCashTableViewCell.m */,
 				50523FED217EB2460091952C /* MyFreeGetCell.h */,
 				50523FEE217EB2460091952C /* MyFreeGetCell.m */,
 			);
@@ -2825,6 +2846,7 @@
 				5067AB96215F8518005A1FD7 /* ActivationMoneyRootViewController.m in Sources */,
 				253268D4217F27EB0040E3E4 /* PowerfulBannerView.m in Sources */,
 				25263160217AD9F400FD2B2E /* TransactionListModel.m in Sources */,
+				25CBB298218087390063E701 /* WithdrawCashRecordViewController.m in Sources */,
 				7871669B214911BC00452C51 /* TBCityIconInfo.m in Sources */,
 				786AD0F9215A3893005D7363 /* SeparateQueryCell.m in Sources */,
 				7888F3BF2147C33900AAC8B0 /* Reachability.m in Sources */,

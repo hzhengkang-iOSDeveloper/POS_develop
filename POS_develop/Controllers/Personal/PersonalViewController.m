@@ -30,6 +30,8 @@
 @property (nonatomic, strong) NSArray *imageArray;
 @property (nonatomic, strong) NSArray *titleArray;
 @property (nonatomic, strong) PersonalHeaderView *headerView;
+@property (nonatomic, copy) NSString *balanceStr;
+
 @end
 
 @implementation PersonalViewController
@@ -80,6 +82,7 @@
     };
     self.headerView.withdrawBlock = ^{
         WithdrawCashViewController *vc = [[WithdrawCashViewController alloc] init];
+        vc.balanceStr = [NSString stringWithFormat:@"%@", weakSelf.balanceStr];
         vc.hidesBottomBarWhenPushed = YES;
         [weakSelf.navigationController pushViewController:vc animated:YES];
     };
@@ -210,6 +213,7 @@
                 if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
                     NSArray *array = [NSArray arrayWithArray:result[@"data"][@"rows"]];
                     self.headerView.balanceL.text = [NSString stringWithFormat:@"余额：%@", [[array firstObject] valueForKey:@"accountBalance"]];
+                    self.balanceStr = [[array firstObject] valueForKey:@"accountBalance"];
                 }
                 
             }
@@ -243,7 +247,7 @@
 }
 #pragma mark ---- 个人 用户信息 ----
 - (void)loadUserinfoRequest {
-    [[HPDConnect connect] PostNetRequestMethod:@"sys/user/userinfo" params:nil cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"sys/user/userinfo" params:@{@"userid":@"1"} cookie:nil result:^(bool success, id result) {
         [self.personalTableView.mj_header endRefreshing];
         if (success) {
             self.headerView.userNameLabel.text = [result valueForKey:@"nickname"];

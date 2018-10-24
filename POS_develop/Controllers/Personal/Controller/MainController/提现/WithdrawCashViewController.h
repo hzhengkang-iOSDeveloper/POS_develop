@@ -9,5 +9,5 @@
 #import "BaseSonViewController.h"
 
 @interface WithdrawCashViewController : BaseSonViewController
-
+@property (nonatomic, copy) NSString *balanceStr;
 @end

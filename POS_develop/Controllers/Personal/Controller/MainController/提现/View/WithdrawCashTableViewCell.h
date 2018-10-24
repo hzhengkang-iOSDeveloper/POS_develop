@@ -14,5 +14,6 @@
 @property (nonatomic, strong) UIButton *citySelectBtn;
 @property (nonatomic, strong) UIButton *totalWithdrawBtn;//全部提现
 
+@property (nonatomic, copy) void(^totalWithdrawClickBlock)(void);
 +(instancetype)cellWithTableView:(UITableView *)tableView;
 @end
