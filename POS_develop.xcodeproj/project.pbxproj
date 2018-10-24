@@ -55,6 +55,7 @@
 		502AF8132163A5E100260979 /* SheetPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 502AF8122163A5E100260979 /* SheetPickerView.m */; };
 		502BAFC3215C884B005EDE6F /* PD_BillDetailOutLineInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 502BAFC2215C884B005EDE6F /* PD_BillDetailOutLineInfoView.m */; };
 		50339EAE2152968F003011E9 /* PD_BillListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50339EAD2152968F003011E9 /* PD_BillListCell.m */; };
+		503C46A4218018F0003F467F /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 503C46A3218018F0003F467F /* Foundation+Log.m */; };
 		5040E98321770CDE00E39628 /* CombinationSetMealDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5040E98221770CDE00E39628 /* CombinationSetMealDetailViewController.m */; };
 		504D8E172170407200478C50 /* POS_CommitBillViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 504D8E162170407200478C50 /* POS_CommitBillViewController.m */; };
 		504D8E1A2170740000478C50 /* POS_CommfirBillOutLinePayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 504D8E192170740000478C50 /* POS_CommfirBillOutLinePayView.m */; };
@@ -408,6 +409,7 @@
 		502BAFC2215C884B005EDE6F /* PD_BillDetailOutLineInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillDetailOutLineInfoView.m; sourceTree = "<group>"; };
 		50339EAC2152968F003011E9 /* PD_BillListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillListCell.h; sourceTree = "<group>"; };
 		50339EAD2152968F003011E9 /* PD_BillListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillListCell.m; sourceTree = "<group>"; };
+		503C46A3218018F0003F467F /* Foundation+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Foundation+Log.m"; sourceTree = "<group>"; };
 		5040E98121770CDE00E39628 /* CombinationSetMealDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CombinationSetMealDetailViewController.h; sourceTree = "<group>"; };
 		5040E98221770CDE00E39628 /* CombinationSetMealDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CombinationSetMealDetailViewController.m; sourceTree = "<group>"; };
 		504D8E152170407200478C50 /* POS_CommitBillViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POS_CommitBillViewController.h; sourceTree = "<group>"; };
@@ -1965,6 +1967,7 @@
 				7888F2A82147C0AA00AAC8B0 /* AppDelegate.m */,
 				7888F2AA2147C0AA00AAC8B0 /* ViewController.h */,
 				7888F2AB2147C0AA00AAC8B0 /* ViewController.m */,
+				503C46A3218018F0003F467F /* Foundation+Log.m */,
 				787166922149102000452C51 /* POS_PCH.pch */,
 				7888F2B52147C0AC00AAC8B0 /* Info.plist */,
 				7888F2AD2147C0AA00AAC8B0 /* Main.storyboard */,
@@ -2709,6 +2712,7 @@
 				789F276C2176E5D300979C1A /* ShareTextModel.m in Sources */,
 				7888F3502147C32C00AAC8B0 /* SFHFKeychainUtils.m in Sources */,
 				504D8E1D217075E800478C50 /* POS_CommfirBillOnLinePayView.m in Sources */,
+				503C46A4218018F0003F467F /* Foundation+Log.m in Sources */,
 				786AD0DD215A02F1005D7363 /* SeparateQueryDetailHeaderView.m in Sources */,
 				7888F3B82147C33900AAC8B0 /* DateManager.m in Sources */,
 				7888F2D72147C31600AAC8B0 /* BaseSonViewController.m in Sources */,

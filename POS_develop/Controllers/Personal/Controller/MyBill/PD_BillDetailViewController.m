@@ -15,6 +15,7 @@
 #import "PD_BillDetailUnCheckView.h"//待审核
 #import "PD_BillDetailOnLineView.h"//线上支付
 #import "PD_BillDetailComfirInfoView.h"//确认收货
+#import "BillListModel.h"
 @interface PD_BillDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, weak) UITableView *orderDetailTable;
 //订单编号
@@ -25,6 +26,8 @@
 @property (nonatomic, weak) UILabel *payTimeLabel;
 //发货时间
 @property (nonatomic, weak) UILabel *sendTimeLabel;
+//模型
+@property (nonatomic, strong) BillListModel *billListM;
 @end
 
 @implementation PD_BillDetailViewController
@@ -41,7 +44,7 @@
 #pragma mark ---- Table ----
 - (void)creatTableView
 {
-    UITableView *orderDetailTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-navH) style:UITableViewStyleGrouped];
+    UITableView *orderDetailTable = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     orderDetailTable.showsVerticalScrollIndicator = NO;
     orderDetailTable.delegate = self;
     orderDetailTable.dataSource = self;
@@ -49,7 +52,10 @@
     self.orderDetailTable = orderDetailTable;
     orderDetailTable.separatorStyle = NO;
     orderDetailTable.tableHeaderView = [self creatTableHeaderView];
-    orderDetailTable.tableFooterView = [self creatTableFooterView];
+    [orderDetailTable mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.offset(0);
+        make.bottom.equalTo(self.mas_bottomLayoutGuideTop).offset(0);
+    }];
 }
 
 #pragma mark ---- TabHeadView ----
@@ -112,14 +118,16 @@
 - (UIView *)creatTableFooterView
 {
     MJWeakSelf;
-    
-    UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(306)+AD_HEIGHT(53)+AD_HEIGHT(5))];
+    PayDOModel *payDoModel = [PayDOModel mj_objectWithKeyValues:self.billListM.payDO];
+
+    UIView *footerView = [[UIView alloc]init];
+//    footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(306)+AD_HEIGHT(53)+AD_HEIGHT(5));
     footerView.backgroundColor = CF6F6F6;
     
     //商品总价
     SLOrdersDeteiledLabel *goodTotalPriceLabel = [[SLOrdersDeteiledLabel alloc] init];
     goodTotalPriceLabel.title = @"商品总价";
-    goodTotalPriceLabel.textStr = @"￥1500";
+    goodTotalPriceLabel.textStr = [NSString stringWithFormat:@"￥%@",self.billListM.displayPrice];
     [footerView addSubview:goodTotalPriceLabel];
     [goodTotalPriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.offset(0);
@@ -136,7 +144,7 @@
    //优惠金额
     SLOrdersDeteiledLabel *discountPriceLabel = [[SLOrdersDeteiledLabel alloc] init];
     discountPriceLabel.title = @"优惠金额";
-    discountPriceLabel.textStr = @"-￥200";
+    discountPriceLabel.textStr = [NSString stringWithFormat:@"-￥%@",self.billListM.discountPrice];
     [footerView addSubview:discountPriceLabel];
     [discountPriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(0);
@@ -154,7 +162,7 @@
     //邮费
     SLOrdersDeteiledLabel *postPriceLabel = [[SLOrdersDeteiledLabel alloc] init];
     postPriceLabel.title = @"邮费";
-    postPriceLabel.textStr = @"￥50";
+    postPriceLabel.textStr = [NSString stringWithFormat:@"￥%@",self.billListM.deliveryPrice];
     [footerView addSubview:postPriceLabel];
     [postPriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(0);
@@ -174,7 +182,7 @@
     SLOrdersDeteiledLabel *totalLabel = [[SLOrdersDeteiledLabel alloc] init];
     totalLabel.title = @"合计";
     totalLabel.titleStrColor = CF52542;
-    totalLabel.textStr = @"￥1500";
+    totalLabel.textStr = [NSString stringWithFormat:@"￥%@",self.billListM.orderPrice];
     [footerView addSubview:totalLabel];
     [totalLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(0);
@@ -241,14 +249,46 @@
     }];
     self.sendTimeLabel = sendTimeLabel;
     
-    //线下转账
-//    PD_BillDetailOutLineInfoView *outLineInfoView = [[PD_BillDetailOutLineInfoView alloc]init];
-//    [footerView addSubview:outLineInfoView];
-//    [outLineInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(otherInfoView.mas_bottom).offset(AD_HEIGHT(2));
-//        make.left.offset(0);
-//        make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(282)));
-//    }];
+    //10:待付款，20:待发货，30:待确认，40：已完成
+    if ([self.billListM.orderStatus isEqualToString:@"10"]) {
+        //支付方式，0:微信，1:支付宝，2:线下转账
+        if ([payDoModel.payType isEqualToString:@"2"]) {
+            footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(306)+AD_HEIGHT(282)+AD_HEIGHT(2));
+            //线下转账
+            PD_BillDetailOutLineInfoView *outLineInfoView = [[PD_BillDetailOutLineInfoView alloc]init];
+            [footerView addSubview:outLineInfoView];
+            [outLineInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(otherInfoView.mas_bottom).offset(AD_HEIGHT(2));
+                make.left.offset(0);
+                make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(282)));
+            }];
+        } else {
+            footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(306)+AD_HEIGHT(214)+AD_HEIGHT(2));
+            //线上支付
+            PD_BillDetailOnLineView *onLineView = [[PD_BillDetailOnLineView alloc]init];
+            [footerView addSubview:onLineView];
+            [onLineView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(otherInfoView.mas_bottom).offset(AD_HEIGHT(2));
+                make.left.offset(0);
+                make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(214)));
+            }];
+
+        }
+    } else if ([self.billListM.orderStatus isEqualToString:@"20"] || [self.billListM.orderStatus isEqualToString:@"30"] ) {
+        //确认收货
+        footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(306)+AD_HEIGHT(53)+AD_HEIGHT(5));
+        PD_BillDetailComfirInfoView *comfirInfoView = [[PD_BillDetailComfirInfoView alloc]init];
+        [footerView addSubview:comfirInfoView];
+        [comfirInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(otherInfoView.mas_bottom).offset(AD_HEIGHT(5));
+            make.left.offset(0);
+            make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(53)));
+        }];
+    } else if ([self.billListM.orderStatus isEqualToString:@"40"]) {
+        footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(306)+AD_HEIGHT(5));
+
+    }
+    
     
     //待审核
 //    PD_BillDetailUnCheckView *unCheckView = [[PD_BillDetailUnCheckView alloc]init];
@@ -259,23 +299,8 @@
 //        make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(196)));
 //    }];
     
-    //线上支付
-//    PD_BillDetailOnLineView *onLineView = [[PD_BillDetailOnLineView alloc]init];
-//    [footerView addSubview:onLineView];
-//    [onLineView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(otherInfoView.mas_bottom).offset(AD_HEIGHT(2));
-//        make.left.offset(0);
-//        make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(214)));
-//    }];
     
-    //确认收货
-    PD_BillDetailComfirInfoView *comfirInfoView = [[PD_BillDetailComfirInfoView alloc]init];
-    [footerView addSubview:comfirInfoView];
-    [comfirInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(otherInfoView.mas_bottom).offset(AD_HEIGHT(5));
-        make.left.offset(0);
-        make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(53)));
-    }];
+    
     return footerView;
 }
 
@@ -335,7 +360,6 @@
 //复制订单标号
 - (void)copyOrderNo
 {
-    
 //    PD_ShowToast(@"复制成功", 1);
     HUD_SUCCESS(@"复制成功");
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
@@ -348,7 +372,9 @@
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
 
-                
+                self.billListM = [BillListModel mj_objectWithKeyValues:result[@"data"]];
+                self.orderDetailTable.tableFooterView = [self creatTableFooterView];
+
             }
         }
         NSLog(@"result ------- %@", result);
