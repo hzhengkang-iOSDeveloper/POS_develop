@@ -22,6 +22,7 @@
              };
 }
 
+
 @end
 
 @implementation DetailDOModel
@@ -34,3 +35,14 @@
 
 @end
 
+@implementation PayDOModel
++ (NSDictionary *)replacedKeyFromPropertyName
+{
+    
+    return @{@"ID" : @"id",
+                  @"payDescription" : @"description"
+             };
+    
+}
+
+@end

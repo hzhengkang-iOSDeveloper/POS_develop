@@ -16,7 +16,6 @@
 @interface PD_BillListRootViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, weak) UITableView *orderTableView;
 @property (nonatomic, strong) NSMutableArray *orderArray;
-@property (nonatomic, strong) NSMutableArray *orderGoodArray;
 @end
 
 @implementation PD_BillListRootViewController
@@ -24,7 +23,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.orderArray = [NSMutableArray array];
-    self.orderGoodArray = [NSMutableArray array];
     [self creatTableView];
     [self loadOrderListRequestWithIndex:self.index];
 }
@@ -44,11 +42,12 @@
         [weakSelf loadOrderListRequestWithIndex:self.index];
     }];
     
-    orderTableView.mj_footer = [SLRefreshFooter footerWithRefreshingBlock:^{
-      
-    }];
+//    orderTableView.mj_footer = [SLRefreshFooter footerWithRefreshingBlock:^{
+//
+//    }];
     [_orderTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.bottom.offset(0);
+        make.left.top.offset(0);
+        make.bottom.equalTo(self.mas_bottomLayoutGuideTop).offset(0);
         make.width.mas_equalTo(ScreenWidth);
     }];
 }
@@ -57,7 +56,6 @@
     return self.orderArray.count;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    //    SLLog(@"%lu",(unsigned long)[[self.orderModelArr[section] items] count]);
     BillListModel *model = self.orderArray[section];
     return model.detailDOList.count;
     //    return 0;
@@ -79,8 +77,10 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     BillListModel *model = self.orderArray[indexPath.section];
+    DetailDOModel *detailModel = model.detailDOList[indexPath.row];
+    
     PD_BillDetailViewController *detailVc = [[PD_BillDetailViewController alloc]init];
-    detailVc.myID = [[model.detailDOList firstObject] valueForKey:@"ID"];
+    detailVc.myID = detailModel.ID;
     detailVc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detailVc animated:YES];
     

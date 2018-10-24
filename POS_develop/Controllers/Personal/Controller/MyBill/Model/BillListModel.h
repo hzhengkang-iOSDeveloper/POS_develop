@@ -46,3 +46,29 @@
 @property (nonatomic, copy) NSString               *itemObj;
 
 @end
+
+@interface PayDOModel : NSObject
+@property (nonatomic , copy) NSString              * ID;
+@property (nonatomic , copy) NSString              * payDescription;
+@property (nonatomic , copy) NSString              * payBankTransUuid;
+@property (nonatomic , copy) NSString              * status;
+@property (nonatomic , copy) NSString              * payBankUserNo;
+@property (nonatomic , copy) NSString              * correctCallback;
+@property (nonatomic , copy) NSString              * payType;
+@property (nonatomic , copy) NSString              * updatetime;
+@property (nonatomic , copy) NSString              * payBankImage;
+@property (nonatomic , copy) NSString              * tbOrderId;
+@property (nonatomic , copy) NSString              * payBankUser;
+@property (nonatomic , copy) NSString              * transactionId;
+@property (nonatomic , copy) NSString              * callbackLog;
+@property (nonatomic , copy) NSString              * updateuserno;
+@property (nonatomic, copy) NSString               *outTradeNumber;
+@property (nonatomic , copy) NSString              * callbackDate;
+@property (nonatomic , copy) NSString              * deleteflag;
+@property (nonatomic , copy) NSString              * createusername;
+@property (nonatomic, copy) NSString               * payUuid;
+@property (nonatomic , copy) NSString              * createtime;
+@property (nonatomic , copy) NSString              * payBankName;
+@property (nonatomic , copy) NSString              * orderPrice;
+@end
+

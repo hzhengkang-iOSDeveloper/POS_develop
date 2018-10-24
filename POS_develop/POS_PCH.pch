@@ -254,4 +254,18 @@
 #define UserDefaultsGet(KEY)          [[NSUserDefaults standardUserDefaults] objectForKey:KEY]
 #define UserDefaultsSet(VALUE,KEY)    [[NSUserDefaults standardUserDefaults] setObject:VALUE forKey:KEY]
 
+
+#if DEBUG
+#define NSLog(FORMAT, ...) fprintf(stderr,"\nfunction:%s line:%d\n<%s>\n", __FUNCTION__, __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+
+#elif DEVELOP
+#define NSLog(FORMAT, ...) fprintf(stderr,"\nfunction:%s line:%d\n<%s>\n", __FUNCTION__, __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+
+#else
+#define NSLog(FORMAT, ...) nil;
+//#define SLLog(FORMAT, ...) fprintf(stderr,"\nfunction:%s line:%d\n<%s>\n", __FUNCTION__, __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+
+#endif
+
+
 #endif /* POS_PCH_pch */
