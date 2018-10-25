@@ -14,6 +14,7 @@
 
 @interface SettingViewController () <UITableViewDataSource, UITableViewDelegate,UIAlertViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate>
 @property (nonatomic, strong) UITableView *settingTableView;
+@property (nonatomic, strong) NSDictionary *userInfoDict;
 @end
 
 @implementation SettingViewController
@@ -21,8 +22,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItemTitle = @"设置";
+    self.userInfoDict = [NSDictionary dictionary];
     [self createTableView];
     [self createSignOutBtn];
+    [self loadUserinfoRequest];
     
 }
 - (void)createTableView {
@@ -31,6 +34,7 @@
     _settingTableView.delegate = self;
     _settingTableView.dataSource = self;
     _settingTableView.showsVerticalScrollIndicator = NO;
+    _settingTableView.scrollEnabled = NO;
     _settingTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self.view addSubview:_settingTableView];
 }
@@ -67,16 +71,22 @@
     if (indexPath.row == 0) {
         cell.titleLabel.hidden = YES;
         cell.iconImageV.hidden = NO;
-        cell.iconImageV.image = [UIImage imageNamed:@"头像2"];
-//        [cell.iconImageV sd_setImageWithURL:[NSURL URLWithString:_loginManager.userInfo.UserImg] placeholderImage: [UIImage imageNamed:@"头像2"] options:SDWebImageRefreshCached];
+//        cell.iconImageV.image = [UIImage imageNamed:@"头像2"];
+        [cell.iconImageV sd_setImageWithURL:[NSURL URLWithString:[self.userInfoDict objectForKey:@"picUrl"]] placeholderImage: [UIImage imageNamed:@"头像2"] options:SDWebImageRefreshCached];
         cell.detailLabel.text = @"修改头像";
         cell.detailLabel.textColor = C989898;
     }else if (indexPath.row == 1) {
         cell.titleLabel.text = @"手机号";
-        cell.detailLabel.text = [@"17612197453" stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
+        NSString *mobile = [self.userInfoDict objectForKey:@"mobile"];
+        if (mobile.length < 11) {
+            cell.detailLabel.text = mobile;
+        }else {
+            cell.detailLabel.text = [[self.userInfoDict objectForKey:@"mobile"] stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
+        }
+        
     }else if (indexPath.row == 2) {
         cell.titleLabel.text = @"姓名";
-        cell.detailLabel.text = @"小幸运";
+        cell.detailLabel.text = [self.userInfoDict objectForKey:@"nickname"];
     }else {
         cell.titleLabel.text = @"修改密码";
     }
@@ -92,6 +102,7 @@
 
 #pragma mark - UITableViewDelegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    MJWeakSelf
     switch (indexPath.row) {
         case 0:{
              [self changeUserHeaderImage];
@@ -104,6 +115,10 @@
             break;
         case 2:{
             SettingNameViewController *vc = [[SettingNameViewController alloc] init];
+            vc.popBlock = ^{
+              //刷新接口
+                [weakSelf loadUserinfoRequest];
+            };
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
@@ -182,35 +197,51 @@
 -(void)UploadHeadImage:(UIImage*)headImage{
     
 //    HPDProgressHudShowWithMessage(@"头像上传中..");
-//    NSData *imageData = UIImageJPEGRepresentation(headImage,1.0f);
-//    NSString *encodedImageStr = [imageData base64Encoding];
-//    NSDictionary* params = @{@"Memo":encodedImageStr};
-//    [[HPDConnect connect] webservicesAFNetPOSTMethod:KSoapMethodUploadHeadImage params:params cookie:[[LoginManager getInstance] userCookie] result:^(bool success, NSDictionary *result) {
-//        HPDProgressHide;
+    NSData *imageData = UIImageJPEGRepresentation(headImage,1.0f);
+    NSString *encodedImageStr = [NSString stringWithFormat:@"%@", imageData];
+    NSDictionary* params = @{@"avatar_data":encodedImageStr};
+//    [[HPDConnect connect] PostNetRequestMethod:@"sys/user/uploadImg" params:params cookie:nil result:^(bool success, NSDictionary *result) {
+////        HPDProgressHide;
 //        //        showToast(result[@"doMsg"]);
 //        if (success) {
-//            if (result[@"doStatu"]) {
-//                if (result[@"doObject"] == nil) {
-//                    showToast(result[@"prompt"]);
-//                    //                    return ;
-//                }else{
-//
-//                    NSDictionary *dictInfo = [GlobalMethod dictionaryWithJsonString:result[@"doObject"]];
-//                    NSString* headImage = [NSString stringWithFormat:@"%@",dictInfo[@"userimg"]];
-//                    NSLog(@"imageUrl = %@",dictInfo[@"userimg"]);
-//                    if (headImage.length>0) {
-//                        _loginManager.userInfo.UserImg = headImage;
-//                        [UserInformation saveUserinfoWithKey:User_HeadImage value:headImage];
-//                        [_UserInformationTableView reloadData];
-//                    }
-//                }
-//            }
+////            if (result[@"doStatu"]) {
+////                if (result[@"doObject"] == nil) {
+////                    showToast(result[@"prompt"]);
+////                    //                    return ;
+////                }else{
+////
+////                    NSDictionary *dictInfo = [GlobalMethod dictionaryWithJsonString:result[@"doObject"]];
+////                    NSString* headImage = [NSString stringWithFormat:@"%@",dictInfo[@"userimg"]];
+////                    NSLog(@"imageUrl = %@",dictInfo[@"userimg"]);
+////                    if (headImage.length>0) {
+////                        _loginManager.userInfo.UserImg = headImage;
+////                        [UserInformation saveUserinfoWithKey:User_HeadImage value:headImage];
+////                        [_UserInformationTableView reloadData];
+////                    }
+////                }
+////            }
 //
 //            NSLog(@"result = %@",result);
 //        }else{
 //
 //        }
 //    }];
+    [[HPDConnect connect]AFNetPOSTMethodWithUpload:@"sys/user/uploadImg" params:nil  upData:headImage uptype:0 fileName:[NSString stringWithFormat:@"%@.png",[MyTools getCurrentTimestamp]] cookie:nil result:^(bool success, id result) {
+        NSString *resultString = [[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding];
+        
+        NSData *jsonData = [resultString dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *err;
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                             
+                                                            options:NSJSONReadingMutableContainers
+                             
+                                                              error:&err];
+        
+       
+        
+        
+        NSLog(@"success = %d result = %@",success,result);
+    }];
     
     
 }
@@ -220,4 +251,37 @@
         // do nothing
     }];
 }
+
+
+#pragma mark ---- 个人 用户信息 ----
+- (void)loadUserinfoRequest {
+    [[HPDConnect connect] PostNetRequestMethod:@"sys/user/userinfo" params:@{@"userid":@"1"} cookie:nil result:^(bool success, id result) {
+        if (success) {
+            self.userInfoDict = result;
+            
+            [self.settingTableView reloadData];
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

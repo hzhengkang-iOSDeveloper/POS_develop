@@ -46,8 +46,6 @@
     self.contentTF.leftViewMode = UITextFieldViewModeAlways;
 //    [self.contentTF setValue:C989898 forKeyPath:@"_placeholderLabel.textColor"];
 //
-
-    self.contentTF.keyboardType = UIKeyboardTypeNumberPad;
     self.contentTF.borderStyle = UITextBorderStyleNone;
     self.contentTF.font = F13;
     self.contentTF.layer.cornerRadius = FITiPhone6(5);

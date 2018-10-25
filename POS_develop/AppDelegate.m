@@ -19,7 +19,11 @@
 // 如果需要使用 idfa 功能所需要引入的头文件（可选）
 #import <AdSupport/AdSupport.h>
 #import <UserNotifications/UserNotifications.h>
-@interface AppDelegate () <JPUSHRegisterDelegate>{
+
+//微信分享
+#import "WXApi.h"
+
+@interface AppDelegate () <JPUSHRegisterDelegate, WXApiDelegate>{
     RootViewController *mainViewController;
 }
 
@@ -29,6 +33,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    //微信分享注册appid
+    [WXApi registerApp:WXAppID];
     
     //清除角标
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
@@ -161,6 +168,35 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     // badge清零
     [application setApplicationIconBadgeNumber:0];
     [JPUSHService resetBadge];
+}
+
+
+-(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options{
+    
+    if ([url.scheme hasPrefix:WXAppID]) {
+        return [WXApi handleOpenURL:url delegate:self];
+    }
+    return YES;
+}
+
+
+/**
+ 处理来至微信的响应
+ */
+- (void)onResp:(id)resp{
+    NSLog(@" ----resp %@",resp);
+    
+  
+    if ([resp isKindOfClass:[SendMessageToWXResp class]]) {
+        SendMessageToWXResp * tmpResp = (SendMessageToWXResp *)resp;
+        if (tmpResp.errCode == WXSuccess) {
+            HUD_TIP(@"分享成功");
+        }else{
+            HUD_TIP(@"分享失败");
+        }
+    }
+    
+    
 }
 
 

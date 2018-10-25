@@ -9,5 +9,5 @@
 #import "BaseSonViewController.h"
 
 @interface SettingNameViewController : BaseSonViewController
-
+@property (nonatomic, copy) void(^popBlock)(void);
 @end

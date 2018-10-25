@@ -10,4 +10,5 @@
 
 @interface WithdrawCashViewController : BaseSonViewController
 @property (nonatomic, copy) NSString *balanceStr;
+@property (nonatomic, copy) void(^popBlock)(void);
 @end

@@ -34,7 +34,14 @@
 
 #pragma mark ---- 下一步 ----
 - (void)nextClick {
+    if ([self.selectStr isEqualToString:@""]) {
+        HUD_TIP(@"请选择");
+        return;
+    }
+    NSIndexPath *path=[NSIndexPath indexPathForRow:[self.selectStr integerValue] inSection:0];
+    ImageGeneralizeCollectionViewCell *cell = (ImageGeneralizeCollectionViewCell *)[_myCollection cellForItemAtIndexPath:path];
     CopywritingSelectViewController *vc = [[CopywritingSelectViewController alloc] init];
+    vc.shareImgV =  cell.myImageView;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

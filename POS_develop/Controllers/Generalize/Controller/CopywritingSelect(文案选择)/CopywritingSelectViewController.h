@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CopywritingSelectViewController : BaseSonViewController
-
+@property (nonatomic, strong) UIImageView *shareImgV;
 @end
 
 NS_ASSUME_NONNULL_END
