@@ -157,4 +157,16 @@
  * @return 去除空格后的字符串
  */
 + (NSString *)removeEmpty:(NSString *) input;
+
+/**
+ * 获取当前时间戳
+ */
++ (NSString *)nowTime;
+/**
+ *  @brief  时间戳转化为自定义时间格式
+ *  @category
+ *  @param  timeString      字符串格式的时间戳
+ *  @param  format      自定义的时间格式
+ **/
++ (NSString *)CustomerTimeWithTimeIntervalString:(NSString *)timeString  withFormatter:(NSString *)format;
 @end

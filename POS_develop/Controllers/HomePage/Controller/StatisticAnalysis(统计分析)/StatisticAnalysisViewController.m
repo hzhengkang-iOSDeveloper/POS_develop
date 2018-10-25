@@ -10,6 +10,11 @@
 
 @interface StatisticAnalysisViewController ()<XJYChartDelegate>
 @property (nonatomic, weak) UILabel *profitCount;
+
+//开始时间
+@property (nonatomic, copy) NSString *startTime;
+//结束时间
+@property (nonatomic, copy) NSString *endTime;
 @end
 
 @implementation StatisticAnalysisViewController
@@ -18,9 +23,45 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItemTitle = @"统计分析";
+    //获取当前时间
+    self.endTime = [NSString CustomerTimeWithTimeIntervalString:[NSString nowTime] withFormatter:@"yyyy-MM-dd"];
+
     [self creatMainView];
 }
 
+#pragma mark ---- 计算时间 ----
+- (void)calauteTimeWithType:(NSUInteger)type
+{
+    //获取当前时间戳
+    NSUInteger currentTimeCount = [[NSString nowTime]integerValue];
+    if (type == 0) {
+        //日  距离当前时间30日
+        NSUInteger aMonthTimeCount = 30*24*60*60;//转换为时间戳
+        
+        //将时间戳转换为时间
+        self.startTime = [NSString CustomerTimeWithTimeIntervalString:[NSString stringWithFormat:@"%li",currentTimeCount-aMonthTimeCount] withFormatter:@"yyyy-MM-dd"];
+    } else if (type == 1) {
+        //周 距离当前时间半年  默认一个月30天
+        NSUInteger sixMonthTimeCount = 6*30*24*60*60;//转换时间戳
+        //将时间戳转换为时间
+        self.startTime = [NSString CustomerTimeWithTimeIntervalString:[NSString stringWithFormat:@"%li",currentTimeCount-sixMonthTimeCount] withFormatter:@"yyyy-MM-dd"];
+    } else if (type == 2) {
+        //年 距离当前时间12个月  默认一个月30天
+        NSUInteger yearDayCount =[self getNumberOfDaysOneYear:[NSDate dateWithTimeIntervalSinceNow:0]];
+        NSUInteger yearTimeCount = yearDayCount*24*60*60;//转换时间戳
+        //将时间戳转换为时间
+        self.startTime = [NSString CustomerTimeWithTimeIntervalString:[NSString stringWithFormat:@"%li",currentTimeCount-yearTimeCount] withFormatter:@"yyyy-MM-dd"];
+    }
+}
+
+// 获取某个日期所在年份的天数
+- (NSUInteger)getNumberOfDaysOneYear:(NSDate *)date{
+    NSCalendar *calender = [NSCalendar currentCalendar];
+    NSRange range = [calender rangeOfUnit:NSCalendarUnitDay
+                                   inUnit: NSCalendarUnitYear
+                                  forDate: date];
+    return range.length;
+}
 #pragma mark ---- 创建UI ----
 - (void)creatMainView
 {

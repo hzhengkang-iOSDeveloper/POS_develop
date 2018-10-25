@@ -535,4 +535,36 @@
 + (NSString *)removeEmpty:(NSString *) input {
     return [input stringByReplacingOccurrencesOfString:@" " withString:@""];
 }
+
+/**
+ * 获取当前时间戳
+ */
++ (NSString *)nowTime {
+    NSDate* date = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval a=[date timeIntervalSince1970];
+    return [NSString stringWithFormat:@"%.0f", a];
+}
+/**
+ *  @brief  时间戳转化为自定义时间格式
+ *  @category
+ *  @param  timeString      字符串格式的时间戳
+ *  @param  format      自定义的时间格式
+ **/
++ (NSString *)CustomerTimeWithTimeIntervalString:(NSString *)timeString  withFormatter:(NSString *)format {
+    
+    if ([timeString intValue] <= 0) {
+        return @"";
+    }
+    
+    // 格式化时间
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    formatter.timeZone = [NSTimeZone timeZoneWithName:@"shanghai"];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setDateFormat:format];
+    
+    NSDate* date = [NSDate dateWithTimeIntervalSince1970:[timeString doubleValue]];
+    NSString* dateString = [formatter stringFromDate:date];
+    return dateString;
+}
 @end
