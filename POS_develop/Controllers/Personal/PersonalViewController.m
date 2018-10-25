@@ -87,8 +87,10 @@
         [weakSelf.navigationController pushViewController:vc animated:YES];
     };
     
-    self.headerView.userNameLabel.hidden = NO;
-    self.headerView.invitedCodeLabel.hidden = NO;
+//    self.headerView.userNameLabel.hidden = NO;
+//    self.headerView.invitedCodeLabel.hidden = NO;
+
+    self.headerView.userName.hidden = NO;
     return self.headerView;
 }
 
