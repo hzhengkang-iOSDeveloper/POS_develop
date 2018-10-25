@@ -7,7 +7,7 @@
 //
 
 #import "PD_BillDetailTaoCanCell.h"
-#import "PD_BillListSkuCell.h"
+#import "PD_BillDetailSkuCell.h"
 #import "BillListModel.h"
 @interface PD_BillDetailTaoCanCell ()<UITableViewDataSource,UITableViewDelegate>
 //table
@@ -132,7 +132,7 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    PD_BillListSkuCell *cell = [PD_BillListSkuCell cellWithTableView:tableView];
+    PD_BillDetailSkuCell *cell = [PD_BillDetailSkuCell cellWithTableView:tableView];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.itemListM = self.dataArr[indexPath.row];
     

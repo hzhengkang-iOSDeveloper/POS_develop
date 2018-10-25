@@ -7,10 +7,12 @@
 //
 
 #import "BaseSonViewController.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PD_BillDetailViewController : BaseSonViewController
 @property (nonatomic, copy) NSString *myID;
+@property (nonatomic, copy) NSString *orderStatu;
 @end
 
 NS_ASSUME_NONNULL_END

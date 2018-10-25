@@ -52,12 +52,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItemTitle = @"订单完成";
     self.view.backgroundColor = CF6F6F6;
     [self creatTableView];
     [self loadOrderGetRequest];
 }
-
+- (void)setOrderStatu:(NSString *)orderStatu
+{
+    if (orderStatu) {
+        _orderStatu = orderStatu;
+        //订单状态，10:待付款，20:待发货，30:待确认，40：已完成
+        if ([orderStatu isEqualToString:@"10"]) {
+            self.navigationItemTitle  = @"待付款";
+        } else if ([orderStatu isEqualToString:@"20"]) {
+            self.navigationItemTitle  = @"待发货";
+        } else if ([orderStatu isEqualToString:@"30"]) {
+            self.navigationItemTitle  = @"待确认";
+        } else if ([orderStatu isEqualToString:@"40"]) {
+            self.navigationItemTitle  = @"订单完成";
+        }
+    }
+}
 #pragma mark ---- Table ----
 - (void)creatTableView
 {
@@ -68,7 +82,6 @@
     [self.view addSubview:orderDetailTable];
     self.orderDetailTable = orderDetailTable;
     orderDetailTable.separatorStyle = NO;
-    orderDetailTable.tableHeaderView = [self creatTableHeaderView];
     [orderDetailTable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.offset(0);
         make.bottom.equalTo(self.mas_bottomLayoutGuideTop).offset(0);
@@ -95,7 +108,7 @@
         make.left.equalTo(receiverNameLabel.mas_right).offset(AD_HEIGHT(8));
         make.top.offset(AD_HEIGHT(14));
         
-        view.text = [NSString numberSuitScanf:addressM.receiverMp];
+        view.text = [NSString numberSuitScanf:IF_NULL_TO_STRING(addressM.receiverMp)];
     }];
     
     //收货地址图片
@@ -330,7 +343,6 @@
     
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    //    SLLog(@"%lu",(unsigned long)[[self.orderModelArr[section] items] count]);
     if (self.danDiArr.count >0 && self.taoCanArr.count >0) {
         return section==0?self.taoCanArr.count:self.danDiArr.count;
     } else if (self.danDiArr.count ==0 && self.taoCanArr.count >0) {
@@ -345,6 +357,7 @@
     if (self.danDiArr.count >0 && self.taoCanArr.count >0) {
         if (indexPath.section == 0) {
             PD_BillDetailTaoCanCell *cell = [PD_BillDetailTaoCanCell cellWithTableView:tableView];
+            cell.detailDoM = self.taoCanArr[indexPath.row];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         } else {
@@ -354,6 +367,7 @@
         }
     } else if (self.danDiArr.count ==0 && self.taoCanArr.count >0) {
         PD_BillDetailTaoCanCell *cell = [PD_BillDetailTaoCanCell cellWithTableView:tableView];
+        cell.detailDoM = self.taoCanArr[indexPath.row];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     } else if (self.danDiArr.count >0 && self.taoCanArr.count ==0) {
@@ -366,23 +380,46 @@
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    DetailDOModel *taoCanDetaiM;
+    ItemObjModel *taoCanItemObjM;
+    if (self.taoCanArr.count >0 ) {
+        taoCanDetaiM = self.taoCanArr[indexPath.row];
+        taoCanItemObjM = [ItemObjModel mj_objectWithKeyValues:taoCanDetaiM.itemObj];
+    }
+    
+    DetailDOModel *danDianDetaiM;
+    ItemObjModel *danDianItemObjM;
+    if (self.danDiArr.count >0) {
+        danDianDetaiM = self.danDiArr[indexPath.row];
+        danDianItemObjM = [ItemObjModel mj_objectWithKeyValues:danDianDetaiM.itemObj];
+    }
+    
     if (self.danDiArr.count >0 && self.taoCanArr.count >0) {
-        return indexPath.section==0?(AD_HEIGHT(30)+AD_HEIGHT(46)+self.taoCanArr.count*AD_HEIGHT(60)+AD_HEIGHT(5)):(AD_HEIGHT(32)+AD_HEIGHT(60)*self.danDiArr.count+AD_HEIGHT(5));
+        return indexPath.section==0?(AD_HEIGHT(30)+AD_HEIGHT(46)+taoCanItemObjM.packageChargeItemDOList.count*AD_HEIGHT(60)+AD_HEIGHT(5)):(AD_HEIGHT(32)+AD_HEIGHT(60)*danDianItemObjM.packageChargeItemDOList.count+AD_HEIGHT(5));
     } else if (self.danDiArr.count ==0 && self.taoCanArr.count >0) {
-        return AD_HEIGHT(30)+AD_HEIGHT(46)+self.taoCanArr.count*AD_HEIGHT(60)+AD_HEIGHT(5);
+        return AD_HEIGHT(30)+AD_HEIGHT(46)+taoCanItemObjM.packageChargeItemDOList.count*AD_HEIGHT(60)+AD_HEIGHT(5);
     } else if (self.danDiArr.count >0 && self.taoCanArr.count ==0) {
-        return AD_HEIGHT(32)+AD_HEIGHT(60)*self.danDiArr.count+AD_HEIGHT(5);
+        return AD_HEIGHT(32)+AD_HEIGHT(60)*danDianItemObjM.packageChargeItemDOList.count+AD_HEIGHT(5);
     } else {
         return 0;
     }
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    
-    return [UIView new];
+    if (self.danDiArr.count >0 && self.taoCanArr.count >0) {
+        return section == 0?[self creatHeaderWithText:@"套餐"]:[self creatHeaderWithText:@"单点"];
+    } else if (self.danDiArr.count ==0 && self.taoCanArr.count >0) {
+        return [self creatHeaderWithText:@"套餐"];
+    } else if (self.danDiArr.count >0 && self.taoCanArr.count ==0) {
+        return [self creatHeaderWithText:@"单点"];
+    } else {
+        return [UIView new];
+    }
 }
+
+
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 0.01f;
+    return AD_HEIGHT(29);
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -393,13 +430,26 @@
     return  [UIView new];
 }
 
-
+#pragma mark ---- header ----
+- (UIView *)creatHeaderWithText:(NSString *)text
+{
+    UIView *headerView = [[UIView alloc]init];
+    headerView.backgroundColor = CF6F6F6;
+    
+    [UILabel getLabelWithFont:F13 textColor:C000000 superView:headerView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
+        make.left.offset(AD_HEIGHT(15));
+        make.centerY.offset(0);
+        
+        view.text = text;
+    }];
+    
+    return headerView;
+}
 #pragma mark ---- 按钮点击 ----
 
 //复制订单标号
 - (void)copyOrderNo
 {
-//    PD_ShowToast(@"复制成功", 1);
     HUD_SUCCESS(@"复制成功");
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = @"203498230482039482";
@@ -407,11 +457,12 @@
 
 #pragma mark ---- 接口 ----
 -(void)loadOrderGetRequest {
-    [[HPDConnect connect] PostNetRequestMethod:[NSString stringWithFormat:@"%@%@",@"api/trans/order/get/",@"6"] params:nil cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:[NSString stringWithFormat:@"%@%@",@"api/trans/order/get/",self.myID] params:nil cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
 
                 self.billListM = [BillListModel mj_objectWithKeyValues:result[@"data"]];
+                self.orderDetailTable.tableHeaderView = [self creatTableHeaderView];
                 self.orderDetailTable.tableFooterView = [self creatTableFooterView];
                 [self creatCellNewArr];
             }
@@ -433,6 +484,8 @@
             [self.taoCanArr addObject:detailM];
         }
     }];
+    
+    [self.orderDetailTable reloadData];
 }
 @end
 

@@ -57,7 +57,7 @@
 #import "XJYChart.h"
 #import "Colours.h"
 #import "SYShowHUD.h"
-
+#import "SLPopupShowView.h"
 
 
 //三方库头文件
@@ -101,6 +101,7 @@
 
 #define WhiteColor [UIColor whiteColor]
 #define ClearColor [UIColor clearColor]
+#define C_LightRed_EB3349 [UIColor colorWithHexString:@"#EB3349"]// 亮红色
 #define CF6F6F6 [UIColor colorWithHexString:@"#F2F2F6"]//背景色
 #define C1E95F9 [UIColor colorWithHexString:@"#1E95F9"]//主色系
 #define C000000 [UIColor colorWithHexString:@"#000000"]//深文本
@@ -170,6 +171,19 @@
 #define AD_HEIGHT(S)      ([UIScreen mainScreen].bounds.size.height / ((iPhoneX ? 812.0 : 667.0) / (S)))
 //无敌适配宏_宽
 #define AD_WIDTH(S)       ([UIScreen mainScreen].bounds.size.width / (375.0 / (S)))
+
+// 判断字段时候为空的情况
+#define IF_NULL_TO_STRING(x) ([(x) isEqual:[NSNull null]]||(x)==nil)? @"":STRING(x)
+
+// 转换为字符串
+#define STRING(x) [NSString stringWithFormat:@"%@",x]
+#define s_Num(num) [NSString stringWithFormat:@"%d",num]
+#define s_Integer(num) [NSString stringWithFormat:@"%ld",num]
+#define s_float(float) [NSString stringWithFormat:@"%.2f",float];
+
+// 转为URL
+#define URL(url) [NSURL URLWithString:url]
+
 
 #pragma mark - 简单方法封装
 #define OffKeyBoard  [[UIApplication sharedApplication].keyWindow endEditing:YES]///回收键盘

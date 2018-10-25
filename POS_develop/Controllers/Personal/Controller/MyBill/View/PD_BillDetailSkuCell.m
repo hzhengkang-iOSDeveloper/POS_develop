@@ -1,16 +1,14 @@
 //
-//  PD_BillListSkuCell.m
+//  PD_BillDetailSkuCell.m
 //  POS_develop
 //
-//  Created by 胡正康 on 2018/9/20.
-//  Copyright © 2018年 sunyn. All rights reserved.
+//  Created by 胡正康 on 2018/10/25.
+//  Copyright © 2018 sunyn. All rights reserved.
 //
 
-#import "PD_BillListSkuCell.h"
-//#import "DetailDOModel.h"
+#import "PD_BillDetailSkuCell.h"
 #import "BillListModel.h"
-
-@interface PD_BillListSkuCell ()
+@interface PD_BillDetailSkuCell ()
 //sku 图片
 @property (nonatomic, weak) UIImageView *skuImageView;
 //sku name
@@ -20,13 +18,13 @@
 //sku 数量
 @property (nonatomic, weak) UILabel *skuCountLabel;
 @end
-@implementation PD_BillListSkuCell
+@implementation PD_BillDetailSkuCell
 
 + (instancetype)cellWithTableView:(UITableView *)tableView {
-    static NSString *cellID = @"PD_BillListSkuCell";
-    PD_BillListSkuCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    static NSString *cellID = @"PD_BillDetailSkuCell";
+    PD_BillDetailSkuCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell) {
-        cell = [[PD_BillListSkuCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell = [[PD_BillDetailSkuCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -51,19 +49,19 @@
     //sku 图片
     UIImageView *skuImageView = [UIImageView new];
     skuImageView.contentMode = UIViewContentModeScaleAspectFit;
-//    skuImageView.image = ImageNamed(@"头像2");
+    //    skuImageView.image = ImageNamed(@"头像2");
     [self.contentView addSubview:skuImageView];
     self.skuImageView = skuImageView;
     [_skuImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(AD_HEIGHT(15));
         make.top.offset(AD_HEIGHT(10));
-        make.size.mas_offset(CGSizeMake(AD_HEIGHT(86), AD_HEIGHT(74)));
+        make.size.mas_offset(CGSizeMake(AD_HEIGHT(50), AD_HEIGHT(43)));
     }];
     
     
     //sku name
     UILabel *skuNameLabel = [UILabel new];
-//    skuNameLabel.text = @"京东到家京东到家京东到家京东到家京东到家京东到家京东到家京东到家";
+    //    skuNameLabel.text = @"京东到家京东到家京东到家京东到家京东到家京东到家京东到家京东到家";
     skuNameLabel.textColor = C000000;
     skuNameLabel.font = F13;
     skuNameLabel.textAlignment = NSTextAlignmentLeft;
@@ -78,8 +76,8 @@
     
     //sku 价格
     UILabel *skuPriceLabel = [UILabel new];
-//    skuPriceLabel.text = @"￥123";
-    skuPriceLabel.textColor = C000000;
+    //    skuPriceLabel.text = @"￥123";
+    skuPriceLabel.textColor = CF52542;
     skuPriceLabel.font = F12;
     skuPriceLabel.textAlignment = NSTextAlignmentLeft;
     [self.contentView addSubview:skuPriceLabel];
@@ -92,7 +90,7 @@
     
     //sku 数量
     UILabel *skuCountLabel = [UILabel new];
-//    skuCountLabel.text = @"x2";
+    //    skuCountLabel.text = @"x2";
     skuCountLabel.textColor = C989898;
     skuCountLabel.font = F12;
     skuCountLabel.textAlignment = NSTextAlignmentRight;
@@ -115,14 +113,16 @@
     }];
 }
 
-- (void)setOrderModel:(DetailDOModel *)orderModel {
-    if (orderModel) {
-        _orderModel = orderModel;
-        self.skuPriceLabel.text = [NSString stringWithFormat:@"￥%@", orderModel.displayPrice];
-        self.skuCountLabel.text = [NSString stringWithFormat:@"x%@", orderModel.itemCount];
-        [self.skuImageView sd_setImageWithURL:[NSURL URLWithString:orderModel.itemPic]];
-        self.skuNameLabel.text = orderModel.itemName;
-        
+- (void)setItemListM:(PackAgeChargeItemListModel *)itemListM
+{
+    if (itemListM) {
+        _itemListM = itemListM;
+        ProductDOModel *productM = [ProductDOModel mj_objectWithKeyValues:itemListM.productDO];
+        self.skuPriceLabel.text = [NSString stringWithFormat:@"￥%@", productM.posPrice];
+        self.skuCountLabel.text = [NSString stringWithFormat:@"x%@", productM.posCount];
+        [self.skuImageView sd_setImageWithURL:[NSURL URLWithString:productM.productImg]];
+        self.skuNameLabel.text = productM.posBrandName;
     }
 }
+
 @end

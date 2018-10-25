@@ -81,6 +81,7 @@
     
     PD_BillDetailViewController *detailVc = [[PD_BillDetailViewController alloc]init];
     detailVc.myID = detailModel.ID;
+    detailVc.orderStatu = model.orderStatus;
     detailVc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detailVc animated:YES];
     
