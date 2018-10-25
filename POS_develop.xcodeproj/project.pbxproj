@@ -52,8 +52,8 @@
 		50184CE02158C56C00D11AC6 /* DatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50184CDF2158C56C00D11AC6 /* DatePickerView.m */; };
 		501B5728215DC64B0025086D /* PD_BillDetailUnCheckView.m in Sources */ = {isa = PBXBuildFile; fileRef = 501B5727215DC64B0025086D /* PD_BillDetailUnCheckView.m */; };
 		501B572B215DFBF10025086D /* PD_BillDetailOnLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 501B572A215DFBF10025086D /* PD_BillDetailOnLineView.m */; };
-		501C6AEC21816CEE00927438 /* PD_BillDetailSkuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 501C6AEB21816CEE00927438 /* PD_BillDetailSkuCell.m */; };
 		501C6AEF21819C6A00927438 /* SLPopupShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 501C6AED21819C6A00927438 /* SLPopupShowView.m */; };
+		501C6AF52181A63000927438 /* PD_BillDetailSkuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 501C6AF42181A63000927438 /* PD_BillDetailSkuCell.m */; };
 		502AF80C2163875E00260979 /* TerminalAdminViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 502AF80B2163875E00260979 /* TerminalAdminViewController.m */; };
 		502AF8102163880000260979 /* TerminalAdminTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 502AF80F2163880000260979 /* TerminalAdminTableViewCell.m */; };
 		502AF8132163A5E100260979 /* SheetPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 502AF8122163A5E100260979 /* SheetPickerView.m */; };
@@ -406,10 +406,10 @@
 		501B5727215DC64B0025086D /* PD_BillDetailUnCheckView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillDetailUnCheckView.m; sourceTree = "<group>"; };
 		501B5729215DFBF10025086D /* PD_BillDetailOnLineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillDetailOnLineView.h; sourceTree = "<group>"; };
 		501B572A215DFBF10025086D /* PD_BillDetailOnLineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillDetailOnLineView.m; sourceTree = "<group>"; };
-		501C6AEA21816CEE00927438 /* PD_BillDetailSkuCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillDetailSkuCell.h; sourceTree = "<group>"; };
-		501C6AEB21816CEE00927438 /* PD_BillDetailSkuCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillDetailSkuCell.m; sourceTree = "<group>"; };
 		501C6AED21819C6A00927438 /* SLPopupShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLPopupShowView.m; sourceTree = "<group>"; };
 		501C6AEE21819C6A00927438 /* SLPopupShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLPopupShowView.h; sourceTree = "<group>"; };
+		501C6AF32181A63000927438 /* PD_BillDetailSkuCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillDetailSkuCell.h; sourceTree = "<group>"; };
+		501C6AF42181A63000927438 /* PD_BillDetailSkuCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillDetailSkuCell.m; sourceTree = "<group>"; };
 		502AF80A2163875E00260979 /* TerminalAdminViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TerminalAdminViewController.h; sourceTree = "<group>"; };
 		502AF80B2163875E00260979 /* TerminalAdminViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TerminalAdminViewController.m; sourceTree = "<group>"; };
 		502AF80E2163880000260979 /* TerminalAdminTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TerminalAdminTableViewCell.h; sourceTree = "<group>"; };
@@ -1034,9 +1034,130 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		25A9C5C121817B0C006935DE /* 地址 */ = {
+			isa = PBXGroup;
+			children = (
+				25A9C5C321817B48006935DE /* Model */,
+				25A9C5C221817B38006935DE /* Cell */,
+				78CB4BDB214BCCE3000F6A9D /* MyAddressViewController.h */,
+				78CB4BDC214BCCE3000F6A9D /* MyAddressViewController.m */,
+				78CB4BE1214BD9DD000F6A9D /* AddAddressViewController.h */,
+				78CB4BE2214BD9DD000F6A9D /* AddAddressViewController.m */,
+				50EEB20D21737E6F00B41353 /* MyAddressEditViewController.h */,
+				50EEB20E21737E6F00B41353 /* MyAddressEditViewController.m */,
+			);
+			path = "地址";
+			sourceTree = "<group>";
+		};
+		25A9C5C221817B38006935DE /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				78CB4BDE214BCE67000F6A9D /* MyAddressTableViewCell.h */,
+				78CB4BDF214BCE67000F6A9D /* MyAddressTableViewCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		25A9C5C321817B48006935DE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				50EEB20A217331B200B41353 /* MyAddressViewModel.h */,
+				50EEB20B217331B200B41353 /* MyAddressViewModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		25A9C5C421817B64006935DE /* 免费领取 */ = {
+			isa = PBXGroup;
+			children = (
+				25A9C5C521817B79006935DE /* Cell */,
+				50523FE7217EB05C0091952C /* MyFreeGetViewController.h */,
+				50523FE8217EB05C0091952C /* MyFreeGetViewController.m */,
+				50523FEA217EB1810091952C /* MyFreeGetRootViewController.h */,
+				50523FEB217EB1810091952C /* MyFreeGetRootViewController.m */,
+			);
+			path = "免费领取";
+			sourceTree = "<group>";
+		};
+		25A9C5C521817B79006935DE /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				50523FED217EB2460091952C /* MyFreeGetCell.h */,
+				50523FEE217EB2460091952C /* MyFreeGetCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		25A9C5C621817B8C006935DE /* 设置 */ = {
+			isa = PBXGroup;
+			children = (
+				25A9C5C721817B9D006935DE /* Cell */,
+				2520A68C214CE38900D48B26 /* SettingViewController.h */,
+				2520A68D214CE38900D48B26 /* SettingViewController.m */,
+				2546E2D5214D4D0F0066DBFB /* UpdatePasswordViewController.h */,
+				2546E2D6214D4D0F0066DBFB /* UpdatePasswordViewController.m */,
+				253647D2214E030D0094576C /* UpdatePhoneViewController.h */,
+				253647D3214E030D0094576C /* UpdatePhoneViewController.m */,
+				253647D8214E05BC0094576C /* SettingNameViewController.h */,
+				253647D9214E05BC0094576C /* SettingNameViewController.m */,
+			);
+			path = "设置";
+			sourceTree = "<group>";
+		};
+		25A9C5C721817B9D006935DE /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				2546E2CF214D2F250066DBFB /* SettingTableViewCell.h */,
+				2546E2D0214D2F250066DBFB /* SettingTableViewCell.m */,
+				2546E2D2214D47570066DBFB /* UpdatePasswordTableViewCell.h */,
+				2546E2D3214D47570066DBFB /* UpdatePasswordTableViewCell.m */,
+				253647D6214E053C0094576C /* UpdatePhoneTableViewCell.m */,
+				253647D5214E053C0094576C /* UpdatePhoneTableViewCell.h */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		25A9C5C821817BE0006935DE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2546B2082178A2C5001CFE0D /* BagLogListModel.h */,
+				2546B2092178A2C5001CFE0D /* BagLogListModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		25A9C5C921817C0A006935DE /* 明细 */ = {
+			isa = PBXGroup;
+			children = (
+				25A9C5CA21817C1F006935DE /* Cell */,
+				78CB4B75214BA8D7000F6A9D /* MyBillViewController.h */,
+				78CB4B76214BA8D7000F6A9D /* MyBillViewController.m */,
+			);
+			path = "明细";
+			sourceTree = "<group>";
+		};
+		25A9C5CA21817C1F006935DE /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				78CB4B79214BAA29000F6A9D /* MyBillTableViewCell.h */,
+				78CB4B7A214BAA29000F6A9D /* MyBillTableViewCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		25A9C5CB21817C33006935DE /* 会员系统 */ = {
+			isa = PBXGroup;
+			children = (
+				78CB4B72214B8BD7000F6A9D /* VipSystemViewController.h */,
+				78CB4B73214B8BD7000F6A9D /* VipSystemViewController.m */,
+			);
+			path = "会员系统";
+			sourceTree = "<group>";
+		};
 		25CBB299218087460063E701 /* 提现 */ = {
 			isa = PBXGroup;
 			children = (
+				25A9C5C821817BE0006935DE /* Model */,
 				25CBB29A218087590063E701 /* View */,
 				25CBB296218087390063E701 /* WithdrawCashRecordViewController.h */,
 				25CBB297218087390063E701 /* WithdrawCashRecordViewController.m */,
@@ -1153,8 +1274,8 @@
 				50339EAD2152968F003011E9 /* PD_BillListCell.m */,
 				50B0607D2153520E00B7B411 /* PD_BillListSkuCell.h */,
 				50B0607E2153520E00B7B411 /* PD_BillListSkuCell.m */,
-				501C6AEA21816CEE00927438 /* PD_BillDetailSkuCell.h */,
-				501C6AEB21816CEE00927438 /* PD_BillDetailSkuCell.m */,
+				501C6AF32181A63000927438 /* PD_BillDetailSkuCell.h */,
+				501C6AF42181A63000927438 /* PD_BillDetailSkuCell.m */,
 				50B060802153A0DC00B7B411 /* PD_BillSkuHeaderView.h */,
 				50B060812153A0DC00B7B411 /* PD_BillSkuHeaderView.m */,
 				50B060832153A10500B7B411 /* PD_BillSkuFooterView.h */,
@@ -1578,17 +1699,6 @@
 				50DAAF4B216A20470060EBBC /* DelegateManagerEditCell.m */,
 			);
 			path = Cell;
-			sourceTree = "<group>";
-		};
-		50EEB2092173318600B41353 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				50EEB20A217331B200B41353 /* MyAddressViewModel.h */,
-				50EEB20B217331B200B41353 /* MyAddressViewModel.m */,
-				2546B2082178A2C5001CFE0D /* BagLogListModel.h */,
-				2546B2092178A2C5001CFE0D /* BagLogListModel.m */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		50F2D7FC217DCEFC00749C85 /* Model */ = {
@@ -2399,30 +2509,13 @@
 		789722CE216F294000425C62 /* MainController */ = {
 			isa = PBXGroup;
 			children = (
+				25A9C5CB21817C33006935DE /* 会员系统 */,
+				DA8D1770214E8C84006574E4 /* MyBill */,
+				25A9C5C921817C0A006935DE /* 明细 */,
+				25A9C5C621817B8C006935DE /* 设置 */,
+				25A9C5C421817B64006935DE /* 免费领取 */,
+				25A9C5C121817B0C006935DE /* 地址 */,
 				25CBB299218087460063E701 /* 提现 */,
-				50EEB2092173318600B41353 /* Model */,
-				78CB4B72214B8BD7000F6A9D /* VipSystemViewController.h */,
-				78CB4B73214B8BD7000F6A9D /* VipSystemViewController.m */,
-				78CB4B75214BA8D7000F6A9D /* MyBillViewController.h */,
-				78CB4B76214BA8D7000F6A9D /* MyBillViewController.m */,
-				78CB4BDB214BCCE3000F6A9D /* MyAddressViewController.h */,
-				78CB4BDC214BCCE3000F6A9D /* MyAddressViewController.m */,
-				78CB4BE1214BD9DD000F6A9D /* AddAddressViewController.h */,
-				78CB4BE2214BD9DD000F6A9D /* AddAddressViewController.m */,
-				50EEB20D21737E6F00B41353 /* MyAddressEditViewController.h */,
-				50EEB20E21737E6F00B41353 /* MyAddressEditViewController.m */,
-				2520A68C214CE38900D48B26 /* SettingViewController.h */,
-				2520A68D214CE38900D48B26 /* SettingViewController.m */,
-				2546E2D5214D4D0F0066DBFB /* UpdatePasswordViewController.h */,
-				2546E2D6214D4D0F0066DBFB /* UpdatePasswordViewController.m */,
-				253647D2214E030D0094576C /* UpdatePhoneViewController.h */,
-				253647D3214E030D0094576C /* UpdatePhoneViewController.m */,
-				253647D8214E05BC0094576C /* SettingNameViewController.h */,
-				253647D9214E05BC0094576C /* SettingNameViewController.m */,
-				50523FE7217EB05C0091952C /* MyFreeGetViewController.h */,
-				50523FE8217EB05C0091952C /* MyFreeGetViewController.m */,
-				50523FEA217EB1810091952C /* MyFreeGetRootViewController.h */,
-				50523FEB217EB1810091952C /* MyFreeGetRootViewController.m */,
 			);
 			path = MainController;
 			sourceTree = "<group>";
@@ -2499,29 +2592,8 @@
 			isa = PBXGroup;
 			children = (
 				789722CE216F294000425C62 /* MainController */,
-				DA8D1770214E8C84006574E4 /* MyBill */,
-				78CB4B78214BAA0B000F6A9D /* Cell */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		78CB4B78214BAA0B000F6A9D /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				78CB4B79214BAA29000F6A9D /* MyBillTableViewCell.h */,
-				78CB4B7A214BAA29000F6A9D /* MyBillTableViewCell.m */,
-				78CB4BDE214BCE67000F6A9D /* MyAddressTableViewCell.h */,
-				78CB4BDF214BCE67000F6A9D /* MyAddressTableViewCell.m */,
-				2546E2CF214D2F250066DBFB /* SettingTableViewCell.h */,
-				2546E2D0214D2F250066DBFB /* SettingTableViewCell.m */,
-				2546E2D2214D47570066DBFB /* UpdatePasswordTableViewCell.h */,
-				2546E2D3214D47570066DBFB /* UpdatePasswordTableViewCell.m */,
-				253647D6214E053C0094576C /* UpdatePhoneTableViewCell.m */,
-				253647D5214E053C0094576C /* UpdatePhoneTableViewCell.h */,
-				50523FED217EB2460091952C /* MyFreeGetCell.h */,
-				50523FEE217EB2460091952C /* MyFreeGetCell.m */,
-			);
-			path = Cell;
 			sourceTree = "<group>";
 		};
 		CBB0E73DB313616CD0162DA8 /* Frameworks */ = {
@@ -2905,7 +2977,6 @@
 				2546E2D7214D4D0F0066DBFB /* UpdatePasswordViewController.m in Sources */,
 				50A89AEF216B653200E68BEB /* XAreaLineChartConfiguration.m in Sources */,
 				50184CDC2158BDC400D11AC6 /* TransactionQueryViewController.m in Sources */,
-				501C6AEC21816CEE00927438 /* PD_BillDetailSkuCell.m in Sources */,
 				501B572B215DFBF10025086D /* PD_BillDetailOnLineView.m in Sources */,
 				78A320FD216E24DC00D48B95 /* BuySuccessViewController.m in Sources */,
 				7888F2DC2147C31600AAC8B0 /* RootViewController.m in Sources */,
@@ -2943,6 +3014,7 @@
 				7888F3B12147C33900AAC8B0 /* UIColor+HEXString.m in Sources */,
 				786AD0E1215A2C46005D7363 /* XLBasePageController.m in Sources */,
 				78765A8C214A6AB200261ED3 /* LoginTypeViewController.m in Sources */,
+				501C6AF52181A63000927438 /* PD_BillDetailSkuCell.m in Sources */,
 				7888F3C52147C33900AAC8B0 /* UIButton+ImageTitleSpacing.m in Sources */,
 				7888F2B72147C0AC00AAC8B0 /* main.m in Sources */,
 				50BD2AB721626892008D201B /* TerminalSearchViewController.m in Sources */,

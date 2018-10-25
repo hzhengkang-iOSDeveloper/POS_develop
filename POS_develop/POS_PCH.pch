@@ -269,6 +269,14 @@
 #define UserDefaultsSet(VALUE,KEY)    [[NSUserDefaults standardUserDefaults] setObject:VALUE forKey:KEY]
 
 
+//JPush
+#define JPushAppKey @"587a2ee1c3f0246db850c649"
+
+//微信id
+#define WXAppID  @"wx9a69ed65288d73a8"
+
+
+
 #if DEBUG
 #define NSLog(FORMAT, ...) fprintf(stderr,"\nfunction:%s line:%d\n<%s>\n", __FUNCTION__, __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
 

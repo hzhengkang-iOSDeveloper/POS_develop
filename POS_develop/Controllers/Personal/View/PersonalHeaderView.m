@@ -41,13 +41,15 @@
     [userName setTitleColor:WhiteColor forState:UIControlStateNormal];
     [userName addTarget:self action:@selector(LoginClick) forControlEvents:UIControlEventTouchUpInside];
     userName.titleLabel.font = F15;
+    userName.hidden = YES;
+    self.userName = userName;
     [bgImageV addSubview:userName];
     [userName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(iconImageV.mas_right).offset(FITiPhone6(12));
         make.centerY.equalTo(iconImageV.mas_centerY);
         make.size.mas_offset(CGSizeMake(FITiPhone6(100), FITiPhone6(13)));
     }];
-    userName.hidden = YES;
+    
     self.userNameLabel = [UILabel getLabelWithFont:F13 textColor:WhiteColor superView:bgImageV masonrySet:^(UILabel *view, MASConstraintMaker *make) {
         make.left.equalTo(iconImageV.mas_right).offset(FITiPhone6(12));
         make.top.equalTo(bgImageV).offset(FITiPhone6(45) + STATUSBAR_H);
