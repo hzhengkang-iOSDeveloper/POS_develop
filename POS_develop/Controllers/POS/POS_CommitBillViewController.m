@@ -8,8 +8,8 @@
 
 #import "POS_CommitBillViewController.h"
 #import "SLOrdersDeteiledLabel.h"
-#import "PD_BillDetailHeaderView.h"
-#import "PD_BillDetailFooterView.h"
+//#import "PD_BillDetailHeaderView.h"
+//#import "PD_BillDetailFooterView.h"
 #import "POS_CommfirBillOutLinePayView.h"//线下支付
 #import "POS_CommfirBillOnLinePayView.h"//线上支付
 #import "MyAddressViewController.h"//我的地址
@@ -223,27 +223,27 @@
     
     
 }
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    
-    PD_BillDetailHeaderView *headerView = [[PD_BillDetailHeaderView alloc] init];
-    return headerView;
-}
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return AD_HEIGHT(55);
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return section==0?AD_HEIGHT(37):AD_HEIGHT(5);
-}
--(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    
-    if (section == 0) {
-        PD_BillDetailFooterView * footerView = [[PD_BillDetailFooterView alloc]init];
-        return footerView;
-    } else {
-        UIView *view = [UIView new];
-        view.backgroundColor = CF6F6F6;
-        return  view;
-    }
-}
+//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    
+//    PD_BillDetailHeaderView *headerView = [[PD_BillDetailHeaderView alloc] init];
+//    return headerView;
+//}
+//-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//    return AD_HEIGHT(55);
+//}
+//
+//-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+//    return section==0?AD_HEIGHT(37):AD_HEIGHT(5);
+//}
+//-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+//    
+//    if (section == 0) {
+//        PD_BillDetailFooterView * footerView = [[PD_BillDetailFooterView alloc]init];
+//        return footerView;
+//    } else {
+//        UIView *view = [UIView new];
+//        view.backgroundColor = CF6F6F6;
+//        return  view;
+//    }
+//}
 @end

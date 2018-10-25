@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface NSString (Helper) <UIActionSheetDelegate>
+
++  (NSString *)numberSuitScanf:(NSString*)number;
 +(NSUInteger)textLength: (NSString *) text;
 +(NSString *)productbackBase64stringFromDict:(NSString *)str;
 /**

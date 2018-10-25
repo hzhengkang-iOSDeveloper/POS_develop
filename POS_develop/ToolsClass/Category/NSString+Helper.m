@@ -12,6 +12,22 @@
 //#import "SendRequestModel.h"
 
 @implementation NSString (Helper)
++  (NSString *)numberSuitScanf:(NSString*)number{
+    
+    NSMutableString *phoneStr = [NSMutableString stringWithString:number];
+    
+    NSString *regex = @"^((13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    
+    // 判断当前字符串是否为手机号
+    BOOL isMatch = [pred evaluateWithObject:phoneStr];
+    if (isMatch) {
+        [phoneStr replaceCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
+    }
+    
+    return [NSString stringWithString:phoneStr];
+}
+
 +(NSString *)productbackBase64stringFromDict:(NSString *)str{
     NSDictionary *dict = @{@"businessId":str};
     FMLog(@"--------------webController.urlStr:%@",dict);

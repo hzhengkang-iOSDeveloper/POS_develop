@@ -125,4 +125,16 @@
         
     }
 }
+
+- (void)setItemListM:(PackAgeChargeItemListModel *)itemListM
+{
+    if (itemListM) {
+        _itemListM = itemListM;
+        ProductDOModel *productM = [ProductDOModel mj_objectWithKeyValues:itemListM.productDO];
+        self.skuPriceLabel.text = [NSString stringWithFormat:@"￥%@", productM.posPrice];
+        self.skuCountLabel.text = [NSString stringWithFormat:@"x%@", productM.posCount];
+        [self.skuImageView sd_setImageWithURL:[NSURL URLWithString:productM.productImg]];
+        self.skuNameLabel.text = productM.posBrandName;
+    }
+}
 @end

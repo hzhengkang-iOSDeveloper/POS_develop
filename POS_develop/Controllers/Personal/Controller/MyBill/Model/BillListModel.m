@@ -25,6 +25,15 @@
 
 @end
 
+@implementation AddressDOModel
++ (NSDictionary *)replacedKeyFromPropertyName
+{
+    
+    return @{@"ID" : @"id"};
+    
+}
+@end
+
 @implementation DetailDOModel
 + (NSDictionary *)replacedKeyFromPropertyName
 {
@@ -33,7 +42,43 @@
     
 }
 
+
 @end
+
+@implementation ItemObjModel
++ (NSDictionary *)replacedKeyFromPropertyName
+{
+    
+    return @{@"ID" : @"id"};
+    
+}
++(NSDictionary *)mj_objectClassInArray
+{
+    return @{
+             @"packageChargeItemDOList" : @"PackAgeChargeItemListModel"
+             };
+}
+@end
+
+
+@implementation PackAgeChargeItemListModel
++ (NSDictionary *)replacedKeyFromPropertyName
+{
+    
+    return @{@"ID" : @"id"};
+    
+}
+@end
+
+@implementation ProductDOModel
++ (NSDictionary *)replacedKeyFromPropertyName
+{
+    
+    return @{@"ID" : @"id"};
+    
+}
+@end
+
 
 @implementation PayDOModel
 + (NSDictionary *)replacedKeyFromPropertyName

@@ -8,9 +8,8 @@
 
 #import "PD_BillDetailViewController.h"
 #import "SLOrdersDeteiledLabel.h"
-#import "PD_BillDetailHeaderView.h"
-#import "PD_BillDetailFooterView.h"
-#import "PD_BillListSkuCell.h"
+#import "PD_BillDetailTaoCanCell.h"
+#import "PD_BillDetailDanDianCell.h"
 #import "PD_BillDetailOutLineInfoView.h"//线下支付
 #import "PD_BillDetailUnCheckView.h"//待审核
 #import "PD_BillDetailOnLineView.h"//线上支付
@@ -28,9 +27,27 @@
 @property (nonatomic, weak) UILabel *sendTimeLabel;
 //模型
 @property (nonatomic, strong) BillListModel *billListM;
+//套餐数组
+@property (nonatomic, strong) NSMutableArray *taoCanArr;
+//单点数组
+@property (nonatomic, strong) NSMutableArray *danDiArr;
 @end
 
 @implementation PD_BillDetailViewController
+- (NSMutableArray *)taoCanArr
+{
+    if (!_taoCanArr) {
+        _taoCanArr = [NSMutableArray array];
+    }
+    return _taoCanArr;
+}
+- (NSMutableArray *)danDiArr
+{
+    if (!_danDiArr) {
+        _danDiArr = [NSMutableArray array];
+    }
+    return _danDiArr;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -63,22 +80,22 @@
 {
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(76))];
     headerView.backgroundColor = WhiteColor;
-    
+    AddressDOModel *addressM = [AddressDOModel mj_objectWithKeyValues:self.billListM.addressDO];
     
     //收件人姓名
     UILabel *receiverNameLabel = [UILabel getLabelWithFont:FB13 textColor:C000000 superView:headerView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
         make.left.offset(AD_HEIGHT(29));
         make.top.offset(AD_HEIGHT(13));
         
-        view.text = @"梅长苏";
+        view.text = addressM.receiverName;
     }];
     
     //收件人手机号
-    UILabel *receiverPhoneLabel = [UILabel getLabelWithFont:FB13 textColor:C000000 superView:headerView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
+    [UILabel getLabelWithFont:FB13 textColor:C000000 superView:headerView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
         make.left.equalTo(receiverNameLabel.mas_right).offset(AD_HEIGHT(8));
         make.top.offset(AD_HEIGHT(14));
         
-        view.text = @"189****2371";
+        view.text = [NSString numberSuitScanf:addressM.receiverMp];
     }];
     
     //收货地址图片
@@ -93,11 +110,11 @@
     
     
     //收货地址
-    UILabel *receiverAddressLabel = [UILabel getLabelWithFont:F12 textColor:C000000 superView:headerView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
+    [UILabel getLabelWithFont:F12 textColor:C000000 superView:headerView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
         make.left.equalTo(receiverAddressImageV.mas_right).offset(AD_HEIGHT(3));
         make.top.equalTo(receiverAddressImageV.mas_top);
         
-        view.text = @"收货地址：上海市黄浦区北京东688号北西楼15F";
+        view.text = [NSString stringWithFormat:@"收货地址：%@%@%@",addressM.province,addressM.city,addressM.county];
     }];
     
     //地址分割
@@ -201,14 +218,13 @@
     UILabel *orderNoLabel = [UILabel getLabelWithFont:F12 textColor:C000000 superView:otherInfoView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
         make.left.offset(AD_HEIGHT(15));
         make.top.offset(AD_HEIGHT(8));
-        
         view.textAlignment = NSTextAlignmentLeft;
-        view.text = @"订单编号：203498230482039482";
+        view.text = [NSString stringWithFormat:@"订单编号：%@",self.billListM.orderUuid];
     }];
     self.orderNoLabel = orderNoLabel;
     
     //右侧复制
-    UIButton *copyBtn = [UIButton getButtonWithImageName:@"" titleText:@"复制"  superView:otherInfoView masonrySet:^(UIButton * _Nonnull btn, MASConstraintMaker * _Nonnull make) {
+    [UIButton getButtonWithImageName:@"" titleText:@"复制"  superView:otherInfoView masonrySet:^(UIButton * _Nonnull btn, MASConstraintMaker * _Nonnull make) {
         make.right.offset(-AD_HEIGHT(15));
         make.centerY.equalTo(weakSelf.orderNoLabel.mas_centerY);
         make.size.mas_offset(CGSizeMake(AD_HEIGHT(60), AD_HEIGHT(20)));
@@ -225,17 +241,17 @@
         make.top.equalTo(weakSelf.orderNoLabel.mas_bottom).offset(AD_HEIGHT(8));
         
         view.textAlignment = NSTextAlignmentLeft;
-        view.text = @"创建时间：2014-07-12 12:23:22";
+        view.text = [NSString stringWithFormat:@"创建时间：%@",self.billListM.createtime];
     }];
     self.creatTimeLabel = creatTimeLabel;
     
     //付款时间
+    PayDOModel *payDoM = [PayDOModel mj_objectWithKeyValues:self.billListM.payDO];
     UILabel *payTimeLabel = [UILabel getLabelWithFont:F12 textColor:C000000 superView:otherInfoView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
         make.left.offset(AD_HEIGHT(15));
         make.top.equalTo(weakSelf.creatTimeLabel.mas_bottom).offset(AD_HEIGHT(8));
-        
         view.textAlignment = NSTextAlignmentLeft;
-        view.text = @"付款时间：2014-07-12 12:23:22";
+        view.text = [NSString stringWithFormat:@"付款时间：%@",payDoM.createtime];
     }];
     self.payTimeLabel = payTimeLabel;
     
@@ -306,52 +322,75 @@
 
 #pragma mark -- tableView代理数据源方法
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    if (self.danDiArr.count >0 && self.taoCanArr.count >0) {
+        return 2;
+    } else {
+        return 1;
+    }
+    
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     //    SLLog(@"%lu",(unsigned long)[[self.orderModelArr[section] items] count]);
-    return section==0?2:1;
-    //    return 0;
+    if (self.danDiArr.count >0 && self.taoCanArr.count >0) {
+        return section==0?self.taoCanArr.count:self.danDiArr.count;
+    } else if (self.danDiArr.count ==0 && self.taoCanArr.count >0) {
+        return self.taoCanArr.count;
+    } else if (self.danDiArr.count >0 && self.taoCanArr.count ==0) {
+        return self.danDiArr.count;
+    } else {
+        return 0;
+    }
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.danDiArr.count >0 && self.taoCanArr.count >0) {
+        if (indexPath.section == 0) {
+            PD_BillDetailTaoCanCell *cell = [PD_BillDetailTaoCanCell cellWithTableView:tableView];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
+        } else {
+            PD_BillDetailDanDianCell *cell = [PD_BillDetailDanDianCell cellWithTableView:tableView];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
+        }
+    } else if (self.danDiArr.count ==0 && self.taoCanArr.count >0) {
+        PD_BillDetailTaoCanCell *cell = [PD_BillDetailTaoCanCell cellWithTableView:tableView];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    } else if (self.danDiArr.count >0 && self.taoCanArr.count ==0) {
+        PD_BillDetailDanDianCell *cell = [PD_BillDetailDanDianCell cellWithTableView:tableView];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    } else {
+        return nil;
+    }
     
-    PD_BillListSkuCell *cell = [PD_BillListSkuCell cellWithTableView:tableView];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    
-    
-    return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return AD_HEIGHT(94);
+    if (self.danDiArr.count >0 && self.taoCanArr.count >0) {
+        return indexPath.section==0?(AD_HEIGHT(30)+AD_HEIGHT(46)+self.taoCanArr.count*AD_HEIGHT(60)+AD_HEIGHT(5)):(AD_HEIGHT(32)+AD_HEIGHT(60)*self.danDiArr.count+AD_HEIGHT(5));
+    } else if (self.danDiArr.count ==0 && self.taoCanArr.count >0) {
+        return AD_HEIGHT(30)+AD_HEIGHT(46)+self.taoCanArr.count*AD_HEIGHT(60)+AD_HEIGHT(5);
+    } else if (self.danDiArr.count >0 && self.taoCanArr.count ==0) {
+        return AD_HEIGHT(32)+AD_HEIGHT(60)*self.danDiArr.count+AD_HEIGHT(5);
+    } else {
+        return 0;
+    }
 }
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    
-    
-}
+
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
-    PD_BillDetailHeaderView *headerView = [[PD_BillDetailHeaderView alloc] init];
-    return headerView;
+    return [UIView new];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return AD_HEIGHT(55);
+    return 0.01f;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return section==0?AD_HEIGHT(37):AD_HEIGHT(5);
+    return 0.01f;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     
-    if (section == 0) {
-        PD_BillDetailFooterView * footerView = [[PD_BillDetailFooterView alloc]init];
-        return footerView;
-    } else {
-        UIView *view = [UIView new];
-        view.backgroundColor = CF6F6F6;
-        return  view;
-    }
+    return  [UIView new];
 }
 
 
@@ -374,10 +413,25 @@
 
                 self.billListM = [BillListModel mj_objectWithKeyValues:result[@"data"]];
                 self.orderDetailTable.tableFooterView = [self creatTableFooterView];
-
+                [self creatCellNewArr];
             }
         }
         NSLog(@"result ------- %@", result);
+    }];
+}
+
+
+#pragma mark ---- 创建Cell数组 ----
+- (void)creatCellNewArr
+{
+    NSArray *bilListArr = [NSArray arrayWithArray:self.billListM.detailDOList];
+    [bilListArr enumerateObjectsUsingBlock:^(DetailDOModel  *_Nonnull detailM, NSUInteger idx, BOOL * _Nonnull stop) {
+        //0:产品，1：套餐
+        if ([detailM.itemType isEqualToString:@"0"]) {
+            [self.danDiArr addObject:detailM];
+        } else if ([detailM.itemType isEqualToString:@"1"]) {
+            [self.taoCanArr addObject:detailM];
+        }
     }];
 }
 @end
