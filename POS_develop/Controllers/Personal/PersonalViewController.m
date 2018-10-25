@@ -82,6 +82,9 @@
     };
     self.headerView.withdrawBlock = ^{
         WithdrawCashViewController *vc = [[WithdrawCashViewController alloc] init];
+        vc.popBlock = ^{
+            [weakSelf loadBagListRequest];
+        };
         vc.balanceStr = [NSString stringWithFormat:@"%@", weakSelf.balanceStr];
         vc.hidesBottomBarWhenPushed = YES;
         [weakSelf.navigationController pushViewController:vc animated:YES];

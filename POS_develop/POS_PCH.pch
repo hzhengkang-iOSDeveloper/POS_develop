@@ -16,7 +16,7 @@
 #import "BaseButton.h"
 #import "SLRefreshHeader.h"
 #import "SLRefreshFooter.h"
-
+#import "MyTools.h"
 #import "SLConst.h"               // 静态常量
 #import "NSUserDefaults+Helper.h"
 #import "DateManager.h"
@@ -273,7 +273,7 @@
 #define JPushAppKey @"587a2ee1c3f0246db850c649"
 
 //微信id
-#define WXAppID  @"wx9a69ed65288d73a8"
+#define WXAppID  @"wx91ebdef19b6d7011"
 
 
 

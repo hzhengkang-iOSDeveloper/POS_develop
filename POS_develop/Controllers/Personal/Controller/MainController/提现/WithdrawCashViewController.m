@@ -11,7 +11,17 @@
 #import "BLAreaPickerView.h"
 #import "WithdrawCashRecordViewController.h"
 
-@interface WithdrawCashViewController () <UITableViewDataSource, UITableViewDelegate, BLPickerViewDelegate>
+@interface WithdrawCashViewController () <UITableViewDataSource, UITableViewDelegate, BLPickerViewDelegate> {
+    NSString *bankUser;
+    NSString *bankUserNo;
+    NSString *bankProvince;
+    NSString *bankCity;
+    NSString *bankBranchName;
+    NSString *bankUserMp;
+    NSString *amount;
+    NSString *withDrawPasswd;
+    NSString *bankUserId;
+}
 @property (nonatomic, strong) UITableView *withdrawCashTableView;
 
 @end
@@ -69,6 +79,64 @@
 }
 #pragma mark ---- 确认提现 ----
 - (void)withdrawClick {
+    NSIndexPath *path0=[NSIndexPath indexPathForRow:0 inSection:0];
+    WithdrawCashTableViewCell *cell0 = (WithdrawCashTableViewCell *)[_withdrawCashTableView cellForRowAtIndexPath:path0];
+    if ([cell0.contentTF.text isEqualToString:@""]) {
+        HUD_TIP(@"请输入您的名字");
+        return;
+    }
+    NSIndexPath *path1=[NSIndexPath indexPathForRow:1 inSection:0];
+    WithdrawCashTableViewCell *cell1 = (WithdrawCashTableViewCell *)[_withdrawCashTableView cellForRowAtIndexPath:path1];
+    if ([cell1.contentTF.text isEqualToString:@""]) {
+        HUD_TIP(@"请输入银行卡号");
+        return;
+    }
+    NSIndexPath *path2=[NSIndexPath indexPathForRow:2 inSection:0];
+    WithdrawCashTableViewCell *cell2 = (WithdrawCashTableViewCell *)[_withdrawCashTableView cellForRowAtIndexPath:path2];
+    if ([cell2.citySelectBtn.titleLabel.text isEqualToString:@"请选择省份城市"]) {
+        HUD_TIP(@"请选择省份城市");
+        return;
+    }
+    NSIndexPath *path3=[NSIndexPath indexPathForRow:3 inSection:0];
+    WithdrawCashTableViewCell *cell3 = (WithdrawCashTableViewCell *)[_withdrawCashTableView cellForRowAtIndexPath:path3];
+    if ([cell3.contentTF.text isEqualToString:@""]) {
+        HUD_TIP(@"请输入分支行");
+        return;
+    }
+    NSIndexPath *path4=[NSIndexPath indexPathForRow:4 inSection:0];
+    WithdrawCashTableViewCell *cell4 = (WithdrawCashTableViewCell *)[_withdrawCashTableView cellForRowAtIndexPath:path4];
+    if ([cell4.contentTF.text isEqualToString:@""]) {
+        HUD_TIP(@"请输入手机号");
+        return;
+    }
+    NSIndexPath *path5=[NSIndexPath indexPathForRow:5 inSection:0];
+    WithdrawCashTableViewCell *cell5 = (WithdrawCashTableViewCell *)[_withdrawCashTableView cellForRowAtIndexPath:path5];
+    if ([cell5.contentTF.text isEqualToString:@""]) {
+        HUD_TIP(@"请输入本次提取金额");
+        return;
+    }
+    NSIndexPath *path6=[NSIndexPath indexPathForRow:6 inSection:0];
+    WithdrawCashTableViewCell *cell6 = (WithdrawCashTableViewCell *)[_withdrawCashTableView cellForRowAtIndexPath:path6];
+    if ([cell6.contentTF.text isEqualToString:@""]) {
+        HUD_TIP(@"请输入您的提取密码");
+        return;
+    }
+    NSIndexPath *path7=[NSIndexPath indexPathForRow:7 inSection:0];
+    WithdrawCashTableViewCell *cell7 = (WithdrawCashTableViewCell *)[_withdrawCashTableView cellForRowAtIndexPath:path7];
+    if ([cell7.contentTF.text isEqualToString:@""]) {
+        HUD_TIP(@"请输入您的身份证号");
+        return;
+    }
+    
+    
+    bankUser = cell0.contentTF.text;
+    bankUserNo = cell1.contentTF.text;
+    bankBranchName = cell3.contentTF.text;
+    bankUserMp = cell4.contentTF.text;
+    amount = cell5.contentTF.text;
+    withDrawPasswd = cell6.contentTF.text;
+    bankUserId = cell7.contentTF.text;
+    
     [self loadBagWithdrawSaveRequest];
 }
 #pragma mark - UITableViewDataSource
@@ -201,24 +269,27 @@
     
     //    self.regin_id = region_id;
     [cell.citySelectBtn setTitle:[NSString stringWithFormat:@"%@%@%@",provinceTitle,cityTitle,areaTitle] forState:normal];
-    
+    bankProvince = provinceTitle;
+    bankCity = cityTitle;
     [cell.citySelectBtn setTitleColor:C000000 forState:normal];
    
 }
 
 
 #pragma mark ---- 接口 ----
-- (void)loadBagWithdrawListRequest {
-//    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/bagWithdraw/list" params:@{@"userid":@"1", @"defaultFlag":sender.selected?@0:@1, @"id":ID} cookie:nil result:^(bool success, id result) {
-//        [self.myAddressTableView reloadData];
-//        NSLog(@"result ------- %@", result);
-//    }];
-}
 
 #pragma mark ---- 提现 ----
 - (void)loadBagWithdrawSaveRequest {
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/bagWithdraw/save" params:@{@"userid":@"1", @"bankUser":@"", @"bankUserNo":@"", @"bankProvince":@"", @"bankCity":@"", @"bankBranchName":@"", @"bankUserMp":@"", @"amount":@"", @"withDrawPasswd":@"", @"bankUserId":@""} cookie:nil result:^(bool success, id result) {
-        
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/bagWithdraw/save" params:@{@"userid":@"1", @"bankUser":bankUser, @"bankUserNo":bankUserNo, @"bankProvince":bankProvince, @"bankCity":bankCity, @"bankBranchName":bankBranchName, @"bankUserMp":bankUserMp, @"amount":amount, @"withDrawPasswd":withDrawPasswd, @"bankUserId":bankUserId} cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"msg"] isEqualToString:@"success"]) {
+                HUD_TIP(@"提现成功");
+                if (self.popBlock) {
+                    self.popBlock();
+                }
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }
         NSLog(@"result ------- %@", result);
     }];
 }

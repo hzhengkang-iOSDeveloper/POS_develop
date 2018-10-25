@@ -13,5 +13,6 @@ pod 'SVProgressHUD', '~> 2.2.5'
 pod 'GTMNSStringHTMLAdditions', '~> 0.2.1'
 pod 'WMPageController', '~> 2.5.2'
 pod 'JPush', '~> 3.1.0'
+pod 'WechatOpenSDK', '~> 1.8.3'
 end
 

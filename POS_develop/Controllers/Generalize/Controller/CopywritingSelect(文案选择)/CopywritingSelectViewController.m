@@ -11,7 +11,13 @@
 #import "ShareSuccessViewController.h"
 #import "ShareFailViewController.h"
 #import "ShareTextModel.h"
-@interface CopywritingSelectViewController () <UITableViewDataSource, UITableViewDelegate>
+#import "SGActionView.h"
+
+#import <WXApi.h>
+
+@interface CopywritingSelectViewController () <UITableViewDataSource, UITableViewDelegate> {
+    enum WXScene _scene;
+}
 @property (nonatomic, strong) UITableView *myTableView;
 @property (nonatomic, copy) NSString *pasteStr;//复制的文字，用于转发时
 @property (nonatomic, strong) NSMutableArray *dataArray;
@@ -25,14 +31,68 @@
     self.navigationItemTitle = @"文案选择";
     MJWeakSelf;
     [self addRightBarButtonWithImage:[UIImage imageNamed:@"分享"] clickHandler:^{
-        ShareFailViewController *vc = [[ShareFailViewController alloc] init];
-        [weakSelf.navigationController pushViewController:vc animated:YES];
+        
+        if ([weakSelf.pasteStr isEqualToString:@""] || weakSelf.pasteStr == nil) {
+            HUD_TIP(@"请复制文案再分享!");
+            return;
+        }
+        NSArray *arr = @[ @"微信好友",@"朋友圈"];
+        NSArray *imageArr = @[[UIImage imageNamed:@"微信"],[UIImage imageNamed:@"朋友圈"]];
+        
+        [SGActionView showGridMenuWithTitle:@"分享到"
+                                 itemTitles:arr
+                                     images:imageArr
+                             selectedHandle:^(NSInteger index) {
+                                 [weakSelf selectedWithIndex:index];
+                             }];
+        
+//        ShareFailViewController *vc = [[ShareFailViewController alloc] init];
+//        [weakSelf.navigationController pushViewController:vc animated:YES];
+        
     }];
     self.dataArray = [NSMutableArray array];
     [self createTableView];
     [self loadShareTextListRequest];
 }
-
+- (void)selectedWithIndex:(NSInteger)index
+{
+    if (index == 1){
+        //微信好友
+        _scene = WXSceneSession;
+        [self sendLinkContent];
+    }else if (index == 2){
+        //微信朋友圈
+        _scene = WXSceneTimeline;
+        [self sendLinkContent];
+    }
+}
+#pragma mark -- wxApi method
+- (void) sendLinkContent
+{
+    if (![WXApi isWXAppInstalled] || ![WXApi isWXAppSupportApi])
+    {
+        [UIAlertView showAlertViewWithTitle:@"提示" message:@"您未安装微信客户端" cancelButtonTitle:@"确定" otherButtonTitles:nil onDismiss:^(NSInteger buttonIndex) {
+            
+        } onCancel:^{
+            
+        }];
+        
+        return;
+    }
+    
+    WXMediaMessage *message = [WXMediaMessage message];
+//    message.title = _shareTitle;
+    message.description = self.pasteStr;
+    [message setThumbImage:self.shareImgV.image];
+    WXWebpageObject *ext = [WXWebpageObject object];
+//    ext.webpageUrl = _shareUrl;
+    message.mediaObject = ext;
+    SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+    req.bText = NO;
+    req.message = message;
+    req.scene = _scene;
+    [WXApi sendReq:req];
+}
 - (void)createTableView {
     _myTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     _myTableView.backgroundColor = WhiteColor;

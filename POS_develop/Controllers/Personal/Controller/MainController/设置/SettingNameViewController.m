@@ -53,7 +53,17 @@
 }
 #pragma mark ---- 完成 ----
 - (void)completeClick {
-    
+    [[HPDConnect connect] PostNetRequestMethod:@"sys/user/updateNickname" params:@{@"newName":self.nameTF.text} cookie:nil result:^(bool success, id result) {
+        if (success) {
+            HUD_TIP(@"设置成功");
+            if (self.popBlock) {
+                self.popBlock();
+            }
+            [self.navigationController popViewControllerAnimated:YES];
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

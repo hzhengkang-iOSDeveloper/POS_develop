@@ -31,7 +31,14 @@
 }
 #pragma mark ---- 下一步 ----
 - (void)nextClick {
+    if ([self.selectStr isEqualToString:@""]) {
+        HUD_TIP(@"请选择");
+        return;
+    }
+    NSIndexPath *path=[NSIndexPath indexPathForRow:[self.selectStr integerValue] inSection:0];
+    HtmlGenerailzeCell *cell = (HtmlGenerailzeCell *)[_myTableView cellForRowAtIndexPath:path];
     CopywritingSelectViewController *vc = [[CopywritingSelectViewController alloc] init];
+    vc.shareImgV = cell.iconImageView;
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)createTableView {

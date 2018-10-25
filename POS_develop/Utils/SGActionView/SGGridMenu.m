@@ -23,7 +23,7 @@
     if (self) {
         self.clipsToBounds = NO;
         
-        self.titleLabel.font = [UIFont systemFontOfSize:FITiPhone6(24)];
+        self.titleLabel.font = [UIFont systemFontOfSize:FITiPhone6(12)];
         self.titleLabel.backgroundColor = [UIColor clearColor];
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
         [self setTitle:title forState:UIControlStateNormal];
@@ -40,11 +40,10 @@
     float width = self.bounds.size.width;
     float height = self.bounds.size.height;
     
-    CGRect imageRect = CGRectMake(width * 0.2, width * 0.2, width * 0.6, width * 0.6);
+    CGRect imageRect = CGRectMake(width/2 - AD_HEIGHT(20), width * 0.2, AD_HEIGHT(40), AD_HEIGHT(40));
     self.imageView.frame = imageRect;
     
-    float labelHeight = height - (imageRect.origin.y + imageRect.size.height);
-    CGRect labelRect = CGRectMake(width * 0.05, imageRect.origin.y + imageRect.size.height+FITiPhone6(10), width * 0.9, FITiPhone6(33));
+    CGRect labelRect = CGRectMake(width * 0.05, imageRect.origin.y + imageRect.size.height+FITiPhone6(5), width * 0.9, FITiPhone6(16));
     self.titleLabel.frame = labelRect;
 }
 
@@ -75,7 +74,7 @@
         
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _titleLabel.backgroundColor = [UIColor clearColor];
-        _titleLabel.font = [UIFont boldSystemFontOfSize:FITiPhone6(32)];
+        _titleLabel.font = [UIFont boldSystemFontOfSize:FITiPhone6(16)];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.textColor = BaseMenuTextColor(self.style);
         [self addSubview:_titleLabel];
@@ -146,7 +145,7 @@
     [self layoutContentScrollView];
     self.contentScrollView.frame = (CGRect){CGPointMake(0, self.titleLabel.frame.size.height), self.contentScrollView.bounds.size};
     
-    self.cancelButton.frame = CGRectMake(FITiPhone6(30), FITiPhone6(35), FITiPhone6(35), FITiPhone6(35));
+    self.cancelButton.frame = CGRectMake(FITiPhone6(15), FITiPhone6(35/2), FITiPhone6(35/2), FITiPhone6(35/2));
     
     self.bounds = (CGRect){CGPointZero, CGSizeMake(self.bounds.size.width, self.titleLabel.bounds.size.height + self.contentScrollView.bounds.size.height + self.cancelButton.bounds.size.height)};
 }
@@ -154,7 +153,7 @@
 - (void)layoutContentScrollView
 {
     UIEdgeInsets margin = UIEdgeInsetsMake(0, 10, 15, 10);
-    CGSize itemSize = CGSizeMake((self.bounds.size.width - margin.left - margin.right) / 3, 120);
+    CGSize itemSize = CGSizeMake((self.bounds.size.width - margin.left - margin.right) / 2, 120);
     
     NSInteger itemCount = self.items.count;
     NSInteger rowCount = ((itemCount-1) / 4) + 1;
