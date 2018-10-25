@@ -403,10 +403,12 @@
 -(void)AFNetPOSTMethodWithUpload:(NSString *)method params:(NSDictionary*)params upData:(id)upData uptype:(NSInteger)uptype fileName:(NSString*)fileName cookie:(NSHTTPCookie *)cookie result:(AFNetRequestResultBlock)result{
     NSDictionary *dict = [self getRequestDic:params];
     AFHTTPSessionManager *manager = [self GetAFHTTPSessionManagerObject];
-//    NSDictionary *dict1 = @{@"str":[GlobalMethod GlobalStringWithDictionary:dict]};
-    [manager POST:[NSString stringWithFormat:@"%@%@",BaseHeaderURL,method] parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        NSData *data = UIImagePNGRepresentation(upData);
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", BaseHeaderURL,method];
+    [manager POST:urlStr parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        
+        NSData *data = UIImageJPEGRepresentation(upData, 1.0);
         [formData appendPartWithFileData:data name:fileName fileName:fileName mimeType:@"image/png"];
+        
     } success:^(NSURLSessionDataTask *task, id responseObject) {
         result(YES,responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

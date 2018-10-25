@@ -226,22 +226,13 @@
 //
 //        }
 //    }];
-    [[HPDConnect connect]AFNetPOSTMethodWithUpload:@"sys/user/uploadImg" params:nil  upData:headImage uptype:0 fileName:[NSString stringWithFormat:@"%@.png",[MyTools getCurrentTimestamp]] cookie:nil result:^(bool success, id result) {
-        NSString *resultString = [[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding];
+    NSString* fileName = [NSString stringWithFormat:@"%@.png", [MyTools getCurrentTimestamp]];
+   
+        [[HPDConnect connect]AFNetPOSTMethodWithUpload:@"sys/user/uploadImg" params:nil  upData:headImage uptype:0 fileName:fileName cookie:[[LoginManager getInstance] userCookie] result:^(bool success, id result) {
+            NSLog(@"success = %d result = %@",success,result);
+        }];
         
-        NSData *jsonData = [resultString dataUsingEncoding:NSUTF8StringEncoding];
-        NSError *err;
-        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
-                             
-                                                            options:NSJSONReadingMutableContainers
-                             
-                                                              error:&err];
-        
-       
-        
-        
-        NSLog(@"success = %d result = %@",success,result);
-    }];
+ 
     
     
 }

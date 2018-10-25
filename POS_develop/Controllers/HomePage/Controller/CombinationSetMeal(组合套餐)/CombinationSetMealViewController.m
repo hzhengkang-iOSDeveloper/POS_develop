@@ -10,6 +10,7 @@
 #import "SetMealOrderCell.h"
 #import "CombinationSetMealDetailViewController.h"//套餐详情
 #import "PackageChargeListModel.h"
+#import "POS_ShopCarViewController.h"
 
 @interface CombinationSetMealViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, weak) UITableView *myTable;
@@ -61,7 +62,8 @@
 #pragma mark ---- 购物车 ----
 - (void)goShopCar
 {
-    
+    POS_ShopCarViewController *vc = [[POS_ShopCarViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark ---- header ----
@@ -94,8 +96,11 @@
     return headerView;
 }
 #pragma mark ---- footer ----
-- (UIView *)creatSectionFooterView:(PackageChargeListModel *)model
+- (UIView *)creatSectionFooterViewwithSection:(NSUInteger )section
 {
+    
+    PackageChargeListModel *model = self.dataArray[section];
+
     UIView *footerView = [[UIView alloc]init];
     footerView.backgroundColor = CF6F6F6;
     
@@ -135,25 +140,29 @@
     }];
     
     //加入购物车
+//    AddShopCarBtn *addShopCartBtn = [AddShopCarBtn buttonWithType:UIButtonTypeCustom];
+//    [addShopCartBtn setTitle:@"加入购物车" forState:UIButtonTypeCustom];
+//    [addShopCartBtn setImage:ImageNamed(@"购物车") forState:<#(UIControlState)#>]
     [UIButton getButtonWithImageName:@"购物车" titleText:@"加入购物车" superView:mainView masonrySet:^(UIButton * _Nonnull btn, MASConstraintMaker * _Nonnull make) {
         make.right.offset(-AD_HEIGHT(16));
         make.centerY.offset(0);
         make.size.mas_offset(CGSizeMake(AD_HEIGHT(96), AD_HEIGHT(32)));
-        
+        btn.tag = 100+section;
         [btn setTitleColor:WhiteColor forState:normal];
         btn.titleLabel.font = F12;
         [btn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -7)];
         btn.backgroundColor = C1E95F9;
-        [btn addTarget:self action:@selector(addShopCar) forControlEvents:UIControlEventTouchUpInside];
+        [btn addTarget:self action:@selector(addShopCar:) forControlEvents:UIControlEventTouchUpInside];
     }];
     
     return footerView;
 }
 
 #pragma mark ---- 加入购物车 ----
-- (void)addShopCar
+- (void)addShopCar:(UIButton *)sender
 {
-    
+    PackageChargeListModel *model = self.dataArray[sender.tag-100];
+    [self loadCartSaveRequestWith:model.ID];
 }
 
 #pragma mark -- tableView代理数据源方法
@@ -203,8 +212,7 @@
     return AD_HEIGHT(55);
 }
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    PackageChargeListModel *model = self.dataArray[section];
-    return [self creatSectionFooterView:model];
+    return [self creatSectionFooterViewwithSection:section];
 }
 
 #pragma mark ---- 套餐接口 ----
@@ -227,7 +235,19 @@
     }];
     
 }
-
+#pragma mark ---- 加入购物车 ----
+- (void)loadCartSaveRequestWith:(NSString *)pkgPrdId {
+//    PackageChargeListModel *model = self.dataArray[section];
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/cart/save" params:@{@"userid":@"1", @"pkgPrdId":pkgPrdId, @"pkgPrdType":@"1", @"count":@"1"} cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"msg"] isEqualToString:@"success"]) {
+                HUD_SUCCESS(@"加入成功");
+            }
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+    
+}
 
 @end
 
