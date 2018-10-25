@@ -52,6 +52,8 @@
 		50184CE02158C56C00D11AC6 /* DatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50184CDF2158C56C00D11AC6 /* DatePickerView.m */; };
 		501B5728215DC64B0025086D /* PD_BillDetailUnCheckView.m in Sources */ = {isa = PBXBuildFile; fileRef = 501B5727215DC64B0025086D /* PD_BillDetailUnCheckView.m */; };
 		501B572B215DFBF10025086D /* PD_BillDetailOnLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 501B572A215DFBF10025086D /* PD_BillDetailOnLineView.m */; };
+		501C6AEF21819C6A00927438 /* SLPopupShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 501C6AED21819C6A00927438 /* SLPopupShowView.m */; };
+		501C6AF52181A63000927438 /* PD_BillDetailSkuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 501C6AF42181A63000927438 /* PD_BillDetailSkuCell.m */; };
 		502AF80C2163875E00260979 /* TerminalAdminViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 502AF80B2163875E00260979 /* TerminalAdminViewController.m */; };
 		502AF8102163880000260979 /* TerminalAdminTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 502AF80F2163880000260979 /* TerminalAdminTableViewCell.m */; };
 		502AF8132163A5E100260979 /* SheetPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 502AF8122163A5E100260979 /* SheetPickerView.m */; };
@@ -404,6 +406,10 @@
 		501B5727215DC64B0025086D /* PD_BillDetailUnCheckView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillDetailUnCheckView.m; sourceTree = "<group>"; };
 		501B5729215DFBF10025086D /* PD_BillDetailOnLineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillDetailOnLineView.h; sourceTree = "<group>"; };
 		501B572A215DFBF10025086D /* PD_BillDetailOnLineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillDetailOnLineView.m; sourceTree = "<group>"; };
+		501C6AED21819C6A00927438 /* SLPopupShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLPopupShowView.m; sourceTree = "<group>"; };
+		501C6AEE21819C6A00927438 /* SLPopupShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLPopupShowView.h; sourceTree = "<group>"; };
+		501C6AF32181A63000927438 /* PD_BillDetailSkuCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillDetailSkuCell.h; sourceTree = "<group>"; };
+		501C6AF42181A63000927438 /* PD_BillDetailSkuCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillDetailSkuCell.m; sourceTree = "<group>"; };
 		502AF80A2163875E00260979 /* TerminalAdminViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TerminalAdminViewController.h; sourceTree = "<group>"; };
 		502AF80B2163875E00260979 /* TerminalAdminViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TerminalAdminViewController.m; sourceTree = "<group>"; };
 		502AF80E2163880000260979 /* TerminalAdminTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TerminalAdminTableViewCell.h; sourceTree = "<group>"; };
@@ -1268,6 +1274,8 @@
 				50339EAD2152968F003011E9 /* PD_BillListCell.m */,
 				50B0607D2153520E00B7B411 /* PD_BillListSkuCell.h */,
 				50B0607E2153520E00B7B411 /* PD_BillListSkuCell.m */,
+				501C6AF32181A63000927438 /* PD_BillDetailSkuCell.h */,
+				501C6AF42181A63000927438 /* PD_BillDetailSkuCell.m */,
 				50B060802153A0DC00B7B411 /* PD_BillSkuHeaderView.h */,
 				50B060812153A0DC00B7B411 /* PD_BillSkuHeaderView.m */,
 				50B060832153A10500B7B411 /* PD_BillSkuFooterView.h */,
@@ -2401,6 +2409,8 @@
 				50B060772153372C00B7B411 /* SLRefreshFooter.m */,
 				50B0607A2153372C00B7B411 /* SLRefreshHeader.h */,
 				50B060792153372C00B7B411 /* SLRefreshHeader.m */,
+				501C6AEE21819C6A00927438 /* SLPopupShowView.h */,
+				501C6AED21819C6A00927438 /* SLPopupShowView.m */,
 				DA8D1775214E8EE6006574E4 /* SLConst.h */,
 				DA8D1774214E8EE6006574E4 /* SLConst.m */,
 				2591E55A214D72C000469452 /* areaArray.plist */,
@@ -2762,6 +2772,7 @@
 				50BD2AC621627870008D201B /* TerminalSelectMainView.m in Sources */,
 				2521FF4B2179F08100B02F7F /* PackageChargeListModel.m in Sources */,
 				7873B297216DDD3300A04C52 /* CopywritingSelectViewController.m in Sources */,
+				501C6AEF21819C6A00927438 /* SLPopupShowView.m in Sources */,
 				789F27602176D6E400979C1A /* ShareBannerListModel.m in Sources */,
 				50B0607F2153520E00B7B411 /* PD_BillListSkuCell.m in Sources */,
 				7813B7FF216DEE4F0086CE68 /* ShareSuccessViewController.m in Sources */,
@@ -3003,6 +3014,7 @@
 				7888F3B12147C33900AAC8B0 /* UIColor+HEXString.m in Sources */,
 				786AD0E1215A2C46005D7363 /* XLBasePageController.m in Sources */,
 				78765A8C214A6AB200261ED3 /* LoginTypeViewController.m in Sources */,
+				501C6AF52181A63000927438 /* PD_BillDetailSkuCell.m in Sources */,
 				7888F3C52147C33900AAC8B0 /* UIButton+ImageTitleSpacing.m in Sources */,
 				7888F2B72147C0AC00AAC8B0 /* main.m in Sources */,
 				50BD2AB721626892008D201B /* TerminalSearchViewController.m in Sources */,

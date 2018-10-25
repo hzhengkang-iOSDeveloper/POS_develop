@@ -15,7 +15,7 @@
 //单号
 @property (nonatomic, weak) UILabel *orderNoLabel;
 @property (nonatomic, weak) UITextField *orderNoTF;
-
+@property (nonatomic, weak) UILabel *totalCountLabel;
 @property (nonatomic, weak) UIButton *commfirBtn;//确认支付
 @end
 @implementation PD_BillDetailOutLineInfoView
@@ -147,16 +147,13 @@
     totalCountLabel.font = F13;
     totalCountLabel.textAlignment = NSTextAlignmentRight;
     [self addSubview:totalCountLabel];
+    self.totalCountLabel = totalCountLabel;
     [totalCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.offset(-AD_HEIGHT(15));
         make.centerY.equalTo(transferBtn.mas_centerY);
     }];
     
-    NSString *tmpStr = @"合计：￥1000.21";
-    NSMutableAttributedString *newStr = [[NSMutableAttributedString alloc] initWithString:tmpStr];
-    [newStr addAttribute:NSForegroundColorAttributeName value:C000000 range:NSMakeRange(0,3)];
-    [newStr addAttribute:NSForegroundColorAttributeName value:CF52542 range:NSMakeRange(3,tmpStr.length - 3)];
-    totalCountLabel.attributedText=newStr;
+    
     
     //确认支付
     UIButton *commfirBtn = [UIButton getButtonWithImageName:@"" titleText:@"确认支付" superView:self masonrySet:^(UIButton * _Nonnull btn, MASConstraintMaker * _Nonnull make) {
@@ -186,5 +183,17 @@
 - (void)comfirPay
 {
     
+}
+
+- (void)setHeJiMoneyStr:(NSString *)heJiMoneyStr
+{
+    if (heJiMoneyStr) {
+        _heJiMoneyStr = heJiMoneyStr;
+        NSString *tmpStr = [NSString stringWithFormat:@"合计：￥%@",heJiMoneyStr];
+        NSMutableAttributedString *newStr = [[NSMutableAttributedString alloc] initWithString:tmpStr];
+        [newStr addAttribute:NSForegroundColorAttributeName value:C000000 range:NSMakeRange(0,3)];
+        [newStr addAttribute:NSForegroundColorAttributeName value:CF52542 range:NSMakeRange(3,tmpStr.length - 3)];
+        self.totalCountLabel.attributedText=newStr;
+    }
 }
 @end

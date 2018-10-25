@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PD_BillDetailOutLineInfoView : UIView
-
+//合计金额
+@property (nonatomic, copy) NSString *heJiMoneyStr;
 @end
 
 NS_ASSUME_NONNULL_END
