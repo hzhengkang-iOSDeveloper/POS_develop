@@ -33,6 +33,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItemTitle = @"推广";
+    // 右侧功能按钮
+    self.navigationItem.leftBarButtonItem = nil;
     [self initAdvView];//创建轮播图
     [self initMainView];
     [self loadIndexBannerListRequest];

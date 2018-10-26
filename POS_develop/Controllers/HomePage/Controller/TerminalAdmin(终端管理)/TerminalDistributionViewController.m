@@ -41,6 +41,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItemTitle = @"终端分配";
+    [self addStandardRightButtonWithTitle:@"撤回分配" clickHandler:^{
+        //撤回分配
+    }];
     self.brandDataArray = [NSMutableArray array];
     self.mainDataArray = [NSMutableArray array];
     [self initUI];

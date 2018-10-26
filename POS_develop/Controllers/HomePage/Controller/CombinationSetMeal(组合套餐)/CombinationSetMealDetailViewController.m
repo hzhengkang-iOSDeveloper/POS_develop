@@ -134,7 +134,7 @@
 #pragma mark ---- 加入购物车 ----
 - (void)addShopCar
 {
-    
+    [self loadCartSaveRequest];
 }
 
 #pragma mark -- tableView代理数据源方法
@@ -204,7 +204,19 @@
     }];
 }
 
-
+#pragma mark ---- 加入购物车 ----
+- (void)loadCartSaveRequest{
+    //    PackageChargeListModel *model = self.dataArray[section];
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/cart/save" params:@{@"userid":@"1", @"pkgPrdId":self.myID, @"pkgPrdType":@"1", @"count":@"1"} cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"msg"] isEqualToString:@"success"]) {
+                HUD_SUCCESS(@"加入成功");
+            }
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+    
+}
 @end
 
 
