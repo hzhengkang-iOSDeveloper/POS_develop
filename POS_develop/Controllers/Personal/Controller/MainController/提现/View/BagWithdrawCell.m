@@ -1,21 +1,23 @@
 //
-//  MyBillTableViewCell.m
+//  BagWithdrawCell.m
 //  POS_develop
 //
-//  Created by sunyn on 2018/9/14.
-//  Copyright © 2018年 sunyn. All rights reserved.
+//  Created by 胡正康 on 2018/10/27.
+//  Copyright © 2018 sunyn. All rights reserved.
 //
 
-#import "MyBillTableViewCell.h"
-#import "BagLogListModel.h"
+#import "BagWithdrawCell.h"
+#import "BagWithdrawListModel.h"
 
-@implementation MyBillTableViewCell
+@implementation BagWithdrawCell
+
+
 
 +(instancetype)cellWithTableView:(UITableView *)tableView{
-    static NSString *identifier = @"MyBillTableViewCell";
-    MyBillTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    static NSString *identifier = @"BagWithdrawCell";
+    BagWithdrawCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
-        cell = [[MyBillTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell = [[BagWithdrawCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     return cell;
 }
@@ -34,6 +36,7 @@
     self.contentLabel = [[UILabel alloc] init];
     self.contentLabel.textColor = C000000;
     self.contentLabel.font = F13;
+    self.contentLabel.text = @"提现";
     self.contentLabel.adjustsFontSizeToFitWidth = YES;
     [self addSubview:self.contentLabel];
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -42,8 +45,7 @@
         make.height.mas_equalTo(FITiPhone6(14));
     }];
     self.contentStatusLabel = [[UILabel alloc] init];
-    self.contentStatusLabel.hidden = YES;
-//    self.contentStatusLabel.textColor = C1E95F9;
+    //    self.contentStatusLabel.textColor = C1E95F9;
     self.contentStatusLabel.font = F13;
     self.contentStatusLabel.adjustsFontSizeToFitWidth = YES;
     [self addSubview:self.contentStatusLabel];
@@ -62,7 +64,6 @@
         make.top.equalTo(self.contentLabel.mas_bottom).offset(FITiPhone6(11));
         make.height.mas_equalTo(FITiPhone6(10));
     }];
-    
     self.amountLabel = [[UILabel alloc] init];
     self.amountLabel.textColor = C000000;
     self.amountLabel.font = F13;
@@ -71,16 +72,6 @@
     [self.amountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self).offset(FITiPhone6(-15));
         make.top.equalTo(self).offset(FITiPhone6(10));
-        make.height.mas_equalTo(FITiPhone6(10));
-    }];
-    self.totalAmountLabel = [[UILabel alloc] init];
-    self.totalAmountLabel.textColor = C000000;
-    self.totalAmountLabel.font = F12;
-    self.totalAmountLabel.adjustsFontSizeToFitWidth = YES;
-    [self addSubview:self.totalAmountLabel];
-    [self.totalAmountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self).offset(FITiPhone6(-15));
-        make.bottom.equalTo(self).offset(FITiPhone6(-14));
         make.height.mas_equalTo(FITiPhone6(10));
     }];
     UIView *line = [[UIView alloc] init];
@@ -93,46 +84,22 @@
     }];
 }
 
-- (void)setModel:(BagLogListModel *)model {
+- (void)setModel:(BagWithdrawListModel *)model {
     if (model) {
         _model = model;
-        self.contentLabel.text = model.balanceTypeZh;
-        self.timeLabel.text = [model.createtime substringToIndex:10];
-        if ([model.balanceAmount integerValue] > 0) {
-            self.amountLabel.text = [NSString stringWithFormat:@"+%@", model.balanceAmount];
-        }else {
-            self.amountLabel.text = model.balanceAmount;
-        }
-        self.totalAmountLabel.text = model.currentAmount;
-        if (![model.balanceStatusZh isEqualToString:@""] || model.balanceStatusZh != nil) {
-            self.contentStatusLabel.hidden = NO;
-            self.contentStatusLabel.text = model.balanceStatusZh;
-        }else {
-            self.contentStatusLabel.hidden = YES;
-        }
-        
-        if ([model.balanceStatus isEqualToString:@"30"]) {
-            self.contentStatusLabel.textColor = C1E95F9;
-        }else if ([model.balanceStatus isEqualToString:@"20"]) {
-            self.contentStatusLabel.textColor = RGB(245, 37, 66);
-        }else {
+        self.timeLabel.text = [model.createtime substringToIndex:16];
+        self.amountLabel.text = model.amount;
+        if ([model.withdrawStatus isEqualToString:@"0"]) {
+            self.contentStatusLabel.text = @"提现审核中";
             self.contentStatusLabel.textColor = RGB(22, 161, 191);
+        }else if ([model.withdrawStatus isEqualToString:@"1"]) {
+            self.contentStatusLabel.text = @"提现成功";
+            self.contentStatusLabel.textColor = C1E95F9;
+        }else {
+            self.contentStatusLabel.text = @"提现失败";
+            self.contentStatusLabel.textColor = RGB(245, 37, 66);
         }
     }
 }
+
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

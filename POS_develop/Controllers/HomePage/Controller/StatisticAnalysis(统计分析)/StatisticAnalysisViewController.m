@@ -174,59 +174,41 @@
     //判断选择情况
     if ([self.dateType isEqualToString:@"0"]) {
         //日
-        if ([self.statType isEqualToString:@"0"]) {
-            //交易量
-            [self.dataArr enumerateObjectsUsingBlock:^(StatisticAnalysisModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
-                XBarItem* item = [[XBarItem alloc] initWithDataNumber:[self goNumberWithStr:model.value]
-                                                                 color:waveColor
-                                                          dataDescribe:[self getZhiDingDate:model.name]];
-                
-                 [itemArray addObject:item];
-            }];
-        }
+        [self.dataArr enumerateObjectsUsingBlock:^(StatisticAnalysisModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
+            XBarItem* item = [[XBarItem alloc] initWithDataNumber:[self goNumberWithStr:model.value]
+                                                            color:waveColor
+                                                     dataDescribe:[NSString stringWithFormat:@"   %@",[self getZhiDingDate:model.name]]];
+            
+            [itemArray addObject:item];
+        }];
+    } else if ([self.dateType isEqualToString:@"1"]) {
+        //周
+        [self.dataArr enumerateObjectsUsingBlock:^(StatisticAnalysisModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
+            XBarItem* item0 = [[XBarItem alloc] initWithDataNumber:[self goNumberWithStr:model.value]
+                                                            color:waveColor
+                                                     dataDescribe:[self fenGeStr:model.name]];
+
+            [itemArray addObject:item0];
+        }];
+    } else if ([self.dateType isEqualToString:@"2"]) {
+        //月
+        [self.dataArr enumerateObjectsUsingBlock:^(StatisticAnalysisModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
+            XBarItem* item0 = [[XBarItem alloc] initWithDataNumber:[self goNumberWithStr:model.value]
+                                                             color:waveColor
+                                                      dataDescribe:model.name];
+            
+            [itemArray addObject:item0];
+        }];
     }
-//    XBarItem* item1 = [[XBarItem alloc] initWithDataNumber:@(20.5)
-//                                                     color:waveColor
-//                                              dataDescribe:@"2018.10"];
-//    [itemArray addObject:item1];
-//    XBarItem* item2 = [[XBarItem alloc] initWithDataNumber:@(18.7)
-//                                                     color:waveColor
-//                                              dataDescribe:@"2018.10.21 ~  2019.11.21"];
-//    [itemArray addObject:item2];
-//    XBarItem* item3 = [[XBarItem alloc] initWithDataNumber:@(13.2)
-//                                                     color:waveColor
-//                                              dataDescribe:@"2018.10.21 ~  2019.11.21"];
-//    [itemArray addObject:item3];
-//    XBarItem* item4 = [[XBarItem alloc] initWithDataNumber:@(8.8)
-//                                                     color:waveColor
-//                                              dataDescribe:@"2018.10.21 ~  2019.11.21"];
-//    [itemArray addObject:item4];
-//    XBarItem* item5 = [[XBarItem alloc] initWithDataNumber:@(11.4)
-//                                                     color:waveColor
-//                                              dataDescribe:@"2018.10.21 ~  2019.11.21"];
-//    [itemArray addObject:item5];
-//
-//    XBarItem* item6 = [[XBarItem alloc] initWithDataNumber:@(3.0)
-//                                                     color:waveColor
-//                                              dataDescribe:@"2018.10.21 ~  2019.11.21"];
-//    [itemArray addObject:item6];
-//
-//    XBarItem* item61 = [[XBarItem alloc] initWithDataNumber:@(3.0)
-//                                                     color:waveColor
-//                                              dataDescribe:@"2018.10.21 ~  2019.11.21"];
-//    [itemArray addObject:item61];
-//
-//    XBarItem* item62 = [[XBarItem alloc] initWithDataNumber:@(3.0)
-//                                                     color:waveColor
-//                                              dataDescribe:@"2018.10.21 ~  2019.11.21"];
-//    [itemArray addObject:item62];
-//
-//    XBarItem* item63 = [[XBarItem alloc] initWithDataNumber:@(3.0)
-//                                                     color:waveColor
-//                                              dataDescribe:@"2018.10.21 ~  2019.11.21"];
-//    [itemArray addObject:item63];
 
     
+    //获取数组中最大值
+    NSMutableArray *maxArr = [NSMutableArray array];
+    [itemArray enumerateObjectsUsingBlock:^(XBarItem *  _Nonnull tempObj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [maxArr addObject:tempObj.dataNumber];
+    }];
+    
+    NSNumber *max=[maxArr valueForKeyPath:@"@max.doubleValue"];
     XBarChartConfiguration *configuration = [XBarChartConfiguration new];
     configuration.isScrollable = YES;
     configuration.x_width = 40;
@@ -236,7 +218,7 @@
     self.barChart =
     [[XBarChart alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.profitCount.frame)+AD_HEIGHT(50), ScreenWidth, AD_HEIGHT(210))
                        dataItemArray:itemArray
-                           topNumber:@21
+                           topNumber:max
                         bottomNumber:@(0)
                   chartConfiguration:configuration];
     self.barChart.barChartDelegate = self;
@@ -375,5 +357,13 @@
     
     NSString *newString = [format stringFromDate:data];
     return newString;
+}
+
+#pragma mark ---- 分割字符串 ----
+- (NSString *)fenGeStr:(NSString *)str
+{
+    NSArray *array = [str componentsSeparatedByString:@"~"];
+    NSString *tmpStr = [NSString stringWithFormat:@"%@ ~ %@",[array objectAtIndex:0],[array objectAtIndex:1]];
+    return tmpStr;
 }
 @end

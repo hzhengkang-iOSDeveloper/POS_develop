@@ -17,6 +17,7 @@
     self.dataNumber = dataNumber;
     self.color = color;
     self.dataDescribe = dataDescribe;
+    
   }
   return self;
 }

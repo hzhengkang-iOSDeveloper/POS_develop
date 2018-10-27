@@ -60,6 +60,9 @@
 		502AF8102163880000260979 /* TerminalAdminTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 502AF80F2163880000260979 /* TerminalAdminTableViewCell.m */; };
 		502AF8132163A5E100260979 /* SheetPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 502AF8122163A5E100260979 /* SheetPickerView.m */; };
 		502BAFC3215C884B005EDE6F /* PD_BillDetailOutLineInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 502BAFC2215C884B005EDE6F /* PD_BillDetailOutLineInfoView.m */; };
+		502E8A3C218434BB001E4695 /* BagWithdrawListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 502E8A3B218434BB001E4695 /* BagWithdrawListModel.m */; };
+		502E8A3F2184358B001E4695 /* BagWithdrawCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 502E8A3E2184358B001E4695 /* BagWithdrawCell.m */; };
+		502E8A4221843A97001E4695 /* SettingWithdrawPsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 502E8A4121843A97001E4695 /* SettingWithdrawPsViewController.m */; };
 		50339EAE2152968F003011E9 /* PD_BillListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50339EAD2152968F003011E9 /* PD_BillListCell.m */; };
 		503C46A4218018F0003F467F /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 503C46A3218018F0003F467F /* Foundation+Log.m */; };
 		5040E98321770CDE00E39628 /* CombinationSetMealDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5040E98221770CDE00E39628 /* CombinationSetMealDetailViewController.m */; };
@@ -424,6 +427,12 @@
 		502AF8122163A5E100260979 /* SheetPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SheetPickerView.m; sourceTree = "<group>"; };
 		502BAFC1215C884B005EDE6F /* PD_BillDetailOutLineInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillDetailOutLineInfoView.h; sourceTree = "<group>"; };
 		502BAFC2215C884B005EDE6F /* PD_BillDetailOutLineInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillDetailOutLineInfoView.m; sourceTree = "<group>"; };
+		502E8A3A218434BB001E4695 /* BagWithdrawListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BagWithdrawListModel.h; sourceTree = "<group>"; };
+		502E8A3B218434BB001E4695 /* BagWithdrawListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BagWithdrawListModel.m; sourceTree = "<group>"; };
+		502E8A3D2184358B001E4695 /* BagWithdrawCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BagWithdrawCell.h; sourceTree = "<group>"; };
+		502E8A3E2184358B001E4695 /* BagWithdrawCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BagWithdrawCell.m; sourceTree = "<group>"; };
+		502E8A4021843A97001E4695 /* SettingWithdrawPsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingWithdrawPsViewController.h; sourceTree = "<group>"; };
+		502E8A4121843A97001E4695 /* SettingWithdrawPsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingWithdrawPsViewController.m; sourceTree = "<group>"; };
 		50339EAC2152968F003011E9 /* PD_BillListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillListCell.h; sourceTree = "<group>"; };
 		50339EAD2152968F003011E9 /* PD_BillListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillListCell.m; sourceTree = "<group>"; };
 		503C46A3218018F0003F467F /* Foundation+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Foundation+Log.m"; sourceTree = "<group>"; };
@@ -1128,6 +1137,8 @@
 			children = (
 				2546B2082178A2C5001CFE0D /* BagLogListModel.h */,
 				2546B2092178A2C5001CFE0D /* BagLogListModel.m */,
+				502E8A3A218434BB001E4695 /* BagWithdrawListModel.h */,
+				502E8A3B218434BB001E4695 /* BagWithdrawListModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1169,6 +1180,8 @@
 				25CBB297218087390063E701 /* WithdrawCashRecordViewController.m */,
 				251A4101214FF45E00AC2C81 /* WithdrawCashViewController.h */,
 				251A4102214FF45E00AC2C81 /* WithdrawCashViewController.m */,
+				502E8A4021843A97001E4695 /* SettingWithdrawPsViewController.h */,
+				502E8A4121843A97001E4695 /* SettingWithdrawPsViewController.m */,
 			);
 			path = "提现";
 			sourceTree = "<group>";
@@ -1178,6 +1191,8 @@
 			children = (
 				253647DE214E11C60094576C /* WithdrawCashTableViewCell.h */,
 				253647DF214E11C60094576C /* WithdrawCashTableViewCell.m */,
+				502E8A3D2184358B001E4695 /* BagWithdrawCell.h */,
+				502E8A3E2184358B001E4695 /* BagWithdrawCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2775,6 +2790,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				502E8A3F2184358B001E4695 /* BagWithdrawCell.m in Sources */,
 				50A89AED216B653200E68BEB /* UIGestureRecognizer+XGesHelper.m in Sources */,
 				50F2D7F8217D6EC500749C85 /* ShopCarMainCell.m in Sources */,
 				5067AB9A215F887B005A1FD7 /* ActivationMoneyCell.m in Sources */,
@@ -2820,6 +2836,7 @@
 				500C2732217C3852008F221A /* POS_ShopCarViewController.m in Sources */,
 				50339EAE2152968F003011E9 /* PD_BillListCell.m in Sources */,
 				7888F3B42147C33900AAC8B0 /* UILabel+Style.m in Sources */,
+				502E8A4221843A97001E4695 /* SettingWithdrawPsViewController.m in Sources */,
 				78A320F9216E0B4E00D48B95 /* HtmlGenerailzeDetailCell.m in Sources */,
 				786AD0F5215A311D005D7363 /* SeparateQuerySearchViewController.m in Sources */,
 				50A89AF1216B653200E68BEB /* XStackAreaLineChartConfiguration.m in Sources */,
@@ -2942,6 +2959,7 @@
 				505B6F84216D99FC000D49B2 /* MessageListViewController.m in Sources */,
 				7888F3612147C32C00AAC8B0 /* MJChiBaoZiHeader.m in Sources */,
 				504D8E172170407200478C50 /* POS_CommitBillViewController.m in Sources */,
+				502E8A3C218434BB001E4695 /* BagWithdrawListModel.m in Sources */,
 				50A89AF5216B653200E68BEB /* XPointDetect.m in Sources */,
 				259646E32158DFAE00E516BF /* SeparateQueryViewController.m in Sources */,
 				786AD100215A3BA8005D7363 /* ActivationMoneyViewController.m in Sources */,
