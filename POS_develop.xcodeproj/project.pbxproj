@@ -46,6 +46,7 @@
 		25E2A36A214D7831006EB5B5 /* PD_SelectAreaPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E2A369214D7831006EB5B5 /* PD_SelectAreaPickerView.m */; };
 		5009BA7D2176D72600FF1AE9 /* CombinationSetMealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5009BA7C2176D72600FF1AE9 /* CombinationSetMealViewController.m */; };
 		500AC4B721855DCE00AB97AC /* UITableView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 500AC4B621855DCE00AB97AC /* UITableView+Extension.m */; };
+		500AC4BA2185AB5900AB97AC /* TerminalAdminRemoveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 500AC4B92185AB5900AB97AC /* TerminalAdminRemoveViewController.m */; };
 		500C2732217C3852008F221A /* POS_ShopCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 500C2731217C3852008F221A /* POS_ShopCarViewController.m */; };
 		500C2736217C6DBD008F221A /* ShopCarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 500C2735217C6DBD008F221A /* ShopCarTableViewCell.m */; };
 		500C2739217C81A1008F221A /* SingleShopCarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 500C2738217C81A1008F221A /* SingleShopCarCell.m */; };
@@ -406,6 +407,8 @@
 		5009BA7C2176D72600FF1AE9 /* CombinationSetMealViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CombinationSetMealViewController.m; sourceTree = "<group>"; };
 		500AC4B521855DCE00AB97AC /* UITableView+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableView+Extension.h"; sourceTree = "<group>"; };
 		500AC4B621855DCE00AB97AC /* UITableView+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Extension.m"; sourceTree = "<group>"; };
+		500AC4B82185AB5900AB97AC /* TerminalAdminRemoveViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TerminalAdminRemoveViewController.h; sourceTree = "<group>"; };
+		500AC4B92185AB5900AB97AC /* TerminalAdminRemoveViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TerminalAdminRemoveViewController.m; sourceTree = "<group>"; };
 		500C2730217C3852008F221A /* POS_ShopCarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POS_ShopCarViewController.h; sourceTree = "<group>"; };
 		500C2731217C3852008F221A /* POS_ShopCarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = POS_ShopCarViewController.m; sourceTree = "<group>"; };
 		500C2734217C6DBD008F221A /* ShopCarTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopCarTableViewCell.h; sourceTree = "<group>"; };
@@ -1291,6 +1294,8 @@
 				502AF80B2163875E00260979 /* TerminalAdminViewController.m */,
 				50B136062165E7BE009C435C /* TerminalDistributionViewController.h */,
 				50B136072165E7BE009C435C /* TerminalDistributionViewController.m */,
+				500AC4B82185AB5900AB97AC /* TerminalAdminRemoveViewController.h */,
+				500AC4B92185AB5900AB97AC /* TerminalAdminRemoveViewController.m */,
 			);
 			path = "TerminalAdmin(终端管理)";
 			sourceTree = "<group>";
@@ -3094,6 +3099,7 @@
 				7888F3522147C32C00AAC8B0 /* HpCFNavigationController.m in Sources */,
 				50A89B0B216B653200E68BEB /* XBarChart.m in Sources */,
 				50BD2AAF21625E48008D201B /* TerminalBindViewController.m in Sources */,
+				500AC4BA2185AB5900AB97AC /* TerminalAdminRemoveViewController.m in Sources */,
 				7888F3582147C32C00AAC8B0 /* UIView+SystemBackBar.m in Sources */,
 				50F2D7FB217D7BAE00749C85 /* SingleShopCarMainCell.m in Sources */,
 				50A89AF6216B653200E68BEB /* XNotificationBridge.m in Sources */,

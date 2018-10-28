@@ -1,19 +1,18 @@
 //
-//  TerminalDistributionViewController.m
+//  TerminalAdminRemoveViewController.m
 //  POS_develop
 //
-//  Created by 胡正康 on 2018/10/4.
+//  Created by 胡正康 on 2018/10/28.
 //  Copyright © 2018 sunyn. All rights reserved.
 //
 
-#import "TerminalDistributionViewController.h"
+#import "TerminalAdminRemoveViewController.h"
 #import "TerminalNoDistributionCell.h"
 #import "TerminalAlreadyDistributionCell.h"
 #import "BrandTableViewCell.h"
 #import "PosBrandModel.h"
 #import "PosGetModel.h"
-#import "TerminalAdminRemoveViewController.h"//撤回分配
-@interface TerminalDistributionViewController () <UITableViewDataSource, UITableViewDelegate,UITextFieldDelegate> {
+@interface TerminalAdminRemoveViewController ()<UITableViewDataSource, UITableViewDelegate,UITextFieldDelegate> {
     
 }
 @property (nonatomic, strong) UITableView *mainTableView;
@@ -39,19 +38,15 @@
 
 @property (nonatomic, copy) NSString *posBrandNo;
 
+
 @end
 
-@implementation TerminalDistributionViewController
+@implementation TerminalAdminRemoveViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // Do any additional setup after loading the view.
     self.navigationItemTitle = @"终端分配";
-    MJWeakSelf;
-    [self addStandardRightButtonWithTitle:@"撤回分配" clickHandler:^{
-        //撤回分配
-        TerminalAdminRemoveViewController *VC= [[TerminalAdminRemoveViewController alloc]init];
-        [weakSelf.navigationController pushViewController:VC animated:YES];
-    }];
     self.brandDataArray = [NSMutableArray array];
     self.mainDataArray = [NSMutableArray array];
     [self initUI];
@@ -63,7 +58,6 @@
     self.selectMainTableStr  =@"";
     self.selectBrandTableStr = @"";
 }
-
 
 - (void)initUI {
     self.view.backgroundColor = CF6F6F6;
@@ -108,7 +102,7 @@
     
     UIButton *selectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     selectBtn.backgroundColor = C1E95F9;
-    [selectBtn setTitle:@"分配" forState:UIControlStateNormal];
+    [selectBtn setTitle:@"撤回" forState:UIControlStateNormal];
     [selectBtn setTitleColor:WhiteColor forState:UIControlStateNormal];
     selectBtn.layer.cornerRadius = FITiPhone6(3);
     selectBtn.layer.masksToBounds = YES;
@@ -140,14 +134,14 @@
     snLabel.text = @"SN";
     self.startTF = [[UITextField alloc] init];
     self.startTF.clearButtonMode = UITextFieldViewModeWhileEditing;
-//    self.startTF.placeholder = @"开始时间";
+    //    self.startTF.placeholder = @"开始时间";
     self.startTF.returnKeyType = UIReturnKeySearch;
     self.startTF.textAlignment = NSTextAlignmentCenter;
     self.startTF.textColor = C000000;
     self.startTF.font = F13;
     self.startTF.backgroundColor = CF6F6F6;
     self.startTF.delegate = self;
-//    self.startTF.borderStyle = UITextBorderStyleBezel;
+    //    self.startTF.borderStyle = UITextBorderStyleBezel;
     [self.snBgView addSubview:self.startTF];
     [self.startTF mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(snLabel.mas_right).offset(AD_HEIGHT(17));
@@ -216,22 +210,20 @@
         make.top.equalTo(weakSelf.headerBgView.mas_bottom);
         make.height.mas_equalTo(AD_HEIGHT(120));
         //要根据接口请求，更新高度
-//        [_brandTableView mas_updateConstraints:^(MASConstraintMaker *make) {
-//            make.height.mas_offset(self.borrowTypeArr.count * FITiPhone6(35));
-//        }];
+        //        [_brandTableView mas_updateConstraints:^(MASConstraintMaker *make) {
+        //            make.height.mas_offset(self.borrowTypeArr.count * FITiPhone6(35));
+        //        }];
     }];
 }
 
 #pragma mark ---- 分配 ----
 - (void)selectClick {
     if ([self.selectMainTableStr isEqualToString:@""]) {
-        HUD_TIP(@"请选择分配的终端");
+        HUD_TIP(@"请选择撤回的终端");
         return;
     }
     
-    [self saveAgentPosWith:[self.mainDataArray objectAtIndex:[self.selectMainTableStr integerValue]]];
-//    HUD_SUCCESS(@"分配成功");
-//    [self.navigationController popViewControllerAnimated:YES];
+    [self removeAgentPosWith:[self.mainDataArray objectAtIndex:[self.selectMainTableStr integerValue]]];
 }
 #pragma mark ---- 品牌选择 ----
 - (void)brandClick:(UIButton *)sender {
@@ -277,6 +269,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView == _mainTableView) {
         PosGetModel *posM = self.mainDataArray[indexPath.row];
+        /*
         if ([posM.bindFlag isEqualToString:@"0"]) {
             //未绑定
             TerminalNoDistributionCell *cell = [TerminalNoDistributionCell cellWithTableView:tableView];
@@ -299,7 +292,19 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
-
+         */
+        TerminalNoDistributionCell *cell = [TerminalNoDistributionCell cellWithTableView:tableView];
+        cell.brandLabel.text = [NSString stringWithFormat:@"品牌：%@",posM.posBrandNo];
+        cell.snLabel.text = [NSString stringWithFormat:@"SN：%@",posM.posBrandNo];
+        if ([self.selectMainTableStr isEqualToString:[NSString stringWithFormat:@"%li",indexPath.row]]) {
+            cell.selectBtn.selected = YES;
+        } else {
+            cell.selectBtn.selected = NO;
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        return cell;
+        
     }else {
         BrandTableViewCell *cell = [BrandTableViewCell cellWithTableView:tableView];
         PosBrandModel *model = self.brandDataArray[indexPath.row];
@@ -323,7 +328,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (tableView == _mainTableView) {
-         PosGetModel *posM = self.mainDataArray[indexPath.row];
+        PosGetModel *posM = self.mainDataArray[indexPath.row];
         if ([posM.bindFlag isEqualToString:@"0"]) {
             if ([self.selectMainTableStr isEqualToString:[NSString stringWithFormat:@"%li",indexPath.row]]) {
                 self.selectMainTableStr = @"";
@@ -336,7 +341,7 @@
         }
     }else {
         PosBrandModel *model = self.brandDataArray[indexPath.row];
-
+        
         if ([self.selectBrandTableStr isEqualToString:[NSString stringWithFormat:@"%li",indexPath.row]]) {
             self.selectBrandTableStr = @"";
         } else {
@@ -346,15 +351,15 @@
         
         [tableView reloadData];
         
-//        [self brandClick:self.brandBtn];
-
+        //        [self brandClick:self.brandBtn];
+        
         if ([self.selectBrandTableStr isEqualToString:@""]) {
             self.posBrandNo = @"";
         } else {
             self.posBrandNo = model.posBrandName;
         }
         [self loadPosListRequest];
-
+        
     }
     
 }
@@ -385,7 +390,7 @@
         [self snClick:self.snBtn];
         [self loadPosListRequest];
     }
-   
+    
     
     return YES;
     
@@ -419,22 +424,22 @@
 }
 #pragma mark ---- 终端分配(查询) ----
 - (void)loadPosListRequest {
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agentPos/list" params:@{@"userid":@"1", @"posBrandNo":IF_NULL_TO_STRING(self.posBrandNo), @"startPosSnNo":IF_NULL_TO_STRING(self.startTF.text), @"endPosSnNo":IF_NULL_TO_STRING(self.endTF.text)} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agentPos/list" params:@{@"userid":@"1", @"posBrandNo":IF_NULL_TO_STRING(self.posBrandNo), @"startPosSnNo":IF_NULL_TO_STRING(self.startTF.text), @"endPosSnNo":IF_NULL_TO_STRING(self.endTF.text),@"bindFlay":@"1"} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
                     NSArray *array = result[@"data"][@"rows"];
-                        if (self.mainDataArray.count >0) {
-                            [self.mainDataArray removeAllObjects];
-                        }
-                        
-                        [self.mainDataArray addObjectsFromArray:[PosGetModel mj_objectArrayWithKeyValuesArray:array]];
-                        
-                       [self.mainTableView tableViewNoDataOrNewworkFailShowTitleWithRowCount:self.mainDataArray.count];
-                        
-                        [self.mainTableView reloadData];
-                        
-                        
+                    if (self.mainDataArray.count >0) {
+                        [self.mainDataArray removeAllObjects];
+                    }
+                    
+                    [self.mainDataArray addObjectsFromArray:[PosGetModel mj_objectArrayWithKeyValuesArray:array]];
+                    
+                    [self.mainTableView tableViewNoDataOrNewworkFailShowTitleWithRowCount:self.mainDataArray.count];
+                    
+                    [self.mainTableView reloadData];
+                    
+                    
                     
                     
                 }
@@ -448,24 +453,21 @@
 }
 
 #pragma mark ---- 点击分配 ----
-- (void)saveAgentPosWith:(PosGetModel *)posM
+- (void)removeAgentPosWith:(PosGetModel *)posM
 {
     NSDictionary *dict = @{
                            @"userid":@"1",
                            @"agentId":IF_NULL_TO_STRING(posM.agentId),
-                           @"posId":IF_NULL_TO_STRING(posM.posId),
-                           @"posBrandNo":IF_NULL_TO_STRING(posM.posBrandNo),
-                           @"posSnNo":IF_NULL_TO_STRING(posM.posSnNo),
-                           @"bindFlag":@"0"
+                           @"posId":IF_NULL_TO_STRING(posM.posId)
                            };
     
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agentPos/save" params:dict cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agentPos/remove" params:dict cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"code"]integerValue] == 0) {
-                HUD_SUCCESS(@"分配成功！");
+                HUD_SUCCESS(@"撤销成功！");
                 [self.navigationController popViewControllerAnimated:YES];
             } else {
-                HUD_ERROR(@"分配失败,请稍后重试");
+                HUD_ERROR(@"撤销失败,请稍后重试");
             }
             
             
@@ -473,18 +475,5 @@
         NSLog(@"result ------- %@", result);
     }];
 }
+
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
