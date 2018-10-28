@@ -30,15 +30,19 @@
     
     [self creatSelectBillStatus];
     [self initUI];
+    [self loadActivationRebateListRequest];
 
 }
 
 - (void)initUI {
     ActivationMoneyDetailHeaderView *headerView = [[ActivationMoneyDetailHeaderView alloc] init];
-    headerView.totalPenLabel.text = @"18000.01";
-    headerView.totalAmountLabel.text = @"70";
+    
     headerView.searchBlock = ^{
         ActivationMoneySearchViewController *vc = [[ActivationMoneySearchViewController alloc] init];
+        vc.startTime = self.startTime;
+        vc.endTime = self.endTime;
+        vc.agentType = self.agentType;
+        
         [self.navigationController pushViewController:vc animated:YES];
     };
     [self.pageController.view addSubview:headerView];
@@ -102,4 +106,25 @@
 - (CGRect)pageController:(nonnull WMPageController *)pageController preferredFrameForMenuView:(nonnull WMMenuView *)menuView {
     return CGRectMake(0, CGRectGetMaxY(self.headerView.frame)+AD_HEIGHT(5), ScreenWidth, AD_HEIGHT(38));
 }
+
+
+#pragma mark ------------------------------------ 接口 ------------------------------------
+
+#pragma mark ---- 激活返现查询 ----
+- (void)loadActivationRebateListRequest{
+    
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/activationRebate/list" params:@{@"userid":@"1",@"startTime":defaultObject(self.startTime, @""), @"endTime":defaultObject(self.endTime, @""), @"agentType":self.agentType, @"orderBy":@""} cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"object"] isKindOfClass:[NSDictionary class]]) {
+                    self.headerView.totalPenLabel.text = [result[@"data"][@"object"] valueForKey:@"totalARAmount"];
+                    self.headerView.totalAmountLabel.text = [result[@"data"][@"object"] valueForKey:@"totalNumber"];
+                }
+            }
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
+
 @end

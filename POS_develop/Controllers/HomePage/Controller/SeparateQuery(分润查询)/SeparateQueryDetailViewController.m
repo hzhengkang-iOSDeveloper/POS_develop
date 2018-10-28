@@ -22,20 +22,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"分润详情（个人）";
+    if ([self.agentType isEqualToString:@"1"]) {
+        self.navigationItem.title = @"分润详情（代理）";
+    }else {
+        self.navigationItem.title = @"分润详情（个人）";
+    }
+    
     self.view.backgroundColor = CF6F6F6;
     
     [self creatSelectBillStatus];
     [self initUI];
+    [self loadShareBenefitListRequest];
 }
 
 - (void)initUI {
     SeparateQueryDetailHeaderView *headerView = [[SeparateQueryDetailHeaderView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(194))];
-    headerView.totalLael.text = @"7000.00";
-    headerView.totalPenLabel.text = @"18000";
-    headerView.totalAmountLabel.text = @"7000188";
+    
     headerView.searchBlock = ^{
         SeparateQuerySearchViewController *vc = [[SeparateQuerySearchViewController alloc] init];
+        vc.startTime = self.startTime;
+        vc.endTime = self.endTime;
+        vc.agentNo = self.agentNo;
+        vc.agentType = self.agentType;
         [self.navigationController pushViewController:vc animated:YES];
     };
     [self.pageController.view addSubview:headerView];
@@ -103,7 +111,26 @@
     return CGRectMake(0, CGRectGetMaxY(self.headerView.frame)+AD_HEIGHT(5), ScreenWidth, AD_HEIGHT(38));
 }
 
-
+#pragma mark ---- 分润查询 ----
+- (void)loadShareBenefitListRequest {
+    
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/shareBenefit/list" params:@{@"userid":@"1",@"startTime":defaultObject(self.startTime, @""), @"endTime":defaultObject(self.endTime, @""), @"agentName":defaultObject(self.agentName, @""), @"agentNo":defaultObject(self.agentNo, @""), @"agentType":self.agentType, @"orderBy":@"0"} cookie:nil result:^(bool success, id result) {
+//        [self.myTable.mj_header endRefreshing];
+//        self.index = orderBy;
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"object"] isKindOfClass:[NSDictionary class]]) {
+                    self.headerView.totalLael.text = [result[@"data"][@"object"] valueForKey:@"totalSBAmount"];
+                    self.headerView.totalPenLabel.text = [result[@"data"][@"object"] valueForKey:@"totalNumber"];
+                    self.headerView.totalAmountLabel.text = [result[@"data"][@"object"] valueForKey:@"totalTransAmount"];
+                }
+                
+            }
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
 
 @end
 

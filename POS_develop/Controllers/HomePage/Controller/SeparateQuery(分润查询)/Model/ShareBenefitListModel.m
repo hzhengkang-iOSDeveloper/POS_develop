@@ -9,10 +9,10 @@
 #import "ShareBenefitListModel.h"
 
 @implementation ShareBenefitListModel
-+ (NSDictionary *)replacedKeyFromPropertyName
-{
-    
-    return @{@"ID" : @"id"};
-    
-}
+//+ (NSDictionary *)replacedKeyFromPropertyName
+//{
+//    
+//    return @{@"ID" : @"id"};
+//    
+//}
 @end

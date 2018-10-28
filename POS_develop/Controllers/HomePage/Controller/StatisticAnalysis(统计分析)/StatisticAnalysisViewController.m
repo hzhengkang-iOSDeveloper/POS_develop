@@ -268,7 +268,6 @@
     //更新接口数据
     [self getStatisticAnalysisData];
 }
-
 #pragma mark ---- 底部  交易量  分润  商户数量 激活数量----
 - (void)clickBottomBtn:(UIButton *)sender
 {

@@ -8,11 +8,14 @@
 
 #import "SeparateQuerySearchViewController.h"
 #import "SeparateQueryCell.h"
+#import "ShareBenefitListModel.h"
+
 @interface SeparateQuerySearchViewController () <UITextFieldDelegate,UITableViewDelegate, UITableViewDataSource> {
     UIImageView *searchImgV;
     UITextField *searchTF;
 }
 @property (nonatomic, strong) UITableView *searchTableView;
+@property (nonatomic, strong) NSMutableArray *dataArray;
 @end
 
 @implementation SeparateQuerySearchViewController
@@ -21,6 +24,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = WhiteColor;
     [self initUI];
+    self.dataArray = [NSMutableArray array];
     [self createTableView];
 }
 
@@ -30,7 +34,7 @@
     _searchTableView.delegate = self;
     _searchTableView.dataSource = self;
     _searchTableView.showsVerticalScrollIndicator = NO;
-    _searchTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    _searchTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_searchTableView];
 }
 
@@ -42,12 +46,15 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 10;
+    return self.dataArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     SeparateQueryCell *cell = [SeparateQueryCell cellWithTableView:tableView];
+    cell.time.text = [NSString stringWithFormat:@"交易日期%@——%@", self.startTime,self.endTime];
+    ShareBenefitListModel *model = self.dataArray[indexPath.row];
+    cell.model = model;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     
@@ -91,6 +98,7 @@
     }];
     
     searchTF = [[UITextField alloc] init];
+    searchTF.returnKeyType = UIReturnKeySearch;//变为搜索按钮
     searchTF.delegate = self;
     [self.view addSubview:searchTF];
     [searchTF mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -101,14 +109,51 @@
     }];
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+//搜索虚拟键盘响应
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+
+{
+    
+    NSLog(@"点击了搜索");
+    
+    [searchTF resignFirstResponder];
+    
+    [self loadShareBenefitListRequest];
+    
     return YES;
+    
 }
-
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     searchImgV.hidden = YES;
     return YES;
 }
+
+#pragma mark ------------------------------------ 接口 ------------------------------------
+
+#pragma mark ---- 分润查询 ----
+- (void)loadShareBenefitListRequest{
+    
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/shareBenefit/list" params:@{@"userid":@"1",@"startTime":defaultObject(self.startTime, @""), @"endTime":defaultObject(self.endTime, @""), @"agentName":defaultObject(searchTF.text, @""), @"agentNo":defaultObject(self.agentNo, @""), @"agentType":self.agentType, @"orderBy":@""} cookie:nil result:^(bool success, id result) {
+        [self.searchTableView.mj_header endRefreshing];
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"objectList"] isKindOfClass:[NSArray class]]) {
+                    NSArray *array = result[@"data"][@"objectList"];
+                    if (self.dataArray.count >0) {
+                        [self.dataArray removeAllObjects];
+                    }
+                    [self.dataArray addObjectsFromArray:[ShareBenefitListModel mj_objectArrayWithKeyValuesArray:array]];
+                    
+                    [self.searchTableView reloadData];
+                }
+            }
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
+
+
 @end

@@ -32,6 +32,7 @@
     [self addRightBarButtonWithImage:[UIImage imageNamed:@"增加"] clickHandler:^{
         NSLog(@"点击右边按钮");
         TerminalSearchViewController *vc = [[TerminalSearchViewController alloc] init];
+        vc.agentId = weakSelf.agentId;
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
     [self createTableView];
@@ -136,7 +137,7 @@
                     
                     for (int i =0; i<array.count; i++) {
                         AgentPosListModel *model = [array objectAtIndex:i];
-                        [self loadPosGetRequest:model.posId];
+                        [self loadPosGetRequest:[NSString stringWithFormat:@"%@", model.posId]];
                     }
                     
                 }

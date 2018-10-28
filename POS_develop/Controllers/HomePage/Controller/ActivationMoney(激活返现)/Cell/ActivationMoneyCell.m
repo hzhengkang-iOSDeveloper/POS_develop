@@ -16,8 +16,7 @@
 @property (nonatomic, weak) UILabel   *returnMoneyLabel;
 //姓名
 @property (nonatomic, weak) UILabel    *nameLabel;
-//日期
-@property (nonatomic, weak) UILabel     *dateLabel;
+
 @end
 @implementation ActivationMoneyCell
 
@@ -96,7 +95,7 @@
     
     
     //日期
-    UILabel     *dateLabel = [UILabel getLabelWithFont:F10 textColor:C989898 superView:self.contentView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
+    UILabel *dateLabel = [UILabel getLabelWithFont:F10 textColor:C989898 superView:self.contentView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
         make.right.offset(-AD_HEIGHT(15));
         make.bottom.offset(-AD_HEIGHT(22));
         
@@ -116,10 +115,10 @@
 - (void)setModel:(ActivationRebateListModel *)model {
     if (model) {
         _model = model;
-        self.activationCountLabel.text = [NSString stringWithFormat:@"激活数量:%@", model.arAmount];
-        self.returnMoneyLabel.text = [NSString stringWithFormat:@"返现金额:%@元", model.arAmount];
+        self.activationCountLabel.text = [NSString stringWithFormat:@"激活数量:%@", model.totalNumber];
+        self.returnMoneyLabel.text = [NSString stringWithFormat:@"返现金额:%@元", model.totalARAmount];
         self.nameLabel.text = model.agentName;
-        self.dateLabel.text = [NSString stringWithFormat:@"交易日期%@", model.createtime];
+        
     }
 }
 

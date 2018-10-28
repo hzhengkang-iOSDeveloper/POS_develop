@@ -8,7 +8,8 @@
 
 #import "TerminalSelectResultViewController.h"
 #import "TerminalBindTableViewCell.h"
-
+#import "PosListModel.h"
+#import "AgentPosListModel.h"
 @interface TerminalSelectResultViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *terminalResultTableView;
 
@@ -19,7 +20,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItemTitle = @"终端查询";
+    
     [self createTableView];
+    
 }
 
 
@@ -29,7 +32,7 @@
     _terminalResultTableView.delegate = self;
     _terminalResultTableView.dataSource = self;
     _terminalResultTableView.showsVerticalScrollIndicator = NO;
-    _terminalResultTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    _terminalResultTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_terminalResultTableView];
     [_terminalResultTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.bottom.offset(0);
@@ -45,18 +48,26 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 10;
+    return self.dataArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TerminalBindTableViewCell *cell = [TerminalBindTableViewCell cellWithTableView:tableView];
-    cell.productNameL.text = @"付钱宝";
-    cell.viceProductNameL.text = @"小pos机";
-    cell.snL.text = @"SN:3419020300000SA";
-    cell.modelL.text = @"型号：ky21920机器";
-    
+    PosListModel *model = self.dataArray[indexPath.row];
+    cell.productNameL.text = model.posBrandName;
+    cell.viceProductNameL.text = model.posTermType;
+    cell.snL.text = [NSString stringWithFormat:@"SN:%@", model.posSnNo];
+    cell.modelL.text = [NSString stringWithFormat:@"型号%@", model.posTermModel];
+    AgentPosListModel *bindModel = self.bindDataArray[indexPath.row];
+    if ([bindModel.bindFlag isEqualToString:@"1"]) {
+        cell.bindStateL.text = @"已绑定";
+        cell.bindStateL.textColor = C989898;
+    }else {
+        cell.bindStateL.text = @"未绑定";
+        cell.bindStateL.textColor = RGB(245, 53, 53);
+    }
     cell.bindStateL.hidden = NO;
-    cell.bindStateL.text = @"未绑定";
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     
@@ -73,14 +84,6 @@
     return AD_HEIGHT(62);
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

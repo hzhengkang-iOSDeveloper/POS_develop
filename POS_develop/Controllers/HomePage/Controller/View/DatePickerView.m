@@ -137,7 +137,7 @@
     //转换格式
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc]init];
     
-    dateFormatter.dateFormat = @"yyyy/MM/dd";
+    dateFormatter.dateFormat = @"yyyy-MM-dd";
     
     NSString * dateStr = [dateFormatter stringFromDate:selectDate];
     
@@ -152,7 +152,7 @@
     //转换格式
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc]init];
     
-    dateFormatter.dateFormat = @"yyyy/MM/dd";
+    dateFormatter.dateFormat = @"yyyy-MM-dd";
     
     NSString * dateStr = [dateFormatter stringFromDate:selectDate];
     
@@ -185,7 +185,7 @@
             if ([self.datePickerStrA isEqualToString:@""]||self.datePickerStrA == nil) {
                 NSDate * date = [NSDate date];
                 NSDateFormatter * dateForma = [[NSDateFormatter alloc]init];
-                dateForma.dateFormat = @"yyyy/MM/dd";
+                dateForma.dateFormat = @"yyyy-MM-dd";
                 NSString * dateStr = [dateForma stringFromDate:date];
                 [self.startTimeTF setFont:[UIFont systemFontOfSize:14]];
                 self.startTimeTF.text = dateStr;
@@ -202,7 +202,7 @@
             if ([self.datePickerStrB isEqualToString:@""]||self.datePickerStrB == nil) {
                 NSDate * date = [NSDate date];
                 NSDateFormatter * dateForma = [[NSDateFormatter alloc]init];
-                dateForma.dateFormat = @"yyyy/MM/dd";
+                dateForma.dateFormat = @"yyyy-MM-dd";
                 NSString * dateStr = [dateForma stringFromDate:date];
                 [self.endTimeTF setFont:[UIFont systemFontOfSize:14]];
                 self.endTimeTF.text = dateStr;

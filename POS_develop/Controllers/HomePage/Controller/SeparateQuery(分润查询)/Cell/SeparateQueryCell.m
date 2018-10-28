@@ -117,11 +117,10 @@
 - (void)setModel:(ShareBenefitListModel *)model {
     if (model) {
         _model = model;
-        self.totalAmount.text = [NSString stringWithFormat:@"总金额:%@", model.transAmount];
+        self.totalAmount.text = [NSString stringWithFormat:@"总金额:%@", model.totalTransAmount];
         self.name.text = [NSString stringWithFormat:@"%@", model.agentName];
-        self.time.text = [NSString stringWithFormat:@"交易日期%@", model.transTime];
-        //         [self.totalPenNumber setTitle:[NSString stringWithFormat:@"总笔数%@", ] forState:UIControlStateNormal];
-        [self.totalShareProfit setTitle:[NSString stringWithFormat:@"总分润%@",model.sbAmount ] forState:UIControlStateNormal];
+        [self.totalPenNumber setTitle:[NSString stringWithFormat:@"总笔数%@",model.totalNumber] forState:UIControlStateNormal];
+        [self.totalShareProfit setTitle:[NSString stringWithFormat:@"总分润%@",model.totalSBAmount ] forState:UIControlStateNormal];
     
     }
 }

@@ -9,13 +9,16 @@
 #import "TerminalSearchViewController.h"
 #import "TerminalBindTableViewCell.h"
 #import "SureBindViewController.h"
+#import "PosGetModel.h"
+#import "AgentPosListModel.h"
 
 @interface TerminalSearchViewController () <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource> {
     UIImageView *searchImgV;
     UITextField *searchTF;
 }
 @property (nonatomic, strong) UITableView *searchTableView;
-
+@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray *listDataArray;
 
 
 
@@ -27,6 +30,8 @@
     [super viewDidLoad];
     self.view.backgroundColor = WhiteColor;
     [self initUI];
+    self.dataArray = [NSMutableArray array];
+    self.listDataArray = [NSMutableArray array];
     [self createTableView];
 }
 
@@ -36,7 +41,7 @@
     _searchTableView.delegate = self;
     _searchTableView.dataSource = self;
     _searchTableView.showsVerticalScrollIndicator = NO;
-    _searchTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    _searchTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_searchTableView];
 }
 
@@ -48,16 +53,18 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 10;
+    return self.dataArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     TerminalBindTableViewCell *cell = [TerminalBindTableViewCell cellWithTableView:tableView];
-    cell.productNameL.text = @"付钱宝";
-    cell.viceProductNameL.text = @"小pos机";
-    cell.snL.text = @"SN:3419020300000SA";
-    cell.modelL.text = @"型号：ky21920机器";
+    PosGetModel *model = self.dataArray[indexPath.row];
+    cell.model = model;
+//    cell.productNameL.text = @"付钱宝";
+//    cell.viceProductNameL.text = @"小pos机";
+//    cell.snL.text = @"SN:3419020300000SA";
+//    cell.modelL.text = @"型号：ky21920机器";
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     
@@ -67,7 +74,18 @@
 
 #pragma mark - UITableViewDelegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    SureBindViewController *vc = [[SureBindViewController alloc] init];
+//    [self.navigationController pushViewController:vc animated:YES];
     SureBindViewController *vc = [[SureBindViewController alloc] init];
+    MJWeakSelf;
+    vc.popBlock = ^{
+        [weakSelf.searchTableView.mj_header beginRefreshing];
+    };
+    AgentPosListModel *model = self.listDataArray[indexPath.row];
+    vc.posID = model.posId;
+    vc.agentId = model.agentId;
+    vc.posBrandNo = model.posBrandNo;
+    vc.posSnNo = model.posSnNo;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -102,6 +120,7 @@
     
     searchTF = [[UITextField alloc] init];
     searchTF.delegate = self;
+    searchTF.returnKeyType = UIReturnKeySearch;//变为搜索按钮
     [self.view addSubview:searchTF];
     [searchTF mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(searchImageV).offset(FITiPhone6(9));
@@ -111,25 +130,72 @@
     }];
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+
+{
+    
+    NSLog(@"点击了搜索");
+    
+    [searchTF resignFirstResponder];
+    
+    [self loadAgentPosListRequest];
     
     return YES;
+    
 }
-
-
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     searchImgV.hidden = YES;
     return YES;
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark ---- 终端绑定 ----
+- (void)loadAgentPosListRequest{
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agentPos/list" params:@{@"userid":@"1", @"agentId":self.agentId, @"posSnNo":searchTF.text,@"bindFlag":@"0"} cookie:nil result:^(bool success, id result) {
+        [self.searchTableView.mj_header endRefreshing];
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    if (self.dataArray.count > 0) {
+                        [self.dataArray removeAllObjects];
+                    }
+                   NSArray *array = [NSArray arrayWithArray:[AgentPosListModel mj_objectArrayWithKeyValuesArray:result[@"data"][@"rows"]]];
+                    
+                    self.listDataArray = [array mutableCopy];
+                    
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+                    for (int i =0; i<array.count; i++) {
+//                        AgentPosListModel *model = [array objectAtIndex:i];
+                        [self loadPosGetRequest:[NSString stringWithFormat:@"%@", [[array objectAtIndex:i] valueForKey:@"posId"]]];
+                    }
+                    
+                    
+//                    [self.searchTableView reloadData];
+                }
+                
+            }
+            
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
 }
-*/
-
+#pragma mark ---- 终端绑定get ----
+- (void)loadPosGetRequest:(NSString *)posID {
+    [[HPDConnect connect] PostNetRequestMethod:[NSString stringWithFormat:@"%@%@", @"api/trans/pos/get/", posID] params:nil cookie:nil result:^(bool success, id result) {
+        [self.searchTableView.mj_header endRefreshing];
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                
+                PosGetModel *poslistModel = [PosGetModel mj_objectWithKeyValues:result[@"data"]];
+                [self.dataArray addObject:poslistModel];
+                [self.searchTableView reloadData];
+                
+                
+            }
+            
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
 @end
