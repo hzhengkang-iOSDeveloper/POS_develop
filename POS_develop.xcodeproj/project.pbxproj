@@ -39,6 +39,7 @@
 		259646E32158DFAE00E516BF /* SeparateQueryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 259646E22158DFAE00E516BF /* SeparateQueryViewController.m */; };
 		259646E62158E1ED00E516BF /* SeparateQueryMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 259646E52158E1ED00E516BF /* SeparateQueryMainView.m */; };
 		259646E82158E1FA00E516BF /* SeparateQueryMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 259646E72158E1FA00E516BF /* SeparateQueryMainView.xib */; };
+		259B3EEA21857C6A0076586E /* PosListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 259B3EE921857C6A0076586E /* PosListModel.m */; };
 		25CBB298218087390063E701 /* WithdrawCashRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25CBB297218087390063E701 /* WithdrawCashRecordViewController.m */; };
 		25CBB29D2180B3250063E701 /* PD_BillDetailTaoCanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25CBB29C2180B3250063E701 /* PD_BillDetailTaoCanCell.m */; };
 		25CBB2A02180B7310063E701 /* PD_BillDetailDanDianCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25CBB29F2180B7310063E701 /* PD_BillDetailDanDianCell.m */; };
@@ -343,6 +344,11 @@
 		25263163217AE98200FD2B2E /* ShareBenefitListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareBenefitListModel.m; sourceTree = "<group>"; };
 		25263166217B751200FD2B2E /* ActivationRebateListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActivationRebateListModel.h; sourceTree = "<group>"; };
 		25263167217B751200FD2B2E /* ActivationRebateListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActivationRebateListModel.m; sourceTree = "<group>"; };
+		252B138C218416B50075E157 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		252B138E218416BF0075E157 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		252B1390218416CE0075E157 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		252B1392218416D90075E157 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		252B1394218416E30075E157 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		253268B5217F1AF40040E3E4 /* PosGetModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PosGetModel.h; sourceTree = "<group>"; };
 		253268B6217F1AF40040E3E4 /* PosGetModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PosGetModel.m; sourceTree = "<group>"; };
 		253268D3217F27EB0040E3E4 /* PowerfulBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PowerfulBannerView.m; sourceTree = "<group>"; };
@@ -380,6 +386,8 @@
 		259646E42158E1ED00E516BF /* SeparateQueryMainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeparateQueryMainView.h; sourceTree = "<group>"; };
 		259646E52158E1ED00E516BF /* SeparateQueryMainView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeparateQueryMainView.m; sourceTree = "<group>"; };
 		259646E72158E1FA00E516BF /* SeparateQueryMainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SeparateQueryMainView.xib; sourceTree = "<group>"; };
+		259B3EE821857C6A0076586E /* PosListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PosListModel.h; sourceTree = "<group>"; };
+		259B3EE921857C6A0076586E /* PosListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PosListModel.m; sourceTree = "<group>"; };
 		25CBB296218087390063E701 /* WithdrawCashRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WithdrawCashRecordViewController.h; sourceTree = "<group>"; };
 		25CBB297218087390063E701 /* WithdrawCashRecordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WithdrawCashRecordViewController.m; sourceTree = "<group>"; };
 		25CBB29B2180B3250063E701 /* PD_BillDetailTaoCanCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillDetailTaoCanCell.h; sourceTree = "<group>"; };
@@ -905,7 +913,7 @@
 		78CB4B72214B8BD7000F6A9D /* VipSystemViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VipSystemViewController.h; sourceTree = "<group>"; };
 		78CB4B73214B8BD7000F6A9D /* VipSystemViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VipSystemViewController.m; sourceTree = "<group>"; };
 		78CB4B75214BA8D7000F6A9D /* MyBillViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyBillViewController.h; sourceTree = "<group>"; };
-		78CB4B76214BA8D7000F6A9D /* MyBillViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyBillViewController.m; sourceTree = "<group>"; };
+		78CB4B76214BA8D7000F6A9D /* MyBillViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyBillViewController.m; sourceTree = "<group>"; wrapsLines = 0; };
 		78CB4B79214BAA29000F6A9D /* MyBillTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyBillTableViewCell.h; sourceTree = "<group>"; };
 		78CB4B7A214BAA29000F6A9D /* MyBillTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyBillTableViewCell.m; sourceTree = "<group>"; };
 		78CB4BDB214BCCE3000F6A9D /* MyAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyAddressViewController.h; sourceTree = "<group>"; };
@@ -976,6 +984,8 @@
 				250E65AA217CC44A000B99B7 /* PosTermTypeListModel.m */,
 				250E65AF217CC57F000B99B7 /* PosTermModelListModel.h */,
 				250E65B0217CC57F000B99B7 /* PosTermModelListModel.m */,
+				259B3EE821857C6A0076586E /* PosListModel.h */,
+				259B3EE921857C6A0076586E /* PosListModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2599,6 +2609,11 @@
 		CBB0E73DB313616CD0162DA8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				252B1394218416E30075E157 /* libstdc++.6.0.9.tbd */,
+				252B1392218416D90075E157 /* libc++.tbd */,
+				252B1390218416CE0075E157 /* libiconv.tbd */,
+				252B138E218416BF0075E157 /* Foundation.framework */,
+				252B138C218416B50075E157 /* Security.framework */,
 				7871669021490FA100452C51 /* libxml2.tbd */,
 				E02FA8D445A9227508FFFE68 /* libPods-POS_develop.a */,
 			);
@@ -2990,6 +3005,7 @@
 				5040E98321770CDE00E39628 /* CombinationSetMealDetailViewController.m in Sources */,
 				253647D7214E053C0094576C /* UpdatePhoneTableViewCell.m in Sources */,
 				7888F3BA2147C33900AAC8B0 /* ZJPPTViewCustom.m in Sources */,
+				259B3EEA21857C6A0076586E /* PosListModel.m in Sources */,
 				50A89B07216B653200E68BEB /* XLineChartView.m in Sources */,
 				7872DDBE216DDEA90021FEEA /* CopywritingSelectCell.m in Sources */,
 				7888F3B32147C33900AAC8B0 /* UILabel+ChangeLineSpaceAndWordSpace.m in Sources */,
@@ -3182,7 +3198,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PY7ZU58Z7K;
+				DEVELOPMENT_TEAM = 9YW8W923PG;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/POS_develop/Controllers/Personal/Controller/MainController/客服聊天/HelpDeskFramework",
+					"$(PROJECT_DIR)/POS_develop/Controllers/Personal/Controller/MainController/客服聊天/HyphenateFramework",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/POS_develop/POS_PCH.pch";
 				HEADER_SEARCH_PATHS = (
@@ -3209,6 +3230,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/POS_develop/Utils/Security",
+					"$(PROJECT_DIR)/POS_develop/Controllers/Personal/Controller/MainController/客服聊天/HDUIKit/3rdparty/DeviceHelper/HDVoiceConvert/opencore-amrwb",
+					"$(PROJECT_DIR)/POS_develop/Controllers/Personal/Controller/MainController/客服聊天/HDUIKit/3rdparty/DeviceHelper/HDVoiceConvert/opencore-amrnb",
+					"$(PROJECT_DIR)/POS_develop/Controllers/Personal/Controller/MainController/客服聊天/HelpDeskUI/HDUIKit/3rdparty/DeviceHelper/HDVoiceConvert/opencore-amrwb",
+					"$(PROJECT_DIR)/POS_develop/Controllers/Personal/Controller/MainController/客服聊天/HelpDeskUI/HDUIKit/3rdparty/DeviceHelper/HDVoiceConvert/opencore-amrnb",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.POS.develop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3222,7 +3247,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PY7ZU58Z7K;
+				DEVELOPMENT_TEAM = 9YW8W923PG;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/POS_develop/Controllers/Personal/Controller/MainController/客服聊天/HelpDeskFramework",
+					"$(PROJECT_DIR)/POS_develop/Controllers/Personal/Controller/MainController/客服聊天/HyphenateFramework",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/POS_develop/POS_PCH.pch";
 				HEADER_SEARCH_PATHS = (
@@ -3249,6 +3279,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/POS_develop/Utils/Security",
+					"$(PROJECT_DIR)/POS_develop/Controllers/Personal/Controller/MainController/客服聊天/HDUIKit/3rdparty/DeviceHelper/HDVoiceConvert/opencore-amrwb",
+					"$(PROJECT_DIR)/POS_develop/Controllers/Personal/Controller/MainController/客服聊天/HDUIKit/3rdparty/DeviceHelper/HDVoiceConvert/opencore-amrnb",
+					"$(PROJECT_DIR)/POS_develop/Controllers/Personal/Controller/MainController/客服聊天/HelpDeskUI/HDUIKit/3rdparty/DeviceHelper/HDVoiceConvert/opencore-amrwb",
+					"$(PROJECT_DIR)/POS_develop/Controllers/Personal/Controller/MainController/客服聊天/HelpDeskUI/HDUIKit/3rdparty/DeviceHelper/HDVoiceConvert/opencore-amrnb",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.POS.develop;
 				PRODUCT_NAME = "$(TARGET_NAME)";

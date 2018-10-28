@@ -199,7 +199,6 @@
         dayBtn.selected = !monthBtn.selected;
     }
 }
-
 #pragma mark ---- 底部  交易量  分润  商户数量 激活数量----
 - (void)clickBottomBtn:(UIButton *)sender
 {

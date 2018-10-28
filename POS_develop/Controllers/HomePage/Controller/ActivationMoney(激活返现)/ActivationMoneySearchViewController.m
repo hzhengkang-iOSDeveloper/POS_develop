@@ -8,11 +8,14 @@
 
 #import "ActivationMoneySearchViewController.h"
 #import "ActivationMoneyCell.h"
+#import "ActivationRebateListModel.h"
+
 @interface ActivationMoneySearchViewController ()<UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource> {
     UIImageView *searchImgV;
     UITextField *searchTF;
 }
 @property (nonatomic, strong) UITableView *searchTableView;
+@property (nonatomic, strong) NSMutableArray *dataArray;
 
 
 @end
@@ -23,6 +26,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = WhiteColor;
     [self initUI];
+    self.dataArray = [NSMutableArray array];
     [self createTableView];
     
 }
@@ -44,12 +48,16 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 10;
+    return self.dataArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     ActivationMoneyCell *cell = [ActivationMoneyCell cellWithTableView:tableView];
+    cell.dateLabel.text = [NSString stringWithFormat:@"交易日期%@——%@", self.startTime, self.endTime];
+    ActivationRebateListModel *model = self.dataArray[indexPath.row];
+    cell.model = model;
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     
@@ -92,6 +100,7 @@
     }];
     
     searchTF = [[UITextField alloc] init];
+    searchTF.returnKeyType = UIReturnKeySearch;//变为搜索按钮
     searchTF.delegate = self;
     [self.view addSubview:searchTF];
     [searchTF mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -102,9 +111,23 @@
     }];
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+
+//搜索虚拟键盘响应
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+
+
+
+{
+    
+    NSLog(@"点击了搜索");
+    
+    [searchTF resignFirstResponder];
+    
+    [self loadActivationRebateListRequest];
     
     return YES;
+    
 }
 
 
@@ -112,14 +135,29 @@
     searchImgV.hidden = YES;
     return YES;
 }
-/*
-#pragma mark - Navigation
+#pragma mark ------------------------------------ 接口 ------------------------------------
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark ---- 激活返现查询 ----
+- (void)loadActivationRebateListRequest{
+    
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/activationRebate/list" params:@{@"userid":@"1",@"startTime":defaultObject(self.startTime, @""), @"endTime":defaultObject(self.endTime, @""),@"agentName":defaultObject(searchTF.text, @""), @"agentType":self.agentType, @"orderBy":@""} cookie:nil result:^(bool success, id result) {
+        [self.searchTableView.mj_header endRefreshing];
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"objectList"] isKindOfClass:[NSArray class]]) {
+                    NSArray *array = result[@"data"][@"objectList"];
+                    if (self.dataArray.count >0) {
+                        [self.dataArray removeAllObjects];
+                    }
+                    [self.dataArray addObjectsFromArray:[ActivationRebateListModel mj_objectArrayWithKeyValuesArray:array]];
+                    
+                    [self.searchTableView reloadData];
+                }
+            }
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
 }
-*/
 
 @end

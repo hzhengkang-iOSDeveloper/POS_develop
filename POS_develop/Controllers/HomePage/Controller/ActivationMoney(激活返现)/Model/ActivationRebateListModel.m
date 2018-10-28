@@ -9,10 +9,10 @@
 #import "ActivationRebateListModel.h"
 
 @implementation ActivationRebateListModel
-+ (NSDictionary *)replacedKeyFromPropertyName
-{
-    
-    return @{@"ID" : @"id"};
-    
-}
+//+ (NSDictionary *)replacedKeyFromPropertyName
+//{
+//    
+//    return @{@"ID" : @"id"};
+//    
+//}
 @end

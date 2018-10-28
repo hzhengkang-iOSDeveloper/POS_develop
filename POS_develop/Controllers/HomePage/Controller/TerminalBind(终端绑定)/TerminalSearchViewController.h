@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TerminalSearchViewController : BaseSonViewController
-
+@property (nonatomic, copy) NSString *agentId;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -54,6 +54,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     SeparateQueryCell *cell = [SeparateQueryCell cellWithTableView:tableView];
+    cell.time.text = [NSString stringWithFormat:@"交易日期%@——%@", self.startTime,self.endTime];
     ShareBenefitListModel *model = self.dataArray[indexPath.row];
     cell.model = model;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -94,8 +95,8 @@
         self.index = orderBy;
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
-                    NSArray *array = result[@"data"][@"rows"];
+                if ([result[@"data"][@"objectList"] isKindOfClass:[NSArray class]]) {
+                    NSArray *array = result[@"data"][@"objectList"];
                     if (self.dataArray.count >0) {
                         [self.dataArray removeAllObjects];
                     }

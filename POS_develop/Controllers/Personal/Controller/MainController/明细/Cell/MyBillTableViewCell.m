@@ -96,7 +96,7 @@
     if (model) {
         _model = model;
         self.contentLabel.text = model.balanceTypeZh;
-        self.timeLabel.text = [model.createtime substringToIndex:10];
+        self.timeLabel.text = [model.createtime substringToIndex:16];
         if ([model.balanceAmount integerValue] > 0) {
             self.amountLabel.text = [NSString stringWithFormat:@"+%@", model.balanceAmount];
         }else {
