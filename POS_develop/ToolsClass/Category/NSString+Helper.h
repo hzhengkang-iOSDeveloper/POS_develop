@@ -169,4 +169,13 @@
  *  @param  format      自定义的时间格式
  **/
 + (NSString *)CustomerTimeWithTimeIntervalString:(NSString *)timeString  withFormatter:(NSString *)format;
+
+//MARK:获取时间组件
++ (NSInteger)getYearWithFormatter:(NSString *)formatter;
++ (NSInteger)getMonthWithFormatter:(NSString *)formatter;
++ (NSInteger)getDayWithFormatter:(NSString *)formatter;
++ (NSInteger)getHourWithFormatter:(NSString *)formatter;
++ (NSInteger)getMinuteWithFormatter:(NSString *)formatter;
++ (NSInteger)getSecondWithFormatter:(NSString *)formatter;
++ (NSDate *)getDateWithFormatter:(NSString *)formatter;
 @end

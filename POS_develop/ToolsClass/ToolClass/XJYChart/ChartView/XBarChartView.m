@@ -68,7 +68,7 @@
     CGFloat width = calWidth >  self.frame.size.width ? calWidth : self.frame.size.width;
     return CGSizeMake(width, self.frame.size.height);
   }
-  if (itemArray.count <= 10 || !self.configuration.isScrollable) {
+  if (itemArray.count <= 5 || !self.configuration.isScrollable) {
     self.needScroll = NO;
     return CGSizeMake(self.frame.size.width, self.frame.size.height);
   } else {

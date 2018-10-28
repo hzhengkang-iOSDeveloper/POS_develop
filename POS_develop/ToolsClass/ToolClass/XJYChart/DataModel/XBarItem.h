@@ -11,7 +11,7 @@
 @interface XBarItem : NSObject
 @property(nonatomic, strong) UIColor* color;
 @property(nonatomic, strong) NSNumber* dataNumber;
-@property(nonatomic, strong) NSString* dataDescribe;
+@property(nonatomic, copy) NSString* dataDescribe;
 
 /**
  设置数据item

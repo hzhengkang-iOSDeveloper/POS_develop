@@ -8,6 +8,8 @@
 
 #import "NSString+Helper.h"
 #import <CommonCrypto/CommonDigest.h>
+#import "NSDate+PosTool.h"
+
 //#import <LianBiLib/Base64.h>
 //#import "SendRequestModel.h"
 
@@ -567,4 +569,40 @@
     NSString* dateString = [formatter stringFromDate:date];
     return dateString;
 }
+
+//MARK:获取下发日期的年月日时分秒
++ (NSDate *)getDateWithFormatter:(NSString *)formatter {
+    NSDateFormatter* dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:formatter];
+    NSDate *date =[dateFormat dateFromString:self];
+    return date;
+}
+
+
+//MARK:单独获取年月日时分秒
++ (NSInteger)getYearWithFormatter:(NSString *)formatter {
+    return [self getDateWithFormatter:formatter].year;
+}
+
++ (NSInteger)getMonthWithFormatter:(NSString *)formatter {
+    return [self getDateWithFormatter:formatter].month;
+}
+
++ (NSInteger)getDayWithFormatter:(NSString *)formatter {
+    return [self getDateWithFormatter:formatter].day;
+}
+
++ (NSInteger)getHourWithFormatter:(NSString *)formatter {
+    return [self getDateWithFormatter:formatter].hour;
+}
+
++ (NSInteger)getMinuteWithFormatter:(NSString *)formatter {
+    return [self getDateWithFormatter:formatter].minute;
+}
+
++ (NSInteger)getSecondWithFormatter:(NSString *)formatter {
+    return [self getDateWithFormatter:formatter].seconds;
+}
+
+
 @end

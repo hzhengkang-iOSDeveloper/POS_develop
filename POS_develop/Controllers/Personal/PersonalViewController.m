@@ -18,7 +18,7 @@
 #import "SettingViewController.h"
 
 #import "WithdrawCashViewController.h"
-
+#import "SettingWithdrawPsViewController.h"
 
 
 
@@ -31,6 +31,8 @@
 @property (nonatomic, strong) NSArray *titleArray;
 @property (nonatomic, strong) PersonalHeaderView *headerView;
 @property (nonatomic, copy) NSString *balanceStr;
+@property (nonatomic, copy) NSString *withDrawPasswd;
+@property (nonatomic, copy) NSString *withDrawPasswdID;
 
 @end
 
@@ -81,13 +83,24 @@
         [weakSelf.navigationController pushViewController:vc animated:YES];
     };
     self.headerView.withdrawBlock = ^{
-        WithdrawCashViewController *vc = [[WithdrawCashViewController alloc] init];
-        vc.popBlock = ^{
-            [weakSelf loadBagListRequest];
-        };
-        vc.balanceStr = [NSString stringWithFormat:@"%@", weakSelf.balanceStr];
-        vc.hidesBottomBarWhenPushed = YES;
-        [weakSelf.navigationController pushViewController:vc animated:YES];
+        if ([weakSelf.withDrawPasswd isEqualToString:@""] || weakSelf.withDrawPasswd == nil) {
+            //没有设置提现密码，跳转设置提现密码界面
+            SettingWithdrawPsViewController *vc = [[SettingWithdrawPsViewController alloc] init];
+            vc.withDrawPasswdID = weakSelf.withDrawPasswdID;
+            vc.popBlock = ^{
+                [weakSelf loadBagListRequest];
+            };
+            vc.hidesBottomBarWhenPushed = YES;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }else {
+            WithdrawCashViewController *vc = [[WithdrawCashViewController alloc] init];
+            vc.popBlock = ^{
+                [weakSelf loadBagListRequest];
+            };
+            vc.balanceStr = [NSString stringWithFormat:@"%@", weakSelf.balanceStr];
+            vc.hidesBottomBarWhenPushed = YES;
+            [weakSelf.navigationController pushViewController:vc animated:YES];        }
+        
     };
     
 //    self.headerView.userNameLabel.hidden = NO;
@@ -211,14 +224,20 @@
 
 #pragma mark ---- 个人余额 ----
 - (void)loadBagListRequest {
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/bag/list" params:nil cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/bag/list" params:@{@"userid":@"2" }cookie:nil result:^(bool success, id result) {
         [self.personalTableView.mj_header endRefreshing];
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
                     NSArray *array = [NSArray arrayWithArray:result[@"data"][@"rows"]];
-                    self.headerView.balanceL.text = [NSString stringWithFormat:@"余额：%@", [[array firstObject] valueForKey:@"accountBalance"]];
-                    self.balanceStr = [[array firstObject] valueForKey:@"accountBalance"];
+                    if (array.count > 0) {
+                        self.headerView.balanceL.text = [NSString stringWithFormat:@"余额：%@", [[array firstObject] valueForKey:@"accountBalance"]];
+                        self.balanceStr = [[array firstObject] valueForKey:@"accountBalance"];
+                        self.withDrawPasswd = [[array firstObject] valueForKey:@"withDrawPasswd"];
+                        self.withDrawPasswdID =  [[array firstObject] valueForKey:@"id"];
+                        [self.personalTableView reloadData];
+                    }
+                    
                 }
                 
             }

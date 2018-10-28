@@ -56,12 +56,12 @@
   CGFloat intervalWidth = labelWidth / 6;
   for (int i = 0; i < self.dataDescribeArray.count; i++) {
     XAlignLabel* label = [[XAlignLabel alloc]
-        initWithFrame:CGRectMake(labelWidth * i + intervalWidth, 0,
-                                 labelWidth - 2 * intervalWidth,
+        initWithFrame:CGRectMake(labelWidth * i + intervalWidth-8, 0,
+                                 labelWidth - 2 * intervalWidth+15,
                                  self.frame.size.height)];
     label.text = self.dataDescribeArray[i];
     label.textColor = [UIColor black50PercentColor];
-    label.adjustsFontSizeToFitWidth = YES;
+//    label.adjustsFontSizeToFitWidth = YES;
     label.numberOfLines = 0;
     label.textAlignment = NSTextAlignmentCenter;
 
@@ -71,12 +71,12 @@
 //      largestFontSize--;
 //    }
 //    label.verticalAlignment = XVerticalAlignmentMiddle;
-    label.font = [UIFont fontWithName:@"AppleSDGothicNeo-Bold" size:12];
+    label.font = [UIFont fontWithName:@"AppleSDGothicNeo-Bold" size:10];
     if (label.frame.size.width < 20) {
-      label.font = [UIFont fontWithName:@"AppleSDGothicNeo-Bold" size:6];
+      label.font = [UIFont fontWithName:@"AppleSDGothicNeo-Bold" size:4];
       label.verticalAlignment = XVerticalAlignmentTop;
     } else  if (label.frame.size.width < 10) {
-      label.font = [UIFont fontWithName:@"AppleSDGothicNeo-Bold" size:3];
+      label.font = [UIFont fontWithName:@"AppleSDGothicNeo-Bold" size:2];
       label.verticalAlignment = XVerticalAlignmentTop;
     }
     [self addSubview:label];

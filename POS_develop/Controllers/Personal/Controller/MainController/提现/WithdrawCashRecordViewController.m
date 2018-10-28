@@ -7,7 +7,8 @@
 //
 
 #import "WithdrawCashRecordViewController.h"
-#import "MyBillTableViewCell.h"
+#import "BagWithdrawCell.h"
+#import "BagWithdrawListModel.h"
 
 @interface WithdrawCashRecordViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *myTableView;
@@ -22,7 +23,7 @@
     self.navigationItemTitle = @"提现记录";
     self.dataArray = [NSMutableArray array];
     [self createTableView];
-    [self loadBagLogListRequest];
+    [self loadBagWithdrawListRequest];
 }
 
 - (void)createTableView {
@@ -34,7 +35,7 @@
     _myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     MJWeakSelf;
     _myTableView.mj_header = [SLRefreshHeader headerWithRefreshingBlock:^{
-        [weakSelf loadBagLogListRequest];
+        [weakSelf loadBagWithdrawListRequest];
     }];
     [self.view addSubview:_myTableView];
     [_myTableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -55,10 +56,9 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    MyBillTableViewCell *cell = [MyBillTableViewCell cellWithTableView:tableView];
-    cell.totalAmountLabel.hidden = YES;
-//    BagLogListModel *model = self.dataArray[indexPath.row];
-//    cell.model = model;
+    BagWithdrawCell *cell = [BagWithdrawCell cellWithTableView:tableView];
+    BagWithdrawListModel *model = self.dataArray[indexPath.row];
+    cell.model = model;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     
@@ -78,14 +78,14 @@
 
 #pragma mark -------------------------------- 接口 ------------------------------------
 
-- (void)loadBagLogListRequest {
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/bagLog/list" params:nil cookie:nil result:^(bool success, id result) {
+- (void)loadBagWithdrawListRequest {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/bagWithdraw/list" params:@{@"userid":@"1"} cookie:nil result:^(bool success, id result) {
         [self.myTableView.mj_header endRefreshing];
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
                     NSArray *array = result[@"data"][@"rows"];
-//                    self.dataArray = [NSMutableArray arrayWithArray:[BagLogListModel mj_objectArrayWithKeyValuesArray:array]];
+                    self.dataArray = [NSMutableArray arrayWithArray:[BagWithdrawListModel mj_objectArrayWithKeyValuesArray:array]];
                     
                     [self.myTableView reloadData];
                 }
