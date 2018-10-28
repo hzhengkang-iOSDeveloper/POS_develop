@@ -57,6 +57,9 @@
         make.right.equalTo(self).offset(FITiPhone6(-16));
         make.centerY.equalTo(self.snLabel.mas_top);
     }];
-    
+    [UIView getViewWithColor:CF6F6F6 superView:self.contentView masonrySet:^(UIView *view, MASConstraintMaker *make) {
+        make.left.right.bottom.offset(0);
+        make.height.mas_equalTo(AD_HEIGHT(1));
+    }];
 }
 @end

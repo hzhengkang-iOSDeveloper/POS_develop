@@ -100,7 +100,7 @@
         make.left.offset(AD_HEIGHT(29));
         make.top.offset(AD_HEIGHT(13));
         
-        view.text = addressM.receiverName;
+        view.text = IF_NULL_TO_STRING(addressM.receiverName);
     }];
     
     //收件人手机号
@@ -127,7 +127,7 @@
         make.left.equalTo(receiverAddressImageV.mas_right).offset(AD_HEIGHT(3));
         make.top.equalTo(receiverAddressImageV.mas_top);
         
-        view.text = [NSString stringWithFormat:@"收货地址：%@%@%@",addressM.province,addressM.city,addressM.county];
+        view.text = [NSString stringWithFormat:@"收货地址：%@%@%@",IF_NULL_TO_STRING(addressM.province),IF_NULL_TO_STRING(addressM.city),IF_NULL_TO_STRING(addressM.county)];
     }];
     
     //地址分割
@@ -151,13 +151,12 @@
     PayDOModel *payDoModel = [PayDOModel mj_objectWithKeyValues:self.billListM.payDO];
 
     UIView *footerView = [[UIView alloc]init];
-//    footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(306)+AD_HEIGHT(53)+AD_HEIGHT(5));
     footerView.backgroundColor = CF6F6F6;
     
     //商品总价
     SLOrdersDeteiledLabel *goodTotalPriceLabel = [[SLOrdersDeteiledLabel alloc] init];
     goodTotalPriceLabel.title = @"商品总价";
-    goodTotalPriceLabel.textStr = [NSString stringWithFormat:@"￥%@",self.billListM.displayPrice];
+    goodTotalPriceLabel.textStr = [NSString stringWithFormat:@"￥%@",IF_NULL_TO_STRING(self.billListM.displayPrice)];
     [footerView addSubview:goodTotalPriceLabel];
     [goodTotalPriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.offset(0);
@@ -174,7 +173,7 @@
    //优惠金额
     SLOrdersDeteiledLabel *discountPriceLabel = [[SLOrdersDeteiledLabel alloc] init];
     discountPriceLabel.title = @"优惠金额";
-    discountPriceLabel.textStr = [NSString stringWithFormat:@"-￥%@",self.billListM.discountPrice];
+    discountPriceLabel.textStr = [NSString stringWithFormat:@"-￥%@",IF_NULL_TO_STRING(self.billListM.discountPrice)];
     [footerView addSubview:discountPriceLabel];
     [discountPriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(0);
@@ -192,7 +191,7 @@
     //邮费
     SLOrdersDeteiledLabel *postPriceLabel = [[SLOrdersDeteiledLabel alloc] init];
     postPriceLabel.title = @"邮费";
-    postPriceLabel.textStr = [NSString stringWithFormat:@"￥%@",self.billListM.deliveryPrice];
+    postPriceLabel.textStr = [NSString stringWithFormat:@"￥%@",IF_NULL_TO_STRING(self.billListM.deliveryPrice)];
     [footerView addSubview:postPriceLabel];
     [postPriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(0);
@@ -212,7 +211,7 @@
     SLOrdersDeteiledLabel *totalLabel = [[SLOrdersDeteiledLabel alloc] init];
     totalLabel.title = @"合计";
     totalLabel.titleStrColor = CF52542;
-    totalLabel.textStr = [NSString stringWithFormat:@"￥%@",self.billListM.orderPrice];
+    totalLabel.textStr = [NSString stringWithFormat:@"￥%@",IF_NULL_TO_STRING(self.billListM.orderPrice)];
     [footerView addSubview:totalLabel];
     [totalLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(0);
@@ -232,7 +231,7 @@
         make.left.offset(AD_HEIGHT(15));
         make.top.offset(AD_HEIGHT(8));
         view.textAlignment = NSTextAlignmentLeft;
-        view.text = [NSString stringWithFormat:@"订单编号：%@",self.billListM.orderUuid];
+        view.text = [NSString stringWithFormat:@"订单编号：%@",IF_NULL_TO_STRING(self.billListM.orderUuid)];
     }];
     self.orderNoLabel = orderNoLabel;
     
@@ -254,7 +253,7 @@
         make.top.equalTo(weakSelf.orderNoLabel.mas_bottom).offset(AD_HEIGHT(8));
         
         view.textAlignment = NSTextAlignmentLeft;
-        view.text = [NSString stringWithFormat:@"创建时间：%@",self.billListM.createtime];
+        view.text = [NSString stringWithFormat:@"创建时间：%@",IF_NULL_TO_STRING(self.billListM.createtime)];
     }];
     self.creatTimeLabel = creatTimeLabel;
     
@@ -264,7 +263,7 @@
         make.left.offset(AD_HEIGHT(15));
         make.top.equalTo(weakSelf.creatTimeLabel.mas_bottom).offset(AD_HEIGHT(8));
         view.textAlignment = NSTextAlignmentLeft;
-        view.text = [NSString stringWithFormat:@"付款时间：%@",payDoM.createtime];
+        view.text = [NSString stringWithFormat:@"付款时间：%@",IF_NULL_TO_STRING(payDoM.createtime)];
     }];
     self.payTimeLabel = payTimeLabel;
     
@@ -274,7 +273,7 @@
         make.top.equalTo(weakSelf.payTimeLabel.mas_bottom).offset(AD_HEIGHT(8));
         
         view.textAlignment = NSTextAlignmentLeft;
-        view.text = @"发货时间：2014-07-12 12:23:22";
+        view.text = [NSString stringWithFormat:@"发货时间：%@",IF_NULL_TO_STRING(self.billListM.cosignTime)];
     }];
     self.sendTimeLabel = sendTimeLabel;
     

@@ -10,10 +10,13 @@
 
 @interface PosGetModel : NSObject
 @property (nonatomic, copy) NSString *ID;
+@property (nonatomic, copy) NSString *agentId;
+@property (nonatomic, copy) NSString *posId;
 @property (nonatomic, copy) NSString *startTime;
 @property (nonatomic, copy) NSString *endTime;
 @property (nonatomic, copy) NSString *posBrandNo;
 @property (nonatomic, copy) NSString *posBrandName;
+@property (nonatomic, copy) NSString *bindFlag;
 @property (nonatomic, copy) NSString *posTermType;
 @property (nonatomic, copy) NSString *posTermModel;
 @property (nonatomic, copy) NSString *posSnNo;

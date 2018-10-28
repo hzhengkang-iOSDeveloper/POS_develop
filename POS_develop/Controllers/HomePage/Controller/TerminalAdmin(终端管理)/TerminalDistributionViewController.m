@@ -13,7 +13,7 @@
 #import "PosBrandModel.h"
 #import "PosGetModel.h"
 
-@interface TerminalDistributionViewController () <UITableViewDataSource, UITableViewDelegate> {
+@interface TerminalDistributionViewController () <UITableViewDataSource, UITableViewDelegate,UITextFieldDelegate> {
     
 }
 @property (nonatomic, strong) UITableView *mainTableView;
@@ -23,7 +23,9 @@
 @property (nonatomic, strong) UIView *headerBgView;
 
 @property (nonatomic, weak) UIButton *selectBtn;
-@property (nonatomic, copy) NSString *selectStr;
+@property (nonatomic, copy) NSString *selectMainTableStr;
+@property (nonatomic, copy) NSString *selectBrandTableStr;
+
 
 @property (nonatomic, strong) UITextField *startTF;//sn开始
 @property (nonatomic, strong) UITextField *endTF;//SN结束
@@ -32,7 +34,10 @@
 @property (nonatomic, strong) NSMutableArray *brandDataArray;
 @property (nonatomic, strong) NSMutableArray *mainDataArray;
 
+@property (nonatomic, weak) UIButton *brandBtn;
+@property (nonatomic, weak) UIButton *snBtn;
 
+@property (nonatomic, copy) NSString *posBrandNo;
 
 @end
 
@@ -49,7 +54,11 @@
     [self initUI];
     [self createTableView];
     [self createSNView];
+    [self loadPosListRequest];
     [self loadPosBrandRequest];
+    
+    self.selectMainTableStr  =@"";
+    self.selectBrandTableStr = @"";
 }
 
 
@@ -71,11 +80,13 @@
     [brandBtn addTarget:self action:@selector(brandClick:) forControlEvents:UIControlEventTouchUpInside];
     brandBtn.titleLabel.font = F13;
     [self.headerBgView addSubview:brandBtn];
+    self.brandBtn = brandBtn;
     [brandBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.headerBgView).offset(FITiPhone6(60));
         make.top.equalTo(self.headerBgView).offset(FITiPhone6(11));
         make.width.mas_equalTo(AD_HEIGHT(70));
     }];
+    
     UIButton *snBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [snBtn setTitle:@"终端SN号段" forState:UIControlStateNormal];
     [snBtn setTitleColor:C000000 forState:UIControlStateNormal];
@@ -85,6 +96,7 @@
     [snBtn addTarget:self action:@selector(snClick:) forControlEvents:UIControlEventTouchUpInside];
     snBtn.titleLabel.font = F13;
     [self.headerBgView addSubview:snBtn];
+    self.snBtn = snBtn;
     [snBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.headerBgView).offset(FITiPhone6(-60));
         make.top.equalTo(self.headerBgView).offset(FITiPhone6(11));
@@ -126,10 +138,12 @@
     self.startTF = [[UITextField alloc] init];
     self.startTF.clearButtonMode = UITextFieldViewModeWhileEditing;
 //    self.startTF.placeholder = @"开始时间";
+    self.startTF.returnKeyType = UIReturnKeySearch;
     self.startTF.textAlignment = NSTextAlignmentCenter;
     self.startTF.textColor = C000000;
     self.startTF.font = F13;
     self.startTF.backgroundColor = CF6F6F6;
+    self.startTF.delegate = self;
 //    self.startTF.borderStyle = UITextBorderStyleBezel;
     [self.snBgView addSubview:self.startTF];
     [self.startTF mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -143,12 +157,14 @@
     }];
     lineLabel.text = @"-";
     self.endTF = [[UITextField alloc] init];
+    self.endTF.returnKeyType = UIReturnKeySearch;
     self.endTF.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.endTF.backgroundColor = CF6F6F6;
     //    self.startTF.placeholder = @"开始时间";
     self.endTF.textAlignment = NSTextAlignmentCenter;
     self.endTF.textColor = C000000;
     self.endTF.font = F13;
+    self.endTF.delegate = self;
     //    self.startTimeTF.borderStyle = UITextBorderStylel;
     [self.snBgView addSubview:self.endTF];
     [self.endTF mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -175,7 +191,7 @@
     _mainTableView.delegate = self;
     _mainTableView.dataSource = self;
     _mainTableView.showsVerticalScrollIndicator = NO;
-    _mainTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    _mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_mainTableView];
     [_mainTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(0);
@@ -189,7 +205,7 @@
     _brandTableView.delegate = self;
     _brandTableView.dataSource = self;
     _brandTableView.showsVerticalScrollIndicator = NO;
-    _brandTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    _brandTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_brandTableView];
     [_brandTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(0);
@@ -205,13 +221,21 @@
 
 #pragma mark ---- 分配 ----
 - (void)selectClick {
-//    [SVProgressHUD showInfoWithStatus:@"分配成功"];
-//    [SVProgressHUD showWithStatus:@"分配成功"];
-    HUD_SUCCESS(@"分配成功");
-    [self.navigationController popViewControllerAnimated:YES];
+    if ([self.selectMainTableStr isEqualToString:@""]) {
+        HUD_TIP(@"请选择分配的终端");
+        return;
+    }
+    
+    [self saveAgentPosWith:[self.mainDataArray objectAtIndex:[self.selectMainTableStr integerValue]]];
+//    HUD_SUCCESS(@"分配成功");
+//    [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark ---- 品牌选择 ----
 - (void)brandClick:(UIButton *)sender {
+    if (self.snBtn.selected) {
+        self.snBtn.selected = NO;
+        self.snBgView.hidden = YES;
+    }
     sender.selected = !sender.selected;
     if (sender.selected) {
         self.brandTableView.hidden = NO;
@@ -221,6 +245,10 @@
 }
 
 - (void)snClick :(UIButton *)sender {
+    if (self.brandBtn.selected) {
+        self.brandBtn.selected = NO;
+        self.brandTableView.hidden = YES;
+    }
     sender.selected = !sender.selected;
     if (sender.selected) {
         self.snBgView.hidden = NO;
@@ -237,7 +265,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     if (tableView == _mainTableView) {
-        return 10;
+        return self.mainDataArray.count;
     }else {
         return self.brandDataArray.count;
     }
@@ -245,11 +273,13 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView == _mainTableView) {
-        if (indexPath.row == 0 || indexPath.row == 1) {
+        PosGetModel *posM = self.mainDataArray[indexPath.row];
+        if ([posM.bindFlag isEqualToString:@"0"]) {
+            //未绑定
             TerminalNoDistributionCell *cell = [TerminalNoDistributionCell cellWithTableView:tableView];
-            cell.brandLabel.text = @"品牌：狐族";
-            cell.snLabel.text = @"SN：C090323";
-            if ([self.selectStr isEqualToString:[NSString stringWithFormat:@"%li",indexPath.row]]) {
+            cell.brandLabel.text = [NSString stringWithFormat:@"品牌：%@",posM.posBrandNo];
+            cell.snLabel.text = [NSString stringWithFormat:@"SN：%@",posM.posBrandNo];
+            if ([self.selectMainTableStr isEqualToString:[NSString stringWithFormat:@"%li",indexPath.row]]) {
                 cell.selectBtn.selected = YES;
             } else {
                 cell.selectBtn.selected = NO;
@@ -260,8 +290,8 @@
             
         }else {
             TerminalAlreadyDistributionCell *cell = [TerminalAlreadyDistributionCell cellWithTableView:tableView];
-            cell.brandLabel.text = @"品牌：胡子";
-            cell.snLabel.text = @"SN：C090323999";
+            cell.brandLabel.text = [NSString stringWithFormat:@"品牌：%@",posM.posBrandNo];
+            cell.snLabel.text = [NSString stringWithFormat:@"SN：%@",posM.posBrandNo];
             cell.bindStateLabel.text = @"已绑定";
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
@@ -270,6 +300,11 @@
     }else {
         BrandTableViewCell *cell = [BrandTableViewCell cellWithTableView:tableView];
         PosBrandModel *model = self.brandDataArray[indexPath.row];
+        if ([self.selectBrandTableStr isEqualToString:[NSString stringWithFormat:@"%li",indexPath.row]]) {
+            cell.selectBtn.selected = YES;
+        } else {
+            cell.selectBtn.selected = NO;
+        }
         cell.backgroundColor = CF6F6F6;
         cell.brandLabel.text = model.posBrandName;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -285,29 +320,38 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (tableView == _mainTableView) {
-        if (indexPath.row == 0 || indexPath.row == 1) {
-            TerminalNoDistributionCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-            cell.selectBtn.selected = !cell.selectBtn.selected;
-            if ([self.selectStr isEqualToString:[NSString stringWithFormat:@"%li",indexPath.row]]) {
-                self.selectStr = @"";
+         PosGetModel *posM = self.mainDataArray[indexPath.row];
+        if ([posM.bindFlag isEqualToString:@"0"]) {
+            if ([self.selectMainTableStr isEqualToString:[NSString stringWithFormat:@"%li",indexPath.row]]) {
+                self.selectMainTableStr = @"";
             } else {
-                self.selectStr = [NSString stringWithFormat:@"%li",indexPath.row];
+                self.selectMainTableStr = [NSString stringWithFormat:@"%li",indexPath.row];
             }
             
-//            [tableView reloadData];
+            [tableView reloadData];
             
         }
     }else {
-        BrandTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        cell.selectBtn.selected = !cell.selectBtn.selected;
-        if ([self.selectStr isEqualToString:[NSString stringWithFormat:@"%li",indexPath.row]]) {
-            self.selectStr = @"";
+        PosBrandModel *model = self.brandDataArray[indexPath.row];
+
+        if ([self.selectBrandTableStr isEqualToString:[NSString stringWithFormat:@"%li",indexPath.row]]) {
+            self.selectBrandTableStr = @"";
         } else {
-            self.selectStr = [NSString stringWithFormat:@"%li",indexPath.row];
+            self.selectBrandTableStr = [NSString stringWithFormat:@"%li",indexPath.row];
         }
         
         
-//        [tableView reloadData];
+        [tableView reloadData];
+        
+//        [self brandClick:self.brandBtn];
+
+        if ([self.selectBrandTableStr isEqualToString:@""]) {
+            self.posBrandNo = @"";
+        } else {
+            self.posBrandNo = model.posBrandName;
+        }
+        [self loadPosListRequest];
+
     }
     
 }
@@ -319,7 +363,30 @@
         return AD_HEIGHT(40);
     }
 }
+//搜索虚拟键盘响应
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    
+    NSLog(@"点击了搜索");
+    if ([self.startTF.text isEqualToString:@""]) {
+        HUD_TIP(@"请输入开始SN号");
+        return NO;
+    }
+    if ([self.endTF.text isEqualToString:@""]) {
+        HUD_TIP(@"请输入结束SN号");
+        return NO;
+    } else {
+        [self.endTF resignFirstResponder];
+        [self.startTF resignFirstResponder];
+        [self snClick:self.snBtn];
+        [self loadPosListRequest];
+    }
+   
+    
+    return YES;
+    
+}
 
 #pragma mark ---- pos品牌 ----
 - (void)loadPosBrandRequest {
@@ -349,19 +416,22 @@
 }
 #pragma mark ---- 终端分配(查询) ----
 - (void)loadPosListRequest {
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/pos/list" params:@{@"userid":@"1", @"posBrandNo":@"", @"startPosSnNo":@"", @"endPosSnNo":@""} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agentPos/list" params:@{@"userid":@"1", @"posBrandNo":IF_NULL_TO_STRING(self.posBrandNo), @"startPosSnNo":IF_NULL_TO_STRING(self.startTF.text), @"endPosSnNo":IF_NULL_TO_STRING(self.endTF.text)} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
                     NSArray *array = result[@"data"][@"rows"];
-                    if (array.count > 0) {
+                        if (self.mainDataArray.count >0) {
+                            [self.mainDataArray removeAllObjects];
+                        }
                         
                         [self.mainDataArray addObjectsFromArray:[PosGetModel mj_objectArrayWithKeyValuesArray:array]];
                         
+                       [self.mainTableView tableViewNoDataOrNewworkFailShowTitleWithRowCount:self.mainDataArray.count];
                         
                         [self.mainTableView reloadData];
                         
-                    }
+                        
                     
                     
                 }
@@ -374,8 +444,32 @@
     }];
 }
 
-
-
+#pragma mark ---- 点击分配 ----
+- (void)saveAgentPosWith:(PosGetModel *)posM
+{
+    NSDictionary *dict = @{
+                           @"userid":@"1",
+                           @"agentId":IF_NULL_TO_STRING(posM.agentId),
+                           @"posId":IF_NULL_TO_STRING(posM.posId),
+                           @"posBrandNo":IF_NULL_TO_STRING(posM.posBrandNo),
+                           @"posSnNo":IF_NULL_TO_STRING(posM.posSnNo),
+                           @"bindFlag":@"0"
+                           };
+    
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agentPos/save" params:dict cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"code"]integerValue] == 0) {
+                HUD_SUCCESS(@"分配成功！");
+                [self.navigationController popViewControllerAnimated:YES];
+            } else {
+                HUD_ERROR(result[@"msg"]);
+            }
+            
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
 @end
 
 

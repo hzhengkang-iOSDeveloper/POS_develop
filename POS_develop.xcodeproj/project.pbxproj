@@ -44,6 +44,7 @@
 		25CBB2A02180B7310063E701 /* PD_BillDetailDanDianCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25CBB29F2180B7310063E701 /* PD_BillDetailDanDianCell.m */; };
 		25E2A36A214D7831006EB5B5 /* PD_SelectAreaPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E2A369214D7831006EB5B5 /* PD_SelectAreaPickerView.m */; };
 		5009BA7D2176D72600FF1AE9 /* CombinationSetMealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5009BA7C2176D72600FF1AE9 /* CombinationSetMealViewController.m */; };
+		500AC4B721855DCE00AB97AC /* UITableView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 500AC4B621855DCE00AB97AC /* UITableView+Extension.m */; };
 		500C2732217C3852008F221A /* POS_ShopCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 500C2731217C3852008F221A /* POS_ShopCarViewController.m */; };
 		500C2736217C6DBD008F221A /* ShopCarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 500C2735217C6DBD008F221A /* ShopCarTableViewCell.m */; };
 		500C2739217C81A1008F221A /* SingleShopCarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 500C2738217C81A1008F221A /* SingleShopCarCell.m */; };
@@ -395,6 +396,8 @@
 		25E2A369214D7831006EB5B5 /* PD_SelectAreaPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_SelectAreaPickerView.m; sourceTree = "<group>"; };
 		5009BA7B2176D72600FF1AE9 /* CombinationSetMealViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CombinationSetMealViewController.h; sourceTree = "<group>"; };
 		5009BA7C2176D72600FF1AE9 /* CombinationSetMealViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CombinationSetMealViewController.m; sourceTree = "<group>"; };
+		500AC4B521855DCE00AB97AC /* UITableView+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableView+Extension.h"; sourceTree = "<group>"; };
+		500AC4B621855DCE00AB97AC /* UITableView+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Extension.m"; sourceTree = "<group>"; };
 		500C2730217C3852008F221A /* POS_ShopCarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POS_ShopCarViewController.h; sourceTree = "<group>"; };
 		500C2731217C3852008F221A /* POS_ShopCarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = POS_ShopCarViewController.m; sourceTree = "<group>"; };
 		500C2734217C6DBD008F221A /* ShopCarTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopCarTableViewCell.h; sourceTree = "<group>"; };
@@ -2265,6 +2268,8 @@
 				7888F2FB2147C32C00AAC8B0 /* CustomDeleagte.m */,
 				7888F2FC2147C32C00AAC8B0 /* UITableViewCell+Extension.h */,
 				7888F2FD2147C32C00AAC8B0 /* UITableViewCell+Extension.m */,
+				500AC4B521855DCE00AB97AC /* UITableView+Extension.h */,
+				500AC4B621855DCE00AB97AC /* UITableView+Extension.m */,
 			);
 			path = CustomDeleagetAndDataSource;
 			sourceTree = "<group>";
@@ -2985,6 +2990,7 @@
 				253647E0214E11C60094576C /* WithdrawCashTableViewCell.m in Sources */,
 				7888F2E12147C31600AAC8B0 /* PopView.m in Sources */,
 				5009BA7D2176D72600FF1AE9 /* CombinationSetMealViewController.m in Sources */,
+				500AC4B721855DCE00AB97AC /* UITableView+Extension.m in Sources */,
 				50A89AEB216B653200E68BEB /* CALayer+XLayerSelectHelper.m in Sources */,
 				50EEB20F21737E6F00B41353 /* MyAddressEditViewController.m in Sources */,
 				505B6F82216D99FC000D49B2 /* MessageListTableViewCell.m in Sources */,
