@@ -40,6 +40,15 @@
 		259646E62158E1ED00E516BF /* SeparateQueryMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 259646E52158E1ED00E516BF /* SeparateQueryMainView.m */; };
 		259646E82158E1FA00E516BF /* SeparateQueryMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 259646E72158E1FA00E516BF /* SeparateQueryMainView.xib */; };
 		259B3EEA21857C6A0076586E /* PosListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 259B3EE921857C6A0076586E /* PosListModel.m */; };
+		259B3F4A2185D8340076586E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 259B3F492185D8340076586E /* SystemConfiguration.framework */; };
+		259B3F4C2185D84A0076586E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 259B3F4B2185D84A0076586E /* libz.tbd */; };
+		259B3F4E2185D8520076586E /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 259B3F4D2185D8520076586E /* libsqlite3.0.tbd */; };
+		259B3F4F2185D85C0076586E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 252B1392218416D90075E157 /* libc++.tbd */; };
+		25C251992186AE03008507D1 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 25C251962186AE03008507D1 /* README.txt */; };
+		25C2519A2186AE03008507D1 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25C251982186AE03008507D1 /* libWeChatSDK.a */; };
+		25C2519B2186AF34008507D1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 252B138C218416B50075E157 /* Security.framework */; };
+		25C2519D2186AF44008507D1 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25C2519C2186AF44008507D1 /* CoreTelephony.framework */; };
+		25C2519F2186AF4C008507D1 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25C2519E2186AF4C008507D1 /* CFNetwork.framework */; };
 		25CBB298218087390063E701 /* WithdrawCashRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25CBB297218087390063E701 /* WithdrawCashRecordViewController.m */; };
 		25CBB29D2180B3250063E701 /* PD_BillDetailTaoCanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25CBB29C2180B3250063E701 /* PD_BillDetailTaoCanCell.m */; };
 		25CBB2A02180B7310063E701 /* PD_BillDetailDanDianCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25CBB29F2180B7310063E701 /* PD_BillDetailDanDianCell.m */; };
@@ -395,6 +404,16 @@
 		259646E72158E1FA00E516BF /* SeparateQueryMainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SeparateQueryMainView.xib; sourceTree = "<group>"; };
 		259B3EE821857C6A0076586E /* PosListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PosListModel.h; sourceTree = "<group>"; };
 		259B3EE921857C6A0076586E /* PosListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PosListModel.m; sourceTree = "<group>"; };
+		259B3F492185D8340076586E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		259B3F4B2185D84A0076586E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		259B3F4D2185D8520076586E /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		25C251942186AE03008507D1 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		25C251952186AE03008507D1 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		25C251962186AE03008507D1 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		25C251972186AE03008507D1 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
+		25C251982186AE03008507D1 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		25C2519C2186AF44008507D1 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		25C2519E2186AF4C008507D1 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		25CBB296218087390063E701 /* WithdrawCashRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WithdrawCashRecordViewController.h; sourceTree = "<group>"; };
 		25CBB297218087390063E701 /* WithdrawCashRecordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WithdrawCashRecordViewController.m; sourceTree = "<group>"; };
 		25CBB29B2180B3250063E701 /* PD_BillDetailTaoCanCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillDetailTaoCanCell.h; sourceTree = "<group>"; };
@@ -959,6 +978,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25C2519F2186AF4C008507D1 /* CFNetwork.framework in Frameworks */,
+				25C2519D2186AF44008507D1 /* CoreTelephony.framework in Frameworks */,
+				25C2519B2186AF34008507D1 /* Security.framework in Frameworks */,
+				259B3F4F2185D85C0076586E /* libc++.tbd in Frameworks */,
+				259B3F4E2185D8520076586E /* libsqlite3.0.tbd in Frameworks */,
+				25C2519A2186AE03008507D1 /* libWeChatSDK.a in Frameworks */,
+				259B3F4C2185D84A0076586E /* libz.tbd in Frameworks */,
+				259B3F4A2185D8340076586E /* SystemConfiguration.framework in Frameworks */,
 				7871669121490FA100452C51 /* libxml2.tbd in Frameworks */,
 				7888F3642147C32C00AAC8B0 /* libMyStatic.a in Frameworks */,
 				038600659A091FA731F079F0 /* libPods-POS_develop.a in Frameworks */,
@@ -1185,6 +1212,18 @@
 				78CB4B73214B8BD7000F6A9D /* VipSystemViewController.m */,
 			);
 			path = "会员系统";
+			sourceTree = "<group>";
+		};
+		25C251932186AE03008507D1 /* WechatSDK1.8.2 */ = {
+			isa = PBXGroup;
+			children = (
+				25C251942186AE03008507D1 /* WXApi.h */,
+				25C251952186AE03008507D1 /* WXApiObject.h */,
+				25C251962186AE03008507D1 /* README.txt */,
+				25C251972186AE03008507D1 /* WechatAuthSDK.h */,
+				25C251982186AE03008507D1 /* libWeChatSDK.a */,
+			);
+			path = WechatSDK1.8.2;
 			sourceTree = "<group>";
 		};
 		25CBB299218087460063E701 /* 提现 */ = {
@@ -2148,6 +2187,7 @@
 		7888F2A62147C0AA00AAC8B0 /* POS_develop */ = {
 			isa = PBXGroup;
 			children = (
+				25C251932186AE03008507D1 /* WechatSDK1.8.2 */,
 				7871669D214911C300452C51 /* icomoon */,
 				78716693214911BC00452C51 /* IconFont */,
 				7888F2BD2147C31500AAC8B0 /* Controllers */,
@@ -2652,6 +2692,11 @@
 		CBB0E73DB313616CD0162DA8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				25C2519E2186AF4C008507D1 /* CFNetwork.framework */,
+				25C2519C2186AF44008507D1 /* CoreTelephony.framework */,
+				259B3F4D2185D8520076586E /* libsqlite3.0.tbd */,
+				259B3F4B2185D84A0076586E /* libz.tbd */,
+				259B3F492185D8340076586E /* SystemConfiguration.framework */,
 				252B1394218416E30075E157 /* libstdc++.6.0.9.tbd */,
 				252B1392218416D90075E157 /* libc++.tbd */,
 				252B1390218416CE0075E157 /* libiconv.tbd */,
@@ -2759,6 +2804,7 @@
 				787166AD214911C300452C51 /* icomoon.eot in Resources */,
 				7888F2AF2147C0AA00AAC8B0 /* Main.storyboard in Resources */,
 				7888F3C82147C33900AAC8B0 /* NotPrjView.xib in Resources */,
+				25C251992186AE03008507D1 /* README.txt in Resources */,
 				787166B0214911C300452C51 /* icomoon.woff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3272,7 +3318,7 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = POS_develop/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3284,6 +3330,60 @@
 					"$(PROJECT_DIR)/POS_develop/Controllers/Personal/Controller/MainController/客服聊天/HDUIKit/3rdparty/DeviceHelper/HDVoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/POS_develop/Controllers/Personal/Controller/MainController/客服聊天/HelpDeskUI/HDUIKit/3rdparty/DeviceHelper/HDVoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/POS_develop/Controllers/Personal/Controller/MainController/客服聊天/HelpDeskUI/HDUIKit/3rdparty/DeviceHelper/HDVoiceConvert/opencore-amrnb",
+					"$(PROJECT_DIR)/POS_develop/WechatSDK1.8.2",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"GTMNSStringHTMLAdditions\"",
+					"-l\"Growing\"",
+					"-l\"IQKeyboardManager\"",
+					"-l\"MBProgressHUD\"",
+					"-l\"MJExtension\"",
+					"-l\"MJRefresh\"",
+					"-l\"Masonry\"",
+					"-l\"SDWebImage\"",
+					"-l\"SSKeychain\"",
+					"-l\"SVProgressHUD\"",
+					"-l\"WMPageController\"",
+					"-l\"WeChatSDK\"",
+					"-l\"c++\"",
+					"-l\"icucore\"",
+					"-l\"jcore-ios-1.2.5\"",
+					"-l\"jpush-ios-3.1.1\"",
+					"-l\"resolv\"",
+					"-l\"sqlite3\"",
+					"-l\"sqlite3.0\"",
+					"-l\"z\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreFoundation\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-weak_framework",
+					"\"UserNotifications\"",
+					"-ObjC",
+					"-all_load",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.POS.develop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3321,7 +3421,7 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = POS_develop/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3333,6 +3433,60 @@
 					"$(PROJECT_DIR)/POS_develop/Controllers/Personal/Controller/MainController/客服聊天/HDUIKit/3rdparty/DeviceHelper/HDVoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/POS_develop/Controllers/Personal/Controller/MainController/客服聊天/HelpDeskUI/HDUIKit/3rdparty/DeviceHelper/HDVoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/POS_develop/Controllers/Personal/Controller/MainController/客服聊天/HelpDeskUI/HDUIKit/3rdparty/DeviceHelper/HDVoiceConvert/opencore-amrnb",
+					"$(PROJECT_DIR)/POS_develop/WechatSDK1.8.2",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"GTMNSStringHTMLAdditions\"",
+					"-l\"Growing\"",
+					"-l\"IQKeyboardManager\"",
+					"-l\"MBProgressHUD\"",
+					"-l\"MJExtension\"",
+					"-l\"MJRefresh\"",
+					"-l\"Masonry\"",
+					"-l\"SDWebImage\"",
+					"-l\"SSKeychain\"",
+					"-l\"SVProgressHUD\"",
+					"-l\"WMPageController\"",
+					"-l\"WeChatSDK\"",
+					"-l\"c++\"",
+					"-l\"icucore\"",
+					"-l\"jcore-ios-1.2.5\"",
+					"-l\"jpush-ios-3.1.1\"",
+					"-l\"resolv\"",
+					"-l\"sqlite3\"",
+					"-l\"sqlite3.0\"",
+					"-l\"z\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreFoundation\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-weak_framework",
+					"\"UserNotifications\"",
+					"-ObjC",
+					"-all_load",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.POS.develop;
 				PRODUCT_NAME = "$(TARGET_NAME)";

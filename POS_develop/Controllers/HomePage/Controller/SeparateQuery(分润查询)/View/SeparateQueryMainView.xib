@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -81,27 +80,26 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Q1r-z9-sGg" firstAttribute="leading" secondItem="9SG-h2-0o7" secondAttribute="leading" id="6QF-Te-k5B"/>
-                <constraint firstItem="Psu-tj-FQR" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="79L-0U-NH0"/>
+                <constraint firstItem="Psu-tj-FQR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="79L-0U-NH0"/>
                 <constraint firstItem="z3U-89-9e7" firstAttribute="top" secondItem="VWY-lP-nF9" secondAttribute="bottom" id="98J-1T-cud"/>
-                <constraint firstItem="rqf-5M-HwD" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="CE1-dl-eBm"/>
+                <constraint firstItem="rqf-5M-HwD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="CE1-dl-eBm"/>
                 <constraint firstItem="Ov3-hr-Gra" firstAttribute="leading" secondItem="rqf-5M-HwD" secondAttribute="trailing" constant="12" id="DAe-78-KTg"/>
                 <constraint firstItem="HBe-Vp-B2S" firstAttribute="top" secondItem="z3U-89-9e7" secondAttribute="bottom" id="HFJ-Mq-Snd"/>
                 <constraint firstItem="9SG-h2-0o7" firstAttribute="centerY" secondItem="z3U-89-9e7" secondAttribute="centerY" id="INP-rZ-dpg"/>
                 <constraint firstItem="9SG-h2-0o7" firstAttribute="leading" secondItem="z3U-89-9e7" secondAttribute="trailing" constant="72" id="JEg-Vz-vZx"/>
                 <constraint firstAttribute="trailing" secondItem="VWY-lP-nF9" secondAttribute="trailing" id="N9F-zW-I0E"/>
                 <constraint firstItem="Psu-tj-FQR" firstAttribute="top" secondItem="HBe-Vp-B2S" secondAttribute="bottom" id="RmG-ib-gtq"/>
-                <constraint firstItem="VWY-lP-nF9" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="ZCc-lI-Trs"/>
+                <constraint firstItem="VWY-lP-nF9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="ZCc-lI-Trs"/>
                 <constraint firstItem="VWY-lP-nF9" firstAttribute="top" secondItem="Ov3-hr-Gra" secondAttribute="bottom" id="bGN-kJ-dP0"/>
-                <constraint firstItem="z3U-89-9e7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="inQ-lE-QxL"/>
-                <constraint firstItem="HBe-Vp-B2S" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="mkk-IQ-HUC"/>
-                <constraint firstItem="rqf-5M-HwD" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="19" id="oWn-bS-SPx"/>
-                <constraint firstItem="z3U-89-9e7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="ueU-sC-3q0"/>
+                <constraint firstItem="z3U-89-9e7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="inQ-lE-QxL"/>
+                <constraint firstItem="HBe-Vp-B2S" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="mkk-IQ-HUC"/>
+                <constraint firstItem="rqf-5M-HwD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="19" id="oWn-bS-SPx"/>
+                <constraint firstItem="z3U-89-9e7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="ueU-sC-3q0"/>
                 <constraint firstAttribute="trailing" secondItem="HBe-Vp-B2S" secondAttribute="trailing" id="vdh-ul-S2W"/>
-                <constraint firstItem="Ov3-hr-Gra" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="yac-A5-eo2"/>
+                <constraint firstItem="Ov3-hr-Gra" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="yac-A5-eo2"/>
                 <constraint firstItem="Q1r-z9-sGg" firstAttribute="centerY" secondItem="Psu-tj-FQR" secondAttribute="centerY" id="yh0-Hh-nrV"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="account" destination="Q1r-z9-sGg" id="mML-yr-pJ7"/>
                 <outlet property="conditionLabel" destination="Ov3-hr-Gra" id="jR1-gN-eMY"/>

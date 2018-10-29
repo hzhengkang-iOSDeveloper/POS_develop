@@ -34,8 +34,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    //微信分享注册appid
-    [WXApi registerApp:WXAppID];
     
     //清除角标
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
@@ -84,7 +82,49 @@
         FMLog(@"LastUserDic = %@",[USER_DEFAULT objectForKey:CF_LastUserDic]);
 //        [self userLogin:[USER_DEFAULT objectForKey:CF_LastUserDic]];
     }
+    
+    
+    //微信分享注册appid
+    // 注册微信
+//    [WXApi registerApp:WXAppID withDescription:@"测试"];
+    [WXApi registerApp:WXAppID];
+    
+ 
     return YES;
+}
+//和QQ,新浪并列回调句柄
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+
+        return [WXApi handleOpenURL:url delegate:self];
+   
+    
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
+        return [WXApi handleOpenURL:url delegate:self];
+    
+    
+}
+///从微信端打开第三方APP会调用此方法,此方法再调用代理的onResp方法
+-(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options{
+    return [WXApi handleOpenURL:url delegate:self];
+}
+
+-(void) onResp:(BaseResp*)resp{
+    NSLog(@"resp %d",resp.errCode);
+    
+    
+    if ([resp isKindOfClass:[SendMessageToWXResp class]]) {
+        SendMessageToWXResp * tmpResp = (SendMessageToWXResp *)resp;
+        if (tmpResp.errCode == WXSuccess) {
+            HUD_TIP(@"分享成功");
+            
+        }else{
+            HUD_TIP(@"分享失败");
+        }
+    }
+
 }
 
 #pragma mark ------------  JPush
@@ -171,33 +211,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 }
 
 
--(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options{
-    
-    if ([url.scheme hasPrefix:WXAppID]) {
-        return [WXApi handleOpenURL:url delegate:self];
-    }
-    return YES;
-}
 
-
-/**
- 处理来至微信的响应
- */
-- (void)onResp:(id)resp{
-    NSLog(@" ----resp %@",resp);
-    
-  
-    if ([resp isKindOfClass:[SendMessageToWXResp class]]) {
-        SendMessageToWXResp * tmpResp = (SendMessageToWXResp *)resp;
-        if (tmpResp.errCode == WXSuccess) {
-            HUD_TIP(@"分享成功");
-        }else{
-            HUD_TIP(@"分享失败");
-        }
-    }
-    
-    
-}
 
 
 //设置状态栏颜色

@@ -13,7 +13,7 @@
 #import "ShareTextModel.h"
 #import "SGActionView.h"
 
-#import <WXApi.h>
+#import "WXApi.h"
 
 @interface CopywritingSelectViewController () <UITableViewDataSource, UITableViewDelegate> {
     enum WXScene _scene;
@@ -80,18 +80,30 @@
         return;
     }
     
+    
     WXMediaMessage *message = [WXMediaMessage message];
-//    message.title = _shareTitle;
+//    message.title = @"title";
     message.description = self.pasteStr;
     [message setThumbImage:self.shareImgV.image];
+//    [message setThumbImage:[self scaleToSize:self.shareImgV.image size:CGSizeMake(120, 120)]];
     WXWebpageObject *ext = [WXWebpageObject object];
 //    ext.webpageUrl = _shareUrl;
+    ext.webpageUrl = @"www.taobao.com";
     message.mediaObject = ext;
     SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
     req.bText = NO;
     req.message = message;
     req.scene = _scene;
     [WXApi sendReq:req];
+    
+    
+}
+- (UIImage *)scaleToSize:(UIImage *)img size:(CGSize)size{
+    UIGraphicsBeginImageContext(size);
+    [img drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return scaledImage;
 }
 - (void)createTableView {
     _myTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
@@ -128,6 +140,8 @@
         UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
         pasteboard.string = weakCell.contentLabel.text;
         self.pasteStr = pasteboard.string;
+        
+        HUD_TIP(@"复制成功！");
     };
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
