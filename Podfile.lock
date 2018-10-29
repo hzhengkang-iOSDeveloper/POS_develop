@@ -29,7 +29,6 @@ PODS:
   - SDWebImage/Core (4.1.2)
   - SSKeychain (1.4.1)
   - SVProgressHUD (2.2.5)
-  - WechatOpenSDK (1.8.3)
   - WMPageController (2.5.2)
 
 DEPENDENCIES:
@@ -45,7 +44,6 @@ DEPENDENCIES:
   - SDWebImage (~> 4.1.2)
   - SSKeychain (~> 1.4.1)
   - SVProgressHUD (~> 2.2.5)
-  - WechatOpenSDK (~> 1.8.3)
   - WMPageController (~> 2.5.2)
 
 SPEC REPOS:
@@ -63,7 +61,6 @@ SPEC REPOS:
     - SDWebImage
     - SSKeychain
     - SVProgressHUD
-    - WechatOpenSDK
     - WMPageController
 
 SPEC CHECKSUMS:
@@ -80,9 +77,8 @@ SPEC CHECKSUMS:
   SDWebImage: cb6f9f266a9977741efcbc21e618e8be3734c774
   SSKeychain: 55cc80f66f5c73da827e3077f02e43528897db41
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  WechatOpenSDK: 3117412f8aafde4758cac1e8d20b93c67cafcfef
   WMPageController: 0c7624d2b48e4f1ab92371688cf6744ed701575d
 
-PODFILE CHECKSUM: 91ef683ac66df843a490fd99cc26a517491ff24d
+PODFILE CHECKSUM: c7254bdfde4cf111b542b2b722863eeff0e31ca6
 
 COCOAPODS: 1.5.3

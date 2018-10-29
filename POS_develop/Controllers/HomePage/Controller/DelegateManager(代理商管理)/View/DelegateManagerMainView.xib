@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -82,10 +81,10 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="tmy-TO-Xgy" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="6Z4-Ob-oHM"/>
+                <constraint firstItem="tmy-TO-Xgy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="6Z4-Ob-oHM"/>
                 <constraint firstItem="tmy-TO-Xgy" firstAttribute="top" secondItem="vSV-R4-EVN" secondAttribute="bottom" id="8dA-Ct-vQR"/>
                 <constraint firstItem="Xg0-9x-deU" firstAttribute="top" secondItem="vSV-R4-EVN" secondAttribute="bottom" id="9Ob-TN-Ghc"/>
-                <constraint firstItem="T4A-Ex-Me4" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="17" id="9ui-ih-d5f"/>
+                <constraint firstItem="T4A-Ex-Me4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="17" id="9ui-ih-d5f"/>
                 <constraint firstItem="pIj-qa-27w" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="BHZ-jh-ZZA"/>
                 <constraint firstItem="vSV-R4-EVN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="Etu-Z8-xre"/>
                 <constraint firstItem="vSV-R4-EVN" firstAttribute="top" secondItem="mWr-zH-XZr" secondAttribute="bottom" id="ODd-HB-SHd"/>
@@ -97,13 +96,12 @@
                 <constraint firstItem="SPY-mz-Bx0" firstAttribute="centerY" secondItem="T4A-Ex-Me4" secondAttribute="centerY" id="iFX-eH-fnb"/>
                 <constraint firstItem="pIj-qa-27w" firstAttribute="top" secondItem="SPY-mz-Bx0" secondAttribute="bottom" constant="18.5" id="kiv-lM-mQH"/>
                 <constraint firstAttribute="trailing" secondItem="vSV-R4-EVN" secondAttribute="trailing" id="mOX-l0-w1l"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Xg0-9x-deU" secondAttribute="bottom" id="oRg-GA-p54"/>
-                <constraint firstItem="mWr-zH-XZr" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="pB1-d8-dFc"/>
-                <constraint firstItem="T4A-Ex-Me4" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="rz7-k5-VLI"/>
+                <constraint firstAttribute="bottom" secondItem="Xg0-9x-deU" secondAttribute="bottom" id="oRg-GA-p54"/>
+                <constraint firstItem="mWr-zH-XZr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="pB1-d8-dFc"/>
+                <constraint firstItem="T4A-Ex-Me4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="rz7-k5-VLI"/>
                 <constraint firstAttribute="trailing" secondItem="pIj-qa-27w" secondAttribute="trailing" id="vYl-2F-bRA"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="conditionLabel" destination="SPY-mz-Bx0" id="zi4-br-rKh"/>
                 <outlet property="nameTF" destination="qjY-XN-FWG" id="p8z-ky-CPb"/>
@@ -113,6 +111,6 @@
         </view>
     </objects>
     <resources>
-        <image name="查询条件" width="15.5" height="15.5"/>
+        <image name="查询条件" width="15" height="15"/>
     </resources>
 </document>
