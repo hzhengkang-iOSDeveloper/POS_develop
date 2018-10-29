@@ -66,6 +66,8 @@
 - (void)creatGoodInfoView
 {
     POS_ShopDetailInfoView *shopDetailInfoView = [[POS_ShopDetailInfoView alloc]init];
+    shopDetailInfoView.model = self.model;
+    shopDetailInfoView.posDetailStr = self.posDetailStr;
     [self.mainScrollView addSubview:shopDetailInfoView];
     self.shopDetailInfoView  = shopDetailInfoView;
     [_shopDetailInfoView mas_makeConstraints:^(MASConstraintMaker *make) {

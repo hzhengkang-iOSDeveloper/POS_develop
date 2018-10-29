@@ -113,10 +113,8 @@
     POS_RootViewModel *posRootM = self.dataArr[indexPath.row];
     cell.posRootModel = posRootM;
     MJWeakSelf;
-    cell.addShopCarHandler = ^{
-        if (weakSelf.changeShopCarCount) {
-            weakSelf.changeShopCarCount(posRootM.goodCount+1);
-        }
+    cell.addShopCarHandler = ^(UIButton * _Nonnull sender) {
+        [weakSelf addShopCarWith:posRootM withBtn:sender];
     };
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
@@ -128,8 +126,10 @@
     return AD_HEIGHT(112);
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    POS_RootViewModel *posRootM = self.dataArr[indexPath.row];
     POS_ShopDetailViewController *vc = [[POS_ShopDetailViewController alloc]init];
+    vc.posDetailStr = [self getPosDetailStr:posRootM];
+    vc.model = posRootM;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -168,5 +168,48 @@
         }
         NSLog(@"result ------- %@", result);
     }];
+}
+
+
+#pragma mark ---- 加入购物车接口 ----
+- (void)addShopCarWith:(POS_RootViewModel *)posRootM withBtn:(UIButton *)cellBtn
+{
+    NSDictionary *dict = @{
+                           @"userid":@"1",
+                           @"pkgPrdId":IF_NULL_TO_STRING(posRootM.ID),
+                           @"pkgPrdType":@"0",
+                           @"count":[NSString stringWithFormat:@"%li",posRootM.goodCount+1],
+                           @"operation":@"1"
+                           };
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/cart/save" params:dict cookie:nil result:^(bool success, id result) {
+        cellBtn.userInteractionEnabled = YES;
+        if (success) {
+            if ([result[@"code"]integerValue] == 0) {
+                HUD_SUCCESS(@"成功加入购物车");
+                if (self.changeShopCarCount) {
+                    self.changeShopCarCount(posRootM.goodCount+1);
+                }
+            } else {
+                HUD_ERROR(@"加入购物车失败，请稍后重试！");
+            }
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
+
+#pragma mark ---- 获取拼接详情 ----
+- (NSString *)getPosDetailStr:(POS_RootViewModel *)posRootM
+{
+    __block NSString *tmpStr = [[NSString alloc]init];
+    
+    [posRootM.packageFreeItemDOList enumerateObjectsUsingBlock:^(POS_RootPackageFreeModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        POS_RootProductDOModel *productDoM = [POS_RootProductDOModel mj_objectWithKeyValues:obj.productDO];
+        NSString *str = [NSString stringWithFormat:@"%@%@",productDoM.posBrandName,productDoM.posTermModel];
+        
+        tmpStr = [tmpStr stringByAppendingString:str];
+    }];
+    
+    return tmpStr;
 }
 @end

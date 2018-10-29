@@ -12,8 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface POSRootCell : UITableViewCell
 @property (nonatomic, strong) POS_RootViewModel *posRootModel;
-@property (nonatomic, copy) void (^addShopCarHandler)(void);
-
+@property (nonatomic, copy) void (^addShopCarHandler)(UIButton *sender);
+@property (nonatomic, weak) UIButton *addShopCarBtn;
 
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 @end

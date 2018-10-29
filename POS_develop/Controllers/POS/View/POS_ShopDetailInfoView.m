@@ -7,6 +7,7 @@
 //
 
 #import "POS_ShopDetailInfoView.h"
+#import "POS_RootViewModel.h"
 @interface POS_ShopDetailInfoView ()
 //商品logo
 @property (nonatomic, weak) UIImageView *goodImageV;
@@ -41,7 +42,7 @@
     //商品logo
     UIImageView *goodImageV = [[UIImageView alloc]init];
     goodImageV.contentMode = UIViewContentModeScaleAspectFit;
-    goodImageV.image = ImageNamed(@"默认头像");
+//    goodImageV.image = ImageNamed(@"默认头像");
     [self addSubview:goodImageV];
     self.goodImageV = goodImageV;
     [_goodImageV mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -57,7 +58,7 @@
         make.left.equalTo(weakSelf.goodImageV.mas_left);
         
         view.textAlignment = NSTextAlignmentLeft;
-        view.text = @"创立包（立刷888）";
+//        view.text = @"创立包（立刷888）";
     }];
     self.skuNameLabel = skuNameLabel;
     
@@ -67,7 +68,7 @@
         make.top.equalTo(weakSelf.skuNameLabel.mas_bottom).offset(AD_HEIGHT(7));
         
         view.textAlignment = NSTextAlignmentLeft;
-        view.text = @"采购价格：900.00元/2台";
+//        view.text = @"采购价格：900.00元/2台";
     }];
     self.skuPriceLabel = skuPriceLabel;
     
@@ -77,7 +78,7 @@
         make.top.equalTo(weakSelf.skuPriceLabel.mas_bottom).offset(AD_HEIGHT(7));
         
         view.textAlignment = NSTextAlignmentLeft;
-        view.text = @"激活返现金：1900.00元/台";
+//        view.text = @"激活返现金：1900.00元/台";
     }];
     self.activeBackMoneyLabel = activeBackMoneyLabel;
     
@@ -86,11 +87,7 @@
         make.right.offset(-AD_HEIGHT(15));
         make.centerY.equalTo(weakSelf.activeBackMoneyLabel.mas_centerY);
         
-        NSString *tmpStr = @"推荐指数：5星！";
-        NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc]initWithString:tmpStr];
-        [attriStr addAttribute:NSForegroundColorAttributeName value:C989898 range:NSMakeRange(0, 5)];
-        [attriStr addAttribute:NSForegroundColorAttributeName value:CF52542 range:NSMakeRange(5, tmpStr.length-5)];
-        view.attributedText = attriStr;
+        
     }];
     self.recommendRateLabel = recommendRateLabel;
     
@@ -111,10 +108,38 @@
         
         view.textAlignment = NSTextAlignmentLeft;
         view.numberOfLines = 0;
-        view.text = @"创立包999创立包999创立包999创立包999创立包999创立包999创立包999创立包999创立包999创立包999创立包999创立包999创立包999创立包999创立包999创立包999创立包999创立包999创立包999创立包999创立包999创立包999创立包999创立包999创立包999创立包999创立包999创立包999创立包999创立包999创立包999创立包999创立包999创立包999";
     }];
     self.goodIntroduceLabel = goodIntroduceLabel;
     [self.goodIntroduceLabel changeLabelHeightWithWidth:(ScreenWidth-AD_HEIGHT(30))];
 
+}
+
+- (void)setModel:(POS_RootViewModel *)model {
+    if (model) {
+        _model = model;
+        POS_RootPackageFreeModel *packageFreeM = model.packageFreeItemDOList.firstObject;
+        POS_RootProductDOModel *productM = [POS_RootProductDOModel mj_objectWithKeyValues:packageFreeM.productDO];
+        [self.goodImageV sd_setImageWithURL:[NSURL URLWithString:model.packagePic]];
+        self.skuNameLabel.text = model.packageName;
+        self.skuPriceLabel.text = [NSString stringWithFormat:@"采购价格：%@元/%@台",IF_NULL_TO_STRING(model.packagePrice),IF_NULL_TO_STRING(model.countInPackage)];
+        self.activeBackMoneyLabel.text = [NSString stringWithFormat:@"激活返现金：%@元/台",productM.posRebatePrice];
+        
+        NSString *tmpStr = [NSString stringWithFormat:@"推荐指数：%@星！",model.recommendStar];
+        NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc]initWithString:tmpStr];
+        [attriStr addAttribute:NSForegroundColorAttributeName value:C989898 range:NSMakeRange(0, 5)];
+        [attriStr addAttribute:NSForegroundColorAttributeName value:CF52542 range:NSMakeRange(5, tmpStr.length-5)];
+        self.activeBackMoneyLabel.attributedText = attriStr;
+        
+//        self.goodIntroduceLabel.text =
+        
+    }
+}
+
+- (void)setPosDetailStr:(NSString *)posDetailStr
+{
+    if (posDetailStr) {
+        _posDetailStr = posDetailStr;
+        self.goodIntroduceLabel.text = posDetailStr;
+    }
 }
 @end

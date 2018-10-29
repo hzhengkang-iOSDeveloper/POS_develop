@@ -164,7 +164,7 @@
     self.skuCountLabel = skuCountLabel;
     
     //加入购物车
-     [UIButton getButtonWithImageName:@"购物车" titleText:@"加入购物车" superView:self.contentView masonrySet:^(UIButton * _Nonnull btn, MASConstraintMaker * _Nonnull make) {
+     UIButton *addShopCarBtn = [UIButton getButtonWithImageName:@"购物车" titleText:@"加入购物车" superView:self.contentView masonrySet:^(UIButton * _Nonnull btn, MASConstraintMaker * _Nonnull make) {
         make.right.offset(-AD_HEIGHT(7));
         make.bottom.equalTo(skuCountMainView.mas_bottom);
         make.size.mas_offset(CGSizeMake(AD_HEIGHT(96), AD_HEIGHT(32)));
@@ -173,8 +173,9 @@
         btn.titleLabel.font = F12;
         [btn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -7)];
         btn.backgroundColor = C1E95F9;
-        [btn addTarget:self action:@selector(addShopCar) forControlEvents:UIControlEventTouchUpInside];
+         [btn addTarget:self action:@selector(addShopCar:) forControlEvents:UIControlEventTouchUpInside];
     }];
+    self.addShopCarBtn = addShopCarBtn;
 }
 
 #pragma mark ---- 减 ----
@@ -198,10 +199,11 @@
     self.skuCountLabel.text = [NSString stringWithFormat:@"%li",self.posRootModel.goodCount+1];
 }
 #pragma mark ---- 加入购物车 ----
-- (void)addShopCar
+- (void)addShopCar:(UIButton *)sender
 {
+    sender.userInteractionEnabled = NO;
     if (self.addShopCarHandler) {
-        self.addShopCarHandler();
+        self.addShopCarHandler(sender);
     }
 }
 
