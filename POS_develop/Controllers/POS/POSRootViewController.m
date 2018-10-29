@@ -10,18 +10,29 @@
 #import "POSRootCell.h"
 #import "POS_ShopDetailViewController.h"
 #import "POS_CommitBillViewController.h"
+#import "POS_RootViewModel.h"
 @interface POSRootViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, weak) UITableView *myTable;
 // 加入购物车动画商品logo
 @property (nonatomic, strong) UIImageView *addCartGoodLogo;
+//数据源
+@property (nonatomic, strong) NSMutableArray *dataArr;
 @end
 
 @implementation POSRootViewController
+- (NSMutableArray *)dataArr
+{
+    if (!_dataArr) {
+        _dataArr = [NSMutableArray array];
+    }
+    return _dataArr;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = CF6F6F6;
+    [self getData];
     [self creatTableView];
 }
 #pragma mark - 加入购物车动画logo
@@ -94,15 +105,17 @@
 }
 #pragma mark -- tableView代理数据源方法
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.dataArr.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     POSRootCell *cell = [POSRootCell cellWithTableView:tableView];
+    POS_RootViewModel *posRootM = self.dataArr[indexPath.row];
+    cell.posRootModel = posRootM;
     MJWeakSelf;
     cell.addShopCarHandler = ^{
         if (weakSelf.changeShopCarCount) {
-            weakSelf.changeShopCarCount();
+            weakSelf.changeShopCarCount(posRootM.goodCount+1);
         }
     };
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -136,4 +149,24 @@
 }
 
 
+
+
+#pragma mark ---- 获取数据 ----
+- (void)getData
+{
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/packageFree/list" params:@{@"tbproductId":IF_NULL_TO_STRING(self.podId)} cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSArray *arr = result[@"data"][@"rows"];
+                    
+                    self.dataArr = [POS_RootViewModel mj_objectArrayWithKeyValuesArray:arr];
+                    [self.myTable reloadData];
+                }
+            }
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
 @end

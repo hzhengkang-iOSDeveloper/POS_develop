@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class POS_RootViewModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface POSRootCell : UITableViewCell
+@property (nonatomic, strong) POS_RootViewModel *posRootModel;
 @property (nonatomic, copy) void (^addShopCarHandler)(void);
 
 

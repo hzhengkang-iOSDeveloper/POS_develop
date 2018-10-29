@@ -17,7 +17,7 @@
 //购物车数量
 @property (nonatomic,assign)NSUInteger cartNum;
 @property (nonatomic, strong, readwrite) WMPageController* pageController;//pageControl
-
+@property (nonatomic, copy) NSString *podId;
 @end
 
 @implementation POSViewController
@@ -31,6 +31,7 @@
     self.navigationItem.rightBarButtonItems = self.rightItems;
     self.navigationItem.leftBarButtonItem = nil;
     
+    [self getProductIdRequest];
     [self creatSelectBillStatus];
 }
 #pragma mark - nav购物车&更多按钮
@@ -50,7 +51,7 @@
         UIBarButtonItem *shopCartItem = [[UIBarButtonItem alloc] initWithCustomView:shopCartBtn];
         
         
-        _cartNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(shopCartBtn.width-10, -5, 12, 12)];
+        _cartNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(shopCartBtn.width-10, -5, 18, 18)];
         _cartNumLabel.hidden = YES;
         _cartNumLabel.textColor = WhiteColor;
         _cartNumLabel.textAlignment = NSTextAlignmentCenter;
@@ -107,10 +108,11 @@
 
 - (__kindof UIViewController *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index {
     POSRootViewController* controller = [[POSRootViewController alloc]init];
+    controller.podId = self.podId;
     MJWeakSelf;
-    controller.changeShopCarCount = ^{
+    controller.changeShopCarCount = ^(NSUInteger addGoodCount) {
         weakSelf.cartNumLabel.hidden = NO;
-        weakSelf.cartNum ++;
+        weakSelf.cartNum = weakSelf.cartNum + addGoodCount;
         weakSelf.cartNumLabel.text = [NSString stringWithFormat:@"%ld",(long)weakSelf.cartNum];
     };
     //    switch (index) {
@@ -151,5 +153,28 @@
 
 - (CGRect)pageController:(nonnull WMPageController *)pageController preferredFrameForMenuView:(nonnull WMMenuView *)menuView {
     return CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(36));
+}
+
+#pragma mark ---- 获取id ----
+- (void)getProductIdRequest
+{
+    [[HPDConnect connect] PostNetRequestMethod:[NSString stringWithFormat:@"api/trans/product/list?chargeType=%@",@"1"] params:nil cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSArray *arr = result[@"data"][@"rows"];
+                    if (arr.count > 0) {
+                        NSDictionary *posDic = arr.firstObject;
+                        self.podId = [posDic objectForKey:@"id"];
+                        
+                        [self.pageController reloadData];
+                    }
+                }
+            }
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+    
 }
 @end

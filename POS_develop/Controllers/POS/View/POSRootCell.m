@@ -7,6 +7,7 @@
 //
 
 #import "POSRootCell.h"
+#import "POS_RootViewModel.h"
 @interface  POSRootCell ()
 {
     NSUInteger _skuCount;//记录sku 数量
@@ -56,7 +57,7 @@
     //商品图片
     UIImageView *skuImageView = [[UIImageView alloc]init];
     skuImageView.contentMode = UIViewContentModeScaleAspectFit;
-    skuImageView.image = ImageNamed(@"默认头像");
+//    skuImageView.image = ImageNamed(@"默认头像");
     [self.contentView addSubview:skuImageView];
     self.skuImageView = skuImageView;
     [_skuImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -71,7 +72,6 @@
         make.left.equalTo(weakSelf.skuImageView.mas_right).offset(AD_HEIGHT(26));
         
         view.textAlignment = NSTextAlignmentLeft;
-        view.text = @"创立包（立刷888）";
     }];
     self.skuNameLabel = skuNameLabel;
     
@@ -81,7 +81,6 @@
         make.top.equalTo(weakSelf.skuNameLabel.mas_bottom).offset(AD_HEIGHT(7));
         
         view.textAlignment = NSTextAlignmentLeft;
-        view.text = @"采购价格：900.00元/2台";
     }];
     self.skuPriceLabel = skuPriceLabel;
 
@@ -91,7 +90,6 @@
         make.top.equalTo(weakSelf.skuPriceLabel.mas_bottom).offset(AD_HEIGHT(7));
         
         view.textAlignment = NSTextAlignmentLeft;
-        view.text = @"激活返现金：1900.00元/台";
     }];
     self.activeBackMoneyLabel = activeBackMoneyLabel;
     
@@ -100,11 +98,6 @@
         make.left.equalTo(weakSelf.skuImageView.mas_left);
         make.top.equalTo(weakSelf.skuImageView.mas_bottom).offset(AD_HEIGHT(8));
         
-        NSString *tmpStr = @"推荐指数：5星！";
-        NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc]initWithString:tmpStr];
-        [attriStr addAttribute:NSForegroundColorAttributeName value:C989898 range:NSMakeRange(0, 5)];
-        [attriStr addAttribute:NSForegroundColorAttributeName value:CF52542 range:NSMakeRange(5, tmpStr.length-5)];
-        view.attributedText = attriStr;
     }];
     self.recommendRateLabel = recommendRateLabel;
     
@@ -164,14 +157,14 @@
         make.height.mas_equalTo(AD_HEIGHT(26));
         make.top.offset(0);
         
-        view.text  = @"1";
+//        view.text  = @"1";
         view.textAlignment = NSTextAlignmentCenter;
         
     }];
     self.skuCountLabel = skuCountLabel;
     
     //加入购物车
-    UIButton *addCarBtn = [UIButton getButtonWithImageName:@"购物车" titleText:@"加入购物车" superView:self.contentView masonrySet:^(UIButton * _Nonnull btn, MASConstraintMaker * _Nonnull make) {
+     [UIButton getButtonWithImageName:@"购物车" titleText:@"加入购物车" superView:self.contentView masonrySet:^(UIButton * _Nonnull btn, MASConstraintMaker * _Nonnull make) {
         make.right.offset(-AD_HEIGHT(7));
         make.bottom.equalTo(skuCountMainView.mas_bottom);
         make.size.mas_offset(CGSizeMake(AD_HEIGHT(96), AD_HEIGHT(32)));
@@ -187,34 +180,55 @@
 #pragma mark ---- 减 ----
 - (void)clickSubtractbtn
 {
-    if (_skuCount == 1) {
+    if (self.posRootModel.goodCount == 0) {
         HUD_TIP(@"数量最少为1");
         return;
     }
-    if (_skuCount > 1) {
-        _skuCount --;
+    if (self.posRootModel.goodCount > 0) {
+        self.posRootModel.goodCount --;
     }
     
-    self.skuCountLabel.text = [NSString stringWithFormat:@"%li",_skuCount];
+    self.skuCountLabel.text = [NSString stringWithFormat:@"%li",self.posRootModel.goodCount+1];
 }
 #pragma mark ---- 加 ----
 - (void)clickAddbtn
 {
-    if (_skuCount == 10) {
-        HUD_TIP(@"数量已超上限");
-        return;
-    }
-    if (_skuCount <10) {
-        _skuCount ++;
-    }
-    self.skuCountLabel.text = [NSString stringWithFormat:@"%li",_skuCount];
+    self.posRootModel.goodCount ++;
 
+    self.skuCountLabel.text = [NSString stringWithFormat:@"%li",self.posRootModel.goodCount+1];
 }
 #pragma mark ---- 加入购物车 ----
 - (void)addShopCar
 {
     if (self.addShopCarHandler) {
         self.addShopCarHandler();
+    }
+}
+
+
+- (void)setPosRootModel:(POS_RootViewModel *)posRootModel
+{
+    if (posRootModel) {
+        _posRootModel = posRootModel;
+        POS_RootPackageFreeModel *packageFreeM = posRootModel.packageFreeItemDOList.firstObject;
+        POS_RootProductDOModel *productM = [POS_RootProductDOModel mj_objectWithKeyValues:packageFreeM.productDO];
+        
+        [self.skuImageView sd_setImageWithURL:URL(posRootModel.packagePic)];
+        self.skuNameLabel.text = IF_NULL_TO_STRING(posRootModel.packageName);
+        self.skuPriceLabel.text = [NSString stringWithFormat:@"采购价格：%@元/%@台",IF_NULL_TO_STRING(posRootModel.packagePrice),IF_NULL_TO_STRING(posRootModel.countInPackage)];
+        self.activeBackMoneyLabel.text = [NSString stringWithFormat:@"激活返现金：%@元/台",productM.posRebatePrice];
+        
+        NSString *tmpStr = [NSString stringWithFormat:@"推荐指数：%@星！",posRootModel.recommendStar];
+        NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc]initWithString:tmpStr];
+        [attriStr addAttribute:NSForegroundColorAttributeName value:C989898 range:NSMakeRange(0, 5)];
+        [attriStr addAttribute:NSForegroundColorAttributeName value:CF52542 range:NSMakeRange(5, tmpStr.length-5)];
+        self.recommendRateLabel.attributedText = attriStr;
+        
+//        if (posRootModel.goodCount == 0) {
+//            _skuCount = 1;
+//        }
+        
+        self.skuCountLabel.text = [NSString stringWithFormat:@"%li",posRootModel.goodCount +1];
     }
 }
 @end

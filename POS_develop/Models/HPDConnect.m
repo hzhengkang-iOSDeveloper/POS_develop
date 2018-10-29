@@ -402,12 +402,17 @@
 
 -(void)AFNetPOSTMethodWithUpload:(NSString *)method params:(NSDictionary*)params upData:(id)upData uptype:(NSInteger)uptype fileName:(NSString*)fileName cookie:(NSHTTPCookie *)cookie result:(AFNetRequestResultBlock)result{
     NSDictionary *dict = [self getRequestDic:params];
-    AFHTTPSessionManager *manager = [self GetAFHTTPSessionManagerObject];
+//    AFHTTPSessionManager *manager = [self GetAFHTTPSessionManagerObject];
+    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+//        session.requestSerializer = [AFJSONRequestSerializer serializer];
+    session.responseSerializer = [AFJSONResponseSerializer serializer];
+    //    [session.requestSerializer setValue:@"multipart/form-data" forHTTPHeaderField:@"Content-Type"];
+    [session.requestSerializer setValue:@"multipart/form-data" forHTTPHeaderField:@"Content-Type"];
     NSString *urlStr = [NSString stringWithFormat:@"%@%@", BaseHeaderURL,method];
-    [manager POST:urlStr parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [session POST:urlStr parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
-        NSData *data = UIImageJPEGRepresentation(upData, 1.0);
-        [formData appendPartWithFileData:data name:fileName fileName:fileName mimeType:@"image/png"];
+        NSData *data = UIImageJPEGRepresentation(upData, 0.5);
+        [formData appendPartWithFileData:data name:fileName fileName:fileName mimeType:@"image/jpeg"];
         
     } success:^(NSURLSessionDataTask *task, id responseObject) {
         result(YES,responseObject);

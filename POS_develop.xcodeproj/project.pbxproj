@@ -59,6 +59,7 @@
 		501B572B215DFBF10025086D /* PD_BillDetailOnLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 501B572A215DFBF10025086D /* PD_BillDetailOnLineView.m */; };
 		501C6AEF21819C6A00927438 /* SLPopupShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 501C6AED21819C6A00927438 /* SLPopupShowView.m */; };
 		501C6AF52181A63000927438 /* PD_BillDetailSkuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 501C6AF42181A63000927438 /* PD_BillDetailSkuCell.m */; };
+		501E15C92186A78200BB68A3 /* POS_RootViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 501E15C82186A78200BB68A3 /* POS_RootViewModel.m */; };
 		502AF80C2163875E00260979 /* TerminalAdminViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 502AF80B2163875E00260979 /* TerminalAdminViewController.m */; };
 		502AF8102163880000260979 /* TerminalAdminTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 502AF80F2163880000260979 /* TerminalAdminTableViewCell.m */; };
 		502AF8132163A5E100260979 /* SheetPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 502AF8122163A5E100260979 /* SheetPickerView.m */; };
@@ -433,6 +434,8 @@
 		501C6AEE21819C6A00927438 /* SLPopupShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLPopupShowView.h; sourceTree = "<group>"; };
 		501C6AF32181A63000927438 /* PD_BillDetailSkuCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillDetailSkuCell.h; sourceTree = "<group>"; };
 		501C6AF42181A63000927438 /* PD_BillDetailSkuCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillDetailSkuCell.m; sourceTree = "<group>"; };
+		501E15C72186A78200BB68A3 /* POS_RootViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POS_RootViewModel.h; sourceTree = "<group>"; };
+		501E15C82186A78200BB68A3 /* POS_RootViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = POS_RootViewModel.m; sourceTree = "<group>"; };
 		502AF80A2163875E00260979 /* TerminalAdminViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TerminalAdminViewController.h; sourceTree = "<group>"; };
 		502AF80B2163875E00260979 /* TerminalAdminViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TerminalAdminViewController.m; sourceTree = "<group>"; };
 		502AF80E2163880000260979 /* TerminalAdminTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TerminalAdminTableViewCell.h; sourceTree = "<group>"; };
@@ -1266,6 +1269,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		501E15C62186A76500BB68A3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				501E15C72186A78200BB68A3 /* POS_RootViewModel.h */,
+				501E15C82186A78200BB68A3 /* POS_RootViewModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		5022DC76216C9E2400CE14C1 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1977,6 +1989,7 @@
 		787166B8214917BD00452C51 /* POS */ = {
 			isa = PBXGroup;
 			children = (
+				501E15C62186A76500BB68A3 /* Model */,
 				500C272F217C3747008F221A /* shopCar(购物车) */,
 				78A320FA216E24B000D48B95 /* BuySuccess(购买成功) */,
 				5022DC76216C9E2400CE14C1 /* View */,
@@ -2914,6 +2927,7 @@
 				7888F3632147C32C00AAC8B0 /* LFCGzipUtillity.m in Sources */,
 				259646DE2158CBC900E516BF /* TransactionQueryMainView.m in Sources */,
 				7888F34B2147C32C00AAC8B0 /* CustomDeleagte.m in Sources */,
+				501E15C92186A78200BB68A3 /* POS_RootViewModel.m in Sources */,
 				50A89A8D216B51B300E68BEB /* StatisticAnalysisViewController.m in Sources */,
 				7813B809216E03D80086CE68 /* HtmlGenerailzeCell.m in Sources */,
 				50B0607C2153372C00B7B411 /* SLRefreshHeader.m in Sources */,
