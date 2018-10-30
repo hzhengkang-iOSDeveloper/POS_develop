@@ -7,13 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+@class POS_RootViewModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MyFreeGetCell : UITableViewCell
-@property (nonatomic, copy) void (^clickMaxCountHandler)(BOOL isMax);
+@property (nonatomic, strong) POS_RootViewModel *posRootModel;
+@property (nonatomic, copy) void (^clickChangeCountHandler)(BOOL isAdd);
 +(instancetype)cellWithTableView:(UITableView *)tableView;
 
+- (void)changeGoodCount;
 @end
 
 NS_ASSUME_NONNULL_END

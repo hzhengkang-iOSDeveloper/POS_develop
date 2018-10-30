@@ -8,6 +8,7 @@
 
 #import "MyFreeGetRootViewController.h"
 #import "MyFreeGetCell.h"
+#import "POS_RootViewModel.h"
 @interface MyFreeGetRootViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, weak) UITableView *myTable;
 
@@ -15,15 +16,27 @@
 @property (nonatomic, weak) UIButton *maxGetBtn;
 //确认领取View
 @property (nonatomic, weak) UIButton *comfirBtn;
+//数据源
+@property (nonatomic, strong) NSMutableArray *dataArr;
+@property (nonatomic, copy) NSString *maxGoodCount;//最大领取数量
 @end
 
 @implementation MyFreeGetRootViewController
 
+- (NSMutableArray *)dataArr
+{
+    if (!_dataArr) {
+        _dataArr = [NSMutableArray array];
+    }
+    return _dataArr;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = CF6F6F6;
     [self creatBottomView];
+    [self getData];
+    [self getGoodMaxCountRequest];
     [self creatTableView];
     
 }
@@ -71,7 +84,7 @@
     self.maxGetBtn = maxGetBtn;
     MJWeakSelf;
     
-    UIButton *comfirBtn = [UIButton getButtonWithImageName:@"" titleText:@"确认领取（1）" superView:self.view masonrySet:^(UIButton * _Nonnull btn, MASConstraintMaker * _Nonnull make) {
+    UIButton *comfirBtn = [UIButton getButtonWithImageName:@"" titleText:@"确认领取" superView:self.view masonrySet:^(UIButton * _Nonnull btn, MASConstraintMaker * _Nonnull make) {
         make.left.equalTo(weakSelf.maxGetBtn.mas_right);
         make.right.offset(0);
         make.bottom.equalTo(self.mas_bottomLayoutGuideTop).offset(0);
@@ -93,28 +106,69 @@
 }
 #pragma mark -- tableView代理数据源方法
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.dataArr.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     MyFreeGetCell *cell = [MyFreeGetCell cellWithTableView:tableView];
+    __weak typeof(cell) weakCell = cell;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    POS_RootViewModel *posRootM = self.dataArr[indexPath.row];
+    cell.posRootModel = posRootM;
     MJWeakSelf;
-    cell.clickMaxCountHandler = ^(BOOL isMax) {
-        if (isMax) {
+    cell.clickChangeCountHandler = ^(BOOL isAdd) {
+        //遍历数据源 计算所有的数量
+        
+        __block NSUInteger goodAllCout = 0;
+        [weakSelf.dataArr enumerateObjectsUsingBlock:^(POS_RootViewModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            goodAllCout = goodAllCout +obj.goodCount;
+        }];
+        
+        if (goodAllCout >= 5) {
+            HUD_TIP(@"超过最大领取数量");
             [UIView animateWithDuration:2 animations:^{
                 [weakSelf.maxGetBtn mas_updateConstraints:^(MASConstraintMaker *make) {
                     make.left.offset(0);
                 }];
             }];
+
         } else {
             [UIView animateWithDuration:2 animations:^{
                 [weakSelf.maxGetBtn mas_updateConstraints:^(MASConstraintMaker *make) {
                     make.left.offset(-(ScreenWidth/2));
                 }];
             }];
+
+            if (isAdd) {
+                [weakCell changeGoodCount];
+                [weakSelf.comfirBtn setTitle:[NSString stringWithFormat:@"确认领取（%li）",goodAllCout+1] forState:normal];
+            } else {
+                if (goodAllCout == 0) {
+                    [weakSelf.comfirBtn setTitle:@"确认领取" forState:normal];
+                } else {
+                    [weakSelf.comfirBtn setTitle:[NSString stringWithFormat:@"确认领取（%li）",goodAllCout] forState:normal];
+                }
+            }
         }
+        
+        
+        
     };
+//    cell.clickMaxCountHandler = ^(BOOL isMax) {
+//        if (isMax) {
+//            [UIView animateWithDuration:2 animations:^{
+//                [weakSelf.maxGetBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+//                    make.left.offset(0);
+//                }];
+//            }];
+//        } else {
+//            [UIView animateWithDuration:2 animations:^{
+//                [weakSelf.maxGetBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+//                    make.left.offset(-(ScreenWidth/2));
+//                }];
+//            }];
+//        }
+//    };
     
     
     return cell;
@@ -139,5 +193,39 @@
     
     return [UIView new];
 }
+#pragma mark ---- 获取数据 ----
+- (void)getData
+{
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/packageFree/list" params:@{@"tbproductId":IF_NULL_TO_STRING(self.podId)} cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSArray *arr = result[@"data"][@"rows"];
+                    
+                    self.dataArr = [POS_RootViewModel mj_objectArrayWithKeyValuesArray:arr];
+                    [self.myTable reloadData];
+                }
+            }
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
 
+#pragma mark ---- 最大领取数量 ----
+- (void)getGoodMaxCountRequest
+{
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/creditRule/list" params:@{@"userid":@"1"} cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSArray *arr = [NSArray arrayWithArray:result[@"data"][@"rows"]];
+                    self.maxGoodCount = [arr.firstObject objectForKey:@"leftCount"];
+                }
+            }
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
 @end
