@@ -19,7 +19,7 @@
 @implementation HPDConnect
 
 //生产环境
-#define  kFormalURL      @"https://api.hepancaifu.com/"
+#define  kFormalURL      @"http://front.shzfgj.com/"
 
 //测试环境
 #define  newLocalHost    @"http://106.14.7.85:8000/"
@@ -402,11 +402,8 @@
 
 -(void)AFNetPOSTMethodWithUpload:(NSString *)method params:(NSDictionary*)params upData:(id)upData uptype:(NSInteger)uptype fileName:(NSString*)fileName cookie:(NSHTTPCookie *)cookie result:(AFNetRequestResultBlock)result{
     NSDictionary *dict = [self getRequestDic:params];
-//    AFHTTPSessionManager *manager = [self GetAFHTTPSessionManagerObject];
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-//        session.requestSerializer = [AFJSONRequestSerializer serializer];
     session.responseSerializer = [AFJSONResponseSerializer serializer];
-    //    [session.requestSerializer setValue:@"multipart/form-data" forHTTPHeaderField:@"Content-Type"];
     [session.requestSerializer setValue:@"multipart/form-data" forHTTPHeaderField:@"Content-Type"];
     NSString *urlStr = [NSString stringWithFormat:@"%@%@", BaseHeaderURL,method];
     [session POST:urlStr parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {

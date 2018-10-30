@@ -9,7 +9,7 @@
 #import "FastLoginViewController.h"
 
 @interface FastLoginViewController () {
-    UIActivityIndicatorView *_aview;
+    
 }
 @property (nonatomic, strong) UITextField *telephoneTF;
 @property (nonatomic, strong) UITextField *codeTF;
@@ -17,6 +17,7 @@
 @property (nonatomic, strong) UIButton *loginBtn;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, assign) int timeSum;
+@property (nonatomic, strong) UIActivityIndicatorView *aview;
 @end
 
 @implementation FastLoginViewController
@@ -135,21 +136,18 @@
     }
     _aview = [GlobalMethod addUIActivityIndicator:self.codeTimeBtn];
     //MARK: 接口获取短信验证码
-//    [[HPDConnect connect] ansySoapUintMethod:@"SendMessage_NoLogin" params:@{@"Mobile_Phone" :[self.telephoneTF.text stringByReplacingOccurrencesOfString:@" " withString:@"" ], @"SmsType" : @(0)} cookie:[[LoginManager getInstance] userCookie] result:^(bool success, NSDictionary *result) {
-//        [self.codeTimeBtn setTitle:@"重发" forState:UIControlStateNormal];
-            [_aview stopAnimating];
-//        if (success) {
-//            if ([[result valueForKeyPath:kSoapResponseStatu] intValue] == 1) {
+    [[HPDConnect connect] GetNetRequestMethod:[NSString stringWithFormat:@"login/getsmscode?mobile=%@", self.telephoneTF.text] params:nil cookie:nil result:^(bool success, id result) {
+        [self.aview stopAnimating];
+        if (success) {
+            if ([result[@"msg"] isEqualToString:@"操作成功"]) {
                 self.timeSum = 60;
                 self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerChange:) userInfo:nil repeats:YES];
                 self.codeTimeBtn.userInteractionEnabled = NO;
-//            }else {
-//                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
-//
-//                }];
-//            }
-//        }
-//    }];
+            }
+        }
+        
+    }];
+
 }
 -(void)timerChange:(NSTimer*)timer
 {
@@ -170,35 +168,18 @@
 - (void)loginClick {
     [self.view endEditing:YES];
     _aview = [GlobalMethod addUIActivityIndicator:self.loginBtn];
-//    [[LoginManager getInstance] loginWithAccount:[self.telephoneTF.text stringByReplacingOccurrencesOfString:@" " withString:@""] andPassword:self.codeTF.text result:^(BOOL success, NSDictionary *result) {
-//        NSLog(@"%@",result);
-        [_aview stopAnimating];
+    [[LoginManager getInstance]loginFastWithAccount:self.telephoneTF.text andSmsCode:self.codeTF.text result:^(BOOL success, NSDictionary *result) {
+        [self.aview stopAnimating];
         [self.loginBtn setTitle:@"登录" forState:UIControlStateNormal];
-//        if (success) {
-//
+        if (success) {
+            HUD_TIP(@"登录成功");
 //            [[HPDProgress defaultProgressHUD]showSimpleViewOnView:self.view message:@"登录成功" hideAfterDelay:1 complete:^{
-////                if (self.loginSucceed) {
-////                    self.loginSucceed();
-////                }
-//                [self dismissViewControllerAnimated:YES completion:nil];
+               
+                [self dismissViewControllerAnimated:YES completion:nil];
 //            }];
-//        }else {
-//            [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
-//
-//            }];
-//        }
-//
-//    }];
+        }
+    }];
+   
 }
-- (void)loginSuccess:(BOOL)success Result:(NSDictionary *)result
-{
-    
-    [_aview stopAnimating];
-    [self.loginBtn setTitle:@"登录" forState:UIControlStateNormal];
-    
-    if (success) {
 
-    }
-    
-}
 @end
