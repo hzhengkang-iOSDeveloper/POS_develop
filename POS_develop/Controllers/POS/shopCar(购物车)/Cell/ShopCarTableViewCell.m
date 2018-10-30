@@ -7,7 +7,7 @@
 //
 
 #import "ShopCarTableViewCell.h"
-
+#import "ShopCar_PackageModel.h"
 @implementation ShopCarTableViewCell
 
 +(instancetype)cellWithTableView:(UITableView *)tableView{
@@ -31,7 +31,6 @@
 
 -(void)initUI{
     self.myImageView = [[UIImageView alloc] init];
-    self.myImageView.image = ImageNamed(@"图层7");
     [self.contentView addSubview:self.myImageView];
     [self.myImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(AD_HEIGHT(42));
@@ -41,7 +40,6 @@
     
     
     self.titleLabel = [[UILabel alloc] init];
-    self.titleLabel.text = @"创业包（立刷999）";
     self.titleLabel.textColor = C000000;
     self.titleLabel.font = F12;
     [self.contentView addSubview:self.titleLabel];
@@ -55,13 +53,11 @@
         make.top.equalTo(self.titleLabel.mas_bottom).offset(AD_HEIGHT(9));
         make.left.equalTo(self.titleLabel.mas_left);
         
-        view.text = @"￥550";
     }];
     self.numberLabel = [UILabel getLabelWithFont:F12 textColor:C000000 superView:self.contentView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
         make.top.equalTo(self.titleLabel.mas_bottom);
         make.right.offset(AD_HEIGHT(-17));
         
-        view.text = @"x1";
     }];
     
     self.line = [[UIView alloc] init];
@@ -74,4 +70,18 @@
     }];
 }
 
+- (void)setPackageM:(ShopCar_PackageChargeItemModel *)packageM
+{
+    if (packageM) {
+        _packageM = packageM;
+        
+        ShopCar_PackageProductDOModel *productM = [ShopCar_PackageProductDOModel mj_objectWithKeyValues:packageM.productDO];
+        self.amountLabel.text = [NSString stringWithFormat:@"￥%@", productM.posPrice];
+        self.numberLabel.text = [NSString stringWithFormat:@"x%@", productM.posCount];
+        NSString *imgStr = [NSString stringWithFormat:@"http://106.14.7.85:9000%@",productM.productImg];
+//        [self.myImageView sd_setImageWithURL:[NSURL URLWithString:imgStr]];
+        self.myImageView.image = ImageNamed(@"默认头像");
+        self.titleLabel.text = productM.posBrandName;
+    }
+}
 @end

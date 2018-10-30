@@ -10,6 +10,7 @@
 #import "POS_ShopDetailInfoView.h"
 #import "POS_ShopRecommendCell.h"
 #import "SLGoodDetailImageDetailView.h"//图文详情
+#import "POS_RootViewModel.h"
 @interface POS_ShopDetailViewController ()<UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,SLGoodDetailImageDetailViewDelegate>
 {
     NSUInteger _skuCount;//记录sku 数量
@@ -24,12 +25,20 @@
 @property (nonatomic, weak) POS_ShopDetailInfoView *shopDetailInfoView;
 //推荐商品
 @property (nonatomic, weak) UITableView *recommendGoodTableView;
+//数据源
+@property (nonatomic, strong) NSMutableArray *dataArr;
 //图文详情
 @property (nonatomic, strong) SLGoodDetailImageDetailView *imageDetailView;
 @end
 
 @implementation POS_ShopDetailViewController
-
+- (NSMutableArray *)dataArr
+{
+    if (!_dataArr) {
+        _dataArr = [NSMutableArray array];
+    }
+    return _dataArr;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -42,6 +51,8 @@
     
     [self creatGoodInfoView];
     [self creatBottomView];
+    [self getSuggestTaoCanRequest];//获取推荐套餐
+    [self getTaoCanPriceRequest];//获取套餐总价
 }
 //MARK: ------------------------------------------------------ 视图层 ------------------------------------------------------
 #pragma mark ---- 主控件(UIScrollView) ----
@@ -88,7 +99,7 @@
         make.top.equalTo(weakSelf.shopDetailInfoView.mas_bottom).offset(AD_HEIGHT(5));
         make.left.equalTo(weakSelf.view).offset(0);
         make.width.mas_equalTo(ScreenWidth);
-        make.height.mas_equalTo(AD_HEIGHT(28)+AD_HEIGHT(89)*2);
+        make.height.mas_equalTo(0);
     }];
     
     
@@ -101,6 +112,17 @@
         make.top.mas_equalTo(weakSelf.recommendGoodTableView.mas_bottom).offset(AD_HEIGHT(5));
         make.left.right.mas_equalTo(weakSelf.view);
     }];
+    
+    
+    if ([IF_NULL_TO_STRING(self.model.h5Url) isEqualToString:@""]) {
+        [_imageDetailView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(0);
+        }];
+    } else {
+        _imageDetailView.webViewURL = IF_NULL_TO_STRING(self.model.h5Url);
+    }
+    
+    [self updateUI];
 }
 
 
@@ -123,7 +145,7 @@
         btn.titleLabel.font = F12;
         [btn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -7)];
         btn.backgroundColor = C1E95F9;
-        [btn addTarget:self action:@selector(addShopCar) forControlEvents:UIControlEventTouchUpInside];
+        [btn addTarget:self action:@selector(addShopCar:) forControlEvents:UIControlEventTouchUpInside];
     }];
     
     
@@ -175,9 +197,8 @@
         make.height.mas_equalTo(AD_HEIGHT(26));
         make.top.offset(0);
         
-        view.text  = @"1";
         view.textAlignment = NSTextAlignmentCenter;
-        
+        view.text = [NSString stringWithFormat:@"%li",self.model.goodCount +1];
     }];
     self.skuCountLabel = skuCountLabel;
     
@@ -195,45 +216,45 @@
 }
 
 #pragma mark ---- 加入购物车 ----
-- (void)addShopCar
+- (void)addShopCar:(UIButton *)sender
 {
-    
+    sender.userInteractionEnabled = NO;
+    [self addShopCarwithBtn:sender];
 }
 #pragma mark ---- 减 ----
 - (void)clickSubtractbtn
 {
-    if (_skuCount == 1) {
+    if (self.model.goodCount == 0) {
         HUD_TIP(@"数量最少为1");
         return;
     }
-    if (_skuCount > 1) {
-        _skuCount --;
+    if (self.model.goodCount > 0) {
+        self.model.goodCount --;
     }
     
-    self.skuCountLabel.text = [NSString stringWithFormat:@"%li",_skuCount];
+    self.skuCountLabel.text = [NSString stringWithFormat:@"%li",self.model.goodCount+1];
+    [self getTaoCanPriceRequest];//获取套餐总价
 }
 #pragma mark ---- 加 ----
 - (void)clickAddbtn
 {
-    if (_skuCount == 10) {
-        HUD_TIP(@"数量已超上限");
-        return;
-    }
-    if (_skuCount <10) {
-        _skuCount ++;
-    }
-    self.skuCountLabel.text = [NSString stringWithFormat:@"%li",_skuCount];
+    self.model.goodCount ++;
     
+    self.skuCountLabel.text = [NSString stringWithFormat:@"%li",self.model.goodCount+1];
+    [self getTaoCanPriceRequest];//获取套餐总价
+
 }
 
 
 #pragma mark -- tableView代理数据源方法
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 2;
+    return self.dataArr.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     POS_ShopRecommendCell *cell = [POS_ShopRecommendCell cellWithTableView:tableView];
+    POS_RootViewModel *posM = self.dataArr[indexPath.row];
+    cell.posM = posM;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     
@@ -289,8 +310,93 @@
     }];
     
     // 更新滑动范围
-//    [self.mainScrollView layoutIfNeeded];
-//    [self.imageDetailView layoutIfNeeded];
-//    self.mainScrollView.contentSize = CGSizeMake(SCREEN_WIDTH, self.imageDetailView.maxY);
+    [self updateUI];
+}
+
+
+#pragma mark ---- 获取推荐套餐 ----
+- (void)getSuggestTaoCanRequest
+{
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/packageFree/list" params:@{@"recommendType":@"1"} cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSArray *arr = result[@"data"][@"rows"];
+                    
+                    self.dataArr = [POS_RootViewModel mj_objectArrayWithKeyValuesArray:arr];
+                    
+                    //更新tableView高度
+                    if (self.dataArr.count == 0) {
+                        [self.recommendGoodTableView mas_updateConstraints:^(MASConstraintMaker *make) {
+                            make.height.mas_equalTo(0);
+                        }];
+                    } else {
+                        [self.recommendGoodTableView mas_updateConstraints:^(MASConstraintMaker *make) {
+                            make.height.mas_equalTo(AD_HEIGHT(28)+AD_HEIGHT(89)*self.dataArr.count);
+                        }];
+                    }
+                    
+                    [self.recommendGoodTableView reloadData];
+                }
+            }
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
+#pragma mark ---- 计算底部金额 ----
+- (void)getTaoCanPriceRequest
+{
+    NSDictionary *dict = @{
+                           @"userid":@"1",
+                           @"pkgPrdIds":IF_NULL_TO_STRING(self.model.ID),
+                           @"pkgPrdTypes":@"1",
+                           @"counts":[NSString stringWithFormat:@"%li",self.model.goodCount+1],
+                           @"operation":@"1"
+                           };
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/cart/calculate" params:dict cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                self.goodPriceLabel.text = [NSString stringWithFormat:@"￥%@",result[@"data"][@"totalPrice"]];
+                
+            }
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
+
+#pragma mark ---- 加入购物车接口 ----
+- (void)addShopCarwithBtn:(UIButton *)cellBtn
+{
+    NSDictionary *dict = @{
+                           @"userid":@"1",
+                           @"pkgPrdId":IF_NULL_TO_STRING(self.model.ID),
+                           @"pkgPrdType":@"1",
+                           @"count":[NSString stringWithFormat:@"%li",self.model.goodCount+1],
+                           @"operation":@"1"
+                           };
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/cart/save" params:dict cookie:nil result:^(bool success, id result) {
+        cellBtn.userInteractionEnabled = YES;
+        if (success) {
+            if ([result[@"code"]integerValue] == 0) {
+                HUD_SUCCESS(@"成功加入购物车");
+               //发送通知 更改nav的购物车数量
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"changeShopCarCount" object:nil userInfo:@{@"goodCount":[NSString stringWithFormat:@"%li",self.model.goodCount +1]}];
+            } else {
+                HUD_ERROR(@"加入购物车失败，请稍后重试！");
+            }
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
+#pragma mark ---- 更新ui ----
+- (void)updateUI
+{
+    [self.mainScrollView layoutIfNeeded];
+    [self.imageDetailView layoutIfNeeded];
+    
+    self.mainScrollView.contentSize =  CGSizeMake(ScreenWidth, CGRectGetMaxY(self.imageDetailView.frame)+20);
 }
 @end

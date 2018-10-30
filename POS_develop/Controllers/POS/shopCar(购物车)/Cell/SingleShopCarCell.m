@@ -7,6 +7,7 @@
 //
 
 #import "SingleShopCarCell.h"
+#import "ShopCar_ProductModel.h"
 @interface SingleShopCarCell ()
 @property (nonatomic, weak) UIButton *selectedBtn;
 @property (nonatomic, weak) UIImageView *myImageView;
@@ -45,12 +46,12 @@
         make.size.mas_offset(CGSizeMake(AD_HEIGHT(15), AD_HEIGHT(15)));
         
         [btn setImage:ImageNamed(@"图层4拷贝") forState:UIControlStateSelected];
-        
+        [btn addTarget:self action:@selector(clickHeaderSelected:) forControlEvents:UIControlEventTouchUpInside];
+
     }];
     self.selectedBtn = selectedBtn;
     
     UIImageView *myImageView = [[UIImageView alloc] init];
-    myImageView.image = ImageNamed(@"图层7");
     [self.contentView addSubview:myImageView];
     self.myImageView = myImageView;
     [_myImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -65,7 +66,6 @@
         make.top.offset(AD_HEIGHT(14));
         
         view.textAlignment = NSTextAlignmentLeft;
-        view.text = @"创业包（立刷999）";
     }];
     self.titleLabel = titleLabel;
     
@@ -73,7 +73,6 @@
         make.top.equalTo(self.titleLabel.mas_bottom).offset(AD_HEIGHT(9));
         make.left.equalTo(self.titleLabel.mas_left);
         
-        view.text = @"￥550";
     }];
     self.amountLabel = amountLabel;
     
@@ -142,15 +141,49 @@
     }];
 }
 
-
+#pragma mark ---- 点击头部选中 ----
+- (void)clickHeaderSelected:(UIButton *)btn
+{
+    btn.selected = !btn.selected;
+    
+    self.productM.isSelected = !self.productM.isSelected;
+    if (self.clickSelectedBtn) {
+        self.clickSelectedBtn();
+    }
+}
 #pragma mark ---- 减 ----
 - (void)clickSubtractbtn
 {
+    if (self.productM.goodCount == 0) {
+        HUD_TIP(@"数量最少为1");
+        return;
+    }
+    if (self.productM.goodCount > 0) {
+        self.productM.goodCount --;
+    }
     
+    self.skuCountLabel.text = [NSString stringWithFormat:@"%li",self.productM.goodCount+1];
 }
 #pragma mark ---- 加 ----
 - (void)clickAddbtn
 {
+    self.productM.goodCount ++;
     
+    self.skuCountLabel.text = [NSString stringWithFormat:@"%li",self.productM.goodCount+1];
+    
+}
+
+- (void)setProductM:(ShopCar_ProductModel *)productM
+{
+    if (productM) {
+        _productM = productM;
+        
+        self.amountLabel.text = [NSString stringWithFormat:@"￥%@", productM.posPrice];
+        [self.myImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://106.14.7.85:9000%@",productM.productImg]]];
+        self.titleLabel.text = productM.posBrandName;
+        self.skuCountLabel.text = [NSString stringWithFormat:@"%li",productM.goodCount +1];
+        self.selectedBtn.selected = productM.isSelected;
+
+    }
 }
 @end

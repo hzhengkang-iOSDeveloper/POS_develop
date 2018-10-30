@@ -226,10 +226,6 @@
         [attriStr addAttribute:NSForegroundColorAttributeName value:CF52542 range:NSMakeRange(5, tmpStr.length-5)];
         self.recommendRateLabel.attributedText = attriStr;
         
-//        if (posRootModel.goodCount == 0) {
-//            _skuCount = 1;
-//        }
-        
         self.skuCountLabel.text = [NSString stringWithFormat:@"%li",posRootModel.goodCount +1];
     }
 }

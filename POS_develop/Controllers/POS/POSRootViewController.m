@@ -178,7 +178,7 @@
     NSDictionary *dict = @{
                            @"userid":IF_NULL_TO_STRING(manager.userInfo.userId),
                            @"pkgPrdId":IF_NULL_TO_STRING(posRootM.ID),
-                           @"pkgPrdType":@"0",
+                           @"pkgPrdType":@"1",
                            @"count":[NSString stringWithFormat:@"%li",posRootM.goodCount+1],
                            @"operation":@"1"
                            };

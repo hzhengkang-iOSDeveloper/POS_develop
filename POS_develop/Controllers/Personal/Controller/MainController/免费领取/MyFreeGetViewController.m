@@ -10,6 +10,7 @@
 #import "MyFreeGetRootViewController.h"
 @interface MyFreeGetViewController ()<WMPageControllerDelegate,WMPageControllerDataSource>
 @property (nonatomic, strong, readwrite) WMPageController* pageController;//pageControl
+@property (nonatomic, copy) NSString *podId;
 
 @end
 
@@ -49,22 +50,7 @@
 
 - (__kindof UIViewController *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index {
     MyFreeGetRootViewController* controller = [[MyFreeGetRootViewController alloc]init];
-    //    switch (index) {
-    //        case 0:{
-    //            controller.fileType = ARMFileTypeAll;
-    //        }
-    //            break;
-    //        case 1:{
-    //            controller.fileType = ARMFileTypeAudio;
-    //        }
-    //            break;
-    //        case 2:{
-    //            controller.fileType = ARMFileTypeTxt;
-    //        }
-    //            break;
-    //        default:
-    //            break;
-    //    }
+
     return controller;
 }
 
@@ -88,5 +74,26 @@
 - (CGRect)pageController:(nonnull WMPageController *)pageController preferredFrameForMenuView:(nonnull WMMenuView *)menuView {
     return CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(36));
 }
-
+#pragma mark ---- 获取id ----
+- (void)getProductIdRequest
+{
+    [[HPDConnect connect] PostNetRequestMethod:[NSString stringWithFormat:@"api/trans/product/list?chargeType=%@",@"1"] params:nil cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSArray *arr = result[@"data"][@"rows"];
+                    if (arr.count > 0) {
+                        NSDictionary *posDic = arr.firstObject;
+                        self.podId = [posDic objectForKey:@"id"];
+                        
+                        [self.pageController reloadData];
+                    }
+                }
+            }
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+    
+}
 @end

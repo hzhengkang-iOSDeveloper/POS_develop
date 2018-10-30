@@ -7,8 +7,8 @@
 //
 
 #import "RegisterViewController.h"
-
 #import "HDeviceIdentifier.h"
+
 @interface RegisterViewController () {
 }
 @property (nonatomic, strong) UITextField *telephoneTF;

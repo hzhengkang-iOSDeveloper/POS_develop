@@ -33,6 +33,20 @@
     
     [self getProductIdRequest];
     [self creatSelectBillStatus];
+    
+    //接收通知
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeGoodCarCount:) name:@"changeShopCarCount" object:nil];
+}
+
+#pragma mark ---- 处理购物车label数量 ----
+- (void)changeGoodCarCount:(NSNotification *)notif
+{
+    if ([notif.userInfo isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *dict = notif.userInfo;
+        self.cartNumLabel.hidden = NO;
+        self.cartNum = self.cartNum + [[dict objectForKey:@"goodCount"]integerValue];
+        self.cartNumLabel.text = [NSString stringWithFormat:@"%ld",(long)self.cartNum];
+    }
 }
 #pragma mark - nav购物车&更多按钮
 - (NSArray *)rightItems {
@@ -176,5 +190,12 @@
         NSLog(@"result ------- %@", result);
     }];
     
+}
+
+
+#pragma mark ---- 移除通知 ----
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"changeShopCarCount" object:nil];
 }
 @end

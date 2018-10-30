@@ -1,8 +1,8 @@
 //
-//  POS_RootViewModel.h
+//  ShopCar_PackageModel.h
 //  POS_develop
 //
-//  Created by 胡正康 on 2018/10/29.
+//  Created by 胡正康 on 2018/10/30.
 //  Copyright © 2018 sunyn. All rights reserved.
 //
 
@@ -10,8 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface POS_RootViewModel : NSObject
+@interface ShopCar_PackageModel : NSObject
 @property (nonatomic,assign)NSUInteger goodCount;//记录商品增减数量
+@property (nonatomic, assign) BOOL isSelected;//是否被选中
 @property (nonatomic, copy) NSString *h5Url;
 @property (nonatomic, copy) NSString *ID;
 @property (nonatomic, copy) NSString *tbProductId;
@@ -27,10 +28,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *deleteflag;
 @property (nonatomic, copy) NSString *recommendType;
 @property (nonatomic, copy) NSString *countInPackage;
-@property (nonatomic, strong) NSArray *packageFreeItemDOList;
+@property (nonatomic, strong) NSArray *packageChargeItemDOList;
 @end
 
-@interface POS_RootPackageFreeModel : NSObject
+@interface ShopCar_PackageChargeItemModel : NSObject
 @property (nonatomic, copy) NSString *ID;
 @property (nonatomic, copy) NSString *tbPkgFreeId;
 @property (nonatomic, copy) NSString *tbProductId;
@@ -43,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSDictionary *productDO;
 @end
 
-@interface POS_RootProductDOModel : NSObject
+@interface ShopCar_PackageProductDOModel : NSObject
 @property (nonatomic, copy) NSString *ID;
 @property (nonatomic, copy) NSString *posBrandNo;
 @property (nonatomic, copy) NSString *posBrandName;
@@ -62,4 +63,5 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *updatetime;
 @property (nonatomic, copy) NSString *deleteflag;
 @end
+
 NS_ASSUME_NONNULL_END

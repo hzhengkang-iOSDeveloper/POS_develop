@@ -8,6 +8,7 @@
 
 #import "ShopCarMainCell.h"
 #import "ShopCarTableViewCell.h"
+#import "ShopCar_PackageModel.h"
 @interface ShopCarMainCell ()<UITableViewDataSource,UITableViewDelegate>
 {
     NSUInteger _skuCount;//记录sku 数量
@@ -20,8 +21,17 @@
 @property (nonatomic, weak) UILabel *totalPriceLabel;//总价
 //商品增减数量
 @property (nonatomic, weak) UILabel *skuCountLabel;
+@property (nonatomic, strong) NSMutableArray *dataArr;
+
 @end
 @implementation ShopCarMainCell
+- (NSMutableArray *)dataArr
+{
+    if (!_dataArr) {
+        _dataArr = [NSMutableArray array];
+    }
+    return _dataArr;
+}
 +(instancetype)cellWithTableView:(UITableView *)tableView{
     static NSString *identifier = @"ShopCarMainCell";
     ShopCarMainCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
@@ -49,8 +59,6 @@
 
     self.myTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     self.myTableView.scrollEnabled = NO;
-    self.myTableView.tableHeaderView = [self creatHeader];
-    self.myTableView.tableFooterView =  [self creatFooter];
     self.myTableView.backgroundColor = WhiteColor;
     self.myTableView.delegate = self;
     self.myTableView.dataSource = self;
@@ -77,6 +85,9 @@
         make.size.mas_offset(CGSizeMake(AD_HEIGHT(15), AD_HEIGHT(15)));
         
         [btn setImage:ImageNamed(@"图层4拷贝") forState:UIControlStateSelected];
+        [btn addTarget:self action:@selector(clickHeaderSelected:) forControlEvents:UIControlEventTouchUpInside];
+
+        btn.selected = self.posRootViewM.isSelected;
         
     }];
     self.selectedBtn = selectedBtn;
@@ -88,7 +99,7 @@
         make.centerY.equalTo(weakSelf.selectedBtn.mas_centerY);
         
         view.textAlignment = NSTextAlignmentLeft;
-        view.text = @"双喜临门套餐";
+        view.text = self.posRootViewM.packageName;
     }];
     self.taoCanNameLabel = taoCanNameLabel;
     
@@ -108,7 +119,7 @@
         make.left.offset(AD_HEIGHT(15));
         make.centerY.offset(0);
         
-        view.text = @"￥230";
+        view.text = [NSString stringWithFormat:@"￥%@",self.posRootViewM.packagePrice];
     }];
     self.discountPriceLabel = discountPriceLabel;
     
@@ -118,8 +129,9 @@
         make.centerY.offset(0);
         
         //中划线
+        NSString *str = [NSString stringWithFormat:@"￥%@",self.posRootViewM.originPrice];
         NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
-        NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:@"￥560.00" attributes:attribtDic];
+        NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:str attributes:attribtDic];
         // 赋值
         view.attributedText = attribtStr;
     }];
@@ -173,7 +185,8 @@
         make.height.mas_equalTo(AD_HEIGHT(26));
         make.top.offset(0);
         
-        view.text  = @"1";
+        view.text = [NSString stringWithFormat:@"%li",self.posRootViewM.goodCount +1];
+
         view.textAlignment = NSTextAlignmentCenter;
         
     }];
@@ -186,44 +199,45 @@
 #pragma mark ---- 减 ----
 - (void)clickSubtractbtn
 {
-    if (_skuCount == 1) {
+    if (self.posRootViewM.goodCount == 0) {
         HUD_TIP(@"数量最少为1");
         return;
     }
-    if (_skuCount > 1) {
-        _skuCount --;
+    if (self.posRootViewM.goodCount > 0) {
+        self.posRootViewM.goodCount --;
     }
     
-    self.skuCountLabel.text = [NSString stringWithFormat:@"%li",_skuCount];
+    self.skuCountLabel.text = [NSString stringWithFormat:@"%li",self.posRootViewM.goodCount+1];
 }
 #pragma mark ---- 加 ----
 - (void)clickAddbtn
 {
-    if (_skuCount == 10) {
-        HUD_TIP(@"数量已超上限");
-        return;
-    }
-    if (_skuCount <10) {
-        _skuCount ++;
-    }
-    self.skuCountLabel.text = [NSString stringWithFormat:@"%li",_skuCount];
+    self.posRootViewM.goodCount ++;
+    
+    self.skuCountLabel.text = [NSString stringWithFormat:@"%li",self.posRootViewM.goodCount+1];
     
 }
 #pragma mark ---- 点击头部选中 ----
 - (void)clickHeaderSelected:(UIButton *)btn
 {
     btn.selected = !btn.selected;
+    
+    self.posRootViewM.isSelected = !self.posRootViewM.isSelected;
+    if (self.CaluteMoneyHandler) {
+        self.CaluteMoneyHandler();
+    }
 }
 
 
 
 #pragma mark -- tableView代理数据源方法
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 2;
+    return self.dataArr.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     ShopCarTableViewCell *cell = [ShopCarTableViewCell cellWithTableView:tableView];
+    cell.packageM = self.dataArr[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     
@@ -247,5 +261,20 @@
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     
     return [UIView new];
+}
+
+- (void)setPosRootViewM:(ShopCar_PackageModel *)posRootViewM
+{
+    if (posRootViewM) {
+        _posRootViewM = posRootViewM;
+        
+        if (self.dataArr.count >0) {
+            [self.dataArr removeAllObjects];
+        }
+        self.myTableView.tableHeaderView = [self creatHeader];
+        self.myTableView.tableFooterView =  [self creatFooter];
+        [self.dataArr addObjectsFromArray:posRootViewM.packageChargeItemDOList];
+        [self.myTableView reloadData];
+    }
 }
 @end

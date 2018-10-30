@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MyFreeGetRootViewController : BaseSonViewController
+@property (nonatomic, copy) NSString *podId;
 
 @end
 

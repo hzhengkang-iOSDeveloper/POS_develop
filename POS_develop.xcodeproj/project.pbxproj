@@ -172,6 +172,8 @@
 		50C5449C2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C5449A2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.m */; };
 		50D4449C215F0DF100AE6219 /* PD_BillDetailComfirInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D4449B215F0DF100AE6219 /* PD_BillDetailComfirInfoView.m */; };
 		50DAAF4C216A20470060EBBC /* DelegateManagerEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DAAF4B216A20470060EBBC /* DelegateManagerEditCell.m */; };
+		50DDE09A218846FD007F29E3 /* ShopCar_ProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DDE099218846FD007F29E3 /* ShopCar_ProductModel.m */; };
+		50DDE0A02188752C007F29E3 /* ShopCar_PackageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DDE09F2188752C007F29E3 /* ShopCar_PackageModel.m */; };
 		50E0C99F216EE88C0079ABF2 /* POS_ShopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E0C99E216EE88C0079ABF2 /* POS_ShopDetailViewController.m */; };
 		50E0C9A2216EF57C0079ABF2 /* SLGoodDetailImageDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E0C9A0216EF57C0079ABF2 /* SLGoodDetailImageDetailView.m */; };
 		50E0C9A8216F1FFF0079ABF2 /* POS_ShopDetailInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E0C9A7216F1FFF0079ABF2 /* POS_ShopDetailInfoView.m */; };
@@ -658,6 +660,10 @@
 		50D4449B215F0DF100AE6219 /* PD_BillDetailComfirInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillDetailComfirInfoView.m; sourceTree = "<group>"; };
 		50DAAF4A216A20470060EBBC /* DelegateManagerEditCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelegateManagerEditCell.h; sourceTree = "<group>"; };
 		50DAAF4B216A20470060EBBC /* DelegateManagerEditCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DelegateManagerEditCell.m; sourceTree = "<group>"; };
+		50DDE098218846FD007F29E3 /* ShopCar_ProductModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopCar_ProductModel.h; sourceTree = "<group>"; };
+		50DDE099218846FD007F29E3 /* ShopCar_ProductModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopCar_ProductModel.m; sourceTree = "<group>"; };
+		50DDE09E2188752C007F29E3 /* ShopCar_PackageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopCar_PackageModel.h; sourceTree = "<group>"; };
+		50DDE09F2188752C007F29E3 /* ShopCar_PackageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopCar_PackageModel.m; sourceTree = "<group>"; };
 		50E0C99D216EE88C0079ABF2 /* POS_ShopDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POS_ShopDetailViewController.h; sourceTree = "<group>"; };
 		50E0C99E216EE88C0079ABF2 /* POS_ShopDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = POS_ShopDetailViewController.m; sourceTree = "<group>"; };
 		50E0C9A0216EF57C0079ABF2 /* SLGoodDetailImageDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLGoodDetailImageDetailView.m; sourceTree = "<group>"; };
@@ -1792,6 +1798,10 @@
 			children = (
 				50F2D7FD217DCF1100749C85 /* ShopCarModel.h */,
 				50F2D7FE217DCF1100749C85 /* ShopCarModel.m */,
+				50DDE098218846FD007F29E3 /* ShopCar_ProductModel.h */,
+				50DDE099218846FD007F29E3 /* ShopCar_ProductModel.m */,
+				50DDE09E2188752C007F29E3 /* ShopCar_PackageModel.h */,
+				50DDE09F2188752C007F29E3 /* ShopCar_PackageModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2862,6 +2872,7 @@
 				787FFCA1215232E900318BBC /* TransactionDetailCell.m in Sources */,
 				7888F3592147C32C00AAC8B0 /* UIViewController+BackButtonHandler.m in Sources */,
 				50893769215648CB007C6239 /* PosHomePageHeaderView.m in Sources */,
+				50DDE09A218846FD007F29E3 /* ShopCar_ProductModel.m in Sources */,
 				259646E62158E1ED00E516BF /* SeparateQueryMainView.m in Sources */,
 				50BD2AC621627870008D201B /* TerminalSelectMainView.m in Sources */,
 				2521FF4B2179F08100B02F7F /* PackageChargeListModel.m in Sources */,
@@ -3110,6 +3121,7 @@
 				788683EF2174AB6D00804F85 /* MessageListModel.m in Sources */,
 				7888F3B12147C33900AAC8B0 /* UIColor+HEXString.m in Sources */,
 				786AD0E1215A2C46005D7363 /* XLBasePageController.m in Sources */,
+				50DDE0A02188752C007F29E3 /* ShopCar_PackageModel.m in Sources */,
 				78765A8C214A6AB200261ED3 /* LoginTypeViewController.m in Sources */,
 				501C6AF52181A63000927438 /* PD_BillDetailSkuCell.m in Sources */,
 				7888F3C52147C33900AAC8B0 /* UIButton+ImageTitleSpacing.m in Sources */,

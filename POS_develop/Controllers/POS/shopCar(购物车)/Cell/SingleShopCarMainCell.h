@@ -11,7 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SingleShopCarMainCell : UITableViewCell
+@property (nonatomic, strong) NSMutableArray *dataArr;
 +(instancetype)cellWithTableView:(UITableView *)tableView;
+@property (nonatomic, copy) void (^clickCaluteMoney)(void);
 @end
 
 NS_ASSUME_NONNULL_END
