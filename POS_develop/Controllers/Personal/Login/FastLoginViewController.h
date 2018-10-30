@@ -9,5 +9,4 @@
 #import "BaseSonViewController.h"
 
 @interface FastLoginViewController : BaseSonViewController
-
 @end

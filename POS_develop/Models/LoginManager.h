@@ -27,14 +27,16 @@ extern NSString *const kShouldShowLoginViewControllerLogout;
 }
 
 @property (nonatomic, strong, readonly) UserInfo *userInfo;
-
 @property (nonatomic, strong, readonly) NSHTTPCookie *userCookie;
 @property (nonatomic, readonly, getter = wasLogin) BOOL wasLogin;
 @property (nonatomic, strong) NSArray *userCookies;
 
 + (LoginManager *)getInstance;
-
+//账户密码登录
 - (void)loginWithAccount:(NSString *)account andPassword:(NSString *)password result:(HPDLoginResult)loginResult;
+
+//快捷登录
+- (void)loginFastWithAccount:(NSString *)account andSmsCode:(NSString *)smsCode result:(HPDLoginResult)loginResult;
 
 - (void)refreshCookie;
 
@@ -47,4 +49,5 @@ extern NSString *const kShouldShowLoginViewControllerLogout;
 - (void)loginFaild:(NSDictionary *)result;
 
 - (void)cleanUserInfo;
+
 @end

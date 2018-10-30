@@ -8,8 +8,8 @@
 
 #import "RegisterViewController.h"
 
+
 @interface RegisterViewController () {
-    UIActivityIndicatorView *_aview;
 }
 @property (nonatomic, strong) UITextField *telephoneTF;
 @property (nonatomic, strong) UITextField *codeTF;
@@ -21,6 +21,7 @@
 @property (nonatomic, strong) UIButton *selectBtn;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, assign) int timeSum;
+@property (nonatomic, strong) UIActivityIndicatorView *aview;
 @end
 
 @implementation RegisterViewController
@@ -29,6 +30,7 @@
     [super viewDidLoad];
     self.navigationItemTitle = @"我要注册";
     self.view.backgroundColor = WhiteColor;
+    NSLog(@"%@", [HDeviceIdentifier deviceIdentifier]);
     [self initUI];
 }
 
@@ -215,21 +217,18 @@
     }
     _aview = [GlobalMethod addUIActivityIndicator:self.codeTimeBtn];
     //MARK: 接口获取短信验证码
-    //    [[HPDConnect connect] ansySoapUintMethod:@"SendMessage_NoLogin" params:@{@"Mobile_Phone" :[self.telephoneTF.text stringByReplacingOccurrencesOfString:@" " withString:@"" ], @"SmsType" : @(0)} cookie:[[LoginManager getInstance] userCookie] result:^(bool success, NSDictionary *result) {
-    //        [self.codeTimeBtn setTitle:@"重发" forState:UIControlStateNormal];
-    [_aview stopAnimating];
-    //        if (success) {
-    //            if ([[result valueForKeyPath:kSoapResponseStatu] intValue] == 1) {
-    self.timeSum = 60;
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerChange:) userInfo:nil repeats:YES];
-    self.codeTimeBtn.userInteractionEnabled = NO;
-    //            }else {
-    //                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
-    //
-    //                }];
-    //            }
-    //        }
-    //    }];
+    [[HPDConnect connect] GetNetRequestMethod:[NSString stringWithFormat:@"register/getsmscode?mobile=%@",self.telephoneTF.text] params:nil cookie:nil result:^(bool success, id result) {
+        [self.aview stopAnimating];
+        if (success) {
+            if ([result[@"msg"] isEqualToString:@"操作成功"]) {
+                self.timeSum = 60;
+                self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerChange:) userInfo:nil repeats:YES];
+                self.codeTimeBtn.userInteractionEnabled = NO;
+            }
+        }
+    }];
+    
+
 }
 -(void)timerChange:(NSTimer*)timer
 {
@@ -273,38 +272,23 @@
         HUD_TIP(@"密码不能小于8位");
         return;
     }
-    //    [[LoginManager getInstance] loginWithAccount:[self.telephoneTF.text stringByReplacingOccurrencesOfString:@" " withString:@""] andPassword:self.codeTF.text result:^(BOOL success, NSDictionary *result) {
-    //        NSLog(@"%@",result);
-    [_aview stopAnimating];
-    [self.registerBtn setTitle:@"立即注册" forState:UIControlStateNormal];
-    //        if (success) {
-    //
-    //            [[HPDProgress defaultProgressHUD]showSimpleViewOnView:self.view message:@"登录成功" hideAfterDelay:1 complete:^{
-    ////                if (self.loginSucceed) {
-    ////                    self.loginSucceed();
-    ////                }
-    //                [self dismissViewControllerAnimated:YES completion:nil];
-    //            }];
-    //        }else {
-    //            [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
-    //
-    //            }];
-    //        }
-    //
-    //    }];
-    
-    
-}
-- (void)loginSuccess:(BOOL)success Result:(NSDictionary *)result
-{
-    
-    [_aview stopAnimating];
-    [self.registerBtn setTitle:@"立即注册" forState:UIControlStateNormal];
-    
-    if (success) {
-        
+    if (!self.selectBtn.selected) {
+        HUD_TIP(@"请先同意“服务条款”和“隐私权相关政策”");
+        return;
     }
+    [[HPDConnect connect] PostNetRequestMethod:@"register" params:@{@"deviceId":[HDeviceIdentifier deviceIdentifier], @"invitedCode":self.recommendTF.text, @"mobile":self.passwordTF.text, @"password":self.passwordTF.text, @"smsCode":self.codeTF.text} cookie:nil result:^(bool success, id result) {
+        [self.aview stopAnimating];
+        [self.registerBtn setTitle:@"立即注册" forState:UIControlStateNormal];
+        if (success) {
+            
+        }
+        
+        
+        
+    }];
+
     
 }
+
 
 @end

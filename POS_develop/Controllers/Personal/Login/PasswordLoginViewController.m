@@ -9,9 +9,12 @@
 #import "PasswordLoginViewController.h"
 #import "AFNetworking.h"
 
-@interface PasswordLoginViewController ()
+@interface PasswordLoginViewController () {
+    UIActivityIndicatorView *_aview;
+}
 @property (nonatomic, strong) UITextField *telephoneTF;
 @property (nonatomic, strong) UITextField *passwordTF;
+@property (nonatomic, strong) UIButton *loginBtn;
 @end
 
 @implementation PasswordLoginViewController
@@ -90,6 +93,7 @@
         make.size.mas_offset(CGSizeMake(ScreenWidth - FITiPhone6(30), FITiPhone6(41)));
     }];
     UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.loginBtn = loginBtn;
     loginBtn.backgroundColor = C1E95F9;
     [loginBtn setTitle:@"登录" forState:UIControlStateNormal];
     [loginBtn setTitleColor:WhiteColor forState:UIControlStateNormal];
@@ -110,32 +114,27 @@
 }
 #pragma mark ---- 登录 ----
 - (void)loginClick {
-//    [[HPDConnect connect] webservicesAFNetPOSTMethod:@"login" params:@{@"mobile":self.telephoneTF.text, @"password":self.passwordTF.text} cookie:[[LoginManager getInstance] userCookie] result:^(bool success, id result) {
-//
-//        NSLog(@"%@", result);
-//    }];
+    [self.view endEditing:YES];
+    _aview = [GlobalMethod addUIActivityIndicator:self.loginBtn];
     
-    
-    AFHTTPSessionManager *session = [self GetAFHTTPSessionManagerObject];
-    NSDictionary *dit = @{@"mobile":self.telephoneTF.text, @"password":self.passwordTF.text};
-    [session POST:@"http://106.14.7.85:8000/login"  parameters:dit success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
-//        result(YES,responseObject);
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//        if (![self wasNetworkValid]) {
-//            [SVProgressHUD showInfoWithStatus:@"网络繁忙，请稍后~"];
-//#if DEBUG
-//            NSLog(@"--->net work can not used!");
-//#endif
-//            result(NO, nil);
-//            return;
-//        }
-//        result(NO,error);
+    [[LoginManager getInstance] loginWithAccount:self.telephoneTF.text  andPassword:self.passwordTF.text result:^(BOOL success, NSDictionary *result) {
+        [self loginSuccess:success Result:result];
     }];
-    
 }
 
+
+- (void)loginSuccess:(BOOL)success Result:(NSDictionary *)result
+{
+    [_aview stopAnimating];
+    [self.loginBtn setTitle:@"登录" forState:UIControlStateNormal];
+    if (success) {
+        HUD_TIP(@"登录成功");
+        //            [[HPDProgress defaultProgressHUD]showSimpleViewOnView:self.view message:@"登录成功" hideAfterDelay:1 complete:^{
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+        //            }];
+    }
+}
 -(AFHTTPSessionManager*)GetAFHTTPSessionManagerObject{
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
     session.requestSerializer = [AFJSONRequestSerializer serializer];
