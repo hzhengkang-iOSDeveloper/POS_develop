@@ -280,7 +280,8 @@
 
 #pragma mark ---- 提现 ----
 - (void)loadBagWithdrawSaveRequest {
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/bagWithdraw/save" params:@{@"userid":@"1", @"bankUser":bankUser, @"bankUserNo":bankUserNo, @"bankProvince":bankProvince, @"bankCity":bankCity, @"bankBranchName":bankBranchName, @"bankUserMp":bankUserMp, @"amount":amount, @"withDrawPasswd":withDrawPasswd, @"bankUserId":bankUserId} cookie:nil result:^(bool success, id result) {
+    LoginManager *manager = [LoginManager getInstance];
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/bagWithdraw/save" params:@{@"userid":IF_NULL_TO_STRING(manager.userInfo.userId), @"bankUser":bankUser, @"bankUserNo":bankUserNo, @"bankProvince":bankProvince, @"bankCity":bankCity, @"bankBranchName":bankBranchName, @"bankUserMp":bankUserMp, @"amount":amount, @"withDrawPasswd":withDrawPasswd, @"bankUserId":bankUserId} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"msg"] isEqualToString:@"success"]) {
                 HUD_TIP(@"提现成功");

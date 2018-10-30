@@ -59,6 +59,7 @@
         make.size.mas_offset(CGSizeMake(ScreenWidth, FITiPhone6(0.5)));
     }];
     self.telephoneTF = [[UITextField alloc] init];
+    self.telephoneTF.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.telephoneTF.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, FITiPhone6(5), 0)];
     self.telephoneTF.leftViewMode = UITextFieldViewModeAlways;
     self.telephoneTF.placeholder = @"请输入手机号";
@@ -78,6 +79,7 @@
         make.size.mas_offset(CGSizeMake(ScreenWidth - FITiPhone6(30), FITiPhone6(41)));
     }];
     self.codeTF = [[UITextField alloc] init];
+    self.codeTF.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.codeTF.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, FITiPhone6(5), 0)];
     self.codeTF.leftViewMode = UITextFieldViewModeAlways;
     self.codeTF.secureTextEntry = YES;
@@ -138,11 +140,14 @@
     //MARK: 接口获取短信验证码
     [[HPDConnect connect] GetNetRequestMethod:[NSString stringWithFormat:@"login/getsmscode?mobile=%@", self.telephoneTF.text] params:nil cookie:nil result:^(bool success, id result) {
         [self.aview stopAnimating];
+        [self.codeTimeBtn setTitle:@"重发" forState:UIControlStateNormal];
         if (success) {
             if ([result[@"msg"] isEqualToString:@"操作成功"]) {
                 self.timeSum = 60;
                 self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerChange:) userInfo:nil repeats:YES];
                 self.codeTimeBtn.userInteractionEnabled = NO;
+            }else{
+                HUD_TIP(result[@"msg"]);
             }
         }
         
@@ -172,11 +177,16 @@
         [self.aview stopAnimating];
         [self.loginBtn setTitle:@"登录" forState:UIControlStateNormal];
         if (success) {
-            HUD_TIP(@"登录成功");
-//            [[HPDProgress defaultProgressHUD]showSimpleViewOnView:self.view message:@"登录成功" hideAfterDelay:1 complete:^{
-               
-                [self dismissViewControllerAnimated:YES completion:nil];
-//            }];
+            if ([result[@"msg"] isEqualToString:@"操作成功"]) {
+                HUD_TIP(@"登录成功");
+                //            [[HPDProgress defaultProgressHUD]showSimpleViewOnView:self.view message:@"登录成功" hideAfterDelay:1 complete:^{
+                
+                [self.navigationController popToRootViewControllerAnimated:YES];
+                //            }];
+            }else {
+                HUD_TIP(result[@"msg"]);
+            }
+            
         }
     }];
    

@@ -210,8 +210,10 @@
 
 #pragma mark ---- 接口 ----
 - (void)loadStatAchievementListRequest {
+    LoginManager *manager = [LoginManager getInstance];
+
     NSDate *date = [NSDate date];//当前时间
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"userid":@"1", @"startTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"endTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"dateType":@"0", @"statType":@"0"} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"userid":IF_NULL_TO_STRING(manager.userInfo.userId), @"startTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"endTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"dateType":@"0", @"statType":@"0"} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSArray class]]) {
                 NSArray *array = result[@"data"];
@@ -226,7 +228,7 @@
         }
         NSLog(@"result ------- %@", result);
     }];
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"userid":@"1", @"startTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"endTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"dateType":@"0", @"statType":@"1"} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"userid":IF_NULL_TO_STRING(manager.userInfo.userId), @"startTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"endTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"dateType":@"0", @"statType":@"1"} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSArray class]]) {
                 NSArray *array = result[@"data"];
@@ -241,7 +243,7 @@
         }
         NSLog(@"result ------- %@", result);
     }];
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"userid":@"1", @"startTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"endTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"dateType":@"0", @"statType":@"2"} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"userid":IF_NULL_TO_STRING(manager.userInfo.userId), @"startTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"endTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"dateType":@"0", @"statType":@"2"} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSArray class]]) {
                 NSArray *array = result[@"data"];
@@ -255,7 +257,7 @@
         }
         NSLog(@"result ------- %@", result);
     }];
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"userid":@"1", @"startTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"endTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"dateType":@"0", @"statType":@"3"} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"userid":IF_NULL_TO_STRING(manager.userInfo.userId), @"startTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"endTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"dateType":@"0", @"statType":@"3"} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSArray class]]) {
                 NSArray *array = result[@"data"];
@@ -269,7 +271,7 @@
         }
         NSLog(@"result ------- %@", result);
     }];
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"userid":@"1", @"startTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"endTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"dateType":@"0", @"statType":@"4"} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"userid":IF_NULL_TO_STRING(manager.userInfo.userId), @"startTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"endTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"dateType":@"0", @"statType":@"4"} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSArray class]]) {
                 NSArray *array = result[@"data"];
@@ -283,7 +285,7 @@
         }
         NSLog(@"result ------- %@", result);
     }];
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"userid":@"1", @"startTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"endTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"dateType":@"0", @"statType":@"5"} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"userid":IF_NULL_TO_STRING(manager.userInfo.userId), @"startTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"endTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"dateType":@"0", @"statType":@"5"} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSArray class]]) {
                 NSArray *array = result[@"data"];

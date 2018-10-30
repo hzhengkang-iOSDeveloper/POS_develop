@@ -207,7 +207,8 @@
 #pragma mark ---- 加入购物车 ----
 - (void)loadCartSaveRequest{
     //    PackageChargeListModel *model = self.dataArray[section];
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/cart/save" params:@{@"userid":@"1", @"pkgPrdId":self.myID, @"pkgPrdType":@"1", @"count":@"1"} cookie:nil result:^(bool success, id result) {
+    LoginManager *manager = [LoginManager getInstance];
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/cart/save" params:@{@"userid":IF_NULL_TO_STRING(manager.userInfo.userId), @"pkgPrdId":self.myID, @"pkgPrdType":@"1", @"count":@"1"} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"msg"] isEqualToString:@"success"]) {
                 HUD_SUCCESS(@"加入成功");

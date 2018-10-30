@@ -140,7 +140,8 @@
 
 #pragma mark ---- 接口 ----
 - (void)loadAddressRequest {
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/address/list" params:@{@"userid":@"1"} cookie:nil result:^(bool success, id result) {
+    LoginManager *manager = [LoginManager getInstance];
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/address/list" params:@{@"userid":IF_NULL_TO_STRING(manager.userInfo.userId)} cookie:nil result:^(bool success, id result) {
         [self.myAddressTableView.mj_header endRefreshing];
         NSArray *array = result[@"data"][@"rows"];
         if (self.dataArray.count > 0) {
@@ -153,7 +154,8 @@
     }];
 }
 - (void)loadUpdateAddressRequest:(UIButton *)sender WithID:(NSString *)ID {
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/address/update" params:@{@"userid":@"1", @"defaultFlag":sender.selected?@0:@1, @"id":ID} cookie:nil result:^(bool success, id result) {
+    LoginManager *manager = [LoginManager getInstance];
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/address/update" params:@{@"userid":IF_NULL_TO_STRING(manager.userInfo.userId), @"defaultFlag":sender.selected?@0:@1, @"id":ID} cookie:nil result:^(bool success, id result) {
         [self.myAddressTableView reloadData];
         NSLog(@"result ------- %@", result);
     }];

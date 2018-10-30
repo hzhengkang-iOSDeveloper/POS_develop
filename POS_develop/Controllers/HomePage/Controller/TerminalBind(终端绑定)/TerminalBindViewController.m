@@ -18,6 +18,7 @@
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) NSMutableArray *listDataArray;
 @property (nonatomic, copy) NSString *agentId;
+@property (nonatomic, assign) NSUInteger arrC;
 @end
 
 @implementation TerminalBindViewController
@@ -37,6 +38,7 @@
     }];
     [self createTableView];
     [self loadAgentListRequest];
+    self.arrC = 0;
     
 }
 
@@ -107,7 +109,9 @@
 
 #pragma mark ---- 终端绑定 id 获取 ----
 - (void)loadAgentListRequest {
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agent/list" params:@{@"userid":@"1"} cookie:nil result:^(bool success, id result) {
+    LoginManager *manager = [LoginManager getInstance];
+
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agent/list" params:@{@"userid":IF_NULL_TO_STRING(manager.userInfo.userId)} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
@@ -124,7 +128,9 @@
 }
 #pragma mark ---- 终端绑定 ----
 - (void)loadAgentPosListRequest:(NSString *)agentId {
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agentPos/list" params:@{@"userid":@"1", @"agentId":agentId, @"bindFlag":@"0"} cookie:nil result:^(bool success, id result) {
+    LoginManager *manager = [LoginManager getInstance];
+
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agentPos/list" params:@{@"userid":IF_NULL_TO_STRING(manager.userInfo.userId), @"agentId":agentId, @"bindFlag":@"0"} cookie:nil result:^(bool success, id result) {
         [self.terminalBindTableView.mj_header endRefreshing];
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -137,7 +143,7 @@
                     
                     for (int i =0; i<array.count; i++) {
                         AgentPosListModel *model = [array objectAtIndex:i];
-                        [self loadPosGetRequest:[NSString stringWithFormat:@"%@", model.posId]];
+                        [self loadPosGetRequest:[NSString stringWithFormat:@"%@", model.posId] withArr:array];
                     }
                     
                 }
@@ -151,15 +157,19 @@
 }
 
 #pragma mark ---- 终端绑定get ----
-- (void)loadPosGetRequest:(NSString *)posID {
+- (void)loadPosGetRequest:(NSString *)posID  withArr:(NSArray *)arr{
     [[HPDConnect connect] PostNetRequestMethod:[NSString stringWithFormat:@"%@%@", @"api/trans/pos/get/", posID] params:nil cookie:nil result:^(bool success, id result) {
         [self.terminalBindTableView.mj_header endRefreshing];
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 
+                self.arrC ++;
                 PosGetModel *poslistModel = [PosGetModel mj_objectWithKeyValues:result[@"data"]];
                 [self.dataArray addObject:poslistModel];
-                [self.terminalBindTableView reloadData];
+                
+                if (self.arrC == arr.count) {
+                    [self.terminalBindTableView reloadData];
+                }
 
                 
             }

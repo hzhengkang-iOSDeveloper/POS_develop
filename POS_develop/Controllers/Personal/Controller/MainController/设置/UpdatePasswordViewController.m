@@ -46,7 +46,7 @@
 }
 #pragma mark ---- 确认修改 ----
 - (void)UpdateClick {
-    
+    [self loadChangepasswordRequest];
 }
 #pragma mark - UITableViewDataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -112,23 +112,26 @@
 #pragma mark ---- 获取验证码 ----
 - (void)getCode {
     [self.view endEditing:YES];
-    //MARK: 接口获取短信验证码
-    //    [[HPDConnect connect] ansySoapUintMethod:@"SendMessage_NoLogin" params:@{@"Mobile_Phone" :[self.telephoneTF.text stringByReplacingOccurrencesOfString:@" " withString:@"" ], @"SmsType" : @(0)} cookie:[[LoginManager getInstance] userCookie] result:^(bool success, NSDictionary *result) {
-    //        [self.codeTimeBtn setTitle:@"重发" forState:UIControlStateNormal];
-    //        if (success) {
-    //            if ([[result valueForKeyPath:kSoapResponseStatu] intValue] == 1) {
-    self.timeSum = 60;
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerChange:) userInfo:nil repeats:YES];
+    
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    UpdatePasswordTableViewCell *cell = [self.updatePasswordTableView cellForRowAtIndexPath:indexPath];
-    cell.getCodeBtn.userInteractionEnabled = NO;
-    //            }else {
-    //                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
-    //
-    //                }];
-    //            }
-    //        }
-    //    }];
+    UpdatePasswordTableViewCell *phoneCell =(UpdatePasswordTableViewCell *)[self.updatePasswordTableView cellForRowAtIndexPath:indexPath];
+
+    //MARK: 接口获取短信验证码
+    
+    [[HPDConnect connect] GetNetRequestMethod:[NSString stringWithFormat:@"changepassword/getsmscode?mobile=%@", phoneCell.contentTF.text] params:nil cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"msg"] isEqualToString:@"操作成功"]) {
+                self.timeSum = 60;
+                self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerChange:) userInfo:nil repeats:YES];
+                phoneCell.getCodeBtn.userInteractionEnabled = NO;
+            }else{
+                HUD_TIP(result[@"msg"]);
+            }
+            
+        }
+    }];
+
+  
 }
 -(void)timerChange:(NSTimer*)timer
 {
@@ -144,5 +147,20 @@
     }
 }
 
-
+- (void)loadChangepasswordRequest {
+    LoginManager *manager = [LoginManager getInstance];
+    [[HPDConnect connect]PostOtherNetRequestMethod:@"changepassword" params:@{@"newPwd":@"", @"smsCode":@"", @"userid":IF_NULL_TO_STRING(manager.userInfo.userId)} cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"msg"] isEqualToString:@"操作成功"]) {
+                HUD_TIP(@"修改成功，请重新登录！");
+                //做退出登录操作
+                
+                [self.navigationController popToRootViewControllerAnimated:YES];
+                
+            }else {
+                HUD_TIP(result[@"msg"]);
+            }
+        }
+    }];
+}
 @end

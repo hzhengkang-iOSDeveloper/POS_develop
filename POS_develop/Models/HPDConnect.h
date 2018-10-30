@@ -65,6 +65,7 @@ typedef void(^HPDRequestResultBlock)(bool success, NSDictionary *result);
 
 - (void)PostNetRequestMethod:(NSString *)method params:(NSDictionary*)params cookie:(NSHTTPCookie *)cookie result:(AFNetRequestResultBlock)result;
 
+- (void)PostOtherNetRequestMethod:(NSString *)method params:(NSDictionary*)params cookie:(NSHTTPCookie *)cookie result:(AFNetRequestResultBlock)result;
 
 - (void)GetNetRequestMethod:(NSString *)method params:(NSDictionary*)params cookie:(NSHTTPCookie *)cookie result:(AFNetRequestResultBlock)result;
 @end

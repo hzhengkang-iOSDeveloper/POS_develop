@@ -56,6 +56,7 @@
         make.size.mas_offset(CGSizeMake(ScreenWidth, FITiPhone6(0.5)));
     }];
     self.telephoneTF = [[UITextField alloc] init];
+    self.telephoneTF.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.telephoneTF.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, FITiPhone6(5), 0)];
     self.telephoneTF.leftViewMode = UITextFieldViewModeAlways;
     self.telephoneTF.placeholder = @"请输入手机号";
@@ -75,6 +76,8 @@
         make.size.mas_offset(CGSizeMake(ScreenWidth - FITiPhone6(30), FITiPhone6(41)));
     }];
     self.passwordTF = [[UITextField alloc] init];
+    self.passwordTF.secureTextEntry = YES;
+    self.passwordTF.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.passwordTF.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, FITiPhone6(5), 0)];
     self.passwordTF.leftViewMode = UITextFieldViewModeAlways;
     self.passwordTF.placeholder = @"请输入密码";
@@ -128,11 +131,15 @@
     [_aview stopAnimating];
     [self.loginBtn setTitle:@"登录" forState:UIControlStateNormal];
     if (success) {
-        HUD_TIP(@"登录成功");
-        //            [[HPDProgress defaultProgressHUD]showSimpleViewOnView:self.view message:@"登录成功" hideAfterDelay:1 complete:^{
-        
-        [self dismissViewControllerAnimated:YES completion:nil];
-        //            }];
+        if ([result[@"msg"] isEqualToString:@"操作成功"]) {
+            HUD_TIP(@"登录成功");
+            //            [[HPDProgress defaultProgressHUD]showSimpleViewOnView:self.view message:@"登录成功" hideAfterDelay:1 complete:^{
+            
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            //            }];
+        }else {
+            HUD_TIP(result[@"msg"]);
+        }
     }
 }
 -(AFHTTPSessionManager*)GetAFHTTPSessionManagerObject{

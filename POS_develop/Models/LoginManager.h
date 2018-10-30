@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "UserInfo.h"
-//#import "BankCardModel.h"
 
 typedef void(^HPDLoginResult)(BOOL success, NSDictionary *result);
 typedef void(^HPDLogoutResult)(BOOL success, NSDictionary *result);

@@ -361,8 +361,16 @@
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
 //    session.requestSerializer = [AFJSONRequestSerializer serializer];
     session.responseSerializer = [AFJSONResponseSerializer serializer];
-//    [session.requestSerializer setValue:@"multipart/form-data" forHTTPHeaderField:@"Content-Type"];
+//    [session.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [session.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    return session;
+}
+-(AFHTTPSessionManager*)OtherGetAFHTTPSessionManagerObject{
+    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+    session.requestSerializer = [AFJSONRequestSerializer serializer];
+    //    session.responseSerializer = [AFJSONResponseSerializer serializer];
+    [session.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    //    [session.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     return session;
 }
 //webservice 同步统一方法
@@ -455,6 +463,15 @@
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:params];
     [dict setObject:@"1" forKey:@"authCode"];
     [dict setObject:@"1" forKey:@"authUserId"];
+
+//    LoginManager *manager = [LoginManager getInstance];
+//    if (manager.userInfo.authCode != nil ) {
+//        [dict setObject:manager.userInfo.authCode forKey:@"authCode"];
+//    }
+//    if (manager.userInfo.userId != nil ) {
+//        [dict setObject:manager.userInfo.userId forKey:@"authUserId"];
+//    }
+
     return dict;
 }
 
@@ -480,11 +497,35 @@
 
     
 }
+//另外一个人写的接口头部session不一样，只能重新再写个方法了
+- (void)PostOtherNetRequestMethod:(NSString *)method params:(NSDictionary*)params cookie:(NSHTTPCookie *)cookie result:(AFNetRequestResultBlock)result {
+    AFHTTPSessionManager *session = [self OtherGetAFHTTPSessionManagerObject];
+    NSDictionary *dict = [self getRequestDic:params];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",BaseHeaderURL,method];
+    [session POST:urlStr parameters:dict progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        result(YES,responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (![self wasNetworkValid]) {
+            HUD_TIP(@"网络繁忙，请稍后~");
+#if DEBUG
+            NSLog(@"--->net work can not used!");
+#endif
+            result(NO, nil);
+            return;
+        }
+        result(NO,error);
+    }];
+    
+    
+}
 
 - (void)GetNetRequestMethod:(NSString *)method params:(NSDictionary*)params cookie:(NSHTTPCookie *)cookie result:(AFNetRequestResultBlock)result {
-    AFHTTPSessionManager *session = [self GetAFHTTPSessionManagerObject];
-    
-    [session GET:[NSString stringWithFormat:@"%@%@",BaseHeaderURL,method] parameters:@{@"str":[GlobalMethod GlobalStringWithDictionary:params]} progress:^(NSProgress * _Nonnull downloadProgress) {
+    AFHTTPSessionManager *session = [self OtherGetAFHTTPSessionManagerObject];
+    LoginManager *manager = [LoginManager getInstance];
+    NSString *urlStr = [NSString stringWithFormat:@"%@&authCode=%@&ahthUserId=%@",method,IF_NULL_TO_STRING(manager.userInfo.authCode), IF_NULL_TO_STRING(manager.userInfo.userId)];
+    [session GET:[NSString stringWithFormat:@"%@%@",BaseHeaderURL,urlStr] parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         result(YES,responseObject);

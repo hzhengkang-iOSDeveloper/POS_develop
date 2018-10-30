@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NSMutableArray *listDataArray;
 
 
+@property (nonatomic, assign) NSUInteger arrC;
 
 @end
 
@@ -33,6 +34,8 @@
     self.dataArray = [NSMutableArray array];
     self.listDataArray = [NSMutableArray array];
     [self createTableView];
+    self.arrC = 0;
+
 }
 
 - (void)createTableView {
@@ -150,7 +153,9 @@
 
 #pragma mark ---- 终端绑定 ----
 - (void)loadAgentPosListRequest{
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agentPos/list" params:@{@"userid":@"1", @"agentId":self.agentId, @"posSnNo":searchTF.text,@"bindFlag":@"0"} cookie:nil result:^(bool success, id result) {
+    LoginManager *manager = [LoginManager getInstance];
+
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agentPos/list" params:@{@"userid":IF_NULL_TO_STRING(manager.userInfo.userId), @"agentId":self.agentId, @"posSnNo":searchTF.text,@"bindFlag":@"0"} cookie:nil result:^(bool success, id result) {
         [self.searchTableView.mj_header endRefreshing];
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -165,7 +170,7 @@
 
                     for (int i =0; i<array.count; i++) {
 //                        AgentPosListModel *model = [array objectAtIndex:i];
-                        [self loadPosGetRequest:[NSString stringWithFormat:@"%@", [[array objectAtIndex:i] valueForKey:@"posId"]]];
+                        [self loadPosGetRequest:[NSString stringWithFormat:@"%@", [[array objectAtIndex:i] valueForKey:@"posId"]] withArr:array];
                     }
                     
                     
@@ -180,15 +185,19 @@
     }];
 }
 #pragma mark ---- 终端绑定get ----
-- (void)loadPosGetRequest:(NSString *)posID {
+- (void)loadPosGetRequest:(NSString *)posID  withArr:(NSArray *)arr{
     [[HPDConnect connect] PostNetRequestMethod:[NSString stringWithFormat:@"%@%@", @"api/trans/pos/get/", posID] params:nil cookie:nil result:^(bool success, id result) {
         [self.searchTableView.mj_header endRefreshing];
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 
+                self.arrC ++;
                 PosGetModel *poslistModel = [PosGetModel mj_objectWithKeyValues:result[@"data"]];
                 [self.dataArray addObject:poslistModel];
-                [self.searchTableView reloadData];
+                
+                if (self.arrC == arr.count) {
+                    [self.searchTableView reloadData];
+                }
                 
                 
             }

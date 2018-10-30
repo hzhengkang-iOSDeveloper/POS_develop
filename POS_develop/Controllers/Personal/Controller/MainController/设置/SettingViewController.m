@@ -246,7 +246,8 @@
 
 #pragma mark ---- 个人 用户信息 ----
 - (void)loadUserinfoRequest {
-    [[HPDConnect connect] PostNetRequestMethod:@"sys/user/userinfo" params:@{@"userid":@"1"} cookie:nil result:^(bool success, id result) {
+    LoginManager *manager = [LoginManager getInstance];
+    [[HPDConnect connect] PostNetRequestMethod:@"sys/user/userinfo" params:@{@"userid":IF_NULL_TO_STRING(manager.userInfo.userId)} cookie:nil result:^(bool success, id result) {
         if (success) {
             self.userInfoDict = result;
             

@@ -88,8 +88,9 @@
 
 #pragma mark ---- 激活返现查询 ----
 - (void)loadActivationRebateListRequest:(NSString *)orderBy {
-    
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/activationRebate/list" params:@{@"userid":@"1",@"startTime":defaultObject(self.startTime, @""), @"endTime":defaultObject(self.endTime, @""), @"agentType":self.agentType, @"orderBy":orderBy} cookie:nil result:^(bool success, id result) {
+    LoginManager *manager = [LoginManager getInstance];
+
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/activationRebate/list" params:@{@"userid":IF_NULL_TO_STRING(manager.userInfo.userId),@"startTime":defaultObject(self.startTime, @""), @"endTime":defaultObject(self.endTime, @""), @"agentType":self.agentType, @"orderBy":orderBy} cookie:nil result:^(bool success, id result) {
         [self.myTable.mj_header endRefreshing];
         self.index = orderBy;
         if (success) {

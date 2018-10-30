@@ -221,33 +221,7 @@
     return newAmount;
 }
 
-+ (NSString *)StrTohtml5With:(NSString *)str{
-    
-    NSMutableString *html5str = [NSMutableString stringWithString:[str gtm_stringByUnescapingFromHTML]];
-    NSRange range = [html5str rangeOfString:@"?"];
-    if ((range.length > 0)) {
-        NSRange range1 = [html5str rangeOfString:@"source=app"];
-        if ((range1.length > 0)) {
-            [html5str appendString:@"&platform=1"];
-        }else{
-            [html5str appendString:@"&source=app&platform=1"];
-        }
-    }else{
-        [html5str appendString:@"?source=app&platform=1"];
-    }
-    NSRange range2 = [html5str rangeOfString:@"usercode"];
-    if (range2.length > 0) {
-        NSRange range3 = [html5str rangeOfString:@"&" options:0 range:NSMakeRange(range2.location, [html5str length]-range2.location-range.length)];
-    if ([[[LoginManager getInstance] userInfo] customerCode]) {
-        [html5str replaceCharactersInRange:NSMakeRange(range2.location, range3.location-range2.location) withString:[NSString stringWithFormat:@"usercode=%@",[[[LoginManager getInstance] userInfo] customerCode]]];
-    }
-    }else{
-    if ([[[LoginManager getInstance] userInfo] customerCode]) {
-        [html5str appendString:[NSString stringWithFormat:@"&usercode=%@",[[[LoginManager getInstance] userInfo] customerCode]]];
-    }
-    }
-    return html5str;
-}
+
 + (NSString*)GetYlPayErrorCodeMsg:(NSString*)ErrorCode{
     NSBundle* Bound = [NSBundle mainBundle];
     NSString* Path = [Bound pathForResource:@"YLPayErrorCode" ofType:@"plist"];

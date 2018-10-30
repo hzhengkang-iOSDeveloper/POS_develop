@@ -8,7 +8,7 @@
 
 #import "RegisterViewController.h"
 
-
+#import "HDeviceIdentifier.h"
 @interface RegisterViewController () {
 }
 @property (nonatomic, strong) UITextField *telephoneTF;
@@ -64,6 +64,7 @@
         make.size.mas_offset(CGSizeMake(ScreenWidth, FITiPhone6(0.5)));
     }];
     self.telephoneTF = [[UITextField alloc] init];
+    self.telephoneTF.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.telephoneTF.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, FITiPhone6(5), 0)];
     self.telephoneTF.leftViewMode = UITextFieldViewModeAlways;
     self.telephoneTF.placeholder = @"请输入手机号";
@@ -83,6 +84,7 @@
         make.size.mas_offset(CGSizeMake(ScreenWidth - FITiPhone6(30), FITiPhone6(41)));
     }];
     self.codeTF = [[UITextField alloc] init];
+    self.codeTF.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.codeTF.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, FITiPhone6(5), 0)];
     self.codeTF.leftViewMode = UITextFieldViewModeAlways;
     self.codeTF.secureTextEntry = YES;
@@ -119,6 +121,7 @@
     }];
     
     self.passwordTF = [[UITextField alloc] init];
+    self.passwordTF.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.passwordTF.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, FITiPhone6(5), 0)];
     self.passwordTF.leftViewMode = UITextFieldViewModeAlways;
     self.passwordTF.secureTextEntry = YES;
@@ -135,10 +138,11 @@
     [self.view addSubview:self.passwordTF];
     [self.passwordTF mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(FITiPhone6(15));
-        make.top.equalTo(self.telephoneTF.mas_bottom).offset(FITiPhone6(18));
+        make.top.equalTo(self.codeTF.mas_bottom).offset(FITiPhone6(18));
         make.size.mas_offset(CGSizeMake(ScreenWidth - FITiPhone6(30), FITiPhone6(41)));
     }];
     self.recommendTF = [[UITextField alloc] init];
+    self.recommendTF.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.recommendTF.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, FITiPhone6(5), 0)];
     self.recommendTF.leftViewMode = UITextFieldViewModeAlways;
     self.recommendTF.placeholder = @"请输入推荐码或者推荐人手机号";
@@ -219,11 +223,14 @@
     //MARK: 接口获取短信验证码
     [[HPDConnect connect] GetNetRequestMethod:[NSString stringWithFormat:@"register/getsmscode?mobile=%@",self.telephoneTF.text] params:nil cookie:nil result:^(bool success, id result) {
         [self.aview stopAnimating];
+        [self.codeTimeBtn setTitle:@"重发" forState:UIControlStateNormal];
         if (success) {
             if ([result[@"msg"] isEqualToString:@"操作成功"]) {
                 self.timeSum = 60;
                 self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerChange:) userInfo:nil repeats:YES];
                 self.codeTimeBtn.userInteractionEnabled = NO;
+            }else {
+                HUD_TIP(result[@"msg"]);
             }
         }
     }];
@@ -267,7 +274,7 @@
 #pragma mark ---- 注册 ----
 - (void)registerClick {
     [self.view endEditing:YES];
-    _aview = [GlobalMethod addUIActivityIndicator:self.registerBtn];
+    
     if (self.passwordTF.text.length<8) {
         HUD_TIP(@"密码不能小于8位");
         return;
@@ -276,10 +283,17 @@
         HUD_TIP(@"请先同意“服务条款”和“隐私权相关政策”");
         return;
     }
-    [[HPDConnect connect] PostNetRequestMethod:@"register" params:@{@"deviceId":[HDeviceIdentifier deviceIdentifier], @"invitedCode":self.recommendTF.text, @"mobile":self.passwordTF.text, @"password":self.passwordTF.text, @"smsCode":self.codeTF.text} cookie:nil result:^(bool success, id result) {
+    _aview = [GlobalMethod addUIActivityIndicator:self.registerBtn];
+    [[HPDConnect connect] PostOtherNetRequestMethod:@"register" params:@{@"deviceId":[HDeviceIdentifier deviceIdentifier], @"invitedCode":self.recommendTF.text, @"mobile":self.telephoneTF.text, @"password":self.passwordTF.text, @"smsCode":self.codeTF.text} cookie:nil result:^(bool success, id result) {
         [self.aview stopAnimating];
         [self.registerBtn setTitle:@"立即注册" forState:UIControlStateNormal];
         if (success) {
+            if ([result[@"msg"] isEqualToString:@"操作成功"]) {
+                HUD_TIP(@"注册成功");
+                [self.navigationController popViewControllerAnimated:YES];
+            }else {
+                HUD_TIP(result[@"msg"]);
+            }
             
         }
         

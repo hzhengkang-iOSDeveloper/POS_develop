@@ -202,7 +202,10 @@
     if ([self.mainView.modelNameLabel.text isEqualToString:@"不限"]) {
         self.mainView.modelNameLabel.text = @"";
     }
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/pos/list" params:@{@"userid":@"1", @"posBrandName":defaultObject(self.mainView.brandNameLabel.text, @""), @"posTermType":defaultObject(self.mainView.typeNameLabel.text, @""), @"posTermModel":defaultObject(self.mainView.modelNameLabel.text, @""), @"agentName":defaultObject(self.mainView.delegateNameTF.text, @""), @"agentNo":defaultObject(self.mainView.platformAccountTF.text, @""), @"startPosSnNo":defaultObject(self.mainView.snStartTF.text, @""), @"endPosSnNo":defaultObject(self.mainView.snEndTF.text, @""), @"activationType":activationType, @"startTime":defaultObject(self.mainView.activationStartTF.text, @""), @"endTime":defaultObject(self.mainView.activationEndTF.text, @"")} cookie:nil result:^(bool success, id result) {
+    LoginManager *manager = [LoginManager getInstance];
+
+
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/pos/list" params:@{@"userid":IF_NULL_TO_STRING(manager.userInfo.userId), @"posBrandName":defaultObject(self.mainView.brandNameLabel.text, @""), @"posTermType":defaultObject(self.mainView.typeNameLabel.text, @""), @"posTermModel":defaultObject(self.mainView.modelNameLabel.text, @""), @"agentName":defaultObject(self.mainView.delegateNameTF.text, @""), @"agentNo":defaultObject(self.mainView.platformAccountTF.text, @""), @"startPosSnNo":defaultObject(self.mainView.snStartTF.text, @""), @"endPosSnNo":defaultObject(self.mainView.snEndTF.text, @""), @"activationType":activationType, @"startTime":defaultObject(self.mainView.activationStartTF.text, @""), @"endTime":defaultObject(self.mainView.activationEndTF.text, @"")} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
@@ -231,8 +234,9 @@
 
 #pragma mark ---- 绑定状态 ----
 - (void)loadPosBindStatusRequestWithPosId:(NSString *)posId {
-    
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agentPos/list" params:@{@"userid":@"1", @"podId":IF_NULL_TO_STRING(posId)} cookie:nil result:^(bool success, id result) {
+    LoginManager *manager = [LoginManager getInstance];
+
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agentPos/list" params:@{@"userid":IF_NULL_TO_STRING(manager.userInfo.userId), @"podId":IF_NULL_TO_STRING(posId)} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {

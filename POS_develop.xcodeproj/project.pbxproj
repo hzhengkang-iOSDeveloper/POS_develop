@@ -244,11 +244,6 @@
 		7888F2DA2147C31600AAC8B0 /* CFTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F2C62147C31500AAC8B0 /* CFTabBarViewController.m */; };
 		7888F2DB2147C31600AAC8B0 /* DirectivePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F2C82147C31500AAC8B0 /* DirectivePageViewController.m */; };
 		7888F2DC2147C31600AAC8B0 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F2CA2147C31500AAC8B0 /* RootViewController.m */; };
-		7888F2DD2147C31600AAC8B0 /* CommunityWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F2CD2147C31500AAC8B0 /* CommunityWebViewController.m */; };
-		7888F2DE2147C31600AAC8B0 /* WebViewAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F2D02147C31500AAC8B0 /* WebViewAction.m */; };
-		7888F2DF2147C31600AAC8B0 /* ActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F2D32147C31500AAC8B0 /* ActivityView.m */; };
-		7888F2E02147C31600AAC8B0 /* ActivityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7888F2D42147C31500AAC8B0 /* ActivityView.xib */; };
-		7888F2E12147C31600AAC8B0 /* PopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F2D62147C31500AAC8B0 /* PopView.m */; };
 		7888F2F12147C32600AAC8B0 /* GlobalMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F2E42147C32500AAC8B0 /* GlobalMethod.m */; };
 		7888F2F22147C32600AAC8B0 /* HPDConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F2E62147C32500AAC8B0 /* HPDConnect.m */; };
 		7888F2F32147C32600AAC8B0 /* HPDStatusCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F2E82147C32500AAC8B0 /* HPDStatusCode.m */; };
@@ -795,15 +790,6 @@
 		7888F2C82147C31500AAC8B0 /* DirectivePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectivePageViewController.m; sourceTree = "<group>"; };
 		7888F2C92147C31500AAC8B0 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		7888F2CA2147C31500AAC8B0 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		7888F2CC2147C31500AAC8B0 /* CommunityWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommunityWebViewController.h; sourceTree = "<group>"; };
-		7888F2CD2147C31500AAC8B0 /* CommunityWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommunityWebViewController.m; sourceTree = "<group>"; };
-		7888F2CF2147C31500AAC8B0 /* WebViewAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewAction.h; sourceTree = "<group>"; };
-		7888F2D02147C31500AAC8B0 /* WebViewAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewAction.m; sourceTree = "<group>"; };
-		7888F2D22147C31500AAC8B0 /* ActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityView.h; sourceTree = "<group>"; };
-		7888F2D32147C31500AAC8B0 /* ActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityView.m; sourceTree = "<group>"; };
-		7888F2D42147C31500AAC8B0 /* ActivityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityView.xib; sourceTree = "<group>"; };
-		7888F2D52147C31500AAC8B0 /* PopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopView.h; sourceTree = "<group>"; };
-		7888F2D62147C31500AAC8B0 /* PopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopView.m; sourceTree = "<group>"; };
 		7888F2E32147C32500AAC8B0 /* GlobalMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalMethod.h; sourceTree = "<group>"; };
 		7888F2E42147C32500AAC8B0 /* GlobalMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalMethod.m; sourceTree = "<group>"; };
 		7888F2E52147C32500AAC8B0 /* HPDConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPDConnect.h; sourceTree = "<group>"; };
@@ -2258,8 +2244,6 @@
 		7888F2CB2147C31500AAC8B0 /* CF_WebViewController */ = {
 			isa = PBXGroup;
 			children = (
-				7888F2CC2147C31500AAC8B0 /* CommunityWebViewController.h */,
-				7888F2CD2147C31500AAC8B0 /* CommunityWebViewController.m */,
 				7888F2CE2147C31500AAC8B0 /* Model */,
 				7888F2D12147C31500AAC8B0 /* View */,
 			);
@@ -2269,8 +2253,6 @@
 		7888F2CE2147C31500AAC8B0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7888F2CF2147C31500AAC8B0 /* WebViewAction.h */,
-				7888F2D02147C31500AAC8B0 /* WebViewAction.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2278,11 +2260,6 @@
 		7888F2D12147C31500AAC8B0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7888F2D22147C31500AAC8B0 /* ActivityView.h */,
-				7888F2D32147C31500AAC8B0 /* ActivityView.m */,
-				7888F2D42147C31500AAC8B0 /* ActivityView.xib */,
-				7888F2D52147C31500AAC8B0 /* PopView.h */,
-				7888F2D62147C31500AAC8B0 /* PopView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2805,7 +2782,6 @@
 				787166AA214911C300452C51 /* demo.css in Resources */,
 				787166B2214911C300452C51 /* selection.json in Resources */,
 				7888F35D2147C32C00AAC8B0 /* CHANGELOG.md in Resources */,
-				7888F2E02147C31600AAC8B0 /* ActivityView.xib in Resources */,
 				787166B1214911C300452C51 /* Read Me.txt in Resources */,
 				2591E55D214D72C100469452 /* areaArray.plist in Resources */,
 				50BD2AC82162787E008D201B /* TerminalSelectMainView.xib in Resources */,
@@ -2952,7 +2928,6 @@
 				502BAFC3215C884B005EDE6F /* PD_BillDetailOutLineInfoView.m in Sources */,
 				7888F3B62147C33900AAC8B0 /* UIView+Extension.m in Sources */,
 				505B6F8F216DD038000D49B2 /* POSRootCell.m in Sources */,
-				7888F2DE2147C31600AAC8B0 /* WebViewAction.m in Sources */,
 				50523FEF217EB2460091952C /* MyFreeGetCell.m in Sources */,
 				5089376621561DB8007C6239 /* HomeTableViewCell.m in Sources */,
 				7888F3C32147C33900AAC8B0 /* SY_ImageAndLabelAndLaeblBtn.m in Sources */,
@@ -3036,7 +3011,6 @@
 				50B136112165F3D9009C435C /* BrandTableViewCell.m in Sources */,
 				251A4103214FF45E00AC2C81 /* WithdrawCashViewController.m in Sources */,
 				7813B802216DF3F10086CE68 /* ShareFailViewController.m in Sources */,
-				7888F2DF2147C31600AAC8B0 /* ActivityView.m in Sources */,
 				7888F3CA2147C33900AAC8B0 /* TPPasswordTextView.m in Sources */,
 				7888F3622147C32C00AAC8B0 /* NetWorkDetectionManager.m in Sources */,
 				50B1361521660341009C435C /* DelegateManagerViewController.m in Sources */,
@@ -3068,7 +3042,6 @@
 				505B6F8C216D9B9B000D49B2 /* BrandIntroductionCell.m in Sources */,
 				50A89AFB216B653200E68BEB /* XAnimationPath.m in Sources */,
 				253647E0214E11C60094576C /* WithdrawCashTableViewCell.m in Sources */,
-				7888F2E12147C31600AAC8B0 /* PopView.m in Sources */,
 				5009BA7D2176D72600FF1AE9 /* CombinationSetMealViewController.m in Sources */,
 				500AC4B721855DCE00AB97AC /* UITableView+Extension.m in Sources */,
 				50A89AEB216B653200E68BEB /* CALayer+XLayerSelectHelper.m in Sources */,
@@ -3127,7 +3100,6 @@
 				50A89B05216B653200E68BEB /* XPositiveNegativeBarChart.m in Sources */,
 				501B5728215DC64B0025086D /* PD_BillDetailUnCheckView.m in Sources */,
 				5089375F21561B32007C6239 /* AchievementsViewController.m in Sources */,
-				7888F2DD2147C31600AAC8B0 /* CommunityWebViewController.m in Sources */,
 				505B6F81216D99FC000D49B2 /* SelectDetailBrandViewController.m in Sources */,
 				7888F3AF2147C33900AAC8B0 /* NSString+Helper.m in Sources */,
 				2520A68E214CE38900D48B26 /* SettingViewController.m in Sources */,
@@ -3307,6 +3279,7 @@
 			baseConfigurationReference = 020DE3BAB18222E6591A3B7C /* Pods-POS_develop.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9YW8W923PG;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3410,6 +3383,7 @@
 			baseConfigurationReference = 86630A622457BA042EF8C924 /* Pods-POS_develop.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9YW8W923PG;
 				FRAMEWORK_SEARCH_PATHS = (

@@ -94,8 +94,8 @@ NSString *const kShouldShowLoginViewControllerLogout = @"kShouldShowLoginViewCon
     }
     _userCookies = nil;
     _userCookie = nil;
-    
-    [[HPDConnect connect]PostNetRequestMethod:@"login" params:@{@"mobile":account, @"smsCode":smsCode, @"deviceId":[HDeviceIdentifier deviceIdentifier]} cookie:nil result:^(bool success, id result) {
+    NSDictionary *dict = @{@"mobile":account, @"smsCode":smsCode, @"deviceId":[HDeviceIdentifier deviceIdentifier]};
+    [[HPDConnect connect]PostOtherNetRequestMethod:@"login" params:dict cookie:nil result:^(bool success, id result) {
         
         if (success) {
 //            if (success && [[result valueForKey:kSoapResponseStatu] intValue] == 1) {
@@ -139,7 +139,8 @@ NSString *const kShouldShowLoginViewControllerLogout = @"kShouldShowLoginViewCon
     }
     _userCookies = nil;
     _userCookie = nil;
-    [[HPDConnect connect] PostNetRequestMethod:@"login2" params:@{@"mobile":account, @"password":password, @"deviceId":[HDeviceIdentifier deviceIdentifier]} cookie:nil result:^(bool success, id result) {
+    NSDictionary *dict = @{@"mobile":account, @"password":password, @"deviceId":[HDeviceIdentifier deviceIdentifier]};
+    [[HPDConnect connect] PostOtherNetRequestMethod:@"login2" params:dict cookie:nil result:^(bool success, id result) {
         if (success) {
 //            if (success && [[result valueForKey:kSoapResponseStatu] intValue] == 1) {
                 [self loginSuccess:result account:account];
@@ -177,6 +178,10 @@ NSString *const kShouldShowLoginViewControllerLogout = @"kShouldShowLoginViewCon
 - (void)loginSuccess:(NSDictionary *)result account:(NSString*)account
 {
     _wasLogin = YES;
+    NSDictionary *dict = result[@"data"];
+    _userInfo.userId = [dict valueForKey:@"userId"];
+    _userInfo.authCode = [dict valueForKey:@"authCode"];
+    _userInfo.nickname = [dict valueForKey:@"nickname"];
     
 //    [self storeCookie];
 //

@@ -40,6 +40,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:false];
+    [self loadBagListRequest];
+    [self loadStatAchievementRequest];
+    [self loadUserinfoRequest];
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -80,6 +83,7 @@
     MJWeakSelf;
     self.headerView.loginBlock = ^{
         LoginTypeViewController *vc = [[LoginTypeViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
         [weakSelf.navigationController pushViewController:vc animated:YES];
     };
     self.headerView.withdrawBlock = ^{
@@ -103,10 +107,18 @@
         
     };
     
-//    self.headerView.userNameLabel.hidden = NO;
-//    self.headerView.invitedCodeLabel.hidden = NO;
+    if ([[LoginManager getInstance] wasLogin]) {
+        self.headerView.userNameLabel.hidden = NO;
+        self.headerView.invitedCodeLabel.hidden = NO;
+        self.headerView.userName.hidden = YES;
+    }else {
+        self.headerView.userNameLabel.hidden = YES;
+        self.headerView.invitedCodeLabel.hidden = YES;
+        self.headerView.userName.hidden = NO;
+    }
 
-    self.headerView.userName.hidden = NO;
+
+    
     return self.headerView;
 }
 
@@ -224,7 +236,8 @@
 
 #pragma mark ---- 个人余额 ----
 - (void)loadBagListRequest {
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/bag/list" params:@{@"userid":@"2" }cookie:nil result:^(bool success, id result) {
+    LoginManager *manager = [LoginManager getInstance];
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/bag/list" params:@{@"userid":IF_NULL_TO_STRING(manager.userInfo.userId) }cookie:nil result:^(bool success, id result) {
         [self.personalTableView.mj_header endRefreshing];
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -251,8 +264,8 @@
     NSDate *date = [NSDate date];//当前时间
     NSDate *lastDay = [NSDate dateWithTimeInterval:-24*60*60 sinceDate:date];//前一天
 
-
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"userid":@"1", @"startTime":[[NSString stringWithFormat:@"%@", lastDay] substringToIndex:10], @"endTime":[[NSString stringWithFormat:@"%@", lastDay] substringToIndex:10], @"dateType":@"0", @"statType":@"1"} cookie:nil result:^(bool success, id result) {
+    LoginManager *manager = [LoginManager getInstance];
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"userid":IF_NULL_TO_STRING(manager.userInfo.userId), @"startTime":[[NSString stringWithFormat:@"%@", lastDay] substringToIndex:10], @"endTime":[[NSString stringWithFormat:@"%@", lastDay] substringToIndex:10], @"dateType":@"0", @"statType":@"1"} cookie:nil result:^(bool success, id result) {
         [self.personalTableView.mj_header endRefreshing];
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSArray class]]) {
@@ -271,13 +284,18 @@
 }
 #pragma mark ---- 个人 用户信息 ----
 - (void)loadUserinfoRequest {
-    [[HPDConnect connect] PostNetRequestMethod:@"sys/user/userinfo" params:@{@"userid":@"1"} cookie:nil result:^(bool success, id result) {
+    LoginManager *manager = [LoginManager getInstance];
+    
+    
+    [[HPDConnect connect] GetNetRequestMethod:[NSString stringWithFormat:@"sys/user/userinfo?userid=%@",IF_NULL_TO_STRING(manager.userInfo.userId)] params:nil cookie:nil result:^(bool success, id result) {
         [self.personalTableView.mj_header endRefreshing];
         if (success) {
             self.headerView.userNameLabel.text = [result valueForKey:@"nickname"];
             self.headerView.invitedCodeLabel.text = [result valueForKey:@"invitedCode"];
-
+            
         }
+        
+        
         NSLog(@"result ------- %@", result);
     }];
 }

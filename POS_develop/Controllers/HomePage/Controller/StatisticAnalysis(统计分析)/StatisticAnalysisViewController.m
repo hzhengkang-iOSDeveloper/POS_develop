@@ -328,7 +328,8 @@
 #pragma mark ---- 接口获取 ----
 - (void)getStatisticAnalysisData
 {
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"userid":@"1",@"startTime":IF_NULL_TO_STRING(self.startTime),@"endTime":IF_NULL_TO_STRING(self.endTime),@"statType":IF_NULL_TO_STRING(self.statType),@"dateType":IF_NULL_TO_STRING(self.dateType)} cookie:nil result:^(bool success, id result) {
+    LoginManager *manager = [LoginManager getInstance];
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"userid":IF_NULL_TO_STRING(manager.userInfo.userId),@"startTime":IF_NULL_TO_STRING(self.startTime),@"endTime":IF_NULL_TO_STRING(self.endTime),@"statType":IF_NULL_TO_STRING(self.statType),@"dateType":IF_NULL_TO_STRING(self.dateType)} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"data"]isKindOfClass:[NSArray class]]) {
                 self.dataArr = [StatisticAnalysisModel mj_objectArrayWithKeyValuesArray:result[@"data"]];
