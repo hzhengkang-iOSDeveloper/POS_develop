@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class  ShopCar_ProductModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SingleShopCarCell : UITableViewCell
+@property (nonatomic, strong) ShopCar_ProductModel *productM;
 +(instancetype)cellWithTableView:(UITableView *)tableView;
 
 @end

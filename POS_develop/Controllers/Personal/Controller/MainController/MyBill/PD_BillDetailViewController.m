@@ -363,6 +363,7 @@
             return cell;
         } else {
             PD_BillDetailDanDianCell *cell = [PD_BillDetailDanDianCell cellWithTableView:tableView];
+            cell.detailDoM = self.danDiArr[indexPath.row];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
@@ -373,6 +374,7 @@
         return cell;
     } else if (self.danDiArr.count >0 && self.taoCanArr.count ==0) {
         PD_BillDetailDanDianCell *cell = [PD_BillDetailDanDianCell cellWithTableView:tableView];
+        cell.detailDoM = self.danDiArr[indexPath.row];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     } else {

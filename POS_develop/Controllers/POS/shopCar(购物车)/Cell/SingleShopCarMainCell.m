@@ -8,6 +8,7 @@
 
 #import "SingleShopCarMainCell.h"
 #import "SingleShopCarCell.h"
+#import "ShopCar_ProductModel.h"
 @interface SingleShopCarMainCell ()<UITableViewDelegate,UITableViewDataSource>
 //table
 @property (nonatomic, strong) UITableView *myTableView;
@@ -45,7 +46,6 @@
 
     self.myTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     self.myTableView.scrollEnabled = NO;
-    self.myTableView.tableHeaderView = [self creatHeaderView];
     self.myTableView.backgroundColor = WhiteColor;
     self.myTableView.delegate = self;
     self.myTableView.dataSource = self;
@@ -80,7 +80,8 @@
         make.top.offset(AD_HEIGHT(11));
         
         view.textAlignment = NSTextAlignmentLeft;
-        view.text = @"付临门";
+        ShopCar_ProductModel *shopM  = self.dataArr.firstObject;
+        view.text = shopM.posBrandName;
     }];
     self.headerTitle = headerTitle;
     
@@ -90,11 +91,12 @@
 
 #pragma mark -- tableView代理数据源方法
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 2;
+    return self.dataArr.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     SingleShopCarCell *cell = [SingleShopCarCell cellWithTableView:tableView];
+    cell.productM = self.dataArr[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     
@@ -118,5 +120,15 @@
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     
     return [UIView new];
+}
+
+- (void)setDataArr:(NSMutableArray *)dataArr
+{
+    if (dataArr) {
+        _dataArr = dataArr;
+        
+        self.myTableView.tableHeaderView = [self creatHeaderView];
+        [self.myTableView reloadData];
+    }
 }
 @end

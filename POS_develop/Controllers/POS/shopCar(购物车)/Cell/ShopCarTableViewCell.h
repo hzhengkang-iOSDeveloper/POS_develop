@@ -9,14 +9,14 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
+@class ShopCar_PackageChargeItemModel;
 @interface ShopCarTableViewCell : UITableViewCell
 @property (nonatomic, strong) UIImageView *myImageView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *amountLabel;
 @property (nonatomic, strong) UILabel *numberLabel;
 @property (nonatomic, strong) UIView *line;
-
+@property (nonatomic, strong) ShopCar_PackageChargeItemModel *packageM;
 +(instancetype)cellWithTableView:(UITableView *)tableView;
 @end
 

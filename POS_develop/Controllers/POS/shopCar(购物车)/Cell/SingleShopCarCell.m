@@ -7,6 +7,7 @@
 //
 
 #import "SingleShopCarCell.h"
+#import "ShopCar_ProductModel.h"
 @interface SingleShopCarCell ()
 @property (nonatomic, weak) UIButton *selectedBtn;
 @property (nonatomic, weak) UIImageView *myImageView;
@@ -50,7 +51,6 @@
     self.selectedBtn = selectedBtn;
     
     UIImageView *myImageView = [[UIImageView alloc] init];
-    myImageView.image = ImageNamed(@"图层7");
     [self.contentView addSubview:myImageView];
     self.myImageView = myImageView;
     [_myImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -65,7 +65,6 @@
         make.top.offset(AD_HEIGHT(14));
         
         view.textAlignment = NSTextAlignmentLeft;
-        view.text = @"创业包（立刷999）";
     }];
     self.titleLabel = titleLabel;
     
@@ -73,7 +72,6 @@
         make.top.equalTo(self.titleLabel.mas_bottom).offset(AD_HEIGHT(9));
         make.left.equalTo(self.titleLabel.mas_left);
         
-        view.text = @"￥550";
     }];
     self.amountLabel = amountLabel;
     
@@ -152,5 +150,16 @@
 - (void)clickAddbtn
 {
     
+}
+
+- (void)setProductM:(ShopCar_ProductModel *)productM
+{
+    if (productM) {
+        _productM = productM;
+        
+        self.amountLabel.text = [NSString stringWithFormat:@"￥%@", productM.posPrice];
+        [self.myImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://106.14.7.85:9000%@",productM.productImg]]];
+        self.titleLabel.text = productM.posBrandName;
+    }
 }
 @end

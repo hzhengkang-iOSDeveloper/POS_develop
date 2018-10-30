@@ -7,6 +7,7 @@
 //
 
 #import "POS_ShopRecommendCell.h"
+#import "POS_RootViewModel.h"
 @interface POS_ShopRecommendCell ()
 //商品logo
 @property (nonatomic, weak) UIImageView *goodImageV;
@@ -45,7 +46,6 @@
     //商品logo
     UIImageView *goodImageV = [[UIImageView alloc]init];
     goodImageV.contentMode = UIViewContentModeScaleAspectFit;
-    goodImageV.image = ImageNamed(@"默认头像");
     [self.contentView addSubview:goodImageV];
     self.goodImageV = goodImageV;
     [_goodImageV mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -60,7 +60,6 @@
         make.top.offset(AD_HEIGHT(15));
         
         view.textAlignment = NSTextAlignmentLeft;
-        view.text = @"双喜临门套餐";
     }];
     self.goodNameLabel = goodNameLabel;
     
@@ -71,7 +70,6 @@
         make.top.equalTo(weakSelf.goodNameLabel.mas_bottom).offset(7);
         
         view.textAlignment = NSTextAlignmentLeft;
-        view.text = @"￥299";
     }];
     self.goodPriceLabel = goodPriceLabel;
     
@@ -83,4 +81,13 @@
     }];
 }
 
+- (void)setPosM:(POS_RootViewModel *)posM
+{
+    if (posM) {
+        _posM  = posM;
+        [self.goodImageV sd_setImageWithURL:URL(posM.packagePic)];
+        self.goodNameLabel.text = IF_NULL_TO_STRING(posM.packageName);
+        self.goodPriceLabel.text = [NSString stringWithFormat:@"￥%@",IF_NULL_TO_STRING(posM.packagePrice)];
+    }
+}
 @end
