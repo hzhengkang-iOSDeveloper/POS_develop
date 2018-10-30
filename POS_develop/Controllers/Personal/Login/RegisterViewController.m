@@ -7,7 +7,7 @@
 //
 
 #import "RegisterViewController.h"
-
+#import "HDeviceIdentifier.h"
 
 @interface RegisterViewController () {
 }
