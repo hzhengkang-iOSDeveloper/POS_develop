@@ -29,6 +29,8 @@
 @property (nonatomic, strong) BillListModel *billListM;
 //套餐数组
 @property (nonatomic, strong) NSMutableArray *taoCanArr;
+//单点数据源
+@property (nonatomic, strong) NSMutableArray *productArr;
 //单点数组
 @property (nonatomic, strong) NSMutableArray *danDiArr;
 @end
@@ -48,7 +50,13 @@
     }
     return _danDiArr;
 }
-
+- (NSMutableArray *)productArr
+{
+    if (!_productArr) {
+        _productArr = [NSMutableArray array];
+    }
+    return _productArr;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -56,22 +64,22 @@
     [self creatTableView];
     [self loadOrderGetRequest];
 }
-- (void)setOrderStatu:(NSString *)orderStatu
-{
-    if (orderStatu) {
-        _orderStatu = orderStatu;
-        //订单状态，10:待付款，20:待发货，30:待确认，40：已完成
-        if ([orderStatu isEqualToString:@"10"]) {
-            self.navigationItemTitle  = @"待付款";
-        } else if ([orderStatu isEqualToString:@"20"]) {
-            self.navigationItemTitle  = @"待发货";
-        } else if ([orderStatu isEqualToString:@"30"]) {
-            self.navigationItemTitle  = @"待确认";
-        } else if ([orderStatu isEqualToString:@"40"]) {
-            self.navigationItemTitle  = @"订单完成";
-        }
-    }
-}
+//- (void)setOrderStatu:(NSString *)orderStatu
+//{
+//    if (orderStatu) {
+//        _orderStatu = orderStatu;
+//        //订单状态，10:待付款，20:待发货，30:待确认，40：已完成
+//        if ([orderStatu isEqualToString:@"10"]) {
+//            self.navigationItemTitle  = @"待付款";
+//        } else if ([orderStatu isEqualToString:@"20"]) {
+//            self.navigationItemTitle  = @"待发货";
+//        } else if ([orderStatu isEqualToString:@"30"]) {
+//            self.navigationItemTitle  = @"待确认";
+//        } else if ([orderStatu isEqualToString:@"40"]) {
+//            self.navigationItemTitle  = @"订单完成";
+//        }
+//    }
+//}
 #pragma mark ---- Table ----
 - (void)creatTableView
 {
@@ -336,7 +344,7 @@
 
 #pragma mark -- tableView代理数据源方法
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    if (self.danDiArr.count >0 && self.taoCanArr.count >0) {
+    if (self.productArr.count >0 && self.taoCanArr.count >0) {
         return 2;
     } else {
         return 1;
@@ -344,18 +352,18 @@
     
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (self.danDiArr.count >0 && self.taoCanArr.count >0) {
-        return section==0?self.taoCanArr.count:self.danDiArr.count;
-    } else if (self.danDiArr.count ==0 && self.taoCanArr.count >0) {
+    if (self.productArr.count >0 && self.taoCanArr.count >0) {
+        return section==0?self.taoCanArr.count:self.productArr.count;
+    } else if (self.productArr.count ==0 && self.taoCanArr.count >0) {
         return self.taoCanArr.count;
-    } else if (self.danDiArr.count >0 && self.taoCanArr.count ==0) {
-        return self.danDiArr.count;
+    } else if (self.productArr.count >0 && self.taoCanArr.count ==0) {
+        return self.productArr.count;
     } else {
         return 0;
     }
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (self.danDiArr.count >0 && self.taoCanArr.count >0) {
+    if (self.productArr.count >0 && self.taoCanArr.count >0) {
         if (indexPath.section == 0) {
             PD_BillDetailTaoCanCell *cell = [PD_BillDetailTaoCanCell cellWithTableView:tableView];
             cell.detailDoM = self.taoCanArr[indexPath.row];
@@ -363,18 +371,18 @@
             return cell;
         } else {
             PD_BillDetailDanDianCell *cell = [PD_BillDetailDanDianCell cellWithTableView:tableView];
-            cell.detailDoM = self.danDiArr[indexPath.row];
+            cell.productArr = [NSMutableArray arrayWithArray:self.productArr[indexPath.row]];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
-    } else if (self.danDiArr.count ==0 && self.taoCanArr.count >0) {
+    } else if (self.productArr.count ==0 && self.taoCanArr.count >0) {
         PD_BillDetailTaoCanCell *cell = [PD_BillDetailTaoCanCell cellWithTableView:tableView];
         cell.detailDoM = self.taoCanArr[indexPath.row];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    } else if (self.danDiArr.count >0 && self.taoCanArr.count ==0) {
+    } else if (self.productArr.count >0 && self.taoCanArr.count ==0) {
         PD_BillDetailDanDianCell *cell = [PD_BillDetailDanDianCell cellWithTableView:tableView];
-        cell.detailDoM = self.danDiArr[indexPath.row];
+        cell.productArr = [NSMutableArray arrayWithArray:self.productArr[indexPath.row]];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     } else {
@@ -385,35 +393,33 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     DetailDOModel *taoCanDetaiM;
     ItemObjModel *taoCanItemObjM;
-    if (self.taoCanArr.count >0 ) {
+    if (self.taoCanArr.count >indexPath.row ) {
         taoCanDetaiM = self.taoCanArr[indexPath.row];
         taoCanItemObjM = [ItemObjModel mj_objectWithKeyValues:taoCanDetaiM.itemObj];
     }
     
-    DetailDOModel *danDianDetaiM;
-    ItemObjModel *danDianItemObjM;
-    if (self.danDiArr.count >0) {
-        danDianDetaiM = self.danDiArr[indexPath.row];
-        danDianItemObjM = [ItemObjModel mj_objectWithKeyValues:danDianDetaiM.itemObj];
+    NSArray *productTmpArr = [NSArray array];
+    if (self.productArr.count >indexPath.row) {
+        productTmpArr = self.productArr[indexPath.row];
     }
     
-    if (self.danDiArr.count >0 && self.taoCanArr.count >0) {
-        return indexPath.section==0?(AD_HEIGHT(30)+AD_HEIGHT(46)+taoCanItemObjM.packageChargeItemDOList.count*AD_HEIGHT(60)+AD_HEIGHT(5)):(AD_HEIGHT(32)+AD_HEIGHT(60)*danDianItemObjM.packageChargeItemDOList.count+AD_HEIGHT(5));
-    } else if (self.danDiArr.count ==0 && self.taoCanArr.count >0) {
+    if (self.productArr.count >0 && self.taoCanArr.count >0) {
+        return indexPath.section==0?(AD_HEIGHT(30)+AD_HEIGHT(46)+taoCanItemObjM.packageChargeItemDOList.count*AD_HEIGHT(60)+AD_HEIGHT(5)):(AD_HEIGHT(32)+AD_HEIGHT(60)*productTmpArr.count+AD_HEIGHT(5));
+    } else if (self.productArr.count ==0 && self.taoCanArr.count >0) {
         return AD_HEIGHT(30)+AD_HEIGHT(46)+taoCanItemObjM.packageChargeItemDOList.count*AD_HEIGHT(60)+AD_HEIGHT(5);
-    } else if (self.danDiArr.count >0 && self.taoCanArr.count ==0) {
-        return AD_HEIGHT(32)+AD_HEIGHT(60)*danDianItemObjM.packageChargeItemDOList.count+AD_HEIGHT(5);
+    } else if (self.productArr.count >0 && self.taoCanArr.count ==0) {
+        return AD_HEIGHT(32)+AD_HEIGHT(60)*productTmpArr.count+AD_HEIGHT(5);
     } else {
         return 0;
     }
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if (self.danDiArr.count >0 && self.taoCanArr.count >0) {
+    if (self.productArr.count >0 && self.taoCanArr.count >0) {
         return section == 0?[self creatHeaderWithText:@"套餐"]:[self creatHeaderWithText:@"单点"];
-    } else if (self.danDiArr.count ==0 && self.taoCanArr.count >0) {
+    } else if (self.productArr.count ==0 && self.taoCanArr.count >0) {
         return [self creatHeaderWithText:@"套餐"];
-    } else if (self.danDiArr.count >0 && self.taoCanArr.count ==0) {
+    } else if (self.productArr.count >0 && self.taoCanArr.count ==0) {
         return [self creatHeaderWithText:@"单点"];
     } else {
         return [UIView new];
@@ -455,18 +461,32 @@
 {
     HUD_SUCCESS(@"复制成功");
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    pasteboard.string = @"203498230482039482";
+    pasteboard.string = IF_NULL_TO_STRING(self.billListM.orderUuid);
 }
 
 #pragma mark ---- 接口 ----
 -(void)loadOrderGetRequest {
+    HUD_SHOW;
     [[HPDConnect connect] PostNetRequestMethod:[NSString stringWithFormat:@"%@%@",@"api/trans/order/get/",self.myID] params:nil cookie:nil result:^(bool success, id result) {
+        HUD_HIDE;
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
 
                 self.billListM = [BillListModel mj_objectWithKeyValues:result[@"data"]];
                 self.orderDetailTable.tableHeaderView = [self creatTableHeaderView];
                 self.orderDetailTable.tableFooterView = [self creatTableFooterView];
+                if ([self.billListM.orderStatus isEqualToString:@"10"]) {
+                    self.navigationItemTitle = @"待付款";
+                    
+                } else if ([self.billListM.orderStatus isEqualToString:@"20"] ) {
+                    //确认收货
+                    self.navigationItemTitle = @"待收货";
+                } else if ([self.billListM.orderStatus isEqualToString:@"30"] ) {
+                    //待确认
+                    self.navigationItemTitle = @"待确认";
+                }  else if ([self.billListM.orderStatus isEqualToString:@"40"]) {
+                    self.navigationItemTitle = @"订单完成";
+                }
                 [self creatCellNewArr];
             }
         }
@@ -474,6 +494,44 @@
     }];
 }
 
+#pragma mark ---- 获取单点产品数据源 ----
+- (void)getProductDataArr
+{
+    
+    for (int i = 0; i < self.danDiArr.count; i ++) {
+        
+        DetailDOModel *detailM = self.danDiArr[i];
+        ItemObjModel *productM1 = [ItemObjModel mj_objectWithKeyValues:detailM.itemObj];
+        NSString *string = productM1.posBrandName;
+        
+        NSMutableArray *tempArray = [NSMutableArray array];
+        
+        [tempArray addObject:detailM];
+        
+        for (int j = i+1; j < self.danDiArr.count; j ++) {
+            
+            DetailDOModel *detailM1 = self.danDiArr[i];
+            ItemObjModel *productM2 = [ItemObjModel mj_objectWithKeyValues:detailM1.itemObj];
+            NSString *jstring = productM2.posBrandName;
+            
+            if([string isEqualToString:jstring]){
+                
+                [tempArray addObject:detailM1];
+                
+                [self.danDiArr removeObjectAtIndex:j];
+                j -= 1;
+                
+            }
+            
+        }
+        
+        [self.productArr addObject:tempArray];
+        
+    }
+    
+    
+    
+}
 
 #pragma mark ---- 创建Cell数组 ----
 - (void)creatCellNewArr
@@ -488,6 +546,8 @@
         }
     }];
     
+    //获取产品数据源
+    [self getProductDataArr];
     [self.orderDetailTable reloadData];
 }
 @end

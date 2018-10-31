@@ -117,7 +117,9 @@
 
 #pragma mark ------------------------------------ 接口 ------------------------------------
 - (void)loadOrderListRequestWithIndex:(NSString *)index{
+    HUD_SHOW;
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/order/list" params:@{@"orderStatus":index} cookie:nil result:^(bool success, id result) {
+        HUD_HIDE;
         [self.orderTableView.mj_header endRefreshing];
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {

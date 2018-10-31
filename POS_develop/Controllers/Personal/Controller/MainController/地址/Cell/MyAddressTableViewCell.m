@@ -7,7 +7,7 @@
 //
 
 #import "MyAddressTableViewCell.h"
-
+#import "MyAddressViewModel.h"
 @implementation MyAddressTableViewCell
 
 +(instancetype)cellWithTableView:(UITableView *)tableView{
@@ -115,9 +115,31 @@
 #pragma mark ---- 默认地址 ----
 - (void)defaultAddressClick:(UIButton *)sender {
     
-    if (self.clickDefaultAddBlock) {
-        self.clickDefaultAddBlock(sender);
-    }
+    HUD_NOBGSHOW;
+    
+    LoginManager *manager = [LoginManager getInstance];
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/address/update" params:@{@"userid":IF_NULL_TO_STRING(manager.userInfo.userId), @"defaultFlag":[self.addressM.defaultFlag isEqualToString:@"0"]?@"1":@"0", @"id":self.addressM.ID} cookie:nil result:^(bool success, id result) {
+        HUD_HIDE;
+        if (success) {
+            if ([result[@"code"]integerValue] == 0) {
+                sender.selected = !sender.selected;
+                if (sender.selected ) {
+                    self.addressM.defaultFlag = @"0";
+                } else {
+                    self.addressM.defaultFlag = @"1";
+                }
+                if (self.clickDefaultAddBlock) {
+                    self.clickDefaultAddBlock();
+                }
+
+            } else {
+                HUD_ERROR(@"操作失败，请稍后重试！");
+            }
+            
+        }
+        
+    }];
+    
 }
 
 #pragma mark ---- 编辑 ----
@@ -134,6 +156,23 @@
 }
 
 
+- (void)setAddressM:(MyAddressViewModel *)addressM
+{
+    if (addressM) {
+        _addressM = addressM;
+        self.nameLabel.text = addressM.receiverName;
+        self.addressLabel.text = [NSString stringWithFormat:@"%@ %@ %@ %@", addressM.province, addressM.city, addressM.county, addressM.receiverAddr];
+        self.telephoneLabel.text = [NSString numberSuitScanf:IF_NULL_TO_STRING(addressM.receiverMp)];
+        if ([addressM.defaultFlag isEqualToString:@"0"]) {
+            self.defaultAddressBtn.selected = YES;
+        } else {
+            self.defaultAddressBtn.selected = NO;
+        }
 
+        
+        
+        
+    }
+}
 
 @end

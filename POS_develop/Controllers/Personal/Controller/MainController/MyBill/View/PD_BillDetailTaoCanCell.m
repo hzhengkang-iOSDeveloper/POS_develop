@@ -76,7 +76,11 @@
         make.top.offset(AD_HEIGHT(9));
         
         view.textAlignment = NSTextAlignmentLeft;
-        view.text = self.detailDoM.itemName;
+        ItemObjModel *itemObjM = [ItemObjModel mj_objectWithKeyValues:self.detailDoM.itemObj];
+        PackAgeChargeItemListModel *packageM = [itemObjM.packageChargeItemDOList firstObject];
+        ProductDOModel *productM  = [ProductDOModel mj_objectWithKeyValues:packageM.productDO];
+        
+        view.text = productM.posBrandName;
     }];
     self.taoCanNameLabel = taoCanNameLabel;
     

@@ -13,6 +13,23 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SYShowHUD : NSObject
 + (SYShowHUD *)shared;
 
+
+/**
+ *  显示等待菊花
+ */
++ (void)showWait;
+
+/**
+ *  显示无背景等待菊花
+ */
++ (void)showNoBgWait;
+
+/**
+ *  隐藏等待菊花
+ */
++ (void)hideWait;
+
+
 /**
  *  显示信息
  *

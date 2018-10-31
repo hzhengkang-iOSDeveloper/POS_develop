@@ -122,7 +122,20 @@
         self.skuPriceLabel.text = [NSString stringWithFormat:@"￥%@", productM.posPrice];
         self.skuCountLabel.text = [NSString stringWithFormat:@"x%@", productM.posCount];
         [self.skuImageView sd_setImageWithURL:[NSURL URLWithString:productM.productImg]];
-        self.skuNameLabel.text = productM.posBrandName;
+        self.skuNameLabel.text = productM.productName;
+    }
+}
+
+
+- (void)setDetaiM:(DetailDOModel *)detaiM
+{
+    if (detaiM) {
+        _detaiM = detaiM;
+        ItemObjModel *productM = [ItemObjModel mj_objectWithKeyValues:detaiM.itemObj];
+        self.skuPriceLabel.text = [NSString stringWithFormat:@"￥%@", productM.posPrice];
+        self.skuCountLabel.text = [NSString stringWithFormat:@"x%@", productM.posCount];
+        [self.skuImageView sd_setImageWithURL:[NSURL URLWithString:productM.productImg]];
+        self.skuNameLabel.text = productM.productName;
     }
 }
 @end

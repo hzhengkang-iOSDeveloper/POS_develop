@@ -21,6 +21,35 @@ static SYShowHUD *_showHUD;
 }
 
 /**
+ *  显示无背景等待菊花
+ */
++ (void)showNoBgWait
+{
+    [SVProgressHUD show];
+    [SVProgressHUD setDefaultAnimationType:SVProgressHUDAnimationTypeNative];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeCustom]; //设置HUD背景图层的样式
+}
+
+
+/**
+ *  显示等待菊花
+ *
+ */
++ (void)showWait
+{
+    [SVProgressHUD show];
+    [SVProgressHUD setDefaultAnimationType:SVProgressHUDAnimationTypeNative];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack]; //设置HUD背景图层的样式
+}
+
+/**
+ *  隐藏等待菊花
+ */
++ (void)hideWait
+{
+    [SVProgressHUD dismiss];
+}
+/**
  *  显示信息
  *
  *  @param text 信息内容
@@ -36,7 +65,7 @@ static SYShowHUD *_showHUD;
     [SVProgressHUD showImage:[UIImage imageNamed:@""] status:text];
     [SVProgressHUD setDefaultAnimationType:SVProgressHUDAnimationTypeNative];
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeCustom]; //设置HUD背景图层的样式
-    [SVProgressHUD dismissWithDelay:1.8];
+    [SVProgressHUD dismissWithDelay:1.5];
     
 }
 

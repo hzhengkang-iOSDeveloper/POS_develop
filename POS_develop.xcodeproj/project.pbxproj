@@ -2227,7 +2227,6 @@
 				787166B8214917BD00452C51 /* POS */,
 				787166B4214912B800452C51 /* HomePage */,
 				7888F2BE2147C31500AAC8B0 /* BaseClass */,
-				7888F2CB2147C31500AAC8B0 /* CF_WebViewController */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2249,29 +2248,6 @@
 				7888F2CA2147C31500AAC8B0 /* RootViewController.m */,
 			);
 			path = BaseClass;
-			sourceTree = "<group>";
-		};
-		7888F2CB2147C31500AAC8B0 /* CF_WebViewController */ = {
-			isa = PBXGroup;
-			children = (
-				7888F2CE2147C31500AAC8B0 /* Model */,
-				7888F2D12147C31500AAC8B0 /* View */,
-			);
-			path = CF_WebViewController;
-			sourceTree = "<group>";
-		};
-		7888F2CE2147C31500AAC8B0 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		7888F2D12147C31500AAC8B0 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		7888F2E22147C32500AAC8B0 /* Models */ = {

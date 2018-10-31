@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface POS_CommfirBillOutLinePayView : UIView
-
+@property (nonatomic, copy) NSString *moneyCount;
 @end
 
 NS_ASSUME_NONNULL_END
