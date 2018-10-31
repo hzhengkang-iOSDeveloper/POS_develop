@@ -8,7 +8,6 @@
 
 #import "PasswordLoginViewController.h"
 #import "AFNetworking.h"
-
 @interface PasswordLoginViewController () {
     UIActivityIndicatorView *_aview;
 }
@@ -21,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.isPop = YES;
     self.navigationItemTitle = @"手机号密码登录";
     self.view.backgroundColor = WhiteColor;
     [self initUI];
@@ -113,8 +113,9 @@
 
 #pragma mark ---- 其他方式登录 ----
 - (void)otherTypeLoginClick {
-    [self.navigationController popViewControllerAnimated:YES];
-}
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];}
 #pragma mark ---- 登录 ----
 - (void)loginClick {
     [self.view endEditing:YES];
@@ -132,15 +133,24 @@
     [self.loginBtn setTitle:@"登录" forState:UIControlStateNormal];
     if (success) {
         if ([result[@"msg"] isEqualToString:@"操作成功"]) {
-            HUD_TIP(@"登录成功");
-            //            [[HPDProgress defaultProgressHUD]showSimpleViewOnView:self.view message:@"登录成功" hideAfterDelay:1 complete:^{
+            HUD_SUCCESS(@"登录成功");
+            [self performSelector:@selector(changeRoot) withObject:nil afterDelay:1];
             
-            [self.navigationController popToRootViewControllerAnimated:YES];
-            //            }];
         }else {
             HUD_TIP(result[@"msg"]);
         }
     }
+}
+
+- (void)changeRoot
+{
+    UIWindow *window = [UIApplication sharedApplication].delegate.window;
+    RootViewController *mainViewController=[[RootViewController alloc]init];
+    window.rootViewController = mainViewController;
+    [self dismissViewControllerAnimated:YES completion:^{
+        self.navigationController.tabBarController.selectedIndex=0;
+        
+    }];
 }
 -(AFHTTPSessionManager*)GetAFHTTPSessionManagerObject{
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];

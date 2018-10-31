@@ -28,6 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.isPop = YES;
     self.navigationItemTitle = @"我要注册";
     self.view.backgroundColor = WhiteColor;
     NSLog(@"%@", [HDeviceIdentifier deviceIdentifier]);
@@ -64,7 +65,7 @@
         make.size.mas_offset(CGSizeMake(ScreenWidth, FITiPhone6(0.5)));
     }];
     self.telephoneTF = [[UITextField alloc] init];
-    self.telephoneTF.clearButtonMode = UITextFieldViewModeWhileEditing;
+//    self.telephoneTF.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.telephoneTF.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, FITiPhone6(5), 0)];
     self.telephoneTF.leftViewMode = UITextFieldViewModeAlways;
     self.telephoneTF.placeholder = @"请输入手机号";
@@ -269,7 +270,9 @@
 
 #pragma mark ---- 其他方式登录 ----
 - (void)otherTypeLoginClick {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 #pragma mark ---- 注册 ----
 - (void)registerClick {
@@ -290,7 +293,9 @@
         if (success) {
             if ([result[@"msg"] isEqualToString:@"操作成功"]) {
                 HUD_TIP(@"注册成功");
-                [self.navigationController popViewControllerAnimated:YES];
+                [self dismissViewControllerAnimated:YES completion:^{
+                    
+                }];
             }else {
                 HUD_TIP(result[@"msg"]);
             }

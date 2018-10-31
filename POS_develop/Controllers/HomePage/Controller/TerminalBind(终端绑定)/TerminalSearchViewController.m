@@ -155,7 +155,7 @@
 - (void)loadAgentPosListRequest{
     LoginManager *manager = [LoginManager getInstance];
 
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agentPos/list" params:@{@"userid":IF_NULL_TO_STRING(manager.userInfo.userId), @"agentId":self.agentId, @"posSnNo":searchTF.text,@"bindFlag":@"0"} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agentPos/list" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]), @"agentId":self.agentId, @"posSnNo":searchTF.text,@"bindFlag":@"0"} cookie:nil result:^(bool success, id result) {
         [self.searchTableView.mj_header endRefreshing];
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {

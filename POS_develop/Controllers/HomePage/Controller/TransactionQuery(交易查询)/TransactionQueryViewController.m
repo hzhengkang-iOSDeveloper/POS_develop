@@ -193,7 +193,7 @@
 - (void)loadTransactionListRequest {
     LoginManager *manager = [LoginManager getInstance];
 
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/transaction/list" params:@{@"userid":IF_NULL_TO_STRING(manager.userInfo.userId), @"startTime":defaultObject(self.datePickView.datePickerStrA, @""), @"endTime":defaultObject(self.datePickView.datePickerStrB, @""), @"agentName":defaultObject(self.mainVie.name.text, @""), @"agentNo":defaultObject(self.mainVie.account.text, @""), @"posSnNo":defaultObject(self.mainVie.number.text, @""), @"posBrandNo":defaultObject(self.mainVie.brandLabel.text, @""), @"agentType":_agentBtn.selected?@"1":@"0"} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/transaction/list" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]), @"startTime":defaultObject(self.datePickView.datePickerStrA, @""), @"endTime":defaultObject(self.datePickView.datePickerStrB, @""), @"agentName":defaultObject(self.mainVie.name.text, @""), @"agentNo":defaultObject(self.mainVie.account.text, @""), @"posSnNo":defaultObject(self.mainVie.number.text, @""), @"posBrandNo":defaultObject(self.mainVie.brandLabel.text, @""), @"agentType":_agentBtn.selected?@"1":@"0"} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {

@@ -420,7 +420,7 @@
 #pragma mark ---- 终端分配(查询) ----
 - (void)loadPosListRequest {
     LoginManager *manager = [LoginManager getInstance];
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agentPos/list" params:@{@"userid":IF_NULL_TO_STRING(manager.userInfo.userId), @"posBrandNo":IF_NULL_TO_STRING(self.posBrandNo), @"startPosSnNo":IF_NULL_TO_STRING(self.startTF.text), @"endPosSnNo":IF_NULL_TO_STRING(self.endTF.text)} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agentPos/list" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]), @"posBrandNo":IF_NULL_TO_STRING(self.posBrandNo), @"startPosSnNo":IF_NULL_TO_STRING(self.startTF.text), @"endPosSnNo":IF_NULL_TO_STRING(self.endTF.text)} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
@@ -453,7 +453,7 @@
 {
     LoginManager *manager = [LoginManager getInstance];
     NSDictionary *dict = @{
-                           @"userid":IF_NULL_TO_STRING(manager.userInfo.userId),
+                           @"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]),
                            @"agentId":IF_NULL_TO_STRING(posM.agentId),
                            @"posId":IF_NULL_TO_STRING(posM.posId),
                            @"posBrandNo":IF_NULL_TO_STRING(posM.posBrandNo),

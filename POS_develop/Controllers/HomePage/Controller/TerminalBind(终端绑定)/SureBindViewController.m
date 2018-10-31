@@ -98,7 +98,7 @@
 - (void)clickComfirBindBtn {
     LoginManager *manager = [LoginManager getInstance];
 
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agentPos/save" params:@{@"userid":IF_NULL_TO_STRING(manager.userInfo.userId), @"agentId":self.agentId, @"posId":self.posID, @"posBrandNo":self.posBrandNo, @"posSnNo":self.posSnNo, @"bindFlag":@"1"} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agentPos/save" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]), @"agentId":self.agentId, @"posId":self.posID, @"posBrandNo":self.posBrandNo, @"posSnNo":self.posSnNo, @"bindFlag":@"1"} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"msg"] isEqualToString:@"success"]) {
                 HUD_TIP(@"绑定成功");

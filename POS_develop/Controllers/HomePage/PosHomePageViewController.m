@@ -208,7 +208,7 @@
     LoginManager *manager = [LoginManager getInstance];
 
     //当⽉月交易易量量
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"statType":@"0", @"userid":IF_NULL_TO_STRING(manager.userInfo.userId), @"startTime":startTime, @"endTime":endTime,@"dateType":@"2"} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"statType":@"0", @"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]), @"startTime":startTime, @"endTime":endTime,@"dateType":@"2"} cookie:nil result:^(bool success, id result) {
         [self.homeTableView.mj_header endRefreshing];
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSArray class]]) {
@@ -225,7 +225,7 @@
      
     }];
     //当⽉月分润
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"statType":@"1", @"userid":IF_NULL_TO_STRING(manager.userInfo.userId), @"startTime":startTime, @"endTime":endTime,@"dateType":@"2"} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"statType":@"1", @"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]), @"startTime":startTime, @"endTime":endTime,@"dateType":@"2"} cookie:nil result:^(bool success, id result) {
         [self.homeTableView.mj_header endRefreshing];
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSArray class]]) {
@@ -242,7 +242,7 @@
     }];
     
     //当⽉月激活数量量
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"statType":@"2", @"userid":IF_NULL_TO_STRING(manager.userInfo.userId), @"startTime":startTime, @"endTime":endTime,@"dateType":@"2"} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"statType":@"2", @"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]), @"startTime":startTime, @"endTime":endTime,@"dateType":@"2"} cookie:nil result:^(bool success, id result) {
         [self.homeTableView.mj_header endRefreshing];
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSArray class]]) {
@@ -258,7 +258,7 @@
     }];
     
     //当前团队⼈人数
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"statType":@"4", @"userid":IF_NULL_TO_STRING(manager.userInfo.userId), @"startTime":startTime, @"endTime":endTime,@"dateType":@"2"} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"statType":@"4", @"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]), @"startTime":startTime, @"endTime":endTime,@"dateType":@"2"} cookie:nil result:^(bool success, id result) {
         [self.homeTableView.mj_header endRefreshing];
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSArray class]]) {

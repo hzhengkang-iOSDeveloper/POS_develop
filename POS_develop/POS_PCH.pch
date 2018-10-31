@@ -8,6 +8,7 @@
 
 #ifndef POS_PCH_pch
 #define POS_PCH_pch
+#import "RootViewController.h"
 
 #import "AppDelegate.h"
 #import "UIView+Extension.h"
@@ -252,8 +253,12 @@
 //是否第一次进入app
 #define CF_FirstOpenApp @"cf_fistOpenApp"
 
-//最后一次登录存储的用户信息
-#define CF_LastUserDic @"cf_LastUserDic"
+//登录存储的用户信息
+#define UserDict @"UserDict"
+#define USERID   @"userId"
+#define AUTHCODE @"authCode"
+
+
 
 //用户账号名
 #define ACCOUNT @"account"

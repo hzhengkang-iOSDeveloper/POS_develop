@@ -18,4 +18,6 @@
 
 @property (strong , nonatomic) void (^backHandler)(void);
 
+@property (nonatomic, assign) BOOL isPop;
+
 @end

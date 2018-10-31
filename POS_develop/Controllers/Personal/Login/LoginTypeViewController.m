@@ -87,19 +87,24 @@
 - (void)registerClick {
     RegisterViewController *vc = [[RegisterViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 #pragma mark ---- 手机号快捷登录 ----
 - (void)fastLoginClick {
     FastLoginViewController *vc = [[FastLoginViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+    [self presentViewController:nav animated:YES completion:nil];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 #pragma mark ---- 手机号密码登录 ----
 - (void)passwordLoginClick {
     PasswordLoginViewController *vc = [[PasswordLoginViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+    [self presentViewController:nav animated:YES completion:nil];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 @end
 

@@ -148,8 +148,7 @@
 }
 
 - (void)loadChangepasswordRequest {
-    LoginManager *manager = [LoginManager getInstance];
-    [[HPDConnect connect]PostOtherNetRequestMethod:@"changepassword" params:@{@"newPwd":@"", @"smsCode":@"", @"userid":IF_NULL_TO_STRING(manager.userInfo.userId)} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect]PostOtherNetRequestMethod:@"changepassword" params:@{@"newPwd":@"", @"smsCode":@"", @"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID])} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"msg"] isEqualToString:@"操作成功"]) {
                 HUD_TIP(@"修改成功，请重新登录！");

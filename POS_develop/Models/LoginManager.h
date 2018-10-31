@@ -49,4 +49,6 @@ extern NSString *const kShouldShowLoginViewControllerLogout;
 
 - (void)cleanUserInfo;
 
+- (void)loginOut:(HPDLogoutResult)logoutResult;
+
 @end

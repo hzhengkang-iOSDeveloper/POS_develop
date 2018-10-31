@@ -94,7 +94,14 @@
  返回按钮响应
  */
 - (void)returnAction:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.isPop) {
+        [self dismissViewControllerAnimated:YES completion:^{
+            
+        }];
+    }else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
 }
 
 

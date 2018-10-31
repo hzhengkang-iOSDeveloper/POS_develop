@@ -24,6 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.isPop = YES;
     self.navigationItemTitle = @"手机号快捷登录";
     self.view.backgroundColor = WhiteColor;
     [self initUI];
@@ -59,7 +60,7 @@
         make.size.mas_offset(CGSizeMake(ScreenWidth, FITiPhone6(0.5)));
     }];
     self.telephoneTF = [[UITextField alloc] init];
-    self.telephoneTF.clearButtonMode = UITextFieldViewModeWhileEditing;
+//    self.telephoneTF.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.telephoneTF.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, FITiPhone6(5), 0)];
     self.telephoneTF.leftViewMode = UITextFieldViewModeAlways;
     self.telephoneTF.placeholder = @"请输入手机号";
@@ -167,7 +168,9 @@
 }
 #pragma mark ---- 其他方式登录 ----
 - (void)otherTypeLoginClick {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 #pragma mark ---- 登录 ----
 - (void)loginClick {
@@ -177,12 +180,12 @@
         [self.aview stopAnimating];
         [self.loginBtn setTitle:@"登录" forState:UIControlStateNormal];
         if (success) {
+//            if ([result[@"code"]integerValue] == 0) {
+//                <#statements#>
+//            }
             if ([result[@"msg"] isEqualToString:@"操作成功"]) {
-                HUD_TIP(@"登录成功");
-                //            [[HPDProgress defaultProgressHUD]showSimpleViewOnView:self.view message:@"登录成功" hideAfterDelay:1 complete:^{
-                
-                [self.navigationController popToRootViewControllerAnimated:YES];
-                //            }];
+                HUD_SUCCESS(@"登录成功");
+                [self performSelector:@selector(changeRoot) withObject:nil afterDelay:1];
             }else {
                 HUD_TIP(result[@"msg"]);
             }
@@ -191,5 +194,14 @@
     }];
    
 }
-
+- (void)changeRoot
+{
+    UIWindow *window = [UIApplication sharedApplication].delegate.window;
+    RootViewController *mainViewController=[[RootViewController alloc]init];
+    window.rootViewController = mainViewController;
+    [self dismissViewControllerAnimated:YES completion:^{
+        self.navigationController.tabBarController.selectedIndex=0;
+        
+    }];
+}
 @end

@@ -461,16 +461,16 @@
 
 - (NSDictionary *)getRequestDic:(NSDictionary *)params {
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:params];
-    [dict setObject:@"1" forKey:@"authCode"];
-    [dict setObject:@"1" forKey:@"authUserId"];
+//    [dict setObject:@"1" forKey:@"authCode"];
+//    [dict setObject:@"1" forKey:@"authUserId"];
 
-//    LoginManager *manager = [LoginManager getInstance];
-//    if (manager.userInfo.authCode != nil ) {
-//        [dict setObject:manager.userInfo.authCode forKey:@"authCode"];
-//    }
-//    if (manager.userInfo.userId != nil ) {
-//        [dict setObject:manager.userInfo.userId forKey:@"authUserId"];
-//    }
+    NSLog(@"%@",[[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]);
+    if ([[UserInformation getUserinfoWithKey:UserDict] objectForKey:AUTHCODE] != nil ) {
+        [dict setObject:[[UserInformation getUserinfoWithKey:UserDict] objectForKey:AUTHCODE] forKey:@"authCode"];
+    }
+    if ([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID] != nil  ) {
+        [dict setObject:[[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID] forKey:@"authUserId"];
+    }
 
     return dict;
 }
@@ -522,10 +522,8 @@
 }
 
 - (void)GetNetRequestMethod:(NSString *)method params:(NSDictionary*)params cookie:(NSHTTPCookie *)cookie result:(AFNetRequestResultBlock)result {
-    AFHTTPSessionManager *session = [self OtherGetAFHTTPSessionManagerObject];
-    LoginManager *manager = [LoginManager getInstance];
-    NSString *urlStr = [NSString stringWithFormat:@"%@&authCode=%@&ahthUserId=%@",method,IF_NULL_TO_STRING(manager.userInfo.authCode), IF_NULL_TO_STRING(manager.userInfo.userId)];
-    [session GET:[NSString stringWithFormat:@"%@%@",BaseHeaderURL,urlStr] parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+    AFHTTPSessionManager *session = [self GetAFHTTPSessionManagerObject];   
+    [session GET:[NSString stringWithFormat:@"%@%@",BaseHeaderURL,method] parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         result(YES,responseObject);

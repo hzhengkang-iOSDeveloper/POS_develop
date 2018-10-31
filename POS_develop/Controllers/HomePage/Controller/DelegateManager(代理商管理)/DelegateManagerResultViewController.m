@@ -136,7 +136,7 @@
 #pragma mark ---- 终端绑定查询 ----
 - (void)loadAgentListRequest {
     LoginManager *manager = [LoginManager getInstance];
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agent/list" params:@{@"userid":IF_NULL_TO_STRING(manager.userInfo.userId), @"agentName":self.agentName, @"agentNo":self.agentNo} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agent/list" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]), @"agentName":self.agentName, @"agentNo":self.agentNo} cookie:nil result:^(bool success, id result) {
         [self.myTableView.mj_header endRefreshing];
         if (success) {
             

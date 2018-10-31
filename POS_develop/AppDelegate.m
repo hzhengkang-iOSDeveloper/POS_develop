@@ -10,6 +10,7 @@
 #import "CFTabBarViewController.h"
 #import "ConfigurationItem.h"
 #import "RootViewController.h"
+#import "LoginTypeViewController.h"
 // 引入 JPush 功能所需头文件
 #import "JPUSHService.h"
 // iOS10 注册 APNs 所需头文件
@@ -19,12 +20,17 @@
 // 如果需要使用 idfa 功能所需要引入的头文件（可选）
 #import <AdSupport/AdSupport.h>
 #import <UserNotifications/UserNotifications.h>
-
+#import "LoginTypeViewController.h"
+#import "DirectivePageViewController.h"
+#import "PosHomePageViewController.h"
 //微信分享
 #import "WXApi.h"
 
 @interface AppDelegate () <JPUSHRegisterDelegate, WXApiDelegate>{
     RootViewController *mainViewController;
+    CFTabBarViewController *_tabbar;//主页面
+    DirectivePageViewController *_directivePageVC;//引导页
+    LoginTypeViewController *_loginTypeVc;
 }
 
 @end
@@ -34,7 +40,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    
+    MJWeakSelf;
     //清除角标
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     [JPUSHService resetBadge];
@@ -48,11 +54,32 @@
     
     [self setStatusBarBackgroundColor:RGB(45, 50, 60)];
     
-    mainViewController=[[RootViewController alloc]init];
-    mainViewController.view.backgroundColor=[UIColor whiteColor];
-    self.window.rootViewController = mainViewController;
+    if (![USER_DEFAULT boolForKey:CF_FirstOpenApp]) {
+        _directivePageVC = [[DirectivePageViewController alloc] init];
+        MJWeakSelf;
+        _directivePageVC.endCallback = ^{
+            [weakSelf confirLoginVc];
+        };
+        self.window.rootViewController = _directivePageVC;
+        
+    }else {
+        if (![[LoginManager getInstance] wasLogin]) {
+            [self confirLoginVc];
+        }else {
+            mainViewController=[[RootViewController alloc]init];
+            mainViewController.view.backgroundColor=[UIColor whiteColor];
+            self.window.rootViewController = mainViewController;
+            self.window.backgroundColor = [UIColor whiteColor];
+            [self.window makeKeyAndVisible];
+        }
+    }
+    
+    
+    
+  
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
     
     [self setNaviBack];//设置全局返回按钮
     
@@ -78,8 +105,8 @@
     }
     
     //判断是否自动登录
-    if([USER_DEFAULT objectForKey:CF_LastUserDic] != nil){
-        FMLog(@"LastUserDic = %@",[USER_DEFAULT objectForKey:CF_LastUserDic]);
+    if([USER_DEFAULT objectForKey:UserDict] != nil){
+        FMLog(@"LastUserDic = %@",[USER_DEFAULT objectForKey:UserDict]);
 //        [self userLogin:[USER_DEFAULT objectForKey:CF_LastUserDic]];
     }
     
@@ -91,6 +118,16 @@
     
  
     return YES;
+}
+
+#pragma mark ---- 设置登录控制器为root ----
+- (void)confirLoginVc
+{
+    _loginTypeVc=[[LoginTypeViewController alloc]init];
+    _loginTypeVc.view.backgroundColor=[UIColor whiteColor];
+    self.window.rootViewController = _loginTypeVc;
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
 }
 //和QQ,新浪并列回调句柄
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation

@@ -11,6 +11,7 @@
 #import "UpdatePasswordViewController.h"
 #import "UpdatePhoneViewController.h"
 #import "SettingNameViewController.h"
+#import "LoginTypeViewController.h"
 
 @interface SettingViewController () <UITableViewDataSource, UITableViewDelegate,UIAlertViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate>
 @property (nonatomic, strong) UITableView *settingTableView;
@@ -52,6 +53,21 @@
 
 #pragma mark ---- 退出登录 ----
 - (void)signOutClick {
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"确认退出当前账号" message:@"退出后需重新登录" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [[LoginManager getInstance] loginOut:^(BOOL success, NSDictionary *result) {
+            
+        }];
+        
+    }];
+    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [controller addAction:action1];
+    [controller addAction:action2];
+    [self presentViewController:controller animated:YES completion:^{
+        
+    }];
     
 }
 #pragma mark - UITableViewDataSource
@@ -246,8 +262,8 @@
 
 #pragma mark ---- 个人 用户信息 ----
 - (void)loadUserinfoRequest {
-    LoginManager *manager = [LoginManager getInstance];
-    [[HPDConnect connect] PostNetRequestMethod:@"sys/user/userinfo" params:@{@"userid":IF_NULL_TO_STRING(manager.userInfo.userId)} cookie:nil result:^(bool success, id result) {
+    
+    [[HPDConnect connect] PostNetRequestMethod:@"sys/user/userinfo" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID])} cookie:nil result:^(bool success, id result) {
         if (success) {
             self.userInfoDict = result;
             

@@ -176,7 +176,7 @@
 {
     LoginManager *manager = [LoginManager getInstance];
     NSDictionary *dict = @{
-                           @"userid":IF_NULL_TO_STRING(manager.userInfo.userId),
+                           @"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]),
                            @"pkgPrdId":IF_NULL_TO_STRING(posRootM.ID),
                            @"pkgPrdType":@"1",
                            @"count":[NSString stringWithFormat:@"%li",posRootM.goodCount+1],

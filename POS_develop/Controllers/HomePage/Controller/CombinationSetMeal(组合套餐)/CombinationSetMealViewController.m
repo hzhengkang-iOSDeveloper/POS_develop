@@ -239,7 +239,7 @@
 - (void)loadCartSaveRequestWith:(NSString *)pkgPrdId {
 //    PackageChargeListModel *model = self.dataArray[section];
     LoginManager *manager = [LoginManager getInstance];
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/cart/save" params:@{@"userid":IF_NULL_TO_STRING(manager.userInfo.userId), @"pkgPrdId":pkgPrdId, @"pkgPrdType":@"1", @"count":@"1"} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/cart/save" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]), @"pkgPrdId":pkgPrdId, @"pkgPrdType":@"1", @"count":@"1"} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"msg"] isEqualToString:@"success"]) {
                 HUD_SUCCESS(@"加入成功");

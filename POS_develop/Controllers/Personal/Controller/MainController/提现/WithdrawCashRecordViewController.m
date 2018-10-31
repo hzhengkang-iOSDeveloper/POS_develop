@@ -80,7 +80,7 @@
 
 - (void)loadBagWithdrawListRequest {
     LoginManager *manager = [LoginManager getInstance];
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/bagWithdraw/list" params:@{@"userid":IF_NULL_TO_STRING(manager.userInfo.userId)} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/bagWithdraw/list" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID])} cookie:nil result:^(bool success, id result) {
         [self.myTableView.mj_header endRefreshing];
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {

@@ -13,6 +13,7 @@
 #import "RSA+AES+GZIP.h"
 #import <Growing.h>
 #import "HDeviceIdentifier.h"
+#import "LoginTypeViewController.h"
 NSString *const kLoginFaildNofication = @"kLoginFaildNofication";
 NSString *const kLogoutSuccessNotification = @"kLogoutSuccessNotification";
 NSString *const kShouldShowLoginViewController = @"kShouldShowLoginViewController";
@@ -35,8 +36,8 @@ NSString *const kShouldShowLoginViewControllerLogout = @"kShouldShowLoginViewCon
 {
     if (self = [super init]) {
         _userInfo = [[UserInfo alloc] init];
-        if ([USER_DEFAULT objectForKey:CF_LastUserDic] != nil) {
-            NSLog(@"LastUserDic = %@",[USER_DEFAULT objectForKey:CF_LastUserDic]);
+        if ([USER_DEFAULT objectForKey:UserDict] != nil) {
+            NSLog(@"UserDict = %@",[USER_DEFAULT objectForKey:UserDict]);
             _wasLogin = YES;
         }else{
             _wasLogin = NO;
@@ -80,7 +81,8 @@ NSString *const kShouldShowLoginViewControllerLogout = @"kShouldShowLoginViewCon
 - (void)cleanUserInfo
 {
     [self.userInfo clean];
-    //_userInfo = nil;
+    [USER_DEFAULT removeObjectForKey:UserDict];
+
 }
 
 - (void)wasLoginIsNo{
@@ -183,49 +185,67 @@ NSString *const kShouldShowLoginViewControllerLogout = @"kShouldShowLoginViewCon
     _userInfo.authCode = [dict valueForKey:@"authCode"];
     _userInfo.nickname = [dict valueForKey:@"nickname"];
     
-//    [self storeCookie];
-//
-//    _userInfo.phoneNumber = account;
-//    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:[result[@"doObject"] dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers  error:nil];
-//    _userInfo.nice_name = dict[@"nice_name"];
-//
-//    _userInfo.customerCode = dict[@"customer_code"];
-//    if ([[dict allKeys] containsObject:@"user_id"]) {
-//        _userInfo.userId = dict[@"user_id"];
-//    }
+    
+    NSDictionary* dictInfo = @{USERID:_userInfo.userId,AUTHCODE : _userInfo.authCode, @"nickname":IF_NULL_TO_STRING(_userInfo.nickname)};
+    [USER_DEFAULT setObject:dictInfo forKey:UserDict];
+    
+
     
 }
 
 - (void)loginFaild:(NSDictionary *)result
 {
-//    if ([result[@"doObject"]isEqualToString:@"111124"]) {
-//        _wasLogin = NO;
-//        _userInfo.customerCode = nil;
-//        _userInfo.nice_name = nil;
-//        [USER_DEFAULT removeObjectForKey:CF_LastUserDic];
+
 //        [[NSNotificationCenter defaultCenter] postNotificationName:kLogoutSuccessNotification object:result];
-//    }
+
+    _userInfo.userId = nil;
+    _userInfo.authCode = nil;
+    _userInfo.nickname = nil;
     _wasLogin = NO;
+    [USER_DEFAULT removeObjectForKey:UserDict];
 //    [[NSNotificationCenter defaultCenter] postNotificationName:kLoginFaildNofication object:result];
 }
 
-- (void):(HPDLogoutResult)logoutResult
+- (void)loginOut:(HPDLogoutResult)logoutResult
 {
-
-    [self cleanUserInfo];
-    [[HPDConnect connect] webservicesAFNetPOSTMethod
-     :kSoapMethodUserLogout params:nil cookie:self.userCookie result:^(bool success, NSDictionary *result) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:kLogoutSuccessNotification object:result];
-        logoutResult(YES, nil);
-        NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-        NSArray *_tmpArray = [NSArray arrayWithArray:[cookieJar cookies]];
-        for (id obj in _tmpArray) {
-            [cookieJar deleteCookie:obj];
-        }
+    [[HPDConnect connect] GetNetRequestMethod:@"logout" params:nil cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"msg"] isEqualToString:@"操作成功"]) {
+                [self cleanUserInfo];
+                NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+                NSArray *_tmpArray = [NSArray arrayWithArray:[cookieJar cookies]];
+                for (id obj in _tmpArray) {
+                    [cookieJar deleteCookie:obj];
+                }
+                
+                self.userCookies = nil;
+                _userCookie = nil;
+                
+                
+                
+                
+                HUD_TIP(@"退出成功");
+                LoginTypeViewController * baseVC = [[LoginTypeViewController alloc] init];
+                [UIApplication sharedApplication].keyWindow.rootViewController = baseVC;
+            }
+            
         
-        self.userCookies = nil;
-        _userCookie = nil;
+            
+        }
     }];
+//    [[HPDConnect connect] webservicesAFNetPOSTMethod
+//     :kSoapMethodUserLogout params:nil cookie:self.userCookie result:^(bool success, NSDictionary *result) {
+//        [[NSNotificationCenter defaultCenter] postNotificationName:kLogoutSuccessNotification object:result];
+//        logoutResult(YES, nil);
+//        NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+//        NSArray *_tmpArray = [NSArray arrayWithArray:[cookieJar cookies]];
+//        for (id obj in _tmpArray) {
+//            [cookieJar deleteCookie:obj];
+//        }
+//        
+//        self.userCookies = nil;
+//        _userCookie = nil;
+//    }];
 }
 
 

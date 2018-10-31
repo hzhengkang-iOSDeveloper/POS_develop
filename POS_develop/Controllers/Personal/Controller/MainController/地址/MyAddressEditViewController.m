@@ -236,7 +236,7 @@
         return;
     }
     LoginManager *manager = [LoginManager getInstance];
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/address/update" params:@{@"userid":IF_NULL_TO_STRING(manager.userInfo.userId), @"defaultFlag":self.defaultAddressBtn.selected?@0:@1, @"receiverName":self.nameTF.text, @"receiverMp":self.telephoneTF.text, @"province" : province, @"city" : city, @"county": county, @"receiverAddr":self.detailAddress.text, @"id":self.ID} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/address/update" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]), @"defaultFlag":self.defaultAddressBtn.selected?@0:@1, @"receiverName":self.nameTF.text, @"receiverMp":self.telephoneTF.text, @"province" : province, @"city" : city, @"county": county, @"receiverAddr":self.detailAddress.text, @"id":self.ID} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"msg"] isEqualToString:@"success"]) {
                 HUD_TIP(@"保存成功");
