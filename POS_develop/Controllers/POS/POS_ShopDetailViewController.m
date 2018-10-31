@@ -218,8 +218,7 @@
 #pragma mark ---- 加入购物车 ----
 - (void)addShopCar:(UIButton *)sender
 {
-    sender.userInteractionEnabled = NO;
-    [self addShopCarwithBtn:sender];
+    [self addShopCar];
 }
 #pragma mark ---- 减 ----
 - (void)clickSubtractbtn
@@ -367,8 +366,9 @@
 }
 
 #pragma mark ---- 加入购物车接口 ----
-- (void)addShopCarwithBtn:(UIButton *)cellBtn
+- (void)addShopCar
 {
+    HUD_NOBGSHOW;
     NSDictionary *dict = @{
                            @"userid":@"1",
                            @"pkgPrdId":IF_NULL_TO_STRING(self.model.ID),
@@ -377,7 +377,7 @@
                            @"operation":@"1"
                            };
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/cart/save" params:dict cookie:nil result:^(bool success, id result) {
-        cellBtn.userInteractionEnabled = YES;
+        HUD_HIDE;
         if (success) {
             if ([result[@"code"]integerValue] == 0) {
                 HUD_SUCCESS(@"成功加入购物车");

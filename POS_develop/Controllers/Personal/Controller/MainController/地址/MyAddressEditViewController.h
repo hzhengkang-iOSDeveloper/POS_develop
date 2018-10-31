@@ -9,8 +9,10 @@
 #import "BaseSonViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
+@class MyAddressViewModel;
 
 @interface MyAddressEditViewController : BaseSonViewController
+@property (nonatomic, strong) MyAddressViewModel *addressM;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *telephone;
 @property (nonatomic, copy) NSString *detailAdd;
@@ -20,7 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *county;
 @property (nonatomic, copy) NSString *defaultFlag;
 @property (nonatomic, copy) NSString *ID;//地址id
-@property (nonatomic, copy) void (^updateAddressList)(void);
+
+@property (nonatomic, copy) void (^updateAddressList)(MyAddressViewModel *addressModel);
 @end
 
 NS_ASSUME_NONNULL_END

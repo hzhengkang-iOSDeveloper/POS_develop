@@ -10,6 +10,15 @@
 #define POS_PCH_pch
 #import "RootViewController.h"
 
+//生产环境
+#define  ONLINEURL      @"http://front.shzfgj.com"
+
+//测试环境
+#define  OUTLINEHost    @"http://106.14.7.85:8000"
+
+#define  BasePicURL   OUTLINEHost
+
+
 #import "AppDelegate.h"
 #import "UIView+Extension.h"
 #import "UIImage+Extension.h"
@@ -232,7 +241,17 @@
 #define HUD_ERROR(str)      [SYShowHUD showError:str];
 // 文字提示
 #define HUD_TIP(str)        [SYShowHUD showTip:str];
+//菊花等待
+#define HUD_SHOW        [SYShowHUD showWait];
+//无背景菊花等待
+#define HUD_NOBGSHOW        [SYShowHUD showNoBgWait];
 
+//隐藏菊花
+#define HUD_HIDE        [SYShowHUD hideWait];
+
+
+//拼接图片地址
+#define GETPIC(str)  [NSString stringWithFormat:@"%@%@",BasePicURL,str]
 #define USER_DEFAULT [NSUserDefaults standardUserDefaults]
 
 

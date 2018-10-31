@@ -140,9 +140,6 @@
     }];
     
     //加入购物车
-//    AddShopCarBtn *addShopCartBtn = [AddShopCarBtn buttonWithType:UIButtonTypeCustom];
-//    [addShopCartBtn setTitle:@"加入购物车" forState:UIButtonTypeCustom];
-//    [addShopCartBtn setImage:ImageNamed(@"购物车") forState:<#(UIControlState)#>]
     [UIButton getButtonWithImageName:@"购物车" titleText:@"加入购物车" superView:mainView masonrySet:^(UIButton * _Nonnull btn, MASConstraintMaker * _Nonnull make) {
         make.right.offset(-AD_HEIGHT(16));
         make.centerY.offset(0);
@@ -162,7 +159,7 @@
 - (void)addShopCar:(UIButton *)sender
 {
     PackageChargeListModel *model = self.dataArray[sender.tag-100];
-    [self loadCartSaveRequestWith:model.ID];
+    [self loadCartSaveRequestWith:model];
 }
 
 #pragma mark -- tableView代理数据源方法
@@ -235,21 +232,32 @@
     }];
     
 }
-#pragma mark ---- 加入购物车 ----
-- (void)loadCartSaveRequestWith:(NSString *)pkgPrdId {
-//    PackageChargeListModel *model = self.dataArray[section];
-    LoginManager *manager = [LoginManager getInstance];
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/cart/save" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]), @"pkgPrdId":pkgPrdId, @"pkgPrdType":@"1", @"count":@"1"} cookie:nil result:^(bool success, id result) {
+#pragma mark ---- 加入购物车接口 ----
+- (void)loadCartSaveRequestWith:(PackageChargeListModel *)model
+{
+    HUD_NOBGSHOW;
+    NSDictionary *dict = @{
+                           @"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]),
+                           @"pkgPrdId":IF_NULL_TO_STRING(model.ID),
+                           @"pkgPrdType":@"1",
+                           @"count":@"1",
+                           @"operation":@"1"
+                           };
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/cart/save" params:dict cookie:nil result:^(bool success, id result) {
+        HUD_HIDE;
         if (success) {
-            if ([result[@"msg"] isEqualToString:@"success"]) {
-                HUD_SUCCESS(@"加入成功");
+            if ([result[@"code"]integerValue] == 0) {
+                HUD_SUCCESS(@"成功加入购物车");
+                //发送通知 更改nav的购物车数量
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"changeShopCarCount" object:nil userInfo:@{@"goodCount":@"1"}];
+            } else {
+                HUD_ERROR(@"加入购物车失败，请稍后重试！");
             }
+            
         }
         NSLog(@"result ------- %@", result);
     }];
-    
 }
-
 @end
 
 

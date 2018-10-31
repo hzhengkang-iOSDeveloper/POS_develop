@@ -7,7 +7,8 @@
 //
 
 #import "BaseSonViewController.h"
-
+@class MyAddressViewModel;
 @interface MyAddressViewController : BaseSonViewController
-
+@property (nonatomic, assign) BOOL isSelecteAddress;
+@property (nonatomic, copy) void (^selectAddressHandler)(MyAddressViewModel *addressM);
 @end

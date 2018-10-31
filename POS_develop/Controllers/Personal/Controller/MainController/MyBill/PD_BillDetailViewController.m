@@ -7,6 +7,7 @@
 //
 
 #import "PD_BillDetailViewController.h"
+#import "MyAddressViewController.h"
 #import "SLOrdersDeteiledLabel.h"
 #import "PD_BillDetailTaoCanCell.h"
 #import "PD_BillDetailDanDianCell.h"
@@ -15,6 +16,7 @@
 #import "PD_BillDetailOnLineView.h"//线上支付
 #import "PD_BillDetailComfirInfoView.h"//确认收货
 #import "BillListModel.h"
+#import "MyAddressViewModel.h"
 @interface PD_BillDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, weak) UITableView *orderDetailTable;
 //订单编号
@@ -25,10 +27,13 @@
 @property (nonatomic, weak) UILabel *payTimeLabel;
 //发货时间
 @property (nonatomic, weak) UILabel *sendTimeLabel;
+@property (nonatomic, weak) UILabel *moRenAddressLabel;
 //模型
 @property (nonatomic, strong) BillListModel *billListM;
 //套餐数组
 @property (nonatomic, strong) NSMutableArray *taoCanArr;
+//单点数据源
+@property (nonatomic, strong) NSMutableArray *productArr;
 //单点数组
 @property (nonatomic, strong) NSMutableArray *danDiArr;
 @end
@@ -48,7 +53,13 @@
     }
     return _danDiArr;
 }
-
+- (NSMutableArray *)productArr
+{
+    if (!_productArr) {
+        _productArr = [NSMutableArray array];
+    }
+    return _productArr;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -56,22 +67,22 @@
     [self creatTableView];
     [self loadOrderGetRequest];
 }
-- (void)setOrderStatu:(NSString *)orderStatu
-{
-    if (orderStatu) {
-        _orderStatu = orderStatu;
-        //订单状态，10:待付款，20:待发货，30:待确认，40：已完成
-        if ([orderStatu isEqualToString:@"10"]) {
-            self.navigationItemTitle  = @"待付款";
-        } else if ([orderStatu isEqualToString:@"20"]) {
-            self.navigationItemTitle  = @"待发货";
-        } else if ([orderStatu isEqualToString:@"30"]) {
-            self.navigationItemTitle  = @"待确认";
-        } else if ([orderStatu isEqualToString:@"40"]) {
-            self.navigationItemTitle  = @"订单完成";
-        }
-    }
-}
+//- (void)setOrderStatu:(NSString *)orderStatu
+//{
+//    if (orderStatu) {
+//        _orderStatu = orderStatu;
+//        //订单状态，10:待付款，20:待发货，30:待确认，40：已完成
+//        if ([orderStatu isEqualToString:@"10"]) {
+//            self.navigationItemTitle  = @"待付款";
+//        } else if ([orderStatu isEqualToString:@"20"]) {
+//            self.navigationItemTitle  = @"待发货";
+//        } else if ([orderStatu isEqualToString:@"30"]) {
+//            self.navigationItemTitle  = @"待确认";
+//        } else if ([orderStatu isEqualToString:@"40"]) {
+//            self.navigationItemTitle  = @"订单完成";
+//        }
+//    }
+//}
 #pragma mark ---- Table ----
 - (void)creatTableView
 {
@@ -89,11 +100,18 @@
 }
 
 #pragma mark ---- TabHeadView ----
-- (UIView *)creatTableHeaderView
+- (UIView *)creatTableHeaderViewWith:(AddressDOModel *)addressM
 {
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(76))];
     headerView.backgroundColor = WhiteColor;
-    AddressDOModel *addressM = [AddressDOModel mj_objectWithKeyValues:self.billListM.addressDO];
+    
+    if ([self.billListM.orderStatus isEqualToString:@"10"]) {
+        headerView.userInteractionEnabled = YES;
+        
+        UITapGestureRecognizer *headerGest = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickAddressBtn)];
+        [headerView addGestureRecognizer:headerGest];
+    }
+    
     
     //收件人姓名
     UILabel *receiverNameLabel = [UILabel getLabelWithFont:FB13 textColor:C000000 superView:headerView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
@@ -104,12 +122,49 @@
     }];
     
     //收件人手机号
-    [UILabel getLabelWithFont:FB13 textColor:C000000 superView:headerView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
+    UILabel *receiverPhoneLabel = [UILabel getLabelWithFont:FB13 textColor:C000000 superView:headerView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
         make.left.equalTo(receiverNameLabel.mas_right).offset(AD_HEIGHT(8));
         make.top.offset(AD_HEIGHT(14));
         
         view.text = [NSString numberSuitScanf:IF_NULL_TO_STRING(addressM.receiverMp)];
     }];
+    //默认地址标志
+    UILabel *moRenAddressLabel  = [UILabel getLabelWithFont:F9 textColor:C000000 superView:headerView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
+        make.left.equalTo(receiverPhoneLabel.mas_right).offset(AD_HEIGHT(25));
+        make.centerY.equalTo(receiverPhoneLabel.mas_centerY);
+        make.size.mas_offset(CGSizeMake(AD_HEIGHT(24), AD_HEIGHT(12)));
+        
+        view.text = @"默认";
+        view.textAlignment = NSTextAlignmentCenter;
+        view.layer.masksToBounds = YES;
+        view.layer.cornerRadius = 1;
+        view.backgroundColor = RGB(238, 238, 238);
+        view.layer.borderWidth = 0.5;
+        view.layer.borderColor = C000000.CGColor;
+    }];
+    self.moRenAddressLabel = moRenAddressLabel;
+    if ([addressM.deleteflag isEqualToString:@"0"]) {
+        moRenAddressLabel.hidden = NO;
+    } else {
+        moRenAddressLabel.hidden = YES;
+    }
+    
+    //右侧箭头
+    UIImageView *rightImageV = [[UIImageView alloc]init];
+    rightImageV.contentMode = UIViewContentModeScaleAspectFit;
+    rightImageV.image = ImageNamed(@"图层2拷贝2");
+    [headerView addSubview:rightImageV];
+    [rightImageV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.offset(-AD_HEIGHT(16));
+        make.top.offset(AD_HEIGHT(21));
+        make.size.mas_offset(CGSizeMake(AD_HEIGHT(8), AD_HEIGHT(16)));
+    }];
+    
+    if ([self.billListM.orderStatus isEqualToString:@"10"]) {
+        rightImageV.hidden = NO;
+    } else {
+        rightImageV.hidden = YES;
+    }
     
     //收货地址图片
     UIImageView *receiverAddressImageV = [UIImageView new];
@@ -333,10 +388,29 @@
     
     return footerView;
 }
-
+#pragma mark ---- 进入地址详情 ----
+- (void)clickAddressBtn
+{
+    MyAddressViewController *vc = [[MyAddressViewController alloc]init];
+    vc.isSelecteAddress = YES;
+    vc.hidesBottomBarWhenPushed = YES;
+    vc.selectAddressHandler = ^(MyAddressViewModel *addressM) {
+        AddressDOModel *addressDoM = [[AddressDOModel alloc]init];
+        addressDoM.receiverName = addressM.receiverName;
+        addressDoM.receiverMp = addressM.receiverMp;
+        addressDoM.deleteflag =addressM.defaultFlag;
+        addressDoM.province = addressM.province;
+        addressDoM.city = addressM.city;
+        addressDoM.county = addressM.county;
+        addressDoM.receiverAddr = addressM.receiverAddr;
+        self.orderDetailTable.tableHeaderView = [self creatTableHeaderViewWith:addressDoM];
+        
+    };
+    [self.navigationController pushViewController:vc animated:YES];
+}
 #pragma mark -- tableView代理数据源方法
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    if (self.danDiArr.count >0 && self.taoCanArr.count >0) {
+    if (self.productArr.count >0 && self.taoCanArr.count >0) {
         return 2;
     } else {
         return 1;
@@ -344,18 +418,18 @@
     
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (self.danDiArr.count >0 && self.taoCanArr.count >0) {
-        return section==0?self.taoCanArr.count:self.danDiArr.count;
-    } else if (self.danDiArr.count ==0 && self.taoCanArr.count >0) {
+    if (self.productArr.count >0 && self.taoCanArr.count >0) {
+        return section==0?self.taoCanArr.count:self.productArr.count;
+    } else if (self.productArr.count ==0 && self.taoCanArr.count >0) {
         return self.taoCanArr.count;
-    } else if (self.danDiArr.count >0 && self.taoCanArr.count ==0) {
-        return self.danDiArr.count;
+    } else if (self.productArr.count >0 && self.taoCanArr.count ==0) {
+        return self.productArr.count;
     } else {
         return 0;
     }
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (self.danDiArr.count >0 && self.taoCanArr.count >0) {
+    if (self.productArr.count >0 && self.taoCanArr.count >0) {
         if (indexPath.section == 0) {
             PD_BillDetailTaoCanCell *cell = [PD_BillDetailTaoCanCell cellWithTableView:tableView];
             cell.detailDoM = self.taoCanArr[indexPath.row];
@@ -363,18 +437,18 @@
             return cell;
         } else {
             PD_BillDetailDanDianCell *cell = [PD_BillDetailDanDianCell cellWithTableView:tableView];
-            cell.detailDoM = self.danDiArr[indexPath.row];
+            cell.productArr = [NSMutableArray arrayWithArray:self.productArr[indexPath.row]];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
-    } else if (self.danDiArr.count ==0 && self.taoCanArr.count >0) {
+    } else if (self.productArr.count ==0 && self.taoCanArr.count >0) {
         PD_BillDetailTaoCanCell *cell = [PD_BillDetailTaoCanCell cellWithTableView:tableView];
         cell.detailDoM = self.taoCanArr[indexPath.row];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    } else if (self.danDiArr.count >0 && self.taoCanArr.count ==0) {
+    } else if (self.productArr.count >0 && self.taoCanArr.count ==0) {
         PD_BillDetailDanDianCell *cell = [PD_BillDetailDanDianCell cellWithTableView:tableView];
-        cell.detailDoM = self.danDiArr[indexPath.row];
+        cell.productArr = [NSMutableArray arrayWithArray:self.productArr[indexPath.row]];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     } else {
@@ -385,35 +459,33 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     DetailDOModel *taoCanDetaiM;
     ItemObjModel *taoCanItemObjM;
-    if (self.taoCanArr.count >0 ) {
+    if (self.taoCanArr.count >indexPath.row ) {
         taoCanDetaiM = self.taoCanArr[indexPath.row];
         taoCanItemObjM = [ItemObjModel mj_objectWithKeyValues:taoCanDetaiM.itemObj];
     }
     
-    DetailDOModel *danDianDetaiM;
-    ItemObjModel *danDianItemObjM;
-    if (self.danDiArr.count >0) {
-        danDianDetaiM = self.danDiArr[indexPath.row];
-        danDianItemObjM = [ItemObjModel mj_objectWithKeyValues:danDianDetaiM.itemObj];
+    NSArray *productTmpArr = [NSArray array];
+    if (self.productArr.count >indexPath.row) {
+        productTmpArr = self.productArr[indexPath.row];
     }
     
-    if (self.danDiArr.count >0 && self.taoCanArr.count >0) {
-        return indexPath.section==0?(AD_HEIGHT(30)+AD_HEIGHT(46)+taoCanItemObjM.packageChargeItemDOList.count*AD_HEIGHT(60)+AD_HEIGHT(5)):(AD_HEIGHT(32)+AD_HEIGHT(60)*danDianItemObjM.packageChargeItemDOList.count+AD_HEIGHT(5));
-    } else if (self.danDiArr.count ==0 && self.taoCanArr.count >0) {
+    if (self.productArr.count >0 && self.taoCanArr.count >0) {
+        return indexPath.section==0?(AD_HEIGHT(30)+AD_HEIGHT(46)+taoCanItemObjM.packageChargeItemDOList.count*AD_HEIGHT(60)+AD_HEIGHT(5)):(AD_HEIGHT(32)+AD_HEIGHT(60)*productTmpArr.count+AD_HEIGHT(5));
+    } else if (self.productArr.count ==0 && self.taoCanArr.count >0) {
         return AD_HEIGHT(30)+AD_HEIGHT(46)+taoCanItemObjM.packageChargeItemDOList.count*AD_HEIGHT(60)+AD_HEIGHT(5);
-    } else if (self.danDiArr.count >0 && self.taoCanArr.count ==0) {
-        return AD_HEIGHT(32)+AD_HEIGHT(60)*danDianItemObjM.packageChargeItemDOList.count+AD_HEIGHT(5);
+    } else if (self.productArr.count >0 && self.taoCanArr.count ==0) {
+        return AD_HEIGHT(32)+AD_HEIGHT(60)*productTmpArr.count+AD_HEIGHT(5);
     } else {
         return 0;
     }
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if (self.danDiArr.count >0 && self.taoCanArr.count >0) {
+    if (self.productArr.count >0 && self.taoCanArr.count >0) {
         return section == 0?[self creatHeaderWithText:@"套餐"]:[self creatHeaderWithText:@"单点"];
-    } else if (self.danDiArr.count ==0 && self.taoCanArr.count >0) {
+    } else if (self.productArr.count ==0 && self.taoCanArr.count >0) {
         return [self creatHeaderWithText:@"套餐"];
-    } else if (self.danDiArr.count >0 && self.taoCanArr.count ==0) {
+    } else if (self.productArr.count >0 && self.taoCanArr.count ==0) {
         return [self creatHeaderWithText:@"单点"];
     } else {
         return [UIView new];
@@ -455,18 +527,33 @@
 {
     HUD_SUCCESS(@"复制成功");
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    pasteboard.string = @"203498230482039482";
+    pasteboard.string = IF_NULL_TO_STRING(self.billListM.orderUuid);
 }
 
 #pragma mark ---- 接口 ----
 -(void)loadOrderGetRequest {
+    HUD_SHOW;
     [[HPDConnect connect] PostNetRequestMethod:[NSString stringWithFormat:@"%@%@",@"api/trans/order/get/",self.myID] params:nil cookie:nil result:^(bool success, id result) {
+        HUD_HIDE;
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
 
                 self.billListM = [BillListModel mj_objectWithKeyValues:result[@"data"]];
-                self.orderDetailTable.tableHeaderView = [self creatTableHeaderView];
+                AddressDOModel *addressM = [AddressDOModel mj_objectWithKeyValues:self.billListM.addressDO];
+                self.orderDetailTable.tableHeaderView = [self creatTableHeaderViewWith:addressM];
                 self.orderDetailTable.tableFooterView = [self creatTableFooterView];
+                if ([self.billListM.orderStatus isEqualToString:@"10"]) {
+                    self.navigationItemTitle = @"待付款";
+                    
+                } else if ([self.billListM.orderStatus isEqualToString:@"20"] ) {
+                    //确认收货
+                    self.navigationItemTitle = @"待收货";
+                } else if ([self.billListM.orderStatus isEqualToString:@"30"] ) {
+                    //待确认
+                    self.navigationItemTitle = @"待确认";
+                }  else if ([self.billListM.orderStatus isEqualToString:@"40"]) {
+                    self.navigationItemTitle = @"订单完成";
+                }
                 [self creatCellNewArr];
             }
         }
@@ -474,6 +561,44 @@
     }];
 }
 
+#pragma mark ---- 获取单点产品数据源 ----
+- (void)getProductDataArr
+{
+    
+    for (int i = 0; i < self.danDiArr.count; i ++) {
+        
+        DetailDOModel *detailM = self.danDiArr[i];
+        ItemObjModel *productM1 = [ItemObjModel mj_objectWithKeyValues:detailM.itemObj];
+        NSString *string = productM1.posBrandName;
+        
+        NSMutableArray *tempArray = [NSMutableArray array];
+        
+        [tempArray addObject:detailM];
+        
+        for (int j = i+1; j < self.danDiArr.count; j ++) {
+            
+            DetailDOModel *detailM1 = self.danDiArr[i];
+            ItemObjModel *productM2 = [ItemObjModel mj_objectWithKeyValues:detailM1.itemObj];
+            NSString *jstring = productM2.posBrandName;
+            
+            if([string isEqualToString:jstring]){
+                
+                [tempArray addObject:detailM1];
+                
+                [self.danDiArr removeObjectAtIndex:j];
+                j -= 1;
+                
+            }
+            
+        }
+        
+        [self.productArr addObject:tempArray];
+        
+    }
+    
+    
+    
+}
 
 #pragma mark ---- 创建Cell数组 ----
 - (void)creatCellNewArr
@@ -488,6 +613,8 @@
         }
     }];
     
+    //获取产品数据源
+    [self getProductDataArr];
     [self.orderDetailTable reloadData];
 }
 @end

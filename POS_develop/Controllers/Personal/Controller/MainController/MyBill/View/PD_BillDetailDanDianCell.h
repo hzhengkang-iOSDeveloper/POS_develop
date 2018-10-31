@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-@class DetailDOModel;
+
 @interface PD_BillDetailDanDianCell : UITableViewCell
-@property (nonatomic, strong) DetailDOModel *detailDoM;
+@property (nonatomic, strong) NSMutableArray *productArr;
 
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 @end

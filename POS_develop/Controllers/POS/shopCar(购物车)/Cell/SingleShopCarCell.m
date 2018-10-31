@@ -163,6 +163,11 @@
     }
     
     self.skuCountLabel.text = [NSString stringWithFormat:@"%li",self.productM.goodCount+1];
+    if (self.productM.isSelected) {
+        if (self.clickSelectedBtn) {
+            self.clickSelectedBtn();
+        }
+    }
 }
 #pragma mark ---- 加 ----
 - (void)clickAddbtn
@@ -170,7 +175,11 @@
     self.productM.goodCount ++;
     
     self.skuCountLabel.text = [NSString stringWithFormat:@"%li",self.productM.goodCount+1];
-    
+    if (self.productM.isSelected) {
+        if (self.clickSelectedBtn) {
+            self.clickSelectedBtn();
+        }
+    }
 }
 
 - (void)setProductM:(ShopCar_ProductModel *)productM

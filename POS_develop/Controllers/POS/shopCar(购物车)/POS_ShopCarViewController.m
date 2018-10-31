@@ -7,11 +7,13 @@
 //
 
 #import "POS_ShopCarViewController.h"
+#import "POS_CommitBillViewController.h"//确认订单
 #import "ShopCarMainCell.h"//套餐cell
 #import "SingleShopCarMainCell.h"//单点cell
 #import "ShopCarModel.h"
 #import "ShopCar_ProductModel.h"
 #import "ShopCar_PackageModel.h"
+
 @interface POS_ShopCarViewController () <UITableViewDelegate,UITableViewDataSource>
 //bottomView
 @property (nonatomic, weak) UIView *bottomView;
@@ -226,7 +228,37 @@
 #pragma mark ---- 结算点击 ----
 - (void)clickJieSuanBtn
 {
+    //遍历套餐数组
+    __block NSString *pkgPrdIds = [NSString string];
+    __block NSString *pkgPrdTypes= [NSString string];
+    __block NSString *counts= [NSString string];
+    [self.packAgeArr enumerateObjectsUsingBlock:^(ShopCar_PackageModel *  _Nonnull packageM, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (packageM.isSelected) {
+            pkgPrdIds = [pkgPrdIds stringByAppendingString:packageM.ID];
+            pkgPrdTypes = [pkgPrdTypes stringByAppendingString:@"1"];
+            counts = [counts stringByAppendingString:s_Integer(packageM.goodCount+1)];
+        }
+    }];
     
+    //遍历产品数组
+    [self.productDataArr enumerateObjectsUsingBlock:^(NSArray * _Nonnull productA, NSUInteger idx, BOOL * _Nonnull stop) {
+        [productA enumerateObjectsUsingBlock:^(ShopCar_ProductModel *  _Nonnull productM, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (productM.isSelected) {
+                pkgPrdIds = [pkgPrdIds stringByAppendingString:productM.ID];
+                pkgPrdTypes = [pkgPrdTypes stringByAppendingString:@"0"];
+                counts = [counts stringByAppendingString:s_Integer(productM.goodCount+1)];
+                
+            }
+        }];
+    }];
+    
+    if ([pkgPrdIds isEqualToString:@""]) {
+        HUD_TIP(@"请选择商品后再结算");
+        return;
+    }
+    
+   //提交订单接口
+    [self saveOrderRequestWithPkgPrdIds:pkgPrdIds withPkgPrdTypes:pkgPrdTypes withCounts:counts];
 }
 
 
@@ -360,6 +392,7 @@
 #pragma mark ---- 计算底部金额 ----
 - (void)getTaoCanPriceRequest
 {
+    
     //遍历套餐数组
     __block NSString *pkgPrdIds = [NSString string];
     __block NSString *pkgPrdTypes= [NSString string];
@@ -388,6 +421,7 @@
         self.allMoneyLabel.attributedText = [self setMoneyStr:@"合计：0元"];
         self.yunFeiLabel.attributedText = [self setDeliveryPriceStr:@"运费0元"];
     } else {
+        HUD_NOBGSHOW;
         NSDictionary *dict = @{
                                @"userid":@"1",
                                @"pkgPrdIds":IF_NULL_TO_STRING(pkgPrdIds),
@@ -396,6 +430,7 @@
                                @"operation":@"1"
                                };
         [[HPDConnect connect] PostNetRequestMethod:@"api/trans/cart/calculate" params:dict cookie:nil result:^(bool success, id result) {
+            HUD_HIDE;
             if (success) {
                 if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                     self.allMoneyLabel.attributedText = [self setMoneyStr:[NSString stringWithFormat:@"合计：%@元",result[@"data"][@"totalPrice"]]];
@@ -568,6 +603,33 @@
                     //刷新数据源
                     [self.myTableView reloadData];
                 }
+            }
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
+
+
+#pragma mark ---- 提交订单 ----
+- (void)saveOrderRequestWithPkgPrdIds:(NSString *)pkgPrdIds  withPkgPrdTypes:(NSString *)pkgPrdTypes withCounts:(NSString *)counts
+{
+    NSDictionary *dict = @{
+                           @"userid":@"1",
+                           @"pkgPrdIds":IF_NULL_TO_STRING(pkgPrdIds),
+                           @"pkgPrdTypes":IF_NULL_TO_STRING(pkgPrdTypes),
+                           @"counts":IF_NULL_TO_STRING(counts),
+                           @"operation":@"1"
+                           };
+    HUD_NOBGSHOW;
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/order/save" params:dict cookie:nil result:^(bool success, id result) {
+        HUD_HIDE;
+        if (success) {
+            if ([result[@"code"]integerValue] == 0) {
+                POS_CommitBillViewController *vc = [[POS_CommitBillViewController alloc]init];
+                vc.hidesBottomBarWhenPushed = YES;
+                vc.orderId = @"6";
+                [self.navigationController pushViewController:vc animated:YES];
             }
             
         }

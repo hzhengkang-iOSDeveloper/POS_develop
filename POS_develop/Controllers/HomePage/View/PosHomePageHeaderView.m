@@ -69,6 +69,7 @@
     }];
     self.volumeOfTransactionL = [[UILabel alloc] init];
     self.volumeOfTransactionL.textColor = WhiteColor;
+    self.volumeOfTransactionL.text = @"0";
     self.volumeOfTransactionL.font = F15;
     [self addSubview:self.volumeOfTransactionL];
     [self.volumeOfTransactionL mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -97,6 +98,7 @@
     }];
     self.shareProfitL = [[UILabel alloc] init];
     self.shareProfitL.textColor = WhiteColor;
+    self.shareProfitL.text = @"0.00";
     self.shareProfitL.font = F15;
     [self addSubview:self.shareProfitL];
     [self.shareProfitL mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -145,6 +147,7 @@
     }];
     self.activationL = [[UILabel alloc] init];
     self.activationL.textAlignment = NSTextAlignmentCenter;
+    self.activationL.text = @"0";
     self.activationL.textColor = C000000;
     self.activationL.font = F13;
     [numberBGImg addSubview:self.activationL];
@@ -164,6 +167,7 @@
         make.size.mas_offset(CGSizeMake(FITiPhone6(80), FITiPhone6(13)));
     }];
     self.teamPersonL = [[UILabel alloc] init];
+    self.teamPersonL.text = @"0";
     self.teamPersonL.textAlignment = NSTextAlignmentCenter;
     self.teamPersonL.textColor = C000000;
     self.teamPersonL.font = F13;

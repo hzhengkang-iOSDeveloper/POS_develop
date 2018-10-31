@@ -8,6 +8,7 @@
 
 #import "MyAddressEditViewController.h"
 #import "BLAreaPickerView.h"//地址选择
+#import "MyAddressViewModel.h"
 @interface MyAddressEditViewController ()<BLPickerViewDelegate>
 {
     NSInteger count;
@@ -30,9 +31,9 @@
     [super viewDidLoad];
     self.navigationItemTitle = @"编辑地址";
     count = 1;
-    province = self.province;
-    city = self.city;
-    county = self.county;
+    province = self.addressM.province;
+    city = self.addressM.city;
+    county = self.addressM.county;
     [self initUI];
 }
 
@@ -46,7 +47,7 @@
         make.size.mas_offset(CGSizeMake(ScreenWidth, FITiPhone6(186)));
     }];
     self.nameTF = [[UITextField alloc] init];
-    self.nameTF.text = self.name;
+    self.nameTF.text = self.addressM.receiverName;
     self.nameTF.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, FITiPhone6(5), 0)];
     self.nameTF.leftViewMode = UITextFieldViewModeAlways;
     self.nameTF.placeholder = @"请输入收货人姓名";
@@ -74,7 +75,7 @@
         make.size.sizeOffset(CGSizeMake(ScreenWidth - FITiPhone6(15), FITiPhone6(0.5)));
     }];
     self.telephoneTF = [[UITextField alloc] init];
-    self.telephoneTF.text = self.telephone;
+    self.telephoneTF.text = self.addressM.receiverMp;
     self.telephoneTF.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, FITiPhone6(5), 0)];
     self.telephoneTF.leftViewMode = UITextFieldViewModeAlways;
     self.telephoneTF.placeholder = @"请输入收货人手机号";
@@ -103,7 +104,7 @@
     }];
     self.cityBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.cityBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [self.cityBtn setTitle:[NSString stringWithFormat:@"%@ %@ %@", self.province, self.city, self.county] forState:UIControlStateNormal];
+    [self.cityBtn setTitle:[NSString stringWithFormat:@"%@ %@ %@", self.addressM.province, self.addressM.city, self.addressM.county] forState:UIControlStateNormal];
     self.cityBtn.titleLabel.font = F13;
     [self.cityBtn setTitleColor:C000000 forState:UIControlStateNormal];
     [self.cityBtn addTarget:self action:@selector(selectAddress) forControlEvents:UIControlEventTouchUpInside];
@@ -122,7 +123,7 @@
         make.size.sizeOffset(CGSizeMake(ScreenWidth - FITiPhone6(15), FITiPhone6(0.5)));
     }];
     self.detailAddress = [[UITextField alloc] init];
-    self.detailAddress.text = self.detailAdd;
+    self.detailAddress.text = self.addressM.receiverAddr;
     self.detailAddress.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, FITiPhone6(5), 0)];
     self.detailAddress.leftViewMode = UITextFieldViewModeAlways;
     self.detailAddress.placeholder = @"请输入详细地址";
@@ -145,7 +146,7 @@
     [self.defaultAddressBtn setTitle:@"默认地址" forState:UIControlStateNormal];
     [self.defaultAddressBtn setTitleColor:C000000 forState:UIControlStateNormal];
     [self.defaultAddressBtn layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleLeft imageTitleSpace:FITiPhone6(23)];
-    if ([self.defaultFlag isEqualToString:@"0"]) {
+    if ([self.addressM.defaultFlag isEqualToString:@"0"]) {
         self.defaultAddressBtn.selected = YES;
     }else {
         self.defaultAddressBtn.selected = NO;
@@ -199,6 +200,11 @@
     province = provinceTitle;
     city = cityTitle;
     county = areaTitle;
+    
+    self.addressM.province = province;
+    self.addressM.city = city;
+    self.addressM.county = county;
+    
     [self.cityBtn setTitleColor:C000000 forState:normal];
     count = 1;
     if (self.nameTF.text.length > 0 && self.telephoneTF.text.length > 0 && self.detailAddress.text.length > 0) {
@@ -235,14 +241,17 @@
         HUD_TIP(@"请输入11位手机号");
         return;
     }
-    LoginManager *manager = [LoginManager getInstance];
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/address/update" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]), @"defaultFlag":self.defaultAddressBtn.selected?@0:@1, @"receiverName":self.nameTF.text, @"receiverMp":self.telephoneTF.text, @"province" : province, @"city" : city, @"county": county, @"receiverAddr":self.detailAddress.text, @"id":self.ID} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/address/update" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]), @"defaultFlag":self.defaultAddressBtn.selected?@0:@1, @"receiverName":IF_NULL_TO_STRING(self.nameTF.text), @"receiverMp":IF_NULL_TO_STRING(self.telephoneTF.text), @"province" : province, @"city" : city, @"county": county, @"receiverAddr":self.detailAddress.text, @"id":self.addressM.ID} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"msg"] isEqualToString:@"success"]) {
+                self.addressM.defaultFlag = self.defaultAddressBtn.selected?@"0":@"1";
+                self.addressM.receiverName = self.nameTF.text;
+                self.addressM.receiverMp = self.telephoneTF.text;
+                self.addressM.receiverAddr = self.detailAddress.text;
                 HUD_TIP(@"保存成功");
                 [self.navigationController popViewControllerAnimated:YES];
                 if (self.updateAddressList) {
-                    self.updateAddressList();
+                    self.updateAddressList(self.addressM);
                 }
             }
             

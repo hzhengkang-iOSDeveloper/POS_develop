@@ -69,6 +69,7 @@
 @end
 
 @interface ItemObjModel : NSObject
+//套餐
 @property (nonatomic , copy) NSString              * ID;
 @property (nonatomic , copy) NSString              * packageName;
 @property (nonatomic , copy) NSString              * packagePrice;
@@ -80,6 +81,20 @@
 @property (nonatomic , copy) NSString              * updatetime;
 @property (nonatomic , copy) NSString              * deleteflag;
 @property (nonatomic, strong) NSArray * packageChargeItemDOList;
+
+//产品
+@property (nonatomic, copy) NSString *posBrandNo;
+@property (nonatomic, copy) NSString *posBrandName;
+@property (nonatomic, copy) NSString *posTermType;
+@property (nonatomic, copy) NSString *posTermModel;
+@property (nonatomic, copy) NSString *posSnNo;
+@property (nonatomic, copy) NSString *activationType;
+@property (nonatomic, copy) NSString *posPrice;
+@property (nonatomic, copy) NSString *posRebatePrice;
+@property (nonatomic, copy) NSString *posCount;
+@property (nonatomic, copy) NSString *productImg;
+@property (nonatomic, copy) NSString *chargeType;
+@property (nonatomic, copy) NSString *productName;
 @end
 
 @interface PackAgeChargeItemListModel : NSObject
@@ -112,6 +127,7 @@
 @property (nonatomic , copy) NSString              * updateuserno;
 @property (nonatomic , copy) NSString              * updatetime;
 @property (nonatomic , copy) NSString              * deleteflag;
+@property (nonatomic,  copy) NSString               *productName;
 @end
 
 @interface PayDOModel : NSObject

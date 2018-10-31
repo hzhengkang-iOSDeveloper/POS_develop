@@ -174,7 +174,6 @@
 #pragma mark ---- 加入购物车接口 ----
 - (void)addShopCarWith:(POS_RootViewModel *)posRootM withBtn:(UIButton *)cellBtn
 {
-    LoginManager *manager = [LoginManager getInstance];
     NSDictionary *dict = @{
                            @"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]),
                            @"pkgPrdId":IF_NULL_TO_STRING(posRootM.ID),

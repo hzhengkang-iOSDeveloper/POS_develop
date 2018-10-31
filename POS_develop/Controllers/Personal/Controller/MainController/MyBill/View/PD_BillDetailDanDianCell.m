@@ -74,7 +74,9 @@
     headerView.backgroundColor = WhiteColor;
     
     UIImageView *headerImageV = [[UIImageView alloc]init];
-    [headerImageV sd_setImageWithURL:[NSURL URLWithString:self.detailDoM.itemPic]];
+    DetailDOModel *detailM  = [self.dataArr firstObject];
+
+    [headerImageV sd_setImageWithURL:[NSURL URLWithString:GETPIC(detailM.itemPic)]];
     [headerView addSubview:headerImageV];
     self.headerImageV = headerImageV;
     [_headerImageV mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -88,7 +90,8 @@
         make.top.offset(AD_HEIGHT(11));
         
         view.textAlignment = NSTextAlignmentLeft;
-        view.text = self.detailDoM.itemName;
+        ItemObjModel *itemObjM = [ItemObjModel mj_objectWithKeyValues:detailM.itemObj];
+        view.text = itemObjM.posBrandName;
     }];
     self.headerTitle = headerTitle;
     
@@ -104,7 +107,7 @@
     
     PD_BillDetailSkuCell *cell = [PD_BillDetailSkuCell cellWithTableView:tableView];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.itemListM = self.dataArr[indexPath.row];
+    cell.detaiM = self.dataArr[indexPath.row];
     
     
     return cell;
@@ -128,17 +131,31 @@
     return [UIView new];
 }
 
-- (void)setDetailDoM:(DetailDOModel *)detailDoM
+//- (void)setDetailDoM:(DetailDOModel *)detailDoM
+//{
+//    if (detailDoM) {
+//        _detailDoM = detailDoM;
+//        
+//        if (self.dataArr.count >0) {
+//            [self.dataArr removeAllObjects];
+//        }
+//        self.myTableView.tableHeaderView = [self creatHeaderView];
+//        ItemObjModel *itemObjM = [ItemObjModel mj_objectWithKeyValues:self.detailDoM.itemObj];
+//        [self.dataArr addObjectsFromArray:itemObjM.packageChargeItemDOList];
+//        [self.myTableView reloadData];
+//    }
+//}
+
+- (void)setProductArr:(NSMutableArray *)productArr
 {
-    if (detailDoM) {
-        _detailDoM = detailDoM;
+    if (productArr) {
+        _productArr = productArr;
         
         if (self.dataArr.count >0) {
             [self.dataArr removeAllObjects];
         }
         self.myTableView.tableHeaderView = [self creatHeaderView];
-        ItemObjModel *itemObjM = [ItemObjModel mj_objectWithKeyValues:self.detailDoM.itemObj];
-        [self.dataArr addObjectsFromArray:itemObjM.packageChargeItemDOList];
+        [self.dataArr addObjectsFromArray:productArr];
         [self.myTableView reloadData];
     }
 }

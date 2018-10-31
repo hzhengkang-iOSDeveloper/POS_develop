@@ -9,6 +9,7 @@
 #import "MyFreeGetRootViewController.h"
 #import "MyFreeGetCell.h"
 #import "POS_RootViewModel.h"
+#import "PD_BillDetailViewController.h"
 @interface MyFreeGetRootViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, weak) UITableView *myTable;
 
@@ -93,7 +94,7 @@
         btn.titleLabel.font = F13;
         [btn setTitleColor:WhiteColor forState:normal];
         [btn setBackgroundColor:C1E95F9];
-
+        [btn addTarget:self action:@selector(commfirGetGood) forControlEvents:UIControlEventTouchUpInside];
     }];
     self.comfirBtn = comfirBtn;
 }
@@ -154,21 +155,6 @@
         
         
     };
-//    cell.clickMaxCountHandler = ^(BOOL isMax) {
-//        if (isMax) {
-//            [UIView animateWithDuration:2 animations:^{
-//                [weakSelf.maxGetBtn mas_updateConstraints:^(MASConstraintMaker *make) {
-//                    make.left.offset(0);
-//                }];
-//            }];
-//        } else {
-//            [UIView animateWithDuration:2 animations:^{
-//                [weakSelf.maxGetBtn mas_updateConstraints:^(MASConstraintMaker *make) {
-//                    make.left.offset(-(ScreenWidth/2));
-//                }];
-//            }];
-//        }
-//    };
     
     
     return cell;
@@ -222,6 +208,50 @@
                     NSArray *arr = [NSArray arrayWithArray:result[@"data"][@"rows"]];
                     self.maxGoodCount = [arr.firstObject objectForKey:@"leftCount"];
                 }
+            }
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
+
+#pragma mark ---- 确认领取 ----
+- (void)commfirGetGood
+{
+    
+    //遍历数据源 拿到所有选择数量的item
+    __block NSString *pkgPrdIds = [NSString string];
+    __block NSString *pkgPrdTypes= [NSString string];
+    __block NSString *counts= [NSString string];
+    [self.dataArr enumerateObjectsUsingBlock:^(POS_RootViewModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.goodCount >0) {
+            pkgPrdIds = [pkgPrdIds stringByAppendingString:obj.ID];
+            pkgPrdTypes = [pkgPrdTypes stringByAppendingString:@"1"];
+            counts = [counts stringByAppendingString:s_Integer(obj.goodCount+1)];
+        }
+    }];
+    
+    if ([pkgPrdIds isEqualToString:@""]) {
+        HUD_TIP(@"请选择领取套餐数量!");
+        return;
+    }
+    
+    NSDictionary *dict = @{
+                           @"userid":@"1",
+                           @"pkgPrdIds":IF_NULL_TO_STRING(pkgPrdIds),
+                           @"pkgPrdTypes":IF_NULL_TO_STRING(pkgPrdTypes),
+                           @"counts":IF_NULL_TO_STRING(counts),
+                           @"operation":@"0"
+                           };
+    HUD_NOBGSHOW;
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/order/save" params:dict cookie:nil result:^(bool success, id result) {
+        HUD_HIDE;
+        if (success) {
+            if ([result[@"code"]integerValue] == 0) {
+                PD_BillDetailViewController *vc = [[PD_BillDetailViewController alloc]init];
+                vc.hidesBottomBarWhenPushed = YES;
+                vc.myID = @"6";
+                [self.navigationController pushViewController:vc animated:YES];
             }
             
         }

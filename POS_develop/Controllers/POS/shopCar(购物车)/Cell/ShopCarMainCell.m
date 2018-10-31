@@ -208,6 +208,12 @@
     }
     
     self.skuCountLabel.text = [NSString stringWithFormat:@"%li",self.posRootViewM.goodCount+1];
+    
+    if (self.posRootViewM.isSelected) {
+        if (self.CaluteMoneyHandler) {
+            self.CaluteMoneyHandler();
+        }
+    }
 }
 #pragma mark ---- 加 ----
 - (void)clickAddbtn
@@ -215,6 +221,12 @@
     self.posRootViewM.goodCount ++;
     
     self.skuCountLabel.text = [NSString stringWithFormat:@"%li",self.posRootViewM.goodCount+1];
+    
+    if (self.posRootViewM.isSelected) {
+        if (self.CaluteMoneyHandler) {
+            self.CaluteMoneyHandler();
+        }
+    }
     
 }
 #pragma mark ---- 点击头部选中 ----

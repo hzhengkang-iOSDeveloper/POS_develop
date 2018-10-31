@@ -67,38 +67,38 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MyAddressViewModel *model = [_dataArray objectAtIndex:indexPath.section];
+    __block MyAddressViewModel *model = [_dataArray objectAtIndex:indexPath.section];
     MyAddressTableViewCell *cell = [MyAddressTableViewCell cellWithTableView:tableView];
-    cell.nameLabel.text = model.receiverName;
-    cell.addressLabel.text = [NSString stringWithFormat:@"%@ %@ %@ %@", model.province, model.city, model.county, model.receiverAddr];
-    cell.telephoneLabel.text = model.receiverMp;
-//    cell.telephoneLabel.text = [model.receiverMp stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
-    if ([model.defaultFlag isEqualToString:@"0"]) {
-        cell.defaultAddressBtn.selected = YES;
-    }else {
-        cell.defaultAddressBtn.selected = NO;
-    }
-    cell.clickDefaultAddBlock = ^(UIButton *sender) {
-        sender.selected = !sender.selected;
-        [self loadUpdateAddressRequest:sender WithID:model.ID];
+    cell.addressM = model;
+    MJWeakSelf;
+    cell.clickDefaultAddBlock = ^{
+        //将其他数据的默认地址改为no
+        [weakSelf.dataArray enumerateObjectsUsingBlock:^(MyAddressViewModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (![obj.ID isEqualToString:model.ID]) {
+                obj.defaultFlag = @"1";
+            }
+        }];
+        [tableView reloadData];
     };
     cell.clickDeleteAddBlock = ^{
         [self loadDeleteAddressRequest:model.ID withIndexP:indexPath];
     };
     cell.clickEditAddBlock = ^{
         MyAddressEditViewController *vc = [[MyAddressEditViewController alloc] init];
-        vc.name = model.receiverName;
-        vc.telephone = model.receiverMp;
-        vc.detailAdd = model.receiverAddr;
-        vc.province = model.province;
-        vc.city = model.city;
-        vc.county = model.city;
-        vc.ID = model.ID;
-        vc.defaultFlag = model.defaultFlag;
-        vc.updateAddressList = ^{
-            [self.myAddressTableView.mj_header beginRefreshing];
+        vc.addressM = model;
+        vc.updateAddressList = ^(MyAddressViewModel * _Nonnull addressModel) {
+            model = addressModel;
+            if ([addressModel.defaultFlag isEqualToString:@"0"]) {
+                //将其他数据的默认地址改为no
+                [weakSelf.dataArray enumerateObjectsUsingBlock:^(MyAddressViewModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if (![obj.ID isEqualToString:model.ID]) {
+                        obj.defaultFlag = @"1";
+                    }
+                }];
+            }
+            [tableView reloadData];
         };
-        [self.navigationController pushViewController:vc animated:YES];
+        [weakSelf.navigationController pushViewController:vc animated:YES];
     };
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -106,7 +106,13 @@
 
 #pragma mark - UITableViewDelegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    if (self.isSelecteAddress) {
+        MyAddressViewModel *model = [_dataArray objectAtIndex:indexPath.section];
+        if (self.selectAddressHandler) {
+            self.selectAddressHandler(model);
+        }
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -140,23 +146,22 @@
 
 #pragma mark ---- 接口 ----
 - (void)loadAddressRequest {
-    LoginManager *manager = [LoginManager getInstance];
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/address/list" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID])} cookie:nil result:^(bool success, id result) {
         [self.myAddressTableView.mj_header endRefreshing];
-        NSArray *array = result[@"data"][@"rows"];
-        if (self.dataArray.count > 0) {
-            [self.dataArray removeAllObjects];
+        if (success) {
+            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                    NSArray *array = result[@"data"][@"rows"];
+                    if (self.dataArray.count > 0) {
+                        [self.dataArray removeAllObjects];
+                    }
+                    [self.dataArray addObjectsFromArray:[MyAddressViewModel mj_objectArrayWithKeyValuesArray:array]];
+                    [self.myAddressTableView reloadData];
+                }
+            }
         }
-        [self.dataArray addObjectsFromArray:[MyAddressViewModel mj_objectArrayWithKeyValuesArray:array]];
-        [self.myAddressTableView reloadData];
+       
         
-        NSLog(@"result ------- %@", result);
-    }];
-}
-- (void)loadUpdateAddressRequest:(UIButton *)sender WithID:(NSString *)ID {
-    LoginManager *manager = [LoginManager getInstance];
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/address/update" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]), @"defaultFlag":sender.selected?@0:@1, @"id":ID} cookie:nil result:^(bool success, id result) {
-        [self.myAddressTableView reloadData];
         NSLog(@"result ------- %@", result);
     }];
 }
@@ -165,9 +170,11 @@
     
     UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"确认删除此地址么" message:@"" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *comfir = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        HUD_NOBGSHOW;
         [[HPDConnect connect] PostNetRequestMethod:@"api/trans/address/remove" params:@{@"id":ID} cookie:nil result:^(bool success, id result) {
+            HUD_HIDE;
             if (success) {
-                if ([result[@"msg"] isEqualToString:@"success"]) {
+                if ([result[@"code"]integerValue] == 0) {
                     HUD_TIP(@"删除成功");
                     [self.dataArray removeObjectAtIndex:indexP.section];
 
@@ -176,6 +183,8 @@
                     [self.myAddressTableView endUpdates];
                     
                     [self.myAddressTableView reloadData];
+                } else {
+                    HUD_ERROR(@"操作失败，请稍后重试！");
                 }
             }
             NSLog(@"result ------- %@", result);

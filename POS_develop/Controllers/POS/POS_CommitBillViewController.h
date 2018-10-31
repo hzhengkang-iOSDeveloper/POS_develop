@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface POS_CommitBillViewController : BaseSonViewController
-
+@property (nonatomic, copy) NSString *orderId;
 @end
 
 NS_ASSUME_NONNULL_END

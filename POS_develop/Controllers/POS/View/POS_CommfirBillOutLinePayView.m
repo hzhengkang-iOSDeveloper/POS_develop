@@ -13,6 +13,7 @@
 }
 @property (nonatomic, weak) UIButton *commfirBtn;//确认支付
 @property (nonatomic, weak) UIImageView *selectImage;
+@property (nonatomic, weak) UILabel *totalCountLabel;
 @end
 @implementation POS_CommfirBillOutLinePayView
 
@@ -76,12 +77,8 @@
         make.right.offset(-AD_HEIGHT(15));
         make.centerY.equalTo(tipView.mas_centerY);
     }];
-    
-    NSString *tmpStr = @"合计：￥1000.21";
-    NSMutableAttributedString *newStr = [[NSMutableAttributedString alloc] initWithString:tmpStr];
-    [newStr addAttribute:NSForegroundColorAttributeName value:C000000 range:NSMakeRange(0,3)];
-    [newStr addAttribute:NSForegroundColorAttributeName value:CF52542 range:NSMakeRange(3,tmpStr.length - 3)];
-    totalCountLabel.attributedText=newStr;
+    self.totalCountLabel =totalCountLabel;
+
     
     
     //确认支付
@@ -119,6 +116,18 @@
         self.selectImage.image = ImageNamed(@"默认");
         self.commfirBtn.userInteractionEnabled = NO;
         self.commfirBtn.backgroundColor = CC9C9C9;
+    }
+}
+
+- (void)setMoneyCount:(NSString *)moneyCount
+{
+    if (moneyCount) {
+        _moneyCount = moneyCount;
+        NSString *tmpStr = [NSString stringWithFormat:@"合计：%@",moneyCount];
+        NSMutableAttributedString *newStr = [[NSMutableAttributedString alloc] initWithString:tmpStr];
+        [newStr addAttribute:NSForegroundColorAttributeName value:C000000 range:NSMakeRange(0,3)];
+        [newStr addAttribute:NSForegroundColorAttributeName value:CF52542 range:NSMakeRange(3,tmpStr.length - 3)];
+        self.totalCountLabel.attributedText=newStr;
     }
 }
 @end
