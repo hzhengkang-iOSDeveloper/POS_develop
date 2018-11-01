@@ -15,6 +15,7 @@
 #import "MyAddressViewController.h"//我的地址
 #import "BillListModel.h"
 #import "MyAddressViewModel.h"
+#import "BuySuccessViewController.h"
 @interface POS_CommitBillViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, weak) UITableView *orderDetailTable;
 //模型
@@ -227,7 +228,9 @@
         //线下转账
         POS_CommfirBillOutLinePayView *outLineInfoView = [[POS_CommfirBillOutLinePayView alloc]init];
         outLineInfoView.moneyCount = [NSString stringWithFormat:@"￥%@",IF_NULL_TO_STRING(self.billListM.displayPrice)];
-
+        outLineInfoView.outLinePayHandler = ^{
+            [self outLinePayRequest];//线下支付
+        };
         [footerView addSubview:outLineInfoView];
         [outLineInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(postPriceLabel.mas_bottom).offset(AD_HEIGHT(5));
@@ -238,7 +241,12 @@
         footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(153)+AD_HEIGHT(205));
         //线上支付
         POS_CommfirBillOnLinePayView *onLineView = [[POS_CommfirBillOnLinePayView alloc]init];
+        onLineView.totalStr = [NSString stringWithFormat:@"￥%@",IF_NULL_TO_STRING(self.billListM.displayPrice)];
         [footerView addSubview:onLineView];
+        MJWeakSelf;
+         onLineView.payHandler = ^(NSUInteger payType) {
+            [weakSelf payRequest:payType];
+        };
         [onLineView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(postPriceLabel.mas_bottom).offset(AD_HEIGHT(5));
             make.left.offset(0);
@@ -470,5 +478,121 @@
     //获取产品数据源
     [self getProductDataArr];
     [self.orderDetailTable reloadData];
+}
+
+#pragma mark ---- 线上支付相关 ----
+- (void)payRequest:(NSUInteger)payType
+{
+    NSDictionary *bodyDic = @{@"payType":s_Integer(payType),
+                              @"tbOrderId":IF_NULL_TO_STRING(self.orderId)
+                              };
+    if (payType == 0) {
+        //微信
+        HUD_NOBGSHOW;
+        [[HPDConnect connect] PostNetRequestMethod:@"api/trans/orderPay/getPayUuid" params:bodyDic cookie:nil result:^(bool success, id result) {
+            if (success) {
+                NSDictionary *wxPayDict = @{
+                                            @"isAppMode":@1,
+                                            @"orderPayId":result[@"data"]
+                                            };
+                [self creatWxPay:wxPayDict];
+                
+            }
+            NSLog(@"result ------- %@", result);
+        }];
+    }else if (payType == 1) {
+        //支付宝
+        HUD_NOBGSHOW;
+        [[HPDConnect connect] PostNetRequestMethod:@"api/trans/orderPay/getPayUuid" params:bodyDic cookie:nil result:^(bool success, id result) {
+            if (success) {
+                NSDictionary *wxPayDict = @{
+                                            @"isAppMode":@1,
+                                            @"orderPayId":result[@"data"]
+                                            };
+                [self creatAliPay:wxPayDict];
+                
+            }
+            NSLog(@"result ------- %@", result);
+        }];
+    }
+}
+
+
+#pragma mark ---- 微信pay ----
+- (void)creatWxPay:(NSDictionary *)param
+{
+    [[HPDConnect connect]GetNetRequestMethod:@"payment/weixi/pay" params:param cookie:nil result:^(bool success, id result) {
+        HUD_HIDE;
+        if (success) {
+            if ([result[@"code"]integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    NSDictionary *payResult = [NSDictionary dictionaryWithDictionary:result[@"data"]];
+                    NSString *link = [NSString stringWithFormat:@"weixin://app/%@/pay/?nonceStr=%@&package=Sign%%3DWXPay&partnerId=%@&prepayId=%@&timeStamp=%@&sign=%@&signType=SHA1",payResult[@"appid"],payResult[@"nonce_str"],payResult[@"partnerid"],payResult[@"prepay_id"],payResult[@"timestamp"],payResult[@"sign"]];
+                    [OpenShare WeixinPay:link Success:^(NSDictionary *message) {
+                        //支付成功页面
+                        HUD_SUCCESS(@"支付成功");
+                        BuySuccessViewController *vc = [[BuySuccessViewController alloc]init];
+                        vc.hidesBottomBarWhenPushed = YES;
+                        [self.navigationController pushViewController:vc animated:YES];
+                    } Fail:^(NSDictionary *message, NSError *error) {
+                        HUD_ERROR(@"支付失败,请重新支付")
+                        
+                    }];
+                }
+                
+            }
+        }
+    }];
+}
+
+#pragma mark ---- ali支付 ----
+- (void)creatAliPay:(NSDictionary *)param
+{
+    //
+    [[HPDConnect connect]KKGetNetRequestMethod:@"payment/alipay/pay" params:param cookie:nil result:^(bool success, id result) {
+        HUD_HIDE;
+        if (success) {
+            if ([result[@"code"]integerValue] == 0) {
+                NSDictionary *linkDict = @{@"requestType":@"SafePay",@"fromAppUrlScheme":@"backApp",@"dataString":[NSString stringWithFormat:@"%@",result[@"data"]]};
+                NSData  *jsonData = [NSJSONSerialization dataWithJSONObject:linkDict options:NSJSONWritingPrettyPrinted error:nil];
+                NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+                
+                CF_EXPORT
+                CFStringRef CFURLCreateStringByAddingPercentEscapes(CFAllocatorRef allocator, CFStringRef originalString, CFStringRef charactersToLeaveUnescaped, CFStringRef legalURLCharactersToBeEscaped, CFStringEncoding encoding);
+                NSString *linkURL = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(nil,
+                                                                                                          (CFStringRef)jsonStr, nil,(CFStringRef)@"!*'();:@&=+$,/ %#[]", kCFStringEncodingUTF8));
+                NSString *LINK = [NSString stringWithFormat:@"alipay://alipayclient/?%@",linkURL];
+                
+                [OpenShare AliPay:LINK Success:^(NSDictionary *message) {
+                    //支付成功页面
+                    HUD_SUCCESS(@"支付成功");
+                    BuySuccessViewController *vc = [[BuySuccessViewController alloc]init];
+                    vc.hidesBottomBarWhenPushed = YES;
+                    [self.navigationController pushViewController:vc animated:YES];
+                } Fail:^(NSDictionary *message, NSError *error) {
+                    HUD_ERROR(@"支付失败,请重新支付")
+                }];
+            }
+            
+        }
+    }];
+}
+
+#pragma mark ---- 线下支付相关 ----
+- (void)outLinePayRequest
+{
+    NSDictionary *bodyDic = @{@"payType":@"2",
+                              @"tbOrderId":IF_NULL_TO_STRING(self.orderId)
+                              };
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/orderPay/getPayUuid" params:bodyDic cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"code"]integerValue] == 0) {
+                BuySuccessViewController *vc = [[BuySuccessViewController alloc]init];
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+        }
+        NSLog(@"result ------- %@", result);
+    }];
 }
 @end

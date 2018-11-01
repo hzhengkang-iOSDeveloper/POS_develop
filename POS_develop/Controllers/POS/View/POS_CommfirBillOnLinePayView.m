@@ -15,7 +15,7 @@
 @property (nonatomic, weak) UIButton *commfirBtn;//确认支付
 @property (nonatomic, weak) UIImageView *wxSelectImage;
 @property (nonatomic, weak) UIImageView *aliSelectImage;
-
+@property (nonatomic, weak) UILabel *totalCountLabel;
 @end
 @implementation POS_CommfirBillOnLinePayView
 
@@ -114,17 +114,13 @@
         make.right.offset(-AD_HEIGHT(15));
         make.top.equalTo(aliPayView.mas_bottom).offset(AD_HEIGHT(16));
     }];
-    
-    NSString *tmpStr = @"合计：￥1000.21";
-    NSMutableAttributedString *newStr = [[NSMutableAttributedString alloc] initWithString:tmpStr];
-    [newStr addAttribute:NSForegroundColorAttributeName value:C000000 range:NSMakeRange(0,3)];
-    [newStr addAttribute:NSForegroundColorAttributeName value:CF52542 range:NSMakeRange(3,tmpStr.length - 3)];
-    totalCountLabel.attributedText=newStr;
+    self.totalCountLabel =totalCountLabel;
+   
     
     
     //确认支付
     UIButton *commfirBtn = [UIButton getButtonWithImageName:@"" titleText:@"支付" superView:self masonrySet:^(UIButton * _Nonnull btn, MASConstraintMaker * _Nonnull make) {
-        make.top.equalTo(totalCountLabel.mas_bottom).offset(AD_HEIGHT(16));
+        make.top.equalTo(self.totalCountLabel.mas_bottom).offset(AD_HEIGHT(16));
         make.left.offset(AD_HEIGHT(15));
         make.right.offset(-AD_HEIGHT(15));
         make.height.mas_equalTo(AD_HEIGHT(46));
@@ -177,6 +173,36 @@
 #pragma mark ---- 确认支付 ----
 - (void)comfirPay
 {
-    
+    if (_aliSelectStatus) {
+        //支付宝
+        if (![OpenShare canOpen:@"alipay://"]) {
+            HUD_ERROR(@"请安装支付宝客户端");
+            return;
+        }
+        if (self.payHandler) {
+            self.payHandler(1);
+        }
+    } else {
+        //微信
+        if (![OpenShare canOpen:@"weixin://"]) {
+            HUD_ERROR(@"请安装微信客户端");
+            return;
+        }
+        if (self.payHandler) {
+            self.payHandler(0);
+        }
+    }
+}
+
+- (void)setTotalStr:(NSString *)totalStr
+{
+    if (totalStr) {
+        _totalStr = totalStr;
+        NSString *tmpStr = [NSString stringWithFormat:@"合计：%@",totalStr];
+        NSMutableAttributedString *newStr = [[NSMutableAttributedString alloc] initWithString:tmpStr];
+        [newStr addAttribute:NSForegroundColorAttributeName value:C000000 range:NSMakeRange(0,3)];
+        [newStr addAttribute:NSForegroundColorAttributeName value:CF52542 range:NSMakeRange(3,tmpStr.length - 3)];
+        self.totalCountLabel.attributedText=newStr;
+    }
 }
 @end

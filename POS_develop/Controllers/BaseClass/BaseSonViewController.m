@@ -14,7 +14,30 @@
 @end
 
 @implementation BaseSonViewController
-
+/**
+ *  先pop掉当前VC 然后Push
+ *  push ~ 带动画
+ */
+- (void)baseVC_popOldVCToPushWithVC:(id)VC {
+    
+    // 获取当前路由的控制器数组
+    NSMutableArray *vcArray = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
+    
+    // 获取档期控制器在路由的位置
+    int index = (int)[vcArray indexOfObject:self];
+    
+    // 移除当前路由器
+    if (index < vcArray.count) {
+        [vcArray removeObjectAtIndex:index];
+        [vcArray removeObjectAtIndex:index-1];
+    }
+    
+    // 添加新控制器
+    [vcArray addObject: VC];
+    
+    // 重新设置当前导航控制器的路由数组
+    [self.navigationController setViewControllers:vcArray animated:YES];
+}
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

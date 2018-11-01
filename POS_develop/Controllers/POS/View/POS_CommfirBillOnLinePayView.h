@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface POS_CommfirBillOnLinePayView : UIView
-
+@property (nonatomic, copy) void (^payHandler)(NSUInteger payType);//0 微信  1支付宝
+@property (nonatomic, copy) NSString *totalStr;
 @end
 
 NS_ASSUME_NONNULL_END

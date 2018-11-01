@@ -7,7 +7,7 @@
 //
 
 #import "BuySuccessViewController.h"
-
+#import "PD_BillListViewController.h"
 @interface BuySuccessViewController ()
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, assign) int timeSum;
@@ -15,7 +15,12 @@
 @end
 
 @implementation BuySuccessViewController
-
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) {
+        [self goHomeClick];
+    }
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItemTitle = @"购买成功";
@@ -127,9 +132,7 @@
     self.successLabel.text = [NSString stringWithFormat:@"%d秒倒计时返回首页", self.timeSum];
     if (self.timeSum<=0) {
         [timer invalidate];
-        self.navigationController.tabBarController.selectedIndex=0;
-        self.tabBarController.tabBar.hidden = NO;
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self goHomeClick];
     }
 }
 #pragma mark ---- 返回首页 ----
@@ -141,9 +144,30 @@
 #pragma mark ---- 查看订单 ----
 - (void)seeOrderClick {
     
+    PD_BillListViewController *listVc =[[PD_BillListViewController alloc]init];
+    listVc.hidesBottomBarWhenPushed = YES;
+    [self baseVC_popOldVCToPushWithVC:listVc];
+    
 }
 #pragma mark ---- 分享到朋友圈 ----
 - (void)shareClick {
+    if (![OpenShare canOpen:@"weixin://"]) {
+        HUD_ERROR(@"请安装微信客户端");
+        return;
+    }
+    OSMessage *msg = [[OSMessage alloc] init];
+    msg.title = @"nihaisdh";
+//    msg.desc = self.pasteStr;
+//    NSData *imageData = UIImageJPEGRepresentation(self.shareImgV.image, 0.5);
+//    msg.image = imageData;
+    //    msg.fileExt = @"哈哈哈哈哈";
+    msg.link = @"www.taobao.com";
     
+    //微信朋友圈
+    [OpenShare shareToWeixinTimeline:msg Success:^(OSMessage *message) {
+        HUD_SUCCESS(@"分享成功");
+    } Fail:^(OSMessage *message, NSError *error) {
+        HUD_ERROR(@"分享失败");
+    }];
 }
 @end

@@ -19,5 +19,9 @@
 @property (strong , nonatomic) void (^backHandler)(void);
 
 @property (nonatomic, assign) BOOL isPop;
-
+/**
+ *  先pop掉当前VC 然后Push
+ *  push ~ 带动画
+ */
+- (void)baseVC_popOldVCToPushWithVC:(id)VC;
 @end

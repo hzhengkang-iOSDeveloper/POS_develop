@@ -101,7 +101,9 @@
 #pragma mark ---- 确认支付 ----
 - (void)comfirPay
 {
-    
+    if (self.outLinePayHandler) {
+        self.outLinePayHandler();
+    }
 }
 
 #pragma mark ---- 选中状态 ----
