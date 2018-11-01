@@ -100,9 +100,9 @@
 
 #pragma mark ---- 查询 ----
 - (void)clickSelectBtn {
-    self.selectBtn.enabled = NO;
+    
     [self loadPosListRequest];
-   
+//   self.selectBtn.enabled = NO;
 }
 
 
@@ -209,26 +209,33 @@
     if ([self.mainView.modelNameLabel.text isEqualToString:@"不限"]) {
         self.mainView.modelNameLabel.text = @"";
     }
-    LoginManager *manager = [LoginManager getInstance];
+    
+    NSDictionary *dict = @{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]), @"posBrandName":defaultObject(self.mainView.brandNameLabel.text, @""), @"posTermType":defaultObject(self.mainView.typeNameLabel.text, @""), @"posTermModel":defaultObject(self.mainView.modelNameLabel.text, @""), @"agentName":defaultObject(self.mainView.delegateNameTF.text, @""), @"agentNo":defaultObject(self.mainView.platformAccountTF.text, @""), @"startPosSnNo":defaultObject(self.mainView.snStartTF.text, @""), @"endPosSnNo":defaultObject(self.mainView.snEndTF.text, @""), @"activationType":activationType, @"startTime":defaultObject(self.mainView.activationStartTF.text, @""), @"endTime":defaultObject(self.mainView.activationEndTF.text, @"")} ;
 
-
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/pos/list" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]), @"posBrandName":defaultObject(self.mainView.brandNameLabel.text, @""), @"posTermType":defaultObject(self.mainView.typeNameLabel.text, @""), @"posTermModel":defaultObject(self.mainView.modelNameLabel.text, @""), @"agentName":defaultObject(self.mainView.delegateNameTF.text, @""), @"agentNo":defaultObject(self.mainView.platformAccountTF.text, @""), @"startPosSnNo":defaultObject(self.mainView.snStartTF.text, @""), @"endPosSnNo":defaultObject(self.mainView.snEndTF.text, @""), @"activationType":activationType, @"startTime":defaultObject(self.mainView.activationStartTF.text, @""), @"endTime":defaultObject(self.mainView.activationEndTF.text, @"")} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/pos/list" params:dict cookie:nil result:^(bool success, id result) {
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
-                    NSArray *array = result[@"data"][@"rows"];
-                    if (self.dataArray.count > 0) {
-                        [self.dataArray removeAllObjects];
+            if ([result[@"code"] integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                        NSArray *array = result[@"data"][@"rows"];
+                        if (self.dataArray.count > 0) {
+                            [self.dataArray removeAllObjects];
+                        }
+                        if (array.count > 0) {
+                            [self.dataArray addObjectsFromArray:[PosListModel mj_objectArrayWithKeyValuesArray:array]];
+                        }
+                        self.count = 0;
+                        [self.dataArray enumerateObjectsUsingBlock:^(PosListModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                            [self loadPosBindStatusRequestWithPosId:obj.ID];
+                        }];
+                        
                     }
-                    if (array.count > 0) {
-                        [self.dataArray addObjectsFromArray:[PosListModel mj_objectArrayWithKeyValuesArray:array]];
-                    }
-                    self.count = 0;
-                    [self.dataArray enumerateObjectsUsingBlock:^(PosListModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                        [self loadPosBindStatusRequestWithPosId:obj.ID];
-                    }];
-                    
                 }
+                
+            }else {
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
             
             
@@ -241,7 +248,6 @@
 
 #pragma mark ---- 绑定状态 ----
 - (void)loadPosBindStatusRequestWithPosId:(NSString *)posId {
-    LoginManager *manager = [LoginManager getInstance];
 
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agentPos/list" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]), @"podId":IF_NULL_TO_STRING(posId)} cookie:nil result:^(bool success, id result) {
         if (success) {
@@ -255,7 +261,7 @@
                     self.count++;
                     
                     if (self.count == self.dataArray.count) {
-                        self.selectBtn.enabled = YES;
+//                        self.selectBtn.enabled = YES;
                         TerminalSelectResultViewController *vc = [[TerminalSelectResultViewController alloc] init];
                         vc.dataArray = [self.dataArray mutableCopy];
                         vc.bindDataArray = [self.bindDataArray mutableCopy];

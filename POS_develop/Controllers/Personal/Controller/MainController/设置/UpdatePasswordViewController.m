@@ -81,6 +81,7 @@
     cell.getCodeBlock = ^{
         if (indexPath.row == 0) {
             if (![[weakCell.contentTF textContainsNoCharset] isPhoneNumberFormat]) {
+                HUD_TIP(@"请输入正确的手机号");
                 [weakCell.contentTF becomeFirstResponder];
                 return;
             }else {
@@ -115,6 +116,10 @@
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     UpdatePasswordTableViewCell *phoneCell =(UpdatePasswordTableViewCell *)[self.updatePasswordTableView cellForRowAtIndexPath:indexPath];
+//    if ([phoneCell.contentTF.text isEqualToString:@""] || phoneCell.contentTF.text == nil) {
+//        HUD_TIP(@"请输入手机号");
+//        return;
+//    }
 
     //MARK: 接口获取短信验证码
     
@@ -148,13 +153,45 @@
 }
 
 - (void)loadChangepasswordRequest {
-    [[HPDConnect connect]PostOtherNetRequestMethod:@"changepassword" params:@{@"newPwd":@"", @"smsCode":@"", @"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID])} cookie:nil result:^(bool success, id result) {
+    NSIndexPath *indexPath0 = [NSIndexPath indexPathForRow:0 inSection:0];
+    UpdatePasswordTableViewCell *phoneCell =(UpdatePasswordTableViewCell *)[self.updatePasswordTableView cellForRowAtIndexPath:indexPath0];
+    if ([phoneCell.contentTF.text isEqualToString:@""] || phoneCell.contentTF.text == nil) {
+        HUD_TIP(@"请输入手机号");
+        return;
+    }
+    NSIndexPath *indexPath1 = [NSIndexPath indexPathForRow:1 inSection:0];
+    UpdatePasswordTableViewCell *codeCell =(UpdatePasswordTableViewCell *)[self.updatePasswordTableView cellForRowAtIndexPath:indexPath1];
+    if ([codeCell.contentTF.text isEqualToString:@""] || codeCell.contentTF.text == nil) {
+        HUD_TIP(@"请输入验证码");
+        return;
+    }
+    NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:2 inSection:0];
+    UpdatePasswordTableViewCell *passwordCell =(UpdatePasswordTableViewCell *)[self.updatePasswordTableView cellForRowAtIndexPath:indexPath2];
+    if ([passwordCell.contentTF.text isEqualToString:@""] || passwordCell.contentTF.text == nil) {
+        HUD_TIP(@"请输入密码");
+        return;
+    }
+    NSIndexPath *indexPath3 = [NSIndexPath indexPathForRow:3 inSection:0];
+    UpdatePasswordTableViewCell *surePasswordCell =(UpdatePasswordTableViewCell *)[self.updatePasswordTableView cellForRowAtIndexPath:indexPath3];
+    if ([surePasswordCell.contentTF.text isEqualToString:@""] || surePasswordCell.contentTF.text == nil) {
+        HUD_TIP(@"请输入确认密码");
+        return;
+    }
+    if (![surePasswordCell.contentTF.text isEqualToString:passwordCell.contentTF.text]) {
+        HUD_TIP(@"两次密码不一致");
+        return;
+    }
+    
+    
+    [[HPDConnect connect]PostOtherNetRequestMethod:@"changepassword" params:@{@"newPwd":passwordCell.contentTF.text, @"smsCode":codeCell.contentTF.text, @"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID])} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"code"]integerValue] == 0) {
                 HUD_TIP(@"修改成功，请重新登录！");
                 //做退出登录操作
-                
-                [self.navigationController popToRootViewControllerAnimated:YES];
+                [[LoginManager getInstance] loginOut:^(BOOL success, NSDictionary *result) {
+                    
+                }];
+//                [self.navigationController popToRootViewControllerAnimated:YES];
                 
             }else {
                 HUD_TIP(result[@"msg"]);

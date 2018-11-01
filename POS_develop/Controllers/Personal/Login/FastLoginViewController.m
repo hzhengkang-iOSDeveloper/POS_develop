@@ -180,9 +180,6 @@
         [self.aview stopAnimating];
         [self.loginBtn setTitle:@"登录" forState:UIControlStateNormal];
         if (success) {
-//            if ([result[@"code"]integerValue] == 0) {
-//                <#statements#>
-//            }
             if ([result[@"code"]integerValue] == 0) {
                 HUD_SUCCESS(@"登录成功");
                 [self performSelector:@selector(changeRoot) withObject:nil afterDelay:1];

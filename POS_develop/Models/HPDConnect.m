@@ -24,7 +24,7 @@
 //测试环境
 #define  newLocalHost    @"http://106.14.7.85:8000/"
 
-#define  BaseHeaderURL   newLocalHost
+#define  BaseHeaderURL   kFormalURL
 
 
 
@@ -410,20 +410,39 @@
 
 -(void)AFNetPOSTMethodWithUpload:(NSString *)method params:(NSDictionary*)params upData:(id)upData uptype:(NSInteger)uptype fileName:(NSString*)fileName cookie:(NSHTTPCookie *)cookie result:(AFNetRequestResultBlock)result{
     NSDictionary *dict = [self getRequestDic:params];
-    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-    session.responseSerializer = [AFJSONResponseSerializer serializer];
-    [session.requestSerializer setValue:@"multipart/form-data" forHTTPHeaderField:@"Content-Type"];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    [manager.requestSerializer setValue:@"multipart/form-data"forHTTPHeaderField:@"Content-Type"];
     NSString *urlStr = [NSString stringWithFormat:@"%@%@", BaseHeaderURL,method];
-    [session POST:urlStr parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    NSData *data = UIImageJPEGRepresentation(upData, 0.5);
+    //接收类型不一致请替换一致text/html或别的
+     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/html",@"image/jpeg",@"image/png",@"application/octet-stream",@"text/json",nil];
+    [manager POST:urlStr parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> _Nonnull formData) {
+        NSData *imageDatas = data;
+        [formData appendPartWithFileData:imageDatas name:@"avatar_file" fileName:fileName mimeType:@"image/*"];
         
-        NSData *data = UIImageJPEGRepresentation(upData, 0.5);
-        [formData appendPartWithFileData:data name:fileName fileName:fileName mimeType:@"image/jpeg"];
-        
-    } success:^(NSURLSessionDataTask *task, id responseObject) {
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        //打印下上传进度
+        NSLog(@"上传进度");
+        NSLog(@"%@",uploadProgress);
+    } success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+        //上传成功
+        NSLog(@"上传成功");
+        NSLog(@"%@",responseObject);
         result(YES,responseObject);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        //上传失败
+        NSLog(@"上传失败");
         result(NO,error);
     }];
+
+        
+//    } success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+//        NSLog(@"%@", dict);
+//        result(YES,responseObject);
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        result(NO,error);
+//    }];
     
 }
 - (NSDictionary*)getRequestParaDic:(NSString *)method params:(NSDictionary *)params{
@@ -522,8 +541,9 @@
 }
 
 - (void)GetNetRequestMethod:(NSString *)method params:(NSDictionary*)params cookie:(NSHTTPCookie *)cookie result:(AFNetRequestResultBlock)result {
-    AFHTTPSessionManager *session = [self GetAFHTTPSessionManagerObject];   
-    [session GET:[NSString stringWithFormat:@"%@%@",BaseHeaderURL,method] parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+    AFHTTPSessionManager *session = [self GetAFHTTPSessionManagerObject];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",BaseHeaderURL,method];
+    [session GET:urlStr parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         result(YES,responseObject);

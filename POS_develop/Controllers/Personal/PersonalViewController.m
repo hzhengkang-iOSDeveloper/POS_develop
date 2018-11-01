@@ -299,7 +299,7 @@
             
             self.headerView.userNameLabel.text = IF_NULL_TO_STRING([result[@"data"] valueForKey:@"nickname"]);
             self.headerView.invitedCodeLabel.text = [NSString stringWithFormat:@"推荐码：%@", IF_NULL_TO_STRING([result[@"data"] valueForKey:@"invitedCode"])];
-            
+            [self.headerView.iconImageV sd_setImageWithURL:URL(GETPIC(IF_NULL_TO_STRING([result[@"data"] valueForKey:@"picUrl"]))) placeholderImage:ImageNamed(@"头像")];
         }
         
         

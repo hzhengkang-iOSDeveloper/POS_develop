@@ -36,7 +36,7 @@
     _searchTableView.delegate = self;
     _searchTableView.dataSource = self;
     _searchTableView.showsVerticalScrollIndicator = NO;
-    _searchTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    _searchTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_searchTableView];
 }
 

@@ -2,8 +2,38 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSRemindersUsageDescription</key>
+	<string>App需要访问提醒事项,提供更好的服务!</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>App需要访问相册,提供更好的服务!</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>App需要保存图片到相册,提供更好的服务!</string>
+	<key>NSMotionUsageDescription</key>
+	<string>App需要访问运动与健身,提供更好的服务!</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>App需要访问麦克风,提供更好的服务!</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>App需要在使用期间访问位置,提供更好的服务!</string>
+	<key>NSLocationUsageDescription</key>
+	<string>App需要访问位置,提供更好的服务!</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>App需要始终访问位置,提供更好的服务!</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>App需要访问健康更新,提供更好的服务!</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>App需要访问健康分享,提供更好的服务!</string>
+	<key>NSContactsUsageDescription</key>
+	<string>App需要访问通讯录,提供更好的服务!</string>
+	<key>NSCameraUsageDescription</key>
+	<string>App需要访问相机,提供更好的服务!</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>App需要访问日历,提供更好的服务!</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>App需要访问蓝牙,提供更好的服务!</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>App需要访问媒体资料库,提供更好的服务!</string>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<string>zh_CN</string>
 	<key>CFBundleDisplayName</key>
 	<string>颐锦天辰网络科技</string>
 	<key>CFBundleExecutable</key>

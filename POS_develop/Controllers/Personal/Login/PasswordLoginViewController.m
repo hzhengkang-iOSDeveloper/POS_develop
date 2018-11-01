@@ -9,11 +9,12 @@
 #import "PasswordLoginViewController.h"
 #import "AFNetworking.h"
 @interface PasswordLoginViewController () {
-    UIActivityIndicatorView *_aview;
+    
 }
 @property (nonatomic, strong) UITextField *telephoneTF;
 @property (nonatomic, strong) UITextField *passwordTF;
 @property (nonatomic, strong) UIButton *loginBtn;
+@property (nonatomic, strong) UIActivityIndicatorView *aview;
 @end
 
 @implementation PasswordLoginViewController

@@ -37,10 +37,11 @@
     _transactionListTableView.dataSource = self;
     _transactionListTableView.showsVerticalScrollIndicator = NO;
     _transactionListTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:_transactionListTableView];
-    [_transactionListTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.bottom.offset(0);
+    _transactionListTableView.mj_header = [SLRefreshHeader headerWithRefreshingBlock:^{
+        
     }];
+    [self.view addSubview:_transactionListTableView];
+    
 }
 
 #pragma mark - UITableViewDataSource

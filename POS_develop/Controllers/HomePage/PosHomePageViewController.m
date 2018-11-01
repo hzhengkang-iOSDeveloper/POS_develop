@@ -213,7 +213,6 @@
     [formatter setDateFormat:@"yyyy-MM-dd"];
     NSString *dateStr = [formatter stringFromDate:dateNow];
     [self getMonthBeginAndEndWith:dateStr];
-    LoginManager *manager = [LoginManager getInstance];
 
     //当⽉月交易易量量
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"statType":@"0", @"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]), @"startTime":startTime, @"endTime":endTime,@"dateType":@"2"} cookie:nil result:^(bool success, id result) {

@@ -12,9 +12,13 @@
 #import "PackageChargeListModel.h"
 #import "POS_ShopCarViewController.h"
 
-@interface CombinationSetMealViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface CombinationSetMealViewController ()<UITableViewDelegate,UITableViewDataSource> {
+    
+    
+}
 @property (nonatomic, weak) UITableView *myTable;
 @property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, assign) int page;//接口数据当前页数
 
 @end
 
@@ -24,6 +28,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self confir];
+    self.page = 1;
     self.dataArray = [NSMutableArray array];
     [self creatTableView];
     [self loadPackageChargeListRequest];
@@ -46,12 +51,14 @@
     
     MJWeakSelf;
     myTable.mj_header = [SLRefreshHeader headerWithRefreshingBlock:^{
-     [weakSelf loadPackageChargeListRequest];
+        weakSelf.page = 1;
+        [weakSelf loadPackageChargeListRequest];
     }];
     
-    myTable.mj_footer = [SLRefreshFooter footerWithRefreshingBlock:^{
-
-    }];
+//    myTable.mj_footer = [SLRefreshFooter footerWithRefreshingBlock:^{
+//        weakSelf.page += 1;
+//        [weakSelf loadPackageChargeListRequest];
+//    }];
     [_myTable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.offset(0);
         make.left.offset(0);
@@ -214,19 +221,22 @@
 
 #pragma mark ---- 套餐接口 ----
 - (void)loadPackageChargeListRequest {
+    //@{@"offset":@(_page*10), @"limit":@10}
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/packageCharge/list" params:nil cookie:nil result:^(bool success, id result) {
         [self.myTable.mj_header endRefreshing];
+        [self.myTable.mj_footer endRefreshing];
         if (success) {
             if ([result[@"code"]integerValue] == 0) {
-                
+//                [self successRequestForData:result];
                 if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                     if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
                         NSArray *array = result[@"data"][@"rows"];
                         self.dataArray = [NSMutableArray arrayWithArray:[PackageChargeListModel mj_objectArrayWithKeyValuesArray:array]];
-                        
+
+
                         [self.myTable reloadData];
                     }
-                    
+
                 }
             }else{
                 [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
@@ -240,6 +250,37 @@
     }];
     
 }
+//- (void)successRequestForData:(NSDictionary *)dict
+//{
+//    if ([dict[@"data"] isKindOfClass:[NSDictionary class]]) {
+//        if ([dict[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+//            NSArray *array = dict[@"data"][@"rows"];
+//            self.dataArray = [NSMutableArray arrayWithArray:[PackageChargeListModel mj_objectArrayWithKeyValuesArray:array]];
+//
+//            if (_page == 1) {
+//                if (array.count == 0) {
+//                    [self.myTable reloadData];
+//                } else {
+//                    [_dataArray removeAllObjects];
+//                    [_dataArray addObjectsFromArray:[PackageChargeListModel mj_objectArrayWithKeyValuesArray:array]];
+//                    [self.myTable reloadData];
+//                }
+//            }
+//            else {
+//                if (array.count == 0) {
+//                    HUD_TIP(@"没有更多数据啦");
+//                    [self.myTable reloadData];
+//                } else {
+//                    [_dataArray addObjectsFromArray:[PackageChargeListModel mj_objectArrayWithKeyValuesArray:array]];
+//                    [self.myTable reloadData];
+//                }
+//            }
+//
+//        }
+//
+//    }
+//
+//}
 #pragma mark ---- 加入购物车接口 ----
 - (void)loadCartSaveRequestWith:(PackageChargeListModel *)model
 {

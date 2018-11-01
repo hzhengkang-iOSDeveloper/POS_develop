@@ -28,7 +28,10 @@
         make.size.mas_offset(CGSizeMake(ScreenWidth, FITiPhone6(217) + STATUSBAR_H));
     }];
     UIImageView *iconImageV = [[UIImageView alloc] init];
+    self.iconImageV = iconImageV;
     iconImageV.image = [UIImage imageNamed:@"头像"];
+    iconImageV.layer.cornerRadius = FITiPhone6(20);
+    iconImageV.layer.masksToBounds = YES;
     [bgImageV addSubview:iconImageV];
     [iconImageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(bgImageV).offset(FITiPhone6(15));
