@@ -23,10 +23,8 @@
 #import "LoginTypeViewController.h"
 #import "DirectivePageViewController.h"
 #import "PosHomePageViewController.h"
-//微信分享
-#import "WXApi.h"
 
-@interface AppDelegate () <JPUSHRegisterDelegate, WXApiDelegate>{
+@interface AppDelegate () <JPUSHRegisterDelegate>{
     RootViewController *mainViewController;
     CFTabBarViewController *_tabbar;//主页面
     DirectivePageViewController *_directivePageVC;//引导页
@@ -111,11 +109,7 @@
     }
     
     
-    //微信分享注册appid
-    // 注册微信
-//    [WXApi registerApp:WXAppID withDescription:@"测试"];
-    [WXApi registerApp:WXAppID];
-    
+    //注册appid
     [OpenShare connectWeixinWithAppId:WXAppID];
     [OpenShare connectAlipay];
 
@@ -138,37 +132,12 @@
     if ([OpenShare handleOpenURL:url]) {
         return YES;
     }
-    return [WXApi handleOpenURL:url delegate:self];
+    
+    return YES;
    
     
 }
 
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
-        return [WXApi handleOpenURL:url delegate:self];
-    
-    
-}
-
-///从微信端打开第三方APP会调用此方法,此方法再调用代理的onResp方法
--(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options{
-    return [WXApi handleOpenURL:url delegate:self];
-}
-
--(void) onResp:(BaseResp*)resp{
-    NSLog(@"resp %d",resp.errCode);
-    
-    
-    if ([resp isKindOfClass:[SendMessageToWXResp class]]) {
-        SendMessageToWXResp * tmpResp = (SendMessageToWXResp *)resp;
-        if (tmpResp.errCode == WXSuccess) {
-            HUD_TIP(@"分享成功");
-            
-        }else{
-            HUD_TIP(@"分享失败");
-        }
-    }
-
-}
 
 #pragma mark ------------  JPush
 - (void)setUpJPushSDKWith:(NSDictionary *)launchOptions

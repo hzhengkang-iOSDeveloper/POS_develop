@@ -13,11 +13,8 @@
 #import "ShareTextModel.h"
 #import "SGActionView.h"
 
-#import "WXApi.h"
 
-@interface CopywritingSelectViewController () <UITableViewDataSource, UITableViewDelegate> {
-    enum WXScene _scene;
-}
+@interface CopywritingSelectViewController () <UITableViewDataSource, UITableViewDelegate> 
 @property (nonatomic, strong) UITableView *myTableView;
 @property (nonatomic, copy) NSString *pasteStr;//复制的文字，用于转发时
 @property (nonatomic, strong) NSMutableArray *dataArray;
@@ -56,54 +53,36 @@
 }
 - (void)selectedWithIndex:(NSInteger)index
 {
-    if (index == 1){
-        //微信好友
-        _scene = WXSceneSession;
-        [self sendLinkContent];
-    }else if (index == 2){
-        //微信朋友圈
-        _scene = WXSceneTimeline;
-        [self sendLinkContent];
-    }
-}
-#pragma mark -- wxApi method
-- (void) sendLinkContent
-{
-    if (![WXApi isWXAppInstalled] || ![WXApi isWXAppSupportApi])
-    {
-        [UIAlertView showAlertViewWithTitle:@"提示" message:@"您未安装微信客户端" cancelButtonTitle:@"确定" otherButtonTitles:nil onDismiss:^(NSInteger buttonIndex) {
-            
-        } onCancel:^{
-            
-        }];
-        
+    if (![OpenShare canOpen:@"weixin://"]) {
+        HUD_ERROR(@"请安装微信客户端");
         return;
     }
-    
-    
-    WXMediaMessage *message = [WXMediaMessage message];
-//    message.title = @"title";
-    message.description = self.pasteStr;
-    [message setThumbImage:self.shareImgV.image];
-//    [message setThumbImage:[self scaleToSize:self.shareImgV.image size:CGSizeMake(120, 120)]];
-    WXWebpageObject *ext = [WXWebpageObject object];
-//    ext.webpageUrl = _shareUrl;
-    ext.webpageUrl = @"www.taobao.com";
-    message.mediaObject = ext;
-    SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
-    req.bText = NO;
-    req.message = message;
-    req.scene = _scene;
-    [WXApi sendReq:req];
-    
-    
-}
-- (UIImage *)scaleToSize:(UIImage *)img size:(CGSize)size{
-    UIGraphicsBeginImageContext(size);
-    [img drawInRect:CGRectMake(0, 0, size.width, size.height)];
-    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return scaledImage;
+    OSMessage *msg = [[OSMessage alloc] init];
+    msg.title = @"nihaisdh";
+    msg.desc = self.pasteStr;
+    NSData *imageData = UIImageJPEGRepresentation(self.shareImgV.image, 0.5);
+    msg.image = imageData;
+    //    msg.fileExt = @"哈哈哈哈哈";
+    msg.link = @"www.taobao.com";
+    //    msg.multimediaType = OSMultimediaTypeNews;
+    //    msg.thumbnail = imageData;
+    if (index == 1){
+        //微信好友
+
+        [OpenShare shareToWeixinSession:msg Success:^(OSMessage *message) {
+            HUD_SUCCESS(@"分享成功");
+        } Fail:^(OSMessage *message, NSError *error) {
+            HUD_ERROR(@"分享失败");
+        }];
+        
+    }else if (index == 2){
+        //微信朋友圈
+        [OpenShare shareToWeixinTimeline:msg Success:^(OSMessage *message) {
+            HUD_SUCCESS(@"分享成功");
+        } Fail:^(OSMessage *message, NSError *error) {
+            HUD_ERROR(@"分享失败");
+        }];
+    }
 }
 - (void)createTableView {
     _myTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];

@@ -339,8 +339,6 @@
     }];
     self.sendTimeLabel = sendTimeLabel;
     
-    self.billListM.orderStatus = @"10";
-    payDoModel.payType = @"2";
     //10:待付款，20:待发货，30:待确认，40：已完成
     if ([self.billListM.orderStatus isEqualToString:@"10"]) {
         //支付方式，0:微信，1:支付宝，2:线下转账
@@ -657,7 +655,7 @@
             if (success) {
                 NSDictionary *wxPayDict = @{
                                             @"isAppMode":@1,
-                                            @"orderPayId":@10
+                                            @"orderPayId":result[@"data"]
                                             };
                 [self creatWxPay:wxPayDict];
                
@@ -671,7 +669,7 @@
             if (success) {
                 NSDictionary *wxPayDict = @{
                                             @"isAppMode":@1,
-                                            @"orderPayId":@10
+                                            @"orderPayId":result[@"data"]
                                             };
                 [self creatAliPay:wxPayDict];
                 
@@ -685,23 +683,23 @@
 #pragma mark ---- 微信pay ----
 - (void)creatWxPay:(NSDictionary *)param
 {
-    [[HPDConnect connect]KKGetNetRequestMethod:@"payment/weixi/pay" params:param cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect]GetNetRequestMethod:@"payment/weixi/pay" params:param cookie:nil result:^(bool success, id result) {
         HUD_HIDE;
         if (success) {
             if ([result[@"code"]integerValue] == 0) {
                 if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                     NSDictionary *payResult = [NSDictionary dictionaryWithDictionary:result[@"data"]];
-                    NSString *link = [NSString stringWithFormat:@"weixin://app/%@/pay/?nonceStr=%@&package=Sign%%3DWXPay&partnerId=%@&prepayId=%@&timeStamp=%@&sign=%@&signType=SHA1",@"wx91ebdef19b6d7011",@"oVN1stWkAyO0RaBD",@"1516976871",@"wx0117161904630795cbd92afd0580063320",@"1541063779",@"9064F14C05A2FE8163C0E7C47BEE2D81"];
-//                    NSString *link = [NSString stringWithFormat:@"weixin://app/%@/pay/?nonceStr=%@&package=Sign%%3DWXPay&partnerId=%@&prepayId=%@&timeStamp=%@&sign=%@&signType=SHA1",payResult[@"appid"],payResult[@"nonce_str"],payResult[@"partnerid"],payResult[@"prepay_id"],payResult[@"timestamp"],payResult[@"sign"]];
+                    NSString *link = [NSString stringWithFormat:@"weixin://app/%@/pay/?nonceStr=%@&package=Sign%%3DWXPay&partnerId=%@&prepayId=%@&timeStamp=%@&sign=%@&signType=SHA1",payResult[@"appid"],payResult[@"nonce_str"],payResult[@"partnerid"],payResult[@"prepay_id"],payResult[@"timestamp"],payResult[@"sign"]];
                     [OpenShare WeixinPay:link Success:^(NSDictionary *message) {
-                        //支付成功界面
-//                        weakSelf.isAwardSuccess = YES;
-//                        [weakSelf turnDiscussVcWithDiscussModel:discussM withGiftModel:model];
+                        //支付成功页面
+                        HUD_SUCCESS(@"支付成功");
+                        if (self.updateDataHandler) {
+                            self.updateDataHandler();
+                        }
+                        [self.navigationController popViewControllerAnimated:YES];
                     } Fail:^(NSDictionary *message, NSError *error) {
-//                        SLLog(@"%@ --- %@",message,error);
-                        HUD_ERROR(@"支付失败,请重新支付");
-//                        weakSelf.awardOrderID = STRING(orderId);
-//                        weakSelf.isAwardSuccess = NO;
+                        HUD_ERROR(@"支付失败,请重新支付")
+
                     }];
                 }
                
@@ -730,14 +728,13 @@
                     
                     [OpenShare AliPay:LINK Success:^(NSDictionary *message) {
                         //支付成功页面
-//                        weakSelf.isAwardSuccess = YES;
-//                        [weakSelf turnDiscussVcWithDiscussModel:discussM withGiftModel:model];
+                        HUD_SUCCESS(@"支付成功");
+                        if (self.updateDataHandler) {
+                            self.updateDataHandler();
+                        }
+                        [self.navigationController popViewControllerAnimated:YES];
                     } Fail:^(NSDictionary *message, NSError *error) {
-//                        SLLog(@"%@ --- %@",message,error);
-//                        SHOW(@"支付失败,请重新支付")
-//                        //支付失败页面
-//                        weakSelf.awardOrderID = STRING(orderId);
-//                        weakSelf.isAwardSuccess = NO;
+                         HUD_ERROR(@"支付失败,请重新支付")
                     }];
                 }
                 
