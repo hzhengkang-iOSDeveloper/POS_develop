@@ -130,15 +130,23 @@
 - (void)loadShareQrcoeListRequest {
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/shareQrcoe/list" params:nil cookie:nil result:^(bool success, id result) {
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
-                    NSDictionary *array = result[@"data"][@"rows"];
-                    self.dataArray = [NSMutableArray arrayWithArray:[SharePicListModel mj_objectArrayWithKeyValuesArray:array]];
-                    
-                    [self.myCollection reloadData];
-                }
+            if ([result[@"code"]integerValue] == 0) {
                 
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                        NSDictionary *array = result[@"data"][@"rows"];
+                        self.dataArray = [NSMutableArray arrayWithArray:[SharePicListModel mj_objectArrayWithKeyValuesArray:array]];
+                        
+                        [self.myCollection reloadData];
+                    }
+                    
+                }
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
+           
             
         }
         NSLog(@"result ------- %@", result);

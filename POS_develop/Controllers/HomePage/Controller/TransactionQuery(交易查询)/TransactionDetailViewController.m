@@ -84,12 +84,20 @@
 - (void)loadPosBrandRequest {
     [[HPDConnect connect] PostNetRequestMethod:[NSString stringWithFormat:@"%@%@", @"api/trans/transaction/get/", self.myID] params:nil cookie:nil result:^(bool success, id result) {
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                self.dataDict = result[@"data"];
-                self.navigationItemTitle = [self.dataDict objectForKey:@"agentName"];
-                [self.transactionDetailTableView reloadData];
-                
+            
+            if ([result[@"code"]integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    self.dataDict = result[@"data"];
+                    self.navigationItemTitle = [self.dataDict objectForKey:@"agentName"];
+                    [self.transactionDetailTableView reloadData];
+                    
+                }
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
+            
             
             
         }

@@ -226,7 +226,7 @@
         [self.aview stopAnimating];
         [self.codeTimeBtn setTitle:@"重发" forState:UIControlStateNormal];
         if (success) {
-            if ([result[@"msg"] isEqualToString:@"操作成功"]) {
+            if ([result[@"code"]integerValue] == 0) {
                 self.timeSum = 60;
                 self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerChange:) userInfo:nil repeats:YES];
                 self.codeTimeBtn.userInteractionEnabled = NO;
@@ -291,7 +291,7 @@
         [self.aview stopAnimating];
         [self.registerBtn setTitle:@"立即注册" forState:UIControlStateNormal];
         if (success) {
-            if ([result[@"msg"] isEqualToString:@"操作成功"]) {
+            if ([result[@"code"]integerValue] == 0) {
                 HUD_TIP(@"注册成功");
                 [self dismissViewControllerAnimated:YES completion:^{
                     

@@ -57,12 +57,20 @@
 -(void)loadMessageGetRequest {
     [[HPDConnect connect] PostNetRequestMethod:[NSString stringWithFormat:@"%@%@",@"api/trans/message/get/",self.myId] params:nil cookie:nil result:^(bool success, id result) {
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                self.titleLabel.text = [result[@"data"] valueForKey:@"msgTitle"];
-                self.timeLabel.text = [[result[@"data"] valueForKey:@"createtime"] substringToIndex:10];
-                self.contentLabel.text = [result[@"data"] valueForKey:@"msgContent"];
-                
+            if ([result[@"code"]integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    self.titleLabel.text = [result[@"data"] valueForKey:@"msgTitle"];
+                    self.timeLabel.text = [[result[@"data"] valueForKey:@"createtime"] substringToIndex:10];
+                    self.contentLabel.text = [result[@"data"] valueForKey:@"msgContent"];
+                    
+                }
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
+            
+            
         }
         NSLog(@"result ------- %@", result);
     }];

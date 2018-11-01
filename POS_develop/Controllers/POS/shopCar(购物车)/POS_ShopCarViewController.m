@@ -466,13 +466,21 @@
 {
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/cart/list" params:@{@"userid":@"1"} cookie:nil result:^(bool success, id result) {
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
-                    NSArray *arr = result[@"data"][@"rows"];
-                    NSArray *tmpArr = [NSArray arrayWithArray:[ShopCarModel mj_objectArrayWithKeyValuesArray:arr]];
-                    [self fenleiWithId:tmpArr];
+            
+            if ([result[@"code"]integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                        NSArray *arr = result[@"data"][@"rows"];
+                        NSArray *tmpArr = [NSArray arrayWithArray:[ShopCarModel mj_objectArrayWithKeyValuesArray:arr]];
+                        [self fenleiWithId:tmpArr];
+                    }
                 }
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
+            
             
         }
         NSLog(@"result ------- %@", result);

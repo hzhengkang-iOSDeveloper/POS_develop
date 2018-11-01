@@ -318,26 +318,33 @@
 {
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/packageFree/list" params:@{@"recommendType":@"1"} cookie:nil result:^(bool success, id result) {
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
-                    NSArray *arr = result[@"data"][@"rows"];
-                    
-                    self.dataArr = [POS_RootViewModel mj_objectArrayWithKeyValuesArray:arr];
-                    
-                    //更新tableView高度
-                    if (self.dataArr.count == 0) {
-                        [self.recommendGoodTableView mas_updateConstraints:^(MASConstraintMaker *make) {
-                            make.height.mas_equalTo(0);
-                        }];
-                    } else {
-                        [self.recommendGoodTableView mas_updateConstraints:^(MASConstraintMaker *make) {
-                            make.height.mas_equalTo(AD_HEIGHT(28)+AD_HEIGHT(89)*self.dataArr.count);
-                        }];
+            if ([result[@"code"]integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                        NSArray *arr = result[@"data"][@"rows"];
+                        
+                        self.dataArr = [POS_RootViewModel mj_objectArrayWithKeyValuesArray:arr];
+                        
+                        //更新tableView高度
+                        if (self.dataArr.count == 0) {
+                            [self.recommendGoodTableView mas_updateConstraints:^(MASConstraintMaker *make) {
+                                make.height.mas_equalTo(0);
+                            }];
+                        } else {
+                            [self.recommendGoodTableView mas_updateConstraints:^(MASConstraintMaker *make) {
+                                make.height.mas_equalTo(AD_HEIGHT(28)+AD_HEIGHT(89)*self.dataArr.count);
+                            }];
+                        }
+                        
+                        [self.recommendGoodTableView reloadData];
                     }
-                    
-                    [self.recommendGoodTableView reloadData];
                 }
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
+            
             
         }
         NSLog(@"result ------- %@", result);

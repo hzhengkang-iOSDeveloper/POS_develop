@@ -91,7 +91,7 @@
 -(void)loadOrderGetRequest {
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/order/update" params:nil cookie:nil result:^(bool success, id result) {
         if (success) {
-            if ([result[@"msg"] isEqualToString:@"success"]) {
+            if ([result[@"code"]integerValue] == 0) {
                 [self.viewController.navigationController popViewControllerAnimated:YES];
             } else {
                 HUD_ERROR(result[@"msg"]);

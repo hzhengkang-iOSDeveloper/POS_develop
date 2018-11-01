@@ -172,15 +172,22 @@
 - (void)loadAgentListRequest {
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agent/list" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID])} cookie:nil result:^(bool success, id result) {
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
-                    NSArray *array = result[@"data"][@"rows"];
-                    self.vipGradeL.text = [[array firstObject] valueForKey:@"sbLevelVip"];
-                    self.receivePosTextL.text = [NSString stringWithFormat:@"已领%@台，还可以领取%@台",[[array firstObject] valueForKey:@"drawCount"] , [[array firstObject] valueForKey:@"totalCount"]];
-                    
-                    
-                    [self loadVipDescAncesRequest];
+            if ([result[@"code"]integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                        NSArray *array = result[@"data"][@"rows"];
+                        self.vipGradeL.text = [[array firstObject] valueForKey:@"sbLevelVip"];
+                        self.receivePosTextL.text = [NSString stringWithFormat:@"已领%@台，还可以领取%@台",[[array firstObject] valueForKey:@"drawCount"] , [[array firstObject] valueForKey:@"totalCount"]];
+                        
+                        
+                        [self loadVipDescAncesRequest];
+                    }
                 }
+                
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
             
         }

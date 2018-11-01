@@ -536,26 +536,33 @@
     [[HPDConnect connect] PostNetRequestMethod:[NSString stringWithFormat:@"%@%@",@"api/trans/order/get/",self.myID] params:nil cookie:nil result:^(bool success, id result) {
         HUD_HIDE;
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-
-                self.billListM = [BillListModel mj_objectWithKeyValues:result[@"data"]];
-                AddressDOModel *addressM = [AddressDOModel mj_objectWithKeyValues:self.billListM.addressDO];
-                self.orderDetailTable.tableHeaderView = [self creatTableHeaderViewWith:addressM];
-                self.orderDetailTable.tableFooterView = [self creatTableFooterView];
-                if ([self.billListM.orderStatus isEqualToString:@"10"]) {
-                    self.navigationItemTitle = @"待付款";
+            if ([result[@"code"]integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                     
-                } else if ([self.billListM.orderStatus isEqualToString:@"20"] ) {
-                    //确认收货
-                    self.navigationItemTitle = @"待收货";
-                } else if ([self.billListM.orderStatus isEqualToString:@"30"] ) {
-                    //待确认
-                    self.navigationItemTitle = @"待确认";
-                }  else if ([self.billListM.orderStatus isEqualToString:@"40"]) {
-                    self.navigationItemTitle = @"订单完成";
+                    self.billListM = [BillListModel mj_objectWithKeyValues:result[@"data"]];
+                    AddressDOModel *addressM = [AddressDOModel mj_objectWithKeyValues:self.billListM.addressDO];
+                    self.orderDetailTable.tableHeaderView = [self creatTableHeaderViewWith:addressM];
+                    self.orderDetailTable.tableFooterView = [self creatTableFooterView];
+                    if ([self.billListM.orderStatus isEqualToString:@"10"]) {
+                        self.navigationItemTitle = @"待付款";
+                        
+                    } else if ([self.billListM.orderStatus isEqualToString:@"20"] ) {
+                        //确认收货
+                        self.navigationItemTitle = @"待收货";
+                    } else if ([self.billListM.orderStatus isEqualToString:@"30"] ) {
+                        //待确认
+                        self.navigationItemTitle = @"待确认";
+                    }  else if ([self.billListM.orderStatus isEqualToString:@"40"]) {
+                        self.navigationItemTitle = @"订单完成";
+                    }
+                    [self creatCellNewArr];
                 }
-                [self creatCellNewArr];
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
+            
         }
         NSLog(@"result ------- %@", result);
     }];

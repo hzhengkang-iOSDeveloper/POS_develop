@@ -122,15 +122,23 @@
         HUD_HIDE;
         [self.orderTableView.mj_header endRefreshing];
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
-                    NSArray *array = result[@"data"][@"rows"];
-                    self.orderArray = [NSMutableArray arrayWithArray:[BillListModel mj_objectArrayWithKeyValuesArray:array]];
-                    
-                    [self.orderTableView reloadData];
-                }
-                
-            }
+             if ([result[@"code"]integerValue] == 0) {
+                 if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                     if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                         NSArray *array = result[@"data"][@"rows"];
+                         self.orderArray = [NSMutableArray arrayWithArray:[BillListModel mj_objectArrayWithKeyValuesArray:array]];
+                         
+                         [self.orderTableView reloadData];
+                     }
+                     
+                 }
+             }else{
+                 [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                     
+                 }];
+             }
+            
+            
             
         }
         NSLog(@"result ------- %@", result);

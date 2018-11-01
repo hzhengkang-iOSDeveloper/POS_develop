@@ -112,16 +112,23 @@
 
 #pragma mark ---- 激活返现查询 ----
 - (void)loadActivationRebateListRequest{
-    LoginManager *manager = [LoginManager getInstance];
 
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/activationRebate/list" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]),@"startTime":defaultObject(self.startTime, @""), @"endTime":defaultObject(self.endTime, @""), @"agentType":self.agentType, @"orderBy":@""} cookie:nil result:^(bool success, id result) {
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                if ([result[@"data"][@"object"] isKindOfClass:[NSDictionary class]]) {
-                    self.headerView.totalPenLabel.text = [result[@"data"][@"object"] valueForKey:@"totalARAmount"];
-                    self.headerView.totalAmountLabel.text = [result[@"data"][@"object"] valueForKey:@"totalNumber"];
+            if ([result[@"code"]integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    if ([result[@"data"][@"object"] isKindOfClass:[NSDictionary class]]) {
+                        self.headerView.totalPenLabel.text = [result[@"data"][@"object"] valueForKey:@"totalARAmount"];
+                        self.headerView.totalAmountLabel.text = [result[@"data"][@"object"] valueForKey:@"totalNumber"];
+                    }
                 }
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
+            
+            
             
         }
         NSLog(@"result ------- %@", result);

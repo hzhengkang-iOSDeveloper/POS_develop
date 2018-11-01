@@ -119,14 +119,21 @@
 //        [self.myTable.mj_header endRefreshing];
 //        self.index = orderBy;
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                if ([result[@"data"][@"object"] isKindOfClass:[NSDictionary class]]) {
-                    self.headerView.totalLael.text = [result[@"data"][@"object"] valueForKey:@"totalSBAmount"];
-                    self.headerView.totalPenLabel.text = [result[@"data"][@"object"] valueForKey:@"totalNumber"];
-                    self.headerView.totalAmountLabel.text = [result[@"data"][@"object"] valueForKey:@"totalTransAmount"];
+            if ([result[@"code"]integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    if ([result[@"data"][@"object"] isKindOfClass:[NSDictionary class]]) {
+                        self.headerView.totalLael.text = [result[@"data"][@"object"] valueForKey:@"totalSBAmount"];
+                        self.headerView.totalPenLabel.text = [result[@"data"][@"object"] valueForKey:@"totalNumber"];
+                        self.headerView.totalAmountLabel.text = [result[@"data"][@"object"] valueForKey:@"totalTransAmount"];
+                    }
+                    
                 }
-                
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
+            
             
         }
         NSLog(@"result ------- %@", result);

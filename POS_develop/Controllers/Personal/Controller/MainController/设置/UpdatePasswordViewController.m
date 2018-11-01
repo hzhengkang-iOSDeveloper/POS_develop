@@ -120,7 +120,7 @@
     
     [[HPDConnect connect] GetNetRequestMethod:[NSString stringWithFormat:@"changepassword/getsmscode?mobile=%@", phoneCell.contentTF.text] params:nil cookie:nil result:^(bool success, id result) {
         if (success) {
-            if ([result[@"msg"] isEqualToString:@"操作成功"]) {
+            if ([result[@"code"]integerValue] == 0) {
                 self.timeSum = 60;
                 self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerChange:) userInfo:nil repeats:YES];
                 phoneCell.getCodeBtn.userInteractionEnabled = NO;
@@ -150,7 +150,7 @@
 - (void)loadChangepasswordRequest {
     [[HPDConnect connect]PostOtherNetRequestMethod:@"changepassword" params:@{@"newPwd":@"", @"smsCode":@"", @"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID])} cookie:nil result:^(bool success, id result) {
         if (success) {
-            if ([result[@"msg"] isEqualToString:@"操作成功"]) {
+            if ([result[@"code"]integerValue] == 0) {
                 HUD_TIP(@"修改成功，请重新登录！");
                 //做退出登录操作
                 

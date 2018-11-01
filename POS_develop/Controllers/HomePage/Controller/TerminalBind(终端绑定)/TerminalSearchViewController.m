@@ -153,32 +153,40 @@
 
 #pragma mark ---- 终端绑定 ----
 - (void)loadAgentPosListRequest{
-    LoginManager *manager = [LoginManager getInstance];
 
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agentPos/list" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]), @"agentId":self.agentId, @"posSnNo":searchTF.text,@"bindFlag":@"0"} cookie:nil result:^(bool success, id result) {
         [self.searchTableView.mj_header endRefreshing];
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
-                    if (self.dataArray.count > 0) {
-                        [self.dataArray removeAllObjects];
+            
+            if ([result[@"code"]integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                        if (self.dataArray.count > 0) {
+                            [self.dataArray removeAllObjects];
+                        }
+                        NSArray *array = [NSArray arrayWithArray:[AgentPosListModel mj_objectArrayWithKeyValuesArray:result[@"data"][@"rows"]]];
+                        
+                        self.listDataArray = [array mutableCopy];
+                        
+                        
+                        for (int i =0; i<array.count; i++) {
+                            //                        AgentPosListModel *model = [array objectAtIndex:i];
+                            [self loadPosGetRequest:[NSString stringWithFormat:@"%@", [[array objectAtIndex:i] valueForKey:@"posId"]] withArr:array];
+                        }
+                        
+                        
+                        //                    [self.searchTableView reloadData];
                     }
-                   NSArray *array = [NSArray arrayWithArray:[AgentPosListModel mj_objectArrayWithKeyValuesArray:result[@"data"][@"rows"]]];
                     
-                    self.listDataArray = [array mutableCopy];
-                    
-
-                    for (int i =0; i<array.count; i++) {
-//                        AgentPosListModel *model = [array objectAtIndex:i];
-                        [self loadPosGetRequest:[NSString stringWithFormat:@"%@", [[array objectAtIndex:i] valueForKey:@"posId"]] withArr:array];
-                    }
-                    
-                    
-//                    [self.searchTableView reloadData];
                 }
                 
+                
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
-            
+           
             
         }
         NSLog(@"result ------- %@", result);

@@ -135,25 +135,30 @@
 #pragma mark ------------------------------------ 接口 ------------------------------------
 #pragma mark ---- 终端绑定查询 ----
 - (void)loadAgentListRequest {
-    LoginManager *manager = [LoginManager getInstance];
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agent/list" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]), @"agentName":self.agentName, @"agentNo":self.agentNo} cookie:nil result:^(bool success, id result) {
         [self.myTableView.mj_header endRefreshing];
         if (success) {
-            
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
-                    NSArray *array = result[@"data"][@"rows"];
-                    if (self.dataArray.count > 0 ) {
-                        [self.dataArray removeAllObjects];
+            if ([result[@"code"]integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                        NSArray *array = result[@"data"][@"rows"];
+                        if (self.dataArray.count > 0 ) {
+                            [self.dataArray removeAllObjects];
+                        }
+                        [self.dataArray addObjectsFromArray:[AgentListModel mj_objectArrayWithKeyValuesArray:array]];
+                        
+                        [self.myTableView reloadData];
+                        
+                        
                     }
-                    [self.dataArray addObjectsFromArray:[AgentListModel mj_objectArrayWithKeyValuesArray:array]];
-                    
-                    [self.myTableView reloadData];
-                    
                     
                 }
-                
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
+            
             
             
         }

@@ -88,21 +88,21 @@
         cell.titleLabel.hidden = YES;
         cell.iconImageV.hidden = NO;
 //        cell.iconImageV.image = [UIImage imageNamed:@"头像2"];
-        [cell.iconImageV sd_setImageWithURL:[NSURL URLWithString:[self.userInfoDict objectForKey:@"picUrl"]] placeholderImage: [UIImage imageNamed:@"头像2"] options:SDWebImageRefreshCached];
+        [cell.iconImageV sd_setImageWithURL:[NSURL URLWithString:IF_NULL_TO_STRING([self.userInfoDict objectForKey:@"picUrl"])] placeholderImage: [UIImage imageNamed:@"头像2"] options:SDWebImageRefreshCached];
         cell.detailLabel.text = @"修改头像";
         cell.detailLabel.textColor = C989898;
     }else if (indexPath.row == 1) {
         cell.titleLabel.text = @"手机号";
-        NSString *mobile = [self.userInfoDict objectForKey:@"mobile"];
+        NSString *mobile = IF_NULL_TO_STRING([self.userInfoDict objectForKey:@"mobile"]);
         if (mobile.length < 11) {
             cell.detailLabel.text = mobile;
         }else {
-            cell.detailLabel.text = [[self.userInfoDict objectForKey:@"mobile"] stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
+            cell.detailLabel.text = [IF_NULL_TO_STRING([self.userInfoDict objectForKey:@"mobile"]) stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
         }
         
     }else if (indexPath.row == 2) {
         cell.titleLabel.text = @"姓名";
-        cell.detailLabel.text = [self.userInfoDict objectForKey:@"nickname"];
+        cell.detailLabel.text = IF_NULL_TO_STRING([self.userInfoDict objectForKey:@"nickname"]);
     }else {
         cell.titleLabel.text = @"修改密码";
     }
@@ -262,10 +262,11 @@
 
 #pragma mark ---- 个人 用户信息 ----
 - (void)loadUserinfoRequest {
+    NSString *urlStr = [NSString stringWithFormat:@"?authCode=%@&authUserId=%@",IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:AUTHCODE]), IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID])];
     
-    [[HPDConnect connect] PostNetRequestMethod:@"sys/user/userinfo" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID])} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] GetNetRequestMethod:[NSString stringWithFormat:@"sys/user/userinfo%@",urlStr] params:nil cookie:nil result:^(bool success, id result) {
         if (success) {
-            self.userInfoDict = result;
+            self.userInfoDict = result[@"data"];
             
             [self.settingTableView reloadData];
         }

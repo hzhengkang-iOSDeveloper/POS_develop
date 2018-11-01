@@ -100,13 +100,17 @@
 
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agentPos/save" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]), @"agentId":self.agentId, @"posId":self.posID, @"posBrandNo":self.posBrandNo, @"posSnNo":self.posSnNo, @"bindFlag":@"1"} cookie:nil result:^(bool success, id result) {
         if (success) {
-            if ([result[@"msg"] isEqualToString:@"success"]) {
+            if ([result[@"code"]integerValue] == 0) {
                 HUD_TIP(@"绑定成功");
                 if (self.popBlock) {
                     self.popBlock();
                 }
                 [self.navigationController popViewControllerAnimated:YES];
                 
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
             
             

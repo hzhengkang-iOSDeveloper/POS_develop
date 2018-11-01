@@ -156,14 +156,21 @@
 {
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/packageFree/list" params:@{@"tbproductId":IF_NULL_TO_STRING(self.podId)} cookie:nil result:^(bool success, id result) {
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
-                    NSArray *arr = result[@"data"][@"rows"];
-                    
-                    self.dataArr = [POS_RootViewModel mj_objectArrayWithKeyValuesArray:arr];
-                    [self.myTable reloadData];
+            if ([result[@"code"]integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                        NSArray *arr = result[@"data"][@"rows"];
+                        
+                        self.dataArr = [POS_RootViewModel mj_objectArrayWithKeyValuesArray:arr];
+                        [self.myTable reloadData];
+                    }
                 }
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
+            
             
         }
         NSLog(@"result ------- %@", result);

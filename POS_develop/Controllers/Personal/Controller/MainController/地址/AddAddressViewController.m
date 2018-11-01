@@ -226,13 +226,18 @@
     LoginManager *manager = [LoginManager getInstance];
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/address/save" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]), @"defaultFlag":self.defaultAddressBtn.selected?@0:@1, @"receiverName":self.nameTF.text, @"receiverMp":self.telephoneTF.text, @"province" : province, @"city" : city, @"county": county, @"receiverAddr":self.detailAddress.text} cookie:nil result:^(bool success, id result) {
         if (success) {
-            if ([result[@"msg"] isEqualToString:@"success"]) {
+            if ([result[@"code"]integerValue] == 0) {
                 HUD_TIP(@"保存成功");
                 [self.navigationController popViewControllerAnimated:YES];
                 if (self.updateAddressList) {
                     self.updateAddressList();
                 }
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
+            
             
         }
         

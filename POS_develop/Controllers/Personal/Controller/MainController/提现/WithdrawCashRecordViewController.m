@@ -79,19 +79,26 @@
 #pragma mark -------------------------------- 接口 ------------------------------------
 
 - (void)loadBagWithdrawListRequest {
-    LoginManager *manager = [LoginManager getInstance];
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/bagWithdraw/list" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID])} cookie:nil result:^(bool success, id result) {
         [self.myTableView.mj_header endRefreshing];
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
-                    NSArray *array = result[@"data"][@"rows"];
-                    self.dataArray = [NSMutableArray arrayWithArray:[BagWithdrawListModel mj_objectArrayWithKeyValuesArray:array]];
+            if ([result[@"code"]integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                        NSArray *array = result[@"data"][@"rows"];
+                        self.dataArray = [NSMutableArray arrayWithArray:[BagWithdrawListModel mj_objectArrayWithKeyValuesArray:array]];
+                        
+                        [self.myTableView reloadData];
+                    }
                     
-                    [self.myTableView reloadData];
                 }
-                
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
+            
+            
             
         }
         NSLog(@"result ------- %@", result);

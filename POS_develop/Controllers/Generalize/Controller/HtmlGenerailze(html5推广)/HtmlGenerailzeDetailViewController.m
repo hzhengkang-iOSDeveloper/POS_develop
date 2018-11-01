@@ -139,15 +139,22 @@
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/shareH5Reader/list" params:@{@"tbShareH5Id":self.tbShareH5Id} cookie:nil result:^(bool success, id result) {
         [self.myTableView.mj_header endRefreshing];
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
-                    NSDictionary *array = result[@"data"][@"rows"];
-                    self.dataArray = [NSMutableArray arrayWithArray:[ShareH5ReaderModel mj_objectArrayWithKeyValuesArray:array]];
+            if ([result[@"code"]integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                        NSDictionary *array = result[@"data"][@"rows"];
+                        self.dataArray = [NSMutableArray arrayWithArray:[ShareH5ReaderModel mj_objectArrayWithKeyValuesArray:array]];
+                        
+                        [self.myTableView reloadData];
+                    }
                     
-                    [self.myTableView reloadData];
                 }
-                
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
+            
             
         }
         NSLog(@"result ------- %@", result);
