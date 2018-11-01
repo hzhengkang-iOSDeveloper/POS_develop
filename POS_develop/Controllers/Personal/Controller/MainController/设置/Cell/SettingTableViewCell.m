@@ -43,6 +43,8 @@
     self.iconImageV = [[UIImageView alloc] init];
     self.iconImageV.hidden = YES;
     [self addSubview:self.iconImageV];
+    self.iconImageV.layer.cornerRadius = FITiPhone6(20);
+    self.iconImageV.layer.masksToBounds = YES;
     [self.iconImageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(FITiPhone6(15));
         make.centerY.equalTo(self.mas_centerY);

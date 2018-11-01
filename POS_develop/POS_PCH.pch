@@ -16,7 +16,7 @@
 //测试环境
 #define  OUTLINEHost    @"http://106.14.7.85:8000"
 
-#define  BasePicURL   OUTLINEHost
+#define  BasePicURL   ONLINEURL
 
 
 #import "AppDelegate.h"

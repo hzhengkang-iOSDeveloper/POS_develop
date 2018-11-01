@@ -103,6 +103,7 @@ NSString *const kShouldShowLoginViewControllerLogout = @"kShouldShowLoginViewCon
 //            if (success && [[result valueForKey:kSoapResponseStatu] intValue] == 1) {
             if ([result[@"code"]integerValue] == 0) {
                 [self loginSuccess:result account:account];
+                [USER_DEFAULT synchronize];
                 loginResult(YES, result);
 
             } else {
@@ -137,8 +138,6 @@ NSString *const kShouldShowLoginViewControllerLogout = @"kShouldShowLoginViewCon
 
 - (void)loginWithAccount:(NSString *)account andPassword:(NSString *)password result:(HPDLoginResult)loginResult
 {
-    
-    
     NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     NSArray *_tmpArray = [NSArray arrayWithArray:[cookieJar cookies]];
     for (id obj in _tmpArray) {
@@ -149,9 +148,9 @@ NSString *const kShouldShowLoginViewControllerLogout = @"kShouldShowLoginViewCon
     NSDictionary *dict = @{@"mobile":account, @"password":password, @"deviceId":[HDeviceIdentifier deviceIdentifier]};
     [[HPDConnect connect] PostOtherNetRequestMethod:@"login2" params:dict cookie:nil result:^(bool success, id result) {
         if (success) {
-//            if (success && [[result valueForKey:kSoapResponseStatu] intValue] == 1) {
-            if ([result[@"code"]integerValue] == 0) {
+            if ([result[@"code"] integerValue] == 0) {
                 [self loginSuccess:result account:account];
+                [USER_DEFAULT synchronize];
                 loginResult(YES, result);
                 
             } else {
@@ -173,7 +172,6 @@ NSString *const kShouldShowLoginViewControllerLogout = @"kShouldShowLoginViewCon
         }else{
             [self loginFaild:result];
             loginResult(NO, result);
-            //            showToast(kErrorMsg);
         }
         
     }];
@@ -234,7 +232,7 @@ NSString *const kShouldShowLoginViewControllerLogout = @"kShouldShowLoginViewCon
                 
                 
                 
-                HUD_TIP(@"退出成功");
+//                HUD_TIP(@"退出成功");
                 LoginTypeViewController * baseVC = [[LoginTypeViewController alloc] init];
                 [UIApplication sharedApplication].keyWindow.rootViewController = baseVC;
             }

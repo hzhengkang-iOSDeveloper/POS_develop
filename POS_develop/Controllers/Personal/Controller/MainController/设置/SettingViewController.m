@@ -88,7 +88,7 @@
         cell.titleLabel.hidden = YES;
         cell.iconImageV.hidden = NO;
 //        cell.iconImageV.image = [UIImage imageNamed:@"头像2"];
-        [cell.iconImageV sd_setImageWithURL:[NSURL URLWithString:IF_NULL_TO_STRING([self.userInfoDict objectForKey:@"picUrl"])] placeholderImage: [UIImage imageNamed:@"头像2"] options:SDWebImageRefreshCached];
+        [cell.iconImageV sd_setImageWithURL:URL(GETPIC(IF_NULL_TO_STRING([self.userInfoDict objectForKey:@"picUrl"]))) placeholderImage: [UIImage imageNamed:@"头像2"] options:SDWebImageRefreshCached];
         cell.detailLabel.text = @"修改头像";
         cell.detailLabel.textColor = C989898;
     }else if (indexPath.row == 1) {
@@ -213,39 +213,16 @@
 -(void)UploadHeadImage:(UIImage*)headImage{
     
 //    HPDProgressHudShowWithMessage(@"头像上传中..");
-    NSData *imageData = UIImageJPEGRepresentation(headImage,1.0f);
-    NSString *encodedImageStr = [NSString stringWithFormat:@"%@", imageData];
-    NSDictionary* params = @{@"avatar_data":encodedImageStr};
-//    [[HPDConnect connect] PostNetRequestMethod:@"sys/user/uploadImg" params:params cookie:nil result:^(bool success, NSDictionary *result) {
-////        HPDProgressHide;
-//        //        showToast(result[@"doMsg"]);
-//        if (success) {
-////            if (result[@"doStatu"]) {
-////                if (result[@"doObject"] == nil) {
-////                    showToast(result[@"prompt"]);
-////                    //                    return ;
-////                }else{
-////
-////                    NSDictionary *dictInfo = [GlobalMethod dictionaryWithJsonString:result[@"doObject"]];
-////                    NSString* headImage = [NSString stringWithFormat:@"%@",dictInfo[@"userimg"]];
-////                    NSLog(@"imageUrl = %@",dictInfo[@"userimg"]);
-////                    if (headImage.length>0) {
-////                        _loginManager.userInfo.UserImg = headImage;
-////                        [UserInformation saveUserinfoWithKey:User_HeadImage value:headImage];
-////                        [_UserInformationTableView reloadData];
-////                    }
-////                }
-////            }
-//
-//            NSLog(@"result = %@",result);
-//        }else{
-//
-//        }
-//    }];
+//    NSData *imageData = UIImageJPEGRepresentation(headImage,1.0f);
     NSString* fileName = [NSString stringWithFormat:@"%@.png", [MyTools getCurrentTimestamp]];
    
-        [[HPDConnect connect]AFNetPOSTMethodWithUpload:@"sys/user/uploadImg" params:nil  upData:headImage uptype:0 fileName:fileName cookie:[[LoginManager getInstance] userCookie] result:^(bool success, id result) {
+    [[HPDConnect connect]AFNetPOSTMethodWithUpload:@"sys/user/uploadImg" params:nil  upData:headImage uptype:0 fileName:fileName cookie:nil result:^(bool success, id result) {
             NSLog(@"success = %d result = %@",success,result);
+            if (success) {
+                NSLog(@"%@",result);
+                SettingTableViewCell *cell = [self.settingTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+                [cell.iconImageV sd_setImageWithURL:URL(GETPIC(result[@"url"])) placeholderImage:ImageNamed(@"头像2")];
+            }
         }];
         
  

@@ -130,7 +130,7 @@
     [self.passwordTF setValue:C989898
                forKeyPath:@"_placeholderLabel.textColor"];
     [self.passwordTF setValue:F13 forKeyPath:@"_placeholderLabel.font"];
-    self.passwordTF.keyboardType = UIKeyboardTypeNumberPad;
+//    self.passwordTF.keyboardType = UIKeyboardTypeNumberPad;
     self.passwordTF.borderStyle = UITextBorderStyleNone;
     self.passwordTF.font = F13;
     self.passwordTF.layer.cornerRadius = FITiPhone6(5);
@@ -150,7 +150,7 @@
     [self.recommendTF setValue:C989898
                    forKeyPath:@"_placeholderLabel.textColor"];
     [self.recommendTF setValue:F13 forKeyPath:@"_placeholderLabel.font"];
-    self.recommendTF.keyboardType = UIKeyboardTypeNumberPad;
+//    self.recommendTF.keyboardType = UIKeyboardTypeNumberPad;
     self.recommendTF.borderStyle = UITextBorderStyleNone;
     self.recommendTF.font = F13;
     self.recommendTF.layer.cornerRadius = FITiPhone6(5);

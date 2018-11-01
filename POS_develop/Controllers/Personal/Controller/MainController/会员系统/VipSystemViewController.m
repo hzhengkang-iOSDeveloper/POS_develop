@@ -196,7 +196,6 @@
 }
 
 - (void)loadAgentListAncesRequest {
-    LoginManager *manager = [LoginManager getInstance];
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agent/listAnces" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID])} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -213,7 +212,7 @@
 
 
 - (void)loadVipDescAncesRequest {
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agent/vipDesc" params:@{@"sbLevel":self.vipGradeL.text} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agent/vipDesc" params:@{@"sbLevel":IF_NULL_TO_STRING(self.vipGradeL.text)} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                     self.powerContentL.text = [NSString stringWithFormat:@"%@",[result[@"data"] valueForKey:@"des"]];
