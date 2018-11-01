@@ -3269,7 +3269,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9YW8W923PG;
+				DEVELOPMENT_TEAM = PY7ZU58Z7K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/POS_develop/Controllers/Personal/Controller/MainController/客服聊天/HelpDeskFramework",
@@ -3373,7 +3373,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9YW8W923PG;
+				DEVELOPMENT_TEAM = PY7ZU58Z7K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/POS_develop/Controllers/Personal/Controller/MainController/客服聊天/HelpDeskFramework",

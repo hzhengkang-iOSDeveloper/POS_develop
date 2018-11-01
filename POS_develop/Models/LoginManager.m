@@ -101,7 +101,13 @@ NSString *const kShouldShowLoginViewControllerLogout = @"kShouldShowLoginViewCon
         
         if (success) {
 //            if (success && [[result valueForKey:kSoapResponseStatu] intValue] == 1) {
+            if ([result[@"code"]integerValue] == 0) {
                 [self loginSuccess:result account:account];
+                loginResult(YES, result);
+
+            } else {
+                loginResult(NO,result);
+            }
 //                NSDictionary *dictTemp = [GlobalMethod dictionaryWithJsonString:result[@"doObject"]];
 #pragma mark 登陆账户验证码
                 
@@ -111,7 +117,6 @@ NSString *const kShouldShowLoginViewControllerLogout = @"kShouldShowLoginViewCon
                 [USER_DEFAULT synchronize];
                 
 //                NSLog(@"%@",[[USER_DEFAULT objectForKey:ZX_LastUserDic] objectForKey:NICKNAME]);
-                loginResult(YES, result);
 //            }
 //            else {
 //                [self loginFaild:result];
@@ -145,15 +150,20 @@ NSString *const kShouldShowLoginViewControllerLogout = @"kShouldShowLoginViewCon
     [[HPDConnect connect] PostOtherNetRequestMethod:@"login2" params:dict cookie:nil result:^(bool success, id result) {
         if (success) {
 //            if (success && [[result valueForKey:kSoapResponseStatu] intValue] == 1) {
+            if ([result[@"code"]integerValue] == 0) {
                 [self loginSuccess:result account:account];
+                loginResult(YES, result);
                 
+            } else {
+                loginResult(NO,result);
+            }
+            
 #pragma mark 保存最后一次登陆账户密码
 //                NSDictionary *dictTemp = [GlobalMethod dictionaryWithJsonString:result[@"doObject"]];
 //                NSDictionary *LastUserDic = @{ACCOUNT:account,PASSWORD:password, NICKNAME:dictTemp[@"Nick_Name"], USERPHOTO:dictTemp[@"Photo_Url"], ISSETPWD:dictTemp[@"IsSetPwd"], CUST_CODE:dictTemp[@"Cust_Code"]};
 //                [USER_DEFAULT setObject:LastUserDic forKey:ZX_LastUserDic];
 //                [USER_DEFAULT synchronize];
             
-                loginResult(YES, result);
 //            }
 //            else {
 //                [self loginFaild:result];

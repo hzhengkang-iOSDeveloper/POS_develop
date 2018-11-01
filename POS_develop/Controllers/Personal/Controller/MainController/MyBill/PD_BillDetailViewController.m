@@ -351,6 +351,9 @@
             //线上支付
             PD_BillDetailOnLineView *onLineView = [[PD_BillDetailOnLineView alloc]init];
             [footerView addSubview:onLineView];
+            onLineView.payHandler = ^(NSUInteger payType) {
+                [weakSelf payRequest:payType];
+            };
             onLineView.heJiMoneyStr = self.billListM.orderPrice;
             [onLineView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(otherInfoView.mas_bottom).offset(AD_HEIGHT(2));
@@ -616,6 +619,44 @@
     //获取产品数据源
     [self getProductDataArr];
     [self.orderDetailTable reloadData];
+}
+
+
+#pragma mark ---- 支付相关 ----
+- (void)payRequest:(NSUInteger)payType
+{
+    NSDictionary *bodyDic = @{@"payType":s_Integer(payType),
+                              @"tbOrderId":IF_NULL_TO_STRING(self.myID)
+                              };
+    if (payType == 0) {
+        //微信
+        HUD_NOBGSHOW;
+        [[HPDConnect connect] PostNetRequestMethod:@"api/trans/orderPay/getPayUuid" params:bodyDic cookie:nil result:^(bool success, id result) {
+            if (success) {
+                NSDictionary *wxPayDict = @{
+                                            @"isAppMode":@1,
+                                            @"orderPayId":IF_NULL_TO_STRING(result[@"data"])
+                                            };
+                [self creatWxPay:wxPayDict];
+               
+            }
+            NSLog(@"result ------- %@", result);
+        }];
+    }else if (payType == 1) {
+        //支付宝
+    }
+}
+
+
+#pragma mark ---- 微信pay ----
+- (void)creatWxPay:(NSDictionary *)param
+{
+    [[HPDConnect connect]GetNetRequestMethod:@"/payment/weixi/pay" params:param cookie:nil result:^(bool success, id result) {
+        HUD_HIDE;
+        if (success) {
+            
+        }
+    }];
 }
 @end
 

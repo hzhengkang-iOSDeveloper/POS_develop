@@ -174,7 +174,25 @@
 #pragma mark ---- 确认支付 ----
 - (void)comfirPay
 {
-    
+    if (_aliSelectStatus) {
+        //支付宝
+        if (![OpenShare canOpen:@"alipay://"]) {
+            HUD_ERROR(@"请安装支付宝客户端");
+            return;
+        }
+        if (self.payHandler) {
+            self.payHandler(1);
+        }
+    } else {
+        //微信
+        if (![OpenShare canOpen:@"weixin://"]) {
+            HUD_ERROR(@"请安装微信客户端");
+            return;
+        }
+        if (self.payHandler) {
+            self.payHandler(0);
+        }
+    }
 }
 
 

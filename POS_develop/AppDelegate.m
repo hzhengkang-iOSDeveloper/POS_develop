@@ -116,7 +116,9 @@
 //    [WXApi registerApp:WXAppID withDescription:@"测试"];
     [WXApi registerApp:WXAppID];
     
- 
+    [OpenShare connectWeixinWithAppId:WXAppID];
+    [OpenShare connectAlipay];
+
     return YES;
 }
 
@@ -132,8 +134,11 @@
 //和QQ,新浪并列回调句柄
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-
-        return [WXApi handleOpenURL:url delegate:self];
+    //添加回调
+    if ([OpenShare handleOpenURL:url]) {
+        return YES;
+    }
+    return [WXApi handleOpenURL:url delegate:self];
    
     
 }
@@ -143,6 +148,7 @@
     
     
 }
+
 ///从微信端打开第三方APP会调用此方法,此方法再调用代理的onResp方法
 -(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options{
     return [WXApi handleOpenURL:url delegate:self];

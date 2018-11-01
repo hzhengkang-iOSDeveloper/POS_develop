@@ -183,13 +183,11 @@
 //            if ([result[@"code"]integerValue] == 0) {
 //                <#statements#>
 //            }
-            if ([result[@"msg"] isEqualToString:@"操作成功"]) {
-                HUD_SUCCESS(@"登录成功");
-                [self performSelector:@selector(changeRoot) withObject:nil afterDelay:1];
-            }else {
-                HUD_TIP(result[@"msg"]);
-            }
+            HUD_SUCCESS(@"登录成功");
+            [self performSelector:@selector(changeRoot) withObject:nil afterDelay:1];
             
+        } else {
+            HUD_ERROR(@"操作异常请稍后重试！");
         }
     }];
    

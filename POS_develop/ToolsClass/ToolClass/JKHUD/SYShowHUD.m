@@ -79,6 +79,7 @@ static SYShowHUD *_showHUD;
 + (void)showSuccess:(NSString *)success
 {
     [SVProgressHUD showSuccessWithStatus:success];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeCustom]; //设置HUD背景图层的样式
     [SVProgressHUD dismissWithDelay:1.8];
     
 }
@@ -93,6 +94,7 @@ static SYShowHUD *_showHUD;
 {
     
     [SVProgressHUD showErrorWithStatus:error];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeCustom]; //设置HUD背景图层的样式
     [SVProgressHUD dismissWithDelay:1.8];
 }
 

@@ -137,7 +137,7 @@
             [self performSelector:@selector(changeRoot) withObject:nil afterDelay:1];
             
         }else {
-            HUD_TIP(result[@"msg"]);
+            HUD_ERROR(@"操作异常请稍后重试！");
         }
     }
 }
