@@ -392,14 +392,23 @@
     [[HPDConnect connect] PostNetRequestMethod:[NSString stringWithFormat:@"%@%@",@"api/trans/order/get/",self.orderId] params:nil cookie:nil result:^(bool success, id result) {
         HUD_HIDE;
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                
-                self.billListM = [BillListModel mj_objectWithKeyValues:result[@"data"]];
-                AddressDOModel *addressM = [AddressDOModel mj_objectWithKeyValues:self.billListM.addressDO];
-                self.orderDetailTable.tableHeaderView = [self creatTableHeaderViewWith:addressM];
-                self.orderDetailTable.tableFooterView = [self creatTableFooterView];
-                [self creatCellNewArr];
+            
+            if ([result[@"code"]integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    
+                    self.billListM = [BillListModel mj_objectWithKeyValues:result[@"data"]];
+                    AddressDOModel *addressM = [AddressDOModel mj_objectWithKeyValues:self.billListM.addressDO];
+                    self.orderDetailTable.tableHeaderView = [self creatTableHeaderViewWith:addressM];
+                    self.orderDetailTable.tableFooterView = [self creatTableFooterView];
+                    [self creatCellNewArr];
+                }
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
+            
+            
         }
         NSLog(@"result ------- %@", result);
     }];

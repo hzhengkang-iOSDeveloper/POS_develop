@@ -243,7 +243,7 @@
     }
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/address/update" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]), @"defaultFlag":self.defaultAddressBtn.selected?@0:@1, @"receiverName":IF_NULL_TO_STRING(self.nameTF.text), @"receiverMp":IF_NULL_TO_STRING(self.telephoneTF.text), @"province" : province, @"city" : city, @"county": county, @"receiverAddr":self.detailAddress.text, @"id":self.addressM.ID} cookie:nil result:^(bool success, id result) {
         if (success) {
-            if ([result[@"msg"] isEqualToString:@"success"]) {
+            if ([result[@"code"]integerValue] == 0) {
                 self.addressM.defaultFlag = self.defaultAddressBtn.selected?@"0":@"1";
                 self.addressM.receiverName = self.nameTF.text;
                 self.addressM.receiverMp = self.telephoneTF.text;
@@ -253,7 +253,12 @@
                 if (self.updateAddressList) {
                     self.updateAddressList(self.addressM);
                 }
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
+            
             
         }
         

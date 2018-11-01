@@ -63,13 +63,13 @@
     
     //右边按钮
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightBtn setTitle:@"确认收货" forState:normal];
+//    [rightBtn setTitle:@"确认收货" forState:normal];
     rightBtn.layer.masksToBounds = YES;
     rightBtn.layer.cornerRadius = AD_HEIGHT(11);
     [rightBtn setTitleColor:WhiteColor forState:normal];
     [rightBtn setBackgroundColor:CFF0000];
     rightBtn.titleLabel.font = F13;
-    [rightBtn addTarget:self action:@selector(rightBtn) forControlEvents:UIControlEventTouchUpInside];
+    [rightBtn addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:rightBtn];
     self.rightBtn = rightBtn;
     [_rightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -80,7 +80,7 @@
     
     //左侧按钮
     UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [leftBtn setTitle:@"查看物流" forState:normal];
+//    [leftBtn setTitle:@"查看物流" forState:normal];
     leftBtn.layer.masksToBounds = YES;
     leftBtn.layer.cornerRadius = AD_HEIGHT(11);
     leftBtn.layer.borderColor = C989898.CGColor;
@@ -88,7 +88,7 @@
     [leftBtn setTitleColor:C000000 forState:normal];
     [leftBtn setBackgroundColor:WhiteColor];
     leftBtn.titleLabel.font = F13;
-    [leftBtn addTarget:self action:@selector(leftBtn) forControlEvents:UIControlEventTouchUpInside];
+    [leftBtn addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:leftBtn];
     self.leftBtn = leftBtn;
     [_leftBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -100,12 +100,25 @@
 #pragma mark ---- 按钮点击 ----
 - (void)rightBtnClick
 {
-    
+    if ([self.model.orderStatus isEqualToString:@"10"]) {
+        if (self.rightHandler) {
+            self.rightHandler(self.model.orderStatus);
+        }
+    }else if ([self.model.orderStatus isEqualToString:@"20"] || [self.model.orderStatus isEqualToString:@"30"]) {
+        [SLPopupShowView createPopupShowViewWithContentText:@"是否确认收货" buttons:@[@"确定收货",@"取消"] buttonClick:^(int index) {
+            if (index == 0) {
+                if (self.rightHandler) {
+                    self.rightHandler(self.model.orderStatus);
+                }
+            }
+        }];
+        
+    }
 }
 
 - (void)leftBtnClick
 {
-    
+  
 }
 
 - (void)setModel:(BillListModel *)model {
@@ -117,10 +130,34 @@
             self.isFreeLabel.text = @"";
         }
         
+        if ([model.orderStatus isEqualToString:@"10"]) {
+            [self changeBtnLeftStr:@"" withRight:@"立即付款"];
+        }else if ([model.orderStatus isEqualToString:@"20"] || [model.orderStatus isEqualToString:@"30"]) {
+            [self changeBtnLeftStr:@"" withRight:@"确认收货"];
+        }else if ([model.orderStatus isEqualToString:@"40"]) {
+            [self changeBtnLeftStr:@"" withRight:@""];
+        }
         
 
         
     }
+}
+
+- (void)changeBtnLeftStr:(NSString*)leftStr withRight:(NSString *)rightStr
+{
+    if ([leftStr isEqualToString:@""]) {
+        self.leftBtn.hidden = YES;
+    } else {
+        [self.leftBtn setTitle:leftStr forState:normal];
+        self.leftBtn.hidden = NO;
+    }
+    if ([rightStr isEqualToString:@""]) {
+        self.rightBtn.hidden = YES;
+    } else {
+        [self.rightBtn setTitle:rightStr forState:normal];
+        self.rightBtn.hidden = NO;
+    }
+    
 }
 
 

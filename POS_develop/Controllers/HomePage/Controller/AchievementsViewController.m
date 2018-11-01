@@ -215,16 +215,24 @@
     NSDate *date = [NSDate date];//当前时间
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]), @"startTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"endTime":[[NSString stringWithFormat:@"%@", date] substringToIndex:10], @"dateType":@"0", @"statType":@"0"} cookie:nil result:^(bool success, id result) {
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSArray class]]) {
-                NSArray *array = result[@"data"];
-                if ([[array firstObject] objectForKey:@"value"] == nil || [[[array firstObject] objectForKey:@"value"] isEqualToString:@""]) {
-                    self.top1Str = @"0.00";
-                }else {
-                    self.top1Str = [[array firstObject] objectForKey:@"value"];
+            if ([result[@"code"]integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSArray class]]) {
+                    NSArray *array = result[@"data"];
+                    if ([[array firstObject] objectForKey:@"value"] == nil || [[[array firstObject] objectForKey:@"value"] isEqualToString:@""]) {
+                        self.top1Str = @"0.00";
+                    }else {
+                        self.top1Str = [[array firstObject] objectForKey:@"value"];
+                    }
+                    
+                    [self.myTopCollection reloadData];
                 }
-                
-                [self.myTopCollection reloadData];
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
+            
+           
         }
         NSLog(@"result ------- %@", result);
     }];

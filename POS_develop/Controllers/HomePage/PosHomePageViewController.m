@@ -178,18 +178,26 @@
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/indexBanner/list" params:nil cookie:nil result:^(bool success, id result) {
         [self.homeTableView.mj_header endRefreshing];
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
-                    NSArray *array =result[@"data"][@"rows"];
-                    NSMutableArray *dataArr = [NSMutableArray arrayWithArray:[IndexBannerListModel mj_objectArrayWithKeyValuesArray:array]];
-                    [dataArr enumerateObjectsUsingBlock:^(IndexBannerListModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
-                        [self.adArray addObject:model.bannerPic];
-                    }];
-                    
-                    self.headerView.adArray = [NSArray arrayWithArray:self.adArray];
-                    
+            if ([result[@"code"]integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                        NSArray *array =result[@"data"][@"rows"];
+                        NSMutableArray *dataArr = [NSMutableArray arrayWithArray:[IndexBannerListModel mj_objectArrayWithKeyValuesArray:array]];
+                        [dataArr enumerateObjectsUsingBlock:^(IndexBannerListModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
+                            [self.adArray addObject:model.bannerPic];
+                        }];
+                        
+                        self.headerView.adArray = [NSArray arrayWithArray:self.adArray];
+                        
+                    }
                 }
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
+            
+            
             
             
         }

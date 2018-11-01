@@ -104,12 +104,15 @@
 {
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(76))];
     headerView.backgroundColor = WhiteColor;
-    
+    PayDOModel *payDoModel = [PayDOModel mj_objectWithKeyValues:self.billListM.payDO];
+
     if ([self.billListM.orderStatus isEqualToString:@"10"]) {
-        headerView.userInteractionEnabled = YES;
+        if (![payDoModel.payType isEqualToString:@"2"]) {
+            headerView.userInteractionEnabled = YES;
+            UITapGestureRecognizer *headerGest = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickAddressBtn)];
+            [headerView addGestureRecognizer:headerGest];
+        }
         
-        UITapGestureRecognizer *headerGest = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickAddressBtn)];
-        [headerView addGestureRecognizer:headerGest];
     }
     
     
@@ -159,9 +162,13 @@
         make.top.offset(AD_HEIGHT(21));
         make.size.mas_offset(CGSizeMake(AD_HEIGHT(8), AD_HEIGHT(16)));
     }];
-    
+        //支付方式，0:微信，1:支付宝，2:线下转账
     if ([self.billListM.orderStatus isEqualToString:@"10"]) {
-        rightImageV.hidden = NO;
+        if ([payDoModel.payType isEqualToString:@"2"]) {
+            rightImageV.hidden = YES;
+        } else {
+            rightImageV.hidden = NO;
+        }
     } else {
         rightImageV.hidden = YES;
     }
@@ -332,6 +339,8 @@
     }];
     self.sendTimeLabel = sendTimeLabel;
     
+    self.billListM.orderStatus = @"10";
+    payDoModel.payType = @"2";
     //10:待付款，20:待发货，30:待确认，40：已完成
     if ([self.billListM.orderStatus isEqualToString:@"10"]) {
         //支付方式，0:微信，1:支付宝，2:线下转账
@@ -339,6 +348,9 @@
             footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(306)+AD_HEIGHT(282)+AD_HEIGHT(2));
             //线下转账
             PD_BillDetailOutLineInfoView *outLineInfoView = [[PD_BillDetailOutLineInfoView alloc]init];
+            outLineInfoView.outLinePayHandler = ^(NSDictionary * _Nonnull dict) {
+                [self outLinePayRequestWith:dict];//线下支付
+            };
             outLineInfoView.heJiMoneyStr = self.billListM.orderPrice;
             [footerView addSubview:outLineInfoView];
             [outLineInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -366,6 +378,9 @@
         //确认收货
         footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(306)+AD_HEIGHT(53)+AD_HEIGHT(5));
         PD_BillDetailComfirInfoView *comfirInfoView = [[PD_BillDetailComfirInfoView alloc]init];
+        comfirInfoView.comfirHandler = ^{
+            [self comfirAddressWith:self.billListM];
+        };
         [footerView addSubview:comfirInfoView];
         [comfirInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(otherInfoView.mas_bottom).offset(AD_HEIGHT(5));
@@ -539,26 +554,33 @@
     [[HPDConnect connect] PostNetRequestMethod:[NSString stringWithFormat:@"%@%@",@"api/trans/order/get/",self.myID] params:nil cookie:nil result:^(bool success, id result) {
         HUD_HIDE;
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-
-                self.billListM = [BillListModel mj_objectWithKeyValues:result[@"data"]];
-                AddressDOModel *addressM = [AddressDOModel mj_objectWithKeyValues:self.billListM.addressDO];
-                self.orderDetailTable.tableHeaderView = [self creatTableHeaderViewWith:addressM];
-                self.orderDetailTable.tableFooterView = [self creatTableFooterView];
-                if ([self.billListM.orderStatus isEqualToString:@"10"]) {
-                    self.navigationItemTitle = @"待付款";
+            if ([result[@"code"]integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                     
-                } else if ([self.billListM.orderStatus isEqualToString:@"20"] ) {
-                    //确认收货
-                    self.navigationItemTitle = @"待收货";
-                } else if ([self.billListM.orderStatus isEqualToString:@"30"] ) {
-                    //待确认
-                    self.navigationItemTitle = @"待确认";
-                }  else if ([self.billListM.orderStatus isEqualToString:@"40"]) {
-                    self.navigationItemTitle = @"订单完成";
+                    self.billListM = [BillListModel mj_objectWithKeyValues:result[@"data"]];
+                    AddressDOModel *addressM = [AddressDOModel mj_objectWithKeyValues:self.billListM.addressDO];
+                    self.orderDetailTable.tableHeaderView = [self creatTableHeaderViewWith:addressM];
+                    self.orderDetailTable.tableFooterView = [self creatTableFooterView];
+                    if ([self.billListM.orderStatus isEqualToString:@"10"]) {
+                        self.navigationItemTitle = @"待付款";
+                        
+                    } else if ([self.billListM.orderStatus isEqualToString:@"20"] ) {
+                        //确认收货
+                        self.navigationItemTitle = @"待收货";
+                    } else if ([self.billListM.orderStatus isEqualToString:@"30"] ) {
+                        //待确认
+                        self.navigationItemTitle = @"待确认";
+                    }  else if ([self.billListM.orderStatus isEqualToString:@"40"]) {
+                        self.navigationItemTitle = @"订单完成";
+                    }
+                    [self creatCellNewArr];
                 }
-                [self creatCellNewArr];
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
+            
         }
         NSLog(@"result ------- %@", result);
     }];
@@ -622,7 +644,7 @@
 }
 
 
-#pragma mark ---- 支付相关 ----
+#pragma mark ---- 线上支付相关 ----
 - (void)payRequest:(NSUInteger)payType
 {
     NSDictionary *bodyDic = @{@"payType":s_Integer(payType),
@@ -635,7 +657,7 @@
             if (success) {
                 NSDictionary *wxPayDict = @{
                                             @"isAppMode":@1,
-                                            @"orderPayId":IF_NULL_TO_STRING(result[@"data"])
+                                            @"orderPayId":@10
                                             };
                 [self creatWxPay:wxPayDict];
                
@@ -644,6 +666,18 @@
         }];
     }else if (payType == 1) {
         //支付宝
+        HUD_NOBGSHOW;
+        [[HPDConnect connect] PostNetRequestMethod:@"api/trans/orderPay/getPayUuid" params:bodyDic cookie:nil result:^(bool success, id result) {
+            if (success) {
+                NSDictionary *wxPayDict = @{
+                                            @"isAppMode":@1,
+                                            @"orderPayId":@10
+                                            };
+                [self creatAliPay:wxPayDict];
+                
+            }
+            NSLog(@"result ------- %@", result);
+        }];
     }
 }
 
@@ -651,11 +685,105 @@
 #pragma mark ---- 微信pay ----
 - (void)creatWxPay:(NSDictionary *)param
 {
-    [[HPDConnect connect]GetNetRequestMethod:@"/payment/weixi/pay" params:param cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect]KKGetNetRequestMethod:@"payment/weixi/pay" params:param cookie:nil result:^(bool success, id result) {
         HUD_HIDE;
         if (success) {
-            
+            if ([result[@"code"]integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    NSDictionary *payResult = [NSDictionary dictionaryWithDictionary:result[@"data"]];
+                    NSString *link = [NSString stringWithFormat:@"weixin://app/%@/pay/?nonceStr=%@&package=Sign%%3DWXPay&partnerId=%@&prepayId=%@&timeStamp=%@&sign=%@&signType=SHA1",@"wx91ebdef19b6d7011",@"oVN1stWkAyO0RaBD",@"1516976871",@"wx0117161904630795cbd92afd0580063320",@"1541063779",@"9064F14C05A2FE8163C0E7C47BEE2D81"];
+//                    NSString *link = [NSString stringWithFormat:@"weixin://app/%@/pay/?nonceStr=%@&package=Sign%%3DWXPay&partnerId=%@&prepayId=%@&timeStamp=%@&sign=%@&signType=SHA1",payResult[@"appid"],payResult[@"nonce_str"],payResult[@"partnerid"],payResult[@"prepay_id"],payResult[@"timestamp"],payResult[@"sign"]];
+                    [OpenShare WeixinPay:link Success:^(NSDictionary *message) {
+                        //支付成功界面
+//                        weakSelf.isAwardSuccess = YES;
+//                        [weakSelf turnDiscussVcWithDiscussModel:discussM withGiftModel:model];
+                    } Fail:^(NSDictionary *message, NSError *error) {
+//                        SLLog(@"%@ --- %@",message,error);
+                        HUD_ERROR(@"支付失败,请重新支付");
+//                        weakSelf.awardOrderID = STRING(orderId);
+//                        weakSelf.isAwardSuccess = NO;
+                    }];
+                }
+               
+            }
         }
+    }];
+}
+
+#pragma mark ---- ali支付 ----
+- (void)creatAliPay:(NSDictionary *)param
+{
+//
+    [[HPDConnect connect]KKGetNetRequestMethod:@"payment/alipay/pay" params:param cookie:nil result:^(bool success, id result) {
+        HUD_HIDE;
+        if (success) {
+            if ([result[@"code"]integerValue] == 0) {
+                    NSDictionary *linkDict = @{@"requestType":@"SafePay",@"fromAppUrlScheme":@"backApp",@"dataString":[NSString stringWithFormat:@"%@",result[@"data"]]};
+                    NSData  *jsonData = [NSJSONSerialization dataWithJSONObject:linkDict options:NSJSONWritingPrettyPrinted error:nil];
+                    NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+
+                    CF_EXPORT
+                    CFStringRef CFURLCreateStringByAddingPercentEscapes(CFAllocatorRef allocator, CFStringRef originalString, CFStringRef charactersToLeaveUnescaped, CFStringRef legalURLCharactersToBeEscaped, CFStringEncoding encoding);
+                    NSString *linkURL = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(nil,
+                                                                                                              (CFStringRef)jsonStr, nil,(CFStringRef)@"!*'();:@&=+$,/ %#[]", kCFStringEncodingUTF8));
+                    NSString *LINK = [NSString stringWithFormat:@"alipay://alipayclient/?%@",linkURL];
+                    
+                    [OpenShare AliPay:LINK Success:^(NSDictionary *message) {
+                        //支付成功页面
+//                        weakSelf.isAwardSuccess = YES;
+//                        [weakSelf turnDiscussVcWithDiscussModel:discussM withGiftModel:model];
+                    } Fail:^(NSDictionary *message, NSError *error) {
+//                        SLLog(@"%@ --- %@",message,error);
+//                        SHOW(@"支付失败,请重新支付")
+//                        //支付失败页面
+//                        weakSelf.awardOrderID = STRING(orderId);
+//                        weakSelf.isAwardSuccess = NO;
+                    }];
+                }
+                
+        }
+    }];
+}
+
+
+#pragma mark ---- 线下支付相关 ----
+- (void)outLinePayRequestWith:(NSDictionary *)dict
+{
+    NSDictionary *bodyDic = @{@"payBankUser":@"2",
+                              @"payUuid":IF_NULL_TO_STRING(self.myID),
+                              @"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]),
+                              @"tbOrderId":IF_NULL_TO_STRING(self.myID)
+                              };
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/order/list" params:bodyDic cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"code"]integerValue] == 0) {
+                if (self.updateDataHandler) {
+                    self.updateDataHandler();
+                }
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
+#pragma mark ---- 确认收货 ----
+- (void)comfirAddressWith:(BillListModel *)billModel
+{
+    HUD_SHOW;
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/order/update" params:@{@"id":billModel.ID,@"orderStatus":@"40"} cookie:nil result:^(bool success, id result) {
+        HUD_HIDE;
+        if (success) {
+            if ([result[@"code"]integerValue] == 0) {
+                HUD_SUCCESS(@"操作成功！");
+                if (self.updateDataHandler) {
+                    self.updateDataHandler();
+                }
+                [self.navigationController popViewControllerAnimated:YES];
+            }else{
+                HUD_ERROR(@"操作失败，请稍后重试！");
+            }
+        }
+        NSLog(@"result ------- %@", result);
     }];
 }
 @end

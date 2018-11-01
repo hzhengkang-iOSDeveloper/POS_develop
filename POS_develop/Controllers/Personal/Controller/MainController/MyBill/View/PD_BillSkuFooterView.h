@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) BillListModel *model;
 //数量 价格描述
 @property (nonatomic, weak) UILabel *countAndPriceLabel;
+
+@property (nonatomic, copy) void (^rightHandler)(NSString *orderStatus);
 @end
 
 NS_ASSUME_NONNULL_END

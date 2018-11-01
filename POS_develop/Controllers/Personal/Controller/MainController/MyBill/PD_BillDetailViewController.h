@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PD_BillDetailViewController : BaseSonViewController
+@property (nonatomic, copy) void (^updateDataHandler)(void);
 @property (nonatomic, copy) NSString *myID;
 @property (nonatomic, copy) NSString *orderStatu;
 @end

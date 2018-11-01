@@ -7,6 +7,7 @@
 //
 
 #import "PD_BillDetailOutLineInfoView.h"
+#import "PD_BillZhuangZhangViewController.h"
 @interface PD_BillDetailOutLineInfoView ()
 //姓名
 @property (nonatomic, weak) UILabel *nameLabel;
@@ -176,13 +177,29 @@
 #pragma mark ---- 转账说明 ----
 - (void)transferAccountBtn
 {
-    
+    PD_BillZhuangZhangViewController *vc = [[PD_BillZhuangZhangViewController alloc]init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.viewController.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark ---- 确认支付 ----
 - (void)comfirPay
 {
-    
+    if ([self.nameTF.text isEqualToString:@""]) {
+        HUD_ERROR(@"请填写转账姓名！");
+        return;
+    }
+    if ([self.orderNoTF.text isEqualToString:@""]) {
+        HUD_ERROR(@"请填写单号！");
+        return;
+    }
+    NSDictionary *dict = @{
+                           @"name":self.nameTF.text,
+                           @"orderNo":self.orderNoTF.text
+                           };
+    if (self.outLinePayHandler) {
+        self.outLinePayHandler(dict);
+    }
 }
 
 - (void)setHeJiMoneyStr:(NSString *)heJiMoneyStr

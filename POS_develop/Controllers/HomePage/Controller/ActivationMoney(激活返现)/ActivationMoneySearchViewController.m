@@ -144,17 +144,24 @@
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/activationRebate/list" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]),@"startTime":defaultObject(self.startTime, @""), @"endTime":defaultObject(self.endTime, @""),@"agentName":defaultObject(searchTF.text, @""), @"agentType":self.agentType, @"orderBy":@""} cookie:nil result:^(bool success, id result) {
         [self.searchTableView.mj_header endRefreshing];
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                if ([result[@"data"][@"objectList"] isKindOfClass:[NSArray class]]) {
-                    NSArray *array = result[@"data"][@"objectList"];
-                    if (self.dataArray.count >0) {
-                        [self.dataArray removeAllObjects];
+            if ([result[@"code"]integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    if ([result[@"data"][@"objectList"] isKindOfClass:[NSArray class]]) {
+                        NSArray *array = result[@"data"][@"objectList"];
+                        if (self.dataArray.count >0) {
+                            [self.dataArray removeAllObjects];
+                        }
+                        [self.dataArray addObjectsFromArray:[ActivationRebateListModel mj_objectArrayWithKeyValuesArray:array]];
+                        
+                        [self.searchTableView reloadData];
                     }
-                    [self.dataArray addObjectsFromArray:[ActivationRebateListModel mj_objectArrayWithKeyValuesArray:array]];
-                    
-                    [self.searchTableView reloadData];
                 }
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
+            
             
         }
         NSLog(@"result ------- %@", result);

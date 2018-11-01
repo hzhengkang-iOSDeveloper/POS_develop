@@ -220,7 +220,7 @@ NSString *const kShouldShowLoginViewControllerLogout = @"kShouldShowLoginViewCon
 {
     [[HPDConnect connect] GetNetRequestMethod:@"logout" params:nil cookie:nil result:^(bool success, id result) {
         if (success) {
-            if ([result[@"msg"] isEqualToString:@"操作成功"]) {
+            if ([result[@"code"]integerValue] == 0) {
                 [self cleanUserInfo];
                 NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
                 NSArray *_tmpArray = [NSArray arrayWithArray:[cookieJar cookies]];

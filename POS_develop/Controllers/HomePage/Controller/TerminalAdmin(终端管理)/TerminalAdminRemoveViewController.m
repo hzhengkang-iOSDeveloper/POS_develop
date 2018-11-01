@@ -400,21 +400,28 @@
 - (void)loadPosBrandRequest {
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/posBrand/list" params:nil cookie:nil result:^(bool success, id result) {
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
-                    NSArray *array = result[@"data"][@"rows"];
-                    if (array.count > 0) {
-                        [self.brandDataArray addObjectsFromArray:[PosBrandModel mj_objectArrayWithKeyValuesArray:array]];
-                        [self.brandTableView mas_updateConstraints:^(MASConstraintMaker *make) {
-                            make.height.mas_offset(self.brandDataArray.count * FITiPhone6(40));
-                        }];
-                        
-                        [self.brandTableView reloadData];
-                        
+            if ([result[@"code"]integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                        NSArray *array = result[@"data"][@"rows"];
+                        if (array.count > 0) {
+                            [self.brandDataArray addObjectsFromArray:[PosBrandModel mj_objectArrayWithKeyValuesArray:array]];
+                            [self.brandTableView mas_updateConstraints:^(MASConstraintMaker *make) {
+                                make.height.mas_offset(self.brandDataArray.count * FITiPhone6(40));
+                            }];
+                            
+                            [self.brandTableView reloadData];
+                            
+                        }
                     }
+                    
                 }
-                
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
+            
             
             
         }

@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PD_BillDetailComfirInfoView : UIView
+@property (nonatomic, copy) void (^comfirHandler)(void);
 
 @end
 

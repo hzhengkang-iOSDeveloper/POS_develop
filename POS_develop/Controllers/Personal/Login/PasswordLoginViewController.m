@@ -132,13 +132,10 @@
     [_aview stopAnimating];
     [self.loginBtn setTitle:@"登录" forState:UIControlStateNormal];
     if (success) {
-        if ([result[@"msg"] isEqualToString:@"操作成功"]) {
-            HUD_SUCCESS(@"登录成功");
-            [self performSelector:@selector(changeRoot) withObject:nil afterDelay:1];
-            
-        }else {
-            HUD_ERROR(@"操作异常请稍后重试！");
-        }
+        HUD_SUCCESS(@"登录成功");
+        [self performSelector:@selector(changeRoot) withObject:nil afterDelay:1];
+    } else {
+        HUD_ERROR(@"操作异常请稍后重试！");
     }
 }
 

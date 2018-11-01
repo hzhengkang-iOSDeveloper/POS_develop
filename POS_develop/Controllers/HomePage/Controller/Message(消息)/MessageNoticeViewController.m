@@ -86,18 +86,25 @@
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/messageCategory/list" params:nil cookie:nil result:^(bool success, id result) {
         [self.myTableView.mj_header endRefreshing];
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
-                    NSArray *array = result[@"data"][@"rows"];
-                    if (self.dataArray.count > 0) {
-                        [self.dataArray removeAllObjects];
+            if ([result[@"code"]integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                        NSArray *array = result[@"data"][@"rows"];
+                        if (self.dataArray.count > 0) {
+                            [self.dataArray removeAllObjects];
+                        }
+                        [self.dataArray addObjectsFromArray:[MessageCategoryListModel mj_objectArrayWithKeyValuesArray:array]];
+                        
+                        [self.myTableView reloadData];
                     }
-                    [self.dataArray addObjectsFromArray:[MessageCategoryListModel mj_objectArrayWithKeyValuesArray:array]];
                     
-                    [self.myTableView reloadData];
                 }
-                
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
+            
            
         }
         NSLog(@"result ------- %@", result);

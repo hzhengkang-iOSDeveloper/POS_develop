@@ -174,17 +174,24 @@
 {
     [[HPDConnect connect] PostNetRequestMethod:[NSString stringWithFormat:@"api/trans/product/list?chargeType=%@",@"1"] params:nil cookie:nil result:^(bool success, id result) {
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
-                    NSArray *arr = result[@"data"][@"rows"];
-                    if (arr.count > 0) {
-                        NSDictionary *posDic = arr.firstObject;
-                        self.podId = [posDic objectForKey:@"id"];
-                        
-                        [self.pageController reloadData];
+            if ([result[@"code"]integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                        NSArray *arr = result[@"data"][@"rows"];
+                        if (arr.count > 0) {
+                            NSDictionary *posDic = arr.firstObject;
+                            self.podId = [posDic objectForKey:@"id"];
+                            
+                            [self.pageController reloadData];
+                        }
                     }
                 }
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
+            
             
         }
         NSLog(@"result ------- %@", result);

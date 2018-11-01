@@ -236,7 +236,6 @@
 
 #pragma mark ---- 个人余额 ----
 - (void)loadBagListRequest {
-    LoginManager *manager = [LoginManager getInstance];
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/bag/list" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]) }cookie:nil result:^(bool success, id result) {
         [self.personalTableView.mj_header endRefreshing];
         if (success) {
@@ -268,15 +267,22 @@
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]), @"startTime":[[NSString stringWithFormat:@"%@", lastDay] substringToIndex:10], @"endTime":[[NSString stringWithFormat:@"%@", lastDay] substringToIndex:10], @"dateType":@"0", @"statType":@"1"} cookie:nil result:^(bool success, id result) {
         [self.personalTableView.mj_header endRefreshing];
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSArray class]]) {
-            
-                NSArray *array = [NSArray arrayWithArray:result[@"data"]];
-                if ([[array firstObject] valueForKey:@"value"]) {
-                    self.headerView.yesterdayEarningsMoney.text = [[array firstObject] valueForKey:@"value"];
-                }else {
-                    self.headerView.yesterdayEarningsMoney.text = @"0.00";
+            if ([result[@"code"]integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSArray class]]) {
+                    
+                    NSArray *array = [NSArray arrayWithArray:result[@"data"]];
+                    if ([[array firstObject] valueForKey:@"value"]) {
+                        self.headerView.yesterdayEarningsMoney.text = [[array firstObject] valueForKey:@"value"];
+                    }else {
+                        self.headerView.yesterdayEarningsMoney.text = @"0.00";
+                    }
                 }
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
+            
             
         }
         NSLog(@"result ------- %@", result);
@@ -290,6 +296,7 @@
     [[HPDConnect connect] GetNetRequestMethod:[NSString stringWithFormat:@"sys/user/userinfo%@",urlStr] params:nil cookie:nil result:^(bool success, id result) {
         [self.personalTableView.mj_header endRefreshing];
         if (success) {
+            
             self.headerView.userNameLabel.text = IF_NULL_TO_STRING([result[@"data"] valueForKey:@"nickname"]);
             self.headerView.invitedCodeLabel.text = [NSString stringWithFormat:@"推荐码：%@", IF_NULL_TO_STRING([result[@"data"] valueForKey:@"invitedCode"])];
             

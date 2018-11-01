@@ -77,11 +77,13 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     BillListModel *model = self.orderArray[indexPath.section];
-    DetailDOModel *detailModel = model.detailDOList[indexPath.row];
     
     PD_BillDetailViewController *detailVc = [[PD_BillDetailViewController alloc]init];
-    detailVc.myID = detailModel.ID;
+    detailVc.myID = model.ID;
     detailVc.orderStatu = model.orderStatus;
+    detailVc.updateDataHandler = ^{
+        [self loadOrderListRequestWithIndex:self.index];
+    };
     detailVc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detailVc animated:YES];
     
@@ -105,6 +107,17 @@
     PD_BillSkuFooterView *footerView = [[PD_BillSkuFooterView alloc] init];
     BillListModel *model = self.orderArray[section];
     footerView.model = model;
+    footerView.rightHandler = ^(NSString * _Nonnull orderStatus) {
+        if ([orderStatus isEqualToString:@"10"]) {
+            PD_BillDetailViewController *detailVc = [[PD_BillDetailViewController alloc]init];
+            detailVc.myID = model.ID;
+            detailVc.orderStatu = model.orderStatus;
+            detailVc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:detailVc animated:YES];
+        } else {
+            [self comfirAddressWith:model];
+        }
+    };
     NSString *priceStr = [NSString stringWithFormat:@"共%ld件 应付总额：￥%@", model.detailDOList.count, model.orderPrice];
     NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc]initWithString:priceStr];
     [attriStr addAttribute:NSForegroundColorAttributeName value:C000000 range:NSMakeRange(0, 9)];
@@ -122,16 +135,42 @@
         HUD_HIDE;
         [self.orderTableView.mj_header endRefreshing];
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
-                    NSArray *array = result[@"data"][@"rows"];
-                    self.orderArray = [NSMutableArray arrayWithArray:[BillListModel mj_objectArrayWithKeyValuesArray:array]];
-                    
-                    [self.orderTableView reloadData];
-                }
-                
-            }
+             if ([result[@"code"]integerValue] == 0) {
+                 if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                     if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                         NSArray *array = result[@"data"][@"rows"];
+                         self.orderArray = [NSMutableArray arrayWithArray:[BillListModel mj_objectArrayWithKeyValuesArray:array]];
+                         
+                         [self.orderTableView reloadData];
+                     }
+                     
+                 }
+             }else{
+                 [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                     
+                 }];
+             }
             
+            
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
+
+#pragma mark ---- 确认收货 ----
+- (void)comfirAddressWith:(BillListModel *)billModel
+{
+    HUD_SHOW;
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/order/update" params:@{@"id":billModel.ID,@"orderStatus":@"40"} cookie:nil result:^(bool success, id result) {
+        HUD_HIDE;
+        if (success) {
+            if ([result[@"code"]integerValue] == 0) {
+                HUD_SUCCESS(@"操作成功！");
+                [self loadOrderListRequestWithIndex:self.index];
+            }else{
+                HUD_ERROR(@"操作失败，请稍后重试！");
+            }
         }
         NSLog(@"result ------- %@", result);
     }];

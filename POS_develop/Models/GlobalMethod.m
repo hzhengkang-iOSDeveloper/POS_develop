@@ -10,6 +10,7 @@
 //#import "LoginViewController.h"
 #import "GTMNSString+HTML.h"
 #import <sys/utsname.h>
+#import "LoginTypeViewController.h"
 @implementation GlobalMethod
 
 #pragma mark 判断是否登录
@@ -297,45 +298,7 @@
 }
 // 统一接口返回数据处理
 + (void)FromUintAPIResult:(NSDictionary*)result withVC:(UIViewController*)UIVC errorBlcok:(void (^)(NSDictionary *dict))error{
-    if ([result[@"doStatu"] intValue] == 0) {
-        if(![result[@"doObject"] isKindOfClass:[NSNull class]] && result[@"doObject"]){
-            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:[result[@"doObject"] dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers  error:nil];
-            if(dict[@"Error_Type"]){
-                if ([dict[@"Error_Type"] intValue] == 1) {
-                    if (dict[@"Error_Btn_Two_Text"]) {
-                        [UIAlertView showAlertViewWithTitle:dict[@"Error_Title"] message:[dict[@"Error_Content"]gtm_stringByUnescapingFromHTML]cancelButtonTitle:nil otherButtonTitles:@[dict[@"Error_Btn_One_Text"],dict[@"Error_Btn_Two_Text"]] onDismiss:^(NSInteger buttonIndex) {
-//                            WebViewAction *AC = [WebViewAction getInstance];
-//                            if (-1 == buttonIndex) {
-//                                [AC respondVC:UIVC actionKey:dict[@"Error_Btn_One_Url"]];
-//                            }else if (0 == buttonIndex){
-//                                [AC respondVC:UIVC actionKey:dict[@"Error_Btn_Two_Url"]];
-//                            }
-                        } onCancel:^{
-
-                        }];
-                    }else{
-                        [UIAlertView showAlertViewWithTitle:dict[@"Error_Title"] message:[dict[@"Error_Content"]gtm_stringByUnescapingFromHTML]cancelButtonTitle:nil otherButtonTitles:@[dict[@"Error_Btn_One_Text"]] onDismiss:^(NSInteger buttonIndex) {
-//                            WebViewAction *AC = [WebViewAction getInstance];
-//                            [AC respondVC:UIVC actionKey:dict[@"Error_Btn_One_Url"]];
-                        } onCancel:^{
-
-                        }];
-                    }
-
-                }else if ([dict[@"Error_Type"] intValue] == 0){
-                    HUD_TIP([dict[@"Error_Content"] gtm_stringByUnescapingFromHTML]);
-                }
-
-            }else{
-                error(dict);
-            }
-        }else{
-            HUD_TIP([result[@"prompt"] gtm_stringByUnescapingFromHTML]);
-        }
-    }else if ([result[@"doStatu"] intValue] == 2){
-        if([result[@"errCode"] isEqualToString:@"9999"]){
-            HUD_ERROR(@"用户未登录");
-        }else if ([result[@"errCode"] isEqualToString:@"100001"]){
+    if ([result[@"code"]integerValue] == -1) {
             //登录超时
             [UIVC.view endEditing:YES];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -343,20 +306,15 @@
                    
                 });
                 
-                [NOTIFICATION_CENTER postNotificationName:UN_LoginOutTime object:nil];
-                //                    UIVC.tabBarController.selectedIndex = 0;
-                UIVC.tabBarController.tabBar.hidden = NO;
-                UIVC.hidesBottomBarWhenPushed = NO;
-                [UIVC.navigationController popToRootViewControllerAnimated:YES];
+                [USER_DEFAULT removeObjectForKey:UserDict];
+                LoginTypeViewController * baseVC = [[LoginTypeViewController alloc] init];
+                [UIApplication sharedApplication].keyWindow.rootViewController = baseVC;
             });
            
-        }else if ([result[@"errCode"] isEqualToString:@"99990004"]){
-            HUD_ERROR(@"接口异常");
+        }else{
+            HUD_TIP([result[@"msg"] gtm_stringByUnescapingFromHTML]);
         }
-        else{
-            HUD_TIP([result[@"prompt"] gtm_stringByUnescapingFromHTML]);
-        }
-    }
+    
 }
 
 #pragma mark 计算时间差

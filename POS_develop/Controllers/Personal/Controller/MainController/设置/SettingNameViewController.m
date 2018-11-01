@@ -55,11 +55,18 @@
 - (void)completeClick {
     [[HPDConnect connect] PostNetRequestMethod:@"sys/user/updateNickname" params:@{@"newName":self.nameTF.text} cookie:nil result:^(bool success, id result) {
         if (success) {
-            HUD_TIP(@"设置成功");
-            if (self.popBlock) {
-                self.popBlock();
+            if ([result[@"code"]integerValue] == 0) {
+                HUD_TIP(@"设置成功");
+                if (self.popBlock) {
+                    self.popBlock();
+                }
+                [self.navigationController popViewControllerAnimated:YES];
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
-            [self.navigationController popViewControllerAnimated:YES];
+           
             
         }
         NSLog(@"result ------- %@", result);

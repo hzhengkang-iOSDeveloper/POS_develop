@@ -95,17 +95,24 @@
         [self.myTable.mj_header endRefreshing];
         self.index = orderBy;
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                if ([result[@"data"][@"objectList"] isKindOfClass:[NSArray class]]) {
-                    NSArray *array = result[@"data"][@"objectList"];
-                    if (self.dataArray.count >0) {
-                        [self.dataArray removeAllObjects];
-                    }
-                    [self.dataArray addObjectsFromArray:[ShareBenefitListModel mj_objectArrayWithKeyValuesArray:array]];
-                    
-                    [self.myTable reloadData];
-                }
-            }
+             if ([result[@"code"]integerValue] == 0) {
+                 if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                     if ([result[@"data"][@"objectList"] isKindOfClass:[NSArray class]]) {
+                         NSArray *array = result[@"data"][@"objectList"];
+                         if (self.dataArray.count >0) {
+                             [self.dataArray removeAllObjects];
+                         }
+                         [self.dataArray addObjectsFromArray:[ShareBenefitListModel mj_objectArrayWithKeyValuesArray:array]];
+                         
+                         [self.myTable reloadData];
+                     }
+                 }
+             }else{
+                 [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                     
+                 }];
+             }
+            
             
         }
         NSLog(@"result ------- %@", result);

@@ -117,12 +117,16 @@
     DelegateManagerEditCell *cell = [self.myTableView cellForRowAtIndexPath:indexPath];
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agent/update" params:@{@"sbLevel":cell.contentTF.text, @"id":self.model.ID} cookie:nil result:^(bool success, id result) {
         if (success) {
-            if ([result[@"msg"] isEqualToString:@"success"]) {
+            if ([result[@"code"]integerValue] == 0) {
                 HUD_TIP(@"保存成功");
                 if (self.popBlock) {
                     self.popBlock();
                 }
                 [self.navigationController popViewControllerAnimated:YES];
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
             
             

@@ -80,24 +80,14 @@
 - (void)clickComfirBillBtn
 {
 
-    [SLPopupShowView createPopupShowViewWithContentText:@"是否确认收货" buttons:@[@"取消",@"确认"] buttonClick:^(int index) {
-        if (index == 1) {
-            [self loadOrderGetRequest];
+    [SLPopupShowView createPopupShowViewWithContentText:@"是否确认收货" buttons:@[@"确认收货",@"取消"] buttonClick:^(int index) {
+        if (index == 0) {
+            if (self.comfirHandler) {
+                self.comfirHandler();
+            }
         }
     }];
 }
 
-#pragma mark ---- 接口 ----
--(void)loadOrderGetRequest {
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/order/update" params:nil cookie:nil result:^(bool success, id result) {
-        if (success) {
-            if ([result[@"msg"] isEqualToString:@"success"]) {
-                [self.viewController.navigationController popViewControllerAnimated:YES];
-            } else {
-                HUD_ERROR(result[@"msg"]);
-            }
-        }
-        NSLog(@"result ------- %@", result);
-    }];
-}
+
 @end

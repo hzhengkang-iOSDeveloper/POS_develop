@@ -132,8 +132,10 @@
                     self.clickDefaultAddBlock();
                 }
 
-            } else {
-                HUD_ERROR(@"操作失败，请稍后重试！");
+            } else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
             
         }

@@ -543,4 +543,28 @@
     }];
     
 }
+
+- (void)KKGetNetRequestMethod:(NSString *)method params:(NSDictionary*)params cookie:(NSHTTPCookie *)cookie result:(AFNetRequestResultBlock)result {
+    AFHTTPSessionManager *session = [self GetAFHTTPSessionManagerObject];
+    NSString *url = [NSString stringWithFormat:@"%@%@",kFormalURL,method];
+    [session GET:url parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        result(YES,responseObject);
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        if (![self wasNetworkValid]) {
+            HUD_TIP(@"网络繁忙，请稍后~");
+#if DEBUG
+            NSLog(@"--->net work can not used!");
+#endif
+            result(NO, nil);
+            return;
+        }
+        result(NO,error);
+        
+    }];
+    
+}
 @end

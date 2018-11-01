@@ -77,18 +77,25 @@
 - (void)loadPosBrandListRequest {
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/posBrand/list" params:nil cookie:nil result:^(bool success, id result) {
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
-                    NSArray *array = result[@"data"][@"rows"];
-                    if (array.count > 0) {
-                        [self.dataArray addObjectsFromArray:[BrandIntroductionModel mj_objectArrayWithKeyValuesArray:array]];
+            if ([result[@"code"]integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                        NSArray *array = result[@"data"][@"rows"];
+                        if (array.count > 0) {
+                            [self.dataArray addObjectsFromArray:[BrandIntroductionModel mj_objectArrayWithKeyValuesArray:array]];
+                            
+                            [self.myTableView reloadData];
+                        }
                         
-                        [self.myTableView reloadData];
                     }
                     
                 }
-                
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
+            
             
             
             

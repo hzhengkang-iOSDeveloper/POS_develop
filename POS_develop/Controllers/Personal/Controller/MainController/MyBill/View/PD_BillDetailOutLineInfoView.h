@@ -11,6 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PD_BillDetailOutLineInfoView : UIView
+@property (nonatomic, copy) void (^outLinePayHandler)(NSDictionary *dict);
+
 //合计金额
 @property (nonatomic, copy) NSString *heJiMoneyStr;
 @end
