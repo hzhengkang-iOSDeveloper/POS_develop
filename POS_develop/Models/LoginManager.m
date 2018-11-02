@@ -8,9 +8,6 @@
 
 #import "LoginManager.h"
 #import "HPDConnect.h"
-#import "StaticLibrary.h"
-#import "MyStatic.h"
-#import "RSA+AES+GZIP.h"
 #import <Growing.h>
 #import "HDeviceIdentifier.h"
 #import "LoginTypeViewController.h"

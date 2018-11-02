@@ -277,12 +277,6 @@
 		7888F35F2147C32C00AAC8B0 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7888F3272147C32C00AAC8B0 /* README.md */; };
 		7888F3612147C32C00AAC8B0 /* MJChiBaoZiHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F32C2147C32C00AAC8B0 /* MJChiBaoZiHeader.m */; };
 		7888F3622147C32C00AAC8B0 /* NetWorkDetectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F32F2147C32C00AAC8B0 /* NetWorkDetectionManager.m */; };
-		7888F3632147C32C00AAC8B0 /* LFCGzipUtillity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F3322147C32C00AAC8B0 /* LFCGzipUtillity.m */; };
-		7888F3642147C32C00AAC8B0 /* libMyStatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7888F3332147C32C00AAC8B0 /* libMyStatic.a */; };
-		7888F3652147C32C00AAC8B0 /* NSData+AES.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F3362147C32C00AAC8B0 /* NSData+AES.m */; };
-		7888F3662147C32C00AAC8B0 /* RSA+AES+GZIP.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F3382147C32C00AAC8B0 /* RSA+AES+GZIP.m */; };
-		7888F3672147C32C00AAC8B0 /* RSA.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F33A2147C32C00AAC8B0 /* RSA.m */; };
-		7888F3682147C32C00AAC8B0 /* StaticLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F33C2147C32C00AAC8B0 /* StaticLibrary.m */; };
 		7888F3692147C32C00AAC8B0 /* SGActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F33F2147C32C00AAC8B0 /* SGActionView.m */; };
 		7888F36A2147C32C00AAC8B0 /* SGBaseMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F3412147C32C00AAC8B0 /* SGBaseMenu.m */; };
 		7888F36B2147C32C00AAC8B0 /* SGGridMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888F3432147C32C00AAC8B0 /* SGGridMenu.m */; };
@@ -859,18 +853,6 @@
 		7888F32C2147C32C00AAC8B0 /* MJChiBaoZiHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJChiBaoZiHeader.m; sourceTree = "<group>"; };
 		7888F32E2147C32C00AAC8B0 /* NetWorkDetectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkDetectionManager.h; sourceTree = "<group>"; };
 		7888F32F2147C32C00AAC8B0 /* NetWorkDetectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorkDetectionManager.m; sourceTree = "<group>"; };
-		7888F3312147C32C00AAC8B0 /* LFCGzipUtillity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFCGzipUtillity.h; sourceTree = "<group>"; };
-		7888F3322147C32C00AAC8B0 /* LFCGzipUtillity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFCGzipUtillity.m; sourceTree = "<group>"; };
-		7888F3332147C32C00AAC8B0 /* libMyStatic.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMyStatic.a; sourceTree = "<group>"; };
-		7888F3342147C32C00AAC8B0 /* MyStatic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyStatic.h; sourceTree = "<group>"; };
-		7888F3352147C32C00AAC8B0 /* NSData+AES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES.h"; sourceTree = "<group>"; };
-		7888F3362147C32C00AAC8B0 /* NSData+AES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AES.m"; sourceTree = "<group>"; };
-		7888F3372147C32C00AAC8B0 /* RSA+AES+GZIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RSA+AES+GZIP.h"; sourceTree = "<group>"; };
-		7888F3382147C32C00AAC8B0 /* RSA+AES+GZIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RSA+AES+GZIP.m"; sourceTree = "<group>"; };
-		7888F3392147C32C00AAC8B0 /* RSA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSA.h; sourceTree = "<group>"; };
-		7888F33A2147C32C00AAC8B0 /* RSA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSA.m; sourceTree = "<group>"; };
-		7888F33B2147C32C00AAC8B0 /* StaticLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticLibrary.h; sourceTree = "<group>"; };
-		7888F33C2147C32C00AAC8B0 /* StaticLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticLibrary.m; sourceTree = "<group>"; };
 		7888F33E2147C32C00AAC8B0 /* SGActionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGActionView.h; sourceTree = "<group>"; };
 		7888F33F2147C32C00AAC8B0 /* SGActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGActionView.m; sourceTree = "<group>"; };
 		7888F3402147C32C00AAC8B0 /* SGBaseMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGBaseMenu.h; sourceTree = "<group>"; };
@@ -988,7 +970,6 @@
 				259B3F4C2185D84A0076586E /* libz.tbd in Frameworks */,
 				259B3F4A2185D8340076586E /* SystemConfiguration.framework in Frameworks */,
 				7871669121490FA100452C51 /* libxml2.tbd in Frameworks */,
-				7888F3642147C32C00AAC8B0 /* libMyStatic.a in Frameworks */,
 				038600659A091FA731F079F0 /* libPods-POS_develop.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2293,7 +2274,6 @@
 				7888F32B2147C32C00AAC8B0 /* MJChiBaoZiHeader.h */,
 				7888F32C2147C32C00AAC8B0 /* MJChiBaoZiHeader.m */,
 				7888F32D2147C32C00AAC8B0 /* NetManager */,
-				7888F3302147C32C00AAC8B0 /* Security */,
 				7888F33D2147C32C00AAC8B0 /* SGActionView */,
 				7888F3442147C32C00AAC8B0 /* webProgress */,
 			);
@@ -2390,25 +2370,6 @@
 				7888F32F2147C32C00AAC8B0 /* NetWorkDetectionManager.m */,
 			);
 			path = NetManager;
-			sourceTree = "<group>";
-		};
-		7888F3302147C32C00AAC8B0 /* Security */ = {
-			isa = PBXGroup;
-			children = (
-				7888F3312147C32C00AAC8B0 /* LFCGzipUtillity.h */,
-				7888F3322147C32C00AAC8B0 /* LFCGzipUtillity.m */,
-				7888F3332147C32C00AAC8B0 /* libMyStatic.a */,
-				7888F3342147C32C00AAC8B0 /* MyStatic.h */,
-				7888F3352147C32C00AAC8B0 /* NSData+AES.h */,
-				7888F3362147C32C00AAC8B0 /* NSData+AES.m */,
-				7888F3372147C32C00AAC8B0 /* RSA+AES+GZIP.h */,
-				7888F3382147C32C00AAC8B0 /* RSA+AES+GZIP.m */,
-				7888F3392147C32C00AAC8B0 /* RSA.h */,
-				7888F33A2147C32C00AAC8B0 /* RSA.m */,
-				7888F33B2147C32C00AAC8B0 /* StaticLibrary.h */,
-				7888F33C2147C32C00AAC8B0 /* StaticLibrary.m */,
-			);
-			path = Security;
 			sourceTree = "<group>";
 		};
 		7888F33D2147C32C00AAC8B0 /* SGActionView */ = {
@@ -2942,7 +2903,6 @@
 				50A89AF7216B653200E68BEB /* XBarItem.m in Sources */,
 				505B6F95216DFCD2000D49B2 /* SVProgressHUD+Extension.m in Sources */,
 				7888F3542147C32C00AAC8B0 /* MyKeyChainHelper.m in Sources */,
-				7888F3632147C32C00AAC8B0 /* LFCGzipUtillity.m in Sources */,
 				259646DE2158CBC900E516BF /* TransactionQueryMainView.m in Sources */,
 				7888F34B2147C32C00AAC8B0 /* CustomDeleagte.m in Sources */,
 				501E15C92186A78200BB68A3 /* POS_RootViewModel.m in Sources */,
@@ -3045,10 +3005,8 @@
 				50A89AEB216B653200E68BEB /* CALayer+XLayerSelectHelper.m in Sources */,
 				50EEB20F21737E6F00B41353 /* MyAddressEditViewController.m in Sources */,
 				505B6F82216D99FC000D49B2 /* MessageListTableViewCell.m in Sources */,
-				7888F3662147C32C00AAC8B0 /* RSA+AES+GZIP.m in Sources */,
 				2546B20A2178A2C5001CFE0D /* BagLogListModel.m in Sources */,
 				78765A92214A89D600261ED3 /* FastLoginViewController.m in Sources */,
-				7888F3652147C32C00AAC8B0 /* NSData+AES.m in Sources */,
 				50A89AFE216B653200E68BEB /* XAuxiliaryCalculationHelper.m in Sources */,
 				500C2736217C6DBD008F221A /* ShopCarTableViewCell.m in Sources */,
 				505B6F72216D99A0000D49B2 /* ImageGeneralizeViewController.m in Sources */,
@@ -3104,7 +3062,6 @@
 				2520A68E214CE38900D48B26 /* SettingViewController.m in Sources */,
 				787FFC9B21522DE800318BBC /* TransactionListCell.m in Sources */,
 				50184CE02158C56C00D11AC6 /* DatePickerView.m in Sources */,
-				7888F3682147C32C00AAC8B0 /* StaticLibrary.m in Sources */,
 				DA8D1776214E8EE7006574E4 /* SLConst.m in Sources */,
 				788683EF2174AB6D00804F85 /* MessageListModel.m in Sources */,
 				7888F3B12147C33900AAC8B0 /* UIColor+HEXString.m in Sources */,
@@ -3120,7 +3077,6 @@
 				50A89B0A216B653200E68BEB /* XPositiveNegativeBarContainerView.m in Sources */,
 				786AD10A215A44A3005D7363 /* ActivationMoneyDetailHeaderView.m in Sources */,
 				50E0C99F216EE88C0079ABF2 /* POS_ShopDetailViewController.m in Sources */,
-				7888F3672147C32C00AAC8B0 /* RSA.m in Sources */,
 				7888F3B72147C33900AAC8B0 /* CustomImage.m in Sources */,
 				78765A84214A447400261ED3 /* PersonalHeaderView.m in Sources */,
 				50A89AF2216B653200E68BEB /* XLineChartConfiguration.m in Sources */,
@@ -3280,7 +3236,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = PY7ZU58Z7K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3372,8 +3328,9 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.POS.develop;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pos.payCompany;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = pos_debug;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -3384,7 +3341,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = PY7ZU58Z7K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3476,8 +3433,9 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.POS.develop;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pos.payCompany;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = pos_debug;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

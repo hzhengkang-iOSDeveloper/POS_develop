@@ -346,7 +346,7 @@
         NSString *astring02 = @"1000";
         BOOL result = [astring01 compare:astring02] == NSOrderedAscending;
 
-        if ( result) {
+        if ( result == NO) {
             footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(306)+AD_HEIGHT(214)+AD_HEIGHT(2));
             //线上支付
             PD_BillDetailOnLineView *onLineView = [[PD_BillDetailOnLineView alloc]init];

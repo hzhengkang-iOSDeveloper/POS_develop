@@ -12,9 +12,6 @@
 #import "MyTools.h"
 #import "JSONKit.h"
 #import "AFNetworking.h"
-#import "MyStatic.h"
-#import "StaticLibrary.h"
-#import "RSA+AES+GZIP.h"
 #import "HDeviceIdentifier.h"
 @implementation HPDConnect
 
@@ -278,37 +275,7 @@
     }
     return request;
 }
-//统一接口同步实现
-- (BOOL)syncSoapMethod:(NSString *)method params:(NSDictionary *)params cookie:(NSHTTPCookie *)cookie result:(NSDictionary **)result
-{
-    NSDictionary* dict = [self getRequestParaDic:method params:params];
-    NSURLRequest *request = [self requestWithSoapMethodSync:@"InvokeWS" Params:@{@"str":[GlobalMethod GlobalStringWithDictionary:dict]} Cookie:cookie];
-    NSError *error = nil;
-    NSURLResponse *response = nil;
-    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    
-    if (error) {
-        *result = nil;
-        return NO;      // connect error
-    }
-    else {
-        NSString *resultString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSString *resultJson = [self selectJsonFromXml:resultString];
-        if (resultJson) {
-            NSDictionary *dict = [self jsonSerialization:[resultJson dataUsingEncoding:NSUTF8StringEncoding]];
-            if (dict[@"doObject"]) {
-                [dict setValue:[[[RSA_AES_GZIP alloc] init] returndecryptStringtoString:dict[@"doObject"] andisEncrypt:[dict[@"isEncrypt"] boolValue] andisCompress:[dict[@"isCompress"] boolValue]] forKey:@"doObject"];
-            }
-            *result = dict;
-            return YES;     // success
-        }
-        else {
-            *result = nil;
-            return NO;      // if json serialization error
-        }
-    }
-    return YES;
-}
+
 
 - (NSURLRequest *)requestWithSoapMethodSync:(NSString *)method Params:(NSDictionary *)params Cookie:(NSHTTPCookie *)cookie
 {
@@ -470,9 +437,7 @@
         [dict setObject:@"" forKey:@"paramStr"];
         [dict setObject:@"" forKey:@"singnStr"];
     }else{
-        NSString *returnStr = [[[RSA_AES_GZIP alloc] init] returnencryptStringtoString:[GlobalMethod GlobalStringWithDictionary:params]  andisEncrypt:dict[@"isEncrypt"] andisCompress:dict[@"isCompress"]];
-        [dict setObject: returnStr forKey:@"paramStr"];
-        [dict setObject:[GlobalMethod md5:[NSString stringWithFormat:@"%@HPD",returnStr]] forKey:@"singnStr"];
+        
     }
     [dict setObject:[NSString stringWithFormat:@"%@_%@",[infoDictionary objectForKey:@"CFBundleShortVersionString"],[USER_DEFAULT objectForKey:@"IOSVessionNum"] ] forKey:@"version"];
     return dict;
