@@ -89,7 +89,7 @@
 #pragma mark ---- 激活返现查询 ----
 - (void)loadActivationRebateListRequest:(NSString *)orderBy {
 
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/activationRebate/list" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]),@"startTime":defaultObject(self.startTime, @""), @"endTime":defaultObject(self.endTime, @""), @"agentType":self.agentType, @"orderBy":orderBy} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/activationRebate/list" params:@{@"userid":USER_ID_POS,@"startTime":defaultObject(self.startTime, @""), @"endTime":defaultObject(self.endTime, @""), @"agentType":self.agentType, @"orderBy":orderBy} cookie:nil result:^(bool success, id result) {
         [self.myTable.mj_header endRefreshing];
         self.index = orderBy;
         if (success) {

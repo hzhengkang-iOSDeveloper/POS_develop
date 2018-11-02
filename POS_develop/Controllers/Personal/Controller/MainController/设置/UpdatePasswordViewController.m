@@ -183,7 +183,7 @@
     }
     
     
-    [[HPDConnect connect]PostOtherNetRequestMethod:@"changepassword" params:@{@"newPwd":passwordCell.contentTF.text, @"smsCode":codeCell.contentTF.text, @"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID])} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect]PostOtherNetRequestMethod:@"changepassword" params:@{@"newPwd":passwordCell.contentTF.text, @"smsCode":codeCell.contentTF.text, @"userid":USER_ID_POS} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"code"]integerValue] == 0) {
                 HUD_TIP(@"修改成功，请重新登录！");

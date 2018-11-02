@@ -210,7 +210,7 @@
         self.mainView.modelNameLabel.text = @"";
     }
     
-    NSDictionary *dict = @{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]), @"posBrandName":defaultObject(self.mainView.brandNameLabel.text, @""), @"posTermType":defaultObject(self.mainView.typeNameLabel.text, @""), @"posTermModel":defaultObject(self.mainView.modelNameLabel.text, @""), @"agentName":defaultObject(self.mainView.delegateNameTF.text, @""), @"agentNo":defaultObject(self.mainView.platformAccountTF.text, @""), @"startPosSnNo":defaultObject(self.mainView.snStartTF.text, @""), @"endPosSnNo":defaultObject(self.mainView.snEndTF.text, @""), @"activationType":activationType, @"startTime":defaultObject(self.mainView.activationStartTF.text, @""), @"endTime":defaultObject(self.mainView.activationEndTF.text, @"")} ;
+    NSDictionary *dict = @{@"userid":USER_ID_POS, @"posBrandName":defaultObject(self.mainView.brandNameLabel.text, @""), @"posTermType":defaultObject(self.mainView.typeNameLabel.text, @""), @"posTermModel":defaultObject(self.mainView.modelNameLabel.text, @""), @"agentName":defaultObject(self.mainView.delegateNameTF.text, @""), @"agentNo":defaultObject(self.mainView.platformAccountTF.text, @""), @"startPosSnNo":defaultObject(self.mainView.snStartTF.text, @""), @"endPosSnNo":defaultObject(self.mainView.snEndTF.text, @""), @"activationType":activationType, @"startTime":defaultObject(self.mainView.activationStartTF.text, @""), @"endTime":defaultObject(self.mainView.activationEndTF.text, @"")} ;
 
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/pos/list" params:dict cookie:nil result:^(bool success, id result) {
         if (success) {
@@ -249,7 +249,7 @@
 #pragma mark ---- 绑定状态 ----
 - (void)loadPosBindStatusRequestWithPosId:(NSString *)posId {
 
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agentPos/list" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]), @"podId":IF_NULL_TO_STRING(posId)} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agentPos/list" params:@{@"userid":USER_ID_POS, @"podId":IF_NULL_TO_STRING(posId)} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {

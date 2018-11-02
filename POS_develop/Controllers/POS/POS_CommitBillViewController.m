@@ -491,12 +491,13 @@
         HUD_NOBGSHOW;
         [[HPDConnect connect] PostNetRequestMethod:@"api/trans/orderPay/getPayUuid" params:bodyDic cookie:nil result:^(bool success, id result) {
             if (success) {
+                if ([result[@"code"]integerValue] == 0) {
                 NSDictionary *wxPayDict = @{
                                             @"isAppMode":@1,
                                             @"orderPayId":result[@"data"]
                                             };
                 [self creatWxPay:wxPayDict];
-                
+                }
             }
             NSLog(@"result ------- %@", result);
         }];
@@ -505,12 +506,13 @@
         HUD_NOBGSHOW;
         [[HPDConnect connect] PostNetRequestMethod:@"api/trans/orderPay/getPayUuid" params:bodyDic cookie:nil result:^(bool success, id result) {
             if (success) {
+                if ([result[@"code"]integerValue] == 0) {
                 NSDictionary *wxPayDict = @{
                                             @"isAppMode":@1,
                                             @"orderPayId":result[@"data"]
                                             };
                 [self creatAliPay:wxPayDict];
-                
+                }
             }
             NSLog(@"result ------- %@", result);
         }];

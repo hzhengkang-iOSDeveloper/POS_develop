@@ -154,7 +154,7 @@
 #pragma mark ---- 终端绑定 ----
 - (void)loadAgentPosListRequest{
 
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agentPos/list" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]), @"agentId":IF_NULL_TO_STRING(self.agentId), @"posSnNo":IF_NULL_TO_STRING(searchTF.text),@"bindFlag":@"0"} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agentPos/list" params:@{@"userid":USER_ID_POS, @"agentId":IF_NULL_TO_STRING(self.agentId), @"posSnNo":IF_NULL_TO_STRING(searchTF.text),@"bindFlag":@"0"} cookie:nil result:^(bool success, id result) {
         [self.searchTableView.mj_header endRefreshing];
         if (success) {
             

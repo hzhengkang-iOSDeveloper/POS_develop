@@ -299,7 +299,8 @@
 //微信id
 #define WXAppID  @"wx91ebdef19b6d7011"
 
-
+//userId
+#define USER_ID_POS   IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID])
 
 #if DEBUG
 #define NSLog(FORMAT, ...) fprintf(stderr,"\nfunction:%s line:%d\n<%s>\n", __FUNCTION__, __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);

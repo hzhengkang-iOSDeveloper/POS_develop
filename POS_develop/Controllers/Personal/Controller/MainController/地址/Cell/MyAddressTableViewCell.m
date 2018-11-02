@@ -117,8 +117,7 @@
     
     HUD_NOBGSHOW;
     
-    LoginManager *manager = [LoginManager getInstance];
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/address/update" params:@{@"userid":IF_NULL_TO_STRING(manager.userInfo.userId), @"defaultFlag":[self.addressM.defaultFlag isEqualToString:@"0"]?@"1":@"0", @"id":self.addressM.ID} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/address/update" params:@{@"userid":USER_ID_POS, @"defaultFlag":[self.addressM.defaultFlag isEqualToString:@"0"]?@"1":@"0", @"id":self.addressM.ID} cookie:nil result:^(bool success, id result) {
         HUD_HIDE;
         if (success) {
             if ([result[@"code"]integerValue] == 0) {

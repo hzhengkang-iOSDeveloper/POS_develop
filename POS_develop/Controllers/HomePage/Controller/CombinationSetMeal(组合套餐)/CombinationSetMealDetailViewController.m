@@ -209,7 +209,7 @@
 {
     HUD_NOBGSHOW;
     NSDictionary *dict = @{
-                           @"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]),
+                           @"userid":USER_ID_POS,
                            @"pkgPrdId":IF_NULL_TO_STRING(self.myID),
                            @"pkgPrdType":@"1",
                            @"count":@"1",

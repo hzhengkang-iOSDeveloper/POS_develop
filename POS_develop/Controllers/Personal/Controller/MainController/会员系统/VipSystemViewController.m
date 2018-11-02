@@ -170,7 +170,7 @@
 
 #pragma mark -------------------------------- 接口 ------------------------------------
 - (void)loadAgentListRequest {
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agent/list" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID])} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agent/list" params:@{@"userid":USER_ID_POS} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"code"]integerValue] == 0) {
                 if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -196,7 +196,7 @@
 }
 
 - (void)loadAgentListAncesRequest {
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agent/listAnces" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID])} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agent/listAnces" params:@{@"userid":USER_ID_POS} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 

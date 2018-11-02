@@ -131,7 +131,7 @@
 
 - (void)loadBagLogListRequest{
     
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/bagLog/list" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID])} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/bagLog/list" params:@{@"userid":USER_ID_POS} cookie:nil result:^(bool success, id result) {
         [self.billTableView.mj_header endRefreshing];
         if (success) {
             if ([result[@"code"]integerValue] == 0) {
@@ -157,7 +157,7 @@
 }
 - (void)loadBagLogListRequestWithStartTime:(NSString *)startTime WithEndTime:(NSString *)endTime {
     LoginManager *manager = [LoginManager getInstance];
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/bagLog/list" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]), @"startTime":startTime, @"endTime":endTime} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/bagLog/list" params:@{@"userid":USER_ID_POS, @"startTime":startTime, @"endTime":endTime} cookie:nil result:^(bool success, id result) {
         [self.billTableView.mj_header endRefreshing];
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {

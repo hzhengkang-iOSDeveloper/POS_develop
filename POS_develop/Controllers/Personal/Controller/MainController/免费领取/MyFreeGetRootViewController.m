@@ -208,7 +208,7 @@
 #pragma mark ---- 最大领取数量 ----
 - (void)getGoodMaxCountRequest
 {
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/creditRule/list" params:@{@"userid":@"1"} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/creditRule/list" params:@{@"userid":USER_ID_POS} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
@@ -244,7 +244,7 @@
     }
     
     NSDictionary *dict = @{
-                           @"userid":@"1",
+                           @"userid":USER_ID_POS,
                            @"pkgPrdIds":IF_NULL_TO_STRING(pkgPrdIds),
                            @"pkgPrdTypes":IF_NULL_TO_STRING(pkgPrdTypes),
                            @"counts":IF_NULL_TO_STRING(counts),

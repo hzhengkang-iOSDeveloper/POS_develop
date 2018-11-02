@@ -236,7 +236,7 @@
 
 #pragma mark ---- 个人余额 ----
 - (void)loadBagListRequest {
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/bag/list" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]) }cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/bag/list" params:@{@"userid":USER_ID_POS }cookie:nil result:^(bool success, id result) {
         [self.personalTableView.mj_header endRefreshing];
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -264,7 +264,7 @@
     NSDate *lastDay = [NSDate dateWithTimeInterval:-24*60*60 sinceDate:date];//前一天
 
     
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]), @"startTime":[[NSString stringWithFormat:@"%@", lastDay] substringToIndex:10], @"endTime":[[NSString stringWithFormat:@"%@", lastDay] substringToIndex:10], @"dateType":@"0", @"statType":@"1"} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"userid":USER_ID_POS, @"startTime":[[NSString stringWithFormat:@"%@", lastDay] substringToIndex:10], @"endTime":[[NSString stringWithFormat:@"%@", lastDay] substringToIndex:10], @"dateType":@"0", @"statType":@"1"} cookie:nil result:^(bool success, id result) {
         [self.personalTableView.mj_header endRefreshing];
         if (success) {
             if ([result[@"code"]integerValue] == 0) {

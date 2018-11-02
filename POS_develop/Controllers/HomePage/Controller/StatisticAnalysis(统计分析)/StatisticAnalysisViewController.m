@@ -328,7 +328,7 @@
 #pragma mark ---- 接口获取 ----
 - (void)getStatisticAnalysisData
 {
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]),@"startTime":IF_NULL_TO_STRING(self.startTime),@"endTime":IF_NULL_TO_STRING(self.endTime),@"statType":IF_NULL_TO_STRING(self.statType),@"dateType":IF_NULL_TO_STRING(self.dateType)} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"userid":USER_ID_POS,@"startTime":IF_NULL_TO_STRING(self.startTime),@"endTime":IF_NULL_TO_STRING(self.endTime),@"statType":IF_NULL_TO_STRING(self.statType),@"dateType":IF_NULL_TO_STRING(self.dateType)} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"code"]integerValue] == 0) {
                 if ([result[@"data"]isKindOfClass:[NSArray class]]) {

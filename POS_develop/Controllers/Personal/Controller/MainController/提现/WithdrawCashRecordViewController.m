@@ -79,7 +79,7 @@
 #pragma mark -------------------------------- 接口 ------------------------------------
 
 - (void)loadBagWithdrawListRequest {
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/bagWithdraw/list" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID])} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/bagWithdraw/list" params:@{@"userid":USER_ID_POS} cookie:nil result:^(bool success, id result) {
         [self.myTableView.mj_header endRefreshing];
         if (success) {
             if ([result[@"code"]integerValue] == 0) {

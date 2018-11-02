@@ -241,7 +241,7 @@
         HUD_TIP(@"请输入11位手机号");
         return;
     }
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/address/update" params:@{@"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]), @"defaultFlag":self.defaultAddressBtn.selected?@0:@1, @"receiverName":IF_NULL_TO_STRING(self.nameTF.text), @"receiverMp":IF_NULL_TO_STRING(self.telephoneTF.text), @"province" : province, @"city" : city, @"county": county, @"receiverAddr":self.detailAddress.text, @"id":self.addressM.ID} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/address/update" params:@{@"userid":USER_ID_POS, @"defaultFlag":self.defaultAddressBtn.selected?@0:@1, @"receiverName":IF_NULL_TO_STRING(self.nameTF.text), @"receiverMp":IF_NULL_TO_STRING(self.telephoneTF.text), @"province" : province, @"city" : city, @"county": county, @"receiverAddr":self.detailAddress.text, @"id":self.addressM.ID} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"code"]integerValue] == 0) {
                 self.addressM.defaultFlag = self.defaultAddressBtn.selected?@"0":@"1";

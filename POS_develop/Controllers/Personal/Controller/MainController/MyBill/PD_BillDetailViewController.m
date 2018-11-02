@@ -653,11 +653,13 @@
         HUD_NOBGSHOW;
         [[HPDConnect connect] PostNetRequestMethod:@"api/trans/orderPay/getPayUuid" params:bodyDic cookie:nil result:^(bool success, id result) {
             if (success) {
-                NSDictionary *wxPayDict = @{
-                                            @"isAppMode":@1,
-                                            @"orderPayId":result[@"data"]
-                                            };
-                [self creatWxPay:wxPayDict];
+                if ([result[@"code"]integerValue] == 0) {
+                    NSDictionary *wxPayDict = @{
+                                                @"isAppMode":@1,
+                                                @"orderPayId":result[@"data"]
+                                                };
+                    [self creatWxPay:wxPayDict];
+                }
                
             }
             NSLog(@"result ------- %@", result);
@@ -667,12 +669,13 @@
         HUD_NOBGSHOW;
         [[HPDConnect connect] PostNetRequestMethod:@"api/trans/orderPay/getPayUuid" params:bodyDic cookie:nil result:^(bool success, id result) {
             if (success) {
+                if ([result[@"code"]integerValue] == 0) {
                 NSDictionary *wxPayDict = @{
                                             @"isAppMode":@1,
                                             @"orderPayId":result[@"data"]
                                             };
                 [self creatAliPay:wxPayDict];
-                
+                }
             }
             NSLog(@"result ------- %@", result);
         }];
@@ -748,7 +751,7 @@
 {
     NSDictionary *bodyDic = @{@"payBankUser":@"2",
                               @"payUuid":IF_NULL_TO_STRING(self.myID),
-                              @"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]),
+                              @"userid":USER_ID_POS,
                               @"tbOrderId":IF_NULL_TO_STRING(self.myID)
                               };
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/order/list" params:bodyDic cookie:nil result:^(bool success, id result) {

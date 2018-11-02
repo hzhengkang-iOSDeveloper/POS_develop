@@ -182,7 +182,7 @@
 - (void)addShopCarWith:(POS_RootViewModel *)posRootM withBtn:(UIButton *)cellBtn
 {
     NSDictionary *dict = @{
-                           @"userid":IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID]),
+                           @"userid":USER_ID_POS,
                            @"pkgPrdId":IF_NULL_TO_STRING(posRootM.ID),
                            @"pkgPrdType":@"1",
                            @"count":[NSString stringWithFormat:@"%li",posRootM.goodCount+1],

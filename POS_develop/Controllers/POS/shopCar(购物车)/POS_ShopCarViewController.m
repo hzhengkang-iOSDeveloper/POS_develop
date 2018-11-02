@@ -464,7 +464,7 @@
 #pragma mark ---- 查询购物车获取对应id ----
 - (void)getShopCarRequest
 {
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/cart/list" params:@{@"userid":@"1"} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/cart/list" params:@{@"userid":USER_ID_POS} cookie:nil result:^(bool success, id result) {
         if (success) {
             
             if ([result[@"code"]integerValue] == 0) {
