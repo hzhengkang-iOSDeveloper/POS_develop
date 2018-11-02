@@ -243,10 +243,10 @@
                 if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
                     NSArray *array = [NSArray arrayWithArray:result[@"data"][@"rows"]];
                     if (array.count > 0) {
-                        self.headerView.balanceL.text = [NSString stringWithFormat:@"余额：%@", [[array firstObject] valueForKey:@"accountBalance"]];
-                        self.balanceStr = [[array firstObject] valueForKey:@"accountBalance"];
-                        self.withDrawPasswd = [[array firstObject] valueForKey:@"withDrawPasswd"];
-                        self.withDrawPasswdID =  [[array firstObject] valueForKey:@"id"];
+                        self.headerView.balanceL.text = [NSString stringWithFormat:@"余额：%@", IF_NULL_TO_STRING([[array firstObject] valueForKey:@"accountBalance"])];
+                        self.balanceStr = IF_NULL_TO_STRING([[array firstObject] valueForKey:@"accountBalance"]);
+                        self.withDrawPasswd = IF_NULL_TO_STRING([[array firstObject] valueForKey:@"withDrawPasswd"]);
+                        self.withDrawPasswdID =  IF_NULL_TO_STRING([[array firstObject] valueForKey:@"id"]);
                         [self.personalTableView reloadData];
                     }
                     

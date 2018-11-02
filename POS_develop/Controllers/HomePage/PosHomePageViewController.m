@@ -14,7 +14,7 @@
 #import "IndexBannerListModel.h"
 #import "HomeHeaderModel.h"
 #import "PackageChargeListModel.h"
-
+#import "PosHomePageTopHeaderView.h"
 @interface PosHomePageViewController () <UITableViewDelegate, UITableViewDataSource>{
     NSString *startTime;
     NSString *endTime;
@@ -23,6 +23,7 @@
 @property (nonatomic, strong) NSMutableArray *adArray;//首页广告banner数据源
 @property (nonatomic, strong) NSMutableArray *dataArray;//套餐数据源
 @property (nonatomic, weak) PosHomePageHeaderView *headerView;
+@property (nonatomic, weak) PosHomePageTopHeaderView *homeHeaderView;
 @end
 
 @implementation PosHomePageViewController
@@ -53,15 +54,23 @@
 
     }];
     
+    [self creatHomeHeaderView];
     [self createTableView];
     
     [self loadIndexBannerListRequest];
     [self loadPackageChargeListRequest];
     [self getHeaderRequest];
 }
-
+#pragma mark ---- 建立头部View ----
+- (void)creatHomeHeaderView
+{
+    PosHomePageTopHeaderView *homeHeaderView = [[PosHomePageTopHeaderView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(140)+AD_HEIGHT(32))];
+    [self.view addSubview:homeHeaderView];
+    self.homeHeaderView = homeHeaderView;
+    
+}
 - (void)createTableView {
-    _homeTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - TabbarHeight - navH) style:UITableViewStylePlain];
+    _homeTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.homeHeaderView.frame), ScreenWidth, ScreenHeight - TabbarHeight - navH-CGRectGetMaxY(self.homeHeaderView.frame)) style:UITableViewStylePlain];
     _homeTableView.backgroundColor = CF6F6F6;
     _homeTableView.delegate = self;
     _homeTableView.dataSource = self;
@@ -80,7 +89,7 @@
 
 
 - (UIView *)createHeaderView {
-    PosHomePageHeaderView *headerView = [[PosHomePageHeaderView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(140)+AD_HEIGHT(32)+AD_HEIGHT(82)+AD_HEIGHT(25)+AD_HEIGHT(165)+AD_HEIGHT(44))];
+    PosHomePageHeaderView *headerView = [[PosHomePageHeaderView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(82)+AD_HEIGHT(25)+AD_HEIGHT(165)+AD_HEIGHT(44))];
     headerView.currentMonthBlock = ^{
         AchievementsViewController *vc = [[AchievementsViewController alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
@@ -222,7 +231,7 @@
                 NSArray *array = result[@"data"];
                 if (array.count > 0) {
                     
-                    self.headerView.volumeOfTransactionL.text = defaultObject([[array firstObject] valueForKey:@"value"], @"0");
+                    self.homeHeaderView.volumeOfTransactionL.text = defaultObject([[array firstObject] valueForKey:@"value"], @"0");
                 
                 }
             }
@@ -239,7 +248,7 @@
                 NSArray *array = result[@"data"];
                 if (array.count > 0) {
                 
-                    self.headerView.shareProfitL.text = defaultObject([[array firstObject] valueForKey:@"value"], @"0");
+                    self.homeHeaderView.shareProfitL.text = defaultObject([[array firstObject] valueForKey:@"value"], @"0");
                 }
                 
             }
@@ -256,7 +265,7 @@
                 
                 NSArray *array = result[@"data"];
                 if (array.count > 0) {
-                    self.headerView.activationL.text = defaultObject([[array firstObject] valueForKey:@"value"], @"0");;
+                    self.homeHeaderView.activationL.text = defaultObject([[array firstObject] valueForKey:@"value"], @"0");;
                 }
             }
             
@@ -271,7 +280,7 @@
             if ([result[@"data"] isKindOfClass:[NSArray class]]) {
                 NSArray *array = result[@"data"];
                 if (array.count > 0) {
-                    self.headerView.teamPersonL.text = defaultObject([[array firstObject] valueForKey:@"value"], @"0");
+                    self.homeHeaderView.teamPersonL.text = defaultObject([[array firstObject] valueForKey:@"value"], @"0");
                 }
                 
             }

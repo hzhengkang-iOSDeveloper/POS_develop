@@ -171,6 +171,7 @@
 		50BD2AC82162787E008D201B /* TerminalSelectMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50BD2AC72162787E008D201B /* TerminalSelectMainView.xib */; };
 		50C5449C2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C5449A2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.m */; };
 		50D4449C215F0DF100AE6219 /* PD_BillDetailComfirInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D4449B215F0DF100AE6219 /* PD_BillDetailComfirInfoView.m */; };
+		50D62D43218C1E3B00405331 /* PosHomePageTopHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D62D42218C1E3A00405331 /* PosHomePageTopHeaderView.m */; };
 		50DAAF4C216A20470060EBBC /* DelegateManagerEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DAAF4B216A20470060EBBC /* DelegateManagerEditCell.m */; };
 		50DCC3B5218B46D200489D15 /* PD_BillZhuangZhangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DCC3B4218B46D200489D15 /* PD_BillZhuangZhangViewController.m */; };
 		50DDE09A218846FD007F29E3 /* ShopCar_ProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DDE099218846FD007F29E3 /* ShopCar_ProductModel.m */; };
@@ -659,6 +660,8 @@
 		50C5449B2158D52A00C8CEB4 /* SLOrdersDeteiledLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLOrdersDeteiledLabel.h; sourceTree = "<group>"; };
 		50D4449A215F0DF100AE6219 /* PD_BillDetailComfirInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillDetailComfirInfoView.h; sourceTree = "<group>"; };
 		50D4449B215F0DF100AE6219 /* PD_BillDetailComfirInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillDetailComfirInfoView.m; sourceTree = "<group>"; };
+		50D62D41218C1E3A00405331 /* PosHomePageTopHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PosHomePageTopHeaderView.h; sourceTree = "<group>"; };
+		50D62D42218C1E3A00405331 /* PosHomePageTopHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PosHomePageTopHeaderView.m; sourceTree = "<group>"; };
 		50DAAF4A216A20470060EBBC /* DelegateManagerEditCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelegateManagerEditCell.h; sourceTree = "<group>"; };
 		50DAAF4B216A20470060EBBC /* DelegateManagerEditCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DelegateManagerEditCell.m; sourceTree = "<group>"; };
 		50DCC3B3218B46D200489D15 /* PD_BillZhuangZhangViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillZhuangZhangViewController.h; sourceTree = "<group>"; };
@@ -1505,6 +1508,8 @@
 				5089376521561DB8007C6239 /* HomeTableViewCell.m */,
 				50893767215648CB007C6239 /* PosHomePageHeaderView.h */,
 				50893768215648CB007C6239 /* PosHomePageHeaderView.m */,
+				50D62D41218C1E3A00405331 /* PosHomePageTopHeaderView.h */,
+				50D62D42218C1E3A00405331 /* PosHomePageTopHeaderView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3078,6 +3083,7 @@
 				7888F3B22147C33900AAC8B0 /* UIImage+Extension.m in Sources */,
 				250E65A1217CB553000B99B7 /* AgentPosListModel.m in Sources */,
 				5040E98321770CDE00E39628 /* CombinationSetMealDetailViewController.m in Sources */,
+				50D62D43218C1E3B00405331 /* PosHomePageTopHeaderView.m in Sources */,
 				253647D7214E053C0094576C /* UpdatePhoneTableViewCell.m in Sources */,
 				7888F3BA2147C33900AAC8B0 /* ZJPPTViewCustom.m in Sources */,
 				259B3EEA21857C6A0076586E /* PosListModel.m in Sources */,
