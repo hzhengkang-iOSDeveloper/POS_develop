@@ -342,21 +342,11 @@
     //10:待付款，20:待发货，30:待确认，40：已完成
     if ([self.billListM.orderStatus isEqualToString:@"10"]) {
         //支付方式，0:微信，1:支付宝，2:线下转账
-        if ([payDoModel.payType isEqualToString:@"2"]) {
-            footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(306)+AD_HEIGHT(282)+AD_HEIGHT(2));
-            //线下转账
-            PD_BillDetailOutLineInfoView *outLineInfoView = [[PD_BillDetailOutLineInfoView alloc]init];
-            outLineInfoView.outLinePayHandler = ^(NSDictionary * _Nonnull dict) {
-                [self outLinePayRequestWith:dict];//线下支付
-            };
-            outLineInfoView.heJiMoneyStr = self.billListM.orderPrice;
-            [footerView addSubview:outLineInfoView];
-            [outLineInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(otherInfoView.mas_bottom).offset(AD_HEIGHT(2));
-                make.left.offset(0);
-                make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(282)));
-            }];
-        } else {
+        NSString *astring01 = IF_NULL_TO_STRING(self.billListM.orderPrice);
+        NSString *astring02 = @"1000";
+        BOOL result = [astring01 compare:astring02] == NSOrderedAscending;
+
+        if ( result) {
             footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(306)+AD_HEIGHT(214)+AD_HEIGHT(2));
             //线上支付
             PD_BillDetailOnLineView *onLineView = [[PD_BillDetailOnLineView alloc]init];
@@ -370,7 +360,20 @@
                 make.left.offset(0);
                 make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(214)));
             }];
-
+        } else {
+            footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(306)+AD_HEIGHT(282)+AD_HEIGHT(2));
+            //线下转账
+            PD_BillDetailOutLineInfoView *outLineInfoView = [[PD_BillDetailOutLineInfoView alloc]init];
+            outLineInfoView.outLinePayHandler = ^(NSDictionary * _Nonnull dict) {
+                [self outLinePayRequestWith:dict];//线下支付
+            };
+            outLineInfoView.heJiMoneyStr = self.billListM.orderPrice;
+            [footerView addSubview:outLineInfoView];
+            [outLineInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(otherInfoView.mas_bottom).offset(AD_HEIGHT(2));
+                make.left.offset(0);
+                make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(282)));
+            }];
         }
     } else if ([self.billListM.orderStatus isEqualToString:@"20"] || [self.billListM.orderStatus isEqualToString:@"30"] ) {
         //确认收货
