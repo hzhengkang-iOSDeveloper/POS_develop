@@ -180,7 +180,7 @@
                         NSArray *arr = result[@"data"][@"rows"];
                         if (arr.count > 0) {
                             NSDictionary *posDic = arr.firstObject;
-                            self.podId = [posDic objectForKey:@"id"];
+                            self.podId = IF_NULL_TO_STRING([posDic objectForKey:@"id"]);
                             
                             [self.pageController reloadData];
                         }

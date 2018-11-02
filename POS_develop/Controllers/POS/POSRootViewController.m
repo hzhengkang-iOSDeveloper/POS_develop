@@ -57,6 +57,7 @@
     
     MJWeakSelf;
     myTable.mj_header = [SLRefreshHeader headerWithRefreshingBlock:^{
+        [weakSelf getData];
         //        weakSelf.orderArr = nil;
         //        weakSelf.orderArr = [NSMutableArray array];
         //        weakSelf.orderModelArr = nil;
@@ -154,6 +155,10 @@
 #pragma mark ---- 获取数据 ----
 - (void)getData
 {
+    if ([self.podId isEqualToString:@""] ||self.podId == nil) {
+        [self.myTable tableViewNoDataOrNewworkFailShowTitleWithRowCount:0];
+        return;
+    }
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/packageFree/list" params:@{@"tbproductId":IF_NULL_TO_STRING(self.podId)} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"code"]integerValue] == 0) {

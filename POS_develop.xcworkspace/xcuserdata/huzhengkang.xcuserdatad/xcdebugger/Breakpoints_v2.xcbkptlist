@@ -20,7 +20,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "POS_develop/Controllers/Personal/Controller/MainController/MyBill/PD_BillDetailViewController.m"
-            timestampString = "562832935.57012"
+            timestampString = "562837869.0729409"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "347"
@@ -36,12 +36,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "POS_develop/Controllers/Personal/Controller/MainController/MyBill/PD_BillDetailViewController.m"
-            timestampString = "562832935.570187"
+            timestampString = "562837869.072999"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "691"
             endingLineNumber = "691"
             landmarkName = "-creatWxPay:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "POS_develop/Utils/CustomDeleagetAndDataSource/UITableView+Extension.m"
+            timestampString = "562837869.073052"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "-tableViewNoDataOrNewworkFailShowTitleWithRowCount:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
