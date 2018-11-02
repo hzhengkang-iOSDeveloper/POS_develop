@@ -20,7 +20,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "POS_develop/Controllers/Personal/Controller/MainController/MyBill/PD_BillDetailViewController.m"
-            timestampString = "562837869.0729409"
+            timestampString = "562846058.552424"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "347"
@@ -35,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "POS_develop/Controllers/Personal/Controller/MainController/MyBill/PD_BillDetailViewController.m"
-            timestampString = "562837869.072999"
+            filePath = "POS_develop/Utils/CustomDeleagetAndDataSource/UITableView+Extension.m"
+            timestampString = "562839098.526687"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "691"
-            endingLineNumber = "691"
-            landmarkName = "-creatWxPay:"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "-tableViewNoDataOrNewworkFailShowTitleWithRowCount:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -51,14 +51,61 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "POS_develop/Utils/CustomDeleagetAndDataSource/UITableView+Extension.m"
-            timestampString = "562837869.073052"
+            filePath = "POS_develop/Controllers/Personal/Controller/MainController/&#x63d0;&#x73b0;/SettingWithdrawPsViewController.m"
+            timestampString = "562840592.099788"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
-            landmarkName = "-tableViewNoDataOrNewworkFailShowTitleWithRowCount:"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "-sureClick"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[SettingWithdrawPsViewController sureClick]"
+                  moduleName = "POS_develop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/huzhengkang/Desktop/POS/POS_develop/POS_develop/Controllers/Personal/Controller/MainController/%E6%8F%90%E7%8E%B0/SettingWithdrawPsViewController.m"
+                  timestampString = "562846058.75472"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "344">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__44-[SettingWithdrawPsViewController sureClick]_block_invoke"
+                  moduleName = "POS_develop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/huzhengkang/Desktop/POS/POS_develop/POS_develop/Controllers/Personal/Controller/MainController/%E6%8F%90%E7%8E%B0/SettingWithdrawPsViewController.m"
+                  timestampString = "562846058.75642"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100"
+                  offsetFromSymbolStart = "56">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.228"
+                  moduleName = "POS_develop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/huzhengkang/Desktop/POS/POS_develop/POS_develop/Controllers/Personal/Controller/MainController/%E6%8F%90%E7%8E%B0/SettingWithdrawPsViewController.m"
+                  timestampString = "562846058.758131"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
