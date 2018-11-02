@@ -71,7 +71,7 @@
 }
 - (void)createTableView {
     _homeTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.homeHeaderView.frame), ScreenWidth, ScreenHeight - TabbarHeight - navH-CGRectGetMaxY(self.homeHeaderView.frame)) style:UITableViewStylePlain];
-    _homeTableView.backgroundColor = CF6F6F6;
+    _homeTableView.backgroundColor = WhiteColor;
     _homeTableView.delegate = self;
     _homeTableView.dataSource = self;
     _homeTableView.showsVerticalScrollIndicator = NO;
@@ -141,7 +141,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *view=[[UIView alloc] initWithFrame:CGRectZero];
-    view.backgroundColor = CF6F6F6;
+    view.backgroundColor = WhiteColor;
     return view;
 }
 //section底部间距
@@ -153,7 +153,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, FITiPhone6(5))];
-    view.backgroundColor = CF6F6F6;
+    view.backgroundColor = WhiteColor;
     return view;
 }
 
