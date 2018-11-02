@@ -59,9 +59,9 @@
         if (success) {
             if ([result[@"code"]integerValue] == 0) {
                 if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                    self.titleLabel.text = [result[@"data"] valueForKey:@"msgTitle"];
-                    self.timeLabel.text = [[result[@"data"] valueForKey:@"createtime"] substringToIndex:10];
-                    self.contentLabel.text = [result[@"data"] valueForKey:@"msgContent"];
+                    self.titleLabel.text = IF_NULL_TO_STRING([result[@"data"] valueForKey:@"msgTitle"]);
+                    self.timeLabel.text = IF_NULL_TO_STRING([[result[@"data"] valueForKey:@"createtime"] substringToIndex:10]);
+                    self.contentLabel.text = IF_NULL_TO_STRING([result[@"data"] valueForKey:@"msgContent"]);
                     
                 }
             }else{

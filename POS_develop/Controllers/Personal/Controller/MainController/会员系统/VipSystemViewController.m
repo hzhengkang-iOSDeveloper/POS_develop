@@ -176,8 +176,8 @@
                 if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                     if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
                         NSArray *array = result[@"data"][@"rows"];
-                        self.vipGradeL.text = [[array firstObject] valueForKey:@"sbLevelVip"];
-                        self.receivePosTextL.text = [NSString stringWithFormat:@"已领%@台，还可以领取%@台",[[array firstObject] valueForKey:@"drawCount"] , [[array firstObject] valueForKey:@"totalCount"]];
+                        self.vipGradeL.text = IF_NULL_TO_STRING([[array firstObject] valueForKey:@"sbLevelVip"]);
+                        self.receivePosTextL.text = [NSString stringWithFormat:@"已领%@台，还可以领取%@台",IF_NULL_TO_STRING([[array firstObject] valueForKey:@"drawCount"]) , IF_NULL_TO_STRING([[array firstObject] valueForKey:@"totalCount"])];
                         
                         
                         [self loadVipDescAncesRequest];
@@ -200,8 +200,8 @@
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 
-                self.highLevelL.text = [NSString stringWithFormat:@"我的上级：%@",[result[@"data"] valueForKey:@"ancesName"]];
-                self.highLevelPhoneL.text = [NSString stringWithFormat:@"上级电话：%@",[result[@"data"] valueForKey:@"ancesMp"]];
+                self.highLevelL.text = [NSString stringWithFormat:@"我的上级：%@",IF_NULL_TO_STRING([result[@"data"] valueForKey:@"ancesName"])];
+                self.highLevelPhoneL.text = [NSString stringWithFormat:@"上级电话：%@",IF_NULL_TO_STRING([result[@"data"] valueForKey:@"ancesMp"])];
                     
                 }
             }
@@ -215,7 +215,7 @@
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agent/vipDesc" params:@{@"sbLevel":IF_NULL_TO_STRING(self.vipGradeL.text)} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                    self.powerContentL.text = [NSString stringWithFormat:@"%@",[result[@"data"] valueForKey:@"des"]];
+                    self.powerContentL.text = [NSString stringWithFormat:@"%@",IF_NULL_TO_STRING([result[@"data"] valueForKey:@"des"])];
                     
                 
             }

@@ -116,8 +116,8 @@
                 
                 if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                     if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
-                        self.agentId = [[result[@"data"][@"rows"] firstObject] objectForKey:@"id"];
-                        [self loadAgentPosListRequest:[[result[@"data"][@"rows"] firstObject] objectForKey:@"id"]];
+                        self.agentId = IF_NULL_TO_STRING([[result[@"data"][@"rows"] firstObject] objectForKey:@"id"]);
+                        [self loadAgentPosListRequest:IF_NULL_TO_STRING([[result[@"data"][@"rows"] firstObject] objectForKey:@"id"])];
                     }
                     
                 }

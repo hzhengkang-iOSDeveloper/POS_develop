@@ -221,7 +221,7 @@
             if (success) {
                 NSLog(@"%@",result);
                 SettingTableViewCell *cell = [self.settingTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-                [cell.iconImageV sd_setImageWithURL:URL(GETPIC(result[@"url"])) placeholderImage:ImageNamed(@"头像2")];
+                [cell.iconImageV sd_setImageWithURL:URL(GETPIC(IF_NULL_TO_STRING(result[@"url"]))) placeholderImage:ImageNamed(@"头像2")];
             }
         }];
         

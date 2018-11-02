@@ -124,10 +124,10 @@
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 
-                self.productNameL.text = [result[@"data"] objectForKey:@"posBrandName"];
-                self.viceProductNameL.text = [result[@"data"] objectForKey:@"posTermType"];
-                self.snL.text = [NSString stringWithFormat:@"SN:%@", [result[@"data"] objectForKey:@"posSnNo"]];
-                self.modelL.text = [NSString stringWithFormat:@"型号:%@", [result[@"data"] objectForKey:@"posTermModel"]];
+                self.productNameL.text = IF_NULL_TO_STRING([result[@"data"] objectForKey:@"posBrandName"]);
+                self.viceProductNameL.text = IF_NULL_TO_STRING([result[@"data"] objectForKey:@"posTermType"]);
+                self.snL.text = [NSString stringWithFormat:@"SN:%@", IF_NULL_TO_STRING([result[@"data"] objectForKey:@"posSnNo"])];
+                self.modelL.text = [NSString stringWithFormat:@"型号:%@", IF_NULL_TO_STRING([result[@"data"] objectForKey:@"posTermModel"])];
                 
                 
             }

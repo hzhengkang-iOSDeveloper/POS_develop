@@ -222,7 +222,7 @@
                 NSArray *array = result[@"data"];
                 if (array.count > 0) {
                     
-                    self.headerView.volumeOfTransactionL.text = [[array firstObject] valueForKey:@"value"];
+                    self.headerView.volumeOfTransactionL.text = defaultObject([[array firstObject] valueForKey:@"value"], @"0");
                 
                 }
             }
@@ -239,7 +239,7 @@
                 NSArray *array = result[@"data"];
                 if (array.count > 0) {
                 
-                    self.headerView.shareProfitL.text = [[array firstObject] valueForKey:@"value"];
+                    self.headerView.shareProfitL.text = defaultObject([[array firstObject] valueForKey:@"value"], @"0");
                 }
                 
             }
@@ -256,7 +256,7 @@
                 
                 NSArray *array = result[@"data"];
                 if (array.count > 0) {
-                    self.headerView.activationL.text = [[array firstObject] valueForKey:@"value"];;
+                    self.headerView.activationL.text = defaultObject([[array firstObject] valueForKey:@"value"], @"0");;
                 }
             }
             
@@ -271,7 +271,7 @@
             if ([result[@"data"] isKindOfClass:[NSArray class]]) {
                 NSArray *array = result[@"data"];
                 if (array.count > 0) {
-                    self.headerView.teamPersonL.text = [[array firstObject] valueForKey:@"value"];;
+                    self.headerView.teamPersonL.text = defaultObject([[array firstObject] valueForKey:@"value"], @"0");
                 }
                 
             }

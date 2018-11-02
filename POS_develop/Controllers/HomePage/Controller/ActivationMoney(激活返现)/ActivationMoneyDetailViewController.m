@@ -118,8 +118,8 @@
             if ([result[@"code"]integerValue] == 0) {
                 if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                     if ([result[@"data"][@"object"] isKindOfClass:[NSDictionary class]]) {
-                        self.headerView.totalPenLabel.text = [result[@"data"][@"object"] valueForKey:@"totalARAmount"];
-                        self.headerView.totalAmountLabel.text = [result[@"data"][@"object"] valueForKey:@"totalNumber"];
+                        self.headerView.totalPenLabel.text = IF_NULL_TO_STRING([result[@"data"][@"object"] valueForKey:@"totalARAmount"]);
+                        self.headerView.totalAmountLabel.text = IF_NULL_TO_STRING([result[@"data"][@"object"] valueForKey:@"totalNumber"]);
                     }
                 }
             }else{

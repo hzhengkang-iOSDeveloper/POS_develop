@@ -363,7 +363,7 @@
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/cart/calculate" params:dict cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                self.goodPriceLabel.text = [NSString stringWithFormat:@"￥%@",result[@"data"][@"totalPrice"]];
+                self.goodPriceLabel.text = [NSString stringWithFormat:@"￥%@",IF_NULL_TO_STRING(result[@"data"][@"totalPrice"])];
                 
             }
             
