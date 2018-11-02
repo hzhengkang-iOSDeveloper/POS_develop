@@ -114,7 +114,7 @@
 
     UILabel *profitCount = [[UILabel alloc]initWithFrame:CGRectMake(AD_HEIGHT(15), CGRectGetMaxY(profitLabel.frame)+AD_HEIGHT(10), AD_HEIGHT(200), AD_HEIGHT(15))];
     profitCount.adjustsFontSizeToFitWidth = YES;
-    profitCount.text = @"￥30000元";
+//    profitCount.text = @"￥30000元";
     profitCount.textAlignment = NSTextAlignmentLeft;
     profitCount.font = FB15;
     profitCount.textColor = C000000;
@@ -334,6 +334,11 @@
                 if ([result[@"data"]isKindOfClass:[NSArray class]]) {
                     self.dataArr = [StatisticAnalysisModel mj_objectArrayWithKeyValuesArray:result[@"data"]];
                     [self creatChart];
+                    if (self.dataArr.count >0) {
+                        StatisticAnalysisModel *lastM = self.dataArr.lastObject;
+                        
+                        self.profitCount.text = [NSString stringWithFormat:@"￥%.2f元",[lastM.value floatValue]*1.12];
+                    }
                 }
             }else{
                 [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
