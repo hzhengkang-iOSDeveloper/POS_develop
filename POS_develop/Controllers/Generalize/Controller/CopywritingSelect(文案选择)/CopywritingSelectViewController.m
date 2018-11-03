@@ -58,12 +58,15 @@
         return;
     }
     OSMessage *msg = [[OSMessage alloc] init];
-    msg.title = @"nihaisdh";
+    msg.title = self.shareTitle;
     msg.desc = self.pasteStr;
     NSData *imageData = UIImageJPEGRepresentation(self.shareImgV.image, 0.5);
     msg.image = imageData;
     //    msg.fileExt = @"哈哈哈哈哈";
-    msg.link = @"www.taobao.com";
+    if (!self.isPic) {
+        msg.link = self.shareLink;
+
+    }
     //    msg.multimediaType = OSMultimediaTypeNews;
     //    msg.thumbnail = imageData;
     if (index == 1){

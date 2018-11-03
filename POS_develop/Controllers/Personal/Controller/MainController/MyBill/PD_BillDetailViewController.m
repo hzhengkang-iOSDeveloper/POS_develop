@@ -342,11 +342,13 @@
     //10:待付款，20:待发货，30:待确认，40：已完成
     if ([self.billListM.orderStatus isEqualToString:@"10"]) {
         //支付方式，0:微信，1:支付宝，2:线下转账
-        NSString *astring01 = IF_NULL_TO_STRING(self.billListM.orderPrice);
+        NSString *astring01 = defaultObject(IF_NULL_TO_STRING(self.billListM.orderPrice), @"0");
         NSString *astring02 = @"1000";
-        BOOL result = [astring01 compare:astring02] == NSOrderedAscending;
-
-        if ( result == NO) {
+        NSNumber * nums01 = @([astring01 integerValue]);
+        NSNumber * nums02 = @([astring02 integerValue]);
+        NSComparisonResult r = [nums01 compare:nums02];
+        if (r == NSOrderedAscending) {
+            NSLog(@"num1小于num2");
             footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(306)+AD_HEIGHT(214)+AD_HEIGHT(2));
             //线上支付
             PD_BillDetailOnLineView *onLineView = [[PD_BillDetailOnLineView alloc]init];
@@ -360,7 +362,8 @@
                 make.left.offset(0);
                 make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(214)));
             }];
-        } else {
+        }else if(r == NSOrderedDescending || r == NSOrderedSame) {
+            NSLog(@"num1大于num2");
             footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(306)+AD_HEIGHT(282)+AD_HEIGHT(2));
             //线下转账
             PD_BillDetailOutLineInfoView *outLineInfoView = [[PD_BillDetailOutLineInfoView alloc]init];
@@ -567,7 +570,7 @@
                         
                     } else if ([self.billListM.orderStatus isEqualToString:@"20"] ) {
                         //确认收货
-                        self.navigationItemTitle = @"待收货";
+                        self.navigationItemTitle = @"待发货";
                     } else if ([self.billListM.orderStatus isEqualToString:@"30"] ) {
                         //待确认
                         self.navigationItemTitle = @"待确认";
@@ -673,9 +676,11 @@
         [[HPDConnect connect] PostNetRequestMethod:@"api/trans/orderPay/getPayUuid" params:bodyDic cookie:nil result:^(bool success, id result) {
             if (success) {
                 if ([result[@"code"]integerValue] == 0) {
+                    NSString *Member_IdStr  = @"13";
+                    int  Member_Id = [Member_IdStr intValue];
                 NSDictionary *wxPayDict = @{
                                             @"isAppMode":@1,
-                                            @"orderPayId":result[@"data"]
+                                            @"orderPayId":@(Member_Id)
                                             };
                 [self creatAliPay:wxPayDict];
                 }

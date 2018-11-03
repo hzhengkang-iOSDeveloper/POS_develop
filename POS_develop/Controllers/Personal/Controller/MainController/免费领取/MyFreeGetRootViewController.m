@@ -125,7 +125,7 @@
             goodAllCout = goodAllCout +obj.goodCount;
         }];
         
-        if (goodAllCout >= 5) {
+        if (goodAllCout >= [self.maxGoodCount integerValue]) {
             HUD_TIP(@"超过最大领取数量");
             [UIView animateWithDuration:2 animations:^{
                 [weakSelf.maxGetBtn mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -234,7 +234,7 @@
         if (obj.goodCount >0) {
             pkgPrdIds = [pkgPrdIds stringByAppendingString:obj.ID];
             pkgPrdTypes = [pkgPrdTypes stringByAppendingString:@"1"];
-            counts = [counts stringByAppendingString:s_Integer(obj.goodCount+1)];
+            counts = [counts stringByAppendingString:[NSString stringWithFormat:@"%lu",obj.goodCount+1]];
         }
     }];
     
@@ -257,7 +257,7 @@
             if ([result[@"code"]integerValue] == 0) {
                 PD_BillDetailViewController *vc = [[PD_BillDetailViewController alloc]init];
                 vc.hidesBottomBarWhenPushed = YES;
-                vc.myID = @"6";
+                vc.myID = [NSString stringWithFormat:@"%@",result[@"data"]];
                 [self.navigationController pushViewController:vc animated:YES];
             }else{
                 [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {

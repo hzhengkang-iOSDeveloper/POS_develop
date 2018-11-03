@@ -39,6 +39,10 @@
     HtmlGenerailzeCell *cell = (HtmlGenerailzeCell *)[_myTableView cellForRowAtIndexPath:path];
     CopywritingSelectViewController *vc = [[CopywritingSelectViewController alloc] init];
     vc.shareImgV = cell.iconImageView;
+    ShareH5ListModel *model = self.dataArray[path.row];
+    vc.shareTitle = model.shareTitle;
+    vc.shareLink = model.shareLink;
+    vc.isPic = NO;
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)createTableView {

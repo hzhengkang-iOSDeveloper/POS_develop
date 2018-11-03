@@ -354,10 +354,10 @@
 - (void)getTaoCanPriceRequest
 {
     NSDictionary *dict = @{
-                           @"userid":@"1",
+                           @"userid":USER_ID_POS,
                            @"pkgPrdIds":IF_NULL_TO_STRING(self.model.ID),
                            @"pkgPrdTypes":@"1",
-                           @"counts":[NSString stringWithFormat:@"%li",self.model.goodCount+1],
+                           @"counts":[NSString stringWithFormat:@"%lu",self.model.goodCount+1],
                            @"operation":@"1"
                            };
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/cart/calculate" params:dict cookie:nil result:^(bool success, id result) {
@@ -377,10 +377,10 @@
 {
     HUD_NOBGSHOW;
     NSDictionary *dict = @{
-                           @"userid":@"1",
+                           @"userid":USER_ID_POS,
                            @"pkgPrdId":IF_NULL_TO_STRING(self.model.ID),
                            @"pkgPrdType":@"1",
-                           @"count":[NSString stringWithFormat:@"%li",self.model.goodCount+1],
+                           @"count":[NSString stringWithFormat:@"%i",self.model.goodCount+1],
                            @"operation":@"1"
                            };
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/cart/save" params:dict cookie:nil result:^(bool success, id result) {

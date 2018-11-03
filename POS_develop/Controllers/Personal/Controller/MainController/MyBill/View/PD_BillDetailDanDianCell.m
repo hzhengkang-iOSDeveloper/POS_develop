@@ -73,20 +73,22 @@
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(32))];
     headerView.backgroundColor = WhiteColor;
     
-    UIImageView *headerImageV = [[UIImageView alloc]init];
+//    UIImageView *headerImageV = [[UIImageView alloc]init];
     DetailDOModel *detailM  = [self.dataArr firstObject];
-
-    [headerImageV sd_setImageWithURL:[NSURL URLWithString:detailM.itemPic]];
-    [headerView addSubview:headerImageV];
-    self.headerImageV = headerImageV;
-    [_headerImageV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.offset(AD_HEIGHT(15));
-        make.top.offset(AD_HEIGHT(13));
-    }];
+//
+//    [headerImageV sd_setImageWithURL:[NSURL URLWithString:detailM.itemPic]];
+//    [headerView addSubview:headerImageV];
+//    self.headerImageV = headerImageV;
+//    [_headerImageV mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.offset(AD_HEIGHT(15));
+//        make.top.offset(AD_HEIGHT(13));
+//        make.size.mas_offset(CGSizeMake(AD_HEIGHT(13), AD_HEIGHT(12)));
+//    }];
     
-    MJWeakSelf;
+//    MJWeakSelf;
     UILabel *headerTitle = [UILabel getLabelWithFont:F13 textColor:C000000 superView:headerView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
-        make.left.equalTo(weakSelf.headerImageV.mas_right).offset(AD_HEIGHT(6));
+//        make.left.equalTo(weakSelf.headerImageV.mas_right).offset(AD_HEIGHT(6));
+        make.left.offset(AD_HEIGHT(15));
         make.top.offset(AD_HEIGHT(11));
         
         view.textAlignment = NSTextAlignmentLeft;
@@ -154,8 +156,8 @@
         if (self.dataArr.count >0) {
             [self.dataArr removeAllObjects];
         }
-        self.myTableView.tableHeaderView = [self creatHeaderView];
         [self.dataArr addObjectsFromArray:productArr];
+        self.myTableView.tableHeaderView = [self creatHeaderView];
         [self.myTableView reloadData];
     }
 }

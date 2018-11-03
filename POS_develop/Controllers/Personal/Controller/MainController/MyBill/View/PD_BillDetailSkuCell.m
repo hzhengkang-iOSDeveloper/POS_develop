@@ -49,14 +49,13 @@
     MJWeakSelf;
     //sku 图片
     UIImageView *skuImageView = [UIImageView new];
-    skuImageView.contentMode = UIViewContentModeScaleAspectFit;
     //    skuImageView.image = ImageNamed(@"头像2");
     [self.contentView addSubview:skuImageView];
     self.skuImageView = skuImageView;
     [_skuImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(AD_HEIGHT(15));
         make.top.offset(AD_HEIGHT(10));
-        make.size.mas_offset(CGSizeMake(AD_HEIGHT(86), AD_HEIGHT(74)));
+        make.size.mas_offset(CGSizeMake(AD_HEIGHT(50), AD_HEIGHT(43)));
     }];
     
     

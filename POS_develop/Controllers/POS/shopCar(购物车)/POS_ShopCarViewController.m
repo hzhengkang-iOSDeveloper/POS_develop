@@ -236,7 +236,7 @@
         if (packageM.isSelected) {
             pkgPrdIds = [pkgPrdIds stringByAppendingString:packageM.ID];
             pkgPrdTypes = [pkgPrdTypes stringByAppendingString:@"1"];
-            counts = [counts stringByAppendingString:s_Integer(packageM.goodCount+1)];
+            counts = [counts stringByAppendingString:[NSString stringWithFormat:@"%lu",packageM.goodCount+1]];
         }
     }];
     
@@ -246,7 +246,7 @@
             if (productM.isSelected) {
                 pkgPrdIds = [pkgPrdIds stringByAppendingString:productM.ID];
                 pkgPrdTypes = [pkgPrdTypes stringByAppendingString:@"0"];
-                counts = [counts stringByAppendingString:s_Integer(productM.goodCount+1)];
+                counts = [counts stringByAppendingString:[NSString stringWithFormat:@"%lu",productM.goodCount+1]];
                 
             }
         }];
@@ -401,7 +401,7 @@
         if (packageM.isSelected) {
             pkgPrdIds = [pkgPrdIds stringByAppendingString:packageM.ID];
             pkgPrdTypes = [pkgPrdTypes stringByAppendingString:@"1"];
-            counts = [counts stringByAppendingString:s_Integer(packageM.goodCount+1)];
+            counts = [counts stringByAppendingString:[NSString stringWithFormat:@"%lu",packageM.goodCount+1]];
         }
     }];
     
@@ -411,7 +411,7 @@
             if (productM.isSelected) {
                 pkgPrdIds = [pkgPrdIds stringByAppendingString:productM.ID];
                 pkgPrdTypes = [pkgPrdTypes stringByAppendingString:@"0"];
-                counts = [counts stringByAppendingString:s_Integer(productM.goodCount+1)];
+                counts = [counts stringByAppendingString:[NSString stringWithFormat:@"%lu",productM.goodCount+1]];
 
             }
         }];
@@ -423,7 +423,7 @@
     } else {
         HUD_NOBGSHOW;
         NSDictionary *dict = @{
-                               @"userid":@"1",
+                               @"userid":USER_ID_POS,
                                @"pkgPrdIds":IF_NULL_TO_STRING(pkgPrdIds),
                                @"pkgPrdTypes":IF_NULL_TO_STRING(pkgPrdTypes),
                                @"counts":IF_NULL_TO_STRING(counts),
@@ -623,7 +623,7 @@
 - (void)saveOrderRequestWithPkgPrdIds:(NSString *)pkgPrdIds  withPkgPrdTypes:(NSString *)pkgPrdTypes withCounts:(NSString *)counts
 {
     NSDictionary *dict = @{
-                           @"userid":@"1",
+                           @"userid":USER_ID_POS,
                            @"pkgPrdIds":IF_NULL_TO_STRING(pkgPrdIds),
                            @"pkgPrdTypes":IF_NULL_TO_STRING(pkgPrdTypes),
                            @"counts":IF_NULL_TO_STRING(counts),
@@ -636,7 +636,7 @@
             if ([result[@"code"]integerValue] == 0) {
                 POS_CommitBillViewController *vc = [[POS_CommitBillViewController alloc]init];
                 vc.hidesBottomBarWhenPushed = YES;
-                vc.orderId = @"6";
+                vc.orderId = [NSString stringWithFormat:@"%@",result[@"data"]];
                 [self.navigationController pushViewController:vc animated:YES];
             }
             

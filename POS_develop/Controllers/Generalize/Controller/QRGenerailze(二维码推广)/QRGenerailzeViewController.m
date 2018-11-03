@@ -39,9 +39,13 @@
         return;
     }
     NSIndexPath *path=[NSIndexPath indexPathForRow:[self.selectStr integerValue] inSection:0];
+    SharePicListModel *model = self.dataArray[path.row];
+
     ImageGeneralizeCollectionViewCell *cell = (ImageGeneralizeCollectionViewCell *)[_myCollection cellForItemAtIndexPath:path];
     CopywritingSelectViewController *vc = [[CopywritingSelectViewController alloc] init];
     vc.shareImgV =  cell.myImageView;
+    vc.shareTitle = model.shareTitle;
+    vc.isPic = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
