@@ -47,7 +47,26 @@
 }
 #pragma mark ---- 确认修改 ----
 - (void)UpdateClick {
-    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+    UpdatePhoneTableViewCell *cell = [self.updatePhoneTableView cellForRowAtIndexPath:indexPath];
+    NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:2 inSection:0];
+    UpdatePhoneTableViewCell *cell2 = [self.updatePhoneTableView cellForRowAtIndexPath:indexPath2];
+    [[HPDConnect connect] PostNetRequestMethod:@"updatephone" params:@{@"mobile":cell.contentTF.text, @"smsCode":cell2.contentTF.text, @"userId":USER_ID_POS} cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"code"] integerValue] == 0) {
+                HUD_TIP(@"修改成功");
+                if (self.popBlock) {
+                    self.popBlock();
+                }
+                [self.navigationController popViewControllerAnimated:YES];
+                
+            }else {
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
+            }
+        }
+    }];
 }
 #pragma mark - UITableViewDataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -63,6 +82,10 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UpdatePhoneTableViewCell *cell = [UpdatePhoneTableViewCell cellWithTableView:tableView];
+    if (indexPath.row == 0) {
+        cell.contentTF.text = self.oldPhone;
+        cell.contentTF.enabled = NO;
+    }
     if (indexPath.row == 1) {
         cell.lineView.hidden = NO;
         cell.getCodeBtn.hidden = NO;
@@ -106,23 +129,21 @@
 #pragma mark ---- 获取验证码 ----
 - (void)getCode {
     [self.view endEditing:YES];
-    //MARK: 接口获取短信验证码
-    //    [[HPDConnect connect] ansySoapUintMethod:@"SendMessage_NoLogin" params:@{@"Mobile_Phone" :[self.telephoneTF.text stringByReplacingOccurrencesOfString:@" " withString:@"" ], @"SmsType" : @(0)} cookie:[[LoginManager getInstance] userCookie] result:^(bool success, NSDictionary *result) {
-    //        [self.codeTimeBtn setTitle:@"重发" forState:UIControlStateNormal];
-    //        if (success) {
-    //            if ([[result valueForKeyPath:kSoapResponseStatu] intValue] == 1) {
-    self.timeSum = 60;
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerChange:) userInfo:nil repeats:YES];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
     UpdatePhoneTableViewCell *cell = [self.updatePhoneTableView cellForRowAtIndexPath:indexPath];
-    cell.getCodeBtn.userInteractionEnabled = NO;
-    //            }else {
-    //                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
-    //
-    //                }];
-    //            }
-    //        }
-    //    }];
+    [[HPDConnect connect] GetNetRequestMethod:[NSString stringWithFormat:@"updatephone/getsmscode?mobile=%@", cell.contentTF.text] params:nil cookie:nil result:^(bool success, id result) {
+        [cell.getCodeBtn setTitle:@"重发" forState:UIControlStateNormal];
+        if (success) {
+            if ([result[@"code"]integerValue] == 0) {
+                self.timeSum = 60;
+                self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerChange:) userInfo:nil repeats:YES];
+            }else{
+                HUD_TIP(result[@"msg"]);
+            }
+        }
+        
+    }];
+
 }
 -(void)timerChange:(NSTimer*)timer
 {

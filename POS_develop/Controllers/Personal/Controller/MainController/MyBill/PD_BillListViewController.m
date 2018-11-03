@@ -94,7 +94,7 @@
         case 1:
             return @"待付款";
         case 2:
-            return @"待收货";
+            return @"待发货";
         case 3:
             return @"待确认";
         case 4:

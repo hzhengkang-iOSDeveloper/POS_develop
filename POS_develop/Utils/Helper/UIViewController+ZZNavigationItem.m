@@ -22,7 +22,7 @@
     [button setImage:image forState:UIControlStateNormal];
     
     if (!(IOS6)) {
-        button.frame = CGRectMake(0, 0, FITiPhone6(20), FITiPhone6(17));
+        button.frame = CGRectMake(0, 0, FITiPhone6(35), FITiPhone6(25));
         button.imageEdgeInsets = UIEdgeInsetsMake(0, -FITiPhone6(16), 0, 0);
     } else {
         button.frame = CGRectMake(0, 0, 65, 45);
@@ -104,10 +104,10 @@
 - (UIBarButtonItem *)addRightBarButtonWithImage:(UIImage *)image clickHandler:(ZZActionButtonClickBlockType)handler {
     ZZActionButton *button = [ZZActionButton buttonWithType:UIButtonTypeCustom];
     [button setClickHandler:handler];
-    button.frame = CGRectMake(0, 0, FITiPhone6(20), FITiPhone6(17));
+    button.frame = CGRectMake(0, 0, FITiPhone6(35), FITiPhone6(25));
     [button setImage:image forState:UIControlStateNormal];
     if (!(IOS6)) {
-        button.imageEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
+        button.imageEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
     }
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.rightBarButtonItem = item;

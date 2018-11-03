@@ -9,5 +9,6 @@
 #import "BaseSonViewController.h"
 
 @interface UpdatePhoneViewController : BaseSonViewController
-
+@property (nonatomic, copy) void(^popBlock)(void);
+@property (nonatomic, copy) NSString *oldPhone;
 @end
