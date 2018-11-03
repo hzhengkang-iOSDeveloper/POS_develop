@@ -45,6 +45,11 @@
 @end
 
 @implementation POS_ShopCarViewController
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    HUD_HIDE;
+}
 - (NSMutableArray *)freeTaoCanArr
 {
     if (!_freeTaoCanArr) {
@@ -464,6 +469,7 @@
 #pragma mark ---- 查询购物车获取对应id ----
 - (void)getShopCarRequest
 {
+    HUD_NOBGSHOWTOUCH;
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/cart/list" params:@{@"userid":USER_ID_POS} cookie:nil result:^(bool success, id result) {
         if (success) {
             
@@ -471,6 +477,9 @@
                 if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                     if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
                         NSArray *arr = result[@"data"][@"rows"];
+                        if (arr.count == 0) {
+                            HUD_HIDE;
+                        }
                         NSArray *tmpArr = [NSArray arrayWithArray:[ShopCarModel mj_objectArrayWithKeyValuesArray:arr]];
                         [self fenleiWithId:tmpArr];
                     }
@@ -572,7 +581,7 @@
         
     }
     
-    
+    HUD_HIDE;
     [self.myTableView reloadData];
     
 }
@@ -583,6 +592,7 @@
 {
     
     [[HPDConnect connect] PostNetRequestMethod:[NSString stringWithFormat:@"api/trans/packageCharge/get/%@",productId] params:nil cookie:nil result:^(bool success, id result) {
+        HUD_HIDE;
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 [self.packAgeArr addObject:[ShopCar_PackageModel mj_objectWithKeyValues:result[@"data"]]];
@@ -603,6 +613,7 @@
 - (void)getFreePackageDetailRequest:(NSString *)productId
 {
     [[HPDConnect connect] PostNetRequestMethod:[NSString stringWithFormat:@"api/trans/packageFree/get/%@",productId] params:nil cookie:nil result:^(bool success, id result) {
+        HUD_HIDE;
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 [self.packAgeArr addObject:[ShopCar_PackageModel mj_objectWithKeyValues:result[@"data"]]];
@@ -610,6 +621,7 @@
                 if (self.freePackageArrCount == self.freeTaoCanArr.count) {
                     //刷新数据源
                     [self.myTableView reloadData];
+                    
                 }
             }
             

@@ -78,9 +78,7 @@
         ShopCar_PackageProductDOModel *productM = [ShopCar_PackageProductDOModel mj_objectWithKeyValues:packageM.productDO];
         self.amountLabel.text = [NSString stringWithFormat:@"￥%@", productM.posPrice];
         self.numberLabel.text = [NSString stringWithFormat:@"x%@", productM.posCount];
-        NSString *imgStr = [NSString stringWithFormat:@"http://106.14.7.85:9000%@",productM.productImg];
-//        [self.myImageView sd_setImageWithURL:[NSURL URLWithString:imgStr]];
-        self.myImageView.image = ImageNamed(@"默认头像");
+        [self.myImageView sd_setImageWithURL:[NSURL URLWithString:productM.productImg]];
         self.titleLabel.text = productM.posBrandName;
     }
 }

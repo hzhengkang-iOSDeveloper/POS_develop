@@ -245,7 +245,8 @@
 //菊花等待
 #define HUD_SHOW        [SYShowHUD showWait];
 //无背景菊花等待
-#define HUD_NOBGSHOW        [SYShowHUD showNoBgWait];
+#define HUD_NOBGSHOW        [SYShowHUD showNoBgWaitWith:NO];
+#define HUD_NOBGSHOWTOUCH        [SYShowHUD showNoBgWaitWith:YES];
 
 //隐藏菊花
 #define HUD_HIDE        [SYShowHUD hideWait];

@@ -64,7 +64,11 @@
     msg.image = imageData;
     //    msg.fileExt = @"哈哈哈哈哈";
     if (!self.isPic) {
-        msg.link = self.shareLink;
+        if ([self.shareLink containsString:@"?"] || [self.shareLink containsString:@"&"]) {
+            msg.link = [NSString stringWithFormat:@"%@%@%@",self.shareLink,@"&userId=",USER_ID_POS];
+        } else {
+            msg.link = [NSString stringWithFormat:@"%@%@%@",self.shareLink,@"?userId=",USER_ID_POS];
+        }
 
     }
     //    msg.multimediaType = OSMultimediaTypeNews;

@@ -181,6 +181,7 @@
 		50E0C9A8216F1FFF0079ABF2 /* POS_ShopDetailInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E0C9A7216F1FFF0079ABF2 /* POS_ShopDetailInfoView.m */; };
 		50E0C9AB216F55870079ABF2 /* POS_ShopRecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E0C9AA216F55870079ABF2 /* POS_ShopRecommendCell.m */; };
 		50E3C8FE218D459E0042C712 /* PosHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E3C8FD218D459E0042C712 /* PosHomeModel.m */; };
+		50E3CDFE218E09520042C712 /* BillWuLiuInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E3CDFD218E09520042C712 /* BillWuLiuInfoModel.m */; };
 		50EEB20C217331B200B41353 /* MyAddressViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EEB20B217331B200B41353 /* MyAddressViewModel.m */; };
 		50EEB20F21737E6F00B41353 /* MyAddressEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EEB20E21737E6F00B41353 /* MyAddressEditViewController.m */; };
 		50F2D7F8217D6EC500749C85 /* ShopCarMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F2D7F7217D6EC500749C85 /* ShopCarMainCell.m */; };
@@ -675,6 +676,8 @@
 		50E0C9AA216F55870079ABF2 /* POS_ShopRecommendCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = POS_ShopRecommendCell.m; sourceTree = "<group>"; };
 		50E3C8FC218D459E0042C712 /* PosHomeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PosHomeModel.h; sourceTree = "<group>"; };
 		50E3C8FD218D459E0042C712 /* PosHomeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PosHomeModel.m; sourceTree = "<group>"; };
+		50E3CDFC218E09520042C712 /* BillWuLiuInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BillWuLiuInfoModel.h; sourceTree = "<group>"; };
+		50E3CDFD218E09520042C712 /* BillWuLiuInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BillWuLiuInfoModel.m; sourceTree = "<group>"; };
 		50EEB20A217331B200B41353 /* MyAddressViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyAddressViewModel.h; sourceTree = "<group>"; };
 		50EEB20B217331B200B41353 /* MyAddressViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyAddressViewModel.m; sourceTree = "<group>"; };
 		50EEB20D21737E6F00B41353 /* MyAddressEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyAddressEditViewController.h; sourceTree = "<group>"; };
@@ -1073,6 +1076,8 @@
 			children = (
 				2546B20521787A8E001CFE0D /* BillListModel.h */,
 				2546B20621787A8E001CFE0D /* BillListModel.m */,
+				50E3CDFC218E09520042C712 /* BillWuLiuInfoModel.h */,
+				50E3CDFD218E09520042C712 /* BillWuLiuInfoModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3047,6 +3052,7 @@
 				7888F3B22147C33900AAC8B0 /* UIImage+Extension.m in Sources */,
 				250E65A1217CB553000B99B7 /* AgentPosListModel.m in Sources */,
 				5040E98321770CDE00E39628 /* CombinationSetMealDetailViewController.m in Sources */,
+				50E3CDFE218E09520042C712 /* BillWuLiuInfoModel.m in Sources */,
 				50D62D43218C1E3B00405331 /* PosHomePageTopHeaderView.m in Sources */,
 				253647D7214E053C0094576C /* UpdatePhoneTableViewCell.m in Sources */,
 				7888F3BA2147C33900AAC8B0 /* ZJPPTViewCustom.m in Sources */,

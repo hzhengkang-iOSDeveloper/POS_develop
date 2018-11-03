@@ -23,11 +23,15 @@ static SYShowHUD *_showHUD;
 /**
  *  显示无背景等待菊花
  */
-+ (void)showNoBgWait
++ (void)showNoBgWaitWith:(BOOL)isTouch
 {
     [SVProgressHUD show];
     [SVProgressHUD setDefaultAnimationType:SVProgressHUDAnimationTypeNative];
-    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeCustom]; //设置HUD背景图层的样式
+    if (isTouch) {
+        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeNone]; //设置HUD背景图层的样式
+    } else {
+        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeCustom]; //设置HUD背景图层的样式
+    }
 }
 
 

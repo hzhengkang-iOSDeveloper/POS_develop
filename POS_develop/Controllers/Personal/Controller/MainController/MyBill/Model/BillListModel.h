@@ -23,6 +23,8 @@
 @property (nonatomic, copy) NSString *updatetime;
 @property (nonatomic, copy) NSString *deleteflag;
 @property (nonatomic, copy) NSString *cosignTime;
+@property (nonatomic, copy) NSString *shippingCode;
+@property (nonatomic, copy) NSString *shippingName;
 @property (nonatomic, strong) NSArray *detailDOList;
 @property (nonatomic, strong) NSDictionary *payDO;
 @property (nonatomic, strong) NSDictionary *addressDO;

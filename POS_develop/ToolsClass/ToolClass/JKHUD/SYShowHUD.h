@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  显示无背景等待菊花
  */
-+ (void)showNoBgWait;
++ (void)showNoBgWaitWith:(BOOL)isTouch;
 
 /**
  *  隐藏等待菊花

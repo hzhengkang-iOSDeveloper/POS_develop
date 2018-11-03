@@ -84,7 +84,31 @@
     UITapGestureRecognizer *headerGest = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickAddressBtn)];
     [headerView addGestureRecognizer:headerGest];
     
-
+    if (addressM == nil || !addressM) {
+        [UILabel getLabelWithFont:F15 textColor:CF70F0F superView:headerView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
+            make.left.offset(AD_HEIGHT(15));
+            make.centerY.offset(0);
+            
+            view.textAlignment = NSTextAlignmentLeft;
+            view.text = @"请选择收货地址";
+        }];
+        
+        //右侧箭头
+        UIImageView *rightImageV = [[UIImageView alloc]init];
+        rightImageV.contentMode = UIViewContentModeScaleAspectFit;
+        rightImageV.image = ImageNamed(@"图层2拷贝2");
+        [headerView addSubview:rightImageV];
+        [rightImageV mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.offset(-AD_HEIGHT(16));
+            make.centerY.offset(0);
+            make.size.mas_offset(CGSizeMake(AD_HEIGHT(8), AD_HEIGHT(16)));
+        }];
+        
+        
+        
+    } else {
+  
+    
     //收件人姓名
     UILabel *receiverNameLabel = [UILabel getLabelWithFont:FB13 textColor:C000000 superView:headerView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
         make.left.offset(AD_HEIGHT(29));
@@ -122,16 +146,7 @@
         moRenAddressLabel.hidden = YES;
     }
     
-    //右侧箭头
-    UIImageView *rightImageV = [[UIImageView alloc]init];
-    rightImageV.contentMode = UIViewContentModeScaleAspectFit;
-    rightImageV.image = ImageNamed(@"图层2拷贝2");
-    [headerView addSubview:rightImageV];
-    [rightImageV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.offset(-AD_HEIGHT(16));
-        make.top.offset(AD_HEIGHT(21));
-        make.size.mas_offset(CGSizeMake(AD_HEIGHT(8), AD_HEIGHT(16)));
-    }];
+
     
     //收货地址图片
     UIImageView *receiverAddressImageV = [UIImageView new];
@@ -162,7 +177,7 @@
         make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(15)));
     }];
     
-    
+    }
     return headerView;
 }
 
@@ -224,7 +239,7 @@
     
     //0.微信 1支付宝  2线下支付
     if ([payM.payType isEqualToString:@"2"]) {
-        footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(153)+AD_HEIGHT(160));
+        footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(153)+AD_HEIGHT(160)+AD_HEIGHT(5));
         //线下转账
         POS_CommfirBillOutLinePayView *outLineInfoView = [[POS_CommfirBillOutLinePayView alloc]init];
         outLineInfoView.moneyCount = [NSString stringWithFormat:@"￥%@",IF_NULL_TO_STRING(self.billListM.displayPrice)];
@@ -238,7 +253,7 @@
             make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(160)));
         }];
     } else {
-        footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(153)+AD_HEIGHT(205));
+        footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(153)+AD_HEIGHT(205)+AD_HEIGHT(5));
         //线上支付
         POS_CommfirBillOnLinePayView *onLineView = [[POS_CommfirBillOnLinePayView alloc]init];
         onLineView.totalStr = [NSString stringWithFormat:@"￥%@",IF_NULL_TO_STRING(self.billListM.displayPrice)];
@@ -281,7 +296,6 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-#pragma mark -- tableView代理数据源方法
 #pragma mark -- tableView代理数据源方法
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if (self.productArr.count >0 && self.taoCanArr.count >0) {

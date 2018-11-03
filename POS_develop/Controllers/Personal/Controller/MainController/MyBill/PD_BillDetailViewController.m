@@ -17,6 +17,7 @@
 #import "PD_BillDetailComfirInfoView.h"//确认收货
 #import "BillListModel.h"
 #import "MyAddressViewModel.h"
+#import "BillWuLiuInfoModel.h"
 @interface PD_BillDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, weak) UITableView *orderDetailTable;
 //订单编号
@@ -36,6 +37,8 @@
 @property (nonatomic, strong) NSMutableArray *productArr;
 //单点数组
 @property (nonatomic, strong) NSMutableArray *danDiArr;
+@property (nonatomic, strong) BillWuLiuInfoModel *infoModel;
+@property (nonatomic, weak) UILabel *wuliuInfoLabel;
 @end
 
 @implementation PD_BillDetailViewController
@@ -102,7 +105,7 @@
 #pragma mark ---- TabHeadView ----
 - (UIView *)creatTableHeaderViewWith:(AddressDOModel *)addressM
 {
-    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(76))];
+    UIView *headerView = [[UIView alloc]init];
     headerView.backgroundColor = WhiteColor;
     PayDOModel *payDoModel = [PayDOModel mj_objectWithKeyValues:self.billListM.payDO];
 
@@ -192,17 +195,52 @@
         view.text = [NSString stringWithFormat:@"收货地址：%@%@%@",IF_NULL_TO_STRING(addressM.province),IF_NULL_TO_STRING(addressM.city),IF_NULL_TO_STRING(addressM.county)];
     }];
     
-    //地址分割
-    UIImageView *receiverBottomImageV = [UIImageView new];
-    receiverBottomImageV.contentMode = UIViewContentModeScaleAspectFit;
-    receiverBottomImageV.image = ImageNamed(@"addressLine");
-    [headerView addSubview:receiverBottomImageV];
-    [receiverBottomImageV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.bottom.offset(0);
-        make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(15)));
-    }];
+
     
-    
+    //物流信息
+    if ([self.billListM.orderStatus isEqualToString:@"10"]) {
+        headerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(76)+AD_HEIGHT(70));
+
+        UIView *wuliuView = [UIView getViewWithColor:WhiteColor superView:headerView masonrySet:^(UIView *view, MASConstraintMaker *make) {
+            make.bottom.offset(0);
+            make.left.right.offset(0);
+            make.height.mas_equalTo(AD_HEIGHT(70));
+        }];
+        
+        UILabel *wuliuInfoLabel = [UILabel getLabelWithFont:FB13 textColor:C000000 superView:wuliuView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
+            make.left.offset(AD_HEIGHT(15));
+            make.top.offset(AD_HEIGHT(2));
+            make.right.offset(0);
+            
+            view.textAlignment = NSTextAlignmentLeft;
+            view.numberOfLines = 0;
+            [view changeLabelHeightWithWidth:(ScreenWidth - AD_HEIGHT(15))];
+            view.text = self.infoModel.AcceptStation;
+        }];
+        self.wuliuInfoLabel = wuliuInfoLabel;
+        //地址分割
+        UIImageView *receiverBottomImageV = [UIImageView new];
+        receiverBottomImageV.contentMode = UIViewContentModeScaleAspectFit;
+        receiverBottomImageV.image = ImageNamed(@"addressLine");
+        [headerView addSubview:receiverBottomImageV];
+        [receiverBottomImageV mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.offset(0);
+            make.bottom.equalTo(wuliuView.mas_top);
+            make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(15)));
+        }];
+    } else {
+        headerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(76));
+        
+        //地址分割
+        UIImageView *receiverBottomImageV = [UIImageView new];
+        receiverBottomImageV.contentMode = UIViewContentModeScaleAspectFit;
+        receiverBottomImageV.image = ImageNamed(@"addressLine");
+        [headerView addSubview:receiverBottomImageV];
+        [receiverBottomImageV mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.bottom.offset(0);
+            make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(15)));
+        }];
+    }
     return headerView;
 }
 
@@ -577,6 +615,7 @@
                     }  else if ([self.billListM.orderStatus isEqualToString:@"40"]) {
                         self.navigationItemTitle = @"订单完成";
                     }
+                    [self getWuLiuInfoRequest];
                     [self creatCellNewArr];
                 }
             }else{
@@ -793,6 +832,50 @@
         }
         NSLog(@"result ------- %@", result);
     }];
+}
+
+#pragma mark ---- 物流信息 ----
+- (void)getWuLiuInfoRequest
+{
+    NSDictionary *dict = @{
+                           @"serialNumber":IF_NULL_TO_STRING(self.billListM.shippingCode),
+                           @"vendorId":IF_NULL_TO_STRING(self.billListM.shippingName)
+                           };
+    [[HPDConnect connect]GetNetRequestMethod:@"/api/trans/express/query" params:dict cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"code"]integerValue] == 0) {
+                NSDictionary *dic = [self dictionaryWithJsonString:result[@"data"]];
+                NSArray *arr = dic[@"Traces"];
+                self.infoModel = [BillWuLiuInfoModel mj_objectWithKeyValues:[arr lastObject]];
+                self.wuliuInfoLabel.text = self.infoModel.AcceptStation;
+                
+                NSLog(@"%@",dic);
+            }else{
+                HUD_ERROR(@"获取物流信息失败！");
+            }
+        }
+        NSLog(@"result ------- %@", result);
+
+    }];
+}
+
+- (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString
+{
+    if (jsonString == nil) {
+        return nil;
+    }
+    
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    if(err)
+    {
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+    return dic;
 }
 @end
 
