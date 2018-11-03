@@ -213,7 +213,7 @@
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
                     NSArray *arr = [NSArray arrayWithArray:result[@"data"][@"rows"]];
-                    self.maxGoodCount = IF_NULL_TO_STRING([arr.firstObject objectForKey:@"leftCount"]);
+                    self.maxGoodCount = defaultObject(IF_NULL_TO_STRING([arr.firstObject objectForKey:@"leftCount"]), @"0");
                 }
             }
             

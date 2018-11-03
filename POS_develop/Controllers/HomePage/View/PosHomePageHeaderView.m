@@ -211,14 +211,6 @@
         self.advView.imageArray = adArray;
     }
 }
-
-
-#pragma mark ---- 当月交易量和当月分润点击 ----
-- (void)volumeOfTransactionClick {
-    if (self.currentMonthBlock) {
-        self.currentMonthBlock();
-    }
-}
 #pragma mark -- 轮播图点击方法
 - (void)carouselView:(XRCarouselView *)carouselView clickImageAtIndex:(NSInteger)index{
     

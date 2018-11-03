@@ -152,4 +152,12 @@
     
 }
 
+
+#pragma mark ---- 当月交易量和当月分润点击 ----
+- (void)volumeOfTransactionClick {
+    if (self.currentMonthBlock) {
+        self.currentMonthBlock();
+    }
+}
+
 @end

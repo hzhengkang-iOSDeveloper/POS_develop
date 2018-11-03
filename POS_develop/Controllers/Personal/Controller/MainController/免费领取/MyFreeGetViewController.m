@@ -8,13 +8,23 @@
 
 #import "MyFreeGetViewController.h"
 #import "MyFreeGetRootViewController.h"
+#import "PosHomeModel.h"
+
 @interface MyFreeGetViewController ()<WMPageControllerDelegate,WMPageControllerDataSource>
 @property (nonatomic, strong, readwrite) WMPageController* pageController;//pageControl
 @property (nonatomic, copy) NSString *podId;
+@property (nonatomic, strong) NSMutableArray *dataArr;
 
 @end
 
 @implementation MyFreeGetViewController
+- (NSMutableArray *)dataArr
+{
+    if (!_dataArr) {
+        _dataArr = [NSMutableArray array];
+    }
+    return _dataArr;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,6 +32,7 @@
     self.navigationItemTitle = @"免费领取";
     self.view.backgroundColor = CF6F6F6;
     [self creatSelectBillStatus];
+    [self getProductIdRequest];
 }
 
 #pragma mark ---- 创建选择状态栏 ----
@@ -45,25 +56,19 @@
 
 #pragma mark ---- WMPageControllerDelegate,WMPageControllerDataSource ----
 - (NSInteger)numbersOfChildControllersInPageController:(WMPageController *)pageController {
-    return 3;
+    return self.dataArr.count;
 }
 
 - (__kindof UIViewController *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index {
     MyFreeGetRootViewController* controller = [[MyFreeGetRootViewController alloc]init];
-
+    PosHomeModel *posModel = self.dataArr[index];
+    controller.podId = posModel.ID;
     return controller;
 }
 
 - (NSString *)pageController:(WMPageController *)pageController titleAtIndex:(NSInteger)index {
-    switch (index) {
-        case 0:
-            return @"品牌一";
-        case 1:
-            return @"品牌二";
-        case 2:
-            return @"品牌三";
-    }
-    return @"";
+    PosHomeModel *posModel = self.dataArr[index];
+    return IF_NULL_TO_STRING(posModel.posBrandName);
 }
 
 - (CGRect)pageController:(nonnull WMPageController *)pageController preferredFrameForContentView:(nonnull WMScrollView *)contentView {
@@ -81,13 +86,19 @@
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                 if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
-                    NSArray *arr = result[@"data"][@"rows"];
-                    if (arr.count > 0) {
-                        NSDictionary *posDic = arr.firstObject;
-                        self.podId = [posDic objectForKey:@"id"];
-                        
-                        [self.pageController reloadData];
+                    NSArray *arr = result[@"data"][@"rows"];                    
+                    if (arr.count >3) {
+                        for (int i= 0; i<arr.count; i++) {
+                            if (i <3) {
+                                [self.dataArr addObject:[PosHomeModel mj_objectWithKeyValues:arr[i]]];
+                            }
+                        }
+                    } else {
+                        if (arr.count > 0) {
+                            [self.dataArr addObjectsFromArray:[PosHomeModel mj_objectArrayWithKeyValuesArray:arr]];
+                        }
                     }
+                    [self.pageController reloadData];
                 }
             }
             

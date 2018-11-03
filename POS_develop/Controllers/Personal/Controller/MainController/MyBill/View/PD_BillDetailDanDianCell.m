@@ -76,7 +76,7 @@
     UIImageView *headerImageV = [[UIImageView alloc]init];
     DetailDOModel *detailM  = [self.dataArr firstObject];
 
-    [headerImageV sd_setImageWithURL:[NSURL URLWithString:GETPIC(detailM.itemPic)]];
+    [headerImageV sd_setImageWithURL:[NSURL URLWithString:detailM.itemPic]];
     [headerView addSubview:headerImageV];
     self.headerImageV = headerImageV;
     [_headerImageV mas_makeConstraints:^(MASConstraintMaker *make) {

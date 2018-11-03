@@ -9,6 +9,7 @@
 #import "POSViewController.h"
 #import "POSRootViewController.h"
 #import "POS_ShopCarViewController.h"//购物车
+#import "PosHomeModel.h"
 @interface POSViewController ()<WMPageControllerDelegate,WMPageControllerDataSource>
 // 右边按钮array
 @property (nonatomic, strong) NSArray *rightItems;
@@ -18,10 +19,18 @@
 @property (nonatomic,assign)NSUInteger cartNum;
 @property (nonatomic, strong, readwrite) WMPageController* pageController;//pageControl
 @property (nonatomic, copy) NSString *podId;
+
+@property (nonatomic, strong) NSMutableArray *dataArr;
 @end
 
 @implementation POSViewController
-
+- (NSMutableArray *)dataArr
+{
+    if (!_dataArr) {
+        _dataArr = [NSMutableArray array];
+    }
+    return _dataArr;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -117,47 +126,27 @@
 
 #pragma mark ---- WMPageControllerDelegate,WMPageControllerDataSource ----
 - (NSInteger)numbersOfChildControllersInPageController:(WMPageController *)pageController {
-    return 3;
+    return self.dataArr.count;
 }
 
 - (__kindof UIViewController *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index {
     POSRootViewController* controller = [[POSRootViewController alloc]init];
-    controller.podId = self.podId;
+    PosHomeModel *posModel = self.dataArr[index];
+
+    controller.podId = posModel.ID;
     MJWeakSelf;
     controller.changeShopCarCount = ^(NSUInteger addGoodCount) {
         weakSelf.cartNumLabel.hidden = NO;
         weakSelf.cartNum = weakSelf.cartNum + addGoodCount;
         weakSelf.cartNumLabel.text = [NSString stringWithFormat:@"%ld",(long)weakSelf.cartNum];
     };
-    //    switch (index) {
-    //        case 0:{
-    //            controller.fileType = ARMFileTypeAll;
-    //        }
-    //            break;
-    //        case 1:{
-    //            controller.fileType = ARMFileTypeAudio;
-    //        }
-    //            break;
-    //        case 2:{
-    //            controller.fileType = ARMFileTypeTxt;
-    //        }
-    //            break;
-    //        default:
-    //            break;
-    //    }
+
     return controller;
 }
 
 - (NSString *)pageController:(WMPageController *)pageController titleAtIndex:(NSInteger)index {
-    switch (index) {
-        case 0:
-            return @"品牌一";
-        case 1:
-            return @"品牌二";
-        case 2:
-            return @"品牌三";
-    }
-    return @"";
+    PosHomeModel *posModel = self.dataArr[index];
+    return IF_NULL_TO_STRING(posModel.posBrandName);
 }
 
 - (CGRect)pageController:(nonnull WMPageController *)pageController preferredFrameForContentView:(nonnull WMScrollView *)contentView {
@@ -178,12 +167,19 @@
                 if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                     if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
                         NSArray *arr = result[@"data"][@"rows"];
-                        if (arr.count > 0) {
-                            NSDictionary *posDic = arr.firstObject;
-                            self.podId = IF_NULL_TO_STRING([posDic objectForKey:@"id"]);
-                            
-                            [self.pageController reloadData];
+                        
+                        if (arr.count >3) {
+                            for (int i= 0; i<arr.count; i++) {
+                                if (i <3) {
+                                    [self.dataArr addObject:[PosHomeModel mj_objectWithKeyValues:arr[i]]];
+                                }
+                            }
+                        } else {
+                            if (arr.count > 0) {
+                            [self.dataArr addObjectsFromArray:[PosHomeModel mj_objectArrayWithKeyValuesArray:arr]];
+                            }
                         }
+                        [self.pageController reloadData];
                     }
                 }
             }else{

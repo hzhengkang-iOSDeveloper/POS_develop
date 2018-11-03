@@ -65,6 +65,11 @@
 - (void)creatHomeHeaderView
 {
     PosHomePageTopHeaderView *homeHeaderView = [[PosHomePageTopHeaderView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(140)+AD_HEIGHT(32))];
+    homeHeaderView.currentMonthBlock = ^{
+        AchievementsViewController *vc = [[AchievementsViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    };
     [self.view addSubview:homeHeaderView];
     self.homeHeaderView = homeHeaderView;
     
@@ -90,11 +95,6 @@
 
 - (UIView *)createHeaderView {
     PosHomePageHeaderView *headerView = [[PosHomePageHeaderView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(82)+AD_HEIGHT(25)+AD_HEIGHT(165)+AD_HEIGHT(44))];
-    headerView.currentMonthBlock = ^{
-        AchievementsViewController *vc = [[AchievementsViewController alloc] init];
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
-    };
     
     self.headerView = headerView;
     return headerView;
@@ -223,7 +223,7 @@
     NSString *dateStr = [formatter stringFromDate:dateNow];
     [self getMonthBeginAndEndWith:dateStr];
 
-    //当⽉月交易易量量
+    //当⽉月交易量
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/statAchievement/list" params:@{@"statType":@"0", @"userid":USER_ID_POS, @"startTime":startTime, @"endTime":endTime,@"dateType":@"2"} cookie:nil result:^(bool success, id result) {
         [self.homeTableView.mj_header endRefreshing];
         if (success) {

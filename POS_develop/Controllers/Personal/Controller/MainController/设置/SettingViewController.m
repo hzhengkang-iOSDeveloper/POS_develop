@@ -88,7 +88,7 @@
         cell.titleLabel.hidden = YES;
         cell.iconImageV.hidden = NO;
 //        cell.iconImageV.image = [UIImage imageNamed:@"头像2"];
-        [cell.iconImageV sd_setImageWithURL:URL(GETPIC(IF_NULL_TO_STRING([self.userInfoDict objectForKey:@"picUrl"]))) placeholderImage: [UIImage imageNamed:@"头像2"] options:SDWebImageRefreshCached];
+        [cell.iconImageV sd_setImageWithURL:URL(IF_NULL_TO_STRING([self.userInfoDict objectForKey:@"picUrl"])) placeholderImage: [UIImage imageNamed:@"头像2"] options:SDWebImageRefreshCached];
         cell.detailLabel.text = @"修改头像";
         cell.detailLabel.textColor = C989898;
     }else if (indexPath.row == 1) {
@@ -221,7 +221,7 @@
             if (success) {
                 NSLog(@"%@",result);
                 SettingTableViewCell *cell = [self.settingTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-                [cell.iconImageV sd_setImageWithURL:URL(GETPIC(IF_NULL_TO_STRING(result[@"url"]))) placeholderImage:ImageNamed(@"头像2")];
+                [cell.iconImageV sd_setImageWithURL:URL(IF_NULL_TO_STRING(result[@"url"])) placeholderImage:ImageNamed(@"头像2")];
             }
         }];
         

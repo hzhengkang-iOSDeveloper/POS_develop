@@ -114,7 +114,7 @@
 
     UILabel *profitCount = [[UILabel alloc]initWithFrame:CGRectMake(AD_HEIGHT(15), CGRectGetMaxY(profitLabel.frame)+AD_HEIGHT(10), AD_HEIGHT(200), AD_HEIGHT(15))];
     profitCount.adjustsFontSizeToFitWidth = YES;
-//    profitCount.text = @"￥30000元";
+    profitCount.text = @"￥0.00元";
     profitCount.textAlignment = NSTextAlignmentLeft;
     profitCount.font = FB15;
     profitCount.textColor = C000000;
