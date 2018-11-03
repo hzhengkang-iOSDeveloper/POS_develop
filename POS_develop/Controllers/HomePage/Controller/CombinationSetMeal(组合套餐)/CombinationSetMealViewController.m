@@ -55,10 +55,10 @@
         [weakSelf loadPackageChargeListRequest];
     }];
     
-//    myTable.mj_footer = [SLRefreshFooter footerWithRefreshingBlock:^{
-//        weakSelf.page += 1;
-//        [weakSelf loadPackageChargeListRequest];
-//    }];
+    myTable.mj_footer = [SLRefreshFooter footerWithRefreshingBlock:^{
+        weakSelf.page ++;
+        [weakSelf loadPackageChargeListRequest];
+    }];
     [_myTable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.offset(0);
         make.left.offset(0);
@@ -230,10 +230,20 @@
 //                [self successRequestForData:result];
                 if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                     if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                        if (self.page == 0) {
+                            [self.dataArray removeAllObjects];
+                        }
+                        
                         NSArray *array = result[@"data"][@"rows"];
-                        self.dataArray = [NSMutableArray arrayWithArray:[PackageChargeListModel mj_objectArrayWithKeyValuesArray:array]];
+                        
+                        [self.dataArray addObjectsFromArray:[PackageChargeListModel mj_objectArrayWithKeyValuesArray:array]];
 
-
+                        if (array.count < 10) {
+                            [self.myTable.mj_footer endRefreshingWithNoMoreData];
+                        }
+                        
+                        [self.myTable tableViewNoDataOrNewworkFailShowTitleWithRowCount:self.dataArray.count];
+                        
                         [self.myTable reloadData];
                     }
 

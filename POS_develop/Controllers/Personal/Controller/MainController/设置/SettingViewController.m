@@ -119,6 +119,7 @@
 #pragma mark - UITableViewDelegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     MJWeakSelf
+    SettingTableViewCell *cell = (SettingTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     switch (indexPath.row) {
         case 0:{
              [self changeUserHeaderImage];
@@ -126,6 +127,11 @@
             break;
         case 1:{
             UpdatePhoneViewController *vc = [[UpdatePhoneViewController alloc] init];
+            vc.oldPhone = cell.detailLabel.text;
+            vc.popBlock = ^{
+                //刷新接口
+                [weakSelf loadUserinfoRequest];
+            };
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;

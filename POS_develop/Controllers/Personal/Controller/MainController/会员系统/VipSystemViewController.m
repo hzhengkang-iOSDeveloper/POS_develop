@@ -15,6 +15,7 @@
 @property (nonatomic, strong) UILabel *receivePosTextL;
 @property (nonatomic, strong) UILabel *highLevelL;
 @property (nonatomic, strong) UILabel *highLevelPhoneL;
+@property (nonatomic, copy) NSString *phoneStr;
 @end
 
 @implementation VipSystemViewController
@@ -165,7 +166,14 @@
 
 #pragma mark ---- 打电话 ----
 - (void)callTelephoneClick {
-    
+    NSString *telephoneNumber = self.phoneStr;
+    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",telephoneNumber];
+    UIApplication *application = [UIApplication sharedApplication];
+    NSURL *URL = [NSURL URLWithString:str];
+    [application openURL:URL options:@{} completionHandler:^(BOOL success) {
+        //OpenSuccess=选择 呼叫 为 1  选择 取消 为0
+        FMLog(@"OpenSuccess=%d",success);
+    }];
 }
 
 #pragma mark -------------------------------- 接口 ------------------------------------
@@ -202,6 +210,8 @@
                 
                 self.highLevelL.text = [NSString stringWithFormat:@"我的上级：%@",IF_NULL_TO_STRING([result[@"data"] valueForKey:@"ancesName"])];
                 self.highLevelPhoneL.text = [NSString stringWithFormat:@"上级电话：%@",IF_NULL_TO_STRING([result[@"data"] valueForKey:@"ancesMp"])];
+                self.phoneStr = IF_NULL_TO_STRING([result[@"data"] valueForKey:@"ancesMp"]);
+                
                     
                 }
             }
