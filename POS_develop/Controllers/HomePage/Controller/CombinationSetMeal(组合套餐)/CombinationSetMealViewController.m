@@ -310,7 +310,7 @@
                 HUD_SUCCESS(@"成功加入购物车");
                 //发送通知 更改nav的购物车数量
                 [[NSNotificationCenter defaultCenter]postNotificationName:@"changeShopCarCount" object:nil userInfo:@{@"goodCount":@"1"}];
-            } else if ([result[@"code"]integerValue] == -1) {
+            }  else if ([result[@"code"]integerValue] == -1) {
                 [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
                     
                 }];

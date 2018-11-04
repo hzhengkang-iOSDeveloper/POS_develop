@@ -209,6 +209,11 @@
     //优惠金额
     SLOrdersDeteiledLabel *discountPriceLabel = [[SLOrdersDeteiledLabel alloc] init];
     discountPriceLabel.title = @"优惠金额";
+    if ([self.billListM.discountPrice integerValue] == 0) {
+        discountPriceLabel.textStr = @"0";
+    } else {
+        
+    }
     discountPriceLabel.textStr = [NSString stringWithFormat:@"-￥%@",IF_NULL_TO_STRING(self.billListM.discountPrice)];
     [footerView addSubview:discountPriceLabel];
     [discountPriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -234,32 +239,22 @@
         make.top.equalTo(lineTwo.mas_bottom);
         make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(50)));
     }];
-    
-    PayDOModel *payM = [PayDOModel mj_objectWithKeyValues:self.billListM.payDO];
-    
+        
     //0.微信 1支付宝  2线下支付
-    if ([payM.payType isEqualToString:@"2"]) {
-        footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(153)+AD_HEIGHT(160)+AD_HEIGHT(5));
-        //线下转账
-        POS_CommfirBillOutLinePayView *outLineInfoView = [[POS_CommfirBillOutLinePayView alloc]init];
-        outLineInfoView.moneyCount = [NSString stringWithFormat:@"￥%@",IF_NULL_TO_STRING(self.billListM.displayPrice)];
-        outLineInfoView.outLinePayHandler = ^{
-            [self outLinePayRequest];//线下支付
-        };
-        [footerView addSubview:outLineInfoView];
-        [outLineInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(postPriceLabel.mas_bottom).offset(AD_HEIGHT(5));
-            make.left.offset(0);
-            make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(160)));
-        }];
-    } else {
+    //支付方式，0:微信，1:支付宝，2:线下转账
+    NSString *astring01 = defaultObject(IF_NULL_TO_STRING(self.billListM.orderPrice), @"0");
+    NSString *astring02 = @"1000";
+    NSNumber * nums01 = @([astring01 integerValue]);
+    NSNumber * nums02 = @([astring02 integerValue]);
+    NSComparisonResult r = [nums01 compare:nums02];
+    if (r == NSOrderedAscending) {
         footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(153)+AD_HEIGHT(205)+AD_HEIGHT(5));
         //线上支付
         POS_CommfirBillOnLinePayView *onLineView = [[POS_CommfirBillOnLinePayView alloc]init];
         onLineView.totalStr = [NSString stringWithFormat:@"￥%@",IF_NULL_TO_STRING(self.billListM.displayPrice)];
         [footerView addSubview:onLineView];
         MJWeakSelf;
-         onLineView.payHandler = ^(NSUInteger payType) {
+        onLineView.payHandler = ^(NSUInteger payType) {
             [weakSelf payRequest:payType];
         };
         [onLineView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -267,6 +262,18 @@
             make.left.offset(0);
             make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(205)));
         }];
+    }else if(r == NSOrderedDescending || r == NSOrderedSame) {
+        footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(153)+AD_HEIGHT(160)+AD_HEIGHT(5));
+        //线下转账
+        POS_CommfirBillOutLinePayView *outLineInfoView = [[POS_CommfirBillOutLinePayView alloc]init];
+        outLineInfoView.moneyCount = [NSString stringWithFormat:@"￥%@",IF_NULL_TO_STRING(self.billListM.displayPrice)];
+        [footerView addSubview:outLineInfoView];
+        [outLineInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(postPriceLabel.mas_bottom).offset(AD_HEIGHT(5));
+            make.left.offset(0);
+            make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(160)));
+        }];
+        
     }
     
     
@@ -497,6 +504,11 @@
 #pragma mark ---- 线上支付相关 ----
 - (void)payRequest:(NSUInteger)payType
 {
+    AddressDOModel *addressM = [AddressDOModel mj_objectWithKeyValues:self.billListM.addressDO];
+    if (addressM == nil || !addressM) {
+        HUD_TIP(@"选择收货地址后才可支付！");
+        return;
+    }
     NSDictionary *bodyDic = @{@"payType":s_Integer(payType),
                               @"tbOrderId":IF_NULL_TO_STRING(self.orderId)
                               };
@@ -606,25 +618,4 @@
     }];
 }
 
-#pragma mark ---- 线下支付相关 ----
-- (void)outLinePayRequest
-{
-    NSDictionary *bodyDic = @{@"payType":@"2",
-                              @"tbOrderId":IF_NULL_TO_STRING(self.orderId)
-                              };
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/orderPay/getPayUuid" params:bodyDic cookie:nil result:^(bool success, id result) {
-        if (success) {
-            if ([result[@"code"]integerValue] == 0) {
-                BuySuccessViewController *vc = [[BuySuccessViewController alloc]init];
-                vc.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:vc animated:YES];
-            }else{
-                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
-                    
-                }];
-            }
-        }
-        NSLog(@"result ------- %@", result);
-    }];
-}
 @end

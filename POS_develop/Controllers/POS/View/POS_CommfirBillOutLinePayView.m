@@ -7,6 +7,7 @@
 //
 
 #import "POS_CommfirBillOutLinePayView.h"
+#import "PD_BillZhuangZhangViewController.h"
 @interface POS_CommfirBillOutLinePayView ()
 {
     BOOL _payTypeStatus;
@@ -101,9 +102,14 @@
 #pragma mark ---- 确认支付 ----
 - (void)comfirPay
 {
-    if (self.outLinePayHandler) {
-        self.outLinePayHandler();
-    }
+    [SLPopupShowView createPopupShowViewWithContentText:@"查看转账说明" buttons:@[@"取消",@"确定"] buttonClick:^(int index) {
+        if (index == 1) {
+            PD_BillZhuangZhangViewController *vc = [[PD_BillZhuangZhangViewController alloc]init];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.viewController.navigationController pushViewController:vc animated:YES];
+        }
+    }];
+    
 }
 
 #pragma mark ---- 选中状态 ----
