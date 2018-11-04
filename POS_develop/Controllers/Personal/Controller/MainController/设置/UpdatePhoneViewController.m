@@ -138,7 +138,9 @@
                 self.timeSum = 60;
                 self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerChange:) userInfo:nil repeats:YES];
             }else{
-                HUD_TIP(result[@"msg"]);
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
         }
         

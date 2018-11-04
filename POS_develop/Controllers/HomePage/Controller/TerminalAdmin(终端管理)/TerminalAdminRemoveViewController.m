@@ -473,6 +473,10 @@
             if ([result[@"code"]integerValue] == 0) {
                 HUD_SUCCESS(@"撤销成功！");
                 [self.navigationController popViewControllerAnimated:YES];
+            }else  if ([result[@"code"]integerValue] == -1){
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             } else {
                 HUD_ERROR(@"撤销失败,请稍后重试");
             }

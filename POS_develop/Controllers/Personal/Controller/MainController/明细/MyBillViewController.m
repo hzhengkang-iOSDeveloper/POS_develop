@@ -17,6 +17,7 @@
 @property (nonatomic, strong) UIView *timeSelectView;
 @property (nonatomic, strong) UIView *bgBlackView;
 @property (nonatomic, strong) DatePickerView *datePickView;
+@property (nonatomic, assign) int page;//接口数据当前页数
 @end
 
 @implementation MyBillViewController
@@ -25,6 +26,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = WhiteColor;
     self.navigationItemTitle = @"明细";
+    self.page = 0;
     self.dataArray = [NSMutableArray array];
         MJWeakSelf
     [self addRightBarButtonWithImage:[UIImage imageNamed:@"图层1"] clickHandler:^{
@@ -89,6 +91,12 @@
     _billTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     MJWeakSelf;
     _billTableView.mj_header = [SLRefreshHeader headerWithRefreshingBlock:^{
+        weakSelf.page =0;
+        [weakSelf loadBagLogListRequest];
+    }];
+    
+    _billTableView.mj_footer = [SLRefreshFooter footerWithRefreshingBlock:^{
+        weakSelf.page ++;
         [weakSelf loadBagLogListRequest];
     }];
     [self.view addSubview:_billTableView];
@@ -130,16 +138,22 @@
 #pragma mark -------------------------------- 接口 ------------------------------------
 
 - (void)loadBagLogListRequest{
-    
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/bagLog/list" params:@{@"userid":USER_ID_POS} cookie:nil result:^(bool success, id result) {
+    NSDictionary *dict = @{@"offset":@(_page*10), @"limit":@10,@"userid":USER_ID_POS};
+
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/bagLog/list" params:dict cookie:nil result:^(bool success, id result) {
         [self.billTableView.mj_header endRefreshing];
         if (success) {
             if ([result[@"code"]integerValue] == 0) {
                 if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                     if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                        if (self.page == 0) {
+                            [self.dataArray removeAllObjects];
+                        }
                         NSArray *array = result[@"data"][@"rows"];
-                        self.dataArray = [NSMutableArray arrayWithArray:[BagLogListModel mj_objectArrayWithKeyValuesArray:array]];
-                        
+                        [self.dataArray addObjectsFromArray:[BagLogListModel mj_objectArrayWithKeyValuesArray:array]];
+                        if (array.count < 10) {
+                            [self.billTableView.mj_footer endRefreshingWithNoMoreData];
+                        }
                         [self.billTableView reloadData];
                     }
                     
@@ -156,19 +170,25 @@
     }];
 }
 - (void)loadBagLogListRequestWithStartTime:(NSString *)startTime WithEndTime:(NSString *)endTime {
-    LoginManager *manager = [LoginManager getInstance];
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/bagLog/list" params:@{@"userid":USER_ID_POS, @"startTime":startTime, @"endTime":endTime} cookie:nil result:^(bool success, id result) {
         [self.billTableView.mj_header endRefreshing];
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
-                    NSArray *array = result[@"data"][@"rows"];
-                    self.dataArray = [NSMutableArray arrayWithArray:[BagLogListModel mj_objectArrayWithKeyValuesArray:array]];
+            if ([result[@"code"] integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                        NSArray *array = result[@"data"][@"rows"];
+                        self.dataArray = [NSMutableArray arrayWithArray:[BagLogListModel mj_objectArrayWithKeyValuesArray:array]];
+                        
+                        [self.billTableView reloadData];
+                    }
                     
-                    [self.billTableView reloadData];
                 }
-                
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
+            
             
         }
         NSLog(@"result ------- %@", result);

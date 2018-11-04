@@ -202,6 +202,10 @@
                 if (self.changeShopCarCount) {
                     self.changeShopCarCount(posRootM.goodCount+1);
                 }
+            } else if ([result[@"code"]integerValue] == -1) {
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             } else {
                 HUD_ERROR(@"加入购物车失败，请稍后重试！");
             }

@@ -130,7 +130,9 @@
                 self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerChange:) userInfo:nil repeats:YES];
                 phoneCell.getCodeBtn.userInteractionEnabled = NO;
             }else{
-                HUD_TIP(result[@"msg"]);
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
             
         }
@@ -193,8 +195,10 @@
                 }];
 //                [self.navigationController popToRootViewControllerAnimated:YES];
                 
-            }else {
-                HUD_TIP(result[@"msg"]);
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
         }
     }];

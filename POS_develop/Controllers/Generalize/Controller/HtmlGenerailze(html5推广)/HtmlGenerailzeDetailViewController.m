@@ -97,7 +97,7 @@
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(98))];
     headerView.backgroundColor = WhiteColor;
     UIImageView *iconImageView = [[UIImageView alloc] init];
-    iconImageView.image = [UIImage imageNamed:self.iconStr];
+    [iconImageView sd_setImageWithURL:URL(self.iconStr)];
     [headerView addSubview:iconImageView];
     [iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(AD_HEIGHT(15));

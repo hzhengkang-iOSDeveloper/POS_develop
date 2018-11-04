@@ -428,25 +428,32 @@
 - (void)loadPosListRequest {
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agentPos/list" params:@{@"userid":USER_ID_POS, @"posBrandNo":IF_NULL_TO_STRING(self.posBrandNo), @"startPosSnNo":IF_NULL_TO_STRING(self.startTF.text), @"endPosSnNo":IF_NULL_TO_STRING(self.endTF.text)} cookie:nil result:^(bool success, id result) {
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
-                    NSArray *array = result[@"data"][@"rows"];
+            if ([result[@"code"]integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                        NSArray *array = result[@"data"][@"rows"];
                         if (self.mainDataArray.count >0) {
                             [self.mainDataArray removeAllObjects];
                         }
                         
                         [self.mainDataArray addObjectsFromArray:[PosGetModel mj_objectArrayWithKeyValuesArray:array]];
                         
-                       [self.mainTableView tableViewNoDataOrNewworkFailShowTitleWithRowCount:self.mainDataArray.count];
+                        [self.mainTableView tableViewNoDataOrNewworkFailShowTitleWithRowCount:self.mainDataArray.count];
                         
                         [self.mainTableView reloadData];
                         
                         
-                    
+                        
+                        
+                    }
                     
                 }
-                
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
+           
             
             
         }
@@ -457,7 +464,6 @@
 #pragma mark ---- 点击分配 ----
 - (void)saveAgentPosWith:(PosGetModel *)posM
 {
-    LoginManager *manager = [LoginManager getInstance];
     NSDictionary *dict = @{
                            @"userid":USER_ID_POS,
                            @"agentId":IF_NULL_TO_STRING(posM.agentId),
@@ -472,7 +478,11 @@
             if ([result[@"code"]integerValue] == 0) {
                 HUD_SUCCESS(@"分配成功！");
                 [self.navigationController popViewControllerAnimated:YES];
-            } else {
+            }else if([result[@"code"]integerValue] == -1){
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
+            }else {
                 HUD_ERROR(@"分配失败,请稍后重试");
             }
             

@@ -57,7 +57,7 @@
 
 #pragma mark - UITableViewDataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
+    [self.myAddressTableView tableViewNoDataOrNewworkFailShowTitleWithRowCount:self.dataArray.count];
     return _dataArray.count;
 }
 
@@ -191,8 +191,10 @@
                     [self.myAddressTableView endUpdates];
                     
                     [self.myAddressTableView reloadData];
-                } else {
-                    HUD_ERROR(@"操作失败，请稍后重试！");
+                } else{
+                    [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                        
+                    }];
                 }
             }
             NSLog(@"result ------- %@", result);

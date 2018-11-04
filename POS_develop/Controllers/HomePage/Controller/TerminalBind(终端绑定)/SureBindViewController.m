@@ -96,7 +96,6 @@
 }
 #pragma mark ---- 确认绑定 ----
 - (void)clickComfirBindBtn {
-    LoginManager *manager = [LoginManager getInstance];
 
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agentPos/save" params:@{@"userid":USER_ID_POS, @"agentId":self.agentId, @"posId":self.posID, @"posBrandNo":self.posBrandNo, @"posSnNo":self.posSnNo, @"bindFlag":@"1"} cookie:nil result:^(bool success, id result) {
         if (success) {
@@ -122,15 +121,23 @@
 - (void)loadPosGetRequest {
     [[HPDConnect connect] PostNetRequestMethod:[NSString stringWithFormat:@"%@%@", @"api/trans/pos/get/", self.posID] params:nil cookie:nil result:^(bool success, id result) {
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                
-                self.productNameL.text = IF_NULL_TO_STRING([result[@"data"] objectForKey:@"posBrandName"]);
-                self.viceProductNameL.text = IF_NULL_TO_STRING([result[@"data"] objectForKey:@"posTermType"]);
-                self.snL.text = [NSString stringWithFormat:@"SN:%@", IF_NULL_TO_STRING([result[@"data"] objectForKey:@"posSnNo"])];
-                self.modelL.text = [NSString stringWithFormat:@"型号:%@", IF_NULL_TO_STRING([result[@"data"] objectForKey:@"posTermModel"])];
-                
-                
+            if ([result[@"code"] integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    
+                    self.productNameL.text = IF_NULL_TO_STRING([result[@"data"] objectForKey:@"posBrandName"]);
+                    self.viceProductNameL.text = IF_NULL_TO_STRING([result[@"data"] objectForKey:@"posTermType"]);
+                    self.snL.text = [NSString stringWithFormat:@"SN:%@", IF_NULL_TO_STRING([result[@"data"] objectForKey:@"posSnNo"])];
+                    self.modelL.text = [NSString stringWithFormat:@"型号:%@", IF_NULL_TO_STRING([result[@"data"] objectForKey:@"posTermModel"])];
+                    
+                    
+                }
+            
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
+       
             
             
         }

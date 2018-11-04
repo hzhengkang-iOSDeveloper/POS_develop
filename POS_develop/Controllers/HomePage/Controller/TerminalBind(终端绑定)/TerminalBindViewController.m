@@ -139,22 +139,29 @@
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agentPos/list" params:@{@"userid":USER_ID_POS, @"agentId":IF_NULL_TO_STRING(agentId), @"bindFlag":@"0"} cookie:nil result:^(bool success, id result) {
         [self.terminalBindTableView.mj_header endRefreshing];
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
-                    NSArray *array = [NSArray arrayWithArray:[AgentPosListModel mj_objectArrayWithKeyValuesArray:result[@"data"][@"rows"]]];
-                    self.listDataArray = [array mutableCopy];
-                    if (self.dataArray.count > 0) {
-                        [self.dataArray removeAllObjects];
-                    }
-                    
-                    for (int i =0; i<array.count; i++) {
-                        AgentPosListModel *model = [array objectAtIndex:i];
-                        [self loadPosGetRequest:[NSString stringWithFormat:@"%@", model.posId] withArr:array];
+            if ([result[@"code"]integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                        NSArray *array = [NSArray arrayWithArray:[AgentPosListModel mj_objectArrayWithKeyValuesArray:result[@"data"][@"rows"]]];
+                        self.listDataArray = [array mutableCopy];
+                        if (self.dataArray.count > 0) {
+                            [self.dataArray removeAllObjects];
+                        }
+                        
+                        for (int i =0; i<array.count; i++) {
+                            AgentPosListModel *model = [array objectAtIndex:i];
+                            [self loadPosGetRequest:[NSString stringWithFormat:@"%@", model.posId] withArr:array];
+                        }
+                        
                     }
                     
                 }
-                
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
+           
             
             
         }

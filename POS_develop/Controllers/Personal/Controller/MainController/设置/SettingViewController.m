@@ -226,8 +226,15 @@
             NSLog(@"success = %d result = %@",success,result);
             if (success) {
                 NSLog(@"%@",result);
-                SettingTableViewCell *cell = [self.settingTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-                [cell.iconImageV sd_setImageWithURL:URL(IF_NULL_TO_STRING(result[@"url"])) placeholderImage:ImageNamed(@"头像2")];
+                if ([result[@"code"] integerValue] == 0) {
+                    SettingTableViewCell *cell = [self.settingTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+                    [cell.iconImageV sd_setImageWithURL:URL(IF_NULL_TO_STRING(result[@"url"])) placeholderImage:ImageNamed(@"头像2")];
+                }else{
+                    [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                        
+                    }];
+                }
+                
             }
         }];
         
@@ -249,9 +256,16 @@
     
     [[HPDConnect connect] GetNetRequestMethod:[NSString stringWithFormat:@"sys/user/userinfo%@",urlStr] params:nil cookie:nil result:^(bool success, id result) {
         if (success) {
-            self.userInfoDict = result[@"data"];
-            
-            [self.settingTableView reloadData];
+            if ([result[@"code"]integerValue ] == 0) {
+                self.userInfoDict = result[@"data"];
+                
+                [self.settingTableView reloadData];
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
+            }
+           
         }
         NSLog(@"result ------- %@", result);
     }];

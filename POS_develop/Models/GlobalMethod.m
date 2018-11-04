@@ -303,12 +303,12 @@
             [UIVC.view endEditing:YES];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 UIAlertShowMessage(@"用户登录超时，请重新登录", ^{
-                   
+                    [USER_DEFAULT removeObjectForKey:UserDict];
+                    LoginTypeViewController * baseVC = [[LoginTypeViewController alloc] init];
+                    [UIApplication sharedApplication].keyWindow.rootViewController = baseVC;
                 });
                 
-                [USER_DEFAULT removeObjectForKey:UserDict];
-                LoginTypeViewController * baseVC = [[LoginTypeViewController alloc] init];
-                [UIApplication sharedApplication].keyWindow.rootViewController = baseVC;
+               
             });
            
         }else{

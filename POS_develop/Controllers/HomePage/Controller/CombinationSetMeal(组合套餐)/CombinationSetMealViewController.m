@@ -28,7 +28,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self confir];
-    self.page = 1;
+    self.page = 0;
     self.dataArray = [NSMutableArray array];
     [self creatTableView];
     [self loadPackageChargeListRequest];
@@ -51,7 +51,7 @@
     
     MJWeakSelf;
     myTable.mj_header = [SLRefreshHeader headerWithRefreshingBlock:^{
-        weakSelf.page = 1;
+        weakSelf.page = 0;
         [weakSelf loadPackageChargeListRequest];
     }];
     
@@ -177,6 +177,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    [self.myTable tableViewNoDataOrNewworkFailShowTitleWithRowCount:self.dataArray.count];
     return self.dataArray.count;
 }
 
@@ -221,8 +222,9 @@
 
 #pragma mark ---- 套餐接口 ----
 - (void)loadPackageChargeListRequest {
+    NSDictionary *dict = @{@"offset":@(_page*10), @"limit":@10};
     //@{@"offset":@(_page*10), @"limit":@10}
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/packageCharge/list" params:nil cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/packageCharge/list" params:dict cookie:nil result:^(bool success, id result) {
         [self.myTable.mj_header endRefreshing];
         [self.myTable.mj_footer endRefreshing];
         if (success) {
@@ -242,7 +244,6 @@
                             [self.myTable.mj_footer endRefreshingWithNoMoreData];
                         }
                         
-                        [self.myTable tableViewNoDataOrNewworkFailShowTitleWithRowCount:self.dataArray.count];
                         
                         [self.myTable reloadData];
                     }
@@ -309,6 +310,10 @@
                 HUD_SUCCESS(@"成功加入购物车");
                 //发送通知 更改nav的购物车数量
                 [[NSNotificationCenter defaultCenter]postNotificationName:@"changeShopCarCount" object:nil userInfo:@{@"goodCount":@"1"}];
+            } } else if ([result[@"code"]integerValue] == -1) {
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             } else {
                 HUD_ERROR(@"加入购物车失败，请稍后重试！");
             }

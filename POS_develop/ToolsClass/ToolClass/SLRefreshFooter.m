@@ -110,7 +110,7 @@
             [self stopImageViewAnimation];
             self.refreshImgView.image = ImageNamed(@"home_end");
             self.titleLabel.hidden = NO;
-            self.titleLabel.text = @"直到世界尽头";
+            self.titleLabel.text = @"暂无更多数据";
         }
             break;
         default:

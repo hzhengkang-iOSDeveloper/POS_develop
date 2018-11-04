@@ -84,23 +84,30 @@
 {
     [[HPDConnect connect] PostNetRequestMethod:[NSString stringWithFormat:@"api/trans/product/list?chargeType=%@",@"1"] params:nil cookie:nil result:^(bool success, id result) {
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
-                    NSArray *arr = result[@"data"][@"rows"];                    
-                    if (arr.count >3) {
-                        for (int i= 0; i<arr.count; i++) {
-                            if (i <3) {
-                                [self.dataArr addObject:[PosHomeModel mj_objectWithKeyValues:arr[i]]];
+            if ([result[@"code"]integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                        NSArray *arr = result[@"data"][@"rows"];
+                        if (arr.count >3) {
+                            for (int i= 0; i<arr.count; i++) {
+                                if (i <3) {
+                                    [self.dataArr addObject:[PosHomeModel mj_objectWithKeyValues:arr[i]]];
+                                }
+                            }
+                        } else {
+                            if (arr.count > 0) {
+                                [self.dataArr addObjectsFromArray:[PosHomeModel mj_objectArrayWithKeyValuesArray:arr]];
                             }
                         }
-                    } else {
-                        if (arr.count > 0) {
-                            [self.dataArr addObjectsFromArray:[PosHomeModel mj_objectArrayWithKeyValuesArray:arr]];
-                        }
+                        [self.pageController reloadData];
                     }
-                    [self.pageController reloadData];
                 }
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
+            
             
         }
         NSLog(@"result ------- %@", result);

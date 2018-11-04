@@ -603,18 +603,7 @@
                     AddressDOModel *addressM = [AddressDOModel mj_objectWithKeyValues:self.billListM.addressDO];
                     self.orderDetailTable.tableHeaderView = [self creatTableHeaderViewWith:addressM];
                     self.orderDetailTable.tableFooterView = [self creatTableFooterView];
-                    if ([self.billListM.orderStatus isEqualToString:@"10"]) {
-                        self.navigationItemTitle = @"待付款";
-                        
-                    } else if ([self.billListM.orderStatus isEqualToString:@"20"] ) {
-                        //确认收货
-                        self.navigationItemTitle = @"待发货";
-                    } else if ([self.billListM.orderStatus isEqualToString:@"30"] ) {
-                        //待确认
-                        self.navigationItemTitle = @"待确认";
-                    }  else if ([self.billListM.orderStatus isEqualToString:@"40"]) {
-                        self.navigationItemTitle = @"订单完成";
-                    }
+                    self.navigationItemTitle = self.billListM.orderStatusZh;
                     [self getWuLiuInfoRequest];
                     [self creatCellNewArr];
                 }
@@ -699,11 +688,17 @@
         [[HPDConnect connect] PostNetRequestMethod:@"api/trans/orderPay/getPayUuid" params:bodyDic cookie:nil result:^(bool success, id result) {
             if (success) {
                 if ([result[@"code"]integerValue] == 0) {
+                    NSString *Member_IdStr  = result[@"code"];
+                    int  Member_Id = [Member_IdStr intValue];
                     NSDictionary *wxPayDict = @{
                                                 @"isAppMode":@1,
-                                                @"orderPayId":result[@"data"]
+                                                @"orderPayId":@(Member_Id)
                                                 };
                     [self creatWxPay:wxPayDict];
+                }else{
+                    [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                        
+                    }];
                 }
                
             }
@@ -715,13 +710,17 @@
         [[HPDConnect connect] PostNetRequestMethod:@"api/trans/orderPay/getPayUuid" params:bodyDic cookie:nil result:^(bool success, id result) {
             if (success) {
                 if ([result[@"code"]integerValue] == 0) {
-                    NSString *Member_IdStr  = @"13";
+                    NSString *Member_IdStr  = result[@"code"];
                     int  Member_Id = [Member_IdStr intValue];
                 NSDictionary *wxPayDict = @{
                                             @"isAppMode":@1,
                                             @"orderPayId":@(Member_Id)
                                             };
                 [self creatAliPay:wxPayDict];
+                }else{
+                    [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                        
+                    }];
                 }
             }
             NSLog(@"result ------- %@", result);
@@ -808,6 +807,10 @@
                     self.updateDataHandler();
                 }
                 [self.navigationController popViewControllerAnimated:YES];
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
         }
         NSLog(@"result ------- %@", result);
@@ -827,7 +830,9 @@
                 }
                 [self.navigationController popViewControllerAnimated:YES];
             }else{
-                HUD_ERROR(@"操作失败，请稍后重试！");
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
         }
         NSLog(@"result ------- %@", result);

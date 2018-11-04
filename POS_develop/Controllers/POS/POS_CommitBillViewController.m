@@ -506,11 +506,17 @@
         [[HPDConnect connect] PostNetRequestMethod:@"api/trans/orderPay/getPayUuid" params:bodyDic cookie:nil result:^(bool success, id result) {
             if (success) {
                 if ([result[@"code"]integerValue] == 0) {
+                    NSString *Member_IdStr  = result[@"code"];
+                    int  Member_Id = [Member_IdStr intValue];
                 NSDictionary *wxPayDict = @{
                                             @"isAppMode":@1,
-                                            @"orderPayId":result[@"data"]
+                                            @"orderPayId":@(Member_Id)
                                             };
                 [self creatWxPay:wxPayDict];
+                }else{
+                    [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                        
+                    }];
                 }
             }
             NSLog(@"result ------- %@", result);
@@ -521,11 +527,17 @@
         [[HPDConnect connect] PostNetRequestMethod:@"api/trans/orderPay/getPayUuid" params:bodyDic cookie:nil result:^(bool success, id result) {
             if (success) {
                 if ([result[@"code"]integerValue] == 0) {
+                    NSString *Member_IdStr  = result[@"code"];
+                    int  Member_Id = [Member_IdStr intValue];
                 NSDictionary *wxPayDict = @{
                                             @"isAppMode":@1,
-                                            @"orderPayId":result[@"data"]
+                                            @"orderPayId":@(Member_Id)
                                             };
                 [self creatAliPay:wxPayDict];
+                }else{
+                    [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                        
+                    }];
                 }
             }
             NSLog(@"result ------- %@", result);
@@ -606,6 +618,10 @@
                 BuySuccessViewController *vc = [[BuySuccessViewController alloc]init];
                 vc.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:vc animated:YES];
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
         }
         NSLog(@"result ------- %@", result);

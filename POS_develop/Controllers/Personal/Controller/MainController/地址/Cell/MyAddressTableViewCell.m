@@ -132,7 +132,7 @@
                 }
 
             } else{
-                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                [GlobalMethod FromUintAPIResult:result withVC:self.viewController errorBlcok:^(NSDictionary *dict) {
                     
                 }];
             }

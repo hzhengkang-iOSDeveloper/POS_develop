@@ -9,7 +9,7 @@
 #import "PD_BillZhuangZhangViewController.h"
 
 @interface PD_BillZhuangZhangViewController ()
-
+@property (nonatomic, weak) UILabel *label;
 @end
 
 @implementation PD_BillZhuangZhangViewController
@@ -20,28 +20,33 @@
     self.navigationItemTitle = @"转账说明";
     
     self.view.backgroundColor = WhiteColor;
+    [self getZhuanZhangTextRequest];
     
-    
-    [UILabel getLabelWithFont:F13 textColor:C000000 superView:self.view masonrySet:^(UILabel *view, MASConstraintMaker *make) {
+   UILabel *label =  [UILabel getLabelWithFont:F13 textColor:C000000 superView:self.view masonrySet:^(UILabel *view, MASConstraintMaker *make) {
         make.left.top.offset(AD_HEIGHT(15));
         make.right.offset(-AD_HEIGHT(15));
         
         view.textAlignment = NSTextAlignmentLeft;
         view.numberOfLines = 0;
-        view.text = @"这段文字后台可以编辑，主要是转账的流程，一些注意事项 以及转账的账号信息等等。";
-        
+       
         [view changeLabelHeightWithWidth:(ScreenWidth-AD_HEIGHT(30))];
     }];
+    self.label = label;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)getZhuanZhangTextRequest
+{
+    [[HPDConnect connect]PostNetRequestMethod:@"api/trans/orderPay/getPayDesc" params:nil cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"code"]integerValue] == 0) {
+                self.label.text = result[@"data"];
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
+            }
+        }
+    }];
 }
-*/
 
 @end

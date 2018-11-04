@@ -201,22 +201,30 @@
 
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/transaction/list" params:@{@"userid":USER_ID_POS, @"startTime":defaultObject(self.datePickView.datePickerStrA, @""), @"endTime":defaultObject(self.datePickView.datePickerStrB, @""), @"agentName":defaultObject(self.mainVie.name.text, @""), @"agentNo":defaultObject(self.mainVie.account.text, @""), @"posSnNo":defaultObject(self.mainVie.number.text, @""), @"posBrandNo":defaultObject(self.mainVie.brandLabel.text, @""), @"agentType":_agentBtn.selected?@"1":@"0"} cookie:nil result:^(bool success, id result) {
         if (success) {
-            if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
-                    NSArray *array = result[@"data"][@"rows"];
-                    if (self.dataArray.count > 0) {
-                        [self.dataArray removeAllObjects];
+            if ([result[@"code"] integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                        NSArray *array = result[@"data"][@"rows"];
+                        if (self.dataArray.count > 0) {
+                            [self.dataArray removeAllObjects];
+                        }
+                        [self.dataArray addObjectsFromArray:[TransactionListModel mj_objectArrayWithKeyValuesArray:array]];
+                        
+                        TransactionListViewController *vc = [[TransactionListViewController alloc] init];
+                        
+                        //                    vc.dataArray = [NSMutableArray array];
+                        vc.dataArray = [self.dataArray mutableCopy];
+                        [self.navigationController pushViewController:vc animated:YES];
+                        
                     }
-                    [self.dataArray addObjectsFromArray:[TransactionListModel mj_objectArrayWithKeyValuesArray:array]];
-                    
-                    TransactionListViewController *vc = [[TransactionListViewController alloc] init];
-                    
-//                    vc.dataArray = [NSMutableArray array];
-                    vc.dataArray = [self.dataArray mutableCopy];
-                    [self.navigationController pushViewController:vc animated:YES];
-                    
                 }
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
+            
+           
             
         }
         NSLog(@"result ------- %@", result);

@@ -17,6 +17,7 @@
 @property (nonatomic, copy) NSString *deliveryPrice;
 @property (nonatomic, copy) NSString *orderPrice;
 @property (nonatomic, copy) NSString *orderStatus;
+@property (nonatomic, copy) NSString *orderStatusZh;
 @property (nonatomic, copy) NSString *createtime;
 @property (nonatomic, copy) NSString *createusername;
 @property (nonatomic, copy) NSString *updateuserno;

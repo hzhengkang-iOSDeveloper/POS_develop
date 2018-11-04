@@ -437,11 +437,18 @@
         [[HPDConnect connect] PostNetRequestMethod:@"api/trans/cart/calculate" params:dict cookie:nil result:^(bool success, id result) {
             HUD_HIDE;
             if (success) {
-                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                    self.allMoneyLabel.attributedText = [self setMoneyStr:[NSString stringWithFormat:@"合计：%@元",result[@"data"][@"totalPrice"]]];
-                    self.yunFeiLabel.attributedText = [self setDeliveryPriceStr:[NSString stringWithFormat:@"运费%@元",result[@"data"][@"deliveryPrice"]]];
-                    
+                if ([result[@"code"]integerValue] == 0) {
+                    if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                        self.allMoneyLabel.attributedText = [self setMoneyStr:[NSString stringWithFormat:@"合计：%@元",result[@"data"][@"totalPrice"]]];
+                        self.yunFeiLabel.attributedText = [self setDeliveryPriceStr:[NSString stringWithFormat:@"运费%@元",result[@"data"][@"deliveryPrice"]]];
+                        
+                    }
+                }else{
+                    [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                        
+                    }];
                 }
+                
                 
             }
             NSLog(@"result ------- %@", result);
@@ -650,6 +657,10 @@
                 vc.hidesBottomBarWhenPushed = YES;
                 vc.orderId = [NSString stringWithFormat:@"%@",result[@"data"]];
                 [self.navigationController pushViewController:vc animated:YES];
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
             
         }

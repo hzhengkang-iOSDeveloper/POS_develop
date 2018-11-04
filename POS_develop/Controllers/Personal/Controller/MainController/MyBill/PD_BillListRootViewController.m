@@ -16,6 +16,7 @@
 @interface PD_BillListRootViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, weak) UITableView *orderTableView;
 @property (nonatomic, strong) NSMutableArray *orderArray;
+@property (nonatomic, assign) int page;//接口数据当前页数
 @end
 
 @implementation PD_BillListRootViewController
@@ -23,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.orderArray = [NSMutableArray array];
+    self.page = 0;
     [self creatTableView];
     [self loadOrderListRequestWithIndex:self.index];
 }
@@ -39,12 +41,14 @@
     
     MJWeakSelf;
     orderTableView.mj_header = [SLRefreshHeader headerWithRefreshingBlock:^{
+        weakSelf.page = 0;
         [weakSelf loadOrderListRequestWithIndex:self.index];
     }];
     
-//    orderTableView.mj_footer = [SLRefreshFooter footerWithRefreshingBlock:^{
-//
-//    }];
+    orderTableView.mj_footer = [SLRefreshFooter footerWithRefreshingBlock:^{
+        weakSelf.page ++;
+        [weakSelf loadOrderListRequestWithIndex:self.index];
+    }];
     [_orderTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.offset(0);
         make.bottom.equalTo(self.mas_bottomLayoutGuideTop).offset(0);
@@ -131,15 +135,25 @@
 #pragma mark ------------------------------------ 接口 ------------------------------------
 - (void)loadOrderListRequestWithIndex:(NSString *)index{
     HUD_SHOW;
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/order/list" params:@{@"orderStatus":index} cookie:nil result:^(bool success, id result) {
+    NSDictionary *dict = @{@"offset":@(_page*10), @"limit":@10,@"orderStatus":index};
+
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/order/list" params:dict cookie:nil result:^(bool success, id result) {
         HUD_HIDE;
         [self.orderTableView.mj_header endRefreshing];
+        [self.orderTableView.mj_footer endRefreshing];
         if (success) {
              if ([result[@"code"]integerValue] == 0) {
                  if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                      if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                         if (self.page == 0) {
+                             [self.orderArray removeAllObjects];
+                         }
                          NSArray *array = result[@"data"][@"rows"];
-                         self.orderArray = [NSMutableArray arrayWithArray:[BillListModel mj_objectArrayWithKeyValuesArray:array]];
+                        [self.orderArray addObjectsFromArray:[BillListModel mj_objectArrayWithKeyValuesArray:array]];
+                         
+                         if (array.count < 10) {
+                             [self.orderTableView.mj_footer endRefreshingWithNoMoreData];
+                         }
                          
                          [self.orderTableView reloadData];
                      }
@@ -169,7 +183,9 @@
                 HUD_SUCCESS(@"操作成功！");
                 [self loadOrderListRequestWithIndex:self.index];
             }else{
-                HUD_ERROR(@"操作失败，请稍后重试！");
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
             }
         }
         NSLog(@"result ------- %@", result);

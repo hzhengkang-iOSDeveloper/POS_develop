@@ -18,7 +18,7 @@
     
     if (rowCount == 0) {
         UILabel *bgLab = [[UILabel alloc] init];
-        bgLab.text = @"暂时没有历史记录";
+        bgLab.text = @"暂无数据";
         bgLab.textColor = [UIColor colorWithHexString:@"#666666"];
         bgLab.font = F19;
         bgLab.textAlignment = NSTextAlignmentCenter;

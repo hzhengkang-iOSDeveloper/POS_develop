@@ -35,22 +35,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "POS_develop/Controllers/Generalize/Controller/HtmlGenerailze(html5&#x63a8;&#x5e7f;)/HtmlGenerailzeDetailViewController.m"
-            timestampString = "562921117.690944"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
-            landmarkName = "-loadShareH5ReaderRequest"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "POS_develop/Controllers/Generalize/Controller/QRGenerailze(&#x4e8c;&#x7ef4;&#x7801;&#x63a8;&#x5e7f;)/QRGenerailzeViewController.m"
             timestampString = "562942877.142725"
             startingColumnNumber = "9223372036854775807"
@@ -67,124 +51,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "POS_develop/Controllers/Personal/Controller/MainController/MyBill/PD_BillDetailViewController.m"
-            timestampString = "562958146.168726"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "700"
-            endingLineNumber = "700"
-            landmarkName = "-payRequest:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "POS_develop/Controllers/POS/POS_CommitBillViewController.m"
-            timestampString = "562958146.1690381"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "414"
-            endingLineNumber = "414"
-            landmarkName = "-loadOrderGetRequest"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[POS_CommitBillViewController loadOrderGetRequest]"
-                  moduleName = "POS_develop"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/huzhengkang/Desktop/POS/POS_develop/POS_develop/Controllers/POS/POS_CommitBillViewController.m"
-                  timestampString = "562959053.985185"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "414"
-                  endingLineNumber = "414"
-                  offsetFromSymbolStart = "72">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__51-[POS_CommitBillViewController loadOrderGetRequest]_block_invoke"
-                  moduleName = "POS_develop"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/huzhengkang/Desktop/POS/POS_develop/POS_develop/Controllers/POS/POS_CommitBillViewController.m"
-                  timestampString = "562959053.986581"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "415"
-                  endingLineNumber = "415"
-                  offsetFromSymbolStart = "72">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.458"
-                  moduleName = "POS_develop"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/huzhengkang/Desktop/POS/POS_develop/POS_develop/Controllers/POS/POS_CommitBillViewController.m"
-                  timestampString = "562959053.987969"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "414"
-                  endingLineNumber = "414"
-                  offsetFromSymbolStart = "20">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "POS_develop/Controllers/POS/POS_CommitBillViewController.m"
-            timestampString = "562958146.169088"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "423"
-            endingLineNumber = "423"
-            landmarkName = "-loadOrderGetRequest"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "POS_develop/Controllers/POS/shopCar(&#x8d2d;&#x7269;&#x8f66;)/POS_ShopCarViewController.m"
             timestampString = "562958146.169135"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "474"
             endingLineNumber = "474"
-            landmarkName = "-getShopCarRequest"
+            landmarkName = "-setDeliveryPriceStr:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "POS_develop/Controllers/Personal/Controller/MainController/MyBill/PD_BillDetailViewController.m"
-            timestampString = "562959052.425989"
+            filePath = "POS_develop/Controllers/Generalize/Controller/HtmlGenerailze(html5&#x63a8;&#x5e7f;)/HtmlGenerailzeViewController.m"
+            timestampString = "562996377.959384"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "603"
-            endingLineNumber = "603"
-            landmarkName = "-loadOrderGetRequest"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
