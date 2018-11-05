@@ -21,7 +21,7 @@
 #import "HDEmoji.h"
 #import "HDEmotionEscape.h"
 #import "HDCustomMessageCell.h"
-#import "UIImage+GIF.h"
+#import "UIImage+EMGIF.h"
 #import "HDLocalDefine.h"
 #import "HDSDKHelper.h"
 #import "HDBubbleView+Transform.h"
@@ -138,7 +138,81 @@ typedef enum : NSUInteger {
     [self setupCell];
     [self setupEmotion];
 //    [self tableViewDidTriggerHeaderRefresh]; // 父类不再调用，由子类调用
+    [self robotWelcome];
 }
+
+- (void)robotWelcome
+{
+    // 获取机器人欢迎语 ，2155换成自己的TenantId
+    NSString *urlStr = [NSString stringWithFormat:@"https://kefu.easemob.com/v1/Tenants/8019/robots/visitor/greetings/app"];
+    NSString *newStr = [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL *url = [NSURL URLWithString:newStr];
+    NSURLRequest *requst = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10];
+    //异步链接(形式1,较少用)
+    [NSURLConnection sendAsynchronousRequest:requst queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        
+        // 解析
+        NSString *result  =[[ NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        //同样的可以替换字符
+        NSLog(@"result-----%@", result);
+        NSString *str = [result stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
+        NSString *str1 = [str stringByReplacingOccurrencesOfString:@"\"{" withString:@"{"];
+        NSString *str2 = [str1 stringByReplacingOccurrencesOfString:@"}\"" withString:@"}"];
+        // JSON字符串转字典
+        NSDictionary *dic = [self dictionaryWithJsonString:str2];
+        // 取消息的ext
+        NSLog(@"dic---%@",dic);
+        
+        NSString *robotText = nil;
+        NSDictionary *dicExt = [NSDictionary dictionary];
+        if ([[dic objectForKey:@"greetingText"] isKindOfClass:[NSString class]]) {
+            
+            robotText = [dic objectForKey:@"greetingText"];
+        } else {
+            dicExt = [[dic objectForKey:@"greetingText"] objectForKey:@"ext"];
+//            robotText = [dic objectForKey:@"greetingText"];
+
+        }
+        
+        //构建消息
+        
+        EMTextMessageBody *bdy = [[EMTextMessageBody alloc] initWithText:robotText];
+        NSString *from = [[HDClient sharedClient] currentUsername];
+        
+        // converID改成自己的IM服务号
+        HDMessage *message = [[HDMessage alloc] initWithConversationID:_conversation.conversationId from:from to:_conversation.conversationId body:bdy];
+        message.ext = dicExt;
+        message.direction = 1;
+        message.status = HDMessageStatusSuccessed;
+        // 消息添加到UI
+        [self addMessageToDataSource:message progress:nil];
+        // 消息插入到会话
+        HDError *pError;
+        [_conversation insertMessage:message error:&pError];
+        
+    }];
+    
+}
+
+// JSON字符串转化为字典
+- (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString
+{
+    if (jsonString == nil) {
+        return nil;
+    }
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    if(err)
+    {
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+    return dic;
+}
+
 
 - (void)setupCell {
     
@@ -150,6 +224,7 @@ typedef enum : NSUInteger {
     [[HDBaseMessageCell appearance] setAvatarSize:40.f];
     [[HDBaseMessageCell appearance] setAvatarCornerRadius:20.f];
     [[HDChatBarMoreView appearance] setMoreViewBackgroundColor:[UIColor colorWithRed:240 / 255.0 green:242 / 255.0 blue:247 / 255.0 alpha:1.0]];
+    [[HDChatBarMoreView appearance] updateItemWithImage:[UIImage imageNamed:@"123"] highlightedImage:[UIImage imageNamed:@"123"] title:@"title" atIndex:1];
 }
 
 - (void)chatToolbarState
@@ -1131,6 +1206,17 @@ typedef enum : NSUInteger {
 - (void)chatToolbarDidChangeFrameToHeight:(CGFloat)toHeight
 {
     [UIView animateWithDuration:0.3 animations:^{
+        
+//        bool ipx = ([UIScreen mainScreen].bounds.size.height == 812.0f)?YES:NO;
+//        float a = ipx?44:20;
+//        float b = 44;
+//        
+//        
+//        CGRect rect = self.tableView.frame;
+//        rect.origin.y = a + b;
+//        rect.size.height = self.view.frame.size.height - toHeight - iPhoneXBottomHeight - a - b;
+//        self.tableView.frame = rect;
+        
         CGRect rect = self.tableView.frame;
         rect.origin.y = 0;
         rect.size.height = self.view.frame.size.height - toHeight - iPhoneXBottomHeight;
@@ -1802,7 +1888,6 @@ typedef enum : NSUInteger {
     _isSendingEvaluateMessage = NO;
 }
 
-
 - (void)commitSatisfactionWithControlArguments:(ControlArguments *)arguments type:(ControlType *)type evaluationTagsArray:(NSMutableArray *)tags{
     HDMessage *message = [HDSDKHelper textHMessageFormatWithText:@"" to:self.conversation.conversationId];
     HDControlMessage *hCtrl = [HDControlMessage new];
@@ -1826,6 +1911,8 @@ typedef enum : NSUInteger {
         } else {
             [weakself showHint:NSLocalizedString(@"comment_fail", @"Add comment fail.")];
         }
+        HDMessage * message = [_conversation loadMessageWithId:@"评价邀请的messageId" error:nil];
+        message.ext = aMessage.ext;
         [_conversation removeMessageWithMessageId:aMessage.messageId error:nil];
     }];
 }

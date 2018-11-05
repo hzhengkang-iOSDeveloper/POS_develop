@@ -93,17 +93,6 @@
             view.text = @"请选择收货地址";
         }];
         
-        //右侧箭头
-        UIImageView *rightImageV = [[UIImageView alloc]init];
-        rightImageV.contentMode = UIViewContentModeScaleAspectFit;
-        rightImageV.image = ImageNamed(@"图层2拷贝2");
-        [headerView addSubview:rightImageV];
-        [rightImageV mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.offset(-AD_HEIGHT(16));
-            make.centerY.offset(0);
-            make.size.mas_offset(CGSizeMake(AD_HEIGHT(8), AD_HEIGHT(16)));
-        }];
-        
         
         
     } else {
@@ -178,6 +167,17 @@
     }];
     
     }
+    
+    //右侧箭头
+    UIImageView *rightImageV = [[UIImageView alloc]init];
+    rightImageV.contentMode = UIViewContentModeScaleAspectFit;
+    rightImageV.image = ImageNamed(@"图层2拷贝2");
+    [headerView addSubview:rightImageV];
+    [rightImageV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.offset(-AD_HEIGHT(16));
+        make.centerY.offset(0);
+        make.size.mas_offset(CGSizeMake(AD_HEIGHT(8), AD_HEIGHT(16)));
+    }];
     return headerView;
 }
 

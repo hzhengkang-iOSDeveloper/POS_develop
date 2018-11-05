@@ -73,7 +73,17 @@
 #pragma mark ---- 客服 ----
 - (void)clickInfomationerBtn
 {
-    
+    HDClient *client = [HDClient sharedClient];
+    if (client.isLoggedInBefore != YES) {
+        HDError *error = [client loginWithUsername:@"username" password:@"password"];
+        if (!error) { //登录成功
+        } else { //登录失败
+            return;
+        }
+    }
+    // 进入会话页面
+    HDMessageViewController *chatVC = [[HDMessageViewController alloc] initWithConversationChatter:@"IM 服务号"]; // 获取地址：kefu.easemob.com，“管理员模式 > 渠道管理 > 手机APP”页面的关联的“IM服务号”
+    [self.viewController.navigationController pushViewController:chatVC animated:YES];
 }
 
 #pragma mark ---- 确认收货 ----

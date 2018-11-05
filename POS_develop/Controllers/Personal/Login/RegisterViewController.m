@@ -282,6 +282,13 @@
         HUD_TIP(@"密码不能小于8位");
         return;
     }
+    
+    if ([self.recommendTF.text isEqualToString:@""] || self.recommendTF.text.length ==0) {
+        HUD_TIP(@"请输入推荐码或者推荐人手机号");
+        return;
+    }
+    
+    
     if (!self.selectBtn.selected) {
         HUD_TIP(@"请先同意“服务条款”和“隐私权相关政策”");
         return;

@@ -108,7 +108,7 @@
     UIView *headerView = [[UIView alloc]init];
     headerView.backgroundColor = WhiteColor;
     PayDOModel *payDoModel = [PayDOModel mj_objectWithKeyValues:self.billListM.payDO];
-
+    
     if ([self.billListM.orderStatus isEqualToString:@"10"]) {
         if (![payDoModel.payType isEqualToString:@"2"]) {
             headerView.userInteractionEnabled = YES;
@@ -118,42 +118,76 @@
         
     }
     
-    
-    //收件人姓名
-    UILabel *receiverNameLabel = [UILabel getLabelWithFont:FB13 textColor:C000000 superView:headerView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
-        make.left.offset(AD_HEIGHT(29));
-        make.top.offset(AD_HEIGHT(13));
+    if (addressM == nil || !addressM) {
+        [UILabel getLabelWithFont:F15 textColor:CF70F0F superView:headerView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
+            make.left.offset(AD_HEIGHT(15));
+            make.centerY.offset(0);
+            
+            view.textAlignment = NSTextAlignmentLeft;
+            view.text = @"请选择收货地址";
+        }];
         
-        view.text = IF_NULL_TO_STRING(addressM.receiverName);
-    }];
-    
-    //收件人手机号
-    UILabel *receiverPhoneLabel = [UILabel getLabelWithFont:FB13 textColor:C000000 superView:headerView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
-        make.left.equalTo(receiverNameLabel.mas_right).offset(AD_HEIGHT(8));
-        make.top.offset(AD_HEIGHT(14));
         
-        view.text = [NSString numberSuitScanf:IF_NULL_TO_STRING(addressM.receiverMp)];
-    }];
-    //默认地址标志
-    UILabel *moRenAddressLabel  = [UILabel getLabelWithFont:F9 textColor:C000000 superView:headerView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
-        make.left.equalTo(receiverPhoneLabel.mas_right).offset(AD_HEIGHT(25));
-        make.centerY.equalTo(receiverPhoneLabel.mas_centerY);
-        make.size.mas_offset(CGSizeMake(AD_HEIGHT(24), AD_HEIGHT(12)));
         
-        view.text = @"默认";
-        view.textAlignment = NSTextAlignmentCenter;
-        view.layer.masksToBounds = YES;
-        view.layer.cornerRadius = 1;
-        view.backgroundColor = RGB(238, 238, 238);
-        view.layer.borderWidth = 0.5;
-        view.layer.borderColor = C000000.CGColor;
-    }];
-    self.moRenAddressLabel = moRenAddressLabel;
-    if ([addressM.deleteflag isEqualToString:@"0"]) {
-        moRenAddressLabel.hidden = NO;
+        
     } else {
-        moRenAddressLabel.hidden = YES;
+        //收件人姓名
+        UILabel *receiverNameLabel = [UILabel getLabelWithFont:FB13 textColor:C000000 superView:headerView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
+            make.left.offset(AD_HEIGHT(29));
+            make.top.offset(AD_HEIGHT(13));
+            
+            view.text = IF_NULL_TO_STRING(addressM.receiverName);
+        }];
+        
+        //收件人手机号
+        UILabel *receiverPhoneLabel = [UILabel getLabelWithFont:FB13 textColor:C000000 superView:headerView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
+            make.left.equalTo(receiverNameLabel.mas_right).offset(AD_HEIGHT(8));
+            make.top.offset(AD_HEIGHT(14));
+            
+            view.text = [NSString numberSuitScanf:IF_NULL_TO_STRING(addressM.receiverMp)];
+        }];
+        //默认地址标志
+        UILabel *moRenAddressLabel  = [UILabel getLabelWithFont:F9 textColor:C000000 superView:headerView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
+            make.left.equalTo(receiverPhoneLabel.mas_right).offset(AD_HEIGHT(25));
+            make.centerY.equalTo(receiverPhoneLabel.mas_centerY);
+            make.size.mas_offset(CGSizeMake(AD_HEIGHT(24), AD_HEIGHT(12)));
+            
+            view.text = @"默认";
+            view.textAlignment = NSTextAlignmentCenter;
+            view.layer.masksToBounds = YES;
+            view.layer.cornerRadius = 1;
+            view.backgroundColor = RGB(238, 238, 238);
+            view.layer.borderWidth = 0.5;
+            view.layer.borderColor = C000000.CGColor;
+        }];
+        self.moRenAddressLabel = moRenAddressLabel;
+        if ([addressM.deleteflag isEqualToString:@"0"]) {
+            moRenAddressLabel.hidden = NO;
+        } else {
+            moRenAddressLabel.hidden = YES;
+        }
+        
+        
+        //收货地址图片
+        UIImageView *receiverAddressImageV = [UIImageView new];
+        receiverAddressImageV.contentMode = UIViewContentModeScaleAspectFit;
+        receiverAddressImageV.image = ImageNamed(@"地图");
+        [headerView addSubview:receiverAddressImageV];
+        [receiverAddressImageV mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(receiverNameLabel.mas_bottom).offset(AD_HEIGHT(8));
+            make.left.offset(AD_HEIGHT(16));
+        }];
+        
+        
+        //收货地址
+        [UILabel getLabelWithFont:F12 textColor:C000000 superView:headerView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
+            make.left.equalTo(receiverAddressImageV.mas_right).offset(AD_HEIGHT(3));
+            make.top.equalTo(receiverAddressImageV.mas_top);
+            
+            view.text = [NSString stringWithFormat:@"收货地址：%@%@%@",IF_NULL_TO_STRING(addressM.province),IF_NULL_TO_STRING(addressM.city),IF_NULL_TO_STRING(addressM.county)];
+        }];
     }
+    
     
     //右侧箭头
     UIImageView *rightImageV = [[UIImageView alloc]init];
@@ -162,10 +196,10 @@
     [headerView addSubview:rightImageV];
     [rightImageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.offset(-AD_HEIGHT(16));
-        make.top.offset(AD_HEIGHT(21));
+        make.centerY.offset(0);
         make.size.mas_offset(CGSizeMake(AD_HEIGHT(8), AD_HEIGHT(16)));
     }];
-        //支付方式，0:微信，1:支付宝，2:线下转账
+    //支付方式，0:微信，1:支付宝，2:线下转账
     if ([self.billListM.orderStatus isEqualToString:@"10"]) {
         if ([payDoModel.payType isEqualToString:@"2"]) {
             rightImageV.hidden = YES;
@@ -176,31 +210,14 @@
         rightImageV.hidden = YES;
     }
     
-    //收货地址图片
-    UIImageView *receiverAddressImageV = [UIImageView new];
-    receiverAddressImageV.contentMode = UIViewContentModeScaleAspectFit;
-    receiverAddressImageV.image = ImageNamed(@"地图");
-    [headerView addSubview:receiverAddressImageV];
-    [receiverAddressImageV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(receiverNameLabel.mas_bottom).offset(AD_HEIGHT(8));
-        make.left.offset(AD_HEIGHT(16));
-    }];
     
     
-    //收货地址
-    [UILabel getLabelWithFont:F12 textColor:C000000 superView:headerView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
-        make.left.equalTo(receiverAddressImageV.mas_right).offset(AD_HEIGHT(3));
-        make.top.equalTo(receiverAddressImageV.mas_top);
-        
-        view.text = [NSString stringWithFormat:@"收货地址：%@%@%@",IF_NULL_TO_STRING(addressM.province),IF_NULL_TO_STRING(addressM.city),IF_NULL_TO_STRING(addressM.county)];
-    }];
     
-
     
     //物流信息
-    if ([self.billListM.orderStatus isEqualToString:@"10"]) {
+    if ([self.billListM.orderStatus isEqualToString:@"30"] || [self.billListM.orderStatus isEqualToString:@"40"]) {
         headerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(76)+AD_HEIGHT(70));
-
+        
         UIView *wuliuView = [UIView getViewWithColor:WhiteColor superView:headerView masonrySet:^(UIView *view, MASConstraintMaker *make) {
             make.bottom.offset(0);
             make.left.right.offset(0);
@@ -249,7 +266,7 @@
 {
     MJWeakSelf;
     PayDOModel *payDoModel = [PayDOModel mj_objectWithKeyValues:self.billListM.payDO];
-
+    
     UIView *footerView = [[UIView alloc]init];
     footerView.backgroundColor = CF6F6F6;
     
@@ -270,7 +287,7 @@
         make.top.equalTo(goodTotalPriceLabel.mas_bottom);
     }];
     
-   //优惠金额
+    //优惠金额
     SLOrdersDeteiledLabel *discountPriceLabel = [[SLOrdersDeteiledLabel alloc] init];
     discountPriceLabel.title = @"优惠金额";
     discountPriceLabel.textStr = [NSString stringWithFormat:@"-￥%@",IF_NULL_TO_STRING(self.billListM.discountPrice)];
@@ -431,18 +448,18 @@
         }];
     } else if ([self.billListM.orderStatus isEqualToString:@"40"]) {
         footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(306)+AD_HEIGHT(5));
-
+        
     }
     
     
     //待审核
-//    PD_BillDetailUnCheckView *unCheckView = [[PD_BillDetailUnCheckView alloc]init];
-//    [footerView addSubview:unCheckView];
-//    [unCheckView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(otherInfoView.mas_bottom).offset(AD_HEIGHT(2));
-//        make.left.offset(0);
-//        make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(196)));
-//    }];
+    //    PD_BillDetailUnCheckView *unCheckView = [[PD_BillDetailUnCheckView alloc]init];
+    //    [footerView addSubview:unCheckView];
+    //    [unCheckView mas_makeConstraints:^(MASConstraintMaker *make) {
+    //        make.top.equalTo(otherInfoView.mas_bottom).offset(AD_HEIGHT(2));
+    //        make.left.offset(0);
+    //        make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(196)));
+    //    }];
     
     
     
@@ -700,7 +717,7 @@
                         
                     }];
                 }
-               
+                
             }
             NSLog(@"result ------- %@", result);
         }];
@@ -712,11 +729,11 @@
                 if ([result[@"code"]integerValue] == 0) {
                     NSString *Member_IdStr  = result[@"code"];
                     int  Member_Id = [Member_IdStr intValue];
-                NSDictionary *wxPayDict = @{
-                                            @"isAppMode":@1,
-                                            @"orderPayId":@(Member_Id)
-                                            };
-                [self creatAliPay:wxPayDict];
+                    NSDictionary *wxPayDict = @{
+                                                @"isAppMode":@1,
+                                                @"orderPayId":@(Member_Id)
+                                                };
+                    [self creatAliPay:wxPayDict];
                 }else{
                     [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
                         
@@ -748,10 +765,10 @@
                         [self.navigationController popViewControllerAnimated:YES];
                     } Fail:^(NSDictionary *message, NSError *error) {
                         HUD_ERROR(@"支付失败,请重新支付")
-
+                        
                     }];
                 }
-               
+                
             }
         }
     }];
@@ -760,33 +777,33 @@
 #pragma mark ---- ali支付 ----
 - (void)creatAliPay:(NSDictionary *)param
 {
-//
+    //
     [[HPDConnect connect]KKGetNetRequestMethod:@"payment/alipay/pay" params:param cookie:nil result:^(bool success, id result) {
         HUD_HIDE;
         if (success) {
             if ([result[@"code"]integerValue] == 0) {
-                    NSDictionary *linkDict = @{@"requestType":@"SafePay",@"fromAppUrlScheme":@"backApp",@"dataString":[NSString stringWithFormat:@"%@",result[@"data"]]};
-                    NSData  *jsonData = [NSJSONSerialization dataWithJSONObject:linkDict options:NSJSONWritingPrettyPrinted error:nil];
-                    NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-
-                    CF_EXPORT
-                    CFStringRef CFURLCreateStringByAddingPercentEscapes(CFAllocatorRef allocator, CFStringRef originalString, CFStringRef charactersToLeaveUnescaped, CFStringRef legalURLCharactersToBeEscaped, CFStringEncoding encoding);
-                    NSString *linkURL = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(nil,
-                                                                                                              (CFStringRef)jsonStr, nil,(CFStringRef)@"!*'();:@&=+$,/ %#[]", kCFStringEncodingUTF8));
-                    NSString *LINK = [NSString stringWithFormat:@"alipay://alipayclient/?%@",linkURL];
-                    
-                    [OpenShare AliPay:LINK Success:^(NSDictionary *message) {
-                        //支付成功页面
-                        HUD_SUCCESS(@"支付成功");
-                        if (self.updateDataHandler) {
-                            self.updateDataHandler();
-                        }
-                        [self.navigationController popViewControllerAnimated:YES];
-                    } Fail:^(NSDictionary *message, NSError *error) {
-                         HUD_ERROR(@"支付失败,请重新支付")
-                    }];
-                }
+                NSDictionary *linkDict = @{@"requestType":@"SafePay",@"fromAppUrlScheme":@"backApp",@"dataString":[NSString stringWithFormat:@"%@",result[@"data"]]};
+                NSData  *jsonData = [NSJSONSerialization dataWithJSONObject:linkDict options:NSJSONWritingPrettyPrinted error:nil];
+                NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
                 
+                CF_EXPORT
+                CFStringRef CFURLCreateStringByAddingPercentEscapes(CFAllocatorRef allocator, CFStringRef originalString, CFStringRef charactersToLeaveUnescaped, CFStringRef legalURLCharactersToBeEscaped, CFStringEncoding encoding);
+                NSString *linkURL = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(nil,
+                                                                                                          (CFStringRef)jsonStr, nil,(CFStringRef)@"!*'();:@&=+$,/ %#[]", kCFStringEncodingUTF8));
+                NSString *LINK = [NSString stringWithFormat:@"alipay://alipayclient/?%@",linkURL];
+                
+                [OpenShare AliPay:LINK Success:^(NSDictionary *message) {
+                    //支付成功页面
+                    HUD_SUCCESS(@"支付成功");
+                    if (self.updateDataHandler) {
+                        self.updateDataHandler();
+                    }
+                    [self.navigationController popViewControllerAnimated:YES];
+                } Fail:^(NSDictionary *message, NSError *error) {
+                    HUD_ERROR(@"支付失败,请重新支付")
+                }];
+            }
+            
         }
     }];
 }
@@ -860,7 +877,7 @@
             }
         }
         NSLog(@"result ------- %@", result);
-
+        
     }];
 }
 

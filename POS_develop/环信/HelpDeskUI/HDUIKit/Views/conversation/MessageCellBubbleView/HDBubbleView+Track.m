@@ -124,8 +124,6 @@
     [self.sendButton addTarget:self action:@selector(sendDeleteTrackMsg:) forControlEvents:UIControlEventTouchUpInside];
     [self.sendButton setTitle:NSLocalizedString(@"send", @"Send") forState:UIControlStateNormal];
     [self.backgroundImageView addSubview:self.sendButton];
-    
-    
     [self _setupTrackBubbleConstraints];
 }
 

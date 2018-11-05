@@ -107,6 +107,8 @@
                     [self removeConstraint:self.bubbleWithExtConstraint];
                     CGFloat margin = [HDMessageCell appearance].leftBubbleMargin.left + [HDMessageCell appearance].leftBubbleMargin.right;
                     self.bubbleWithExtConstraint = [NSLayoutConstraint constraintWithItem:self.bubbleView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:200 + margin];
+//                    self.bubbleWithExtConstraint = [NSLayoutConstraint constraintWithItem:self.bubbleView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:[UIScreen mainScreen].bounds.size.width - margin - 100];
+
                     [self addConstraint:self.bubbleWithExtConstraint];
                     break;
                 default:break;
