@@ -394,7 +394,7 @@
     }];
     self.sendTimeLabel = sendTimeLabel;
     
-    //10:待付款，20:待发货，30:待确认，40：已完成
+    //10:待付款，15:待审核 ，20:待发货，30:待确认，40：已完成
     if ([self.billListM.orderStatus isEqualToString:@"10"]) {
         //支付方式，0:微信，1:支付宝，2:线下转账
         NSString *astring01 = defaultObject(IF_NULL_TO_STRING(self.billListM.orderPrice), @"0");
@@ -433,6 +433,26 @@
                 make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(282)));
             }];
         }
+    } else if ([self.billListM.orderStatus isEqualToString:@"15"]) {
+        footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(196)+AD_HEIGHT(2));
+        //待审核
+        PD_BillDetailUnCheckView *unCheckView = [[PD_BillDetailUnCheckView alloc]init];
+        unCheckView.payDoM = payDoM;
+        unCheckView.comfirSaveInfoHandler = ^(PayDOModel * _Nonnull model) {
+            NSDictionary *dic = @{
+                                  @"name":IF_NULL_TO_STRING(model.payBankName),
+                                  @"orderNo":IF_NULL_TO_STRING(model.transactionId)
+                                  };
+           [self outLinePayRequestWith:dic];//线下支付
+        };
+        
+        [footerView addSubview:unCheckView];
+        [unCheckView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(otherInfoView.mas_bottom).offset(AD_HEIGHT(2));
+            make.left.offset(0);
+            make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(196)));
+        }];
+        
     } else if ([self.billListM.orderStatus isEqualToString:@"20"] || [self.billListM.orderStatus isEqualToString:@"30"] ) {
         //确认收货
         footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(306)+AD_HEIGHT(53)+AD_HEIGHT(5));
@@ -452,14 +472,7 @@
     }
     
     
-    //待审核
-    //    PD_BillDetailUnCheckView *unCheckView = [[PD_BillDetailUnCheckView alloc]init];
-    //    [footerView addSubview:unCheckView];
-    //    [unCheckView mas_makeConstraints:^(MASConstraintMaker *make) {
-    //        make.top.equalTo(otherInfoView.mas_bottom).offset(AD_HEIGHT(2));
-    //        make.left.offset(0);
-    //        make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(196)));
-    //    }];
+
     
     
     
@@ -696,6 +709,13 @@
 #pragma mark ---- 线上支付相关 ----
 - (void)payRequest:(NSUInteger)payType
 {
+    AddressDOModel *addressM = [AddressDOModel mj_objectWithKeyValues:self.billListM.addressDO];
+    if (addressM == nil || !addressM) {
+        HUD_TIP(@"选择收货地址后才可支付！");
+        return;
+    }
+    
+    
     NSDictionary *bodyDic = @{@"payType":s_Integer(payType),
                               @"tbOrderId":IF_NULL_TO_STRING(self.myID)
                               };
@@ -759,10 +779,8 @@
                     [OpenShare WeixinPay:link Success:^(NSDictionary *message) {
                         //支付成功页面
                         HUD_SUCCESS(@"支付成功");
-                        if (self.updateDataHandler) {
-                            self.updateDataHandler();
-                        }
-                        [self.navigationController popViewControllerAnimated:YES];
+                        [self performSelector:@selector(turnOrderList) withObject:nil afterDelay:1.8];
+
                     } Fail:^(NSDictionary *message, NSError *error) {
                         HUD_ERROR(@"支付失败,请重新支付")
                         
@@ -795,10 +813,8 @@
                 [OpenShare AliPay:LINK Success:^(NSDictionary *message) {
                     //支付成功页面
                     HUD_SUCCESS(@"支付成功");
-                    if (self.updateDataHandler) {
-                        self.updateDataHandler();
-                    }
-                    [self.navigationController popViewControllerAnimated:YES];
+                    [self performSelector:@selector(turnOrderList) withObject:nil afterDelay:1.8];
+
                 } Fail:^(NSDictionary *message, NSError *error) {
                     HUD_ERROR(@"支付失败,请重新支付")
                 }];
@@ -812,26 +828,45 @@
 #pragma mark ---- 线下支付相关 ----
 - (void)outLinePayRequestWith:(NSDictionary *)dict
 {
-    NSDictionary *bodyDic = @{@"payBankUser":@"2",
-                              @"payUuid":IF_NULL_TO_STRING(self.myID),
-                              @"userid":USER_ID_POS,
-                              @"tbOrderId":IF_NULL_TO_STRING(self.myID)
+    AddressDOModel *addressM = [AddressDOModel mj_objectWithKeyValues:self.billListM.addressDO];
+    if (addressM == nil || !addressM) {
+        HUD_TIP(@"选择收货地址后才可支付！");
+        return;
+    }
+    
+    if ([dict[@"name"] isEqualToString:@""]) {
+        HUD_TIP(@"请输入姓名");
+        return;
+    }
+    if ([dict[@"orderNo"] isEqualToString:@""]) {
+        HUD_TIP(@"请输入单号");
+        return;
+    }
+    NSDictionary *bodyDic = @{@"payBankName":IF_NULL_TO_STRING([dict objectForKey:@"name"]),
+                              @"transactionId":IF_NULL_TO_STRING([dict objectForKey:@"orderNo"]),
                               };
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/order/list" params:bodyDic cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/orderPay/update" params:bodyDic cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"code"]integerValue] == 0) {
-                if (self.updateDataHandler) {
-                    self.updateDataHandler();
-                }
-                [self.navigationController popViewControllerAnimated:YES];
-            }else{
+                HUD_SUCCESS(@"支付信息提交成功！");
+                [self performSelector:@selector(turnOrderList) withObject:nil afterDelay:1.8];
+            }else if ([result[@"code"]integerValue] == -1){
                 [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
                     
                 }];
+            }else {
+                HUD_ERROR(@"支付信息提交失败，请稍后重试！");
             }
         }
         NSLog(@"result ------- %@", result);
     }];
+}
+- (void)turnOrderList
+{
+    if (self.updateDataHandler) {
+        self.updateDataHandler();
+    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark ---- 确认收货 ----
 - (void)comfirAddressWith:(BillListModel *)billModel
@@ -842,10 +877,7 @@
         if (success) {
             if ([result[@"code"]integerValue] == 0) {
                 HUD_SUCCESS(@"操作成功！");
-                if (self.updateDataHandler) {
-                    self.updateDataHandler();
-                }
-                [self.navigationController popViewControllerAnimated:YES];
+                [self performSelector:@selector(turnOrderList) withObject:nil afterDelay:1.8];
             }else{
                 [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
                     

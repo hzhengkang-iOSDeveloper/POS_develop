@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class PayDOModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PD_BillDetailUnCheckView : UIView
-
+@property (nonatomic, strong) PayDOModel *payDoM;
+@property (nonatomic, copy) void (^comfirSaveInfoHandler)(PayDOModel *model);
 @end
 
 NS_ASSUME_NONNULL_END

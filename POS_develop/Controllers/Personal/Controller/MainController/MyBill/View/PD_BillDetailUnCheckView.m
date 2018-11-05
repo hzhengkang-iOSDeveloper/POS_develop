@@ -7,6 +7,7 @@
 //
 
 #import "PD_BillDetailUnCheckView.h"
+#import "BillListModel.h"
 @interface PD_BillDetailUnCheckView ()
 //姓名
 @property (nonatomic, weak) UILabel *nameLabel;
@@ -55,7 +56,6 @@
     nameTF.borderStyle = UITextBorderStyleNone;
     nameTF.font = F13;
     nameTF.placeholder = @"请输入姓名";
-    nameTF.text = @"张三";
     nameTF.textAlignment = NSTextAlignmentLeft;
     nameTF.clearButtonMode = UITextFieldViewModeWhileEditing;
     nameTF.userInteractionEnabled = NO;
@@ -93,7 +93,6 @@
     orderNoTF.borderStyle = UITextBorderStyleNone;
     orderNoTF.font = F13;
     orderNoTF.placeholder = @"请输入单号";
-    orderNoTF.text = @"23412349893457982345";
     orderNoTF.textAlignment = NSTextAlignmentLeft;
     orderNoTF.userInteractionEnabled = NO;
     orderNoTF.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -126,10 +125,41 @@
 #pragma mark ---- 重新输入 ----
 - (void)reInput
 {
-    self.nameTF.userInteractionEnabled = YES;
-    self.orderNoTF.userInteractionEnabled = YES;
+    if ([self.reInputBtn.titleLabel.text isEqualToString:@"重新输入"]) {
+        self.nameTF.userInteractionEnabled = YES;
+        self.orderNoTF.userInteractionEnabled = YES;
+        
+        
+        [self.nameTF becomeFirstResponder];
+        
+        [self.reInputBtn setTitle:@"确认保存" forState:normal];
+    } else if ([self.reInputBtn.titleLabel.text isEqualToString:@"确认保存"]) {
+        if ([self.nameTF.text isEqualToString:@""]) {
+            HUD_TIP(@"姓名不能为空！");
+            return;
+        }
+        
+        if ([self.orderNoTF.text isEqualToString:@""]) {
+            HUD_TIP(@"单号不能为空！");
+            return;
+        }
+        
+        
+        if (self.comfirSaveInfoHandler) {
+            self.comfirSaveInfoHandler(self.payDoM);
+        }
+    }
     
     
-    [self.nameTF becomeFirstResponder];
+}
+
+- (void)setPayDoM:(PayDOModel *)payDoM
+{
+    if (payDoM) {
+        _payDoM = payDoM;
+        
+        self.nameTF.text = IF_NULL_TO_STRING(payDoM.payBankName);
+        self.orderNoTF.text = IF_NULL_TO_STRING(payDoM.transactionId);
+    }
 }
 @end

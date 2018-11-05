@@ -58,51 +58,14 @@
     MJWeakSelf;
     myTable.mj_header = [SLRefreshHeader headerWithRefreshingBlock:^{
         [weakSelf getData];
-        //        weakSelf.orderArr = nil;
-        //        weakSelf.orderArr = [NSMutableArray array];
-        //        weakSelf.orderModelArr = nil;
-        //        weakSelf.orderModelArr = [NSMutableArray array];
-        //        weakSelf.loadDataIndex = 1;
-        //
-        //        [weakSelf loadDataWithStatus:self.status];
     }];
     
-    myTable.mj_footer = [SLRefreshFooter footerWithRefreshingBlock:^{
-        [self performSelector:@selector(endRefresh) withObject:nil afterDelay:2];
-        //        weakSelf.loadDataIndex += 1;
-        //
-        //        if (weakSelf.count%10 >0) {
-        //            if (weakSelf.loadDataIndex <= weakSelf.count/10 + 1) {
-        //
-        //                [weakSelf loadDataWithStatus:weakSelf.status];
-        //            }else{
-        //
-        //                [orderTableView.mj_footer endRefreshingWithNoMoreData];
-        //            }
-        //        }else{
-        //
-        //            if (weakSelf.loadDataIndex <= weakSelf.count/10) {
-        //
-        //                [weakSelf loadDataWithStatus:weakSelf.status];
-        //            }else{
-        //                [orderTableView.mj_footer endRefreshingWithNoMoreData];
-        //            }
-        //        }
-    }];
     [_myTable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.offset(AD_HEIGHT(5));
         make.left.offset(0);
         make.bottom.offset(0);
         make.width.mas_equalTo(ScreenWidth);
     }];
-}
-
-#pragma mark ---- 停止刷新 ----
-- (void)endRefresh
-{
-//    [self.myTable.mj_footer endRefreshing];
-//    [self.myTable.mj_header endRefreshing];
-    [self.myTable.mj_footer endRefreshingWithNoMoreData];
 }
 #pragma mark -- tableView代理数据源方法
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
