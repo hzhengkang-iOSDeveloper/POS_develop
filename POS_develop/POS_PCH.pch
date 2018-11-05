@@ -69,6 +69,9 @@
 #import "SLPopupShowView.h"
 #import "UITableView+Extension.h"
 
+#import <HelpDeskLite/HelpDeskLite.h>
+#import "HelpDeskUI.h"
+
 //三方库头文件
 #import <Masonry.h>
 //#import <JPUSHService.h>

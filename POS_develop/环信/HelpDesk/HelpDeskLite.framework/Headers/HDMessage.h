@@ -20,7 +20,7 @@
 #import "HDControlMessage.h"
 
 #import <UIKit/UIKit.h>
-#import <Hyphenate/Hyphenate.h>
+#import <HyphenateLite/HyphenateLite.h>
 
 /*!
  *  \~chinese
