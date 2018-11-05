@@ -212,9 +212,8 @@
     if ([self.billListM.discountPrice integerValue] == 0) {
         discountPriceLabel.textStr = @"0";
     } else {
-        
+        discountPriceLabel.textStr = [NSString stringWithFormat:@"-￥%@",IF_NULL_TO_STRING(self.billListM.discountPrice)];
     }
-    discountPriceLabel.textStr = [NSString stringWithFormat:@"-￥%@",IF_NULL_TO_STRING(self.billListM.discountPrice)];
     [footerView addSubview:discountPriceLabel];
     [discountPriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(0);

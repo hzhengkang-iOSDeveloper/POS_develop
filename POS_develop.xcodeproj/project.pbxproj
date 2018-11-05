@@ -4467,6 +4467,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Ke Zhang (Q9395T62CJ)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = PY7ZU58Z7K;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/POS_develop/环信/HelpDesk",
@@ -4570,6 +4571,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Ke Zhang (Q9395T62CJ)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = PY7ZU58Z7K;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/POS_develop/环信/HelpDesk",
