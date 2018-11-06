@@ -165,7 +165,7 @@
 #pragma mark ---- 获取数据 ----
 - (void)getData
 {
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/packageFree/list" params:@{@"tbproductId":IF_NULL_TO_STRING(self.podId)} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/packageFree/list" params:@{@"tbProductId":IF_NULL_TO_STRING(self.podId)} cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"code"]integerValue] == 0) {
                 if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {

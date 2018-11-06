@@ -29,5 +29,53 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "POS_develop/Models/HPDConnect.m"
+            timestampString = "563192507.128835"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "466"
+            endingLineNumber = "466"
+            landmarkName = "-PostNetRequestMethod:params:cookie:result:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[HPDConnect PostNetRequestMethod:params:cookie:result:]"
+                  moduleName = "POS_develop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sunyn/Desktop/POS/POS_develop/POS_develop/Models/HPDConnect.m"
+                  timestampString = "563192507.136991"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "466"
+                  endingLineNumber = "466"
+                  offsetFromSymbolStart = "332">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__56-[HPDConnect PostNetRequestMethod:params:cookie:result:]_block_invoke"
+                  moduleName = "POS_develop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sunyn/Desktop/POS/POS_develop/POS_develop/Models/HPDConnect.m"
+                  timestampString = "563192507.140216"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "468"
+                  endingLineNumber = "468"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
