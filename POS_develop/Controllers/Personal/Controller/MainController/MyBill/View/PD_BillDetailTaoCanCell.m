@@ -110,7 +110,7 @@
         make.centerY.offset(0);
         
         //中划线
-        NSString *str = [NSString stringWithFormat:@"￥%@",self.detailDoM.displayPrice];
+        NSString *str = [NSString stringWithFormat:@"￥%@",defaultObject(IF_NULL_TO_STRING(self.detailDoM.displayPrice), @"0")];
         NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
         NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:str attributes:attribtDic];
         // 赋值

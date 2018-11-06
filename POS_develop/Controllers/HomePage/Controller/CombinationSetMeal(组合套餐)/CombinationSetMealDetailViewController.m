@@ -93,7 +93,7 @@
         
         view.textAlignment = NSTextAlignmentLeft;
 //        view.text = @"￥800";
-        view.text = [NSString stringWithFormat:@"￥%@", model.packagePrice];
+        view.text = [NSString stringWithFormat:@"￥%@",defaultObject(IF_NULL_TO_STRING(model.packagePrice), @"0")];
     }];
     
     [UILabel getLabelWithFont:F12 textColor:C989898 superView:mainView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
@@ -102,17 +102,17 @@
         
         view.textAlignment = NSTextAlignmentLeft;
 //        NSString *str = @"981.00";
-        NSString *str = model.originPrice;
+        NSString *str = defaultObject(IF_NULL_TO_STRING(model.originPrice), @"0");
         //中划线
         NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
         NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:str attributes:attribtDic];
-        // 赋值
-        view.attributedText = attribtStr;
-        if ([model.originPrice isEqualToString:model.packagePrice]) {
-            view.hidden = YES;
-        }else {
-            view.hidden = NO;
-        }
+//        // 赋值
+//        view.attributedText = attribtStr;
+//        if ([model.originPrice isEqualToString:model.packagePrice]) {
+//            view.hidden = YES;
+//        }else {
+//            view.hidden = NO;
+//        }
     }];
     
     //加入购物车
