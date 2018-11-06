@@ -55,11 +55,6 @@
     self.myTable = myTable;
     myTable.separatorStyle = NO;
     
-    MJWeakSelf;
-    myTable.mj_header = [SLRefreshHeader headerWithRefreshingBlock:^{
-        [weakSelf getData];
-    }];
-    
     [_myTable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.offset(AD_HEIGHT(5));
         make.left.offset(0);
@@ -123,7 +118,6 @@
         return;
     }
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/packageFree/list" params:@{@"tbproductId":IF_NULL_TO_STRING(self.podId)} cookie:nil result:^(bool success, id result) {
-        [self.myTable.mj_header endRefreshing];
         if (success) {
             if ([result[@"code"]integerValue] == 0) {
                 if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {

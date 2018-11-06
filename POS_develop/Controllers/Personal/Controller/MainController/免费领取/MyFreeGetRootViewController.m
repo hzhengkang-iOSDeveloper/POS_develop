@@ -52,16 +52,6 @@
     self.myTable = myTable;
     myTable.separatorStyle = NO;
     
-//    MJWeakSelf;
-    myTable.mj_header = [SLRefreshHeader headerWithRefreshingBlock:^{
-        //        weakSelf.orderArr = nil;
-        //        weakSelf.orderArr = [NSMutableArray array];
-        //        weakSelf.orderModelArr = nil;
-        //        weakSelf.orderModelArr = [NSMutableArray array];
-        //        weakSelf.loadDataIndex = 1;
-        //
-        //        [weakSelf loadDataWithStatus:self.status];
-    }];
     [_myTable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.offset(AD_HEIGHT(5));
         make.left.offset(0);
@@ -97,13 +87,6 @@
         [btn addTarget:self action:@selector(commfirGetGood) forControlEvents:UIControlEventTouchUpInside];
     }];
     self.comfirBtn = comfirBtn;
-}
-#pragma mark ---- 停止刷新 ----
-- (void)endRefresh
-{
-    //    [self.myTable.mj_footer endRefreshing];
-    //    [self.myTable.mj_header endRefreshing];
-    [self.myTable.mj_footer endRefreshingWithNoMoreData];
 }
 #pragma mark -- tableView代理数据源方法
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
