@@ -64,7 +64,7 @@
     // 计算button的尺寸
     CGFloat buttonW = self.frame.size.width / (self.items.count);
     CGFloat buttonH;
-    if (iPhoneX) {
+    if (iPhoneX || IS_IPHONE_Xr || IS_IPHONE_Xs || IS_IPHONE_Xs_Max){
         buttonH = self.frame.size.height - 5 - 34;
     }else {
         buttonH = self.frame.size.height - 5;
