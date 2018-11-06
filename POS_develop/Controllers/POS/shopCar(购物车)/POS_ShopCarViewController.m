@@ -240,7 +240,7 @@
     [self.packAgeArr enumerateObjectsUsingBlock:^(ShopCar_PackageModel *  _Nonnull packageM, NSUInteger idx, BOOL * _Nonnull stop) {
         if (packageM.isSelected) {
             pkgPrdIds = [pkgPrdIds stringByAppendingString:packageM.ID];
-            pkgPrdTypes = [pkgPrdTypes stringByAppendingString:@"1"];
+            pkgPrdTypes = [pkgPrdTypes stringByAppendingString:packageM.pkgPrdType];
             counts = [counts stringByAppendingString:[NSString stringWithFormat:@"%lu",packageM.goodCount+1]];
         }
     }];
@@ -405,7 +405,7 @@
     [self.packAgeArr enumerateObjectsUsingBlock:^(ShopCar_PackageModel *  _Nonnull packageM, NSUInteger idx, BOOL * _Nonnull stop) {
         if (packageM.isSelected) {
             pkgPrdIds = [pkgPrdIds stringByAppendingString:packageM.ID];
-            pkgPrdTypes = [pkgPrdTypes stringByAppendingString:@"1"];
+            pkgPrdTypes = [pkgPrdTypes stringByAppendingString:packageM.pkgPrdType];
             counts = [counts stringByAppendingString:[NSString stringWithFormat:@"%lu",packageM.goodCount+1]];
         }
     }];
@@ -602,7 +602,9 @@
         HUD_HIDE;
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                [self.packAgeArr addObject:[ShopCar_PackageModel mj_objectWithKeyValues:result[@"data"]]];
+                ShopCar_PackageModel *model = [ShopCar_PackageModel mj_objectWithKeyValues:result[@"data"]];
+                model.pkgPrdType = @"1";
+                [self.packAgeArr addObject:model];
                 self.noFreePackageArrCount ++;
                 if (self.noFreePackageArrCount == self.noFreeTaoCanArr.count) {
                     //刷新数据源
@@ -623,7 +625,9 @@
         HUD_HIDE;
         if (success) {
             if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
-                [self.packAgeArr addObject:[ShopCar_PackageModel mj_objectWithKeyValues:result[@"data"]]];
+                ShopCar_PackageModel *model = [ShopCar_PackageModel mj_objectWithKeyValues:result[@"data"]];
+                model.pkgPrdType = @"2";
+                [self.packAgeArr addObject:model];
                 self.freePackageArrCount ++;
                 if (self.freePackageArrCount == self.freeTaoCanArr.count) {
                     //刷新数据源

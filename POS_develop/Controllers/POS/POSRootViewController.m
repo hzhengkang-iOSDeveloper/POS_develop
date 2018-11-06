@@ -147,8 +147,8 @@
     NSDictionary *dict = @{
                            @"userid":USER_ID_POS,
                            @"pkgPrdId":IF_NULL_TO_STRING(posRootM.ID),
-                           @"pkgPrdType":@"1",
-                           @"count":[NSString stringWithFormat:@"%li",posRootM.goodCount+1],
+                           @"pkgPrdType":@"2",
+                           @"count":s_Integer(posRootM.goodCount+1),
                            @"operation":@"1"
                            };
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/cart/save" params:dict cookie:nil result:^(bool success, id result) {

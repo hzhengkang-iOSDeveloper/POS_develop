@@ -356,7 +356,7 @@
     NSDictionary *dict = @{
                            @"userid":USER_ID_POS,
                            @"pkgPrdIds":IF_NULL_TO_STRING(self.model.ID),
-                           @"pkgPrdTypes":@"1",
+                           @"pkgPrdTypes":@"2",
                            @"counts":[NSString stringWithFormat:@"%lu",self.model.goodCount+1],
                            @"operation":@"1"
                            };
@@ -379,7 +379,7 @@
     NSDictionary *dict = @{
                            @"userid":USER_ID_POS,
                            @"pkgPrdId":IF_NULL_TO_STRING(self.model.ID),
-                           @"pkgPrdType":@"1",
+                           @"pkgPrdType":@"2",
                            @"count":[NSString stringWithFormat:@"%i",self.model.goodCount+1],
                            @"operation":@"1"
                            };

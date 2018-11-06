@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ShopCar_PackageModel : NSObject
 @property (nonatomic,assign)NSUInteger goodCount;//记录商品增减数量
 @property (nonatomic, assign) BOOL isSelected;//是否被选中
+@property (nonatomic, copy) NSString *pkgPrdType;
 @property (nonatomic, copy) NSString *h5Url;
 @property (nonatomic, copy) NSString *ID;
 @property (nonatomic, copy) NSString *tbProductId;

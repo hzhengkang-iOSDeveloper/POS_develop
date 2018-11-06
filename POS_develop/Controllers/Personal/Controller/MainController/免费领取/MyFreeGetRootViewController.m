@@ -216,7 +216,7 @@
     [self.dataArr enumerateObjectsUsingBlock:^(POS_RootViewModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj.goodCount >0) {
             pkgPrdIds = [pkgPrdIds stringByAppendingString:obj.ID];
-            pkgPrdTypes = [pkgPrdTypes stringByAppendingString:@"1"];
+            pkgPrdTypes = [pkgPrdTypes stringByAppendingString:@"2"];
             counts = [counts stringByAppendingString:[NSString stringWithFormat:@"%lu",obj.goodCount+1]];
         }
     }];
