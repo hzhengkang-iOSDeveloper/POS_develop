@@ -24,6 +24,11 @@
 @end
 
 @implementation POSViewController
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self getShopCarRequest];
+}
 - (NSMutableArray *)dataArr
 {
     if (!_dataArr) {
@@ -43,20 +48,23 @@
     [self getProductIdRequest];
     [self creatSelectBillStatus];
     
-    //接收通知
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeGoodCarCount:) name:@"changeShopCarCount" object:nil];
+    //获取购物车数量
+    [self getShopCarRequest];
+//    //接收通知
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeGoodCarCount:) name:@"changeShopCarCount" object:nil];
 }
 
-#pragma mark ---- 处理购物车label数量 ----
-- (void)changeGoodCarCount:(NSNotification *)notif
-{
-    if ([notif.userInfo isKindOfClass:[NSDictionary class]]) {
-        NSDictionary *dict = notif.userInfo;
-        self.cartNumLabel.hidden = NO;
-        self.cartNum = self.cartNum + [[dict objectForKey:@"goodCount"]integerValue];
-        self.cartNumLabel.text = [NSString stringWithFormat:@"%ld",(long)self.cartNum];
-    }
-}
+
+//#pragma mark ---- 处理购物车label数量 ----
+//- (void)changeGoodCarCount:(NSNotification *)notif
+//{
+//    if ([notif.userInfo isKindOfClass:[NSDictionary class]]) {
+//        NSDictionary *dict = notif.userInfo;
+//        self.cartNumLabel.hidden = NO;
+//        self.cartNum = self.cartNum + [[dict objectForKey:@"goodCount"]integerValue];
+//        self.cartNumLabel.text = [NSString stringWithFormat:@"%ld",(long)self.cartNum];
+//    }
+//}
 #pragma mark - nav购物车&更多按钮
 - (NSArray *)rightItems {
     if (!_rightItems) {
@@ -136,9 +144,10 @@
     controller.podId = posModel.ID;
     MJWeakSelf;
     controller.changeShopCarCount = ^(NSUInteger addGoodCount) {
-        weakSelf.cartNumLabel.hidden = NO;
-        weakSelf.cartNum = weakSelf.cartNum + addGoodCount;
-        weakSelf.cartNumLabel.text = [NSString stringWithFormat:@"%ld",(long)weakSelf.cartNum];
+//        weakSelf.cartNumLabel.hidden = NO;
+//        weakSelf.cartNum = weakSelf.cartNum + addGoodCount;
+//        weakSelf.cartNumLabel.text = [NSString stringWithFormat:@"%ld",(long)weakSelf.cartNum];
+        [weakSelf getShopCarRequest];
     };
 
     return controller;
@@ -195,7 +204,32 @@
     
 }
 
+#pragma mark ---- 查询购物车数量 ----
+- (void)getShopCarRequest
+{
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/cart/list" params:@{@"userid":USER_ID_POS} cookie:nil result:^(bool success, id result) {
+        if (success) {
+            
+            if ([result[@"code"]integerValue] == 0) {
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                        NSString *posCount = result[@"data"][@"total"];
+                        self.cartNumLabel.hidden = NO;
+                        self.cartNumLabel.text = [NSString stringWithFormat:@"%ld",(long)[posCount integerValue]];
 
+                    }
+                }
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
+            }
+            
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+}
 #pragma mark ---- 移除通知 ----
 - (void)dealloc
 {

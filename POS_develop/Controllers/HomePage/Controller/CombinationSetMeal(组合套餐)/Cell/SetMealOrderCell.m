@@ -86,9 +86,9 @@
     [self.myImageView sd_setImageWithURL:[NSURL URLWithString:[model.productDO objectForKey:@"productImg"]]];
     self.titleLabel.text = [model.productDO objectForKey:@"posBrandName"];
     
-    self.purchasePrice.text = [NSString stringWithFormat:@"采购价格：%@元/%@台", [model.productDO objectForKey:@"posPrice"], model.posCount];
+    self.purchasePrice.text = [NSString stringWithFormat:@"采购价格：%@元/%@台", [model.productDO objectForKey:@"posPrice"], [model.productDO objectForKey:@"posCount"]];
     self.activationCash.text = [NSString stringWithFormat:@"激活返现金：%@元/台", [model.productDO objectForKey:@"posRebatePrice"]];
-    self.number.text = [NSString stringWithFormat:@"x%@", [model.productDO objectForKey:@"posCount"]];
+    self.number.text = [NSString stringWithFormat:@"x%@", model.posCount];
     
 }
 

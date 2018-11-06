@@ -36,12 +36,12 @@
                   moduleName = "POS_develop"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/syn/Desktop/%E5%A4%96%E5%8C%85/POS_develop/POS_develop/Controllers/Personal/Controller/MainController/%E8%AE%BE%E7%BD%AE/UpdatePhoneViewController.m"
-                  timestampString = "563125084.8859479"
+                  timestampString = "563211751.525264"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "54"
                   endingLineNumber = "54"
-                  offsetFromSymbolStart = "322">
+                  offsetFromSymbolStart = "380">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -51,12 +51,12 @@
                   moduleName = "POS_develop"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/syn/Desktop/%E5%A4%96%E5%8C%85/POS_develop/POS_develop/Controllers/Personal/Controller/MainController/%E8%AE%BE%E7%BD%AE/UpdatePhoneViewController.m"
-                  timestampString = "563125084.889395"
+                  timestampString = "563211751.528296"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "55"
                   endingLineNumber = "55"
-                  offsetFromSymbolStart = "55">
+                  offsetFromSymbolStart = "56">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -66,12 +66,12 @@
                   moduleName = "POS_develop"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/syn/Desktop/%E5%A4%96%E5%8C%85/POS_develop/POS_develop/Controllers/Personal/Controller/MainController/%E8%AE%BE%E7%BD%AE/UpdatePhoneViewController.m"
-                  timestampString = "563125084.894207"
+                  timestampString = "563211751.531274"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "54"
                   endingLineNumber = "54"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "20">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -83,12 +83,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "POS_develop/Controllers/Personal/Controller/MainController/MyBill/PD_BillDetailViewController.m"
-            timestampString = "563125244.965676"
+            timestampString = "563209844.397997"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "628"
             endingLineNumber = "628"
-            landmarkName = "-loadOrderGetRequest"
+            landmarkName = "-creatHeaderWithText:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -98,13 +98,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "POS_develop/Controllers/POS/POSRootViewController.m"
-            timestampString = "563126506.401412"
+            filePath = "POS_develop/Controllers/Personal/Controller/MainController/&#x514d;&#x8d39;&#x9886;&#x53d6;/MyFreeGetRootViewController.m"
+            timestampString = "563211750.919777"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
-            landmarkName = "-getData"
+            startingLineNumber = "199"
+            endingLineNumber = "199"
+            landmarkName = "-getGoodMaxCountRequest"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "POS_develop/Controllers/Personal/Controller/MainController/&#x514d;&#x8d39;&#x9886;&#x53d6;/MyFreeGetRootViewController.m"
+            timestampString = "563211803.574953"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
+            landmarkName = "-getGoodMaxCountRequest"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
