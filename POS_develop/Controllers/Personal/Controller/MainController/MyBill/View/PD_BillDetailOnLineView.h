@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PD_BillDetailOnLineView : UIView
 //合计金额
 @property (nonatomic, copy) NSString *heJiMoneyStr;
-@property (nonatomic, copy) void (^payHandler)(NSUInteger payType);//0 微信  1支付宝
+@property (nonatomic, copy) void (^payHandler)(NSUInteger payType,NSDictionary *dict);//0 微信  1支付宝 2线下支付
 @end
 
 NS_ASSUME_NONNULL_END

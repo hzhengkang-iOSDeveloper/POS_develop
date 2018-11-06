@@ -238,8 +238,11 @@
         make.top.equalTo(lineTwo.mas_bottom);
         make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(50)));
     }];
-        
+    
+    
     //0.微信 1支付宝  2线下支付
+    
+    /*
     //支付方式，0:微信，1:支付宝，2:线下转账
     NSString *astring01 = defaultObject(IF_NULL_TO_STRING(self.billListM.orderPrice), @"0");
     NSString *astring02 = @"1000";
@@ -276,7 +279,21 @@
     }
     
     
-    
+    */
+    //支付
+    footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(153)+AD_HEIGHT(205)+AD_HEIGHT(5)+AD_HEIGHT(57));
+    POS_CommfirBillOnLinePayView *onLineView = [[POS_CommfirBillOnLinePayView alloc]init];
+    onLineView.totalStr = [NSString stringWithFormat:@"￥%@",IF_NULL_TO_STRING(self.billListM.displayPrice)];
+    [footerView addSubview:onLineView];
+    MJWeakSelf;
+    onLineView.payHandler = ^(NSUInteger payType) {
+        [weakSelf payRequest:payType];
+    };
+    [onLineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(postPriceLabel.mas_bottom).offset(AD_HEIGHT(5));
+        make.left.offset(0);
+        make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(205)+AD_HEIGHT(57)));
+    }];
     
     return footerView;
 }

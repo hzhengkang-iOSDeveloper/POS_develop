@@ -7,14 +7,19 @@
 //
 
 #import "POS_CommfirBillOnLinePayView.h"
+#import "PD_BillZhuangZhangViewController.h"
+
 @interface POS_CommfirBillOnLinePayView ()
 {
     BOOL _wxSelectStatus;
     BOOL _aliSelectStatus;
+    BOOL _outLineSelectStatus;
+
 }
 @property (nonatomic, weak) UIButton *commfirBtn;//确认支付
 @property (nonatomic, weak) UIImageView *wxSelectImage;
 @property (nonatomic, weak) UIImageView *aliSelectImage;
+@property (nonatomic, weak) UIImageView *outLineSelectImage;
 @property (nonatomic, weak) UILabel *totalCountLabel;
 @end
 @implementation POS_CommfirBillOnLinePayView
@@ -26,6 +31,7 @@
         [self initUI];
         _wxSelectStatus = NO;
         _aliSelectStatus = NO;
+        _outLineSelectStatus = NO;
     }
     return self;
 }
@@ -104,6 +110,45 @@
     }];
     self.aliSelectImage = aliSelectImage;
     
+    UIView *aliLineView = [UIView getViewWithColor:CF6F6F6 superView:self masonrySet:^(UIView *view, MASConstraintMaker *make) {
+        make.left.offset(AD_HEIGHT(15));
+        make.right.offset(0);
+        make.top.equalTo(aliPayView.mas_bottom);
+        make.height.mas_equalTo(AD_HEIGHT(1));
+    }];
+    
+    //线下支付
+    UIView *outLinePayView = [UIView getViewWithColor:WhiteColor superView:self masonrySet:^(UIView *view, MASConstraintMaker *make) {
+        make.left.offset(0);
+        make.top.equalTo(aliLineView.mas_bottom);
+        make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(56)));
+        
+        view.userInteractionEnabled = YES;
+        UITapGestureRecognizer *outLinePayGest = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(outLinePayGest)];
+        [view addGestureRecognizer:outLinePayGest];
+    }];
+    
+    
+    UILabel *outLineTitleLabel = [UILabel getLabelWithFont:F13 textColor:C000000 superView:outLinePayView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
+        make.left.offset(AD_HEIGHT(15));
+        make.top.offset(AD_HEIGHT(24));
+        
+        view.textAlignment = NSTextAlignmentLeft;
+        view.text = @"线下支付";
+    }];
+    
+    UIImageView *outLineSelectImage = [[UIImageView alloc]init];
+    outLineSelectImage.contentMode = UIViewContentModeScaleAspectFit;
+    outLineSelectImage.image = ImageNamed(@"默认");
+    [outLinePayView addSubview:outLineSelectImage];
+    [outLineSelectImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.offset(-AD_HEIGHT(15));
+        make.centerY.equalTo(outLineTitleLabel.mas_centerY);
+        make.size.mas_offset(CGSizeMake(AD_HEIGHT(15), AD_HEIGHT(15)));
+    }];
+    self.outLineSelectImage = outLineSelectImage;
+    
+
     
     //合计
     UILabel *totalCountLabel = [[UILabel alloc]init];
@@ -112,7 +157,7 @@
     [self addSubview:totalCountLabel];
     [totalCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.offset(-AD_HEIGHT(15));
-        make.top.equalTo(aliPayView.mas_bottom).offset(AD_HEIGHT(16));
+        make.top.equalTo(outLinePayView.mas_bottom).offset(AD_HEIGHT(16));
     }];
     self.totalCountLabel =totalCountLabel;
    
@@ -142,7 +187,9 @@
     if (_wxSelectStatus) {
         self.wxSelectImage.image = ImageNamed(@"默认地址");
         _aliSelectStatus = NO;
+        _outLineSelectStatus = NO;
         self.aliSelectImage.image = ImageNamed(@"默认");
+        self.outLineSelectImage.image = ImageNamed(@"默认");
         [self.commfirBtn setBackgroundColor:C1E95F9];
         self.commfirBtn.userInteractionEnabled = YES;
     } else {
@@ -159,7 +206,9 @@
     if (_aliSelectStatus) {
         self.aliSelectImage.image = ImageNamed(@"默认地址");
         _wxSelectStatus = NO;
+        _outLineSelectStatus = NO;
         self.wxSelectImage.image = ImageNamed(@"默认");
+        self.outLineSelectImage.image = ImageNamed(@"默认");
         [self.commfirBtn setBackgroundColor:C1E95F9];
         self.commfirBtn.userInteractionEnabled = YES;
         
@@ -170,6 +219,27 @@
     }
 }
 
+#pragma mark ---- 线下支付 ----
+- (void)outLinePayGest
+{
+    
+    _outLineSelectStatus = !_outLineSelectStatus;
+    if (_outLineSelectStatus) {
+        self.outLineSelectImage.image = ImageNamed(@"默认地址");
+        _wxSelectStatus = NO;
+        _aliSelectStatus = NO;
+        self.wxSelectImage.image = ImageNamed(@"默认");
+        self.aliSelectImage.image = ImageNamed(@"默认");
+        [self.commfirBtn setBackgroundColor:C1E95F9];
+        self.commfirBtn.userInteractionEnabled = YES;
+        
+    } else {
+        [self.commfirBtn setBackgroundColor:CC9C9C9];
+        self.commfirBtn.userInteractionEnabled = NO;
+        self.outLineSelectImage.image = ImageNamed(@"默认");
+        
+    }
+}
 #pragma mark ---- 确认支付 ----
 - (void)comfirPay
 {
@@ -182,7 +252,7 @@
         if (self.payHandler) {
             self.payHandler(1);
         }
-    } else {
+    } else if (_wxSelectStatus) {
         //微信
         if (![OpenShare canOpen:@"weixin://"]) {
             HUD_ERROR(@"请安装微信客户端");
@@ -191,6 +261,14 @@
         if (self.payHandler) {
             self.payHandler(0);
         }
+    } else {
+        [SLPopupShowView createPopupShowViewWithContentText:@"查看转账说明" buttons:@[@"取消",@"确定"] buttonClick:^(int index) {
+            if (index == 1) {
+                PD_BillZhuangZhangViewController *vc = [[PD_BillZhuangZhangViewController alloc]init];
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.viewController.navigationController pushViewController:vc animated:YES];
+            }
+        }];
     }
 }
 

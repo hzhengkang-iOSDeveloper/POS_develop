@@ -11,13 +11,14 @@
 #import "SLOrdersDeteiledLabel.h"
 #import "PD_BillDetailTaoCanCell.h"
 #import "PD_BillDetailDanDianCell.h"
-#import "PD_BillDetailOutLineInfoView.h"//线下支付
+#import "PD_BillDetailWriteInfoView.h"//线下支付
 #import "PD_BillDetailUnCheckView.h"//待审核
 #import "PD_BillDetailOnLineView.h"//线上支付
 #import "PD_BillDetailComfirInfoView.h"//确认收货
 #import "BillListModel.h"
 #import "MyAddressViewModel.h"
 #import "BillWuLiuInfoModel.h"
+
 @interface PD_BillDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, weak) UITableView *orderDetailTable;
 //订单编号
@@ -394,8 +395,10 @@
     }];
     self.sendTimeLabel = sendTimeLabel;
     
+    
     //10:待付款，15:待审核 ，20:待发货，30:待确认，40：已完成
     if ([self.billListM.orderStatus isEqualToString:@"10"]) {
+        /*
         //支付方式，0:微信，1:支付宝，2:线下转账
         NSString *astring01 = defaultObject(IF_NULL_TO_STRING(self.billListM.orderPrice), @"0");
         NSString *astring02 = @"1000";
@@ -433,6 +436,30 @@
                 make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(282)));
             }];
         }
+         
+         */
+        
+        //支付
+        footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(306)+AD_HEIGHT(214)+AD_HEIGHT(57)+AD_HEIGHT(2)+AD_HEIGHT(102));
+        PD_BillDetailOnLineView *onLineView = [[PD_BillDetailOnLineView alloc]init];
+        [footerView addSubview:onLineView];
+        onLineView.payHandler = ^(NSUInteger payType, NSDictionary * _Nonnull dict) {
+            if (payType == 2) {
+                [weakSelf outLinePayRequestWith:dict];//线下支付
+            } else {
+                [weakSelf payRequest:payType];
+            }
+        };
+        onLineView.heJiMoneyStr = self.billListM.orderPrice;
+        [onLineView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(otherInfoView.mas_bottom).offset(AD_HEIGHT(2));
+            make.left.offset(0);
+            make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(214)+AD_HEIGHT(57)));
+        }];
+        
+
+        
+        
     } else if ([self.billListM.orderStatus isEqualToString:@"15"]) {
         footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(196)+AD_HEIGHT(2));
         //待审核
