@@ -234,14 +234,17 @@
 - (void)clickJieSuanBtn
 {
     //遍历套餐数组
-    __block NSString *pkgPrdIds = [NSString string];
-    __block NSString *pkgPrdTypes= [NSString string];
-    __block NSString *counts= [NSString string];
+     NSString *pkgPrdIds = [NSString string];
+     NSString *pkgPrdTypes= [NSString string];
+     NSString *counts= [NSString string];
+    __block NSMutableArray *pkgPrdIdsArr = [NSMutableArray array];
+    __block NSMutableArray *pkgPrdTypesArr = [NSMutableArray array];
+    __block NSMutableArray *countsArr = [NSMutableArray array];
     [self.packAgeArr enumerateObjectsUsingBlock:^(ShopCar_PackageModel *  _Nonnull packageM, NSUInteger idx, BOOL * _Nonnull stop) {
         if (packageM.isSelected) {
-            pkgPrdIds = [pkgPrdIds stringByAppendingString:packageM.ID];
-            pkgPrdTypes = [pkgPrdTypes stringByAppendingString:packageM.pkgPrdType];
-            counts = [counts stringByAppendingString:[NSString stringWithFormat:@"%lu",packageM.goodCount+1]];
+            [pkgPrdIdsArr addObject:packageM.ID];
+            [pkgPrdTypesArr addObject:packageM.pkgPrdType];
+            [countsArr addObject:[NSString stringWithFormat:@"%lu",packageM.goodCount+1]];
         }
     }];
     
@@ -249,18 +252,23 @@
     [self.productDataArr enumerateObjectsUsingBlock:^(NSArray * _Nonnull productA, NSUInteger idx, BOOL * _Nonnull stop) {
         [productA enumerateObjectsUsingBlock:^(ShopCar_ProductModel *  _Nonnull productM, NSUInteger idx, BOOL * _Nonnull stop) {
             if (productM.isSelected) {
-                pkgPrdIds = [pkgPrdIds stringByAppendingString:productM.ID];
-                pkgPrdTypes = [pkgPrdTypes stringByAppendingString:@"0"];
-                counts = [counts stringByAppendingString:[NSString stringWithFormat:@"%lu",productM.goodCount+1]];
+                [pkgPrdIdsArr addObject:productM.ID];
+                [pkgPrdTypesArr addObject:@"0"];
+                [countsArr addObject:[NSString stringWithFormat:@"%lu",productM.goodCount+1]];
                 
             }
         }];
     }];
     
-    if ([pkgPrdIds isEqualToString:@""]) {
+    
+    if (pkgPrdIdsArr.count == 0) {
         HUD_TIP(@"请选择商品后再结算");
         return;
     }
+    
+    pkgPrdIds = [pkgPrdIdsArr componentsJoinedByString:@","];
+    pkgPrdTypes = [pkgPrdTypesArr componentsJoinedByString:@","];
+    counts = [countsArr componentsJoinedByString:@","];
     
    //提交订单接口
     [self saveOrderRequestWithPkgPrdIds:pkgPrdIds withPkgPrdTypes:pkgPrdTypes withCounts:counts];
@@ -399,14 +407,19 @@
 {
     
     //遍历套餐数组
-    __block NSString *pkgPrdIds = [NSString string];
-    __block NSString *pkgPrdTypes= [NSString string];
-    __block NSString *counts= [NSString string];
+     NSString *pkgPrdIds = [NSString string];
+     NSString *pkgPrdTypes= [NSString string];
+     NSString *counts= [NSString string];
+    
+    __block NSMutableArray *pkgPrdIdsArr = [NSMutableArray array];
+    __block NSMutableArray *pkgPrdTypesArr = [NSMutableArray array];
+    __block NSMutableArray *countsArr = [NSMutableArray array];
+
     [self.packAgeArr enumerateObjectsUsingBlock:^(ShopCar_PackageModel *  _Nonnull packageM, NSUInteger idx, BOOL * _Nonnull stop) {
         if (packageM.isSelected) {
-            pkgPrdIds = [pkgPrdIds stringByAppendingString:packageM.ID];
-            pkgPrdTypes = [pkgPrdTypes stringByAppendingString:packageM.pkgPrdType];
-            counts = [counts stringByAppendingString:[NSString stringWithFormat:@"%lu",packageM.goodCount+1]];
+            [pkgPrdIdsArr addObject:packageM.ID];
+            [pkgPrdTypesArr addObject:packageM.pkgPrdType];
+            [countsArr addObject:[NSString stringWithFormat:@"%lu",packageM.goodCount+1]];
         }
     }];
     
@@ -414,19 +427,23 @@
     [self.productDataArr enumerateObjectsUsingBlock:^(NSArray * _Nonnull productA, NSUInteger idx, BOOL * _Nonnull stop) {
         [productA enumerateObjectsUsingBlock:^(ShopCar_ProductModel *  _Nonnull productM, NSUInteger idx, BOOL * _Nonnull stop) {
             if (productM.isSelected) {
-                pkgPrdIds = [pkgPrdIds stringByAppendingString:productM.ID];
-                pkgPrdTypes = [pkgPrdTypes stringByAppendingString:@"0"];
-                counts = [counts stringByAppendingString:[NSString stringWithFormat:@"%lu",productM.goodCount+1]];
+                [pkgPrdIdsArr addObject:productM.ID];
+                [pkgPrdTypesArr addObject:@"0"];
+                [countsArr addObject:[NSString stringWithFormat:@"%lu",productM.goodCount+1]];
 
             }
         }];
     }];
     
-    if ([pkgPrdIds isEqualToString:@""]||[pkgPrdTypes isEqualToString:@""]||[counts isEqualToString:@""]) {
+    if (pkgPrdIdsArr.count == 0||pkgPrdTypesArr.count == 0||countsArr.count == 0) {
         self.allMoneyLabel.attributedText = [self setMoneyStr:@"合计：0元"];
         self.yunFeiLabel.attributedText = [self setDeliveryPriceStr:@"运费0元"];
     } else {
         HUD_NOBGSHOW;
+        pkgPrdIds = [pkgPrdIdsArr componentsJoinedByString:@","];
+        pkgPrdTypes = [pkgPrdTypesArr componentsJoinedByString:@","];
+        counts = [countsArr componentsJoinedByString:@","];
+
         NSDictionary *dict = @{
                                @"userid":USER_ID_POS,
                                @"pkgPrdIds":IF_NULL_TO_STRING(pkgPrdIds),

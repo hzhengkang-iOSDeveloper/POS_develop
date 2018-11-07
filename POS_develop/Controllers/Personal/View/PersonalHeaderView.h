@@ -18,4 +18,7 @@
 @property (nonatomic, strong) UILabel *invitedCodeLabel;
 @property (nonatomic, strong) UIButton *userName;//登录注册按钮
 @property (nonatomic, strong) UIImageView *iconImageV;
+@property (nonatomic, strong) UIButton *messageBtn;
+
+@property (nonatomic, copy) void(^messageBlock)(void);
 @end

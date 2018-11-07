@@ -20,12 +20,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "POS_develop/Controllers/Personal/PersonalViewController.m"
-            timestampString = "561452444.319337"
+            timestampString = "563249549.226045"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "213"
-            endingLineNumber = "213"
-            landmarkName = "-loadStatAchievementRequest"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "-creatTabHeaderView"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -35,44 +35,59 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "POS_develop/Models/HPDConnect.m"
-            timestampString = "563192507.128835"
+            filePath = "POS_develop/Controllers/POS/shopCar(&#x8d2d;&#x7269;&#x8f66;)/POS_ShopCarViewController.m"
+            timestampString = "563274641.841886"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "466"
-            endingLineNumber = "466"
-            landmarkName = "-PostNetRequestMethod:params:cookie:result:"
+            startingLineNumber = "454"
+            endingLineNumber = "454"
+            landmarkName = "-getTaoCanPriceRequest"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "-[HPDConnect PostNetRequestMethod:params:cookie:result:]"
+                  symbolName = "-[POS_ShopCarViewController getTaoCanPriceRequest]"
                   moduleName = "POS_develop"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sunyn/Desktop/POS/POS_develop/POS_develop/Models/HPDConnect.m"
-                  timestampString = "563192507.136991"
+                  urlString = "file:///Users/sunyn/Desktop/POS/POS_develop/POS_develop/Controllers/POS/shopCar(%E8%B4%AD%E7%89%A9%E8%BD%A6)/POS_ShopCarViewController.m"
+                  timestampString = "563274642.346211"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "466"
-                  endingLineNumber = "466"
-                  offsetFromSymbolStart = "332">
+                  startingLineNumber = "454"
+                  endingLineNumber = "454"
+                  offsetFromSymbolStart = "3172">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__56-[HPDConnect PostNetRequestMethod:params:cookie:result:]_block_invoke"
+                  symbolName = "__50-[POS_ShopCarViewController getTaoCanPriceRequest]_block_invoke.417"
                   moduleName = "POS_develop"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sunyn/Desktop/POS/POS_develop/POS_develop/Models/HPDConnect.m"
-                  timestampString = "563192507.140216"
+                  urlString = "file:///Users/sunyn/Desktop/POS/POS_develop/POS_develop/Controllers/POS/shopCar(%E8%B4%AD%E7%89%A9%E8%BD%A6)/POS_ShopCarViewController.m"
+                  timestampString = "563274642.348096"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "468"
-                  endingLineNumber = "468"
-                  offsetFromSymbolStart = "56">
+                  startingLineNumber = "455"
+                  endingLineNumber = "455"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.450"
+                  moduleName = "POS_develop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sunyn/Desktop/POS/POS_develop/POS_develop/Controllers/POS/shopCar(%E8%B4%AD%E7%89%A9%E8%BD%A6)/POS_ShopCarViewController.m"
+                  timestampString = "563274642.350446"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "454"
+                  endingLineNumber = "454"
+                  offsetFromSymbolStart = "20">
                </Location>
             </Locations>
          </BreakpointContent>

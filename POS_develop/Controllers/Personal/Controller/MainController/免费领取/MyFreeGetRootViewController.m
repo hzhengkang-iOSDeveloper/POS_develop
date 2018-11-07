@@ -214,22 +214,29 @@
 {
     
     //遍历数据源 拿到所有选择数量的item
-    __block NSString *pkgPrdIds = [NSString string];
-    __block NSString *pkgPrdTypes= [NSString string];
-    __block NSString *counts= [NSString string];
+     NSString *pkgPrdIds = [NSString string];
+     NSString *pkgPrdTypes= [NSString string];
+     NSString *counts= [NSString string];
+    __block NSMutableArray *pkgPrdIdsArr = [NSMutableArray array];
+    __block NSMutableArray *pkgPrdTypesArr = [NSMutableArray array];
+    __block NSMutableArray *countsArr = [NSMutableArray array];
     [self.dataArr enumerateObjectsUsingBlock:^(POS_RootViewModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj.goodCount >0) {
-            pkgPrdIds = [pkgPrdIds stringByAppendingString:obj.ID];
-            pkgPrdTypes = [pkgPrdTypes stringByAppendingString:@"2"];
-            counts = [counts stringByAppendingString:[NSString stringWithFormat:@"%lu",obj.goodCount+1]];
+            [pkgPrdIdsArr addObject:obj.ID];
+            [pkgPrdTypesArr addObject:@"2"];
+            [countsArr addObject:[NSString stringWithFormat:@"%lu",obj.goodCount+1]];
         }
     }];
     
-    if ([pkgPrdIds isEqualToString:@""]) {
+    if (pkgPrdIdsArr.count == 0) {
         HUD_TIP(@"请选择领取套餐数量!");
         return;
     }
     
+    
+    pkgPrdIds = [pkgPrdIdsArr componentsJoinedByString:@","];
+    pkgPrdTypes = [pkgPrdTypesArr componentsJoinedByString:@","];
+    counts = [countsArr componentsJoinedByString:@","];
     NSDictionary *dict = @{
                            @"userid":USER_ID_POS,
                            @"pkgPrdIds":IF_NULL_TO_STRING(pkgPrdIds),

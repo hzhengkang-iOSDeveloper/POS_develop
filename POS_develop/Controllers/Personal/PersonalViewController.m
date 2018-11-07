@@ -19,7 +19,7 @@
 
 #import "WithdrawCashViewController.h"
 #import "SettingWithdrawPsViewController.h"
-
+#import "MessageNoticeViewController.h"
 
 
 @interface PersonalViewController () <UITableViewDelegate,UITableViewDataSource> {
@@ -85,6 +85,12 @@
         LoginTypeViewController *vc = [[LoginTypeViewController alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
         [weakSelf.navigationController pushViewController:vc animated:YES];
+    };
+    self.headerView.messageBlock = ^{//消息
+        MessageNoticeViewController *vc = [[MessageNoticeViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+        
     };
     self.headerView.withdrawBlock = ^{
         if ([weakSelf.withDrawPasswd isEqualToString:@""] || weakSelf.withDrawPasswd == nil) {

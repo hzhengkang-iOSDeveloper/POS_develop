@@ -64,14 +64,35 @@
     }];
     self.invitedCodeLabel.hidden = YES;
     
-    UIImageView *messageV = [[UIImageView alloc] init];
-    messageV.image = [UIImage imageNamed:@"消息"];
-    [bgImageV addSubview:messageV];
-    [messageV mas_makeConstraints:^(MASConstraintMaker *make) {
+//    UIImageView *messageV = [[UIImageView alloc] init];
+//
+//    messageV.userInteractionEnabled = YES;
+////    UIGestureRecognizer *singleTap = [[UIGestureRecognizer alloc] initWithTarget:self action:@selector(messageClick)];
+////    //为图片添加手势
+////    [messageV addGestureRecognizer:singleTap];
+//    UIGestureRecognizer *tap = [[UIGestureRecognizer alloc] initWithTarget:self action:@selector(messageClick)];
+//    [messageV addGestureRecognizer:tap];
+//    messageV.image = [UIImage imageNamed:@"消息"];
+//    self.messageV = messageV;
+//    [bgImageV addSubview:messageV];
+//    [messageV mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.equalTo(bgImageV).offset(FITiPhone6(-21));
+//        make.top.equalTo(bgImageV).offset(FITiPhone6(20) + STATUSBAR_H);
+//        make.size.mas_offset(CGSizeMake(FITiPhone6(17), FITiPhone6(15)));
+//    }];
+    
+
+    UIButton *messageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [messageBtn setBackgroundImage:ImageNamed(@"消息") forState:normal];
+    [bgImageV addSubview:messageBtn];
+    [messageBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(bgImageV).offset(FITiPhone6(-21));
         make.top.equalTo(bgImageV).offset(FITiPhone6(20) + STATUSBAR_H);
         make.size.mas_offset(CGSizeMake(FITiPhone6(17), FITiPhone6(15)));
     }];
+    self.messageBtn = messageBtn;
+    [messageBtn addTarget:self action:@selector(messageClick) forControlEvents:UIControlEventTouchUpInside];
+    
     UILabel *yesterdayEarningsText = [[UILabel alloc] init];
     yesterdayEarningsText.text = @"昨日收益";
     yesterdayEarningsText.textColor = WhiteColor;
@@ -136,6 +157,13 @@
 - (void)LoginClick {
     if (self.loginBlock) {
         self.loginBlock();
+    }
+}
+
+#pragma mark -- 消息点击
+- (void)messageClick {
+    if (self.messageBlock) {
+        self.messageBlock();
     }
 }
 @end
