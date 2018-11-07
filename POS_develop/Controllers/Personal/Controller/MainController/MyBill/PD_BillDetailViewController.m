@@ -856,6 +856,7 @@
 - (void)outLinePayRequestWith:(NSDictionary *)dict
 {
     AddressDOModel *addressM = [AddressDOModel mj_objectWithKeyValues:self.billListM.addressDO];
+    PayDOModel *payM = [PayDOModel mj_objectWithKeyValues:self.billListM.payDO];
     if (addressM == nil || !addressM) {
         HUD_TIP(@"选择收货地址后才可支付！");
         return;
@@ -871,6 +872,7 @@
     }
     NSDictionary *bodyDic = @{@"payBankName":IF_NULL_TO_STRING([dict objectForKey:@"name"]),
                               @"transactionId":IF_NULL_TO_STRING([dict objectForKey:@"orderNo"]),
+                              @"id":IF_NULL_TO_STRING(payM.ID)
                               };
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/orderPay/update" params:bodyDic cookie:nil result:^(bool success, id result) {
         if (success) {

@@ -294,7 +294,14 @@
         return;
     }
     _aview = [GlobalMethod addUIActivityIndicator:self.registerBtn];
-    [[HPDConnect connect] PostOtherNetRequestMethod:@"register" params:@{@"deviceId":[HDeviceIdentifier deviceIdentifier], @"invitedCode":self.recommendTF.text, @"mobile":self.telephoneTF.text, @"password":self.passwordTF.text, @"smsCode":self.codeTF.text} cookie:nil result:^(bool success, id result) {
+    NSDictionary *dict;
+    if (self.recommendTF.text.length <11) {
+        dict = @{@"deviceId":[HDeviceIdentifier deviceIdentifier], @"invitedCode":self.recommendTF.text, @"mobile":self.telephoneTF.text, @"password":self.passwordTF.text, @"smsCode":self.codeTF.text};
+    } else if (self.recommendTF.text.length == 11) {
+         dict = @{@"deviceId":[HDeviceIdentifier deviceIdentifier], @"invitedMobile;":self.recommendTF.text, @"mobile":self.telephoneTF.text, @"password":self.passwordTF.text, @"smsCode":self.codeTF.text};
+    }
+    
+    [[HPDConnect connect] PostOtherNetRequestMethod:@"register" params:dict cookie:nil result:^(bool success, id result) {
         [self.aview stopAnimating];
         [self.registerBtn setTitle:@"立即注册" forState:UIControlStateNormal];
         if (success) {
