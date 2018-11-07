@@ -40,6 +40,8 @@
 @property (nonatomic, strong) NSMutableArray *danDiArr;
 @property (nonatomic, strong) BillWuLiuInfoModel *infoModel;
 @property (nonatomic, weak) UILabel *wuliuInfoLabel;
+
+@property (nonatomic,assign)BOOL isNeedSelectAddress;
 @end
 
 @implementation PD_BillDetailViewController
@@ -106,6 +108,8 @@
 #pragma mark ---- TabHeadView ----
 - (UIView *)creatTableHeaderViewWith:(AddressDOModel *)addressM
 {
+    
+   
     UIView *headerView = [[UIView alloc]init];
     headerView.backgroundColor = WhiteColor;
     PayDOModel *payDoModel = [PayDOModel mj_objectWithKeyValues:self.billListM.payDO];
@@ -120,6 +124,7 @@
     }
     
     if (addressM == nil || !addressM) {
+        self.isNeedSelectAddress = YES;
         [UILabel getLabelWithFont:F15 textColor:CF70F0F superView:headerView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
             make.left.offset(AD_HEIGHT(15));
             make.centerY.offset(0);
@@ -132,6 +137,7 @@
         
         
     } else {
+        self.isNeedSelectAddress = NO;
         //收件人姓名
         UILabel *receiverNameLabel = [UILabel getLabelWithFont:FB13 textColor:C000000 superView:headerView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
             make.left.offset(AD_HEIGHT(29));
@@ -736,8 +742,7 @@
 #pragma mark ---- 线上支付相关 ----
 - (void)payRequest:(NSUInteger)payType
 {
-    AddressDOModel *addressM = [AddressDOModel mj_objectWithKeyValues:self.billListM.addressDO];
-    if (addressM == nil || !addressM) {
+    if (self.isNeedSelectAddress) {
         HUD_TIP(@"选择收货地址后才可支付！");
         return;
     }
@@ -855,8 +860,8 @@
 #pragma mark ---- 线下支付相关 ----
 - (void)outLinePayRequestWith:(NSDictionary *)dict
 {
-    AddressDOModel *addressM = [AddressDOModel mj_objectWithKeyValues:self.billListM.addressDO];
-    if (addressM == nil || !addressM) {
+    PayDOModel *payM = [PayDOModel mj_objectWithKeyValues:self.billListM.payDO];
+    if (self.isNeedSelectAddress) {
         HUD_TIP(@"选择收货地址后才可支付！");
         return;
     }
@@ -871,6 +876,7 @@
     }
     NSDictionary *bodyDic = @{@"payBankName":IF_NULL_TO_STRING([dict objectForKey:@"name"]),
                               @"transactionId":IF_NULL_TO_STRING([dict objectForKey:@"orderNo"]),
+                              @"id":IF_NULL_TO_STRING(payM.ID)
                               };
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/orderPay/update" params:bodyDic cookie:nil result:^(bool success, id result) {
         if (success) {
