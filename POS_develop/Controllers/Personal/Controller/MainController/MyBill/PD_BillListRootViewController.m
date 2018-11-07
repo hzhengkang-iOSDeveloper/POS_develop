@@ -135,7 +135,7 @@
 #pragma mark ------------------------------------ 接口 ------------------------------------
 - (void)loadOrderListRequestWithIndex:(NSString *)index{
     HUD_SHOW;
-    NSDictionary *dict = @{@"offset":@(_page*10), @"limit":@10,@"orderStatus":index};
+    NSDictionary *dict = @{@"offset":@(_page*10), @"limit":@10,@"orderStatus":index,@"userid":USER_ID_POS};
 
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/order/list" params:dict cookie:nil result:^(bool success, id result) {
         HUD_HIDE;
