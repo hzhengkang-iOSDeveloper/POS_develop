@@ -192,6 +192,9 @@
                     if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
                         NSArray *array =result[@"data"][@"rows"];
                         NSMutableArray *dataArr = [NSMutableArray arrayWithArray:[IndexBannerListModel mj_objectArrayWithKeyValuesArray:array]];
+                        if (self.adArray.count > 0) {
+                            [self.adArray removeAllObjects];
+                        }
                         [dataArr enumerateObjectsUsingBlock:^(IndexBannerListModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
                             [self.adArray addObject:model.bannerPic];
                         }];
