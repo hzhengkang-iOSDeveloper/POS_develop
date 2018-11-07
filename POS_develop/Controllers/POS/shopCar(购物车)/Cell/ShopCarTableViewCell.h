@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @class ShopCar_PackageChargeItemModel;
+@class ShopCar_PackageFreeItemModel;
 @interface ShopCarTableViewCell : UITableViewCell
 @property (nonatomic, strong) UIImageView *myImageView;
 @property (nonatomic, strong) UILabel *titleLabel;
@@ -17,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel *numberLabel;
 @property (nonatomic, strong) UIView *line;
 @property (nonatomic, strong) ShopCar_PackageChargeItemModel *packageM;
+@property (nonatomic, strong) ShopCar_PackageFreeItemModel *packageFreeM;
 +(instancetype)cellWithTableView:(UITableView *)tableView;
 @end
 

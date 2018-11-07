@@ -77,7 +77,18 @@
         
         ShopCar_PackageProductDOModel *productM = [ShopCar_PackageProductDOModel mj_objectWithKeyValues:packageM.productDO];
         self.amountLabel.text = [NSString stringWithFormat:@"￥%@", productM.posPrice];
-        self.numberLabel.text = [NSString stringWithFormat:@"x%@", productM.posCount];
+        self.numberLabel.text = [NSString stringWithFormat:@"x%@", packageM.posCount];
+        [self.myImageView sd_setImageWithURL:[NSURL URLWithString:productM.productImg]];
+        self.titleLabel.text = productM.posBrandName;
+    }
+}
+- (void)setPackageFreeM:(ShopCar_PackageFreeItemModel *)packageFreeM
+{
+    if (packageFreeM) {
+        _packageFreeM =packageFreeM;
+        ShopCar_PackageProductDOModel *productM = [ShopCar_PackageProductDOModel mj_objectWithKeyValues:packageFreeM.productDO];
+        self.amountLabel.text = [NSString stringWithFormat:@"￥%@", productM.posPrice];
+        self.numberLabel.text = [NSString stringWithFormat:@"x%@", packageFreeM.posCount];
         [self.myImageView sd_setImageWithURL:[NSURL URLWithString:productM.productImg]];
         self.titleLabel.text = productM.posBrandName;
     }

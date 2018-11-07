@@ -98,7 +98,7 @@
     self.skuCountLabel = skuCountLabel;
     [_skuCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.offset(-AD_HEIGHT(15));
-        make.top.equalTo(weakSelf.skuPriceLabel.mas_top);
+        make.centerY.offset(0);
     }];
     
     //line
@@ -119,12 +119,24 @@
         _itemListM = itemListM;
         ProductDOModel *productM = [ProductDOModel mj_objectWithKeyValues:itemListM.productDO];
         self.skuPriceLabel.text = [NSString stringWithFormat:@"￥%@", productM.posPrice];
-        self.skuCountLabel.text = [NSString stringWithFormat:@"x%@", productM.posCount];
+        self.skuCountLabel.text = [NSString stringWithFormat:@"x%@", itemListM.posCount];
         [self.skuImageView sd_setImageWithURL:[NSURL URLWithString:productM.productImg]];
-        self.skuNameLabel.text = productM.productName;
+        self.skuNameLabel.text = productM.posBrandName;
     }
 }
 
+
+- (void)setItemFreeListM:(PackAgeFreeItemListModel *)itemFreeListM
+{
+    if (itemFreeListM) {
+        _itemFreeListM =itemFreeListM;
+        ProductDOModel *productM = [ProductDOModel mj_objectWithKeyValues:itemFreeListM.productDO];
+        self.skuPriceLabel.text = [NSString stringWithFormat:@"￥%@", productM.posPrice];
+        self.skuCountLabel.text = [NSString stringWithFormat:@"x%@", itemFreeListM.posCount];
+        [self.skuImageView sd_setImageWithURL:[NSURL URLWithString:productM.productImg]];
+        self.skuNameLabel.text = productM.posBrandName;
+    }
+}
 
 - (void)setDetaiM:(DetailDOModel *)detaiM
 {

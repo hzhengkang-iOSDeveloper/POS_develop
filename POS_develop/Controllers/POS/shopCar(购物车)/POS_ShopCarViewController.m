@@ -42,6 +42,8 @@
 @property (nonatomic, assign) NSUInteger freePackageArrCount;//记录产品数组循环次数
 @property (nonatomic, assign) NSUInteger noFreePackageArrCount;//记录产品数组循环次数
 
+@property (nonatomic, assign) int page;//接口数据当前页数
+
 @end
 
 @implementation POS_ShopCarViewController
@@ -101,7 +103,8 @@
     self.productArrCount = 0;
     self.freePackageArrCount =0;
     self.noFreePackageArrCount = 0;
-    
+    self.page = 0;
+
     [self getShopCarRequest];
 }
 
@@ -118,6 +121,16 @@
     [self.myTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.right.offset(0);
         make.bottom.equalTo(weakSelf.bottomView.mas_top);
+    }];
+    
+    self.myTableView.mj_header = [SLRefreshHeader headerWithRefreshingBlock:^{
+        weakSelf.page = 0;
+        [weakSelf getShopCarRequest];
+    }];
+    
+    self.myTableView.mj_footer = [SLRefreshFooter footerWithRefreshingBlock:^{
+        weakSelf.page ++;
+        [weakSelf getShopCarRequest];
     }];
 }
 
@@ -364,10 +377,24 @@
     if (self.productDataArr.count  >indexPath.row) {
         tmpProductArr = [NSArray arrayWithArray:self.productDataArr[indexPath.row]];
     }
+    
+    
     if (self.productDataArr.count >indexPath.row && self.packAgeArr.count >indexPath.row) {
-        return indexPath.section==0?(AD_HEIGHT(30)+AD_HEIGHT(46)+taoCanDetaiM.packageChargeItemDOList.count*AD_HEIGHT(60)+AD_HEIGHT(5)):(AD_HEIGHT(32)+AD_HEIGHT(60)*tmpProductArr.count+AD_HEIGHT(5));
+        if ([taoCanDetaiM.pkgPrdType isEqualToString:@"1"]) {
+            //收费
+            return indexPath.section==0?(AD_HEIGHT(30)+AD_HEIGHT(46)+taoCanDetaiM.packageChargeItemDOList.count*AD_HEIGHT(60)+AD_HEIGHT(5)):(AD_HEIGHT(32)+AD_HEIGHT(60)*tmpProductArr.count+AD_HEIGHT(5));
+        } else {
+            //免费
+            return indexPath.section==0?(AD_HEIGHT(30)+AD_HEIGHT(46)+taoCanDetaiM.packageFreeItemDOList.count*AD_HEIGHT(60)+AD_HEIGHT(5)):(AD_HEIGHT(32)+AD_HEIGHT(60)*tmpProductArr.count+AD_HEIGHT(5));
+        }
     } else if (self.productDataArr.count ==0 && self.packAgeArr.count >indexPath.row) {
-        return AD_HEIGHT(30)+AD_HEIGHT(46)+taoCanDetaiM.packageChargeItemDOList.count*AD_HEIGHT(60)+AD_HEIGHT(5);
+        if ([taoCanDetaiM.pkgPrdType isEqualToString:@"1"]) {
+            //收费
+            return AD_HEIGHT(30)+AD_HEIGHT(46)+taoCanDetaiM.packageChargeItemDOList.count*AD_HEIGHT(60)+AD_HEIGHT(5);
+        } else {
+            //免费
+            return AD_HEIGHT(30)+AD_HEIGHT(46)+taoCanDetaiM.packageFreeItemDOList.count*AD_HEIGHT(60)+AD_HEIGHT(5);
+        }
     } else if (self.productDataArr.count >indexPath.row && self.packAgeArr.count ==0) {
         return AD_HEIGHT(32)+AD_HEIGHT(60)*tmpProductArr.count+AD_HEIGHT(5);
     } else {
@@ -494,15 +521,24 @@
 - (void)getShopCarRequest
 {
     HUD_NOBGSHOWTOUCH;
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/cart/list" params:@{@"userid":USER_ID_POS} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/cart/list" params:@{@"userid":USER_ID_POS,@"offset":@(_page*10), @"limit":@10,} cookie:nil result:^(bool success, id result) {
+        [self.myTableView.mj_header endRefreshing];
+        [self.myTableView.mj_footer endRefreshing];
         if (success) {
             
             if ([result[@"code"]integerValue] == 0) {
                 if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                     if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
+                        if (self.page == 0) {
+                            [self cleanShopCarData];
+                        }
                         NSArray *arr = result[@"data"][@"rows"];
                         if (arr.count == 0) {
                             HUD_HIDE;
+                        }
+                        
+                        if (arr.count < 10) {
+                            [self.myTableView.mj_footer endRefreshingWithNoMoreData];
                         }
                         NSArray *tmpArr = [NSArray arrayWithArray:[ShopCarModel mj_objectArrayWithKeyValuesArray:arr]];
                         [self fenleiWithId:tmpArr];
@@ -551,6 +587,11 @@
     [self.freeTaoCanArr enumerateObjectsUsingBlock:^(NSString *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [self getFreePackageDetailRequest:obj];
     }];
+    
+    if (self.danDianArr.count == 0 && self.freeTaoCanArr.count == 0 && self.noFreeTaoCanArr.count == 0) {
+        [self.myTableView reloadData];
+    }
+    
 }
 
 #pragma mark ---- 获取产品详情 ----
@@ -675,6 +716,9 @@
         if (success) {
             if ([result[@"code"]integerValue] == 0) {
                 POS_CommitBillViewController *vc = [[POS_CommitBillViewController alloc]init];
+                vc.updateData = ^{
+                    [self.myTableView.mj_header beginRefreshing];
+                };
                 vc.hidesBottomBarWhenPushed = YES;
                 vc.orderId = [NSString stringWithFormat:@"%@",result[@"data"]];
                 [self.navigationController pushViewController:vc animated:YES];
@@ -687,5 +731,21 @@
         }
         NSLog(@"result ------- %@", result);
     }];
+}
+
+
+#pragma mark ---- 清空数据 ----
+- (void)cleanShopCarData
+{
+    [self.freeTaoCanArr  removeAllObjects];
+    [self.noFreeTaoCanArr  removeAllObjects];
+    [self.danDianArr  removeAllObjects];
+    [self.productArr  removeAllObjects];
+    [self.productDataArr  removeAllObjects];
+    [self.packAgeArr  removeAllObjects];
+    
+    self.productArrCount = 0;
+    self.freePackageArrCount =0;
+    self.noFreePackageArrCount = 0;
 }
 @end

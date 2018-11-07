@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *recommendType;
 @property (nonatomic, copy) NSString *countInPackage;
 @property (nonatomic, strong) NSArray *packageChargeItemDOList;
+@property (nonatomic, strong) NSArray *packageFreeItemDOList;
+
 @end
 
 @interface ShopCar_PackageChargeItemModel : NSObject
@@ -44,6 +46,20 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *deleteflag;
 @property (nonatomic, strong) NSDictionary *productDO;
 @end
+
+@interface ShopCar_PackageFreeItemModel : NSObject
+@property (nonatomic, copy) NSString *ID;
+@property (nonatomic, copy) NSString *tbPkgFreeId;
+@property (nonatomic, copy) NSString *tbProductId;
+@property (nonatomic, copy) NSString *posCount;
+@property (nonatomic, copy) NSString *createtime;
+@property (nonatomic, copy) NSString *createusername;
+@property (nonatomic, copy) NSString *updateuserno;
+@property (nonatomic, copy) NSString *updatetime;
+@property (nonatomic, copy) NSString *deleteflag;
+@property (nonatomic, strong) NSDictionary *productDO;
+@end
+
 
 @interface ShopCar_PackageProductDOModel : NSObject
 @property (nonatomic, copy) NSString *ID;

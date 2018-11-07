@@ -18,7 +18,8 @@
 +(NSDictionary *)mj_objectClassInArray
 {
     return @{
-             @"packageChargeItemDOList" : @"ShopCar_PackageChargeItemModel"
+             @"packageChargeItemDOList" : @"ShopCar_PackageChargeItemModel",
+             @"packageFreeItemDOList":@"ShopCar_PackageFreeItemModel"
              };
 }
 
@@ -32,6 +33,18 @@
     
 }
 @end
+
+@implementation ShopCar_PackageFreeItemModel
++ (NSDictionary *)replacedKeyFromPropertyName
+{
+    
+    return @{@"ID" : @"id"};
+    
+}
+@end
+
+
+
 @implementation ShopCar_PackageProductDOModel
 + (NSDictionary *)replacedKeyFromPropertyName
 {

@@ -54,6 +54,18 @@
     }
     return _productArr;
 }
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) {
+        if (self.updateData) {
+            self.updateData();
+        }
+    }
+}
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -384,9 +396,22 @@
     }
     
     if (self.productArr.count >0 && self.taoCanArr.count >0) {
+        if ([taoCanDetaiM.itemType isEqualToString:@"1"]) {
+            //收费
         return indexPath.section==0?(AD_HEIGHT(30)+AD_HEIGHT(46)+taoCanItemObjM.packageChargeItemDOList.count*AD_HEIGHT(60)+AD_HEIGHT(5)):(AD_HEIGHT(32)+AD_HEIGHT(60)*productTmpArr.count+AD_HEIGHT(5));
+        } else  {
+            //免费
+            return indexPath.section==0?(AD_HEIGHT(30)+AD_HEIGHT(46)+taoCanItemObjM.packageFreeItemDOList.count*AD_HEIGHT(60)+AD_HEIGHT(5)):(AD_HEIGHT(32)+AD_HEIGHT(60)*productTmpArr.count+AD_HEIGHT(5));
+        }
     } else if (self.productArr.count ==0 && self.taoCanArr.count >0) {
-        return AD_HEIGHT(30)+AD_HEIGHT(46)+taoCanItemObjM.packageChargeItemDOList.count*AD_HEIGHT(60)+AD_HEIGHT(5);
+        if ([taoCanDetaiM.itemType isEqualToString:@"1"]) {
+            //收费
+            return AD_HEIGHT(30)+AD_HEIGHT(46)+taoCanItemObjM.packageChargeItemDOList.count*AD_HEIGHT(60)+AD_HEIGHT(5);
+        } else  {
+            //免费
+             return AD_HEIGHT(30)+AD_HEIGHT(46)+taoCanItemObjM.packageFreeItemDOList.count*AD_HEIGHT(60)+AD_HEIGHT(5);
+
+        }
     } else if (self.productArr.count >0 && self.taoCanArr.count ==0) {
         return AD_HEIGHT(32)+AD_HEIGHT(60)*productTmpArr.count+AD_HEIGHT(5);
     } else {
@@ -510,7 +535,7 @@
         //0:产品，1：套餐
         if ([detailM.itemType isEqualToString:@"0"]) {
             [self.danDiArr addObject:detailM];
-        } else if ([detailM.itemType isEqualToString:@"1"]) {
+        } else {
             [self.taoCanArr addObject:detailM];
         }
     }];
@@ -538,7 +563,7 @@
         [[HPDConnect connect] PostNetRequestMethod:@"api/trans/orderPay/getPayUuid" params:bodyDic cookie:nil result:^(bool success, id result) {
             if (success) {
                 if ([result[@"code"]integerValue] == 0) {
-                    NSString *Member_IdStr  = result[@"code"];
+                    NSString *Member_IdStr  = result[@"data"];
                     int  Member_Id = [Member_IdStr intValue];
                 NSDictionary *wxPayDict = @{
                                             @"isAppMode":@1,
@@ -559,7 +584,7 @@
         [[HPDConnect connect] PostNetRequestMethod:@"api/trans/orderPay/getPayUuid" params:bodyDic cookie:nil result:^(bool success, id result) {
             if (success) {
                 if ([result[@"code"]integerValue] == 0) {
-                    NSString *Member_IdStr  = result[@"code"];
+                    NSString *Member_IdStr  = result[@"data"];
                     int  Member_Id = [Member_IdStr intValue];
                 NSDictionary *wxPayDict = @{
                                             @"isAppMode":@1,

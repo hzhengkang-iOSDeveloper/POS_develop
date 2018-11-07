@@ -249,7 +249,11 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     ShopCarTableViewCell *cell = [ShopCarTableViewCell cellWithTableView:tableView];
-    cell.packageM = self.dataArr[indexPath.row];
+    if ([self.posRootViewM.pkgPrdType isEqualToString:@"1"]) {
+        cell.packageM = self.dataArr[indexPath.row];
+    } else if ([self.posRootViewM.pkgPrdType isEqualToString:@"2"]) {
+        cell.packageFreeM = self.dataArr[indexPath.row];
+    }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     
@@ -275,7 +279,7 @@
     return [UIView new];
 }
 
-- (void)setPosRootViewM:(ShopCar_PackageModel *)posRootViewM
+- (void) setPosRootViewM:(ShopCar_PackageModel *)posRootViewM
 {
     if (posRootViewM) {
         _posRootViewM = posRootViewM;
@@ -285,7 +289,11 @@
         }
         self.myTableView.tableHeaderView = [self creatHeader];
         self.myTableView.tableFooterView =  [self creatFooter];
-        [self.dataArr addObjectsFromArray:posRootViewM.packageChargeItemDOList];
+        if ([posRootViewM.pkgPrdType isEqualToString:@"1"]) {
+            [self.dataArr addObjectsFromArray:posRootViewM.packageChargeItemDOList];
+        } else if ([posRootViewM.pkgPrdType isEqualToString:@"2"]) {
+            [self.dataArr addObjectsFromArray:posRootViewM.packageFreeItemDOList];
+        }
         [self.myTableView reloadData];
     }
 }

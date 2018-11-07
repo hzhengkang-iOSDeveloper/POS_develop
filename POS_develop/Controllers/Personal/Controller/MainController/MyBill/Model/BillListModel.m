@@ -55,13 +55,23 @@
 +(NSDictionary *)mj_objectClassInArray
 {
     return @{
-             @"packageChargeItemDOList" : @"PackAgeChargeItemListModel"
+             @"packageChargeItemDOList" : @"PackAgeChargeItemListModel",
+             @"packageFreeItemDOList" : @"PackAgeFreeItemListModel"
              };
 }
 @end
 
 
 @implementation PackAgeChargeItemListModel
++ (NSDictionary *)replacedKeyFromPropertyName
+{
+    
+    return @{@"ID" : @"id"};
+    
+}
+@end
+
+@implementation PackAgeFreeItemListModel
 + (NSDictionary *)replacedKeyFromPropertyName
 {
     

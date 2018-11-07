@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 @class PackAgeChargeItemListModel;
+@class PackAgeFreeItemListModel;
 @class DetailDOModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PD_BillDetailSkuCell : UITableViewCell
 @property (nonatomic, strong) PackAgeChargeItemListModel *itemListM;
+@property (nonatomic, strong) PackAgeFreeItemListModel *itemFreeListM;
 @property (nonatomic, strong) DetailDOModel *detaiM;
 
 + (instancetype)cellWithTableView:(UITableView *)tableView;

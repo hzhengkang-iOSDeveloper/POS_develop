@@ -98,11 +98,28 @@
 @property (nonatomic, copy) NSString *productImg;
 @property (nonatomic, copy) NSString *chargeType;
 @property (nonatomic, copy) NSString *productName;
+
+//免费套餐
+@property (nonatomic, strong) NSArray * packageFreeItemDOList;
+
 @end
 
 @interface PackAgeChargeItemListModel : NSObject
 @property (nonatomic , copy) NSString              * ID;
 @property (nonatomic , copy) NSString              * tbPkgChargeId;
+@property (nonatomic , copy) NSString              * tbProductId;
+@property (nonatomic , copy) NSString              * posCount;
+@property (nonatomic , copy) NSString              * createtime;
+@property (nonatomic , copy) NSString              * createusername;
+@property (nonatomic , copy) NSString              * updateuserno;
+@property (nonatomic , copy) NSString              * updatetime;
+@property (nonatomic , copy) NSString              * deleteflag;
+@property (nonatomic , strong) NSDictionary              * productDO;
+@end
+
+@interface PackAgeFreeItemListModel : NSObject
+@property (nonatomic , copy) NSString              * ID;
+@property (nonatomic , copy) NSString              * tbPkgFreeId;
 @property (nonatomic , copy) NSString              * tbProductId;
 @property (nonatomic , copy) NSString              * posCount;
 @property (nonatomic , copy) NSString              * createtime;

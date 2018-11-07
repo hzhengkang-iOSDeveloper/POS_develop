@@ -214,8 +214,13 @@
                 if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                     if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
                         NSString *posCount = result[@"data"][@"total"];
-                        self.cartNumLabel.hidden = NO;
-                        self.cartNumLabel.text = [NSString stringWithFormat:@"%ld",(long)[posCount integerValue]];
+                        if ([posCount integerValue] == 0) {
+                            self.cartNumLabel.hidden = YES;
+                        } else {
+                            self.cartNumLabel.hidden = NO;
+                            self.cartNumLabel.text = [NSString stringWithFormat:@"%ld",(long)[posCount integerValue]];
+                        }
+                       
 
                     }
                 }

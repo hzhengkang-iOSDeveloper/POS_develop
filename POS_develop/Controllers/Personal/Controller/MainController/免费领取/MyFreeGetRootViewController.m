@@ -224,7 +224,7 @@
         if (obj.goodCount >0) {
             [pkgPrdIdsArr addObject:obj.ID];
             [pkgPrdTypesArr addObject:@"2"];
-            [countsArr addObject:[NSString stringWithFormat:@"%lu",obj.goodCount+1]];
+            [countsArr addObject:[NSString stringWithFormat:@"%lu",obj.goodCount]];
         }
     }];
     

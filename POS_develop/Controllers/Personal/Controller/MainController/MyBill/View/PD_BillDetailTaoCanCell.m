@@ -77,10 +77,10 @@
         
         view.textAlignment = NSTextAlignmentLeft;
         ItemObjModel *itemObjM = [ItemObjModel mj_objectWithKeyValues:self.detailDoM.itemObj];
-        PackAgeChargeItemListModel *packageM = [itemObjM.packageChargeItemDOList firstObject];
-        ProductDOModel *productM  = [ProductDOModel mj_objectWithKeyValues:packageM.productDO];
+//        PackAgeChargeItemListModel *packageM = [itemObjM.packageChargeItemDOList firstObject];
+//        ProductDOModel *productM  = [ProductDOModel mj_objectWithKeyValues:packageM.productDO];
         
-        view.text = productM.posBrandName;
+        view.text = IF_NULL_TO_STRING(itemObjM.packageName);
     }];
     self.taoCanNameLabel = taoCanNameLabel;
     
@@ -100,7 +100,7 @@
         make.left.offset(AD_HEIGHT(15));
         make.centerY.offset(0);
         
-        view.text = [NSString stringWithFormat:@"￥%@",self.detailDoM.discountPrice];
+        view.text = [NSString stringWithFormat:@"￥%@",self.detailDoM.orderPrice];
     }];
     self.discountPriceLabel = discountPriceLabel;
     
@@ -138,8 +138,14 @@
     
     PD_BillDetailSkuCell *cell = [PD_BillDetailSkuCell cellWithTableView:tableView];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if ([self.detailDoM.itemType isEqualToString:@"1"]) {
+        //收费
     cell.itemListM = self.dataArr[indexPath.row];
-    
+    } else {
+        //免费
+    cell.itemFreeListM = self.dataArr[indexPath.row];
+
+    }
     
     return cell;
 }
@@ -173,7 +179,15 @@
         self.myTableView.tableHeaderView = [self creatHeader];
         self.myTableView.tableFooterView =  [self creatFooter];
         ItemObjModel *itemObjM = [ItemObjModel mj_objectWithKeyValues:self.detailDoM.itemObj];
-        [self.dataArr addObjectsFromArray:itemObjM.packageChargeItemDOList];
+        if ([detailDoM.itemType isEqualToString:@"1"]) {
+            //收费
+            [self.dataArr addObjectsFromArray:itemObjM.packageChargeItemDOList];
+
+        } else {
+            //免费
+            [self.dataArr addObjectsFromArray:itemObjM.packageFreeItemDOList];
+
+        }
         [self.myTableView reloadData];
     }
 }
