@@ -128,7 +128,7 @@
 #pragma mark ------------------------------------ 接口 ------------------------------------
 #pragma mark ---- 终端绑定查询 ----
 - (void)loadAgentListRequest {
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agent/list" params:nil cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/agent/list" params:@{@"userid":USER_ID_POS} cookie:nil result:^(bool success, id result) {
         [self.terminalAdminTableView.mj_header endRefreshing];
         if (success) {
             if ([result[@"code"]integerValue] == 0) {

@@ -225,9 +225,15 @@
                             [self.dataArray addObjectsFromArray:[PosListModel mj_objectArrayWithKeyValuesArray:array]];
                         }
                         self.count = 0;
-                        [self.dataArray enumerateObjectsUsingBlock:^(PosListModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                            [self loadPosBindStatusRequestWithPosId:obj.ID];
-                        }];
+                        if (self.dataArray.count == 0) {
+                            TerminalSelectResultViewController *vc = [[TerminalSelectResultViewController alloc] init];
+                            [self.navigationController pushViewController:vc animated:YES];
+                        }else {
+                            [self.dataArray enumerateObjectsUsingBlock:^(PosListModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                                [self loadPosBindStatusRequestWithPosId:obj.ID];
+                            }];
+                        }
+                        
                         
                     }
                 }
