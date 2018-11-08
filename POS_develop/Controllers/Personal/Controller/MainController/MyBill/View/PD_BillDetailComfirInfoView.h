@@ -12,7 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PD_BillDetailComfirInfoView : UIView
 @property (nonatomic, copy) void (^comfirHandler)(void);
-
+//确认收货
+@property (nonatomic, weak) UIButton *comfirInfoBtn;
 @end
 
 NS_ASSUME_NONNULL_END

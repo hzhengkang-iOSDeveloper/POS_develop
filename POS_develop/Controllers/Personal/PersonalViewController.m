@@ -93,6 +93,10 @@
         
     };
     self.headerView.withdrawBlock = ^{
+        if ([weakSelf.balanceStr integerValue] < 0) {
+            HUD_TIP(@"您的余额为负数，不能提现");
+            return ;
+        }
         if ([weakSelf.withDrawPasswd isEqualToString:@""] || weakSelf.withDrawPasswd == nil) {
             //没有设置提现密码，跳转设置提现密码界面
             SettingWithdrawPsViewController *vc = [[SettingWithdrawPsViewController alloc] init];

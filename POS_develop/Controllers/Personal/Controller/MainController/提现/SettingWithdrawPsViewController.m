@@ -95,7 +95,7 @@
         HUD_TIP(@"两次密码不一致");
         return;
     }
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/bag/update" params:@{@"id":self.withDrawPasswdID, @"withDrawPasswd":self.passwordTF.text} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/bag/update" params:@{@"id":self.withDrawPasswdID, @"withDrawPasswd":self.passwordTF.text, @"userid":USER_ID_POS} cookie:nil result:^(bool success, id result) {
         
         if (success) {
             if ([result[@"code"]integerValue] == 0) {

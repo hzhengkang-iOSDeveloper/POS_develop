@@ -104,7 +104,7 @@
         if (self.rightHandler) {
             self.rightHandler(self.model.orderStatus);
         }
-    }else if ([self.model.orderStatus isEqualToString:@"20"] || [self.model.orderStatus isEqualToString:@"30"]) {
+    }else if ( [self.model.orderStatus isEqualToString:@"30"]) {
         [SLPopupShowView createPopupShowViewWithContentText:@"是否确认收货" buttons:@[@"确定收货",@"取消"] buttonClick:^(int index) {
             if (index == 0) {
                 if (self.rightHandler) {
@@ -112,6 +112,12 @@
                 }
             }
         }];
+        
+    }else if ( [self.model.orderStatus isEqualToString:@"20"]) {
+        return;
+        
+    }else if ( [self.model.orderStatus isEqualToString:@"15"]) {
+        return;
         
     }
 }
@@ -132,10 +138,16 @@
         
         if ([model.orderStatus isEqualToString:@"10"]) {
             [self changeBtnLeftStr:@"" withRight:@"立即付款"];
-        }else if ([model.orderStatus isEqualToString:@"20"] || [model.orderStatus isEqualToString:@"30"]) {
+        }else if ([model.orderStatus isEqualToString:@"15"]) {
+            [self changeBtnLeftStr:@"" withRight:@"待审核"];
+        }else if ([model.orderStatus isEqualToString:@"20"]) {
+            [self changeBtnLeftStr:@"" withRight:@"待发货"];
+        }else if ([model.orderStatus isEqualToString:@"30"]) {
             [self changeBtnLeftStr:@"" withRight:@"确认收货"];
         }else if ([model.orderStatus isEqualToString:@"40"]) {
             [self changeBtnLeftStr:@"" withRight:@""];
+        }else if ([model.orderStatusZh isEqualToString:@"已取消"]) {
+            [self changeBtnLeftStr:@"" withRight:@"已取消"];
         }
         
 

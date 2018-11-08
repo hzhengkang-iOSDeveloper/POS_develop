@@ -490,6 +490,11 @@
         //确认收货
         footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(306)+AD_HEIGHT(53)+AD_HEIGHT(5));
         PD_BillDetailComfirInfoView *comfirInfoView = [[PD_BillDetailComfirInfoView alloc]init];
+        if ([self.billListM.orderStatus isEqualToString:@"20"]) {
+            comfirInfoView.comfirInfoBtn.hidden = YES;
+        }else {
+            comfirInfoView.comfirInfoBtn.hidden = NO;
+        }
         comfirInfoView.comfirHandler = ^{
             [self comfirAddressWith:self.billListM];
         };
@@ -606,6 +611,7 @@
             return AD_HEIGHT(30)+AD_HEIGHT(46)+taoCanItemObjM.packageChargeItemDOList.count*AD_HEIGHT(60)+AD_HEIGHT(5);
         } else  {
             //免费
+            //taoCanItemObjM.packageFreeItemDOList == nil
             return AD_HEIGHT(30)+AD_HEIGHT(46)+taoCanItemObjM.packageFreeItemDOList.count*AD_HEIGHT(60)+AD_HEIGHT(5);
             
         }

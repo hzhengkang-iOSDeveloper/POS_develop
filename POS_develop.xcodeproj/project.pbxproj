@@ -77,7 +77,6 @@
 		502E8A3C218434BB001E4695 /* BagWithdrawListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 502E8A3B218434BB001E4695 /* BagWithdrawListModel.m */; };
 		502E8A3F2184358B001E4695 /* BagWithdrawCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 502E8A3E2184358B001E4695 /* BagWithdrawCell.m */; };
 		502E8A4221843A97001E4695 /* SettingWithdrawPsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 502E8A4121843A97001E4695 /* SettingWithdrawPsViewController.m */; };
-		50339EAE2152968F003011E9 /* PD_BillListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50339EAD2152968F003011E9 /* PD_BillListCell.m */; };
 		503C46A4218018F0003F467F /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 503C46A3218018F0003F467F /* Foundation+Log.m */; };
 		5040E98321770CDE00E39628 /* CombinationSetMealDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5040E98221770CDE00E39628 /* CombinationSetMealDetailViewController.m */; };
 		504D8E172170407200478C50 /* POS_CommitBillViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 504D8E162170407200478C50 /* POS_CommitBillViewController.m */; };
@@ -643,8 +642,6 @@
 		502E8A3E2184358B001E4695 /* BagWithdrawCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BagWithdrawCell.m; sourceTree = "<group>"; };
 		502E8A4021843A97001E4695 /* SettingWithdrawPsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingWithdrawPsViewController.h; sourceTree = "<group>"; };
 		502E8A4121843A97001E4695 /* SettingWithdrawPsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingWithdrawPsViewController.m; sourceTree = "<group>"; };
-		50339EAC2152968F003011E9 /* PD_BillListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PD_BillListCell.h; sourceTree = "<group>"; };
-		50339EAD2152968F003011E9 /* PD_BillListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PD_BillListCell.m; sourceTree = "<group>"; };
 		503C46A3218018F0003F467F /* Foundation+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Foundation+Log.m"; sourceTree = "<group>"; };
 		5040E98121770CDE00E39628 /* CombinationSetMealDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CombinationSetMealDetailViewController.h; sourceTree = "<group>"; };
 		5040E98221770CDE00E39628 /* CombinationSetMealDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CombinationSetMealDetailViewController.m; sourceTree = "<group>"; };
@@ -1827,8 +1824,6 @@
 		50339EAB21529679003011E9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				50339EAC2152968F003011E9 /* PD_BillListCell.h */,
-				50339EAD2152968F003011E9 /* PD_BillListCell.m */,
 				50B0607D2153520E00B7B411 /* PD_BillListSkuCell.h */,
 				50B0607E2153520E00B7B411 /* PD_BillListSkuCell.m */,
 				501C6AF32181A63000927438 /* PD_BillDetailSkuCell.h */,
@@ -3996,7 +3991,6 @@
 				50A89B0E216B653200E68BEB /* XBarChartView.m in Sources */,
 				500C2732217C3852008F221A /* POS_ShopCarViewController.m in Sources */,
 				BCA1C86E218FF95700CC14C8 /* HArticleWebViewController.m in Sources */,
-				50339EAE2152968F003011E9 /* PD_BillListCell.m in Sources */,
 				BCA1C876218FF95700CC14C8 /* HDChatToolbarItem.m in Sources */,
 				7888F3B42147C33900AAC8B0 /* UILabel+Style.m in Sources */,
 				502E8A4221843A97001E4695 /* SettingWithdrawPsViewController.m in Sources */,
@@ -4471,8 +4465,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = PY7ZU58Z7K;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = EG85F66DQP;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4563,7 +4557,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pos.payCompany;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = pos_debug;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -4575,8 +4569,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = PY7ZU58Z7K;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = EG85F66DQP;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4667,7 +4661,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pos.payCompany;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = pos_debug;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

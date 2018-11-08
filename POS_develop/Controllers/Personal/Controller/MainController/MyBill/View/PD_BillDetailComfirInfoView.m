@@ -8,8 +8,7 @@
 
 #import "PD_BillDetailComfirInfoView.h"
 @interface PD_BillDetailComfirInfoView ()
-//确认收货
-@property (nonatomic, weak) UIButton *comfirInfoBtn;
+
 
 @end
 @implementation PD_BillDetailComfirInfoView
