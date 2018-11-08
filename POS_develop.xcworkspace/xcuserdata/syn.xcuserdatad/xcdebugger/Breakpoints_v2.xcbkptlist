@@ -19,76 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "POS_develop/Controllers/Personal/Controller/MainController/&#x8bbe;&#x7f6e;/UpdatePhoneViewController.m"
-            timestampString = "562927388.370314"
+            filePath = "POS_develop/Controllers/Personal/Controller/MainController/MyBill/View/PD_BillDetailUnCheckView.m"
+            timestampString = "563379722.8629301"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "-UpdateClick"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[UpdatePhoneViewController UpdateClick]"
-                  moduleName = "POS_develop"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/syn/Desktop/%E5%A4%96%E5%8C%85/POS_develop/POS_develop/Controllers/Personal/Controller/MainController/%E8%AE%BE%E7%BD%AE/UpdatePhoneViewController.m"
-                  timestampString = "563297916.322865"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "54"
-                  endingLineNumber = "54"
-                  offsetFromSymbolStart = "380">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__40-[UpdatePhoneViewController UpdateClick]_block_invoke"
-                  moduleName = "POS_develop"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/syn/Desktop/%E5%A4%96%E5%8C%85/POS_develop/POS_develop/Controllers/Personal/Controller/MainController/%E8%AE%BE%E7%BD%AE/UpdatePhoneViewController.m"
-                  timestampString = "563297916.326003"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "55"
-                  endingLineNumber = "55"
-                  offsetFromSymbolStart = "56">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_"
-                  moduleName = "POS_develop"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/syn/Desktop/%E5%A4%96%E5%8C%85/POS_develop/POS_develop/Controllers/Personal/Controller/MainController/%E8%AE%BE%E7%BD%AE/UpdatePhoneViewController.m"
-                  timestampString = "563297916.329198"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "54"
-                  endingLineNumber = "54"
-                  offsetFromSymbolStart = "20">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "POS_develop/Controllers/POS/POS_CommitBillViewController.m"
-            timestampString = "563298271.950561"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "467"
-            endingLineNumber = "467"
-            landmarkName = "-loadOrderGetRequest"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "-setPayDoM:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -98,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "POS_develop/Controllers/POS/shopCar(&#x8d2d;&#x7269;&#x8f66;)/Cell/ShopCarMainCell.m"
-            timestampString = "563298271.9515409"
+            filePath = "POS_develop/Models/LoginManager.m"
+            timestampString = "563389624.667405"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "297"
-            endingLineNumber = "297"
-            landmarkName = "-setPosRootViewM:"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
+            landmarkName = "-loginSuccess:account:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -114,29 +51,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "POS_develop/Controllers/Personal/Controller/MainController/MyBill/PD_BillDetailViewController.m"
-            timestampString = "563298271.951628"
+            filePath = "POS_develop/&#x73af;&#x4fe1;/HelpDeskUI/HDUIKit/Views/conversation/toolbar/FaceView/HDFacialView.m"
+            timestampString = "563389624.6678489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "779"
-            endingLineNumber = "779"
-            landmarkName = "-payRequest:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "POS_develop/Controllers/Personal/Controller/MainController/MyBill/PD_BillDetailViewController.m"
-            timestampString = "563298271.951694"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "774"
-            endingLineNumber = "774"
-            landmarkName = "-payRequest:"
+            startingLineNumber = "331"
+            endingLineNumber = "331"
+            landmarkName = "-didSendEmotion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

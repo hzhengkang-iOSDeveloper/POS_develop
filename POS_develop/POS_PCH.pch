@@ -287,7 +287,7 @@
 #define UserDict @"UserDict"
 #define USERID   @"userId"
 #define AUTHCODE @"authCode"
-
+#define MOBILE   @"mobile"
 
 
 //用户账号名
@@ -312,10 +312,12 @@
 //环信
 #define HD_TENANTID   @"59661"//租户id
 #define HD_APPKEY  @"1468181029068683#kefuchannelapp59661" //环信appkey
+#define HD_IMID   @"kefuchannelimid_565624"//IM服务号
 
 //userId
 #define USER_ID_POS   IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:USERID])
-
+//环信账号
+#define HD_ACCOUNT  IF_NULL_TO_STRING([[UserInformation getUserinfoWithKey:UserDict] objectForKey:MOBILE])
 #if DEBUG
 #define NSLog(FORMAT, ...) fprintf(stderr,"\nfunction:%s line:%d\n<%s>\n", __FUNCTION__, __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
 

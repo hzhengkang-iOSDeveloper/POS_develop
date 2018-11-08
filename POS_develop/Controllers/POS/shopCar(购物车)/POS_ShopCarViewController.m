@@ -355,17 +355,17 @@
         cell.posRootViewM = self.packAgeArr[indexPath.row];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    } else if (self.productDataArr.count >indexPath.row && self.packAgeArr.count ==0) {
+    } else  {
         SingleShopCarMainCell *cell = [SingleShopCarMainCell cellWithTableView:tableView];
         cell.clickCaluteMoney = ^{
             //计算金额
             [self getTaoCanPriceRequest];
         };
-        cell.dataArr = self.productDataArr[indexPath.row];
+        if (self.productDataArr.count > indexPath.row) {
+            cell.dataArr = self.productDataArr[indexPath.row];
+        }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    } else {
-        return nil;
     }
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -589,7 +589,7 @@
     }];
     
     if (self.danDianArr.count == 0 && self.freeTaoCanArr.count == 0 && self.noFreeTaoCanArr.count == 0) {
-        [self.myTableView reloadData];
+        [self.myTableView tableViewNoDataOrNewworkFailShowTitleWithRowCount:0];
     }
     
 }

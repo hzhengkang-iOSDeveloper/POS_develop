@@ -190,11 +190,15 @@ NSString *const kShouldShowLoginViewControllerLogout = @"kShouldShowLoginViewCon
     _userInfo.authCode = [dict valueForKey:@"authCode"];
     _userInfo.nickname = [dict valueForKey:@"nickname"];
     
-    
-    NSDictionary* dictInfo = @{USERID:_userInfo.userId,AUTHCODE : _userInfo.authCode, @"nickname":IF_NULL_TO_STRING(_userInfo.nickname)};
+    NSLog(@"%@",[dict valueForKey:@"mobile"]);
+    NSDictionary* dictInfo = @{USERID:_userInfo.userId,AUTHCODE : _userInfo.authCode, @"nickname":IF_NULL_TO_STRING(_userInfo.nickname),MOBILE:IF_NULL_TO_STRING([dict valueForKey:@"mobile"])};
     [USER_DEFAULT setObject:dictInfo forKey:UserDict];
-    
+    UserDefaultsSet(IF_NULL_TO_STRING([dict valueForKey:@"mobile"]), MOBILE);
 
+    //注册环信
+    [[HPDConnect connect]PostOtherNetRequestMethod:@"huanxin/register" params:@{@"userId":USER_ID_POS} cookie:nil result:^(bool success, id result) {
+        
+    }];
     
 }
 

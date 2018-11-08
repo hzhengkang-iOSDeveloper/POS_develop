@@ -208,11 +208,7 @@
     }];
     //支付方式，0:微信，1:支付宝，2:线下转账
     if ([self.billListM.orderStatus isEqualToString:@"10"]) {
-        if ([payDoModel.payType isEqualToString:@"2"]) {
-            rightImageV.hidden = YES;
-        } else {
-            rightImageV.hidden = NO;
-        }
+         rightImageV.hidden = NO;
     } else {
         rightImageV.hidden = YES;
     }
@@ -402,7 +398,7 @@
     self.sendTimeLabel = sendTimeLabel;
     
     
-    //10:待付款，15:待审核 ，20:待发货，30:待确认，40：已完成
+    //10:待付款，15:待审核 ，20:待发货，30:待确认，40：已完成  50:已取消
     if ([self.billListM.orderStatus isEqualToString:@"10"]) {
         /*
         //支付方式，0:微信，1:支付宝，2:线下转账
@@ -467,7 +463,7 @@
         
         
     } else if ([self.billListM.orderStatus isEqualToString:@"15"]) {
-        footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(196)+AD_HEIGHT(2));
+        footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(306)+AD_HEIGHT(196)+AD_HEIGHT(2));
         //待审核
         PD_BillDetailUnCheckView *unCheckView = [[PD_BillDetailUnCheckView alloc]init];
         unCheckView.payDoM = payDoM;
@@ -504,7 +500,7 @@
             make.left.offset(0);
             make.size.mas_offset(CGSizeMake(ScreenWidth, AD_HEIGHT(53)));
         }];
-    } else if ([self.billListM.orderStatus isEqualToString:@"40"]) {
+    } else if ([self.billListM.orderStatus isEqualToString:@"40"] ||[self.billListM.orderStatus isEqualToString:@"50"]) {
         footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(306)+AD_HEIGHT(5));
         
     }
@@ -894,7 +890,7 @@
         return;
     }
     NSDictionary *bodyDic = @{@"payBankName":IF_NULL_TO_STRING([dict objectForKey:@"name"]),
-                              @"transactionId":IF_NULL_TO_STRING([dict objectForKey:@"orderNo"]),
+                              @"payBankTransUuid":IF_NULL_TO_STRING([dict objectForKey:@"orderNo"]),
                               @"id":IF_NULL_TO_STRING(payM.ID)
                               };
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/orderPay/update" params:bodyDic cookie:nil result:^(bool success, id result) {

@@ -91,6 +91,12 @@ typedef enum : NSUInteger {
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth - 150, 44)];
+    title.text = @"客服聊天";
+    title.textAlignment = NSTextAlignmentCenter;
+    title.textColor = [UIColor blackColor];
+    title.font = F18;
+    self.navigationItem.titleView = title;
     
     if (_conversation.officialAccount.name) {
         _title = _conversation.officialAccount.name;
@@ -216,15 +222,26 @@ typedef enum : NSUInteger {
 
 - (void)setupCell {
     
-    [[HDBaseMessageCell appearance] setSendBubbleBackgroundImage:[[UIImage imageNamed:@"HelpDeskUIResource.bundle/chat_sender_bg"] stretchableImageWithLeftCapWidth:5 topCapHeight:35]];
+    [[HDBaseMessageCell appearance] setSendBubbleBackgroundImage:[[UIImage imageNamed:@"chat_receiver_right"] stretchableImageWithLeftCapWidth:5 topCapHeight:35]];
     [[HDBaseMessageCell appearance] setRecvBubbleBackgroundImage:[[UIImage imageNamed:@"HelpDeskUIResource.bundle/chat_receiver_bg"] stretchableImageWithLeftCapWidth:35 topCapHeight:35]];
+    
     [[HDBaseMessageCell appearance] setSendMessageVoiceAnimationImages:@[[UIImage imageNamed:@"HelpDeskUIResource.bundle/chat_sender_audio_playing_full"], [UIImage imageNamed:@"HelpDeskUIResource.bundle/chat_sender_audio_playing_000"], [UIImage imageNamed:@"HelpDeskUIResource.bundle/chat_sender_audio_playing_001"], [UIImage imageNamed:@"HelpDeskUIResource.bundle/chat_sender_audio_playing_002"], [UIImage imageNamed:@"HelpDeskUIResource.bundle/chat_sender_audio_playing_003"]]];
     [[HDBaseMessageCell appearance] setRecvMessageVoiceAnimationImages:@[[UIImage imageNamed:@"HelpDeskUIResource.bundle/chat_receiver_audio_playing_full"],[UIImage imageNamed:@"HelpDeskUIResource.bundle/chat_receiver_audio_playing000"], [UIImage imageNamed:@"HelpDeskUIResource.bundle/chat_receiver_audio_playing001"], [UIImage imageNamed:@"HelpDeskUIResource.bundle/chat_receiver_audio_playing002"], [UIImage imageNamed:@"HelpDeskUIResource.bundle/chat_receiver_audio_playing003"]]];
     
     [[HDBaseMessageCell appearance] setAvatarSize:40.f];
-    [[HDBaseMessageCell appearance] setAvatarCornerRadius:20.f];
+    [[HDBaseMessageCell appearance] setAvatarCornerRadius:3.f];
     [[HDChatBarMoreView appearance] setMoreViewBackgroundColor:[UIColor colorWithRed:240 / 255.0 green:242 / 255.0 blue:247 / 255.0 alpha:1.0]];
-    [[HDChatBarMoreView appearance] updateItemWithImage:[UIImage imageNamed:@"123"] highlightedImage:[UIImage imageNamed:@"123"] title:@"title" atIndex:1];
+    /*!
+     @method
+     @brief 修改功能按钮图片
+     @discussion
+     @param image 按钮图片
+     @param highLightedImage 高亮图片
+     @param title 按钮标题
+     @param index 按钮索引
+     @result
+     */
+//    [[HDChatBarMoreView appearance] updateItemWithImage:[UIImage imageNamed:@"123"] highlightedImage:[UIImage imageNamed:@"123"] title:@"title" atIndex:1];
 }
 
 - (void)chatToolbarState
@@ -341,6 +358,7 @@ typedef enum : NSUInteger {
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

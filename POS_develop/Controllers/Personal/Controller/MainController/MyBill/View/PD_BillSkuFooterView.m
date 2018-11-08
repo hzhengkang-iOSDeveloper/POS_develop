@@ -146,8 +146,8 @@
             [self changeBtnLeftStr:@"" withRight:@"确认收货"];
         }else if ([model.orderStatus isEqualToString:@"40"]) {
             [self changeBtnLeftStr:@"" withRight:@""];
-        }else if ([model.orderStatusZh isEqualToString:@"已取消"]) {
-            [self changeBtnLeftStr:@"" withRight:@"已取消"];
+        }else if ([model.orderStatus isEqualToString:@"50"]) {
+            [self changeBtnLeftStr:@"" withRight:@""];
         }
         
 
