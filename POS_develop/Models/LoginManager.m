@@ -195,6 +195,15 @@ NSString *const kShouldShowLoginViewControllerLogout = @"kShouldShowLoginViewCon
     [USER_DEFAULT setObject:dictInfo forKey:UserDict];
     UserDefaultsSet(IF_NULL_TO_STRING([dict valueForKey:@"mobile"]), MOBILE);
 
+    if ([dict[@"nickname"] isKindOfClass:[NSNull class]] || [dict[@"nickname"] isEqualToString:@""] || dict[@"nickname"] == nil) {
+        UserDefaultsSet(@"默认用户", NICKNAME);
+    } else {
+        UserDefaultsSet(IF_NULL_TO_STRING([dict valueForKey:@"nickname"]), NICKNAME);
+    }
+    
+    //保存用户头像
+    UserDefaultsSet(@"头像", USERHEADERIMAGE);
+    
     //注册环信
     [[HPDConnect connect]PostOtherNetRequestMethod:@"huanxin/register" params:@{@"userId":USER_ID_POS} cookie:nil result:^(bool success, id result) {
         

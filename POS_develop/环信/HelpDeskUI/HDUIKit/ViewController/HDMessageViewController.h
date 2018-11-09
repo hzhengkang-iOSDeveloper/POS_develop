@@ -154,6 +154,10 @@ typedef NS_ENUM(NSInteger, HDemoSaleType){
 
 @property (nonatomic, strong)UILabel *visitorWaitCountLabel;
 
+@property (nonatomic, strong) NSString *sendName;
+
+// 头像
+@property (nonatomic, strong) NSString *sendAvatarUrl;
 
 - (instancetype)initWithConversationChatter:(NSString *)conversationChatter;
 

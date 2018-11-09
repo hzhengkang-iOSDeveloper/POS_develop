@@ -68,6 +68,7 @@
 #import "SYShowHUD.h"
 #import "SLPopupShowView.h"
 #import "UITableView+Extension.h"
+#import "HDMessageManager.h"//客服登录管理器
 
 #import <HelpDeskLite/HelpDeskLite.h>
 #import "HelpDeskUI.h"
@@ -288,7 +289,8 @@
 #define USERID   @"userId"
 #define AUTHCODE @"authCode"
 #define MOBILE   @"mobile"
-
+#define NICKNAME @"nickName"
+#define USERHEADERIMAGE @"userHeaderImage"
 
 //用户账号名
 #define ACCOUNT @"account"

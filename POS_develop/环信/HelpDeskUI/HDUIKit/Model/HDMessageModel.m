@@ -41,7 +41,13 @@
                 if (![[agent objectForKey:@"userNickname"] isKindOfClass:[NSNull class]]) {
                     agentNickname = [agent objectForKey:@"userNickname"];
                 }
-                
+                NSDictionary *officialAccount = [NSDictionary dictionary];
+                if ([weichat objectForKey:@"official_account"]) {
+                    officialAccount = [weichat valueForKey:@"official_account"];
+                    if ([officialAccount objectForKey:@"img"]) {
+                        self.officialAccountURL = [[@"https:" stringByAppendingString:[officialAccount objectForKey:@"img"]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                    }
+                }
                 self.avatarURLPath = agentAvatarUrl;
                 self.nickname = agentNickname;
             }

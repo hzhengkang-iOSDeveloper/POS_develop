@@ -49,7 +49,8 @@ typedef enum : NSUInteger {
 }
 
 @property (nonatomic, assign) HDemoSaleType saleType;
-
+// 企业欢迎语
+@property (nonatomic, strong) NSString *companyWelcome;
 
 @end
 
@@ -91,17 +92,11 @@ typedef enum : NSUInteger {
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth - 150, 44)];
-    title.text = @"客服聊天";
-    title.textAlignment = NSTextAlignmentCenter;
-    title.textColor = [UIColor blackColor];
-    title.font = F18;
-    self.navigationItem.titleView = title;
     
     if (_conversation.officialAccount.name) {
         _title = _conversation.officialAccount.name;
     }
-    self.title = _title;
+    self.title = @"客服聊天";
     [[HDClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
     self.view.backgroundColor = [UIColor colorWithRed:248 / 255.0 green:248 / 255.0 blue:248 / 255.0 alpha:1.0];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chatToolbarState) name:@"chatToolbarState" object:nil];
@@ -129,7 +124,7 @@ typedef enum : NSUInteger {
     [HDCDDeviceManager sharedInstance].delegate = self;
     
     [self setLeftBarBtnItem];
-
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didBecomeActive)
                                                  name:UIApplicationDidBecomeActiveNotification
@@ -140,17 +135,88 @@ typedef enum : NSUInteger {
                                              selector:@selector(appDidEnterBackground)
                                                  name:UIApplicationDidEnterBackgroundNotification
                                                object:nil];
- 
+    
     [self setupCell];
     [self setupEmotion];
-//    [self tableViewDidTriggerHeaderRefresh]; // 父类不再调用，由子类调用
-    [self robotWelcome];
+    //    [self tableViewDidTriggerHeaderRefresh]; // 父类不再调用，由子类调用
+    
+    [self judge];
 }
-
+- (void)judge
+{
+    // 判断会话中是否有消息
+    if (self.conversation.latestMessage == nil) {
+        // 如果会话中没有消息，那么UD的值变成NO
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"isGetWelcome"];
+    } else { // 如果会话中有消息，那么判断会话中最后一条消息是不是企业欢迎语
+        HDMessage *message = [self.conversation latestMessage];
+        EMMessageBody *msgBody = message.body;
+        
+        if (msgBody.type != EMMessageBodyTypeText) {
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"isGetWelcome"];
+        }
+        switch (msgBody.type) {
+            case EMMessageBodyTypeText:
+            {
+                // 解析消息的文字内容
+                EMTextMessageBody *textBody = (EMTextMessageBody *)msgBody;
+                NSString *txt = textBody.text;
+                if (self.companyWelcome) {
+                    if ([txt isEqualToString:self.companyWelcome]) {
+                        // 如果会话最新一条消息是企业欢迎语，那么UD的值变成YES
+                        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isGetWelcome"];
+                    }
+                }
+            }
+                break;
+            default:
+                break;
+        }
+    }
+    // 根据上面的判断，如果UD值为NO则插入消息欢迎语
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"isGetWelcome"]) {
+        // 插入企业欢迎语
+        [self welcome];
+    }
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isGetWelcome"];
+}
+- (void)welcome
+{
+    // 此方法是SDK获取企业欢迎语的
+    __weak typeof(self) weakself = self;
+    [[HDClient sharedClient].chatManager getEnterpriseWelcomeWithCompletion:^(NSString *welcome, HDError *error) {
+        // 判断客服系统中是否设置了企业欢迎语并且开关有没有打开，兼容误操作客服关闭了企业欢迎语开关，会插入一条空消息，那么自己选择是否插入一条默认的欢迎语,自行修改  ‘您好，欢迎光临!’ 的内容
+        if (![welcome isEqualToString:@""]) {
+            weakself.companyWelcome = welcome;
+        } else {
+            weakself.companyWelcome = @"您好，支付管家客服为您服务!";
+        }
+        //构建消息
+        EMTextMessageBody *bdy = [[EMTextMessageBody alloc] initWithText:weakself.companyWelcome];
+        NSString *from = [[HDClient sharedClient] currentUsername];
+        // _converID就是IM服务号，可以自己替换下
+        HDMessage *message = [[HDMessage alloc] initWithConversationID:HD_IMID from:from to:HD_IMID body:bdy];
+        //  构建的消息用ext来标记是插入的欢迎语，然后在cell里面根据标记消息的ext来修改插入消息的昵称和头像
+        NSDictionary *welcomeExt = @{@"insertWelcome":@"插入的欢迎语"};
+        [message addAttributeDictionary:welcomeExt];
+        
+        message.direction = 1;
+        message.status = HDMessageStatusSuccessed;
+        // 更新UI
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // 消息添加到UI
+            [weakself addMessageToDataSource:message progress:nil];
+        });
+        // 消息插入到会话
+        HDError *pError;
+        [weakself.conversation insertMessage:message error:&pError];
+    }];
+    
+}
 - (void)robotWelcome
 {
     // 获取机器人欢迎语 ，2155换成自己的TenantId
-    NSString *urlStr = [NSString stringWithFormat:@"https://kefu.easemob.com/v1/Tenants/8019/robots/visitor/greetings/app"];
+    NSString *urlStr = [NSString stringWithFormat:@"https://kefu.easemob.com/v1/Tenants/%@/robots/visitor/greetings/app",HD_TENANTID];
     NSString *newStr = [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL *url = [NSURL URLWithString:newStr];
     NSURLRequest *requst = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10];
@@ -176,8 +242,6 @@ typedef enum : NSUInteger {
             robotText = [dic objectForKey:@"greetingText"];
         } else {
             dicExt = [[dic objectForKey:@"greetingText"] objectForKey:@"ext"];
-//            robotText = [dic objectForKey:@"greetingText"];
-
         }
         
         //构建消息
@@ -186,7 +250,7 @@ typedef enum : NSUInteger {
         NSString *from = [[HDClient sharedClient] currentUsername];
         
         // converID改成自己的IM服务号
-        HDMessage *message = [[HDMessage alloc] initWithConversationID:_conversation.conversationId from:from to:_conversation.conversationId body:bdy];
+        HDMessage *message = [[HDMessage alloc] initWithConversationID:HD_IMID from:from to:HD_IMID body:bdy];
         message.ext = dicExt;
         message.direction = 1;
         message.status = HDMessageStatusSuccessed;
@@ -220,6 +284,7 @@ typedef enum : NSUInteger {
 }
 
 
+
 - (void)setupCell {
     
     [[HDBaseMessageCell appearance] setSendBubbleBackgroundImage:[[UIImage imageNamed:@"chat_receiver_right"] stretchableImageWithLeftCapWidth:5 topCapHeight:35]];
@@ -250,22 +315,30 @@ typedef enum : NSUInteger {
 }
 
 - (void)setLeftBarBtnItem {
-    CustomButton * backButton = [CustomButton buttonWithType:UIButtonTypeCustom];
-    [backButton setImage:[UIImage imageNamed:@"Shape"] forState:UIControlStateNormal];
-    [backButton setTitle:@"返回" forState:UIControlStateNormal];
-    backButton.titleLabel.font = [UIFont systemFontOfSize:18];
-    [backButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [backButton setTitleColor:RGBACOLOR(184, 22, 22, 1) forState:UIControlStateHighlighted];
-    backButton.imageRect = CGRectMake(10, 6.5, 16, 16);
-    backButton.titleRect = CGRectMake(28, 0, 60, 29);
-    [self.view addSubview:backButton];
-    backButton.frame = CGRectMake(0, 0, 60, 29);
-    
-    [backButton addTarget:self action:@selector(backItemClicked) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    UIBarButtonItem *nagetiveSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    nagetiveSpacer.width = - 16;
-    self.navigationItem.leftBarButtonItems = @[nagetiveSpacer,backItem];
+//    CustomButton * backButton = [CustomButton buttonWithType:UIButtonTypeCustom];
+//    [backButton setImage:[UIImage imageNamed:@"Shape"] forState:UIControlStateNormal];
+//    [backButton setTitle:@"返回" forState:UIControlStateNormal];
+//    backButton.titleLabel.font = [UIFont systemFontOfSize:18];
+//    [backButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    [backButton setTitleColor:RGBACOLOR(184, 22, 22, 1) forState:UIControlStateHighlighted];
+//    backButton.imageRect = CGRectMake(10, 6.5, 16, 16);
+//    backButton.titleRect = CGRectMake(28, 0, 60, 29);
+//    [self.view addSubview:backButton];
+//    backButton.frame = CGRectMake(0, 0, 60, 29);
+//
+//    [backButton addTarget:self action:@selector(backItemClicked) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+//    UIBarButtonItem *nagetiveSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//    nagetiveSpacer.width = - 16;
+//    self.navigationItem.leftBarButtonItems = @[nagetiveSpacer,backItem];
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, 0, 44, 44);
+    [btn addTarget:self action:@selector(backItemClicked) forControlEvents:UIControlEventTouchUpInside];
+    [btn setImage:[UIImage imageNamed:@"navBack"] forState:UIControlStateNormal];
+    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    btn.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    self.navigationItem.leftBarButtonItem = backItem;
 }
 
 - (void)backItemClicked {
@@ -359,13 +432,17 @@ typedef enum : NSUInteger {
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
+    [IQKeyboardManager sharedManager].enable = NO;
+    [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    
+    [IQKeyboardManager sharedManager].enable = YES;
+    [IQKeyboardManager sharedManager].enableAutoToolbar = YES;
 }
-
 #pragma mark - getter
 
 - (UIImagePickerController *)imagePicker
@@ -1546,6 +1623,7 @@ typedef enum : NSUInteger {
 
 - (void)messagesDidReceive:(NSArray *)aMessages {
     for (HDMessage *message in aMessages) {
+        [self messageExtwithEventName:message];
         if ([self.conversation.conversationId isEqualToString:message.conversationId]) {
             [_conversation markAllMessagesAsRead:nil];
             [self addMessageToDataSource:message progress:nil];
@@ -1555,11 +1633,27 @@ typedef enum : NSUInteger {
 
 - (void)cmdMessagesDidReceive:(NSArray *)aCmdMessages {
     for (HDMessage *message in aCmdMessages) {
+        [self messageExtwithEventName:message];
         if ([self.conversation.conversationId isEqualToString:message.conversationId]) {
             NSString *msg = [NSString stringWithFormat:@"%@", message.ext];
             NSLog(@"receive cmd message: %@", msg);
             break;
         }
+    }
+}
+- (void)messageExtwithEventName:(HDMessage *)message
+{
+    if (![[[message.ext objectForKey:@"weichat"] objectForKey:@"event"] isKindOfClass:[NSNull class]]) {
+        NSDictionary *dict = [[message.ext objectForKey:@"weichat"] objectForKey:@"event"];
+        if ([[dict objectForKey:@"eventName"] isEqualToString:@"ServiceSessionClosedEvent"]) {
+            //如果接收到客服的消息ext中有 ServiceSessionClosedEvent，表示会话已经结束，那么UD的值变成NO
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"isGetWelcome"];
+        }
+        if ([[dict objectForKey:@"eventName"] isEqualToString:@"ServiceSessionOpenedEvent"]) {
+            //如果接收到客服的消息ext中有 ServiceSessionClosedEvent，表示会话已经结束，那么UD的值变成NO
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isGetWelcome"];
+        }
+        
     }
 }
 
@@ -1720,6 +1814,16 @@ typedef enum : NSUInteger {
         }
         else{
             model = [[HDMessageModel alloc] initWithMessage:message];
+            
+            if (model.isSender) {
+                if (self.sendName) {
+                    model.nickname = self.sendName;
+                }
+                if (self.sendAvatarUrl) {
+                    model.avatarURLPath = self.sendAvatarUrl;
+                }
+            }
+
         }
 
         if (model) {

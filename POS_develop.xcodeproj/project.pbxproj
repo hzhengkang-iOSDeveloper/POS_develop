@@ -263,6 +263,7 @@
 		5089376621561DB8007C6239 /* HomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5089376521561DB8007C6239 /* HomeTableViewCell.m */; };
 		50893769215648CB007C6239 /* PosHomePageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50893768215648CB007C6239 /* PosHomePageHeaderView.m */; };
 		5089376C2156793E007C6239 /* SLHomeFivePartBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 5089376A2156793E007C6239 /* SLHomeFivePartBtn.m */; };
+		509C7D4C2195322F0096A442 /* HDMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 509C7D4B2195322F0096A442 /* HDMessageManager.m */; };
 		50A89A8D216B51B300E68BEB /* StatisticAnalysisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89A8C216B51B300E68BEB /* StatisticAnalysisViewController.m */; };
 		50A89AEB216B653200E68BEB /* CALayer+XLayerSelectHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89A91216B653100E68BEB /* CALayer+XLayerSelectHelper.m */; };
 		50A89AEC216B653200E68BEB /* CAShapeLayer+XLayerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A89A94216B653100E68BEB /* CAShapeLayer+XLayerHelper.m */; };
@@ -986,6 +987,8 @@
 		50893768215648CB007C6239 /* PosHomePageHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PosHomePageHeaderView.m; sourceTree = "<group>"; };
 		5089376A2156793E007C6239 /* SLHomeFivePartBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHomeFivePartBtn.m; sourceTree = "<group>"; };
 		5089376B2156793E007C6239 /* SLHomeFivePartBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHomeFivePartBtn.h; sourceTree = "<group>"; };
+		509C7D4A2195322F0096A442 /* HDMessageManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDMessageManager.h; sourceTree = "<group>"; };
+		509C7D4B2195322F0096A442 /* HDMessageManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDMessageManager.m; sourceTree = "<group>"; };
 		50A89A8B216B51B300E68BEB /* StatisticAnalysisViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatisticAnalysisViewController.h; sourceTree = "<group>"; };
 		50A89A8C216B51B300E68BEB /* StatisticAnalysisViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StatisticAnalysisViewController.m; sourceTree = "<group>"; };
 		50A89A90216B653100E68BEB /* CAShapeLayer+XLayerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAShapeLayer+XLayerHelper.h"; sourceTree = "<group>"; };
@@ -3529,6 +3532,8 @@
 				7888F3882147C33800AAC8B0 /* verifyTool.m */,
 				7888F3892147C33800AAC8B0 /* ZJPPTViewCustom */,
 				7888F38F2147C33800AAC8B0 /* ZJPPTViewOCBase */,
+				509C7D4A2195322F0096A442 /* HDMessageManager.h */,
+				509C7D4B2195322F0096A442 /* HDMessageManager.m */,
 			);
 			path = ToolClass;
 			sourceTree = "<group>";
@@ -4230,6 +4235,7 @@
 				7888F34C2147C32C00AAC8B0 /* UITableViewCell+Extension.m in Sources */,
 				787166BB214917D400452C51 /* POSViewController.m in Sources */,
 				2546E2D7214D4D0F0066DBFB /* UpdatePasswordViewController.m in Sources */,
+				509C7D4C2195322F0096A442 /* HDMessageManager.m in Sources */,
 				50A89AEF216B653200E68BEB /* XAreaLineChartConfiguration.m in Sources */,
 				25CC94092194A07C005D686B /* NSData+EMImageContentType.m in Sources */,
 				25CC94082194A07C005D686B /* EMSDWebImageDownloader.m in Sources */,

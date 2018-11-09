@@ -28,6 +28,8 @@
 @property (nonatomic) BOOL isSender;
 @property (strong, nonatomic) NSString *nickname;
 @property (strong, nonatomic) NSString *avatarURLPath;
+@property (strong, nonatomic) NSString *officialAccountURL;
+
 @property (strong, nonatomic) UIImage *avatarImage;
 @property (strong, nonatomic) NSString *text;
 @property (strong, nonatomic) NSAttributedString *attrBody;

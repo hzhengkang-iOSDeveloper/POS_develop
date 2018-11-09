@@ -124,6 +124,9 @@
     HDError *initError = [[HDClient sharedClient] initializeSDKWithOptions:option];
     if (initError) { // 初始化错误
     }
+    
+    [[HDEmotionEscape sharedInstance] setEaseEmotionEscapePattern:@"\\[[^\\[\\]]{1,3}\\]"];
+    [[HDEmotionEscape sharedInstance] setEaseEmotionEscapeDictionary:[HDConvertToCommonEmoticonsHelper emotionsDictionary]];
     return YES;
 }
 

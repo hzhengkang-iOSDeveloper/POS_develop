@@ -57,6 +57,8 @@
         if (success) {
             if ([result[@"code"]integerValue] == 0) {
                 HUD_TIP(@"设置成功");
+                UserDefaultsSet(self.nameTF.text, NICKNAME);
+
                 if (self.popBlock) {
                     self.popBlock();
                 }

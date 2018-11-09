@@ -269,7 +269,16 @@
     [super setModel:model];
     
     if (model.avatarURLPath) {
-        [self.avatarView sd_setImageWithURL:[NSURL URLWithString:model.avatarURLPath] placeholderImage:model.avatarImage];
+        if (model.nickname) {
+            if ([model.nickname isEqualToString:@"系统消息"]) {
+                if (model.officialAccountURL) {
+                    [self.avatarView sd_setImageWithURL:[NSURL URLWithString:model.officialAccountURL] placeholderImage:model.avatarImage];
+                }
+            } else {
+                [self.avatarView sd_setImageWithURL:[NSURL URLWithString:model.avatarURLPath] placeholderImage:model.avatarImage];
+            }
+        }
+        
     } else {
         self.avatarView.image = model.avatarImage;
     }
