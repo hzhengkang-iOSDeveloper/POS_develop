@@ -826,6 +826,7 @@
                     [OpenShare WeixinPay:link Success:^(NSDictionary *message) {
                         //支付成功页面
                         HUD_SUCCESS(@"支付成功");
+                        [self getPayStatus:param[@"orderPayId"]];
                         [self performSelector:@selector(turnOrderList) withObject:nil afterDelay:1.8];
 
                     } Fail:^(NSDictionary *message, NSError *error) {
@@ -860,6 +861,7 @@
                 [OpenShare AliPay:LINK Success:^(NSDictionary *message) {
                     //支付成功页面
                     HUD_SUCCESS(@"支付成功");
+                    [self getPayStatus:param[@"orderPayId"]];
                     [self performSelector:@selector(turnOrderList) withObject:nil afterDelay:1.8];
 
                 } Fail:^(NSDictionary *message, NSError *error) {
@@ -978,6 +980,15 @@
         return nil;
     }
     return dic;
+}
+
+#pragma mark ---- 线上支付成功后回调 ----
+- (void)getPayStatus:(NSString *)payId
+{
+    int  payOrderId = [payId intValue];
+    [[HPDConnect connect]GetNetRequestMethod:@"/payment/order/state" params:@{@"orderPayId":@(payOrderId)} cookie:nil result:^(bool success, id result) {
+        
+    }];
 }
 @end
 

@@ -298,7 +298,7 @@
     //支付
     footerView.frame = CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(153)+AD_HEIGHT(205)+AD_HEIGHT(5)+AD_HEIGHT(57));
     POS_CommfirBillOnLinePayView *onLineView = [[POS_CommfirBillOnLinePayView alloc]init];
-    onLineView.totalStr = [NSString stringWithFormat:@"￥%@",IF_NULL_TO_STRING(self.billListM.displayPrice)];
+    onLineView.totalStr = [NSString stringWithFormat:@"￥%@",IF_NULL_TO_STRING(self.billListM.orderPrice)];
     [footerView addSubview:onLineView];
     MJWeakSelf;
     onLineView.payHandler = ^(NSUInteger payType) {
@@ -548,7 +548,6 @@
 #pragma mark ---- 线上支付相关 ----
 - (void)payRequest:(NSUInteger)payType
 {
-    PayDOModel *payM = [PayDOModel mj_objectWithKeyValues:self.billListM.payDO];
 
     if (self.isNeedSelectAddress) {
         HUD_TIP(@"选择收货地址后才可支付！");
@@ -616,6 +615,7 @@
                     [OpenShare WeixinPay:link Success:^(NSDictionary *message) {
                         //支付成功页面
                         HUD_SUCCESS(@"支付成功");
+                        [self getPayStatus:param[@"orderPayId"]];
                         BuySuccessViewController *vc = [[BuySuccessViewController alloc]init];
                         vc.hidesBottomBarWhenPushed = YES;
                         [self.navigationController pushViewController:vc animated:YES];
@@ -651,6 +651,7 @@
                 [OpenShare AliPay:LINK Success:^(NSDictionary *message) {
                     //支付成功页面
                     HUD_SUCCESS(@"支付成功");
+                    [self getPayStatus:param[@"orderPayId"]];
                     BuySuccessViewController *vc = [[BuySuccessViewController alloc]init];
                     vc.hidesBottomBarWhenPushed = YES;
                     [self.navigationController pushViewController:vc animated:YES];
@@ -663,4 +664,13 @@
     }];
 }
 
+
+#pragma mark ---- 线上支付成功后回调 ----
+- (void)getPayStatus:(NSString *)payId
+{
+    int  payOrderId = [payId intValue];
+    [[HPDConnect connect]GetNetRequestMethod:@"/payment/order/state" params:@{@"orderPayId":@(payOrderId)} cookie:nil result:^(bool success, id result) {
+        
+    }];
+}
 @end
