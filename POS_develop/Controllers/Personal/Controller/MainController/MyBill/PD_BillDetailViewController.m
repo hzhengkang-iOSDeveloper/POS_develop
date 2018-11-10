@@ -891,9 +891,32 @@
         HUD_TIP(@"请输入单号");
         return;
     }
+    NSDictionary *bodyDic = @{@"payType":@"2",
+                              @"tbOrderId":IF_NULL_TO_STRING(self.myID)
+                              };
+    
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/orderPay/getPayUuid" params:bodyDic cookie:nil result:^(bool success, id result) {
+        if (success) {
+            if ([result[@"code"]integerValue] == 0) {
+                NSString *Member_IdStr  = result[@"data"];
+                [self outLinePayRequest:Member_IdStr withInfoDict:dict];
+            }else{
+                [GlobalMethod FromUintAPIResult:result withVC:self errorBlcok:^(NSDictionary *dict) {
+                    
+                }];
+            }
+            
+        }
+        NSLog(@"result ------- %@", result);
+    }];
+    
+}
+#pragma mark ---- 线下支付接口结束 ----
+- (void)outLinePayRequest:(NSString *)payId  withInfoDict:(NSDictionary *)dict
+{
     NSDictionary *bodyDic = @{@"payBankName":IF_NULL_TO_STRING([dict objectForKey:@"name"]),
                               @"payBankTransUuid":IF_NULL_TO_STRING([dict objectForKey:@"orderNo"]),
-                              @"id":IF_NULL_TO_STRING(payM.ID)
+                              @"id":payId
                               };
     [[HPDConnect connect] PostNetRequestMethod:@"api/trans/orderPay/update" params:bodyDic cookie:nil result:^(bool success, id result) {
         if (success) {

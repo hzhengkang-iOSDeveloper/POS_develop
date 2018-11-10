@@ -87,7 +87,7 @@
 - (void)setModel:(BillListModel *)model {
     if (model) {
         _model = model;
-        self.dateLabel.text = [model.createtime substringToIndex:10];
+        self.dateLabel.text = model.createtime;
         self.billStatusLabel.text = model.orderStatusZh;
         
     }
