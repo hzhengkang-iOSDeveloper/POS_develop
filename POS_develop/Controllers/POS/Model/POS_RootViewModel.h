@@ -45,6 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface POS_RootProductDOModel : NSObject
 @property (nonatomic, copy) NSString *ID;
+@property (nonatomic, copy) NSString *productDesc;
 @property (nonatomic, copy) NSString *posBrandNo;
 @property (nonatomic, copy) NSString *posBrandName;
 @property (nonatomic, copy) NSString *posTermType;

@@ -7,7 +7,7 @@
 //
 
 #import "POS_ShopRecommendCell.h"
-#import "POS_RootViewModel.h"
+#import "PackageChargeListModel.h"
 @interface POS_ShopRecommendCell ()
 //商品logo
 @property (nonatomic, weak) UIImageView *goodImageV;
@@ -81,13 +81,13 @@
     }];
 }
 
-- (void)setPosM:(POS_RootViewModel *)posM
+- (void)setPosM:(PackageChargeListModel *)posM
 {
     if (posM) {
         _posM  = posM;
-        [self.goodImageV sd_setImageWithURL:URL(posM.packagePic)];
+        [self.goodImageV sd_setImageWithURL:[NSURL URLWithString:posM.packagePic]];
         self.goodNameLabel.text = IF_NULL_TO_STRING(posM.packageName);
-        self.goodPriceLabel.text = [NSString stringWithFormat:@"￥%@",IF_NULL_TO_STRING(posM.packagePrice)];
+        self.goodPriceLabel.text = [NSString stringWithFormat:@"￥%@",defaultObject(IF_NULL_TO_STRING(posM.packagePrice), @"0")];
     }
 }
 @end
