@@ -280,7 +280,7 @@
         if ([posM.bindFlag isEqualToString:@"0"]) {
             //未绑定
             TerminalNoDistributionCell *cell = [TerminalNoDistributionCell cellWithTableView:tableView];
-            cell.brandLabel.text = [NSString stringWithFormat:@"品牌：%@",posM.posBrandNo];
+            cell.brandLabel.text = [NSString stringWithFormat:@"品牌：%@",posM.posBrandName];
             cell.snLabel.text = [NSString stringWithFormat:@"SN：%@",posM.posBrandNo];
             if ([self.selectMainTableStr isEqualToString:[NSString stringWithFormat:@"%li",indexPath.row]]) {
                 cell.selectBtn.selected = YES;
@@ -293,7 +293,7 @@
             
         }else {
             TerminalAlreadyDistributionCell *cell = [TerminalAlreadyDistributionCell cellWithTableView:tableView];
-            cell.brandLabel.text = [NSString stringWithFormat:@"品牌：%@",posM.posBrandNo];
+            cell.brandLabel.text = [NSString stringWithFormat:@"品牌：%@",posM.posBrandName];
             cell.snLabel.text = [NSString stringWithFormat:@"SN：%@",posM.posBrandNo];
             cell.bindStateLabel.text = @"已绑定";
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -351,7 +351,7 @@
         if ([self.selectBrandTableStr isEqualToString:@""]) {
             self.posBrandNo = @"";
         } else {
-            self.posBrandNo = model.posBrandName;
+            self.posBrandNo = model.posBrandNo;
         }
         [self loadPosListRequest];
 

@@ -184,7 +184,7 @@
                 if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                     if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
                         NSArray *array = result[@"data"][@"rows"];
-                        self.vipGradeL.text = IF_NULL_TO_STRING([[array firstObject] valueForKey:@"sbLevelVip"]);
+                        self.vipGradeL.text = IF_NULL_TO_STRING([[array firstObject] valueForKey:@"creditLevel"]);
                         self.receivePosTextL.text = [NSString stringWithFormat:@"已领%@台，还可以领取%@台",IF_NULL_TO_STRING([[array firstObject] valueForKey:@"drawCount"]) , IF_NULL_TO_STRING([[array firstObject] valueForKey:@"totalCount"])];
                         
                         
