@@ -225,7 +225,7 @@
 //判断iPhoneXs
 #define IS_IPHONE_Xs ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
 //判断iPhoneXs Max
-#define IS_IPHONE_Xs_Max ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2688), [[UIScreen mainScreen] currentMode].size) && !isPad : NO)
+#define IS_IPHONE_Xs_Max ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2688),  [[UIScreen mainScreen] currentMode].size) && !isPad : NO)
 
 
 #define NOTIFICATION_CENTER [NSNotificationCenter defaultCenter]        ///< notification center
