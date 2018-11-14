@@ -35,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "POS_develop/Models/LoginManager.m"
-            timestampString = "563389624.667405"
+            filePath = "POS_develop/&#x73af;&#x4fe1;/HelpDeskUI/HDUIKit/Views/conversation/toolbar/FaceView/HDFacialView.m"
+            timestampString = "563389624.6678489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "200"
-            endingLineNumber = "200"
-            landmarkName = "-loginSuccess:account:"
+            startingLineNumber = "331"
+            endingLineNumber = "331"
+            landmarkName = "-didSendEmotion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -51,13 +51,93 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "POS_develop/&#x73af;&#x4fe1;/HelpDeskUI/HDUIKit/Views/conversation/toolbar/FaceView/HDFacialView.m"
-            timestampString = "563389624.6678489"
+            filePath = "POS_develop/Controllers/Generalize/Controller/CopywritingSelect(&#x6587;&#x6848;&#x9009;&#x62e9;)/CopywritingSelectViewController.m"
+            timestampString = "563724512.53833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "331"
-            endingLineNumber = "331"
-            landmarkName = "-didSendEmotion:"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "-selectedWithIndex:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "POS_develop/Controllers/HomePage/Controller/TransactionQuery(&#x4ea4;&#x6613;&#x67e5;&#x8be2;)/TransactionQueryViewController.m"
+            timestampString = "563809277.339782"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
+            landmarkName = "-loadTransactionListRequest"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "POS_develop/Controllers/HomePage/Controller/TransactionQuery(&#x4ea4;&#x6613;&#x67e5;&#x8be2;)/TransactionListViewController.m"
+            timestampString = "563809277.339884"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "-setDataArray:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "POS_develop/Controllers/HomePage/Controller/TransactionQuery(&#x4ea4;&#x6613;&#x67e5;&#x8be2;)/TransactionListViewController.m"
+            timestampString = "563809277.340395"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "-tableView:numberOfRowsInSection:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "POS_develop/Controllers/HomePage/Controller/TransactionQuery(&#x4ea4;&#x6613;&#x67e5;&#x8be2;)/TransactionListViewController.m"
+            timestampString = "563809277.340711"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "POS_develop/Controllers/HomePage/Controller/TransactionQuery(&#x4ea4;&#x6613;&#x67e5;&#x8be2;)/Cell/TransactionListCell.m"
+            timestampString = "563808970.006814"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "-setModel:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

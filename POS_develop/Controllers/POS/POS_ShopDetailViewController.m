@@ -11,6 +11,7 @@
 #import "POS_ShopRecommendCell.h"
 #import "SLGoodDetailImageDetailView.h"//图文详情
 #import "POS_RootViewModel.h"
+#import "PackageChargeListModel.h"
 @interface POS_ShopDetailViewController ()<UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,SLGoodDetailImageDetailViewDelegate>
 {
     NSUInteger _skuCount;//记录sku 数量
@@ -252,7 +253,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     POS_ShopRecommendCell *cell = [POS_ShopRecommendCell cellWithTableView:tableView];
-    POS_RootViewModel *posM = self.dataArr[indexPath.row];
+    PackageChargeListModel *posM = self.dataArr[indexPath.row];
     cell.posM = posM;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
@@ -316,23 +317,34 @@
 #pragma mark ---- 获取推荐套餐 ----
 - (void)getSuggestTaoCanRequest
 {
-    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/packageFree/list" params:@{@"recommendType":@"1"} cookie:nil result:^(bool success, id result) {
+    [[HPDConnect connect] PostNetRequestMethod:@"api/trans/packageCharge/list" params:nil cookie:nil result:^(bool success, id result) {
         if (success) {
             if ([result[@"code"]integerValue] == 0) {
                 if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                     if ([result[@"data"][@"rows"] isKindOfClass:[NSArray class]]) {
                         NSArray *arr = result[@"data"][@"rows"];
                         
-                        self.dataArr = [POS_RootViewModel mj_objectArrayWithKeyValuesArray:arr];
                         
                         //更新tableView高度
-                        if (self.dataArr.count == 0) {
+                        if (arr.count == 0) {
                             [self.recommendGoodTableView mas_updateConstraints:^(MASConstraintMaker *make) {
                                 make.height.mas_equalTo(0);
                             }];
-                        } else {
+                        } else if (arr.count <= 2) {
+                            self.dataArr = [PackageChargeListModel mj_objectArrayWithKeyValuesArray:arr];
                             [self.recommendGoodTableView mas_updateConstraints:^(MASConstraintMaker *make) {
                                 make.height.mas_equalTo(AD_HEIGHT(28)+AD_HEIGHT(89)*self.dataArr.count);
+                            }];
+                        } else if (arr.count > 2 ) {
+                            NSMutableArray *tmpArr = [NSMutableArray arrayWithArray:[PackageChargeListModel mj_objectArrayWithKeyValuesArray:arr]];
+                            for (int i =0; i<tmpArr.count; i++) {
+                                PackageChargeListModel *model = tmpArr[i];
+                                if (i<=1) {
+                                    [self.dataArr addObject:model];
+                                }
+                            }
+                            [self.recommendGoodTableView mas_updateConstraints:^(MASConstraintMaker *make) {
+                                make.height.mas_equalTo(AD_HEIGHT(28)+AD_HEIGHT(89)*2);
                             }];
                         }
                         

@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-@class POS_RootViewModel;
+@class PackageChargeListModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface POS_ShopRecommendCell : UITableViewCell
-@property (nonatomic, strong) POS_RootViewModel *posM;
+@property (nonatomic, strong) PackageChargeListModel *posM;
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 @end
 

@@ -204,6 +204,8 @@ NSString *const kShouldShowLoginViewControllerLogout = @"kShouldShowLoginViewCon
     //保存用户头像
     UserDefaultsSet(@"头像", USERHEADERIMAGE);
     
+    //保存邀请码
+    UserDefaultsSet([dict objectForKey:@"invitedCode"], USER_INVITECODE);
     //注册环信
     [[HPDConnect connect]PostOtherNetRequestMethod:@"huanxin/register" params:@{@"userId":USER_ID_POS} cookie:nil result:^(bool success, id result) {
         

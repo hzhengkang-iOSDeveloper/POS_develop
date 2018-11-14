@@ -17,12 +17,6 @@
 
 @implementation TransactionListViewController
 
-- (NSMutableArray *)dataArray {
-    if (!_dataArray) {
-        _dataArray = [NSMutableArray array];
-    }
-    return _dataArray;
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItemTitle = @"交易流水";
@@ -37,11 +31,11 @@
     _transactionListTableView.dataSource = self;
     _transactionListTableView.showsVerticalScrollIndicator = NO;
     _transactionListTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _transactionListTableView.mj_header = [SLRefreshHeader headerWithRefreshingBlock:^{
-        
-    }];
     [self.view addSubview:_transactionListTableView];
-    
+    [_transactionListTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.right.offset(0);
+        make.bottom.equalTo(self.mas_bottomLayoutGuideTop).offset(0);
+    }];
 }
 
 #pragma mark - UITableViewDataSource
@@ -52,6 +46,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
+    [self.transactionListTableView tableViewNoDataOrNewworkFailShowTitleWithRowCount:self.dataArray.count];
     return self.dataArray.count;
 }
 
@@ -83,4 +78,11 @@
     return FITiPhone6(87);
 }
 
+- (void)setDataArray:(NSMutableArray *)dataArray
+{
+    if (dataArray) {
+        _dataArray = dataArray;
+        [self.transactionListTableView reloadData];
+    }
+}
 @end

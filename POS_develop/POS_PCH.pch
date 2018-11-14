@@ -292,6 +292,7 @@
 #define NICKNAME @"nickName"
 #define USERHEADERIMAGE @"userHeaderImage"
 
+#define USER_INVITECODE  @"invitedCode"//邀请码
 //用户账号名
 #define ACCOUNT @"account"
 //用户密码

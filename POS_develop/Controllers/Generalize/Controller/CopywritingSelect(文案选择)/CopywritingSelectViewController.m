@@ -69,6 +69,7 @@
         } else {
             msg.link = [NSString stringWithFormat:@"%@%@%@",self.shareLink,@"?userId=",USER_ID_POS];
         }
+        msg.link = [NSString stringWithFormat:@"%@&invitedCode=%@",msg.link,UserDefaultsGet(USER_INVITECODE)];
 
     }
     //    msg.multimediaType = OSMultimediaTypeNews;

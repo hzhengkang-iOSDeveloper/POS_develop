@@ -91,7 +91,11 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     POS_RootViewModel *posRootM = self.dataArr[indexPath.row];
     POS_ShopDetailViewController *vc = [[POS_ShopDetailViewController alloc]init];
-    vc.posDetailStr = [self getPosDetailStr:posRootM];
+    if (posRootM.packageFreeItemDOList.count > 0) {
+        POS_RootPackageFreeModel *freeM = posRootM.packageFreeItemDOList.firstObject;
+        POS_RootProductDOModel *productM = [POS_RootProductDOModel mj_objectWithKeyValues:freeM.productDO];
+        vc.posDetailStr = productM.productDesc;
+    }
     vc.model = posRootM;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
@@ -177,18 +181,4 @@
     }];
 }
 
-#pragma mark ---- 获取拼接详情 ----
-- (NSString *)getPosDetailStr:(POS_RootViewModel *)posRootM
-{
-    __block NSString *tmpStr = [[NSString alloc]init];
-    
-    [posRootM.packageFreeItemDOList enumerateObjectsUsingBlock:^(POS_RootPackageFreeModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        POS_RootProductDOModel *productDoM = [POS_RootProductDOModel mj_objectWithKeyValues:obj.productDO];
-        NSString *str = [NSString stringWithFormat:@"%@%@",productDoM.posBrandName,productDoM.posTermModel];
-        
-        tmpStr = [tmpStr stringByAppendingString:str];
-    }];
-    
-    return tmpStr;
-}
 @end
