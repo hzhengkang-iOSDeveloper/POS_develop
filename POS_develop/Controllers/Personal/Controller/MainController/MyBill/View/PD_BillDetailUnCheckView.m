@@ -144,9 +144,13 @@
             return;
         }
         
+        NSDictionary *dic = @{
+                              @"name":self.nameTF.text,
+                              @"orderNo":self.orderNoTF.text
+                              };
         
         if (self.comfirSaveInfoHandler) {
-            self.comfirSaveInfoHandler(self.payDoM);
+            self.comfirSaveInfoHandler(dic);
         }
     }
     

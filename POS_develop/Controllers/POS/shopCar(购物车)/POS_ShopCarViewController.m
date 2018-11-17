@@ -23,6 +23,9 @@
 @property (nonatomic, weak) UIButton   *jieSuanBtn;
 @property (nonatomic, weak) UILabel     *allMoneyLabel;
 @property (nonatomic, weak) UILabel     *yunFeiLabel;
+@property (nonatomic, weak) UILabel *buhanYunFeiLabel;
+@property (nonatomic, weak) UIButton *deleateBtn;
+
 
 @property (nonatomic, strong) UITableView *myTableView;
 
@@ -104,10 +107,50 @@
     self.freePackageArrCount =0;
     self.noFreePackageArrCount = 0;
     self.page = 0;
-
+    [self addNavigationRightBtn];
     [self getShopCarRequest];
 }
+#pragma mark ---- 添加导航栏右侧按钮 ----
+- (void)addNavigationRightBtn
+{
+    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    rightBtn.frame = CGRectMake(0, 0, 44, 44);
+    [rightBtn setTitle:@"管理" forState:normal];
+    rightBtn.titleLabel.font = FB14;
+    [rightBtn addTarget:self action:@selector(clickNavRightBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [rightBtn setTitleColor:WhiteColor forState:normal];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightBtn];
+}
+- (void)clickNavRightBtn:(UIButton *)sender
+{
+    sender.selected = !sender.selected;
+    if (sender.selected) {
+        [sender setTitle:@"完成" forState:normal];
+        [self showDeleateBtn];
+    } else {
+        [sender setTitle:@"管理" forState:normal];
+        [self hideDeleateBtn];
+    }
+}
+#pragma mark ---- 显示或隐藏删除按钮 ----
+- (void)showDeleateBtn
+{
+    self.deleateBtn.hidden = NO;
 
+    self.jieSuanBtn.hidden = YES;
+    self.allMoneyLabel.hidden = YES;
+    self.yunFeiLabel.hidden = YES;
+    self.buhanYunFeiLabel.hidden = YES;
+}
+- (void)hideDeleateBtn
+{
+    self.deleateBtn.hidden = YES;
+    
+    self.jieSuanBtn.hidden = NO;
+    self.allMoneyLabel.hidden = NO;
+    self.yunFeiLabel.hidden = NO;
+    self.buhanYunFeiLabel.hidden = NO;
+}
 #pragma mark CreatTabelView
 - (void)creatTabelView{
     MJWeakSelf;
@@ -125,6 +168,8 @@
     
     self.myTableView.mj_header = [SLRefreshHeader headerWithRefreshingBlock:^{
         weakSelf.page = 0;
+        weakSelf.allMoneyLabel.attributedText = [self setMoneyStr:@"合计：0元"];
+        weakSelf.yunFeiLabel.attributedText = [self setDeliveryPriceStr:@"运费0元"];
         [weakSelf getShopCarRequest];
     }];
     
@@ -199,15 +244,88 @@
     }];
     self.yunFeiLabel = yunFeiLabel;
     
-    [UILabel getLabelWithFont:F9 textColor:C989898 superView:bottomView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
+   UILabel *buhanYunFeiLabel =  [UILabel getLabelWithFont:F9 textColor:C989898 superView:bottomView masonrySet:^(UILabel *view, MASConstraintMaker *make) {
         make.centerY.equalTo(yunFeiLabel.mas_centerY);
         make.right.equalTo(yunFeiLabel.mas_left).offset(-AD_HEIGHT(15));
         
         view.text = @"不含运费";
         view.textAlignment = NSTextAlignmentLeft;
     }];
+    self.buhanYunFeiLabel = buhanYunFeiLabel;
     
     
+    UIButton *deleateBtn = [UIButton getButtonWithImageName:@"" titleText:@"删除" superView:bottomView masonrySet:^(UIButton * _Nonnull btn, MASConstraintMaker * _Nonnull make) {
+        make.right.offset(-AD_HEIGHT(15));
+        make.centerY.offset(0);
+        make.size.mas_offset(CGSizeMake(AD_HEIGHT(88), AD_HEIGHT(31)));
+        
+        [btn setBackgroundColor:CF52542];
+        btn.layer.cornerRadius = 15.f;
+        btn.layer.masksToBounds = YES;
+        [btn addTarget:self action:@selector(deleateGood) forControlEvents:UIControlEventTouchUpInside];
+        btn.titleLabel.font = F13;
+        [btn setTitleColor:WhiteColor forState:normal];
+        btn.hidden = YES;
+    }];
+    self.deleateBtn = deleateBtn;
+}
+
+#pragma mark ---- 删除商品 ----
+- (void)deleateGood
+{
+    
+    //遍历套餐数组
+    
+    NSString *pkgPrdIds = [NSString string];
+
+    __block NSMutableArray *pkgPrdIdsArr = [NSMutableArray array];
+    __block NSMutableArray *pkgPrdTypesArr = [NSMutableArray array];
+    __block NSMutableArray *needDeleatePkgPrdTypesArr = [NSMutableArray array];
+
+    [self.packAgeArr enumerateObjectsUsingBlock:^(ShopCar_PackageModel *  _Nonnull packageM, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (packageM.isSelected) {
+            [needDeleatePkgPrdTypesArr addObject:packageM.ID];
+            [pkgPrdTypesArr addObject:packageM];
+        }
+    }];
+    
+    //遍历产品数组
+    [self.productDataArr enumerateObjectsUsingBlock:^(NSArray * _Nonnull productA, NSUInteger idx, BOOL * _Nonnull stop) {
+        __block NSMutableArray *tmpPkgPrdIdsArr = [NSMutableArray array];
+        [productA enumerateObjectsUsingBlock:^(ShopCar_ProductModel *  _Nonnull productM, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (!productM.isSelected) {
+                [tmpPkgPrdIdsArr addObject:productM];
+            } else {
+                [needDeleatePkgPrdTypesArr addObject:productM.ID];
+            }
+        }];
+        [pkgPrdIdsArr addObject:tmpPkgPrdIdsArr];
+    }];
+    
+    if (needDeleatePkgPrdTypesArr.count == 0) {
+        HUD_TIP(@"请选中商品后删除！");
+        return;
+    }
+    pkgPrdIds = [needDeleatePkgPrdTypesArr componentsJoinedByString:@","];
+
+    NSDictionary *params = @{
+                             @"ids":pkgPrdIds
+                             };
+    HUD_SHOW;
+    [[HPDConnect connect]PostNetRequestMethod:@"/api/trans/cart/batchRemove" params:params cookie:nil result:^(bool success, id result) {
+        HUD_HIDE;
+        if (success) {
+            if ([result[@"code"]integerValue] == 0) {
+                HUD_SUCCESS(@"删除成功！");
+                [self.packAgeArr removeObjectsInArray:pkgPrdTypesArr];
+                self.productArr = pkgPrdIdsArr;
+                
+                [self.myTableView reloadData];
+
+            }
+        }
+    }];
+
 }
 #pragma mark ---- 全选点击 ----
 - (void)clickAllSelectedBtn:(UIButton *)sender

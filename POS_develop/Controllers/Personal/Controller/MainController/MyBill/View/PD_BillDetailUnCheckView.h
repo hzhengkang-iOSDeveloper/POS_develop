@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PD_BillDetailUnCheckView : UIView
 @property (nonatomic, strong) PayDOModel *payDoM;
-@property (nonatomic, copy) void (^comfirSaveInfoHandler)(PayDOModel *model);
+@property (nonatomic, copy) void (^comfirSaveInfoHandler)(NSDictionary *dict);
 @end
 
 NS_ASSUME_NONNULL_END

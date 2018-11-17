@@ -467,12 +467,8 @@
         //待审核
         PD_BillDetailUnCheckView *unCheckView = [[PD_BillDetailUnCheckView alloc]init];
         unCheckView.payDoM = payDoM;
-        unCheckView.comfirSaveInfoHandler = ^(PayDOModel * _Nonnull model) {
-            NSDictionary *dic = @{
-                                  @"name":IF_NULL_TO_STRING(model.payBankName),
-                                  @"orderNo":IF_NULL_TO_STRING(model.transactionId)
-                                  };
-           [self outLinePayRequestWith:dic];//线下支付
+        unCheckView.comfirSaveInfoHandler = ^(NSDictionary * _Nonnull dict) {
+            [self outLinePayRequestWith:dict];//线下支付
         };
         
         [footerView addSubview:unCheckView];
@@ -877,7 +873,6 @@
 #pragma mark ---- 线下支付相关 ----
 - (void)outLinePayRequestWith:(NSDictionary *)dict
 {
-    PayDOModel *payM = [PayDOModel mj_objectWithKeyValues:self.billListM.payDO];
     if (self.isNeedSelectAddress) {
         HUD_TIP(@"选择收货地址后才可支付！");
         return;
