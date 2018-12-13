@@ -60,7 +60,7 @@
     OSMessage *msg = [[OSMessage alloc] init];
     msg.title = self.shareTitle;
     msg.desc = self.pasteStr;
-    NSData *imageData = UIImageJPEGRepresentation(self.shareImgV.image, 0.5);
+    NSData *imageData = UIImageJPEGRepresentation(self.shareImgV.image, 0.1);
     msg.image = imageData;
     //    msg.fileExt = @"哈哈哈哈哈";
     if (!self.isPic) {

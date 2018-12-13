@@ -15,6 +15,8 @@
 #import "HomeHeaderModel.h"
 #import "PackageChargeListModel.h"
 #import "PosHomePageTopHeaderView.h"
+#import "CombinationSetMealDetailViewController.h"
+
 @interface PosHomePageViewController () <UITableViewDelegate, UITableViewDataSource>{
     NSString *startTime;
     NSString *endTime;
@@ -51,7 +53,7 @@
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
     [self addBackButtonWithImage:[UIImage imageNamed:@"图层3拷贝-1"]  clickHandler:^{
-
+        [[HDMessageManager shareManager]LoginHDWithVc:weakSelf];
     }];
     
     [self creatHomeHeaderView];
@@ -125,7 +127,11 @@
 
 #pragma mark - UITableViewDelegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    CombinationSetMealDetailViewController *vc = [[CombinationSetMealDetailViewController alloc] init];
+    PackageChargeListModel *model = self.dataArray[indexPath.section];
+    vc.myID = model.ID;
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
