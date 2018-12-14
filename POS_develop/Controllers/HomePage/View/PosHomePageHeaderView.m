@@ -13,6 +13,7 @@
 #import "NullViewController.h"
 #import "CombinationSetMealViewController.h"
 #import "MyFreeGetViewController.h"
+#import "HomeH5ViewController.h"
 @interface PosHomePageHeaderView ()<XRCarouselViewDelegate>
 //轮播图
 @property (nonatomic, strong) XRCarouselView *advView;
@@ -212,9 +213,24 @@
         self.advView.imageArray = adArray;
     }
 }
+
+- (void)setLinkArray:(NSArray *)linkArray
+{
+    if (linkArray) {
+        _linkArray = linkArray;
+        
+    }
+}
 #pragma mark -- 轮播图点击方法
 - (void)carouselView:(XRCarouselView *)carouselView clickImageAtIndex:(NSInteger)index{
+    if ([IF_NULL_TO_STRING(self.linkArray[index]) isEqualToString:@""]) {
+        return;
+    }
     
+    HomeH5ViewController *vc = [[HomeH5ViewController alloc]init];
+    vc.urlLinkStr = self.linkArray[index];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.viewController.navigationController pushViewController:vc animated:YES];
 }
 #pragma mark ---- 查看更多组合套餐 ----
 - (void)moreClick:(UIButton *)sender {

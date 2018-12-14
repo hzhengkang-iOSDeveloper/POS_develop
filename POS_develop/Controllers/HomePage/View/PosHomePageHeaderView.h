@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PosHomePageHeaderView : UIView
 @property (nonatomic, strong) NSArray *adArray;
+@property (nonatomic, strong) NSArray *linkArray;
 @end
 
 NS_ASSUME_NONNULL_END

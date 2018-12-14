@@ -23,12 +23,20 @@
 }
 @property (nonatomic, strong) UITableView *homeTableView;
 @property (nonatomic, strong) NSMutableArray *adArray;//首页广告banner数据源
+@property (nonatomic, strong) NSMutableArray *linkArray;//首页广告banner数据源link
 @property (nonatomic, strong) NSMutableArray *dataArray;//套餐数据源
 @property (nonatomic, weak) PosHomePageHeaderView *headerView;
 @property (nonatomic, weak) PosHomePageTopHeaderView *homeHeaderView;
 @end
 
 @implementation PosHomePageViewController
+- (NSMutableArray *)linkArray
+{
+    if (!_linkArray) {
+        _linkArray = [NSMutableArray array];
+    }
+    return _linkArray;
+}
 - (NSMutableArray *)adArray
 {
     if (!_adArray) {
@@ -205,7 +213,16 @@
                             [self.adArray addObject:model.bannerPic];
                         }];
                         
+                        if (self.linkArray.count > 0) {
+                            [self.linkArray removeAllObjects];
+                        }
+                        [dataArr enumerateObjectsUsingBlock:^(IndexBannerListModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
+                            [self.linkArray addObject:model.hyperlink];
+                        }];
+                        
+                        
                         self.headerView.adArray = [NSArray arrayWithArray:self.adArray];
+                        self.headerView.linkArray = [NSArray arrayWithArray:self.linkArray];
                         
                     }
                 }

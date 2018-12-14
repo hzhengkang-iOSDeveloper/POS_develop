@@ -89,15 +89,6 @@
     NSMutableDictionary *selectedTextAttrs = [NSMutableDictionary dictionary];
     [selectedTextAttrs setValue:C1E95F9 forKey:NSForegroundColorAttributeName];
     [childVc.tabBarItem setTitleTextAttributes:selectedTextAttrs forState:UIControlStateSelected];
-//    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-//                                                       [UIColor redColor], NSForegroundColorAttributeName,
-//                                                       [UIFont systemFontOfSize:26.0], NSFontAttributeName,
-//                                                       nil] forState:UIControlStateNormal];
-//    UIColor *titleHighlightedColor = [UIColor greenColor];
-//    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-//                                                       titleHighlightedColor, NSForegroundColorAttributeName,
-//                                                       [UIFont systemFontOfSize:26.0], NSFontAttributeName,
-//                                                       nil] forState:UIControlStateSelected];
     // 设置选中的图标
     UIImage *selectedImage = selectedImageName;
     

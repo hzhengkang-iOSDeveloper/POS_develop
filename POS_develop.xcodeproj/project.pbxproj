@@ -358,6 +358,7 @@
 		7813B806216E023B0086CE68 /* HtmlGenerailzeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7813B805216E023B0086CE68 /* HtmlGenerailzeViewController.m */; };
 		7813B809216E03D80086CE68 /* HtmlGenerailzeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7813B808216E03D80086CE68 /* HtmlGenerailzeCell.m */; };
 		7813B80D216E07280086CE68 /* HtmlGenerailzeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7813B80C216E07280086CE68 /* HtmlGenerailzeDetailViewController.m */; };
+		781BE41C21C37DF7006F6FBF /* HomeH5ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781BE41B21C37DF7006F6FBF /* HomeH5ViewController.m */; };
 		78632B372175B340005AAF88 /* HomeHeaderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78632B362175B340005AAF88 /* HomeHeaderModel.m */; };
 		786AD0DD215A02F1005D7363 /* SeparateQueryDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 786AD0DC215A02F1005D7363 /* SeparateQueryDetailHeaderView.m */; };
 		786AD0E1215A2C46005D7363 /* XLBasePageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 786AD0E0215A2C46005D7363 /* XLBasePageController.m */; };
@@ -1170,6 +1171,8 @@
 		7813B808216E03D80086CE68 /* HtmlGenerailzeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HtmlGenerailzeCell.m; sourceTree = "<group>"; };
 		7813B80B216E07280086CE68 /* HtmlGenerailzeDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HtmlGenerailzeDetailViewController.h; sourceTree = "<group>"; };
 		7813B80C216E07280086CE68 /* HtmlGenerailzeDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HtmlGenerailzeDetailViewController.m; sourceTree = "<group>"; };
+		781BE41A21C37DF7006F6FBF /* HomeH5ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeH5ViewController.h; sourceTree = "<group>"; };
+		781BE41B21C37DF7006F6FBF /* HomeH5ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeH5ViewController.m; sourceTree = "<group>"; };
 		78632B352175B340005AAF88 /* HomeHeaderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeHeaderModel.h; sourceTree = "<group>"; };
 		78632B362175B340005AAF88 /* HomeHeaderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeHeaderModel.m; sourceTree = "<group>"; };
 		786AD0DB215A02F1005D7363 /* SeparateQueryDetailHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeparateQueryDetailHeaderView.h; sourceTree = "<group>"; };
@@ -3073,6 +3076,8 @@
 				787FFC9321522D4400318BBC /* Controller */,
 				787166B5214912E200452C51 /* PosHomePageViewController.h */,
 				787166B6214912E200452C51 /* PosHomePageViewController.m */,
+				781BE41A21C37DF7006F6FBF /* HomeH5ViewController.h */,
+				781BE41B21C37DF7006F6FBF /* HomeH5ViewController.m */,
 			);
 			path = HomePage;
 			sourceTree = "<group>";
@@ -4234,6 +4239,7 @@
 				50171DB02182E92500AA42F1 /* StatisticAnalysisModel.m in Sources */,
 				7888F34C2147C32C00AAC8B0 /* UITableViewCell+Extension.m in Sources */,
 				787166BB214917D400452C51 /* POSViewController.m in Sources */,
+				781BE41C21C37DF7006F6FBF /* HomeH5ViewController.m in Sources */,
 				2546E2D7214D4D0F0066DBFB /* UpdatePasswordViewController.m in Sources */,
 				509C7D4C2195322F0096A442 /* HDMessageManager.m in Sources */,
 				50A89AEF216B653200E68BEB /* XAreaLineChartConfiguration.m in Sources */,
