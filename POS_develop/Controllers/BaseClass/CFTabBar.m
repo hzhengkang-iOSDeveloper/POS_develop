@@ -23,6 +23,8 @@
         self.barTintColor = [UIColor whiteColor];
         self.translucent = NO;
         self.tintColor = [UIColor whiteColor];
+        
+        
     }
     return self;
 }
@@ -76,6 +78,19 @@
     tabBarButton.x = buttonW * index;
     
     tabBarButton.y = 2.5;
+    
+    
+    for (UIBarButtonItem *item in self.items) {
+        [item setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                      [UIColor blackColor], NSForegroundColorAttributeName,
+                                      [UIFont systemFontOfSize:AD_HEIGHT(12)], NSFontAttributeName,
+                                      nil] forState:normal];
+        
+        [item setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                      RGB(31, 118, 225), NSForegroundColorAttributeName,
+                                      [UIFont systemFontOfSize:AD_HEIGHT(12)], NSFontAttributeName,
+                                      nil] forState:UIControlStateSelected];
+    }
 }
 
 

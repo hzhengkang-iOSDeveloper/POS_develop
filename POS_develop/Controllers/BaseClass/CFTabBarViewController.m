@@ -34,6 +34,8 @@
     customTabBar.barTintColor = [UIColor whiteColor];
     
     [self setValue:customTabBar forKeyPath:@"tabBar"];
+    
+    
 }
 
 - (void)addAllChildVcs{
@@ -107,7 +109,28 @@
     
 }
 
-
+//-(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
+//{
+//    NSInteger index = [self.tabBar.items indexOfObject:item];
+//    [self animationWithIndex:index];
+//}
+//- (void)animationWithIndex:(NSInteger) index {
+//    NSMutableArray * tabbarbuttonArray = [NSMutableArray array];
+//    for (UIView *tabBarButton in self.tabBar.subviews) {
+//        if ([tabBarButton isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
+//            [tabbarbuttonArray addObject:tabBarButton];
+//        }
+//    }
+//    CABasicAnimation*pulse = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+//    pulse.timingFunction= [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    pulse.duration = 0.08;
+//    pulse.repeatCount= 1;
+//    pulse.autoreverses= YES;
+//    pulse.fromValue= [NSNumber numberWithFloat:0.7];
+//    pulse.toValue= [NSNumber numberWithFloat:1.3];
+//    [[tabbarbuttonArray[index] layer]
+//     addAnimation:pulse forKey:nil];
+//}
 
 @end
 
