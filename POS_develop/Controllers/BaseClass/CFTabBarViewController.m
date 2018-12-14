@@ -23,7 +23,11 @@
     [super viewDidLoad];
     [self addAllChildVcs];
     
-    [self addCustomTabBar];
+//    [self addCustomTabBar];
+    
+    
+    
+    
     
     
 }
@@ -42,7 +46,7 @@
     PosHomePageViewController *homePageVC = [[PosHomePageViewController alloc] init];
     [self addOneChlildVc:homePageVC title:@"首页" imageName:[[ UIImage imageNamed:@"首页1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImageName:[[ UIImage imageNamed:@"首页"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     POSViewController *posVC = [[POSViewController alloc] init];
-    [self addOneChlildVc:posVC title:@"POS" imageName:[[ UIImage imageNamed:@"pos机"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImageName:[[ UIImage imageNamed:@"pos机1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [self addOneChlildVc:posVC title:@"POS机" imageName:[[ UIImage imageNamed:@"pos机"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImageName:[[ UIImage imageNamed:@"pos机1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     GeneralizeViewController *generalizeVC = [[GeneralizeViewController alloc] init];
     [self addOneChlildVc:generalizeVC title:@"推广" imageName:[[ UIImage imageNamed:@"推广"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImageName:[[ UIImage imageNamed:@"推广1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     PersonalViewController *personalVC = [[PersonalViewController alloc] init];
@@ -68,8 +72,10 @@
 {
     //设置tabbarItem的title
     childVc.tabBarItem.title = title;
+    
     // 设置图标
     UIImage *normaliamge = imageName;
+//    [[UITabBarItem appearance] setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor blackColor],UITextAttributeFont:[UIFont fontWithName:@"Marion-Italic" size:16.0]}            forState:UIControlStateNormal];
     
     normaliamge = [normaliamge imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     childVc.tabBarItem.image = normaliamge;
@@ -83,15 +89,15 @@
     NSMutableDictionary *selectedTextAttrs = [NSMutableDictionary dictionary];
     [selectedTextAttrs setValue:C1E95F9 forKey:NSForegroundColorAttributeName];
     [childVc.tabBarItem setTitleTextAttributes:selectedTextAttrs forState:UIControlStateSelected];
-    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                       [UIColor redColor], NSForegroundColorAttributeName,
-                                                       [UIFont systemFontOfSize:12.0], NSFontAttributeName,
-                                                       nil] forState:UIControlStateNormal];
-    UIColor *titleHighlightedColor = [UIColor greenColor];
-    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                       titleHighlightedColor, NSForegroundColorAttributeName,
-                                                       [UIFont systemFontOfSize:12.0], NSFontAttributeName,
-                                                       nil] forState:UIControlStateSelected];
+//    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+//                                                       [UIColor redColor], NSForegroundColorAttributeName,
+//                                                       [UIFont systemFontOfSize:26.0], NSFontAttributeName,
+//                                                       nil] forState:UIControlStateNormal];
+//    UIColor *titleHighlightedColor = [UIColor greenColor];
+//    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+//                                                       titleHighlightedColor, NSForegroundColorAttributeName,
+//                                                       [UIFont systemFontOfSize:26.0], NSFontAttributeName,
+//                                                       nil] forState:UIControlStateSelected];
     // 设置选中的图标
     UIImage *selectedImage = selectedImageName;
     

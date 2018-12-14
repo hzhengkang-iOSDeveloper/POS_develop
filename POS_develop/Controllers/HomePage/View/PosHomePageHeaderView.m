@@ -156,6 +156,7 @@
     
     //轮播图
     XRCarouselView *advView = [[XRCarouselView alloc] init];
+    advView.contentMode = UIViewContentModeScaleAspectFill;
     self.advView = advView;
     [self addSubview:self.advView];
     //用代理处理图片点击
@@ -175,7 +176,7 @@
     UILabel *textLabel = [[UILabel alloc] init];
     textLabel.text = @"组合套餐";
     textLabel.textColor = C000000;
-    textLabel.font = F15;
+    textLabel.font = FB15;
     [self addSubview:textLabel];
     [textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(AD_HEIGHT(15));
@@ -221,4 +222,6 @@
     vc.hidesBottomBarWhenPushed = YES;
     [self.viewController.navigationController pushViewController:vc animated:YES];
 }
+
+
 @end

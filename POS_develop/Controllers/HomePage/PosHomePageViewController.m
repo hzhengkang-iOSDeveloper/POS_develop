@@ -97,7 +97,7 @@
 
 - (UIView *)createHeaderView {
     PosHomePageHeaderView *headerView = [[PosHomePageHeaderView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, AD_HEIGHT(82)+AD_HEIGHT(25)+AD_HEIGHT(165)+AD_HEIGHT(44))];
-    
+    headerView.backgroundColor = WhiteColor;
     self.headerView = headerView;
     return headerView;
 }

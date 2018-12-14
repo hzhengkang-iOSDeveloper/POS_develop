@@ -148,7 +148,7 @@
 #define F13 [UIFont systemFontOfSize:FITiPhone6(13)]
 #define F12 [UIFont systemFontOfSize:FITiPhone6(12)]
 #define F11 [UIFont systemFontOfSize:FITiPhone6(11)]
-#define F10 [UIFont systemFontOfSize:FITiPhone6(10)]
+#define F10 [UIFont systemFontOfSize:FITiPhone6(11)]
 #define F9 [UIFont systemFontOfSize:FITiPhone6(9)]
 #define F8 [UIFont systemFontOfSize:FITiPhone6(8)]
 

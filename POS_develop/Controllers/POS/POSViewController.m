@@ -68,21 +68,21 @@
 #pragma mark - nav购物车&更多按钮
 - (NSArray *)rightItems {
     if (!_rightItems) {
-        UIButton *kindBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        kindBtn.frame = CGRectMake(0, 0, 25, 25);
-        [kindBtn setImage:ImageNamed(@"套餐信息") forState:normal];
-        [kindBtn addTarget:self action:@selector(kindBtnClick) forControlEvents:UIControlEventTouchUpInside];
-        UIBarButtonItem *kindItem = [[UIBarButtonItem alloc] initWithCustomView:kindBtn];
+//        UIButton *kindBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        kindBtn.frame = CGRectMake(0, 0, 25, 25);
+//        [kindBtn setImage:ImageNamed(@"套餐信息") forState:normal];
+//        [kindBtn addTarget:self action:@selector(kindBtnClick) forControlEvents:UIControlEventTouchUpInside];
+//        UIBarButtonItem *kindItem = [[UIBarButtonItem alloc] initWithCustomView:kindBtn];
         
         
         UIButton *shopCartBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        shopCartBtn.frame = CGRectMake(0, 0, 25, 25);
+        shopCartBtn.frame = CGRectMake(0, 0, AD_HEIGHT(35),  AD_HEIGHT(35));
         [shopCartBtn setImage:ImageNamed(@"购物车") forState:normal];
         [shopCartBtn addTarget:self action:@selector(shopCartBtnClick) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem *shopCartItem = [[UIBarButtonItem alloc] initWithCustomView:shopCartBtn];
         
         
-        _cartNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(shopCartBtn.width-10, -5, 18, 18)];
+        _cartNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(shopCartBtn.width-15, 0, 18, 18)];
         _cartNumLabel.hidden = YES;
         _cartNumLabel.textColor = WhiteColor;
         _cartNumLabel.textAlignment = NSTextAlignmentCenter;
@@ -93,10 +93,10 @@
         [shopCartBtn addSubview:_cartNumLabel];
         
         //新加的代码
-        UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-        space.width = 30;
+//        UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//        space.width = 30;
         
-        _rightItems = @[shopCartItem,kindItem,space];
+        _rightItems = @[shopCartItem];
     }
     return _rightItems;
 }
